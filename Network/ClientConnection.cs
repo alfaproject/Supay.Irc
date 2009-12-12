@@ -249,17 +249,18 @@ namespace Supay.Irc.Network {
         throw new InvalidOperationException(Properties.Resources.ConnectionCanNotBeWrittenToYet);
       }
 
-      if (data == null) {
+      if (string.IsNullOrEmpty(data)) {
         return;
       }
 
+      data = data.Replace("\\c", "\x0003").Replace("\\b", "\x0002").Replace("\\u", "\x001F");
 
       if (!data.EndsWith("\r\n", StringComparison.Ordinal)) {
         data += "\r\n";
       }
-      if (data.Length > 512) {
-        throw new Supay.Irc.Messages.InvalidMessageException(Properties.Resources.MessagesAreLimitedInSize, data);
-      }
+      //if (data.Length > 512) {
+      //  throw new Supay.Irc.Messages.InvalidMessageException(Properties.Resources.MessagesAreLimitedInSize, data);
+      //}
 
       try {
         this.chatWriter.WriteLine(data);
