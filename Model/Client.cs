@@ -607,7 +607,7 @@ namespace Supay.Irc {
       for (int i = 0; i < e.Message.Channels.Count; i++) {
         String channelName = e.Message.Channels[i];
         String nick = e.Message.Nicks[i];
-        Channel channel = this.Channels.FindChannel(channelName);
+        Channel channel = this.Channels.Find(channelName);
 
         if (IsMe(nick)) {
           // we don't want to actually remove the channel, but just close the channel
@@ -660,7 +660,7 @@ namespace Supay.Irc {
     private void routeParts(object sender, IrcMessageEventArgs<PartMessage> e) {
       String nick = e.Message.Sender.Nick;
       foreach (String channelName in e.Message.Channels) {
-        Channel channel = this.Channels.FindChannel(channelName);
+        Channel channel = this.Channels.Find(channelName);
         if (IsMe(nick)) {
           channel.Open = false;
         } else {
@@ -683,21 +683,21 @@ namespace Supay.Irc {
     }
 
     private void routeTopicNones(object sender, IrcMessageEventArgs<TopicNoneReplyMessage> e) {
-      Channel channel = this.Channels.FindChannel(e.Message.Channel);
+      Channel channel = this.Channels.Find(e.Message.Channel);
       if (channel != null) {
         channel.Topic = "";
       }
     }
 
     private void routeTopics(object sender, IrcMessageEventArgs<TopicReplyMessage> e) {
-      Channel channel = this.Channels.FindChannel(e.Message.Channel);
+      Channel channel = this.Channels.Find(e.Message.Channel);
       if (channel != null) {
         channel.Topic = e.Message.Topic;
       }
     }
 
     private void routeTopicSets(object sender, IrcMessageEventArgs<TopicSetReplyMessage> e) {
-      Channel channel = this.Channels.FindChannel(e.Message.Channel);
+      Channel channel = this.Channels.Find(e.Message.Channel);
       if (channel != null) {
         User topicSetter = this.Peers.EnsureUser(e.Message.User);
         channel.TopicSetter = topicSetter;
@@ -709,7 +709,7 @@ namespace Supay.Irc {
       User whoUser = this.Peers.EnsureUser(e.Message.User);
       String channelName = e.Message.Channel;
 
-      Channel channel = this.Channels.FindChannel(channelName);
+      Channel channel = this.Channels.Find(channelName);
       if (channel != null) {
         if (!channel.Users.Contains(whoUser)) {
           channel.Users.Add(whoUser);
@@ -719,7 +719,7 @@ namespace Supay.Irc {
     }
 
     private void client_NoSuchChannel(object sender, IrcMessageEventArgs<NoSuchChannelMessage> e) {
-      Channel channel = this.Channels.FindChannel(e.Message.Channel);
+      Channel channel = this.Channels.Find(e.Message.Channel);
       if (channel != null) {
         channel.Open = false;
       }
@@ -729,7 +729,7 @@ namespace Supay.Irc {
       String nick = e.Message.Nick;
 
       if (MessageUtil.HasValidChannelPrefix(nick)) { // NoSuchNickMessage is sent by some servers instead of a NoSuchChannelMessage
-        Channel channel = this.Channels.FindChannel(e.Message.Nick);
+        Channel channel = this.Channels.Find(e.Message.Nick);
         if (channel != null) {
           channel.Open = false;
         }
@@ -742,7 +742,7 @@ namespace Supay.Irc {
     }
 
     private void client_ChannelModeIsReply(object sender, IrcMessageEventArgs<ChannelModeIsReplyMessage> e) {
-      Channel channel = this.Channels.FindChannel(e.Message.Channel);
+      Channel channel = this.Channels.Find(e.Message.Channel);
       if (channel != null) {
         ChannelModesCreator modes = new ChannelModesCreator();
         modes.ServerSupport = this.ServerSupports;
