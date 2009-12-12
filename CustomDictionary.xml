@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Dictionary>
+  <Words>
+    <Recognized>
+      <Word>Bot</Word>
+      <Word>Ctcp</Word>
+      <Word>Dcc</Word>
+      <Word>Ident</Word>
+      <Word>Ircx</Word>
+      <Word>Lusers</Word>
+      <Word>Motd</Word>
+      <Word>Oper</Word>
+      <Word>Params</Word>
+      <Word>Reop</Word>
+      <Word>Rfc</Word>
+      <Word>Splittable</Word>
+      <Word>Unescape</Word>
+      <Word>Unix</Word>
+      <Word>Util</Word>
+      <Word>Wallchops</Word>
+    </Recognized>
+  </Words>
+</Dictionary>

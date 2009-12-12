@@ -1,0 +1,404 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{DF3020D5-AA48-4A61-9C0B-4F7A2C9D08CE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Supay.Irc</RootNamespace>
+    <AssemblyName>Supay.Irc</AssemblyName>
+    <SignAssembly>false</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\..\..\MyStrongNameKey.snk</AssemblyOriginatorKeyFile>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <TargetFrameworkSubset>Full</TargetFrameworkSubset>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <CodeAnalysisRules>-Microsoft.Performance#CA1805;-Microsoft.Usage#CA2214</CodeAnalysisRules>
+    <DocumentationFile>bin\Debug\Supay.Irc.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <CodeAnalysisRules>-Microsoft.Design#CA1020;-Microsoft.Security#CA2104;-Microsoft.Usage#CA2214</CodeAnalysisRules>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ChannelStatus.cs" />
+    <Compile Include="Contacts\ContactsTracker.cs" />
+    <Compile Include="Contacts\ContactsWatchTracker.cs" />
+    <Compile Include="Contacts\ContactsMonitorTracker.cs" />
+    <Compile Include="Contacts\ContactsIsOnTracker.cs" />
+    <Compile Include="Messages\Channel Operation\Modes\CannotRemoveServiceBot.cs" />
+    <Compile Include="Messages\Channel Operation\Modes\ChannelLimitReachedMessage.cs" />
+    <Compile Include="Messages\Channel Operation\Modes\RegisteredNicksOnlyMode.cs" />
+    <Compile Include="Messages\Connection Registration\UserNotificationServerSideMessage.cs" />
+    <Compile Include="Messages\CancelIrcMessageEventArgs.cs" />
+    <Compile Include="Messages\IChannelTargetedMessage.cs" />
+    <Compile Include="Messages\Ctcp\Spr\Mp3RequestMessage.cs" />
+    <Compile Include="Messages\Ctcp\Spr\SlotsRequestMessage.cs" />
+    <Compile Include="Messages\IQueryTargetedMessage.cs" />
+    <Compile Include="Messages\Misc\AcceptListEditorMessage.cs" />
+    <Compile Include="Messages\Misc\AcceptListRequestMessage.cs" />
+    <Compile Include="Messages\Misc\MonitorRemoveUsersMessage.cs" />
+    <Compile Include="Messages\Misc\MonitorAddUsersMessage.cs" />
+    <Compile Include="Messages\Misc\MonitorStatusRequestMessage.cs" />
+    <Compile Include="Messages\Misc\MonitorListRequestMessage.cs" />
+    <Compile Include="Messages\Misc\MonitorListClearMessage.cs" />
+    <Compile Include="Messages\Misc\MonitorMessage.cs" />
+    <Compile Include="Messages\Replies\ChannelCreationTimeMessage.cs" />
+    <Compile Include="Messages\Replies\AcceptListReplyMessage.cs" />
+    <Compile Include="Messages\Replies\AcceptListEndReplyMessage.cs" />
+    <Compile Include="Messages\Replies\UniqueIdMessage.cs" />
+    <Compile Include="Messages\Replies\Errors\AcceptListFullMessage.cs" />
+    <Compile Include="Messages\Replies\Errors\AcceptAlreadyExistsMessage.cs" />
+    <Compile Include="Messages\Replies\Errors\AcceptDoesNotExistMessage.cs" />
+    <Compile Include="Messages\Replies\UnknownConnectionsMessage.cs" />
+    <Compile Include="Messages\Replies\WhoIsRegisteredNickReplyMessage.cs" />
+    <Compile Include="Messages\Replies\MonitorListFullMessage.cs" />
+    <Compile Include="Messages\Replies\MonitorListEndReplyMessage.cs" />
+    <Compile Include="Messages\Replies\MonitorListReplyMessage.cs" />
+    <Compile Include="Messages\Replies\MonitoredNicksListMessage.cs" />
+    <Compile Include="Messages\Replies\MonitoredUserOfflineMessage.cs" />
+    <Compile Include="Messages\Replies\MonitoredUserOnlineMessage.cs" />
+    <Compile Include="Messages\Replies\WatchStatusNicksReplyMessage.cs" />
+    <Compile Include="Messages\Replies\WatchedUserIsOnlineMessage.cs" />
+    <Compile Include="Messages\Replies\WatchedUserIsOfflineMessage.cs" />
+    <Compile Include="Messages\Replies\Errors\BanListFullMessage.cs" />
+    <Compile Include="Messages\Replies\Errors\ChannelBlockedMessage.cs" />
+    <Compile Include="Messages\Replies\Errors\ChannelIsInviteOnlyMessage.cs" />
+    <Compile Include="Messages\Replies\Errors\ChannelOpStatusRequiredMessage.cs" />
+    <Compile Include="Messages\Replies\Errors\ChannelRequiresKeyMessage.cs" />
+    <Compile Include="Messages\Replies\Errors\ChannelRequiresRegisteredNickMessage.cs" />
+    <Compile Include="Messages\Replies\Errors\SilenceListFullMessage.cs" />
+    <Compile Include="Messages\Replies\Errors\UnknownUserModeMessage.cs" />
+    <Compile Include="Messages\Replies\Errors\UnknownChannelModeMessage.cs" />
+    <Compile Include="Messages\CustomListItemRendering.cs" />
+    <Compile Include="Messages\Replies\Errors\AlreadyOnChannelMessage.cs" />
+    <Compile Include="Messages\Replies\Errors\CannotUseColorsMessage.cs" />
+    <Compile Include="Messages\Replies\Errors\CannotChangeNickWhileBannedMessage.cs" />
+    <Compile Include="Messages\Replies\Errors\ChannelKeyAlreadySetMessage.cs" />
+    <Compile Include="Messages\Replies\Errors\IdentChangedMessage.cs" />
+    <Compile Include="Messages\Replies\Errors\NotEnoughParametersMessage.cs" />
+    <Compile Include="Messages\Replies\Errors\NotOnChannelMessage.cs" />
+    <Compile Include="Messages\Replies\Errors\TargetChangeTooFastMessage.cs" />
+    <Compile Include="Messages\Replies\Errors\NickChangeTooFastMessage.cs" />
+    <Compile Include="Messages\Replies\Errors\NoRecipientGivenMessage.cs" />
+    <Compile Include="Messages\Replies\Errors\NoPingOriginSpecifiedMessage.cs" />
+    <Compile Include="Messages\Replies\Errors\NoTextToSendMessage.cs" />
+    <Compile Include="Messages\Replies\Errors\TooManyLinesMessage.cs" />
+    <Compile Include="Messages\Replies\Errors\UnknownCommandMessage.cs" />
+    <Compile Include="Messages\Replies\Errors\YouAreBannedFromChannelMessage.cs" />
+    <Compile Include="Messages\Replies\UserModeIsReplyMessage.cs" />
+    <Compile Include="Messages\Replies\WatchedUserChangedMessage.cs" />
+    <Compile Include="Messages\Replies\WatchedUserOfflineMessage.cs" />
+    <Compile Include="Messages\Replies\WatchedUserOnlineMessage.cs" />
+    <Compile Include="Messages\User Based\Modes\DeafMode.cs" />
+    <Compile Include="Model\ServerQuery.cs" />
+    <Compile Include="Model\Journal.cs" />
+    <Compile Include="Model\JournalEntry.cs" />
+    <Compile Include="Model\MessageCollection.cs" />
+    <Compile Include="Model\Query.cs" />
+    <Compile Include="Model\QueryCollection.cs" />
+    <Compile Include="Model\Client.cs">
+    </Compile>
+    <Compile Include="Model\ClientCollection.cs" />
+    <Compile Include="Network\ClientConnection.cs">
+    </Compile>
+    <Compile Include="Network\ConnectionDataEvent.cs" />
+    <Compile Include="Network\ConnectionStatus.cs" />
+    <Compile Include="Dcc\DccAcceptRequestMessage.cs" />
+    <Compile Include="Dcc\DccChatRequestMessage.cs" />
+    <Compile Include="Dcc\DccSendRequestMessage.cs" />
+    <Compile Include="Dcc\DccGetRequestMessage.cs" />
+    <Compile Include="Dcc\DccRequestMessage.cs" />
+    <Compile Include="Dcc\DccResumeRequestMessage.cs" />
+    <Compile Include="Dcc\DccServerConnection.cs">
+    </Compile>
+    <Compile Include="Dcc\DccTransfer.cs" />
+    <Compile Include="Dcc\DccUtil.cs" />
+    <Compile Include="Network\Ident.cs">
+    </Compile>
+    <Compile Include="Messages\IrcMessageWriter.cs" />
+    <Compile Include="Messages\MessageConduit.cs">
+    </Compile>
+    <Compile Include="Messages\MessageParserService.cs" />
+    <Compile Include="Messages\Channel Operation\ChannelModeMessage.cs" />
+    <Compile Include="Messages\Channel Operation\InviteMessage.cs" />
+    <Compile Include="Messages\Channel Operation\JoinMessage.cs" />
+    <Compile Include="Messages\Channel Operation\KickMessage.cs" />
+    <Compile Include="Messages\Channel Operation\ListMessage.cs" />
+    <Compile Include="Messages\Channel Operation\Modes\AccessControlMode.cs" />
+    <Compile Include="Messages\Channel Operation\Modes\AnonymousMode.cs" />
+    <Compile Include="Messages\Channel Operation\Modes\BanExceptionMode.cs" />
+    <Compile Include="Messages\Channel Operation\Modes\BanMode.cs" />
+    <Compile Include="Messages\Channel Operation\Modes\ChannelMode.cs" />
+    <Compile Include="Messages\Channel Operation\Modes\ChannelModeCollection.cs" />
+    <Compile Include="Messages\Channel Operation\Modes\ChannelModesCreator.cs" />
+    <Compile Include="Messages\Channel Operation\Modes\CreatorMode.cs" />
+    <Compile Include="Messages\Channel Operation\Modes\FlagMode.cs" />
+    <Compile Include="Messages\Channel Operation\Modes\HalfOpMode.cs" />
+    <Compile Include="Messages\Channel Operation\Modes\InvitationExceptionMode.cs" />
+    <Compile Include="Messages\Channel Operation\Modes\InviteOnlyMode.cs" />
+    <Compile Include="Messages\Channel Operation\Modes\KeyMode.cs" />
+    <Compile Include="Messages\Channel Operation\Modes\LimitMode.cs" />
+    <Compile Include="Messages\Channel Operation\Modes\MemberStatusMode.cs" />
+    <Compile Include="Messages\Channel Operation\Modes\ModeratedMode.cs" />
+    <Compile Include="Messages\Channel Operation\Modes\NoOutsideMessagesMode.cs" />
+    <Compile Include="Messages\Channel Operation\Modes\OperatorMode.cs" />
+    <Compile Include="Messages\Channel Operation\Modes\PrivateMode.cs" />
+    <Compile Include="Messages\Channel Operation\Modes\QuietMode.cs" />
+    <Compile Include="Messages\Channel Operation\Modes\SecretMode.cs" />
+    <Compile Include="Messages\Channel Operation\Modes\ServerReopMode.cs" />
+    <Compile Include="Messages\Channel Operation\Modes\TopicGuardedMode.cs" />
+    <Compile Include="Messages\Channel Operation\Modes\UnknownMode.cs" />
+    <Compile Include="Messages\Channel Operation\Modes\VoiceMode.cs" />
+    <Compile Include="Messages\Channel Operation\NamesMessage.cs" />
+    <Compile Include="Messages\Channel Operation\PartMessage.cs" />
+    <Compile Include="Messages\Channel Operation\TopicMessage.cs" />
+    <Compile Include="Messages\CommandMessage.cs" />
+    <Compile Include="Messages\Connection Registration\NickChangeMessage.cs" />
+    <Compile Include="Messages\Connection Registration\OperMessage.cs" />
+    <Compile Include="Messages\Connection Registration\PasswordMessage.cs" />
+    <Compile Include="Messages\Connection Registration\QuitMessage.cs" />
+    <Compile Include="Messages\Connection Registration\UserNotificationMessage.cs" />
+    <Compile Include="Messages\Ctcp\ActionRequestMessage.cs" />
+    <Compile Include="Messages\Ctcp\ClientInfoReplyMessage.cs" />
+    <Compile Include="Messages\Ctcp\ClientInfoRequestMessage.cs" />
+    <Compile Include="Messages\Ctcp\CtcpMessage.cs" />
+    <Compile Include="Messages\Ctcp\CtcpReplyMessage.cs" />
+    <Compile Include="Messages\Ctcp\CtcpRequestMessage.cs" />
+    <Compile Include="Messages\Ctcp\CtcpUtil.cs" />
+    <Compile Include="Messages\Ctcp\ErrorReplyMessage.cs" />
+    <Compile Include="Messages\Ctcp\ErrorRequestMessage.cs" />
+    <Compile Include="Messages\Ctcp\FingerReplyMessage.cs" />
+    <Compile Include="Messages\Ctcp\FingerRequestMessage.cs" />
+    <Compile Include="Messages\Ctcp\GenericCtcpReplyMessage.cs" />
+    <Compile Include="Messages\Ctcp\GenericCtcpRequestMessage.cs" />
+    <Compile Include="Messages\Ctcp\PageRequestMessage.cs" />
+    <Compile Include="Messages\Ctcp\PingReplyMessage.cs" />
+    <Compile Include="Messages\Ctcp\PingRequestMessage.cs" />
+    <Compile Include="Messages\Ctcp\ScriptReplyMessage.cs" />
+    <Compile Include="Messages\Ctcp\ScriptRequestMessage.cs" />
+    <Compile Include="Messages\Ctcp\SoundRequestMessage.cs" />
+    <Compile Include="Messages\Ctcp\SourceReplyMessage.cs" />
+    <Compile Include="Messages\Ctcp\SourceRequestMessage.cs" />
+    <Compile Include="Messages\Ctcp\TimeReplyMessage.cs" />
+    <Compile Include="Messages\Ctcp\TimeRequestMessage.cs" />
+    <Compile Include="Messages\Ctcp\UserInfoReplyMessage.cs" />
+    <Compile Include="Messages\Ctcp\UserInfoRequestMessage.cs" />
+    <Compile Include="Messages\Ctcp\VersionReplyMessage.cs" />
+    <Compile Include="Messages\Ctcp\VersionRequestMessage.cs" />
+    <Compile Include="Messages\GenericMessage.cs" />
+    <Compile Include="Messages\InvalidMessageException.cs" />
+    <Compile Include="Messages\IrcX\ChannelPropertyEndReplyMessage.cs" />
+    <Compile Include="Messages\IrcX\ChannelPropertyMessage.cs" />
+    <Compile Include="Messages\IrcX\ChannelPropertyReplyMessage.cs" />
+    <Compile Include="Messages\IrcX\IrcxMessage.cs" />
+    <Compile Include="Messages\IrcX\IrcxReplyMessage.cs" />
+    <Compile Include="Messages\IrcX\IsIrcxMessage.cs" />
+    <Compile Include="Messages\IrcX\KnockMessage.cs" />
+    <Compile Include="Messages\IrcX\KnockReplyMessage.cs" />
+    <Compile Include="Messages\IrcX\KnockRequestMessage.cs" />
+    <Compile Include="Messages\IrcX\WhisperMessage.cs" />
+    <Compile Include="Messages\IrcMessage.cs" />
+    <Compile Include="Messages\IrcMessageEventArgs.cs" />
+    <Compile Include="Messages\PrioritizedMessageList.cs" />
+    <Compile Include="Messages\MessageUtil.cs" />
+    <Compile Include="Messages\Misc\AwayMessage.cs" />
+    <Compile Include="Messages\Misc\BackMessage.cs" />
+    <Compile Include="Messages\Misc\IsOnMessage.cs" />
+    <Compile Include="Messages\Misc\KillMessage.cs" />
+    <Compile Include="Messages\Misc\PingMessage.cs" />
+    <Compile Include="Messages\Misc\PongMessage.cs" />
+    <Compile Include="Messages\Misc\SilenceMessage.cs" />
+    <Compile Include="Messages\Misc\WatchListClearMessage.cs" />
+    <Compile Include="Messages\Misc\WatchListEditorMessage.cs" />
+    <Compile Include="Messages\Misc\WatchListRequestMessage.cs" />
+    <Compile Include="Messages\Misc\WatchMessage.cs" />
+    <Compile Include="Messages\Misc\WatchStatusRequestMessage.cs" />
+    <Compile Include="Messages\ModeAction.cs" />
+    <Compile Include="Messages\Replies\BansEndReplyMessage.cs" />
+    <Compile Include="Messages\Replies\BansReplyMessage.cs" />
+    <Compile Include="Messages\Replies\ChannelModeIsReplyMessage.cs" />
+    <Compile Include="Messages\Replies\Errors\CannotSendToChannelMessage.cs" />
+    <Compile Include="Messages\Replies\Errors\ErroneusNickMessage.cs" />
+    <Compile Include="Messages\Replies\Errors\ErrorMessage.cs" />
+    <Compile Include="Messages\Replies\Errors\GenericErrorMessage.cs" />
+    <Compile Include="Messages\Replies\Errors\NickCollisionMessage.cs" />
+    <Compile Include="Messages\Replies\Errors\NickInUseMessage.cs" />
+    <Compile Include="Messages\Replies\Errors\NoHostPermissionMessage.cs" />
+    <Compile Include="Messages\Replies\Errors\NoNickGivenMessage.cs" />
+    <Compile Include="Messages\Replies\Errors\NoSuchChannelMessage.cs" />
+    <Compile Include="Messages\Replies\Errors\NoSuchNickMessage.cs" />
+    <Compile Include="Messages\Replies\Errors\NoSuchServerMessage.cs" />
+    <Compile Include="Messages\Replies\Errors\NotRegisteredMessage.cs" />
+    <Compile Include="Messages\Replies\Errors\TooManyChannelsMessage.cs" />
+    <Compile Include="Messages\Replies\Errors\TooManyTargetsMessage.cs" />
+    <Compile Include="Messages\Replies\Errors\WasNoSuchNickMessage.cs" />
+    <Compile Include="Messages\Replies\Errors\YouAreBannedMessage.cs" />
+    <Compile Include="Messages\Replies\GenericNumericMessage.cs" />
+    <Compile Include="Messages\Replies\GlobalUsersReplyMessage.cs" />
+    <Compile Include="Messages\Replies\IsOnReplyMessage.cs" />
+    <Compile Include="Messages\Replies\LinksEndReplyMessage.cs" />
+    <Compile Include="Messages\Replies\LinksReplyMessage.cs" />
+    <Compile Include="Messages\Replies\ListEndReplyMessage.cs" />
+    <Compile Include="Messages\Replies\ListReplyMessage.cs" />
+    <Compile Include="Messages\Replies\ListStartReplyMessage.cs" />
+    <Compile Include="Messages\Replies\LocalUsersReplyMessage.cs" />
+    <Compile Include="Messages\Replies\LusersChannelsReplyMessage.cs" />
+    <Compile Include="Messages\Replies\LusersMeReplyMessage.cs" />
+    <Compile Include="Messages\Replies\LusersOpReplyMessage.cs" />
+    <Compile Include="Messages\Replies\LusersReplyMessage.cs" />
+    <Compile Include="Messages\Replies\MotdEndReplyMessage.cs" />
+    <Compile Include="Messages\Replies\MotdReplyMessage.cs" />
+    <Compile Include="Messages\Replies\MotdStartReplyMessage.cs" />
+    <Compile Include="Messages\Replies\NamesEndReplyMessage.cs" />
+    <Compile Include="Messages\Replies\NamesReplyMessage.cs" />
+    <Compile Include="Messages\Replies\WatchedUserNowOfflineMessage.cs" />
+    <Compile Include="Messages\Replies\WatchedUserNowOnlineMessage.cs" />
+    <Compile Include="Messages\Replies\NumericMessage.cs" />
+    <Compile Include="Messages\Replies\OperReplyMessage.cs" />
+    <Compile Include="Messages\Replies\SelfAwayReplyMessage.cs" />
+    <Compile Include="Messages\Replies\SelfUnAwayReplyMessage.cs" />
+    <Compile Include="Messages\Replies\ServerCreatedMessage.cs" />
+    <Compile Include="Messages\Replies\ServerInfoMessage.cs" />
+    <Compile Include="Messages\Replies\SilenceEndReplyMessage.cs" />
+    <Compile Include="Messages\Replies\SilenceReplyMessage.cs" />
+    <Compile Include="Messages\Replies\StatsReplyMessage.cs" />
+    <Compile Include="Messages\Replies\SupportMessage.cs" />
+    <Compile Include="Messages\Replies\TimeReplyMessage.cs" />
+    <Compile Include="Messages\Replies\TopicNoneReplyMessage.cs" />
+    <Compile Include="Messages\Replies\TopicReplyMessage.cs" />
+    <Compile Include="Messages\Replies\TopicSetReplyMessage.cs" />
+    <Compile Include="Messages\Replies\UserAwayReplyMessage.cs" />
+    <Compile Include="Messages\Replies\UserHostReplyMessage.cs" />
+    <Compile Include="Messages\Replies\WatchListEndReplyMessage.cs" />
+    <Compile Include="Messages\Replies\WatchStatusReplyMessage.cs" />
+    <Compile Include="Messages\Replies\WatchStoppedMessage.cs" />
+    <Compile Include="Messages\Replies\WelcomeMessage.cs" />
+    <Compile Include="Messages\Replies\WhoEndReplyMessage.cs" />
+    <Compile Include="Messages\Replies\WhoIsChannelsReplyMessage.cs" />
+    <Compile Include="Messages\Replies\WhoIsEndReplyMessage.cs" />
+    <Compile Include="Messages\Replies\WhoIsIdleReplyMessage.cs" />
+    <Compile Include="Messages\Replies\WhoIsOperReplyMessage.cs" />
+    <Compile Include="Messages\Replies\WhoIsServerReplyMessage.cs" />
+    <Compile Include="Messages\Replies\WhoIsUserReplyMessage.cs" />
+    <Compile Include="Messages\Replies\WhoReplyMessage.cs" />
+    <Compile Include="Messages\Replies\WhoWasEndReplyMessage.cs" />
+    <Compile Include="Messages\Replies\WhoWasUserReplyMessage.cs" />
+    <Compile Include="Messages\Replies\YourHostIsMessage.cs" />
+    <Compile Include="Messages\Server Queries\AdminMessage.cs" />
+    <Compile Include="Messages\Server Queries\InfoMessage.cs" />
+    <Compile Include="Messages\Server Queries\LinksMessage.cs" />
+    <Compile Include="Messages\Server Queries\LusersMessage.cs" />
+    <Compile Include="Messages\Server Queries\MotdMessage.cs" />
+    <Compile Include="Messages\Server Queries\ServerQueryBase.cs" />
+    <Compile Include="Messages\Server Queries\StatsMessage.cs" />
+    <Compile Include="Messages\Server Queries\TimeMessage.cs" />
+    <Compile Include="Messages\Server Queries\TraceMessage.cs" />
+    <Compile Include="Messages\Server Queries\VersionMessage.cs" />
+    <Compile Include="Messages\Talking\ChannelScopedChatMessage.cs" />
+    <Compile Include="Messages\Talking\ChannelScopedNoticeMessage.cs" />
+    <Compile Include="Messages\Talking\ChatMessage.cs" />
+    <Compile Include="Messages\Talking\NoticeMessage.cs" />
+    <Compile Include="Messages\Talking\TextMessage.cs" />
+    <Compile Include="Messages\Talking\WallchopsMessage.cs" />
+    <Compile Include="Messages\Talking\WallopsMessage.cs" />
+    <Compile Include="Messages\User Based\Modes\AwayMode.cs" />
+    <Compile Include="Messages\User Based\Modes\CallerIdMode.cs" />
+    <Compile Include="Messages\User Based\Modes\InvisibleMode.cs" />
+    <Compile Include="Messages\User Based\Modes\NetworkOperatorMode.cs" />
+    <Compile Include="Messages\User Based\Modes\ReceiveBotNoticesMode.cs" />
+    <Compile Include="Messages\User Based\Modes\ReceiveConnectionNoticesMode.cs" />
+    <Compile Include="Messages\User Based\Modes\ReceiveDebugMode.cs" />
+    <Compile Include="Messages\User Based\Modes\ReceiveILineFullNoticesMode.cs" />
+    <Compile Include="Messages\User Based\Modes\ReceiveNickChangesMode.cs" />
+    <Compile Include="Messages\User Based\Modes\ReceiveOperWallopsMode.cs" />
+    <Compile Include="Messages\User Based\Modes\ReceiveServerKillsMode.cs" />
+    <Compile Include="Messages\User Based\Modes\ReceiveServerNoticesMode.cs" />
+    <Compile Include="Messages\User Based\Modes\ReceiveWallopsMode.cs" />
+    <Compile Include="Messages\User Based\Modes\RestrictedMode.cs" />
+    <Compile Include="Messages\User Based\Modes\ServerOperatorMode.cs" />
+    <Compile Include="Messages\User Based\Modes\UnknownUserMode.cs" />
+    <Compile Include="Messages\User Based\Modes\UserMode.cs" />
+    <Compile Include="Messages\User Based\Modes\UserModeCollection.cs" />
+    <Compile Include="Messages\User Based\Modes\UserModesCreator.cs" />
+    <Compile Include="Messages\User Based\UserHostMessage.cs" />
+    <Compile Include="Messages\User Based\UserModeMessage.cs" />
+    <Compile Include="Messages\User Based\WhoIsMessage.cs" />
+    <Compile Include="Messages\User Based\WhoMessage.cs" />
+    <Compile Include="Messages\User Based\WhoWasMessage.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServerSupport.cs" />
+    <Compile Include="Model\Channel.cs" />
+    <Compile Include="Model\ChannelCollection.cs" />
+    <Compile Include="Contacts\ContactList.cs" />
+    <Compile Include="Network\SocketErrors.cs" />
+    <Compile Include="Model\User.cs" />
+    <Compile Include="Model\UserCollection.cs" />
+    <Compile Include="UserOnlineStatus.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <CodeAnalysisDictionary Include="CustomDictionary.xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
