@@ -118,6 +118,23 @@ namespace Supay.Irc {
     private String hostname = "";
 
     /// <summary>
+    ///   Gets a string that uniquely identifies this user. </summary>
+    public string FingerPrint {
+      get {
+        if (string.IsNullOrEmpty(hostname) || string.IsNullOrEmpty(username)) {
+          return string.Empty;
+        }
+
+        int indexOfPoint = hostname.IndexOf('.');
+        if (indexOfPoint > 0) {
+          return username.TrimStart('~') + "@*" + hostname.Substring(indexOfPoint);
+        } else {
+          return username.TrimStart('~') + "@" + hostname;
+        }
+      }
+    }
+
+    /// <summary>
     /// Gets or sets the online status of this User
     /// </summary>
     public UserOnlineStatus OnlineStatus {
