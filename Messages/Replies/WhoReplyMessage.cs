@@ -128,8 +128,8 @@ namespace Supay.Irc.Messages {
     protected override void ParseParameters(StringCollection parameters) {
       base.ParseParameters(parameters);
       this.User = new User();
-      if (parameters.Count == 7) {
 
+      if (parameters.Count == 8) {
         this.Channel = parameters[1];
         this.User.UserName = parameters[2];
         this.User.HostName = parameters[3];
@@ -141,15 +141,16 @@ namespace Supay.Irc.Messages {
         this.IsOper = (levels.IndexOf("*", StringComparison.Ordinal) != -1);
         String lastLetter = levels.Substring(levels.Length - 1);
         if (ChannelStatus.Exists(lastLetter)) {
-          this.Status = ChannelStatus.GetInstance(lastLetter);
+          // TODO fix
+          // this.Status = ChannelStatus.GetInstance(lastLetter);
         } else {
-          this.Status = ChannelStatus.None;
+          // TODO fix
+          // this.Status = ChannelStatus.None;
         }
 
         String trailing = parameters[7];
         this.HopCount = Convert.ToInt32(trailing.Substring(0, trailing.IndexOf(" ", StringComparison.Ordinal)), CultureInfo.InvariantCulture);
         this.User.RealName = trailing.Substring(trailing.IndexOf(" ", StringComparison.Ordinal));
-
       }
     }
 
