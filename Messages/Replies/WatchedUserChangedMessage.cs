@@ -51,8 +51,8 @@ namespace Supay.Irc.Messages {
     protected override void AddParametersToFormat(IrcMessageWriter writer) {
       base.AddParametersToFormat(writer);
       writer.AddParameter(this.WatchedUser.Nick);
-      writer.AddParameter(this.WatchedUser.UserName);
-      writer.AddParameter(this.WatchedUser.HostName);
+      writer.AddParameter(this.WatchedUser.Username);
+      writer.AddParameter(this.WatchedUser.Host);
       writer.AddParameter(MessageUtil.ConvertToUnixTime(this.TimeOfChange).ToString(CultureInfo.InvariantCulture));
       writer.AddParameter(this.ChangeMessage);
     }
@@ -68,8 +68,8 @@ namespace Supay.Irc.Messages {
 
       if (parameters.Count == 6) {
         this.WatchedUser.Nick = parameters[1];
-        this.WatchedUser.UserName = parameters[2];
-        this.WatchedUser.HostName = parameters[3];
+        this.WatchedUser.Username = parameters[2];
+        this.WatchedUser.Host = parameters[3];
         this.TimeOfChange = MessageUtil.ConvertFromUnixTime(Convert.ToInt32(parameters[4], CultureInfo.InvariantCulture));
       }
     }

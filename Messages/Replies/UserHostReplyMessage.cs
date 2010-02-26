@@ -40,9 +40,9 @@ namespace Supay.Irc.Messages {
         }
         result += "=";
         result += (user.OnlineStatus == UserOnlineStatus.Away) ? "+" : "-";
-        result += user.UserName;
+        result += user.Username;
         result += "@";
-        result += user.HostName;
+        result += user.Host;
         return result;
       });
       writer.AddParameter(replyList, true);

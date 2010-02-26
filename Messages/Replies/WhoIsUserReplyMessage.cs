@@ -38,10 +38,10 @@ namespace Supay.Irc.Messages {
     protected override void AddParametersToFormat(IrcMessageWriter writer) {
       base.AddParametersToFormat(writer);
       writer.AddParameter(User.Nick);
-      writer.AddParameter(User.UserName);
-      writer.AddParameter(User.HostName);
+      writer.AddParameter(User.Username);
+      writer.AddParameter(User.Host);
       writer.AddParameter("*");
-      writer.AddParameter(User.RealName);
+      writer.AddParameter(User.Name);
     }
 
     /// <summary>
@@ -52,9 +52,9 @@ namespace Supay.Irc.Messages {
       if (parameters.Count > 5) {
         this.user = new User();
         user.Nick = parameters[1];
-        user.UserName = parameters[2];
-        user.HostName = parameters[3];
-        user.RealName = parameters[5];
+        user.Username = parameters[2];
+        user.Host = parameters[3];
+        user.Name = parameters[5];
       }
     }
 

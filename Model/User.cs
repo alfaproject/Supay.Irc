@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -19,13 +17,13 @@ namespace Supay.Irc {
     public event PropertyChangedEventHandler PropertyChanged;
 
     private ChangeNotifier<string> _nickname;
-    private ChangeNotifier<string> _realName;
+    private ChangeNotifier<string> _name;
     private ChangeNotifier<string> _password;
-    private ChangeNotifier<string> _userName;
-    private ChangeNotifier<string> _hostName;
+    private ChangeNotifier<string> _username;
+    private ChangeNotifier<string> _host;
     private ChangeNotifier<UserOnlineStatus> _onlineStatus;
     private ChangeNotifier<string> _awayMessage;
-    private ChangeNotifier<string> _serverName;
+    private ChangeNotifier<string> _server;
     private ChangeNotifier<bool> _ircOperator;
     private ChangeNotifier<UserModeCollection> _modes;
 
@@ -36,18 +34,18 @@ namespace Supay.Irc {
     public User() {
       ChangeNotifier notifier = new ChangeNotifier(() => this.PropertyChanged);
       _nickname = notifier.Create(() => this.Nick, string.Empty);
-      _realName = notifier.Create(() => this.RealName, string.Empty);
+      _name = notifier.Create(() => this.Name, string.Empty);
       _password = notifier.Create(() => this.Password, string.Empty);
-      _userName = notifier.Create(() => this.UserName, string.Empty);
-      _hostName = notifier.Create(() => this.HostName, string.Empty);
+      _username = notifier.Create(() => this.Username, string.Empty);
+      _host = notifier.Create(() => this.Host, string.Empty);
       _onlineStatus = notifier.Create(() => this.OnlineStatus, UserOnlineStatus.Online);
       _awayMessage = notifier.Create(() => this.AwayMessage);
-      _serverName = notifier.Create(() => this.ServerName);
+      _server = notifier.Create(() => this.Server);
       _ircOperator = notifier.Create(() => this.IrcOperator);
       _modes = notifier.Create(() => this.Modes, new UserModeCollection());
 
-      // FingerPrint change notification depends on UserName and HostName changes.
-      notifier.CreateDependent(() => this.FingerPrint, () => this.UserName, () => this.HostName);
+      // FingerPrint change notification depends on Username and Host changes.
+      notifier.CreateDependent(() => this.FingerPrint, () => this.Username, () => this.Host);
     }
 
     /// <summary>
@@ -72,9 +70,9 @@ namespace Supay.Irc {
 
     /// <summary>
     ///   Gets or sets the supposed real name of the User. </summary>
-    public string RealName {
-      get { return _realName.Value; }
-      set { _realName.Value = value; }
+    public string Name {
+      get { return _name.Value; }
+      set { _name.Value = value; }
     }
 
     /// <summary>
@@ -86,31 +84,31 @@ namespace Supay.Irc {
 
     /// <summary>
     ///   Gets or sets the username of the User on its local server. </summary>
-    public string UserName {
-      get { return _userName.Value; }
-      set { _userName.Value = value; }
+    public string Username {
+      get { return _username.Value; }
+      set { _username.Value = value; }
     }
 
     /// <summary>
     ///   Gets or sets the hostname of the local machine of this User. </summary>
-    public string HostName {
-      get { return _hostName.Value; }
-      set { _hostName.Value = value; }
+    public string Host {
+      get { return _host.Value; }
+      set { _host.Value = value; }
     }
 
     /// <summary>
     ///   Gets a string that uniquely identifies this user. </summary>
     public string FingerPrint {
       get {
-        if (string.IsNullOrEmpty(this.HostName) || string.IsNullOrEmpty(this.UserName)) {
+        if (string.IsNullOrEmpty(this.Host) || string.IsNullOrEmpty(this.Username)) {
           return string.Empty;
         }
 
-        int indexOfPoint = this.HostName.IndexOf('.');
+        int indexOfPoint = this.Host.IndexOf('.');
         if (indexOfPoint > 0) {
-          return this.UserName.TrimStart('~') + "@*" + this.HostName.Substring(indexOfPoint);
+          return this.Username.TrimStart('~') + "@*" + this.Host.Substring(indexOfPoint);
         } else {
-          return this.UserName.TrimStart('~') + "@" + this.HostName;
+          return this.Username.TrimStart('~') + "@" + this.Host;
         }
       }
     }
@@ -131,9 +129,9 @@ namespace Supay.Irc {
 
     /// <summary>
     ///   Gets or sets the name of the server which the User is connected to. </summary>
-    public string ServerName {
-      get { return _serverName.Value; }
-      set { _serverName.Value = value; }
+    public string Server {
+      get { return _server.Value; }
+      set { _server.Value = value; }
     }
 
     /// <summary>
@@ -158,13 +156,13 @@ namespace Supay.Irc {
     public override string ToString() {
       StringBuilder result = new StringBuilder();
       result.Append(Nick);
-      if (!string.IsNullOrEmpty(this.UserName)) {
+      if (!string.IsNullOrEmpty(this.Username)) {
         result.Append("!");
-        result.Append(this.UserName);
+        result.Append(this.Username);
       }
-      if (!string.IsNullOrEmpty(this.HostName)) {
+      if (!string.IsNullOrEmpty(this.Host)) {
         result.Append("@");
-        result.Append(this.HostName);
+        result.Append(this.Host);
       }
 
       return result.ToString();
@@ -174,8 +172,8 @@ namespace Supay.Irc {
     ///   Represents this User's information with a guarenteed nick!user@host format. </summary>
     public string ToNickUserHostString() {
       string finalNick = (string.IsNullOrEmpty(this.Nick)) ? "*" : this.Nick;
-      string user = (string.IsNullOrEmpty(this.UserName)) ? "*" : this.UserName;
-      string host = (string.IsNullOrEmpty(this.HostName)) ? "*" : this.HostName;
+      string user = (string.IsNullOrEmpty(this.Username)) ? "*" : this.Username;
+      string host = (string.IsNullOrEmpty(this.Host)) ? "*" : this.Host;
 
       return finalNick + "!" + user + "@" + host;
     }
@@ -192,14 +190,14 @@ namespace Supay.Irc {
       }
 
       // First we'll return quickly if there are exact matches
-      if (this.Nick == wildcardMask.Nick && this.UserName == wildcardMask.UserName && this.HostName == wildcardMask.HostName) {
+      if (this.Nick == wildcardMask.Nick && this.Username == wildcardMask.Username && this.Host == wildcardMask.Host) {
         return true;
       }
 
       return (true
         && Regex.IsMatch(this.Nick, makeRegexPattern(wildcardMask.Nick), RegexOptions.IgnoreCase)
-        && Regex.IsMatch(this.UserName, makeRegexPattern(wildcardMask.UserName), RegexOptions.IgnoreCase)
-        && Regex.IsMatch(this.HostName, makeRegexPattern(wildcardMask.HostName), RegexOptions.IgnoreCase)
+        && Regex.IsMatch(this.Username, makeRegexPattern(wildcardMask.Username), RegexOptions.IgnoreCase)
+        && Regex.IsMatch(this.Host, makeRegexPattern(wildcardMask.Host), RegexOptions.IgnoreCase)
         );
     }
 
@@ -228,12 +226,12 @@ namespace Supay.Irc {
       int indexOfAt = mask.LastIndexOf("@", StringComparison.Ordinal);
 
       if (indexOfAt > 1) {
-        this.HostName = mask.Substring(indexOfAt + 1);
+        this.Host = mask.Substring(indexOfAt + 1);
         mask = mask.Substring(0, indexOfAt);
       }
 
       if (indexOfBang != -1) {
-        this.UserName = mask.Substring(indexOfBang + 1);
+        this.Username = mask.Substring(indexOfBang + 1);
         mask = mask.Substring(0, indexOfBang);
       }
 
@@ -251,16 +249,16 @@ namespace Supay.Irc {
     ///   Resets the User properties to the default values. </summary>
     public void Reset() {
       this.Nick = "";
-      this.UserName = "";
-      this.HostName = "";
+      this.Username = "";
+      this.Host = "";
       this.OnlineStatus = UserOnlineStatus.Online;
       this.AwayMessage = "";
       this.IrcOperator = false;
       this.Modes.Clear();
       this.Password = "";
-      this.RealName = "";
-      this.ServerName = "";
-      this.UserName = "";
+      this.Name = "";
+      this.Server = "";
+      this.Username = "";
     }
 
     /// <summary>
@@ -268,12 +266,12 @@ namespace Supay.Irc {
     public void CopyFrom(User user) {
       this.OnlineStatus = user.OnlineStatus;
       this.AwayMessage = user.AwayMessage;
-      this.HostName = user.HostName;
+      this.Host = user.Host;
       this.Nick = user.Nick;
       this.Password = user.Password;
-      this.RealName = user.RealName;
-      this.UserName = user.UserName;
-      this.ServerName = user.ServerName;
+      this.Name = user.Name;
+      this.Username = user.Username;
+      this.Server = user.Server;
       this.IrcOperator = user.IrcOperator;
     }
 

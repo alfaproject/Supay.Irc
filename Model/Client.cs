@@ -65,10 +65,10 @@ namespace Supay.Irc {
     /// </summary>
     /// <param name="address">The address that will be connected to.</param>
     /// <param name="nick">The <see cref="Supay.Irc.User.Nick"/> of the <see cref="Client.User"/></param>
-    /// <param name="realName">The <see cref="Supay.Irc.User.RealName"/> of the <see cref="Client.User"/></param>
+    /// <param name="realName">The <see cref="Supay.Irc.User.Name"/> of the <see cref="Client.User"/></param>
     public Client(String address, String nick, String realName)
       : this(address, nick) {
-      this.User.RealName = realName;
+      this.User.Name = realName;
     }
 
     #endregion
@@ -504,15 +504,15 @@ namespace Supay.Irc {
 
       //Send User
       UserNotificationMessage userNotification = new UserNotificationMessage();
-      if (User.RealName.Length == 0) {
+      if (User.Name.Length == 0) {
         userNotification.RealName = User.Nick;
       } else {
-        userNotification.RealName = User.RealName;
+        userNotification.RealName = User.Name;
       }
-      if (User.UserName.Length == 0) {
+      if (User.Username.Length == 0) {
         userNotification.UserName = User.Nick;
       } else {
-        userNotification.UserName = User.UserName;
+        userNotification.UserName = User.Username;
       }
       userNotification.InitialInvisibility = true;
       this.Send(userNotification);
@@ -838,7 +838,7 @@ namespace Supay.Irc {
 
     private void client_WhoIsServerReply(object sender, IrcMessageEventArgs<WhoIsServerReplyMessage> e) {
       User user = this.Peers.EnsureUser(e.Message.Nick);
-      user.ServerName = e.Message.ServerName;
+      user.Server = e.Message.ServerName;
     }
 
     private void client_WhoIsOperReply(object sender, IrcMessageEventArgs<WhoIsOperReplyMessage> e) {

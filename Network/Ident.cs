@@ -116,7 +116,7 @@ namespace Supay.Irc.Network {
 
             //Send back reply
             StreamWriter writer = new StreamWriter(client.GetStream());
-            String identName = this.User.UserName;
+            String identName = this.User.Username;
             if (identName.Length == 0) {
               if (this.User.Nick.Length != 0) {
                 identName = this.User.Nick;

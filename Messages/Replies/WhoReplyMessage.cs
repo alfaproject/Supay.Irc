@@ -108,8 +108,8 @@ namespace Supay.Irc.Messages {
     protected override void AddParametersToFormat(IrcMessageWriter writer) {
       base.AddParametersToFormat(writer);
       writer.AddParameter(this.Channel);
-      writer.AddParameter(this.User.UserName);
-      writer.AddParameter(this.User.HostName);
+      writer.AddParameter(this.User.Username);
+      writer.AddParameter(this.User.Host);
       writer.AddParameter(this.Server);
       writer.AddParameter(this.User.Nick);
       //HACK it could also be a G, but I was unable to determine what it meant.
@@ -119,7 +119,7 @@ namespace Supay.Irc.Messages {
         writer.AddParameter("H");
       }
       writer.AddParameter(this.Status.ToString());
-      writer.AddParameter(this.HopCount.ToString(CultureInfo.InvariantCulture) + " " + this.User.RealName);
+      writer.AddParameter(this.HopCount.ToString(CultureInfo.InvariantCulture) + " " + this.User.Name);
     }
 
     /// <summary>
@@ -131,8 +131,8 @@ namespace Supay.Irc.Messages {
 
       if (parameters.Count == 8) {
         this.Channel = parameters[1];
-        this.User.UserName = parameters[2];
-        this.User.HostName = parameters[3];
+        this.User.Username = parameters[2];
+        this.User.Host = parameters[3];
         this.Server = parameters[4];
         this.User.Nick = parameters[5];
 
@@ -150,7 +150,7 @@ namespace Supay.Irc.Messages {
 
         String trailing = parameters[7];
         this.HopCount = Convert.ToInt32(trailing.Substring(0, trailing.IndexOf(" ", StringComparison.Ordinal)), CultureInfo.InvariantCulture);
-        this.User.RealName = trailing.Substring(trailing.IndexOf(" ", StringComparison.Ordinal));
+        this.User.Name = trailing.Substring(trailing.IndexOf(" ", StringComparison.Ordinal));
       }
     }
 
