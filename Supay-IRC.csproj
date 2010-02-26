@@ -90,6 +90,8 @@
     <Compile Include="Contacts\ContactsWatchTracker.cs" />
     <Compile Include="Contacts\ContactsMonitorTracker.cs" />
     <Compile Include="Contacts\ContactsIsOnTracker.cs" />
+    <Compile Include="Core\ChangeNotifier.cs" />
+    <Compile Include="Core\ChangeNotifierGeneric.cs" />
     <Compile Include="Messages\Channel Operation\Modes\CannotRemoveServiceBot.cs" />
     <Compile Include="Messages\Channel Operation\Modes\ChannelLimitReachedMessage.cs" />
     <Compile Include="Messages\Channel Operation\Modes\RegisteredNicksOnlyMode.cs" />
