@@ -95,7 +95,7 @@ namespace Supay.Irc {
         knownUser = tempUser;
         this.Add(knownUser);
       } else {
-        knownUser.MergeWith(tempUser);
+        knownUser.CopyFrom(tempUser);
       }
       return knownUser;
     }

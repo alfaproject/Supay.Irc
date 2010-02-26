@@ -4,6 +4,8 @@ using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Text;
 using System.Text.RegularExpressions;
+using Supay.Core;
+using Supay.Irc.Messages.Modes;
 
 namespace Supay.Irc {
 
@@ -12,13 +14,42 @@ namespace Supay.Irc {
   [Serializable]
   public sealed class User : INotifyPropertyChanged {
 
+    /// <summary>
+    ///   Raised when a property on the instance has changed. </summary>
+    public event PropertyChangedEventHandler PropertyChanged;
+
+    private ChangeNotifier<string> _nickname;
+    private ChangeNotifier<string> _realName;
+    private ChangeNotifier<string> _password;
+    private ChangeNotifier<string> _userName;
+    private ChangeNotifier<string> _hostName;
+    private ChangeNotifier<UserOnlineStatus> _onlineStatus;
+    private ChangeNotifier<string> _awayMessage;
+    private ChangeNotifier<string> _serverName;
+    private ChangeNotifier<bool> _ircOperator;
+    private UserModeCollection _modes;
+
     #region CTor
 
     /// <summary>
-    ///   Initializes a new instance of the <see cref="User"/> class. </summary>
+    ///   Initializes a new instance of the <see cref="User" /> class. </summary>
     public User() {
-      this.modes.CollectionChanged += delegate(object sender, NotifyCollectionChangedEventArgs e) {
-        this.PropChanged("Modes");
+      ChangeNotifier notifier = new ChangeNotifier(() => this.PropertyChanged);
+      _nickname = notifier.Create(() => this.Nick, string.Empty);
+      _realName = notifier.Create(() => this.RealName, string.Empty);
+      _password = notifier.Create(() => this.Password, string.Empty);
+      _userName = notifier.Create(() => this.UserName, string.Empty);
+      _hostName = notifier.Create(() => this.HostName, string.Empty);
+      _onlineStatus = notifier.Create(() => this.OnlineStatus, UserOnlineStatus.Online);
+      _awayMessage = notifier.Create(() => this.AwayMessage);
+      _serverName = notifier.Create(() => this.ServerName);
+      _ircOperator = notifier.Create(() => this.IrcOperator);
+
+      _modes = new UserModeCollection();
+      _modes.CollectionChanged += (object sender, NotifyCollectionChangedEventArgs e) => {
+        if (this.PropertyChanged != null) {
+          this.PropertyChanged(this, new PropertyChangedEventArgs("Modes"));
+        }
       };
     }
 
@@ -26,7 +57,7 @@ namespace Supay.Irc {
     ///   Initializes a new instance of the <see cref="User"/> class with the given mask string. </summary>
     /// <param name="mask">
     ///   The mask string to parse. </param>
-    public User(String mask)
+    public User(string mask)
       : this() {
       Parse(mask);
     }
@@ -37,92 +68,52 @@ namespace Supay.Irc {
 
     /// <summary>
     ///   Gets or sets the nickname of the User. </summary>
-    public String Nick {
-      get {
-        return nick;
-      }
-      set {
-        if (nick != value) {
-          nick = value;
-          PropChanged("Nick");
-        }
-      }
+    public string Nick {
+      get { return _nickname.Value; }
+      set { _nickname.Value = value; }
     }
-    private String nick = "";
 
     /// <summary>
     ///   Gets or sets the supposed real name of the User. </summary>
-    public String RealName {
-      get {
-        return realName;
-      }
-      set {
-        if (realName != value) {
-          realName = value;
-          PropChanged("RealName");
-        }
-      }
+    public string RealName {
+      get { return _realName.Value; }
+      set { _realName.Value = value; }
     }
-    private String realName = "";
 
     /// <summary>
     ///   Gets or sets the Password the User will use on the server. </summary>
-    public String Password {
-      get {
-        return password;
-      }
-      set {
-        if (password != value) {
-          password = value;
-          PropChanged("Password");
-        }
-      }
+    public string Password {
+      get { return _password.Value; }
+      set { _password.Value = value; }
     }
-    private String password = "";
 
     /// <summary>
     ///   Gets or sets the username of the User on its local server. </summary>
-    public String UserName {
-      get {
-        return username;
-      }
-      set {
-        if (username != value) {
-          username = value;
-          PropChanged("UserName");
-        }
-      }
+    public string UserName {
+      get { return _userName.Value; }
+      set { _userName.Value = value; }
     }
-    private String username = "";
 
     /// <summary>
     ///   Gets or sets the hostname of the local machine of this User. </summary>
-    public String HostName {
-      get {
-        return hostname;
-      }
-      set {
-        if (hostname != value) {
-          hostname = value;
-          PropChanged("HostName");
-        }
-      }
+    public string HostName {
+      get { return _hostName.Value; }
+      set { _hostName.Value = value; }
     }
-    private String hostname = "";
 
     /// <summary>
     ///   Gets a string that uniquely identifies this user. </summary>
     public string FingerPrint {
       get {
-        if (string.IsNullOrEmpty(hostname) || string.IsNullOrEmpty(username)) {
+        if (string.IsNullOrEmpty(this.HostName) || string.IsNullOrEmpty(this.UserName)) {
           return string.Empty;
         }
 
-        int indexOfPoint = hostname.IndexOf('.');
+        int indexOfPoint = this.HostName.IndexOf('.');
         if (indexOfPoint > 0) {
-          return username.TrimStart('~') + "@*" + hostname.Substring(indexOfPoint);
+          return this.UserName.TrimStart('~') + "@*" + this.HostName.Substring(indexOfPoint);
         } else {
-          return username.TrimStart('~') + "@" + hostname;
+          return this.UserName.TrimStart('~') + "@" + this.HostName;
         }
       }
     }
@@ -130,71 +121,36 @@ namespace Supay.Irc {
     /// <summary>
     ///   Gets or sets the online status of this User. </summary>
     public UserOnlineStatus OnlineStatus {
-      get {
-        return onlineStatus;
-      }
-      set {
-        if (onlineStatus != value) {
-          onlineStatus = value;
-          PropChanged("OnlineStatus");
-        }
-      }
+      get { return _onlineStatus.Value; }
+      set { _onlineStatus.Value = value; }
     }
-    private UserOnlineStatus onlineStatus;
 
     /// <summary>
     ///   Gets or sets the away message of this User. </summary>
-    public String AwayMessage {
-      get {
-        return awayMessage;
-      }
-      set {
-        if (awayMessage != value) {
-          awayMessage = value;
-          PropChanged("AwayMessage");
-        }
-      }
+    public string AwayMessage {
+      get { return _awayMessage.Value; }
+      set { _awayMessage.Value = value; }
     }
-    private String awayMessage;
 
     /// <summary>
     ///   Gets or sets the name of the server which the User is connected to. </summary>
-    public String ServerName {
-      get {
-        return serverName;
-      }
-      set {
-        if (serverName != value) {
-          serverName = value;
-          PropChanged("ServerName");
-        }
-      }
+    public string ServerName {
+      get { return _serverName.Value; }
+      set { _serverName.Value = value; }
     }
-    private String serverName;
 
     /// <summary>
     ///   Gets or sets if the User is an IRC Operator. </summary>
     public bool IrcOperator {
-      get {
-        return ircOperator;
-      }
-      set {
-        if (ircOperator != value) {
-          ircOperator = value;
-          PropChanged("IrcOperator");
-        }
-      }
+      get { return _ircOperator.Value; }
+      set { _ircOperator.Value = value; }
     }
-    private bool ircOperator;
 
     /// <summary>
     ///   Gets the modes which apply to the user. </summary>
-    public Supay.Irc.Messages.Modes.UserModeCollection Modes {
-      get {
-        return modes;
-      }
+    public UserModeCollection Modes {
+      get { return _modes; }
     }
-    private Supay.Irc.Messages.Modes.UserModeCollection modes = new Supay.Irc.Messages.Modes.UserModeCollection();
 
     #endregion
 
@@ -202,14 +158,14 @@ namespace Supay.Irc {
 
     /// <summary>
     ///   Represents this User's information as an IRC mask. </summary>
-    public override String ToString() {
+    public override string ToString() {
       StringBuilder result = new StringBuilder();
       result.Append(Nick);
-      if (!String.IsNullOrEmpty(this.UserName)) {
+      if (!string.IsNullOrEmpty(this.UserName)) {
         result.Append("!");
         result.Append(this.UserName);
       }
-      if (!String.IsNullOrEmpty(this.HostName)) {
+      if (!string.IsNullOrEmpty(this.HostName)) {
         result.Append("@");
         result.Append(this.HostName);
       }
@@ -219,10 +175,10 @@ namespace Supay.Irc {
 
     /// <summary>
     ///   Represents this User's information with a guarenteed nick!user@host format. </summary>
-    public String ToNickUserHostString() {
-      String finalNick = (String.IsNullOrEmpty(this.Nick)) ? "*" : this.Nick;
-      String user = (String.IsNullOrEmpty(this.UserName)) ? "*" : this.UserName;
-      String host = (String.IsNullOrEmpty(this.HostName)) ? "*" : this.HostName;
+    public string ToNickUserHostString() {
+      string finalNick = (string.IsNullOrEmpty(this.Nick)) ? "*" : this.Nick;
+      string user = (string.IsNullOrEmpty(this.UserName)) ? "*" : this.UserName;
+      string host = (string.IsNullOrEmpty(this.HostName)) ? "*" : this.HostName;
 
       return finalNick + "!" + user + "@" + host;
     }
@@ -259,7 +215,7 @@ namespace Supay.Irc {
     /// <returns>
     ///   True if <parmref>actualMask</parmref> is contained within (or described with) the <paramref>wildcardMask</paramref>.
     ///   False if not. </returns>
-    public static bool IsMatch(String actualMask, String wildcardMask) {
+    public static bool IsMatch(string actualMask, string wildcardMask) {
       return new User(actualMask).IsMatch(new User(wildcardMask));
     }
 
@@ -267,10 +223,10 @@ namespace Supay.Irc {
     ///   Parses the given string as a mask to populate this user object. </summary>
     /// <param name="rawMask">
     ///   The mask to parse. </param>
-    public void Parse(String rawMask) {
+    public void Parse(string rawMask) {
       this.Reset();
 
-      String mask = rawMask;
+      string mask = rawMask;
       int indexOfBang = mask.IndexOf("!", StringComparison.Ordinal);
       int indexOfAt = mask.LastIndexOf("@", StringComparison.Ordinal);
 
@@ -285,8 +241,8 @@ namespace Supay.Irc {
       }
 
       if (!string.IsNullOrEmpty(mask)) {
-        String newNick = mask;
-        String firstLetter = newNick.Substring(0, 1);
+        string newNick = mask;
+        string firstLetter = newNick.Substring(0, 1);
         if (ChannelStatus.Exists(firstLetter)) {
           newNick = newNick.Substring(1);
         }
@@ -308,110 +264,27 @@ namespace Supay.Irc {
       this.RealName = "";
       this.ServerName = "";
       this.UserName = "";
-
-      this.dirtyProperties.Clear();
-    }
-
-    /// <summary>
-    ///   Merges the properties of the given User onto this User. </summary>
-    public void MergeWith(User user) {
-      if (user == null) {
-        return;
-      }
-      if (user.IsDirty("OnlineStatus") && !this.IsDirty("OnlineStatus")) {
-        this.OnlineStatus = user.OnlineStatus;
-      }
-      if (user.IsDirty("AwayMessage") && !this.IsDirty("AwayMessage")) {
-        this.AwayMessage = user.AwayMessage;
-      }
-      if (user.IsDirty("HostName") && !this.IsDirty("HostName")) {
-        this.HostName = user.HostName;
-      }
-      if (user.IsDirty("Nick") && !this.IsDirty("Nick")) {
-        this.Nick = user.Nick;
-      }
-      if (user.IsDirty("Password") && !this.IsDirty("Password")) {
-        this.Password = user.Password;
-      }
-      if (user.IsDirty("RealName") && !this.IsDirty("RealName")) {
-        this.RealName = user.RealName;
-      }
-      if (user.IsDirty("UserName") && !this.IsDirty("UserName")) {
-        this.UserName = user.UserName;
-      }
-      if (user.IsDirty("ServerName") && !this.IsDirty("ServerName")) {
-        this.ServerName = user.ServerName;
-      }
-      if (user.IsDirty("IrcOperator") && !this.IsDirty("IrcOperator")) {
-        this.IrcOperator = user.IrcOperator;
-      }
     }
 
     /// <summary>
     ///   Copies the properties of the given User onto this User. </summary>
     public void CopyFrom(User user) {
-      if (user.IsDirty("OnlineStatus")) {
-        this.OnlineStatus = user.OnlineStatus;
-      }
-      if (user.IsDirty("AwayMessage")) {
-        this.AwayMessage = user.AwayMessage;
-      }
-      if (user.IsDirty("HostName")) {
-        this.HostName = user.HostName;
-      }
-      if (user.IsDirty("Nick")) {
-        this.Nick = user.Nick;
-      }
-      if (user.IsDirty("Password")) {
-        this.Password = user.Password;
-      }
-      if (user.IsDirty("RealName")) {
-        this.RealName = user.RealName;
-      }
-      if (user.IsDirty("UserName")) {
-        this.UserName = user.UserName;
-      }
-      if (user.IsDirty("ServerName")) {
-        this.ServerName = user.ServerName;
-      }
-      if (user.IsDirty("IrcOperator")) {
-        this.IrcOperator = user.IrcOperator;
-      }
+      this.OnlineStatus = user.OnlineStatus;
+      this.AwayMessage = user.AwayMessage;
+      this.HostName = user.HostName;
+      this.Nick = user.Nick;
+      this.Password = user.Password;
+      this.RealName = user.RealName;
+      this.UserName = user.UserName;
+      this.ServerName = user.ServerName;
+      this.IrcOperator = user.IrcOperator;
     }
 
-    private static String makeRegexPattern(String wildcardString) {
+    private static string makeRegexPattern(string wildcardString) {
       return Regex.Escape(wildcardString).Replace(@"\*", @".*").Replace(@"\?", @".");
     }
 
     #endregion
 
-    #region INotifyPropertyChanged Members
-
-    /// <summary>
-    ///   Raised when a property on the instance has changed. </summary>
-    public event PropertyChangedEventHandler PropertyChanged;
-
-    private void OnPropertyChanged(PropertyChangedEventArgs e) {
-      if (this.PropertyChanged != null) {
-        this.PropertyChanged(this, e);
-      }
-    }
-
-    #endregion
-
-    private void PropChanged(String propertyName) {
-      if (!dirtyProperties.Contains(propertyName)) {
-        dirtyProperties.Add(propertyName);
-      }
-      this.OnPropertyChanged(new PropertyChangedEventArgs(propertyName));
-    }
-
-    private bool IsDirty(String propertyName) {
-      return dirtyProperties.Contains(propertyName);
-    }
-
-    private List<String> dirtyProperties = new List<string>();
-
-  }
-
-}
+  } //class User
+} //namespace Supay.Irc

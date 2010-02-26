@@ -41,7 +41,7 @@ namespace Supay.Irc.Contacts {
       foreach (User onlineUser in e.Message.Users) {
         User knownUser = this.Contacts.Users.Find(onlineUser.Nick);
         if (knownUser != null) {
-          knownUser.MergeWith(onlineUser);
+          knownUser.CopyFrom(onlineUser);
           if (knownUser.OnlineStatus == UserOnlineStatus.Offline) {
             knownUser.OnlineStatus = UserOnlineStatus.Online;
           }
