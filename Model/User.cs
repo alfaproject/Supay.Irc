@@ -165,18 +165,7 @@ namespace Supay.Irc {
     /// <summary>
     ///   Represents this User's information as an IRC mask. </summary>
     public override string ToString() {
-      StringBuilder result = new StringBuilder();
-      result.Append(Nick);
-      if (!string.IsNullOrEmpty(this.Username)) {
-        result.Append("!");
-        result.Append(this.Username);
-      }
-      if (!string.IsNullOrEmpty(this.Host)) {
-        result.Append("@");
-        result.Append(this.Host);
-      }
-
-      return result.ToString();
+      return this.Mask;
     }
 
     /// <summary>
