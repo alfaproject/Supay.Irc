@@ -10,7 +10,7 @@ namespace Supay.Irc {
   /// <summary>
   ///   Represents a User on an IRC server. </summary>
   [Serializable]
-  public sealed class User : INotifyPropertyChanged {
+  public class User : INotifyPropertyChanged {
 
     /// <summary>
     ///   Raised when a property on the instance has changed. </summary>
