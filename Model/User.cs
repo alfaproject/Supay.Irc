@@ -27,7 +27,7 @@ namespace Supay.Irc {
     private ChangeNotifier<string> _awayMessage;
     private ChangeNotifier<string> _serverName;
     private ChangeNotifier<bool> _ircOperator;
-    private UserModeCollection _modes;
+    private ChangeNotifier<UserModeCollection> _modes;
 
     #region CTor
 
@@ -44,13 +44,7 @@ namespace Supay.Irc {
       _awayMessage = notifier.Create(() => this.AwayMessage);
       _serverName = notifier.Create(() => this.ServerName);
       _ircOperator = notifier.Create(() => this.IrcOperator);
-
-      _modes = new UserModeCollection();
-      _modes.CollectionChanged += (object sender, NotifyCollectionChangedEventArgs e) => {
-        if (this.PropertyChanged != null) {
-          this.PropertyChanged(this, new PropertyChangedEventArgs("Modes"));
-        }
-      };
+      _modes = notifier.Create(() => this.Modes, new UserModeCollection());
 
       // FingerPrint change notification depends on UserName and HostName changes.
       notifier.CreateDependent(() => this.FingerPrint, () => this.UserName, () => this.HostName);
@@ -152,7 +146,7 @@ namespace Supay.Irc {
     /// <summary>
     ///   Gets the modes which apply to the user. </summary>
     public UserModeCollection Modes {
-      get { return _modes; }
+      get { return _modes.Value; }
     }
 
     #endregion

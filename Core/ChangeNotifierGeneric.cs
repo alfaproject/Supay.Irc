@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq.Expressions;
 
@@ -21,6 +22,15 @@ namespace Supay.Core {
       }
 
       _notifier = notifier;
+
+      // If this property is an observable collection then
+      // raise PropertyChanged whenever the collection changes
+      INotifyCollectionChanged target = _notifier.Target as INotifyCollectionChanged;
+      if (target != null) {
+        target.CollectionChanged += (object sender, NotifyCollectionChangedEventArgs e) => {
+          this.RaisePropertyChanged();
+        };
+      }
     }
 
     public ChangeNotifier(Expression<Func<T>> expression, Func<PropertyChangedEventHandler> notifier, T initialValue)
@@ -35,14 +45,17 @@ namespace Supay.Core {
       set {
         if (!EqualityComparer<T>.Default.Equals(_value, value)) {
           _value = value;
-
-          // Get the current list of registered event handlers
-          // and invoke them with the correct 'sender' and event args
-          PropertyChangedEventHandler handler = _notifier();
-          if (handler != null) {
-            handler(_notifier.Target, new PropertyChangedEventArgs(_name));
-          }
+          this.RaisePropertyChanged();
         }
+      }
+    }
+
+    private void RaisePropertyChanged() {
+      // Get the current list of registered event handlers
+      // and invoke them with the correct 'sender' and event args
+      PropertyChangedEventHandler handler = _notifier();
+      if (handler != null) {
+        handler(_notifier.Target, new PropertyChangedEventArgs(_name));
       }
     }
 
