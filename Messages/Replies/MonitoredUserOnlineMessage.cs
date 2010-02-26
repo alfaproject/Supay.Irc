@@ -36,7 +36,7 @@ namespace Supay.Irc.Messages {
     protected override void AddParametersToFormat(IrcMessageWriter writer) {
       base.AddParametersToFormat(writer);
       String userList = MessageUtil.CreateList<User>(this.Users, ",", delegate(User user) {
-        return user.ToNickUserHostString();
+        return user.Mask;
       });
 
       writer.AddParameter(userList);

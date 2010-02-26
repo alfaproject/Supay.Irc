@@ -44,7 +44,8 @@ namespace Supay.Irc {
       _ircOperator = notifier.Create(() => this.IrcOperator);
       _modes = notifier.Create(() => this.Modes, new UserModeCollection());
 
-      // FingerPrint change notification depends on Username and Host changes.
+      // Mask and FingerPrint change notification depends on Nickname, Username and/or Host changes.
+      notifier.CreateDependent(() => this.Mask, () => this.Nick, () => this.Username, () => this.Host);
       notifier.CreateDependent(() => this.FingerPrint, () => this.Username, () => this.Host);
     }
 
@@ -94,6 +95,16 @@ namespace Supay.Irc {
     public string Host {
       get { return _host.Value; }
       set { _host.Value = value; }
+    }
+
+    /// <summary>
+    ///   Gets this User's information with a guarenteed nickname!username@host format. </summary>
+    public string Mask {
+      get {
+        return (string.IsNullOrEmpty(this.Nick) ? "*" : this.Nick) +
+          "!" + (string.IsNullOrEmpty(this.Username) ? "*" : this.Username) +
+          "@" + (string.IsNullOrEmpty(this.Host) ? "*" : this.Host);
+      }
     }
 
     /// <summary>
@@ -166,16 +177,6 @@ namespace Supay.Irc {
       }
 
       return result.ToString();
-    }
-
-    /// <summary>
-    ///   Represents this User's information with a guarenteed nick!user@host format. </summary>
-    public string ToNickUserHostString() {
-      string finalNick = (string.IsNullOrEmpty(this.Nick)) ? "*" : this.Nick;
-      string user = (string.IsNullOrEmpty(this.Username)) ? "*" : this.Username;
-      string host = (string.IsNullOrEmpty(this.Host)) ? "*" : this.Host;
-
-      return finalNick + "!" + user + "@" + host;
     }
 
     /// <summary>
