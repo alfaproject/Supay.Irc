@@ -8,16 +8,14 @@ using System.Text.RegularExpressions;
 namespace Supay.Irc {
 
   /// <summary>
-  /// Represents a User on an irc server.
-  /// </summary>
+  ///   Represents a User on an IRC server. </summary>
   [Serializable]
   public sealed class User : INotifyPropertyChanged {
 
     #region CTor
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="User"/> class.
-    /// </summary>
+    ///   Initializes a new instance of the <see cref="User"/> class. </summary>
     public User() {
       this.modes.CollectionChanged += delegate(object sender, NotifyCollectionChangedEventArgs e) {
         this.PropChanged("Modes");
@@ -25,9 +23,9 @@ namespace Supay.Irc {
     }
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="User"/> class with the given mask string
-    /// </summary>
-    /// <param name="mask">The mask string to parse.</param>
+    ///   Initializes a new instance of the <see cref="User"/> class with the given mask string. </summary>
+    /// <param name="mask">
+    ///   The mask string to parse. </param>
     public User(String mask)
       : this() {
       Parse(mask);
@@ -38,8 +36,7 @@ namespace Supay.Irc {
     #region Properties
 
     /// <summary>
-    /// Gets or sets the nickname of the User
-    /// </summary>
+    ///   Gets or sets the nickname of the User. </summary>
     public String Nick {
       get {
         return nick;
@@ -54,8 +51,7 @@ namespace Supay.Irc {
     private String nick = "";
 
     /// <summary>
-    /// Gets or sets the supposed real name of the User
-    /// </summary>
+    ///   Gets or sets the supposed real name of the User. </summary>
     public String RealName {
       get {
         return realName;
@@ -70,8 +66,7 @@ namespace Supay.Irc {
     private String realName = "";
 
     /// <summary>
-    /// Gets or sets the Password the User will use on the server
-    /// </summary>
+    ///   Gets or sets the Password the User will use on the server. </summary>
     public String Password {
       get {
         return password;
@@ -86,8 +81,7 @@ namespace Supay.Irc {
     private String password = "";
 
     /// <summary>
-    /// Gets or sets the username of the User on her local server.
-    /// </summary>
+    ///   Gets or sets the username of the User on its local server. </summary>
     public String UserName {
       get {
         return username;
@@ -102,8 +96,7 @@ namespace Supay.Irc {
     private String username = "";
 
     /// <summary>
-    /// Gets or sets the hostname of the local machine of this User
-    /// </summary>
+    ///   Gets or sets the hostname of the local machine of this User. </summary>
     public String HostName {
       get {
         return hostname;
@@ -135,8 +128,7 @@ namespace Supay.Irc {
     }
 
     /// <summary>
-    /// Gets or sets the online status of this User
-    /// </summary>
+    ///   Gets or sets the online status of this User. </summary>
     public UserOnlineStatus OnlineStatus {
       get {
         return onlineStatus;
@@ -151,8 +143,7 @@ namespace Supay.Irc {
     private UserOnlineStatus onlineStatus;
 
     /// <summary>
-    /// Gets or sets the away message of this User
-    /// </summary>
+    ///   Gets or sets the away message of this User. </summary>
     public String AwayMessage {
       get {
         return awayMessage;
@@ -167,8 +158,7 @@ namespace Supay.Irc {
     private String awayMessage;
 
     /// <summary>
-    /// Gets or sets the name of the server which the User is connected to.
-    /// </summary>
+    ///   Gets or sets the name of the server which the User is connected to. </summary>
     public String ServerName {
       get {
         return serverName;
@@ -183,8 +173,7 @@ namespace Supay.Irc {
     private String serverName;
 
     /// <summary>
-    /// Gets or sets if the User is an IRC Operator
-    /// </summary>
+    ///   Gets or sets if the User is an IRC Operator. </summary>
     public bool IrcOperator {
       get {
         return ircOperator;
@@ -199,8 +188,7 @@ namespace Supay.Irc {
     private bool ircOperator;
 
     /// <summary>
-    /// Gets the modes which apply to the user.
-    /// </summary>
+    ///   Gets the modes which apply to the user. </summary>
     public Supay.Irc.Messages.Modes.UserModeCollection Modes {
       get {
         return modes;
@@ -213,9 +201,7 @@ namespace Supay.Irc {
     #region Methods
 
     /// <summary>
-    /// Represents this User's information as an irc mask
-    /// </summary>
-    /// <returns></returns>
+    ///   Represents this User's information as an IRC mask. </summary>
     public override String ToString() {
       StringBuilder result = new StringBuilder();
       result.Append(Nick);
@@ -232,8 +218,7 @@ namespace Supay.Irc {
     }
 
     /// <summary>
-    /// Represents this User's information with a guarenteed nick!user@host format.
-    /// </summary>
+    ///   Represents this User's information with a guarenteed nick!user@host format. </summary>
     public String ToNickUserHostString() {
       String finalNick = (String.IsNullOrEmpty(this.Nick)) ? "*" : this.Nick;
       String user = (String.IsNullOrEmpty(this.UserName)) ? "*" : this.UserName;
@@ -243,16 +228,17 @@ namespace Supay.Irc {
     }
 
     /// <summary>
-    /// Determines wether the current user mask matches the given user mask.
-    /// </summary>
-    /// <param name="wildcardMask">The wild-card filled mask to compare with the current.</param>
-    /// <returns>True if this mask is described by the given wildcard Mask. False if not.</returns>
+    ///   Determines wether the current user mask matches the given user mask. </summary>
+    /// <param name="wildcardMask">
+    ///   The wild-card filled mask to compare with the current. </param>
+    /// <returns>
+    ///   True if this mask is described by the given wildcard Mask. False if not.  </returns>
     public bool IsMatch(User wildcardMask) {
       if (wildcardMask == null) {
         return false;
       }
 
-      //Fist we'll return quickly if they are exact matches
+      // First we'll return quickly if there are exact matches
       if (this.Nick == wildcardMask.Nick && this.UserName == wildcardMask.UserName && this.HostName == wildcardMask.HostName) {
         return true;
       }
@@ -265,19 +251,22 @@ namespace Supay.Irc {
     }
 
     /// <summary>
-    /// Decides if the given user address matches the given address mask.
-    /// </summary>
-    /// <param name="actualMask">The user address mask to compare match.</param>
-    /// <param name="wildcardMask">The address mask containing wildcards to match with.</param>
-    /// <returns>True if <parmref>actualMask</parmref> is contained within ( or described with ) the <paramref>wildcardMask</paramref>. False if not.</returns>
+    ///   Decides if the given user address matches the given address mask. </summary>
+    /// <param name="actualMask">
+    ///   The user address mask to compare match.  </param>
+    /// <param name="wildcardMask">
+    ///   The address mask containing wildcards to match with. </param>
+    /// <returns>
+    ///   True if <parmref>actualMask</parmref> is contained within (or described with) the <paramref>wildcardMask</paramref>.
+    ///   False if not. </returns>
     public static bool IsMatch(String actualMask, String wildcardMask) {
       return new User(actualMask).IsMatch(new User(wildcardMask));
     }
 
     /// <summary>
-    /// Parses the given string as a mask to populate this user object.
-    /// </summary>
-    /// <param name="rawMask">The mask to parse.</param>
+    ///   Parses the given string as a mask to populate this user object. </summary>
+    /// <param name="rawMask">
+    ///   The mask to parse. </param>
     public void Parse(String rawMask) {
       this.Reset();
 
@@ -306,8 +295,7 @@ namespace Supay.Irc {
     }
 
     /// <summary>
-    /// Resets the User properties to the default values
-    /// </summary>
+    ///   Resets the User properties to the default values. </summary>
     public void Reset() {
       this.Nick = "";
       this.UserName = "";
@@ -325,8 +313,7 @@ namespace Supay.Irc {
     }
 
     /// <summary>
-    /// Merges the properties of the given User onto this User.
-    /// </summary>
+    ///   Merges the properties of the given User onto this User. </summary>
     public void MergeWith(User user) {
       if (user == null) {
         return;
@@ -361,8 +348,7 @@ namespace Supay.Irc {
     }
 
     /// <summary>
-    /// Copies the properties of the given User onto this User.
-    /// </summary>
+    ///   Copies the properties of the given User onto this User. </summary>
     public void CopyFrom(User user) {
       if (user.IsDirty("OnlineStatus")) {
         this.OnlineStatus = user.OnlineStatus;
@@ -402,8 +388,7 @@ namespace Supay.Irc {
     #region INotifyPropertyChanged Members
 
     /// <summary>
-    /// Raised when a property on the instance has changed.
-    /// </summary>
+    ///   Raised when a property on the instance has changed. </summary>
     public event PropertyChangedEventHandler PropertyChanged;
 
     private void OnPropertyChanged(PropertyChangedEventArgs e) {
