@@ -51,6 +51,9 @@ namespace Supay.Irc {
           this.PropertyChanged(this, new PropertyChangedEventArgs("Modes"));
         }
       };
+
+      // FingerPrint change notification depends on UserName and HostName changes.
+      notifier.CreateDependent(() => this.FingerPrint, () => this.UserName, () => this.HostName);
     }
 
     /// <summary>
