@@ -128,12 +128,11 @@ namespace Supay.Irc.Messages {
         this.writer = new StringWriter(CultureInfo.InvariantCulture);
       }
 
-      if (sender != null && sender.Length != 0) {
+      if (!string.IsNullOrEmpty(sender)) {
         this.writer.Write(":");
         this.writer.Write(this.sender);
         this.writer.Write(" ");
       }
-
 
       int paramCount = this.parameters.Count;
       if (paramCount > 0) {
@@ -153,7 +152,6 @@ namespace Supay.Irc.Messages {
 
       this.resetDefaults();
     }
-
 
     #endregion
 
