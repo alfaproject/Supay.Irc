@@ -39,7 +39,7 @@ namespace Supay.Irc.Contacts {
 
     void client_MonitoredUserOnline(object sender, Supay.Irc.Messages.IrcMessageEventArgs<Supay.Irc.Messages.MonitoredUserOnlineMessage> e) {
       foreach (User onlineUser in e.Message.Users) {
-        User knownUser = this.Contacts.Users.Find(onlineUser.Nick);
+        User knownUser = this.Contacts.Users.Find(onlineUser.Nickname);
         if (knownUser != null) {
           knownUser.CopyFrom(onlineUser);
           if (knownUser.OnlineStatus == UserOnlineStatus.Offline) {

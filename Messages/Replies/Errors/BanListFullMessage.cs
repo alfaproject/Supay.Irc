@@ -24,9 +24,8 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Gets or sets the mask of the user being banned
-    /// </summary>
-    public User BanMask {
+    ///   Gets or sets the mask of the user being banned. </summary>
+    public Mask BanMask {
       get {
         return banMask;
       }
@@ -34,7 +33,7 @@ namespace Supay.Irc.Messages {
         banMask = value;
       }
     }
-    private User banMask;
+    private Mask banMask;
 
     /// <summary>
     /// Gets or sets the channel being targeted
@@ -61,11 +60,12 @@ namespace Supay.Irc.Messages {
     /// <exclude />
     protected override void ParseParameters(StringCollection parameters) {
       base.ParseParameters(parameters);
-      this.Channel = "";
-      this.BanMask = new User();
       if (parameters.Count > 2) {
         this.Channel = parameters[1];
-        this.BanMask.Parse(parameters[2]);
+        this.BanMask = new Mask(parameters[2]);
+      } else {
+        this.Channel = string.Empty;
+        this.BanMask = new User();
       }
     }
 

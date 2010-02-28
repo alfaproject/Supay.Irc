@@ -34,7 +34,7 @@ namespace Supay.Irc.Messages {
     protected override void AddParametersToFormat(IrcMessageWriter writer) {
       base.AddParametersToFormat(writer);
       String replyList = MessageUtil.CreateList<User>(this.Users, " ", delegate(User user) {
-        String result = user.Nick;
+        String result = user.Nickname;
         if (user.IrcOperator) {
           result += "*";
         }
@@ -65,9 +65,8 @@ namespace Supay.Irc.Messages {
         String away = info.Substring(info.IndexOf("=", StringComparison.Ordinal) + 1, 1);
         String standardHost = info.Substring(info.IndexOf(away, StringComparison.Ordinal));
 
-        User user = new User();
-        user.Parse(standardHost);
-        user.Nick = nick;
+        User user = new User(standardHost);
+        user.Nickname = nick;
         user.IrcOperator = oper;
         user.OnlineStatus = (away == "+") ? UserOnlineStatus.Away : UserOnlineStatus.Online;
 

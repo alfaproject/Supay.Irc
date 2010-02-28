@@ -13,12 +13,12 @@ namespace Supay.Irc.Contacts {
     void Users_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e) {
       if (e.Action == NotifyCollectionChangedAction.Add) {
         foreach (User newUser in e.NewItems) {
-          this.AddNick(newUser.Nick);
+          this.AddNick(newUser.Nickname);
         }
       }
       if (e.Action == NotifyCollectionChangedAction.Remove) {
         foreach (User oldUser in e.OldItems) {
-          this.RemoveNick(oldUser.Nick);
+          this.RemoveNick(oldUser.Nickname);
         }
       }
     }
@@ -34,7 +34,7 @@ namespace Supay.Irc.Contacts {
     public virtual void Initialize() {
       StringCollection nicks = new StringCollection();
       foreach (User u in this.Contacts.Users) {
-        nicks.Add(u.Nick);
+        nicks.Add(u.Nickname);
       }
       this.AddNicks(nicks);
     }

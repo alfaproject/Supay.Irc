@@ -90,8 +90,6 @@
     <Compile Include="Contacts\ContactsWatchTracker.cs" />
     <Compile Include="Contacts\ContactsMonitorTracker.cs" />
     <Compile Include="Contacts\ContactsIsOnTracker.cs" />
-    <Compile Include="Core\ChangeNotifier.cs" />
-    <Compile Include="Core\ChangeNotifierGeneric.cs" />
     <Compile Include="Messages\Channel Operation\Modes\CannotRemoveServiceBot.cs" />
     <Compile Include="Messages\Channel Operation\Modes\ChannelLimitReachedMessage.cs" />
     <Compile Include="Messages\Channel Operation\Modes\RegisteredNicksOnlyMode.cs" />
@@ -157,6 +155,7 @@
     <Compile Include="Messages\Replies\WatchedUserOfflineMessage.cs" />
     <Compile Include="Messages\Replies\WatchedUserOnlineMessage.cs" />
     <Compile Include="Messages\User Based\Modes\DeafMode.cs" />
+    <Compile Include="Model\Mask.cs" />
     <Compile Include="Model\ServerQuery.cs" />
     <Compile Include="Model\Journal.cs" />
     <Compile Include="Model\JournalEntry.cs" />

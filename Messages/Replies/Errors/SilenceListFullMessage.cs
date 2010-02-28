@@ -18,9 +18,8 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Gets or sets the mask of the user being silenced
-    /// </summary>
-    public User SilenceMask {
+    ///   Gets or sets the mask of the user being silenced. </summary>
+    public Mask SilenceMask {
       get {
         return silenceMask;
       }
@@ -28,7 +27,7 @@ namespace Supay.Irc.Messages {
         silenceMask = value;
       }
     }
-    private User silenceMask;
+    private Mask silenceMask;
 
 
     /// <exclude />
@@ -41,9 +40,10 @@ namespace Supay.Irc.Messages {
     /// <exclude />
     protected override void ParseParameters(StringCollection parameters) {
       base.ParseParameters(parameters);
-      this.SilenceMask = new User();
       if (parameters.Count > 1) {
-        this.SilenceMask.Parse(parameters[1]);
+        this.SilenceMask = new Mask(parameters[1]);
+      } else {
+        this.SilenceMask = new Mask();
       }
     }
 

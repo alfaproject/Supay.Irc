@@ -438,7 +438,7 @@ namespace Supay.Irc.Network {
         }
       } catch (Exception ex) {
         System.Diagnostics.Trace.WriteLine(ex.ToString());
-        disconnectReason = ex.Message;
+        disconnectReason = ex.Message + System.Environment.NewLine + ex.StackTrace;
       }
       this.Status = ConnectionStatus.Disconnected;
 

@@ -57,7 +57,7 @@ namespace Supay.Irc {
     /// <param name="nick">The nick of the <see cref="Client.User"/></param>
     public Client(String address, String nick)
       : this(address) {
-      this.User.Nick = nick;
+      this.User.Nickname = nick;
     }
 
     /// <summary>
@@ -284,11 +284,11 @@ namespace Supay.Irc {
       if (msg == null) {
         return false;
       }
-      return (msg.Sender.Nick == this.ServerName);
+      return (msg.Sender.Nickname == this.ServerName);
     }
 
     private bool IsMe(String nick) {
-      return (MessageUtil.IsIgnoreCaseMatch(this.User.Nick, nick));
+      return (MessageUtil.IsIgnoreCaseMatch(this.User.Nickname, nick));
     }
 
     private void RouteData(string messageData) {
@@ -499,18 +499,18 @@ namespace Supay.Irc {
 
       //Send Nick
       NickChangeMessage nick = new NickChangeMessage();
-      nick.NewNick = User.Nick;
+      nick.NewNick = User.Nickname;
       this.Send(nick);
 
       //Send User
       UserNotificationMessage userNotification = new UserNotificationMessage();
       if (User.Name.Length == 0) {
-        userNotification.RealName = User.Nick;
+        userNotification.RealName = User.Nickname;
       } else {
         userNotification.RealName = User.Name;
       }
       if (User.Username.Length == 0) {
-        userNotification.UserName = User.Nick;
+        userNotification.UserName = User.Nickname;
       } else {
         userNotification.UserName = User.Username;
       }
@@ -524,18 +524,18 @@ namespace Supay.Irc {
     }
 
     private void serverNameAquired(object sender, IrcMessageEventArgs<WelcomeMessage> e) {
-      this.ServerName = e.Message.Sender.Nick;
+      this.ServerName = e.Message.Sender.Nickname;
       Ident.Service.Stop();
 
-      if (e.Message.Target != this.User.Nick) {
-        this.User.Nick = e.Message.Target;
+      if (e.Message.Target != this.User.Nickname) {
+        this.User.Nickname = e.Message.Target;
       }
 
     }
 
     private void keepOwnNickCorrect(object sender, IrcMessageEventArgs<NickChangeMessage> e) {
-      if (e.Message.Sender.Nick == this.User.Nick) {
-        this.User.Nick = e.Message.NewNick;
+      if (e.Message.Sender.Nickname == this.User.Nickname) {
+        this.User.Nickname = e.Message.NewNick;
       }
     }
 
@@ -594,7 +594,7 @@ namespace Supay.Irc {
 
     private void routeJoins(object sender, IrcMessageEventArgs<JoinMessage> e) {
       User msgUser = e.Message.Sender;
-      User joinedUser = (IsMe(msgUser.Nick)) ? User : this.Peers.EnsureUser(msgUser);
+      User joinedUser = (IsMe(msgUser.Nickname)) ? User : this.Peers.EnsureUser(msgUser);
 
       foreach (String channelname in e.Message.Channels) {
         Channel joinedChannel = this.Channels.EnsureChannel(channelname, this);
@@ -645,20 +645,20 @@ namespace Supay.Irc {
     }
 
     private void routeNicks(object sender, IrcMessageEventArgs<NickChangeMessage> e) {
-      String oldNick = e.Message.Sender.Nick;
+      String oldNick = e.Message.Sender.Nickname;
       String newNick = e.Message.NewNick;
       if (IsMe(oldNick)) {
-        this.User.Nick = newNick;
+        this.User.Nickname = newNick;
       } else {
         User u = this.Peers.Find(oldNick);
         if (u != null) {
-          u.Nick = newNick;
+          u.Nickname = newNick;
         }
       }
     }
 
     private void routeParts(object sender, IrcMessageEventArgs<PartMessage> e) {
-      String nick = e.Message.Sender.Nick;
+      String nick = e.Message.Sender.Nickname;
       foreach (String channelName in e.Message.Channels) {
         Channel channel = this.Channels.Find(channelName);
         if (IsMe(nick)) {
@@ -670,7 +670,7 @@ namespace Supay.Irc {
     }
 
     private void routeQuits(object sender, IrcMessageEventArgs<QuitMessage> e) {
-      String nick = e.Message.Sender.Nick;
+      String nick = e.Message.Sender.Nickname;
       if (IsMe(nick)) {
         foreach (Channel c in this.Channels) {
           c.Open = false;
@@ -776,7 +776,7 @@ namespace Supay.Irc {
 
     private void client_UserHostReply(object sender, IrcMessageEventArgs<UserHostReplyMessage> e) {
       foreach (User sentUser in e.Message.Users) {
-        if (IsMe(sentUser.Nick)) {
+        if (IsMe(sentUser.Nickname)) {
           this.User.CopyFrom(sentUser);
         } else {
           User user = this.Peers.EnsureUser(sentUser);

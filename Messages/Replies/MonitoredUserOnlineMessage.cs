@@ -36,7 +36,7 @@ namespace Supay.Irc.Messages {
     protected override void AddParametersToFormat(IrcMessageWriter writer) {
       base.AddParametersToFormat(writer);
       String userList = MessageUtil.CreateList<User>(this.Users, ",", delegate(User user) {
-        return user.Mask;
+        return user.IrcMask;
       });
 
       writer.AddParameter(userList);
@@ -54,8 +54,7 @@ namespace Supay.Irc.Messages {
         String userListParam = parameters[1];
         String[] userList = userListParam.Split(new String[] { "," }, StringSplitOptions.RemoveEmptyEntries);
         foreach (String userMask in userList) {
-          User newUser = new User();
-          newUser.Parse(userMask);
+          User newUser = new User(userMask);
           this.Users.Add(newUser);
         }
       }

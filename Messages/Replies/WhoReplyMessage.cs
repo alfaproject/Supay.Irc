@@ -111,7 +111,7 @@ namespace Supay.Irc.Messages {
       writer.AddParameter(this.User.Username);
       writer.AddParameter(this.User.Host);
       writer.AddParameter(this.Server);
-      writer.AddParameter(this.User.Nick);
+      writer.AddParameter(this.User.Nickname);
       //HACK it could also be a G, but I was unable to determine what it meant.
       if (this.IsOper) {
         writer.AddParameter("H*");
@@ -134,7 +134,7 @@ namespace Supay.Irc.Messages {
         this.User.Username = parameters[2];
         this.User.Host = parameters[3];
         this.Server = parameters[4];
-        this.User.Nick = parameters[5];
+        this.User.Nickname = parameters[5];
 
         String levels = parameters[6];
         // TODO I'm going to ignore the H/G issue until i know what it means.

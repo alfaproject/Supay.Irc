@@ -17,19 +17,18 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Creates a new instance of the SilenceMessage class with the given mask.
-    /// </summary>
-    public SilenceMessage(String userMask)
-      : base() {
-      this.silencedUser.Parse(userMask);
-    }
-
-    /// <summary>
     /// Creates a new instance of the SilenceMessage class with the <see cref="User"/>.
     /// </summary>
     public SilenceMessage(User silencedUser)
       : base() {
       this.silencedUser = silencedUser;
+    }
+
+    /// <summary>
+    /// Creates a new instance of the SilenceMessage class with the given mask.
+    /// </summary>
+    public SilenceMessage(String userMask)
+      : this(new User(userMask)) {
     }
 
     /// <summary>

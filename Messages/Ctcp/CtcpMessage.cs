@@ -121,7 +121,7 @@ namespace Supay.Irc.Messages {
     /// Determines if the current message is targeted at a query to the given user.
     /// </summary>
     protected virtual bool IsQueryToUser(User user) {
-      return (MessageUtil.IsIgnoreCaseMatch(user.Nick, target));
+      return (MessageUtil.IsIgnoreCaseMatch(user.Nickname, target));
     }
 
     #endregion

@@ -118,8 +118,8 @@ namespace Supay.Irc.Network {
             StreamWriter writer = new StreamWriter(client.GetStream());
             String identName = this.User.Username;
             if (identName.Length == 0) {
-              if (this.User.Nick.Length != 0) {
-                identName = this.User.Nick;
+              if (this.User.Nickname.Length != 0) {
+                identName = this.User.Nickname;
               } else {
                 identName = "supay";
               }

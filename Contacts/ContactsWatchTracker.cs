@@ -38,14 +38,14 @@ namespace Supay.Irc.Contacts {
     #region Reply Handlers
 
     void client_WatchedUserOnline(object sender, Supay.Irc.Messages.IrcMessageEventArgs<Supay.Irc.Messages.WatchedUserOnlineMessage> e) {
-      User knownUser = this.Contacts.Users.Find(e.Message.WatchedUser.Nick);
+      User knownUser = this.Contacts.Users.Find(e.Message.WatchedUser.Nickname);
       if (knownUser != null && knownUser.OnlineStatus == UserOnlineStatus.Offline) {
         knownUser.OnlineStatus = UserOnlineStatus.Online;
       }
     }
 
     void client_WatchedUserOffline(object sender, Supay.Irc.Messages.IrcMessageEventArgs<Supay.Irc.Messages.WatchedUserOfflineMessage> e) {
-      User knownUser = this.Contacts.Users.Find(e.Message.WatchedUser.Nick);
+      User knownUser = this.Contacts.Users.Find(e.Message.WatchedUser.Nickname);
       if (knownUser != null) {
         knownUser.OnlineStatus = UserOnlineStatus.Offline;
       }

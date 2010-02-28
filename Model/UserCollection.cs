@@ -31,7 +31,7 @@ namespace Supay.Irc {
     /// </summary>
     public bool RemoveFirst(String nick) {
       Predicate<User> match = delegate(User userToMatch) {
-        return MessageUtil.IsIgnoreCaseMatch(userToMatch.Nick, nick);
+        return MessageUtil.IsIgnoreCaseMatch(userToMatch.Nickname, nick);
       };
       return this.RemoveFirst(match);
     }
@@ -56,7 +56,7 @@ namespace Supay.Irc {
     /// </summary>
     public User Find(String nick) {
       Predicate<User> match = delegate(User userToMatch) {
-        return Supay.Irc.Messages.MessageUtil.IsIgnoreCaseMatch(userToMatch.Nick, nick);
+        return Supay.Irc.Messages.MessageUtil.IsIgnoreCaseMatch(userToMatch.Nickname, nick);
       };
       return Find(match);
     }
@@ -90,7 +90,7 @@ namespace Supay.Irc {
       if (tempUser == null) {
         throw new ArgumentNullException("tempUser");
       }
-      User knownUser = this.Find(tempUser.Nick);
+      User knownUser = this.Find(tempUser.Nickname);
       if (knownUser == null) {
         knownUser = tempUser;
         this.Add(knownUser);

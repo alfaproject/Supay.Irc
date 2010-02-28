@@ -38,8 +38,8 @@ namespace Supay.Irc.Messages {
       if (writer == null) {
         return;
       }
-      if (!string.IsNullOrEmpty(this.Sender.Nick)) {
-        writer.Sender = this.Sender.Mask;
+      if (!string.IsNullOrEmpty(this.Sender.Nickname)) {
+        writer.Sender = this.Sender.IrcMask;
       }
       this.AddParametersToFormat(writer);
       writer.Write();

@@ -37,7 +37,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     protected override void AddParametersToFormat(IrcMessageWriter writer) {
       base.AddParametersToFormat(writer);
-      writer.AddParameter(this.User.Nick);
+      writer.AddParameter(this.User.Nickname);
       writer.AddParameter(this.User.Username);
       writer.AddParameter(this.User.Host);
       writer.AddParameter("*");
@@ -51,7 +51,7 @@ namespace Supay.Irc.Messages {
       base.ParseParameters(parameters);
       this.user = new User();
       if (parameters.Count > 5) {
-        user.Nick = parameters[1];
+        user.Nickname = parameters[1];
         user.Username = parameters[2];
         user.Host = parameters[3];
         user.Name = parameters[5];

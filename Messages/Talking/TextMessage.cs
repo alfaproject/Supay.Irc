@@ -85,7 +85,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     protected virtual bool IsQueryToUser(User user) {
       foreach (String target in this.Targets) {
-        if (MessageUtil.IsIgnoreCaseMatch(user.Nick, target)) {
+        if (MessageUtil.IsIgnoreCaseMatch(user.Nickname, target)) {
           return true;
         }
       }
