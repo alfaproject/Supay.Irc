@@ -14,19 +14,20 @@ namespace Supay.Irc {
   public class Channel : INotifyPropertyChanged {
 
     private Client _client;
+    private bool _open = false;
     private User _topicSetter;
     private DateTime _topicSetTime;
     private UserCollection _users = new UserCollection();
     private ChannelModeCollection _modes = new ChannelModeCollection();
     private Journal _journal = new Journal();
-    private UserStatusMap _userModes = new UserStatusMap();
+    private Dictionary<User, ChannelStatus> _userModes = new Dictionary<User,ChannelStatus>();
     private NameValueCollection _properties = new NameValueCollection();
 
     /// <summary>
     ///   The event raised when a property on the object changes. </summary>
     public event PropertyChangedEventHandler PropertyChanged;
 
-    #region ctor
+    #region Constructors
 
     /// <summary>
     /// Creates a new instance of the <see cref="Channel"/> class on the given client.
@@ -51,27 +52,15 @@ namespace Supay.Irc {
     #region Properties
 
     /// <summary>
-    /// Gets the collection of general properties assigned to this channel
-    /// </summary>
-    public virtual NameValueCollection Properties {
-      get {
-        return _properties;
-      }
-    }
-
-    /// <summary>
-    /// Gets the client which the channel is on.
-    /// </summary>
-    public virtual Client Client {
+    ///   Gets the client which the channel is on. </summary>
+    public Client Client {
       get {
         return _client;
       }
     }
 
-
     /// <summary>
-    /// Gets or sets whether the channel is currently open
-    /// </summary>
+    ///   Gets or sets whether the channel is currently open. </summary>
     public bool Open {
       get {
         return _open && (this.Client != null && this.Client.Connection.Status == ConnectionStatus.Connected);
@@ -81,44 +70,38 @@ namespace Supay.Irc {
         this.RaisePropertyChanged("Open");
       }
     }
-    private bool _open = false;
 
     /// <summary>
-    /// Gets or sets the name of the channel.
-    /// </summary>
-    public virtual String Name {
+    ///   Gets or sets the name of the channel. </summary>
+    public string Name {
       get {
-        return this.Properties["NAME"] ?? "";
+        return _properties["NAME"] ?? string.Empty;
       }
       set {
-        String currentValue = this.Name;
-        if (currentValue != value) {
-          this.Properties["NAME"] = value;
+        if (_properties["NAME"] != value) {
+          _properties["NAME"] = value;
           this.RaisePropertyChanged("Name");
         }
       }
     }
 
     /// <summary>
-    /// Gets or sets the topic of the channel
-    /// </summary>
-    public virtual String Topic {
+    ///   Gets or sets the topic of the channel. </summary>
+    public string Topic {
       get {
         return this.Properties["TOPIC"] ?? "";
       }
       set {
-        String originalValue = this.Topic;
-        if (originalValue != value) {
-          this.Properties["TOPIC"] = value;
+        if (_properties["TOPIC"] != value) {
+          _properties["TOPIC"] = value;
           this.RaisePropertyChanged("Topic");
         }
       }
     }
 
     /// <summary>
-    /// Gets or sets the user which set the current topic
-    /// </summary>
-    public virtual User TopicSetter {
+    ///   Gets or sets the user which set the current topic. </summary>
+    public User TopicSetter {
       get {
         return _topicSetter;
       }
@@ -131,9 +114,8 @@ namespace Supay.Irc {
     }
 
     /// <summary>
-    /// Gets or sets the time which topic was set
-    /// </summary>
-    public virtual DateTime TopicSetTime {
+    ///   Gets or sets the time which topic was set. </summary>
+    public DateTime TopicSetTime {
       get {
         return _topicSetTime;
       }
@@ -146,27 +128,32 @@ namespace Supay.Irc {
     }
 
     /// <summary>
-    /// Gets the users in the channel.
-    /// </summary>
-    public virtual UserCollection Users {
+    ///   Gets the collection of general properties assigned to this channel. </summary>
+    public NameValueCollection Properties {
+      get {
+        return _properties;
+      }
+    }
+
+    /// <summary>
+    ///   Gets the users in the channel. </summary>
+    public UserCollection Users {
       get {
         return _users;
       }
     }
 
     /// <summary>
-    /// Gets the modes in the channel.
-    /// </summary>
-    public virtual Supay.Irc.Messages.Modes.ChannelModeCollection Modes {
+    ///   Gets the modes in the channel. </summary>
+    public ChannelModeCollection Modes {
       get {
         return _modes;
       }
     }
 
     /// <summary>
-    /// Gets the journal of messages on the channel
-    /// </summary>
-    public virtual Journal Journal {
+    ///   Gets the journal of messages on the channel. </summary>
+    public Journal Journal {
       get {
         return _journal;
       }
@@ -174,12 +161,11 @@ namespace Supay.Irc {
 
     #endregion
 
-    #region Methods
+    #region Users Status
 
     /// <summary>
-    /// Gets the status for the given <see cref="T:User"/> in the channel.
-    /// </summary>
-    public virtual ChannelStatus GetStatusForUser(User channelUser) {
+    ///   Gets the status for the given <see cref="User"/> in the channel. </summary>
+    public ChannelStatus GetStatusForUser(User channelUser) {
       VerifyUserInChannel(channelUser);
       if (_userModes.ContainsKey(channelUser)) {
         return _userModes[channelUser];
@@ -188,9 +174,8 @@ namespace Supay.Irc {
     }
 
     /// <summary>
-    /// Applies the given <see cref="T:ChannelStatus"/> to the given <see cref="T:User"/> in the channel.
-    /// </summary>
-    public virtual void SetStatusForUser(User channelUser, ChannelStatus status) {
+    ///   Applies the given <see cref="ChannelStatus"/> to the given <see cref="User"/> in the channel. </summary>
+    public void SetStatusForUser(User channelUser, ChannelStatus status) {
       if (status == ChannelStatus.None && _userModes.ContainsKey(channelUser)) {
         _userModes.Remove(channelUser);
       } else {
@@ -203,7 +188,7 @@ namespace Supay.Irc {
       if (channelUser == null) {
         throw new ArgumentNullException("channelUser");
       }
-      if (!Users.Contains(channelUser)) {
+      if (!_users.Contains(channelUser)) {
         throw new ArgumentException(String.Format(CultureInfo.InvariantCulture, Supay.Irc.Properties.Resources.UserIsNotInChannel, channelUser.Nickname, this.Name), "channelUser");
       }
     }
@@ -213,14 +198,14 @@ namespace Supay.Irc {
     #region Private
 
     void users_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e) {
-      UserCollection users = this.Users;
-
       if (e.Action == NotifyCollectionChangedAction.Remove) {
-        this._userModes.RemoveAll(delegate(KeyValuePair<User, ChannelStatus> keyValue) {
-          return !users.Contains(keyValue.Key);
+        foreach (User user in e.OldItems) {
+          if (_userModes.ContainsKey(user)) {
+            _userModes.Remove(user);
+          }
         }
-        );
       }
+
       this.RaisePropertyChanged("Users");
     }
 
@@ -230,36 +215,6 @@ namespace Supay.Irc {
 
     void journal_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e) {
       this.RaisePropertyChanged("Journal");
-    }
-
-    #endregion
-
-    #region UserStatusMap
-
-    private class UserStatusMap : Dictionary<User, ChannelStatus> {
-
-      /// <summary>
-      /// Removes all of the items from the dictionary which the given predictate matches.
-      /// </summary>
-      /// <returns>The number of items removed from the dictionary.</returns>
-      public int RemoveAll(Predicate<System.Collections.Generic.KeyValuePair<User, ChannelStatus>> match) {
-        if (match == null) {
-          throw new ArgumentNullException("match");
-        }
-        int countOfItemsRemoved = 0;
-
-        User[] users = new User[this.Keys.Count];
-        this.Keys.CopyTo(users, 0);
-        foreach (User u in users) {
-          if (this.ContainsKey(u) && match(new KeyValuePair<User, ChannelStatus>(u, this[u]))) {
-            this.Remove(u);
-            countOfItemsRemoved++;
-          }
-        }
-
-        return countOfItemsRemoved;
-
-      }
     }
 
     #endregion
