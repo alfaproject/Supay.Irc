@@ -38,9 +38,9 @@ namespace Supay.Irc {
       _name = string.Empty;
       _password = string.Empty;
       _onlineStatus = UserOnlineStatus.Online;
-      _awayMessage = this.AwayMessage;
-      _server = this.Server;
-      _ircOperator = this.IrcOperator;
+      _awayMessage = string.Empty;
+      _server = string.Empty;
+      _ircOperator = false;
 
       _modes = new UserModeCollection();
       _modes.CollectionChanged += (s, e) => this.RaisePropertyChanged("Modes");
