@@ -74,6 +74,7 @@ namespace Supay.Irc {
         if (_nickname != value) {
           _nickname = value;
           this.RaisePropertyChanged("Nickname");
+          this.RaisePropertyChanged("IrcMask");
         }
       }
     }
@@ -88,6 +89,7 @@ namespace Supay.Irc {
         if (_username != value) {
           _username = value;
           this.RaisePropertyChanged("Username");
+          this.RaisePropertyChanged("IrcMask");
         }
       }
     }
@@ -102,6 +104,7 @@ namespace Supay.Irc {
         if (_host != value) {
           _host = value;
           this.RaisePropertyChanged("Host");
+          this.RaisePropertyChanged("IrcMask");
         }
       }
     }
