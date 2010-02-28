@@ -404,7 +404,6 @@
     <Compile Include="Network\SocketErrors.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Model\UserCollection.cs" />
-    <Compile Include="UserOnlineStatus.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">

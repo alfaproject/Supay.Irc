@@ -64,16 +64,15 @@ namespace Supay.Irc.Contacts {
           waitingOnNicks.Remove(onlineNick);
         }
         User knownUser = this.Contacts.Users.Find(onlineNick);
-        if (knownUser != null && knownUser.OnlineStatus == UserOnlineStatus.Offline) {
-          knownUser.OnlineStatus = UserOnlineStatus.Online;
-        }
-        if (knownUser == null && this.trackedNicks.Contains(onlineNick)) {
+        if (knownUser != null) {
+          knownUser.Online = true;
+        } else if (this.trackedNicks.Contains(onlineNick)) {
           this.trackedNicks.Remove(onlineNick);
         }
       }
       foreach (String nick in this.waitingOnNicks) {
         User offlineUser = this.Contacts.Users.Find(nick);
-        offlineUser.OnlineStatus = UserOnlineStatus.Offline;
+        offlineUser.Online = false;
         waitingOnNicks.Remove(nick);
       }
     }

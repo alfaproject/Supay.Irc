@@ -42,9 +42,7 @@ namespace Supay.Irc.Contacts {
         User knownUser = this.Contacts.Users.Find(onlineUser.Nickname);
         if (knownUser != null) {
           knownUser.CopyFrom(onlineUser);
-          if (knownUser.OnlineStatus == UserOnlineStatus.Offline) {
-            knownUser.OnlineStatus = UserOnlineStatus.Online;
-          }
+          knownUser.Online = true;
         }
       }
     }
@@ -53,7 +51,7 @@ namespace Supay.Irc.Contacts {
       foreach (String offlineNick in e.Message.Nicks) {
         User knownUser = this.Contacts.Users.Find(offlineNick);
         if (knownUser != null) {
-          knownUser.OnlineStatus = UserOnlineStatus.Offline;
+          knownUser.Online = false;
         }
       }
     }

@@ -10,9 +10,9 @@ namespace Supay.Irc {
 
     private string _name;
     private string _password;
-    private UserOnlineStatus _onlineStatus;
     private string _server;
     private bool _ircOperator;
+    private bool _online;
     private bool _away;
     private string _awayMessage;
     private UserModeCollection _modes;
@@ -38,9 +38,9 @@ namespace Supay.Irc {
     private void Initialize() {
       _name = string.Empty;
       _password = string.Empty;
-      _onlineStatus = UserOnlineStatus.Online;
       _server = string.Empty;
       _ircOperator = false;
+      _online = true;
       _away = false;
       _awayMessage = string.Empty;
 
@@ -81,20 +81,6 @@ namespace Supay.Irc {
     }
 
     /// <summary>
-    ///   Gets or sets the online status of this User. </summary>
-    public UserOnlineStatus OnlineStatus {
-      get {
-        return _onlineStatus;
-      }
-      set {
-        if (_onlineStatus != value) {
-          _onlineStatus = value;
-          this.RaisePropertyChanged("OnlineStatus");
-        }
-      }
-    }
-
-    /// <summary>
     ///   Gets or sets the name of the server which the User is connected to. </summary>
     public string Server {
       get {
@@ -118,6 +104,20 @@ namespace Supay.Irc {
         if (_ircOperator != value) {
           _ircOperator = value;
           this.RaisePropertyChanged("IrcOperator");
+        }
+      }
+    }
+
+    /// <summary>
+    ///   Gets or sets the online status of this User. </summary>
+    public bool Online {
+      get {
+        return _online;
+      }
+      set {
+        if (_online != value) {
+          _online = value;
+          this.RaisePropertyChanged("Online");
         }
       }
     }
@@ -188,7 +188,6 @@ namespace Supay.Irc {
     /// <summary>
     ///   Copies the properties of the given User onto this User. </summary>
     public void CopyFrom(User user) {
-      this.OnlineStatus = user.OnlineStatus;
       this.Host = user.Host;
       this.Nickname = user.Nickname;
       this.Password = user.Password;
@@ -196,6 +195,7 @@ namespace Supay.Irc {
       this.Username = user.Username;
       this.Server = user.Server;
       this.IrcOperator = user.IrcOperator;
+      this.Online = user.Online;
       this.Away = user.Away;
       this.AwayMessage = user.AwayMessage;
     }
