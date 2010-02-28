@@ -23,15 +23,14 @@ namespace Supay.Irc {
     }
 
     /// <summary>
-    /// Either finds or creates the channel by the given name
-    /// </summary>
-    public Channel EnsureChannel(String name, Client client) {
-      Channel c = Find(name);
-      if (c == null || c.Client != client) {
-        c = new Channel(client, name);
-        this.Add(c);
+    ///   Either finds or creates the channel by the given name. </summary>
+    public Channel EnsureChannel(string name, Client client) {
+      Channel channel = this.Find(name);
+      if (channel == null) {
+        channel = new Channel(name);
+        this.Add(channel);
       }
-      return c;
+      return channel;
     }
 
   }

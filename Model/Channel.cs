@@ -13,7 +13,6 @@ namespace Supay.Irc {
   [Serializable]
   public class Channel : INotifyPropertyChanged {
 
-    private Client _client;
     private bool _open = false;
     private NameValueCollection _properties;
     private User _topicSetter;
@@ -31,8 +30,7 @@ namespace Supay.Irc {
 
     /// <summary>
     ///   Creates a new instance of the <see cref="Channel"/> class on the given client with the given name. </summary>
-    public Channel(Client client, string name) {
-      _client = client;
+    public Channel(string name) {
       _open = false;
 
       _properties = new NameValueCollection(2);
@@ -53,8 +51,8 @@ namespace Supay.Irc {
 
     /// <summary>
     ///   Creates a new instance of the <see cref="Channel"/> class on the given client. </summary>
-    public Channel(Client client)
-      : this(client, string.Empty) {
+    public Channel()
+      : this(string.Empty) {
     }
 
     #endregion
@@ -62,18 +60,10 @@ namespace Supay.Irc {
     #region Properties
 
     /// <summary>
-    ///   Gets the client which the channel is on. </summary>
-    public Client Client {
-      get {
-        return _client;
-      }
-    }
-
-    /// <summary>
     ///   Gets or sets whether the channel is currently open. </summary>
     public bool Open {
       get {
-        return _open && (this.Client != null && this.Client.Connection.Status == ConnectionStatus.Connected);
+        return _open;
       }
       internal set {
         _open = value;
