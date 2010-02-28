@@ -11,9 +11,10 @@ namespace Supay.Irc {
     private string _name;
     private string _password;
     private UserOnlineStatus _onlineStatus;
-    private string _awayMessage;
     private string _server;
     private bool _ircOperator;
+    private bool _away;
+    private string _awayMessage;
     private UserModeCollection _modes;
 
     #region Constructors
@@ -38,9 +39,10 @@ namespace Supay.Irc {
       _name = string.Empty;
       _password = string.Empty;
       _onlineStatus = UserOnlineStatus.Online;
-      _awayMessage = string.Empty;
       _server = string.Empty;
       _ircOperator = false;
+      _away = false;
+      _awayMessage = string.Empty;
 
       _modes = new UserModeCollection();
       _modes.CollectionChanged += (s, e) => this.RaisePropertyChanged("Modes");
@@ -93,20 +95,6 @@ namespace Supay.Irc {
     }
 
     /// <summary>
-    ///   Gets or sets the away message of this User. </summary>
-    public string AwayMessage {
-      get {
-        return _awayMessage;
-      }
-      set {
-        if (_awayMessage != value) {
-          _awayMessage = value;
-          this.RaisePropertyChanged("AwayMessage");
-        }
-      }
-    }
-
-    /// <summary>
     ///   Gets or sets the name of the server which the User is connected to. </summary>
     public string Server {
       get {
@@ -130,6 +118,34 @@ namespace Supay.Irc {
         if (_ircOperator != value) {
           _ircOperator = value;
           this.RaisePropertyChanged("IrcOperator");
+        }
+      }
+    }
+
+    /// <summary>
+    ///   Gets or sets the away status of this User. </summary>
+    public bool Away {
+      get {
+        return _away;
+      }
+      set {
+        if (_away != value) {
+          _away = value;
+          this.RaisePropertyChanged("Away");
+        }
+      }
+    }
+
+    /// <summary>
+    ///   Gets or sets the away message of this User. </summary>
+    public string AwayMessage {
+      get {
+        return _awayMessage;
+      }
+      set {
+        if (_awayMessage != value) {
+          _awayMessage = value;
+          this.RaisePropertyChanged("AwayMessage");
         }
       }
     }
@@ -173,7 +189,6 @@ namespace Supay.Irc {
     ///   Copies the properties of the given User onto this User. </summary>
     public void CopyFrom(User user) {
       this.OnlineStatus = user.OnlineStatus;
-      this.AwayMessage = user.AwayMessage;
       this.Host = user.Host;
       this.Nickname = user.Nickname;
       this.Password = user.Password;
@@ -181,6 +196,8 @@ namespace Supay.Irc {
       this.Username = user.Username;
       this.Server = user.Server;
       this.IrcOperator = user.IrcOperator;
+      this.Away = user.Away;
+      this.AwayMessage = user.AwayMessage;
     }
 
     #endregion

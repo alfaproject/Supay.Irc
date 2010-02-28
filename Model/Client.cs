@@ -783,8 +783,8 @@ namespace Supay.Irc {
           if (user != sentUser) {
             user.CopyFrom(sentUser);
           }
-          if (user.OnlineStatus != UserOnlineStatus.Away) {
-            user.AwayMessage = "";
+          if (!user.Away) {
+            user.AwayMessage = string.Empty;
           }
         }
       }
@@ -792,17 +792,17 @@ namespace Supay.Irc {
 
     private void client_UserAway(object sender, IrcMessageEventArgs<UserAwayMessage> e) {
       User user = this.Peers.EnsureUser(e.Message.Nick);
-      user.OnlineStatus = UserOnlineStatus.Away;
+      user.Away = true;
       user.AwayMessage = e.Message.Text;
     }
 
     private void client_SelfUnAway(object sender, IrcMessageEventArgs<SelfUnAwayMessage> e) {
-      this.User.OnlineStatus = UserOnlineStatus.Online;
+      this.User.Away = false;
       this.User.AwayMessage = "";
     }
 
     private void client_SelfAway(object sender, IrcMessageEventArgs<SelfAwayMessage> e) {
-      this.User.OnlineStatus = UserOnlineStatus.Away;
+      this.User.Away = true;
     }
 
     private void client_OperReply(object sender, IrcMessageEventArgs<OperReplyMessage> e) {
@@ -821,13 +821,13 @@ namespace Supay.Irc {
 
     private void client_Back(object sender, IrcMessageEventArgs<BackMessage> e) {
       User user = this.Peers.EnsureUser(e.Message.Sender);
-      user.OnlineStatus = UserOnlineStatus.Online;
+      user.Away = false;
       user.AwayMessage = "";
     }
 
     private void client_Away(object sender, IrcMessageEventArgs<AwayMessage> e) {
       User user = this.Peers.EnsureUser(e.Message.Sender);
-      user.OnlineStatus = UserOnlineStatus.Away;
+      user.Away = true;
       user.AwayMessage = e.Message.Reason;
     }
 
