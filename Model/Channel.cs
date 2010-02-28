@@ -4,7 +4,6 @@ using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Globalization;
 using Supay.Irc.Messages.Modes;
-using Supay.Irc.Network;
 
 namespace Supay.Irc {
 

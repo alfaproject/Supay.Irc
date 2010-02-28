@@ -1,21 +1,20 @@
 using System;
-using Supay.Irc.Messages;
+using System.Collections.ObjectModel;
 
 namespace Supay.Irc {
 
   /// <summary>
-  /// A collection that stores <see cref='Supay.Irc.Channel'/> objects.
-  /// </summary>
+  ///   A collection that stores <see cref="Channel"/> objects. </summary>
   [Serializable]
-  public class ChannelCollection : System.Collections.ObjectModel.ObservableCollection<Channel> {
+  public class ChannelCollection : ObservableCollection<Channel> {
 
     /// <summary>
-    ///   Finds the <see href="Channel" /> in the collection with the given name. </summary>
+    ///   Finds the <see href="Channel"/> in the collection with the given name. </summary>
     /// <returns>
     ///   The so-named channel, or null. </returns>
-    public Channel Find(String channelName) {
+    public Channel Find(string channelName) {
       foreach (Channel channel in this) {
-        if (MessageUtil.IsIgnoreCaseMatch(channel.Name, channelName)) {
+        if (channel.Name.Equals(channelName, StringComparison.OrdinalIgnoreCase)) {
           return channel;
         }
       }
@@ -33,6 +32,5 @@ namespace Supay.Irc {
       return channel;
     }
 
-  }
-
-}
+  } //class ChannelCollection
+} //namespace Supay.Irc
