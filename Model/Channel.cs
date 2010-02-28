@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Globalization;
-using Supay.Irc.Network;
 using Supay.Irc.Messages.Modes;
+using Supay.Irc.Network;
 
 namespace Supay.Irc {
 
@@ -15,13 +15,13 @@ namespace Supay.Irc {
 
     private Client _client;
     private bool _open = false;
+    private NameValueCollection _properties;
     private User _topicSetter;
     private DateTime _topicSetTime;
-    private UserCollection _users = new UserCollection();
-    private ChannelModeCollection _modes = new ChannelModeCollection();
-    private Journal _journal = new Journal();
-    private Dictionary<User, ChannelStatus> _userModes = new Dictionary<User,ChannelStatus>();
-    private NameValueCollection _properties = new NameValueCollection();
+    private UserCollection _users;
+    private Dictionary<User, ChannelStatus> _userModes;
+    private ChannelModeCollection _modes;
+    private Journal _journal;
 
     /// <summary>
     ///   The event raised when a property on the object changes. </summary>
@@ -30,21 +30,31 @@ namespace Supay.Irc {
     #region Constructors
 
     /// <summary>
-    /// Creates a new instance of the <see cref="Channel"/> class on the given client.
-    /// </summary>
-    public Channel(Client client) {
-      this._client = client;
-      this._users.CollectionChanged += new NotifyCollectionChangedEventHandler(users_CollectionChanged);
-      this.Modes.CollectionChanged += new NotifyCollectionChangedEventHandler(Modes_CollectionChanged);
-      this._journal.CollectionChanged += new NotifyCollectionChangedEventHandler(journal_CollectionChanged);
+    ///   Creates a new instance of the <see cref="Channel"/> class on the given client with the given name. </summary>
+    public Channel(Client client, string name) {
+      _client = client;
+      _open = false;
+
+      _properties = new NameValueCollection(2);
+      _properties["NAME"] = name;
+      _properties["TOPIC"] = string.Empty;
+      
+      _users = new UserCollection();
+      _users.CollectionChanged += new NotifyCollectionChangedEventHandler(_users_CollectionChanged);
+
+      _userModes = new Dictionary<User, ChannelStatus>();
+
+      _modes = new ChannelModeCollection();
+      _modes.CollectionChanged += (s, e) => this.RaisePropertyChanged("Modes");
+
+      _journal = new Journal();
+      _journal.CollectionChanged += (s, e) => this.RaisePropertyChanged("Journal");
     }
 
     /// <summary>
-    /// Creates a new instance of the <see cref="Channel"/> class on the given client with the given name.
-    /// </summary>
-    public Channel(Client client, String name)
-      : this(client) {
-      this.Name = name;
+    ///   Creates a new instance of the <see cref="Channel"/> class on the given client. </summary>
+    public Channel(Client client)
+      : this(client, string.Empty) {
     }
 
     #endregion
@@ -75,7 +85,7 @@ namespace Supay.Irc {
     ///   Gets or sets the name of the channel. </summary>
     public string Name {
       get {
-        return _properties["NAME"] ?? string.Empty;
+        return _properties["NAME"];
       }
       set {
         if (_properties["NAME"] != value) {
@@ -89,7 +99,7 @@ namespace Supay.Irc {
     ///   Gets or sets the topic of the channel. </summary>
     public string Topic {
       get {
-        return this.Properties["TOPIC"] ?? "";
+        return this.Properties["TOPIC"];
       }
       set {
         if (_properties["TOPIC"] != value) {
@@ -184,6 +194,10 @@ namespace Supay.Irc {
       }
     }
 
+    #endregion
+
+    #region Private Methods
+
     private void VerifyUserInChannel(User channelUser) {
       if (channelUser == null) {
         throw new ArgumentNullException("channelUser");
@@ -193,11 +207,7 @@ namespace Supay.Irc {
       }
     }
 
-    #endregion
-
-    #region Private
-
-    void users_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e) {
+    private void _users_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e) {
       if (e.Action == NotifyCollectionChangedAction.Remove) {
         foreach (User user in e.OldItems) {
           if (_userModes.ContainsKey(user)) {
@@ -207,14 +217,6 @@ namespace Supay.Irc {
       }
 
       this.RaisePropertyChanged("Users");
-    }
-
-    void Modes_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e) {
-      this.RaisePropertyChanged("Modes");
-    }
-
-    void journal_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e) {
-      this.RaisePropertyChanged("Journal");
     }
 
     #endregion
