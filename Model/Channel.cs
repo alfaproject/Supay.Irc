@@ -4,13 +4,27 @@ using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Globalization;
 using Supay.Irc.Network;
+using Supay.Irc.Messages.Modes;
 
 namespace Supay.Irc {
 
   /// <summary>
-  /// Represents a single irc channel, with it's users.
-  /// </summary>
+  ///   Represents a single irc channel, with it's users. </summary>
+  [Serializable]
   public class Channel : INotifyPropertyChanged {
+
+    private Client _client;
+    private User _topicSetter;
+    private DateTime _topicSetTime;
+    private UserCollection _users = new UserCollection();
+    private ChannelModeCollection _modes = new ChannelModeCollection();
+    private Journal _journal = new Journal();
+    private UserStatusMap _userModes = new UserStatusMap();
+    private NameValueCollection _properties = new NameValueCollection();
+
+    /// <summary>
+    ///   The event raised when a property on the object changes. </summary>
+    public event PropertyChangedEventHandler PropertyChanged;
 
     #region ctor
 
@@ -18,10 +32,10 @@ namespace Supay.Irc {
     /// Creates a new instance of the <see cref="Channel"/> class on the given client.
     /// </summary>
     public Channel(Client client) {
-      this.client = client;
-      this.users.CollectionChanged += new NotifyCollectionChangedEventHandler(users_CollectionChanged);
+      this._client = client;
+      this._users.CollectionChanged += new NotifyCollectionChangedEventHandler(users_CollectionChanged);
       this.Modes.CollectionChanged += new NotifyCollectionChangedEventHandler(Modes_CollectionChanged);
-      this.journal.CollectionChanged += new NotifyCollectionChangedEventHandler(journal_CollectionChanged);
+      this._journal.CollectionChanged += new NotifyCollectionChangedEventHandler(journal_CollectionChanged);
     }
 
     /// <summary>
@@ -41,7 +55,7 @@ namespace Supay.Irc {
     /// </summary>
     public virtual NameValueCollection Properties {
       get {
-        return properties;
+        return _properties;
       }
     }
 
@@ -50,7 +64,7 @@ namespace Supay.Irc {
     /// </summary>
     public virtual Client Client {
       get {
-        return client;
+        return _client;
       }
     }
 
@@ -64,7 +78,7 @@ namespace Supay.Irc {
       }
       internal set {
         _open = value;
-        OnPropertyChanged(new PropertyChangedEventArgs("Open"));
+        this.RaisePropertyChanged("Open");
       }
     }
     private bool _open = false;
@@ -80,7 +94,7 @@ namespace Supay.Irc {
         String currentValue = this.Name;
         if (currentValue != value) {
           this.Properties["NAME"] = value;
-          OnPropertyChanged(new PropertyChangedEventArgs("Name"));
+          this.RaisePropertyChanged("Name");
         }
       }
     }
@@ -96,7 +110,7 @@ namespace Supay.Irc {
         String originalValue = this.Topic;
         if (originalValue != value) {
           this.Properties["TOPIC"] = value;
-          this.OnPropertyChanged(new PropertyChangedEventArgs("Topic"));
+          this.RaisePropertyChanged("Topic");
         }
       }
     }
@@ -106,12 +120,12 @@ namespace Supay.Irc {
     /// </summary>
     public virtual User TopicSetter {
       get {
-        return topicSetter;
+        return _topicSetter;
       }
       set {
-        if (topicSetter != value) {
-          topicSetter = value;
-          this.OnPropertyChanged(new PropertyChangedEventArgs("TopicSetter"));
+        if (_topicSetter != value) {
+          _topicSetter = value;
+          this.RaisePropertyChanged("TopicSetter");
         }
       }
     }
@@ -121,12 +135,12 @@ namespace Supay.Irc {
     /// </summary>
     public virtual DateTime TopicSetTime {
       get {
-        return topicSetTime;
+        return _topicSetTime;
       }
       set {
-        if (topicSetTime != value) {
-          topicSetTime = value;
-          this.OnPropertyChanged(new PropertyChangedEventArgs("TopicSetTime"));
+        if (_topicSetTime != value) {
+          _topicSetTime = value;
+          this.RaisePropertyChanged("TopicSetTime");
         }
       }
     }
@@ -136,7 +150,7 @@ namespace Supay.Irc {
     /// </summary>
     public virtual UserCollection Users {
       get {
-        return users;
+        return _users;
       }
     }
 
@@ -145,7 +159,7 @@ namespace Supay.Irc {
     /// </summary>
     public virtual Supay.Irc.Messages.Modes.ChannelModeCollection Modes {
       get {
-        return modes;
+        return _modes;
       }
     }
 
@@ -154,7 +168,7 @@ namespace Supay.Irc {
     /// </summary>
     public virtual Journal Journal {
       get {
-        return journal;
+        return _journal;
       }
     }
 
@@ -167,8 +181,8 @@ namespace Supay.Irc {
     /// </summary>
     public virtual ChannelStatus GetStatusForUser(User channelUser) {
       VerifyUserInChannel(channelUser);
-      if (userModes.ContainsKey(channelUser)) {
-        return userModes[channelUser];
+      if (_userModes.ContainsKey(channelUser)) {
+        return _userModes[channelUser];
       }
       return ChannelStatus.None;
     }
@@ -177,11 +191,11 @@ namespace Supay.Irc {
     /// Applies the given <see cref="T:ChannelStatus"/> to the given <see cref="T:User"/> in the channel.
     /// </summary>
     public virtual void SetStatusForUser(User channelUser, ChannelStatus status) {
-      if (status == ChannelStatus.None && userModes.ContainsKey(channelUser)) {
-        userModes.Remove(channelUser);
+      if (status == ChannelStatus.None && _userModes.ContainsKey(channelUser)) {
+        _userModes.Remove(channelUser);
       } else {
         VerifyUserInChannel(channelUser);
-        userModes[channelUser] = status;
+        _userModes[channelUser] = status;
       }
     }
 
@@ -202,49 +216,20 @@ namespace Supay.Irc {
       UserCollection users = this.Users;
 
       if (e.Action == NotifyCollectionChangedAction.Remove) {
-        this.userModes.RemoveAll(delegate(KeyValuePair<User, ChannelStatus> keyValue) {
+        this._userModes.RemoveAll(delegate(KeyValuePair<User, ChannelStatus> keyValue) {
           return !users.Contains(keyValue.Key);
         }
         );
       }
-      this.OnPropertyChanged(new PropertyChangedEventArgs("Users"));
+      this.RaisePropertyChanged("Users");
     }
 
     void Modes_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e) {
-      this.OnPropertyChanged(new PropertyChangedEventArgs("Modes"));
+      this.RaisePropertyChanged("Modes");
     }
 
     void journal_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e) {
-      this.OnPropertyChanged(new PropertyChangedEventArgs("Journal"));
-    }
-
-
-    private Client client;
-    private User topicSetter;
-    private DateTime topicSetTime;
-    private UserCollection users = new UserCollection();
-    private Supay.Irc.Messages.Modes.ChannelModeCollection modes = new Supay.Irc.Messages.Modes.ChannelModeCollection();
-    private Journal journal = new Journal();
-    private UserStatusMap userModes = new UserStatusMap();
-    private NameValueCollection properties = new NameValueCollection();
-
-    #endregion
-
-    #region INotifyPropertyChanged Members
-
-    /// <summary>
-    /// The event raised when a property on the object changes.
-    /// </summary>
-    public event PropertyChangedEventHandler PropertyChanged;
-
-    /// <summary>
-    /// Raises the PropertyChanged event.
-    /// </summary>
-    /// <param name="e"></param>
-    protected virtual void OnPropertyChanged(PropertyChangedEventArgs e) {
-      if (PropertyChanged != null) {
-        PropertyChanged(this, e);
-      }
+      this.RaisePropertyChanged("Journal");
     }
 
     #endregion
@@ -279,6 +264,18 @@ namespace Supay.Irc {
 
     #endregion
 
-  }
+    #region Protected Methods
 
-}
+    /// <summary>
+    ///   Raises the PropertyChanged event. </summary>
+    protected void RaisePropertyChanged(string propertyName) {
+      PropertyChangedEventHandler handler = this.PropertyChanged;
+      if (handler != null) {
+        handler(this, new PropertyChangedEventArgs(propertyName));
+      }
+    }
+
+    #endregion
+
+  } //class Channel
+} //namespace Supay.Irc
