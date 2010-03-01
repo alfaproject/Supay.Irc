@@ -36,7 +36,7 @@ namespace Supay.Irc.Messages {
       if (writer == null) {
         return;
       }
-      if (!string.IsNullOrEmpty(this.Sender.Nickname)) {
+      if (this.Sender != null && !string.IsNullOrEmpty(this.Sender.Nickname)) {
         writer.Sender = this.Sender.IrcMask;
       }
       this.AddParametersToFormat(writer);
