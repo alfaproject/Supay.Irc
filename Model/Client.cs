@@ -385,10 +385,6 @@ namespace Supay.Irc {
           this.Connection.Dispose();
           this.Connection = null;
         }
-        if (this.writer != null) {
-          this.writer.Dispose();
-          this.writer = null;
-        }
       }
     }
 
