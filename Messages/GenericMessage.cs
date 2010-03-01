@@ -4,50 +4,52 @@ using System.Collections.Specialized;
 namespace Supay.Irc.Messages {
 
   /// <summary>
-  /// Represents a single generic rfc1459 irc message to or from an irc server
-  /// </summary>
+  ///   Represents a single generic RFC1459 IRC message to or from an IRC server. </summary>
   [Serializable]
   public class GenericMessage : IrcMessage {
+
+    #region Constructor
+
+    public GenericMessage() {
+      _command = string.Empty;
+      this.Parameters = new StringCollection();
+    }
+
+    #endregion
 
     #region Properties
 
     /// <summary>
-    /// Gets or sets the message's Command
-    /// </summary>
-    public virtual String Command {
+    ///   Gets or sets the message's command. </summary>
+    public string Command {
       get {
-        return this._command;
+        return _command;
       }
       set {
         if (value == null) {
           throw new ArgumentNullException("value");
         }
-        this._command = value;
+        _command = value;
       }
     }
-    private String _command = "";
+    private string _command;
 
     /// <summary>
-    /// Gets the message's parameters after the command.
-    /// </summary>
-    public virtual StringCollection Parameters {
-      get {
-        return this._parameters;
-      }
+    ///   Gets the message's parameters after the command. </summary>
+    public StringCollection Parameters {
+      get;
+      private set;
     }
-    private StringCollection _parameters = new StringCollection();
 
     #endregion
 
-    #region Methods
+    #region IrcMessage Methods
 
     /// <summary>
-    /// This is not meant to be used from your code.
-    /// </summary>
+    ///   This is not meant to be used from your code. </summary>
     /// <remarks>
-    /// The conduit calls Notify on messages to have the message raise the appropriate event on the conduit.
-    /// This is done automaticly by your <see cref="Client"/> after message are recieved and parsed.
-    /// </remarks>
+    ///   The conduit calls Notify on messages to have the message raise the appropriate event on the conduit.
+    ///   This is done automaticly by your <see cref="Client"/> after message are recieved and parsed. </remarks>
     public override void Notify(MessageConduit conduit) {
       conduit.OnGenericMessage(new IrcMessageEventArgs<GenericMessage>(this));
     }
@@ -56,40 +58,34 @@ namespace Supay.Irc.Messages {
     ///   Overrides <see cref="AddParametersToFormat"/>. </summary>
     protected override void AddParametersToFormat(IrcMessageWriter writer) {
       writer.AddParameter(this.Command);
-      foreach (String param in this.Parameters) {
+      foreach (string param in this.Parameters) {
         writer.AddParameter(param);
       }
     }
 
-
     /// <summary>
-    /// Determines if the given string is parsable by this <see cref="IrcMessage"/> subclass.
-    /// </summary>
+    ///   Determines if the given string is parsable by this <see cref="IrcMessage"/> subclass. </summary>
     /// <remarks>
-    /// <see cref="GenericMessage"/> always returns true.
-    /// </remarks>
-    public override bool CanParse(String unparsedMessage) {
+    ///   <see cref="GenericMessage"/> always returns true. </remarks>
+    public override bool CanParse(string unparsedMessage) {
       return true;
     }
 
     /// <summary>
-    /// Parses the command portion of the message.
-    /// </summary>
-    protected override void ParseCommand(String command) {
+    ///   Parses the command portion of the message. </summary>
+    protected override void ParseCommand(string command) {
       base.ParseCommand(command);
-      this._command = command;
+      this.Command = command;
     }
 
     /// <summary>
-    /// Parses the parameter portion of the message.
-    /// </summary>
+    ///   Parses the parameter portion of the message. </summary>
     protected override void ParseParameters(StringCollection parameters) {
       base.ParseParameters(parameters);
-      this._parameters = parameters;
+      this.Parameters = parameters;
     }
 
     #endregion
 
-  }
-
-}
+  } //class GenericMessage
+} //namespace Supay.Irc.Messages
