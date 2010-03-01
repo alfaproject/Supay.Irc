@@ -10,8 +10,6 @@ namespace Supay.Irc.Messages {
   [Serializable]
   public abstract class IrcMessage {
 
-    private User sender = new User();
-
     /// <summary>
     ///   Creates an instance of whatever type is deriving from IrcMessage.
     ///   This is not meant to be used from application code. </summary>
@@ -60,7 +58,7 @@ namespace Supay.Irc.Messages {
 
     /// <summary>
     ///   Parses the given string to populate this <see cref="IrcMessage"/>. </summary>
-    public virtual void Parse(String unparsedMessage) {
+    public virtual void Parse(string unparsedMessage) {
       this.Sender = new User(MessageUtil.GetPrefix(unparsedMessage));
       this.ParseCommand(MessageUtil.GetCommand(unparsedMessage));
       this.ParseParameters(MessageUtil.GetParameters(unparsedMessage));
@@ -68,7 +66,7 @@ namespace Supay.Irc.Messages {
 
     /// <summary>
     ///   Parses the command portion of the message. </summary>
-    protected virtual void ParseCommand(String command) {
+    protected virtual void ParseCommand(string command) {
     }
 
     /// <summary>
@@ -82,7 +80,7 @@ namespace Supay.Irc.Messages {
 
     /// <summary>
     ///   Determines if the message can be parsed by this type. </summary>
-    public abstract bool CanParse(String unparsedMessage);
+    public abstract bool CanParse(string unparsedMessage);
 
     /// <summary>
     ///   The computer or user who sent the current message. </summary>
@@ -90,12 +88,8 @@ namespace Supay.Irc.Messages {
     ///   In the case of a server message, the Sender.Nick is the the name that the server calls itself, usually its address.
     ///   In the case of a user message, the Sender is a User containing the Nick, UserName, and HostName... </remarks>
     public User Sender {
-      get {
-        return this.sender;
-      }
-      set {
-        sender = value;
-      }
+      get;
+      set;
     }
 
   } //class IrcMessage
