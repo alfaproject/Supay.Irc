@@ -31,15 +31,12 @@ namespace Supay.Irc.Messages {
     private UserCollection users;
 
     /// <summary>
-    /// Overrides <see cref="IrcMessage.AddParametersToFormat"/>
-    /// </summary>
+    ///   Overrides <see cref="IrcMessage.AddParametersToFormat"/>. </summary>
     protected override void AddParametersToFormat(IrcMessageWriter writer) {
       base.AddParametersToFormat(writer);
-      String userList = MessageUtil.CreateList<User>(this.Users, ",", delegate(User user) {
-        return user.IrcMask;
-      });
 
-      writer.AddParameter(userList);
+      string usersOnline = MessageUtil.CreateList<User>(this.Users, ",", user => user.IrcMask);
+      writer.AddParameter(usersOnline);
     }
 
     /// <summary>

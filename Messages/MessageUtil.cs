@@ -161,15 +161,16 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Creates a char-delimited list from the given IEnumerable of objects, using delimiter.
-    /// </summary>
-    public static String CreateList<T>(IEnumerable<T> items, String delimiter, CustomListItemRendering<T> render) {
+    ///   Creates a char-delimited list from the given IEnumerable of objects, using delimiter. </summary>
+    /// <param name="customListItemRender">
+    ///   A delegate which provides custom format rendering for the items in a list. </param>
+    public static string CreateList<T>(IEnumerable<T> items, string delimiter, Func<T, string> customListItemRender) {
       if (items == null) {
-        return "";
+        return string.Empty;
       }
       StringBuilder result = new StringBuilder();
       foreach (T item in items) {
-        String itemValue = render(item);
+        string itemValue = customListItemRender(item);
         result.Append(itemValue);
         result.Append(delimiter);
       }
@@ -177,7 +178,6 @@ namespace Supay.Irc.Messages {
         result.Remove(result.Length - delimiter.Length, delimiter.Length);
       }
       return result.ToString();
-
     }
 
     #endregion

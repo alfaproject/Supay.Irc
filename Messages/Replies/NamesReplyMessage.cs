@@ -75,11 +75,11 @@ namespace Supay.Irc.Messages {
     private String channel = "";
 
     /// <summary>
-    /// Overrides <see cref="IrcMessage.AddParametersToFormat"/>
-    /// </summary>
+    ///   Overrides <see cref="IrcMessage.AddParametersToFormat"/>. </summary>
     protected override void AddParametersToFormat(IrcMessageWriter writer) {
       base.AddParametersToFormat(writer);
-      switch (this.visibility) {
+
+      switch (this.Visibility) {
         case ChannelVisibility.Public:
           writer.AddParameter("=");
           break;
@@ -92,11 +92,8 @@ namespace Supay.Irc.Messages {
       }
       writer.AddParameter(this.Channel);
 
-      writer.AddParameter(MessageUtil.CreateList<String>(this.Nicks.Keys, " ", delegate(String nick) {
-          return this.Nicks[nick].Symbol + nick;
-        }
-      ));
-
+      string names = MessageUtil.CreateList<string>(this.Nicks.Keys, " ", nick => this.Nicks[nick].Symbol + nick);
+      writer.AddParameter(names);
     }
 
     /// <summary>

@@ -29,12 +29,12 @@ namespace Supay.Irc.Messages {
     private UserCollection replies = new UserCollection();
 
     /// <summary>
-    /// Overrides <see cref="IrcMessage.AddParametersToFormat"/>
-    /// </summary>
+    ///   Overrides <see cref="IrcMessage.AddParametersToFormat"/>. </summary>
     protected override void AddParametersToFormat(IrcMessageWriter writer) {
       base.AddParametersToFormat(writer);
-      String replyList = MessageUtil.CreateList<User>(this.Users, " ", delegate(User user) {
-        String result = user.Nickname;
+
+      string replyList = MessageUtil.CreateList<User>(this.Users, " ", user => {
+        string result = user.Nickname;
         if (user.IrcOperator) {
           result += "*";
         }

@@ -134,7 +134,6 @@
     <Compile Include="Messages\Replies\Errors\SilenceListFullMessage.cs" />
     <Compile Include="Messages\Replies\Errors\UnknownUserModeMessage.cs" />
     <Compile Include="Messages\Replies\Errors\UnknownChannelModeMessage.cs" />
-    <Compile Include="Messages\CustomListItemRendering.cs" />
     <Compile Include="Messages\Replies\Errors\AlreadyOnChannelMessage.cs" />
     <Compile Include="Messages\Replies\Errors\CannotUseColorsMessage.cs" />
     <Compile Include="Messages\Replies\Errors\CannotChangeNickWhileBannedMessage.cs" />
