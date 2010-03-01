@@ -647,8 +647,7 @@ namespace Supay.Irc {
     private NameValueCollection unknownItems = new NameValueCollection();
 
     /// <summary>
-    /// Loads support information from the given <see cref="Supay.Irc.Messages.SupportMessage"/>.
-    /// </summary>
+    ///   Loads support information from the given <see cref="Supay.Irc.Messages.SupportMessage"/>. </summary>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity"),
      System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1505:AvoidUnmaintainableCode")]
     public void LoadInfo(Supay.Irc.Messages.SupportMessage msg) {

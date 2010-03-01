@@ -50,10 +50,8 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Overrides <see cref="IrcMessage.AddParametersToFormat"/>.
-    /// </summary>
+    ///   Overrides <see cref="IrcMessage.AddParametersToFormat"/>. </summary>
     protected override void AddParametersToFormat(IrcMessageWriter writer) {
-      base.AddParametersToFormat(writer);
       writer.AddParameter(this.TransportCommand);
       writer.AddParameter(this.Target);
       String extendedData = CtcpUtil.Escape(this.ExtendedData);

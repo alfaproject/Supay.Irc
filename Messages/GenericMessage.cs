@@ -53,10 +53,8 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Overrides <see cref="IrcMessage.AddParametersToFormat"/>
-    /// </summary>
+    ///   Overrides <see cref="AddParametersToFormat"/>. </summary>
     protected override void AddParametersToFormat(IrcMessageWriter writer) {
-      base.AddParametersToFormat(writer);
       writer.AddParameter(this.Command);
       foreach (String param in this.Parameters) {
         writer.AddParameter(param);

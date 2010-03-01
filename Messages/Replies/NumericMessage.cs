@@ -11,10 +11,8 @@ namespace Supay.Irc.Messages {
   public abstract class NumericMessage : IrcMessage {
 
     /// <summary>
-    /// Overrides <see cref="IrcMessage.AddParametersToFormat"/>
-    /// </summary>
+    ///   Overrides <see cref="IrcMessage.AddParametersToFormat"/>. </summary>
     protected override void AddParametersToFormat(IrcMessageWriter writer) {
-      base.AddParametersToFormat(writer);
       writer.AddParameter(this.internalNumeric.ToString("000", CultureInfo.InvariantCulture));
       if (this.Target.Length != 0) {
         writer.AddParameter(this.Target);
