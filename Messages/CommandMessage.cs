@@ -3,15 +3,13 @@ using System;
 namespace Supay.Irc.Messages {
 
   /// <summary>
-  /// The base for all message which send a text command.
-  /// </summary>
+  ///   The base for all messages which send a text command. </summary>
   [Serializable]
   public abstract class CommandMessage : IrcMessage {
 
     /// <summary>
-    /// Gets the Irc command associated with this message.
-    /// </summary>
-    protected abstract String Command {
+    ///   Gets the Irc command associated with this message. </summary>
+    protected abstract string Command {
       get;
     }
 
@@ -22,13 +20,11 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Determines if the message can be parsed by this type.
-    /// </summary>
-    public override bool CanParse(String unparsedMessage) {
-      String messageCommand = MessageUtil.GetCommand(unparsedMessage);
+    ///   Determines if the message can be parsed by this type. </summary>
+    public override bool CanParse(string unparsedMessage) {
+      string messageCommand = MessageUtil.GetCommand(unparsedMessage);
       return MessageUtil.IsIgnoreCaseMatch(messageCommand, this.Command);
     }
 
-  }
-
-}
+  } //class CommandMessage
+} //namespace Supay.Irc.Messages
