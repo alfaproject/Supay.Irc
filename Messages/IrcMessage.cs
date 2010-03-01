@@ -32,7 +32,7 @@ namespace Supay.Irc.Messages {
     ///   Outputs message content to a provided <see cref="IrcMessageWriter"/> object. </summary>
     /// <param name="writer">
     ///   The <see cref="IrcMessageWriter"/> object that receives the message content. </param>
-    public virtual void Format(IrcMessageWriter writer) {
+    public void Format(IrcMessageWriter writer) {
       if (writer == null) {
         return;
       }
