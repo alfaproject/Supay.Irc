@@ -8,33 +8,31 @@ using System.Text;
 namespace Supay.Irc.Messages {
 
   /// <summary>
-  /// Provides simple utilities for parsing and generating messages.
-  /// </summary>
+  ///   Provides simple utilities for parsing and generating messages. </summary>
   /// <remarks>
-  /// Client code will probably not need to use most of these routines.
-  /// </remarks>
+  ///   Client code will probably not need to use most of these routines. </remarks>
   public static class MessageUtil {
 
     /// <summary>
-    /// Takes the given channel name, and returns a name that is valid according to the given server support.
-    /// </summary>
-    /// <param name="channelName">The channel name to examine</param>
-    /// <param name="support">The feature support of an irc server</param>
-    /// <returns>A valid channel name on the given server.</returns>
-    public static String EnsureValidChannelName(String channelName, ServerSupport support) {
-      if (channelName == null || channelName.Length == 0) {
+    ///   Takes the given channel name, and returns a name that is valid according to the given server support. </summary>
+    /// <param name="channelName">
+    ///   The channel name to examine. </param>
+    /// <param name="support">
+    ///   The feature support of an irc server. </param>
+    /// <returns>
+    ///   A valid channel name on the given server. </returns>
+    public static string EnsureValidChannelName(string channelName, ServerSupport support) {
+      if (string.IsNullOrEmpty(channelName)) {
         return "#irc";
       }
       if (support == null) {
         support = ServerSupport.DefaultSupport;
       }
 
-      String result = channelName.Replace(" ", "_");
-      result = result.Replace(",", "_");
-      result = result.Replace(":", "_");
-      String firstChar = result.Substring(0, 1);
-      if (firstChar != "#" && firstChar != "&" && firstChar != "+" && firstChar != "!") {
-        result = "#" + result;
+      string result = channelName.Replace(' ', '_').Replace(',', '_').Replace(':', '_');
+      char firstChar = result[0];
+      if (firstChar != '#' && firstChar != '&' && firstChar != '+' && firstChar != '!') {
+        result = '#' + result;
       }
 
       if (result.Length > support.MaxChannelNameLength) {
@@ -45,13 +43,11 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Determines if the given channel name has a valid namespace prefix.
-    /// </summary>
+    ///   Determines if the given channel name has a valid namespace prefix. </summary>
     /// <remarks>
-    /// This is according to the IRC spec, and is not representative of what a particular server may support.
-    /// </remarks>
-    public static bool HasValidChannelPrefix(String channelName) {
-      if (String.IsNullOrEmpty(channelName)) {
+    ///   This is according to the IRC spec, and is not representative of what a particular server may support. </remarks>
+    public static bool HasValidChannelPrefix(string channelName) {
+      if (string.IsNullOrEmpty(channelName)) {
         return false;
       }
 
@@ -75,21 +71,19 @@ namespace Supay.Irc.Messages {
     #region Parameters To String
 
     /// <summary>
-    /// Creates a list of irc parameters from the given collection of strings.
-    /// </summary>
-    public static String ParametersToString(bool useColon, StringCollection parameters) {
+    ///   Creates a list of irc parameters from the given collection of strings. </summary>
+    public static string ParametersToString(bool useColon, StringCollection parameters) {
       if (parameters == null) {
-        return "";
+        return string.Empty;
       }
-      String[] foo = new String[parameters.Count];
+      string[] foo = new string[parameters.Count];
       parameters.CopyTo(foo, 0);
       return ParametersToString(useColon, foo);
     }
 
     /// <summary>
-    /// Creates a list of irc parameters from the given array of strings.
-    /// </summary>
-    public static String ParametersToString(bool useColon, params String[] parameters) {
+    ///   Creates a list of irc parameters from the given array of strings. </summary>
+    public static string ParametersToString(bool useColon, params string[] parameters) {
       StringBuilder result = new StringBuilder();
       if (parameters.Length > 1) {
         for (int i = 0; i < parameters.Length - 1; i++) {
@@ -107,17 +101,15 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Creates a list of irc parameters from the given collection of strings.
-    /// </summary>
-    public static String ParametersToString(StringCollection parameters) {
-      return MessageUtil.ParametersToString(true, parameters);
+    ///   Creates a list of irc parameters from the given collection of strings. </summary>
+    public static string ParametersToString(StringCollection parameters) {
+      return ParametersToString(true, parameters);
     }
 
     /// <summary>
-    /// Creates a list of irc parameters from the given array of strings.
-    /// </summary>
-    public static String ParametersToString(params String[] parameters) {
-      return MessageUtil.ParametersToString(true, parameters);
+    ///   Creates a list of irc parameters from the given array of strings. </summary>
+    public static string ParametersToString(params string[] parameters) {
+      return ParametersToString(true, parameters);
     }
 
     #endregion
@@ -125,30 +117,27 @@ namespace Supay.Irc.Messages {
     #region Create Lists
 
     /// <summary>
-    /// Creates a space-delimited list from the given StringCollection, using delimiter.
-    /// </summary>
-    public static String CreateList(StringCollection items, String delimiter) {
+    ///   Creates a space-delimited list from the given StringCollection, using delimiter. </summary>
+    public static string CreateList(StringCollection items, string delimiter) {
       if (items == null) {
-        return String.Empty;
+        return string.Empty;
       }
-      String[] itemsArray = new String[items.Count];
+      string[] itemsArray = new string[items.Count];
       items.CopyTo(itemsArray, 0);
       return CreateList(itemsArray, delimiter);
     }
 
     /// <summary>
-    /// Creates a char-delimited list from the given String[], using delimiter.
-    /// </summary>
-    public static String CreateList(String[] items, String delimiter) {
-      return String.Join(delimiter, items);
+    ///   Creates a char-delimited list from the given string[], using delimiter. </summary>
+    public static string CreateList(string[] items, string delimiter) {
+      return string.Join(delimiter, items);
     }
 
     /// <summary>
-    /// Creates a char-delimited list from the given IList of objects, using delimiter.
-    /// </summary>
-    public static String CreateList(IList items, String delimiter) {
+    ///   Creates a char-delimited list from the given IList of objects, using delimiter. </summary>
+    public static string CreateList(IList items, string delimiter) {
       if (items == null || items.Count == 0) {
-        return "";
+        return string.Empty;
       }
 
       StringBuilder result = new StringBuilder();
@@ -184,34 +173,32 @@ namespace Supay.Irc.Messages {
 
 
     /// <summary>
-    /// Extracts the Prefix from a string message.
-    /// </summary>
-    public static String GetPrefix(String rawMessage) {
-      if (!String.IsNullOrEmpty(rawMessage) && rawMessage.StartsWith(":", StringComparison.Ordinal)) {
-        return rawMessage.Substring(1, rawMessage.IndexOf(" ", StringComparison.Ordinal)).Trim();
+    ///   Extracts the Prefix from a string message. </summary>
+    public static string GetPrefix(string rawMessage) {
+      if (!string.IsNullOrEmpty(rawMessage) && rawMessage.StartsWith(":", StringComparison.Ordinal)) {
+        return rawMessage.Substring(1, rawMessage.IndexOf(' ')).Trim();
       } else {
-        return "";
+        return string.Empty;
       }
     }
 
     /// <summary>
-    /// Extracts the Command from a string message.
-    /// </summary>
-    public static String GetCommand(String rawMessage) {
-      if (String.IsNullOrEmpty(rawMessage)) {
-        return "";
+    ///   Extracts the Command from a string message. </summary>
+    public static string GetCommand(string rawMessage) {
+      if (string.IsNullOrEmpty(rawMessage)) {
+        return string.Empty;
       }
 
       // remove prefix
       if (rawMessage.StartsWith(":", StringComparison.Ordinal)) {
-        rawMessage = rawMessage.Substring(rawMessage.IndexOf(" ", 1, StringComparison.Ordinal) + 1);
-        if (String.IsNullOrEmpty(rawMessage)) {
-          return "";
+        rawMessage = rawMessage.Substring(rawMessage.IndexOf(' ', 1) + 1);
+        if (string.IsNullOrEmpty(rawMessage)) {
+          return string.Empty;
         }
       }
 
       // the first token is the command
-      int indexOfFirstSpace = rawMessage.IndexOf(" ", StringComparison.Ordinal);
+      int indexOfFirstSpace = rawMessage.IndexOf(' ');
       if (indexOfFirstSpace == -1) {
         return rawMessage;
       }
@@ -219,11 +206,11 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Gets the parameters of the raw message.
-    /// </summary>
-    /// <param name="rawMessage">the message string which has the parameters.</param>
-    public static StringCollection GetParameters(String rawMessage) {
-      if (String.IsNullOrEmpty(rawMessage)) {
+    ///   Gets the parameters of the raw message. </summary>
+    /// <param name="rawMessage">
+    ///   The message string which has the parameters. </param>
+    public static StringCollection GetParameters(string rawMessage) {
+      if (string.IsNullOrEmpty(rawMessage)) {
         return new StringCollection();
       }
 
@@ -244,9 +231,8 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Seperates the given space-delimted parameter string into a collection.
-    /// </summary>
-    public static StringCollection Tokenize(String rawMessage, int startIndex) {
+    ///   Seperates the given space-delimted parameter string into a collection. </summary>
+    public static StringCollection Tokenize(string rawMessage, int startIndex) {
       if (rawMessage == null) {
         throw new ArgumentNullException("rawMessage");
       }
@@ -258,15 +244,15 @@ namespace Supay.Irc.Messages {
       StringCollection parameters = new StringCollection();
       StringBuilder param = new StringBuilder();
       for (int i = startIndex; i < rawMessage.Length; i++) {
-        Char c = rawMessage[i];
-        if (c.ToString() == " ") {
+        char c = rawMessage[i];
+        if (c == ' ') {
           parameters.Add(param.ToString());
           param = new StringBuilder();
         } else if (i + 1 == rawMessage.Length) {
           param.Append(c);
           parameters.Add(param.ToString());
           param = new StringBuilder();
-        } else if (c.ToString() == ":" && param.Length == 0) {
+        } else if (c == ':' && param.Length == 0) {
           parameters.Add(rawMessage.Substring(i + 1));
           break;
         } else {
@@ -280,40 +266,40 @@ namespace Supay.Irc.Messages {
       return parameters;
     }
 
-    private static String cachedRawMessage = "";
+    private static string cachedRawMessage = "";
     private static StringCollection cachedParams;
 
 
     /// <summary>
-    /// Gets the last parameter in the parameters collection of the given unparsed message.
-    /// </summary>
-    public static String GetLastParameter(String rawMessage) {
+    ///   Gets the last parameter in the parameters collection of the given unparsed message. </summary>
+    public static string GetLastParameter(string rawMessage) {
       StringCollection p = MessageUtil.GetParameters(rawMessage);
       if (p.Count > 0) {
         return p[p.Count - 1];
       } else {
-        return "";
+        return string.Empty;
       }
     }
 
     /// <summary>
-    /// Gets the nth parameter in the parameters collection of the given unparsed message.
-    /// </summary>
+    ///   Gets the nth parameter in the parameters collection of the given unparsed message. </summary>
     public static String GetParameter(String rawMessage, int index) {
       StringCollection p = MessageUtil.GetParameters(rawMessage);
       if (p.Count > index) {
         return p[index];
       } else {
-        return "";
+        return string.Empty;
       }
     }
 
     /// <summary>
-    /// Gets the substring in the input string existing between the given two strings.
-    /// </summary>
-    /// <param name="input">The string to search in.</param>
-    /// <param name="before">The string before the one you want.</param>
-    /// <param name="after">The string after the one you want.</param>
+    ///   Gets the substring in the input string existing between the given two strings.</summary>
+    /// <param name="input">
+    ///   The string to search in. </param>
+    /// <param name="before">
+    ///   The string before the one you want. </param>
+    /// <param name="after">
+    ///   The string after the one you want. </param>
     public static String StringBetweenStrings(String input, String before, String after) {
       if (input == null) {
         throw new ArgumentNullException("input");
@@ -346,12 +332,15 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Gets the index of the nth time that searchValue shows up in text.
-    /// </summary>
-    /// <param name="text">The string to search in.</param>
-    /// <param name="searchValue">The string to search for.</param>
-    /// <param name="startIndex">The place to start looking.</param>
-    /// <param name="nthItem">The item to stop at.</param>
+    ///   Gets the index of the nth time that searchValue shows up in text. </summary>
+    /// <param name="text">
+    ///   The string to search in. </param>
+    /// <param name="searchValue">
+    ///   The string to search for. </param>
+    /// <param name="startIndex">
+    ///   The place to start looking. </param>
+    /// <param name="nthItem">
+    ///   The item to stop at. </param>
     public static int NthIndexOf(String text, String searchValue, int startIndex, int nthItem) {
       if (text == null) {
         throw new ArgumentNullException("text");
@@ -370,8 +359,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Turns a <see cref="DateTime"/> into the int representation as is commonly used on Unix machines
-    /// </summary>
+    ///   Turns a <see cref="DateTime"/> into the int representation as is commonly used on Unix machines. </summary>
     public static int ConvertToUnixTime(DateTime dt) {
       DateTime unixEpochStartDate = new DateTime(1970, 1, 1, 0, 0, 0, 0);
       long ticksSinceEpochStart = dt.Ticks - unixEpochStartDate.Ticks;
@@ -380,22 +368,18 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Turns the given Unix representation of a datetime into a <see cref="DateTime"/>.
-    /// </summary>
+    ///   Turns the given Unix representation of a datetime into a <see cref="DateTime"/>. </summary>
     public static DateTime ConvertFromUnixTime(int ut) {
       DateTime unixEpochStartDate = new DateTime(1970, 1, 1, 0, 0, 0, 0);
       return unixEpochStartDate.AddSeconds(ut);
     }
 
     /// <summary>
-    /// Converts the given Unix representation of a datetime into a <see cref="Nullable&lt;DateTime&gt;"/>.
-    /// </summary>
+    ///   Converts the given Unix representation of a datetime into a <see cref="Nullable&lt;DateTime&gt;"/>. </summary>
     /// <remarks>
-    /// If the string can't be parsed, a null DateTime is returned.
-    /// </remarks>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1720:IdentifiersShouldNotContainTypeNames", MessageId = "string")]
-    public static DateTime? ConvertFromUnixTime(String unixTimeString) {
-      if (String.IsNullOrEmpty(unixTimeString)) {
+    ///   If the string can't be parsed, a null DateTime is returned. </remarks>
+    public static DateTime? ConvertFromUnixTime(string unixTimeString) {
+      if (string.IsNullOrEmpty(unixTimeString)) {
         return null;
       }
 
@@ -407,18 +391,17 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Determines if the given strings match eachother using <see href="StringComparison.InvariantCultureIgnoreCase" /> matching.
-    /// </summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "b"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "a"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Globalization", "CA1309:UseOrdinalStringComparison", MessageId = "System.String.Compare(System.String,System.String,System.StringComparison)")]
+    ///   Determines if the given strings match eachother using <see href="StringComparison.InvariantCultureIgnoreCase" /> matching. </summary>
     public static bool IsIgnoreCaseMatch(String a, String b) {
-      return (String.Compare(a, b, StringComparison.InvariantCultureIgnoreCase) == 0);
+      return a.Equals(b, StringComparison.InvariantCultureIgnoreCase);
     }
 
     /// <summary>
-    /// Determines if the given collection of strings contains a string which matches the given string using <see href="StringComparison.InvariantCultureIgnoreCase" /> matching.
-    /// </summary>
-    /// <param name="strings">The list to look in</param>
-    /// <param name="match">The string to look for</param>
+    ///   Determines if the given collection of strings contains a string which matches the given string using <see href="StringComparison.InvariantCultureIgnoreCase" /> matching. </summary>
+    /// <param name="strings">
+    ///   The list to look in. </param>
+    /// <param name="match">
+    ///   The string to look for. </param>
     public static bool ContainsIgnoreCaseMatch(StringCollection strings, String match) {
       foreach (String item in strings) {
         if (IsIgnoreCaseMatch(item, match)) {
@@ -427,6 +410,6 @@ namespace Supay.Irc.Messages {
       }
       return false;
     }
-  }
 
-}
+  } //class MessageUtil
+} //namespace Supay.Irc.Messages
