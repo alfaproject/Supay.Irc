@@ -167,7 +167,7 @@
     <Compile Include="Network\ClientConnection.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Network\ConnectionDataEvent.cs" />
+    <Compile Include="Network\ConnectionDataEventArgs.cs" />
     <Compile Include="Network\ConnectionStatus.cs" />
     <Compile Include="Dcc\DccAcceptRequestMessage.cs" />
     <Compile Include="Dcc\DccChatRequestMessage.cs" />
@@ -176,6 +176,7 @@
     <Compile Include="Dcc\DccRequestMessage.cs" />
     <Compile Include="Dcc\DccResumeRequestMessage.cs" />
     <Compile Include="Dcc\DccServerConnection.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Dcc\DccTransfer.cs" />
     <Compile Include="Dcc\DccUtil.cs" />
