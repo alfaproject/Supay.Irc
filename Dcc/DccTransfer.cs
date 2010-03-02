@@ -6,246 +6,221 @@ using System.Net.Sockets;
 namespace Supay.Irc.Dcc {
 
   /// <summary>
-  /// Handles the networks level communication protocols for sending and receiving files over dcc.
-  /// </summary>
+  ///   Handles the networks level communication protocols for sending and receiving files over DCC. </summary>
   public class DccTransfer {
 
+    private byte[] _buffer;
+    private int _bufferSize = 4096;
+
+    #region Constructor
+
+    /// <summary>
+    ///   Initializes a new instance of the DccTransfer class. </summary>
+    public DccTransfer() {
+      FileSize = -1;
+      BytesTransferred = 0;
+      SendAhead = true;
+      Secure = false;
+      TurboMode = false;
+      StartPosition = 0;
+    }
+
+    #endregion
+
     #region Properties
+
     /// <summary>
-    /// Gets or sets a stream to the file being transfered.
-    /// </summary>
+    ///   Gets or sets a stream to the file being transferred. </summary>
     public FileStream File {
-      get {
-        return file;
-      }
-      set {
-        file = value;
-      }
+      get;
+      set;
     }
 
     /// <summary>
-    /// Gets or sets the startposition in the file to transfer the information.
-    /// </summary>
+    ///   Gets or sets the start position in the file to transfer the information. </summary>
     public long StartPosition {
-      get {
-        return startPosition;
-      }
-      set {
-        startPosition = value;
-      }
+      get;
+      set;
     }
 
     /// <summary>
-    /// Gets or sets the socket the file transfer will use.
-    /// </summary>
+    ///   Gets or sets the socket the file transfer will use. </summary>
     public Socket TransferSocket {
-      get {
-        return transferSocket;
-      }
-      set {
-        transferSocket = value;
-      }
+      get;
+      set;
     }
 
     /// <summary>
-    /// Gets or sets the size of the buffer for transfer of the file.
-    /// </summary>
+    ///   Gets or sets the size of the buffer for transfer of the file. </summary>
     public int BufferSize {
       get {
-        return bufferSize;
+        return _bufferSize;
       }
       set {
         if (value > 8192) {
           throw new ArgumentException(Properties.Resources.BufferSizeIsLimited, "value");
         }
-        bufferSize = value;
+        _bufferSize = value;
       }
     }
 
-
     /// <summary>
-    /// Gets or sets if the transfer uses the "turbo" extension in increase transfer speed.
-    /// </summary>
+    ///   Gets or sets if the transfer uses the "turbo" extension to increase transfer speed. </summary>
     public bool TurboMode {
-      get {
-        return turboMode;
-      }
-      set {
-        turboMode = value;
-      }
+      get;
+      set;
     }
 
     /// <summary>
-    /// Gets or sets if the transfer uses SSL to secure the transfer.
-    /// </summary>
+    ///   Gets or sets if the transfer uses SSL to secure the transfer. </summary>
     public bool Secure {
-      get {
-        return secure;
-      }
-      set {
-        secure = value;
-      }
+      get;
+      set;
     }
 
     /// <summary>
-    /// Gets or sets if the transfer uses the "send ahead" extension to increase transfer speed.
-    /// </summary>
+    ///   Gets or sets if the transfer uses the "send ahead" extension to increase transfer speed. </summary>
     public bool SendAhead {
-      get {
-        return sendAhead;
-      }
-      set {
-        sendAhead = value;
-      }
+      get;
+      set;
     }
 
     /// <summary>
-    /// Gets the number of bytes transfered so far.
-    /// </summary>
+    ///   Gets the number of bytes transferred so far. </summary>
     public long BytesTransferred {
-      get {
-        return bytesTransferred;
-      }
+      get;
+      private set;
     }
 
     /// <summary>
-    /// Gets or sets the size of the file being transfered.
-    /// </summary>
+    ///   Gets or sets the size of the file being transferred. </summary>
     public long FileSize {
-      get {
-        return fileSize;
-      }
-      set {
-        fileSize = value;
-      }
+      get;
+      set;
     }
+
     #endregion
 
     #region Events
+
     /// <summary>
-    /// The TransferInterruption event occurs when the file has not completely transfered, but the connection has been stopped.
-    /// </summary>
+    ///   The TransferInterruption event occurs when the file has not completely transferred, but
+    ///   the connection has been stopped. </summary>
     public event EventHandler TransferInterruption;
+
     /// <summary>
-    /// Raises the <see cref="TransferInterruption"/> event.
-    /// </summary>
+    ///   Raises the <see cref="TransferInterruption"/> event. </summary>
     protected void OnTransferInterruption(EventArgs e) {
       if (TransferInterruption != null) {
-        this.TransferInterruption(this, e);
+        TransferInterruption(this, e);
       }
     }
 
     /// <summary>
-    /// The TransferComplete event occurs when the file has been completely transfered.
-    /// </summary>
+    ///   The TransferComplete event occurs when the file has been completely transferred. </summary>
     public event EventHandler TransferComplete;
+
     /// <summary>
-    /// Raises the <see cref="TransferComplete"/> event.
-    /// </summary>
+    ///   Raises the <see cref="TransferComplete"/> event. </summary>
     protected void OnTransferComplete(EventArgs e) {
       if (TransferComplete != null) {
-        this.TransferComplete(this, e);
+        TransferComplete(this, e);
       }
     }
+
     #endregion
 
-    #region Methods
+    #region Internal Methods
 
     /// <summary>
-    /// Sends the file over the current socket.
-    /// </summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
+    ///   Sends the file over the current socket. </summary>
     internal void Send() {
-      if (!this.File.CanRead) {
+      if (!File.CanRead) {
         throw new InvalidOperationException(Properties.Resources.CannotReadFromFile);
       }
 
-      this.bytesTransferred = 0;
+      BytesTransferred = 0;
 
-      this.buffer = new Byte[this.BufferSize];
-      Byte[] acknowledgment = new Byte[4];
+      _buffer = new byte[BufferSize];
+      byte[] acknowledgment = new byte[4];
+      
       int bytesSent;
-
-
-      while ((bytesSent = this.File.Read(buffer, 0, buffer.Length)) != 0) {
+      while ((bytesSent = File.Read(_buffer, 0, _buffer.Length)) != 0) {
         try {
-          this.transferSocket.Send(buffer, bytesSent, SocketFlags.None);
-          this.bytesTransferred += bytesSent;
-          if (!this.TurboMode && !this.SendAhead) {
-            this.transferSocket.Receive(acknowledgment);
+          TransferSocket.Send(_buffer, bytesSent, SocketFlags.None);
+          BytesTransferred += bytesSent;
+          if (!TurboMode && !SendAhead) {
+            TransferSocket.Receive(acknowledgment);
           }
         } catch {
-          this.OnTransferInterruption(EventArgs.Empty);
+          OnTransferInterruption(EventArgs.Empty);
         }
       }
 
-      if (!this.TurboMode) {
-        while (!this.AllAcknowledgmentsReceived(acknowledgment)) {
-          this.transferSocket.Receive(acknowledgment);
+      if (!TurboMode) {
+        while (!AllAcknowledgementsReceived(acknowledgment)) {
+          TransferSocket.Receive(acknowledgment);
         }
       }
-      this.OnTransferComplete(EventArgs.Empty);
+      OnTransferComplete(EventArgs.Empty);
     }
 
     /// <summary>
-    /// Receives the file over the current socket.
-    /// </summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
+    ///   Receives the file over the current socket. </summary>
     internal void Receive() {
-      this.bytesTransferred = 0;
+      BytesTransferred = 0;
 
-      this.buffer = new Byte[this.BufferSize];
-      int bytesReceived;
-
-      while (!this.IsTransferComplete) {
-        bytesReceived = this.transferSocket.Receive(buffer);
+      _buffer = new byte[BufferSize];
+      
+      while (!IsTransferComplete) {
+        int bytesReceived = TransferSocket.Receive(_buffer);
         if (bytesReceived == 0) {
-          this.OnTransferInterruption(EventArgs.Empty);
+          OnTransferInterruption(EventArgs.Empty);
           return;
         }
-        this.bytesTransferred += bytesReceived;
-        if (this.File.CanWrite) {
-          this.File.Write(buffer, 0, bytesReceived);
+        BytesTransferred += bytesReceived;
+        if (File.CanWrite) {
+          File.Write(_buffer, 0, bytesReceived);
         }
-        this.SendAcknowledgement();
+        SendAcknowledgement();
       }
-      this.File.Flush();
-      this.OnTransferComplete(EventArgs.Empty);
+      File.Flush();
+      OnTransferComplete(EventArgs.Empty);
     }
 
     #endregion
 
-    #region Helpers
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
+    #region Private Methods
+
     private void SendAcknowledgement() {
-      if (!this.TurboMode) {
-        //Convert BytesTransfered to a 4 byte array containing the number
-        Byte[] bytesAck = DccBytesReceivedFormat();
-
-        // Send it over the socket.
-        this.transferSocket.Send(bytesAck);
+      if (TurboMode) {
+        return;
       }
+
+      // convert BytesTransfered to a 4 byte array containing the number
+      byte[] bytesAck = DccBytesReceivedFormat();
+
+      // send it over the socket
+      TransferSocket.Send(bytesAck);
     }
 
-    private bool AllAcknowledgmentsReceived(Byte[] lastAck) {
+    private bool AllAcknowledgementsReceived(byte[] lastAck) {
       long acknowledgedBytes = DccBytesToLong(lastAck);
-      return acknowledgedBytes >= this.BytesTransferred;
+      return acknowledgedBytes >= BytesTransferred;
     }
 
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
     private bool IsTransferComplete {
       get {
-        if (fileSize == -1) {
+        if (FileSize == -1) {
           return false;
         }
-        return startPosition + bytesTransferred >= fileSize;
+        return StartPosition + BytesTransferred >= FileSize;
       }
     }
 
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
     private byte[] DccBytesReceivedFormat() {
       byte[] size = new byte[4];
-      byte[] longBytes = BitConverter.GetBytes(NetworkUnsignedLong(this.BytesTransferred));
+      byte[] longBytes = BitConverter.GetBytes(NetworkUnsignedLong(BytesTransferred));
       Array.Copy(longBytes, 0, size, 0, 4);
       return size;
     }
@@ -254,7 +229,6 @@ namespace Supay.Irc.Dcc {
       return IPAddress.NetworkToHostOrder(BitConverter.ToInt32(received, 0));
     }
 
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
     private static long NetworkUnsignedLong(long hostOrderLong) {
       long networkLong = IPAddress.HostToNetworkOrder(hostOrderLong);
       return (networkLong >> 32) & 0x00000000ffffffff;
@@ -262,23 +236,5 @@ namespace Supay.Irc.Dcc {
 
     #endregion
 
-
-    #region Private Members
-
-    private Byte[] buffer;
-
-    private FileStream file;
-    private long startPosition = 0;
-    private Socket transferSocket;
-    private int bufferSize = 4096;
-    private bool turboMode = false;
-    private bool secure = false;
-    private bool sendAhead = true;
-    private long bytesTransferred = 0;
-    private long fileSize = -1;
-
-    #endregion
-
-  }
-
-}
+  } //class DccTransfer
+} //namespace Supay.Irc.Dcc
