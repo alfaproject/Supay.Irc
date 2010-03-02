@@ -81,11 +81,10 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Determines if the current message is targeted at a query to the given user.
-    /// </summary>
+    ///   Determines if the current message is targeted at a query to the given user. </summary>
     protected virtual bool IsQueryToUser(User user) {
       foreach (String target in this.Targets) {
-        if (MessageUtil.IsIgnoreCaseMatch(user.Nickname, target)) {
+        if (user.Nickname.EqualsI(target)) {
           return true;
         }
       }

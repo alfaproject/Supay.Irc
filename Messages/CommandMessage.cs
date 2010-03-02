@@ -23,7 +23,7 @@ namespace Supay.Irc.Messages {
     ///   Determines if the message can be parsed by this type. </summary>
     public override bool CanParse(string unparsedMessage) {
       string messageCommand = MessageUtil.GetCommand(unparsedMessage);
-      return MessageUtil.IsIgnoreCaseMatch(messageCommand, this.Command);
+      return messageCommand.EqualsI(this.Command);
     }
 
   } //class CommandMessage

@@ -391,9 +391,11 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    ///   Determines if the given strings match eachother using <see href="StringComparison.InvariantCultureIgnoreCase" /> matching. </summary>
-    public static bool IsIgnoreCaseMatch(String a, String b) {
-      return a.Equals(b, StringComparison.InvariantCultureIgnoreCase);
+    ///   Determines whether this instance and another specified String object have the same value. (case insensitive)</summary>
+    /// <param name="value">
+    ///   The string to compare to this instance. </param>
+    public static bool EqualsI(this string self, string value) {
+      return self.Equals(value, StringComparison.OrdinalIgnoreCase);
     }
 
     /// <summary>
@@ -403,8 +405,8 @@ namespace Supay.Irc.Messages {
     /// <param name="match">
     ///   The string to look for. </param>
     public static bool ContainsIgnoreCaseMatch(StringCollection strings, String match) {
-      foreach (String item in strings) {
-        if (IsIgnoreCaseMatch(item, match)) {
+      foreach (string item in strings) {
+        if (item.EqualsI(match)) {
           return true;
         }
       }

@@ -29,14 +29,13 @@ namespace Supay.Irc.Messages {
     #region Parsing
 
     /// <summary>
-    /// Determines if the message can be parsed by this type.
-    /// </summary>
-    public override bool CanParse(String unparsedMessage) {
+    ///   Determines if the message can be parsed by this type. </summary>
+    public override bool CanParse(string unparsedMessage) {
       if (!base.CanParse(unparsedMessage)) {
         return false;
       }
       StringCollection param = MessageUtil.GetParameters(unparsedMessage);
-      return (param.Count == 0 || (param.Count == 1 && MessageUtil.IsIgnoreCaseMatch(param[0], "L")));
+      return (param.Count == 0 || (param.Count == 1 && param[0].EqualsI("L")));
     }
 
     /// <summary>

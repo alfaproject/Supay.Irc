@@ -17,7 +17,7 @@ namespace Supay.Irc.Messages {
         return false;
       }
       StringCollection param = MessageUtil.GetParameters(unparsedMessage);
-      return (param.Count == 1 && MessageUtil.IsIgnoreCaseMatch(param[0], "L"));
+      return (param.Count == 1 && param[0].EqualsI("L"));
     }
 
     /// <summary>

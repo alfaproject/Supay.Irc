@@ -288,7 +288,7 @@ namespace Supay.Irc {
     }
 
     private bool IsMe(String nick) {
-      return (MessageUtil.IsIgnoreCaseMatch(this.User.Nickname, nick));
+      return this.User.Nickname.EqualsI(nick);
     }
 
     private void RouteData(string messageData) {

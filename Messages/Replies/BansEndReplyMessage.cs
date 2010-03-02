@@ -65,10 +65,9 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Determines if the the current message is targeted at the given channel.
-    /// </summary>
+    ///   Determines if the the current message is targeted at the given channel. </summary>
     protected virtual bool IsTargetedAtChannel(string channelName) {
-      return MessageUtil.IsIgnoreCaseMatch(this.Channel, channelName);
+      return this.Channel.EqualsI(channelName);
     }
 
     #endregion

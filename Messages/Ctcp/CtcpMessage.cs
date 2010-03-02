@@ -101,10 +101,9 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Determines if the the current message is targeted at the given channel.
-    /// </summary>
+    ///   Determines if the the current message is targeted at the given channel. </summary>
     protected virtual bool IsTargetedAtChannel(string channelName) {
-      return MessageUtil.IsIgnoreCaseMatch(this.Target, channelName);
+      return this.Target.EqualsI(channelName);
     }
 
     #endregion
@@ -116,10 +115,9 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Determines if the current message is targeted at a query to the given user.
-    /// </summary>
+    ///   Determines if the current message is targeted at a query to the given user. </summary>
     protected virtual bool IsQueryToUser(User user) {
-      return (MessageUtil.IsIgnoreCaseMatch(user.Nickname, target));
+      return user.Nickname.Equals(target);
     }
 
     #endregion
