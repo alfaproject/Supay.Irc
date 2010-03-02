@@ -140,7 +140,7 @@ namespace Supay.Irc.Messages {
         // TODO I'm going to ignore the H/G issue until i know what it means.
         this.IsOper = (levels.IndexOf("*", StringComparison.Ordinal) != -1);
         String lastLetter = levels.Substring(levels.Length - 1);
-        if (ChannelStatus.Exists(lastLetter)) {
+        if (ChannelStatus.IsDefined(lastLetter)) {
           // TODO fix
           // this.Status = ChannelStatus.GetInstance(lastLetter);
         } else {

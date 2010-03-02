@@ -127,7 +127,7 @@ namespace Supay.Irc.Messages {
 
             if (parsedNick.Length > 1) {
               String firstLetter = parsedNick.Substring(0, 1);
-              if (ChannelStatus.Exists(firstLetter)) {
+              if (ChannelStatus.IsDefined(firstLetter)) {
                 status = ChannelStatus.GetInstance(firstLetter);
                 parsedNick = parsedNick.Substring(1);
               }

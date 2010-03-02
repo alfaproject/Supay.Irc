@@ -1,144 +1,83 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Runtime.Serialization;
-using System.Security.Permissions;
+using System.Linq;
 
 namespace Supay.Irc {
 
   /// <summary>
-  /// The nick prefixes that represent user level status in a channel.
-  /// </summary>
-  [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2229:ImplementSerializationConstructors", Justification = "Using IObjectReference instead"), Serializable]
-  public sealed class ChannelStatus : MarshalByRefObject, IComparable<ChannelStatus>, ISerializable {
+  ///   The nick prefixes that represent user level status in a channel. </summary>
+  [Serializable]
+  public sealed class ChannelStatus : IEquatable<ChannelStatus> {
 
-    private static List<ChannelStatus> newItems = new List<ChannelStatus>();
-    private static List<ChannelStatus> definedItems = new List<ChannelStatus>();
-    private static ReadOnlyCollection<ChannelStatus> values;
-
-
-    #region Built In Static Instances
+    #region Enumeration values
 
     /// <summary>
-    /// Gets the <see cref="ChannelStatus"/> representing the operator status level.
-    /// </summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes")]
-    public static readonly ChannelStatus Operator = new ChannelStatus("@");
+    ///   Gets the <see cref="ChannelStatus"/> representing the operator status level. </summary>
+    public static readonly ChannelStatus Operator;
+
     /// <summary>
-    /// Gets the <see cref="ChannelStatus"/> representing the half-operator status level.
-    /// </summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes")]
-    public static readonly ChannelStatus HalfOperator = new ChannelStatus("%");
+    ///   Gets the <see cref="ChannelStatus"/> representing the half-operator status level. </summary>
+    public static readonly ChannelStatus HalfOperator;
+
     /// <summary>
-    /// Gets the <see cref="ChannelStatus"/> representing the voiced status level.
-    /// </summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes")]
-    public static readonly ChannelStatus Voice = new ChannelStatus("+");
+    ///   Gets the <see cref="ChannelStatus"/> representing the voiced status level. </summary>
+    public static readonly ChannelStatus Voice;
+    
     /// <summary>
-    /// Gets the <see cref="ChannelStatus"/> representing the no special status level.
-    /// </summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes")]
-    public static readonly ChannelStatus None = new ChannelStatus("");
+    ///   Gets the <see cref="ChannelStatus"/> representing the no special status level. </summary>
+    public static readonly ChannelStatus None;
+
+    /// <summary>
+    ///   Gets a collection of <see cref="ChannelStatus"/> instances representing all built statuses. </summary>
+    public static readonly List<ChannelStatus> Values;
+
+    #endregion
+
+    #region Static Constructor
+
+    static ChannelStatus() {
+      None = new ChannelStatus("");
+      Voice = new ChannelStatus("+");
+      HalfOperator = new ChannelStatus("%");
+      Operator = new ChannelStatus("@");
+      Values = new List<ChannelStatus>(new[] { None, Voice, HalfOperator, Operator });
+    }
 
     #endregion
 
     #region Static Methods
 
     /// <summary>
-    /// Gets a ChannelStatus instance with the given symbol.
-    /// </summary>
+    ///   Gets a ChannelStatus instance with the given symbol. </summary>
     /// <remarks>
-    /// If the given status is not defined already, a new status is created.
-    /// This same new status is used for all future calls to GetInstance.
-    /// </remarks>
-    public static ChannelStatus GetInstance(String symbol) {
-      foreach (ChannelStatus definedItem in definedItems) {
-        if (definedItem.symbol == symbol) {
-          return definedItem;
+    ///   If the given status is not defined already, a new status is created.
+    ///   This same new status is used for all future calls to GetInstance. </remarks>
+    public static ChannelStatus GetInstance(string symbol) {
+      foreach (ChannelStatus channelStatus in Values) {
+        if (channelStatus.Symbol == symbol) {
+          return channelStatus;
         }
       }
 
-      foreach (ChannelStatus newItem in newItems) {
-        if (newItem.symbol == symbol) {
-          return newItem;
-        }
-      }
-      ChannelStatus newRef = new ChannelStatus(symbol, false);
-      newItems.Add(newRef);
-      return newRef;
+      ChannelStatus newChannelStatus = new ChannelStatus(symbol);
+      Values.Add(newChannelStatus);
+      return newChannelStatus;
     }
 
     /// <summary>
-    /// Determines if the given ChannelStatus is one of the defined ChannelStatuses.
-    /// </summary>
-    public static bool IsDefined(ChannelStatus item) {
-      foreach (ChannelStatus definedItem in definedItems) {
-        if (definedItem.Equals(item)) {
-          return true;
-        }
-      }
-      return false;
-    }
-
-    /// <summary>
-    /// Determines if the given symbol is any of the known channel statuses.
-    /// </summary>
-    public static bool Exists(String symbol) {
-      foreach (ChannelStatus definedItem in definedItems) {
-        if (definedItem.symbol == symbol) {
-          return true;
-        }
-      }
-      foreach (ChannelStatus newItem in newItems) {
-        if (newItem.symbol == symbol) {
-          return true;
-        }
-      }
-      return false;
+    ///   Determines if the given symbol is any of the known channel statuses. </summary>
+    public static bool IsDefined(string symbol) {
+      return Values.Any(channelStatus => channelStatus.Symbol == symbol);
     }
 
     #endregion
 
-    #region Static Properties
+    #region Constructor
 
     /// <summary>
-    /// Gets a collection of <see cref="ChannelStatus"/> instances representing all built statuses.
-    /// </summary>
-    public static IList<ChannelStatus> Values {
-      get {
-        if (values == null) {
-          values = new ReadOnlyCollection<ChannelStatus>(new List<ChannelStatus>
-					{
-						ChannelStatus.None,
-						ChannelStatus.Operator,
-						ChannelStatus.HalfOperator,
-						ChannelStatus.Voice
-					});
-        }
-        return values;
-      }
-    }
-
-    #endregion
-
-    #region CTor
-
-    /// <summary>
-    /// Creates a new instance of the <see cref="ChannelStatus"/> class.
-    /// </summary>
-    private ChannelStatus(String symbol)
-      :
-      this(symbol, true) {
-    }
-
-    /// <summary>
-    /// Creates a new instance of the <see cref="ChannelStatus"/> class.
-    /// </summary>
-    private ChannelStatus(String symbol, bool isDefined) {
-      this.symbol = symbol;
-      if (isDefined) {
-        definedItems.Add(this);
-      }
+    ///   Creates a new instance of the <see cref="ChannelStatus"/> class. </summary>
+    private ChannelStatus(string symbol) {
+      Symbol = symbol;
     }
 
     #endregion
@@ -146,139 +85,73 @@ namespace Supay.Irc {
     #region Properties
 
     /// <summary>
-    /// Gets the string representation of the status.
-    /// </summary>
-    public String Symbol {
-      get {
-        return this.symbol;
-      }
+    ///   Gets the string representation of the status. </summary>
+    public string Symbol {
+      get;
+      private set;
     }
-    private String symbol;
 
     #endregion
 
     #region Methods
 
     /// <summary>
-    /// Creates a representation of the message in irc format.
-    /// </summary>
-    public override String ToString() {
-      return this.Symbol;
+    ///   Creates a representation of the message in irc format. </summary>
+    public override string ToString() {
+      return Symbol;
     }
 
     #endregion
 
-    #region Equality/Operators
+    #region Equality Members
 
     /// <summary>
-    /// Determines if the given ChannelStatus is equal to this one.
-    /// </summary>
-    /// <remarks>This equality is determined by equality of the Symbol property.</remarks>
-    public override bool Equals(object obj) {
-      ChannelStatus other = obj as ChannelStatus;
-      if (other == null) {
-        return base.Equals(obj);
-      }
-      return this.symbol.Equals(other.symbol);
-    }
-
-    /// <summary>
-    /// Implements GetHashCode using the Symbol property.
-    /// </summary>
-    /// <returns></returns>
-    public override int GetHashCode() {
-      return this.symbol.GetHashCode();
-    }
-
-    /// <summary>
-    /// Implements the operator based on the Symbol property.
-    /// </summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "y"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "x")]
-    public static bool operator ==(ChannelStatus x, ChannelStatus y) {
-      // If both are null, or both are same instance, return true.
-      if (object.ReferenceEquals(x, y)) {
-        return true;
-      }
-
-      // If one is null, but not both, return false.
-      if (((object)x == null) || ((object)y == null)) {
+    ///   Indicates whether the current object is equal to another object of the same type. </summary>
+    /// <returns>
+    ///   true if the current object is equal to the <paramref name="other"/> parameter; otherwise, false. </returns>
+    /// <param name="other">
+    ///   An object to compare with this object. </param>
+    public bool Equals(ChannelStatus other) {
+      if (ReferenceEquals(null, other)) {
         return false;
       }
-
-      return x.symbol == y.symbol;
+      if (ReferenceEquals(this, other)) {
+        return true;
+      }
+      return Symbol == other.Symbol;
     }
 
     /// <summary>
-    /// Implements the operator based on the Symbol property.
-    /// </summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "y"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "x")]
-    public static bool operator !=(ChannelStatus x, ChannelStatus y) {
-      return !(x == y);
+    ///   Determines whether the specified <see cref="Object"/> is equal to the current <see cref="ChannelStatus"/>. </summary>
+    /// <returns>
+    ///   true if the specified <see cref="Object"/> is equal to the current <see cref="ChannelStatus"/>;
+    ///   otherwise, false. </returns>
+    /// <param name="obj">
+    ///   The <see cref="Object"/> to compare with the current <see cref="ChannelStatus"/>. </param>
+    public override bool Equals(object obj) {
+      return Equals(obj as ChannelStatus);
     }
 
     /// <summary>
-    /// Implements the operator based on the Symbol property.
-    /// </summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "y"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "x")]
-    public static bool operator <(ChannelStatus x, ChannelStatus y) {
-      return String.Compare(x.symbol, y.symbol, StringComparison.OrdinalIgnoreCase) < 0;
+    ///   Serves as a hash function for a particular type. </summary>
+    /// <returns>
+    ///   A hash code for the current <see cref="ChannelStatus"/>. </returns>
+    public override int GetHashCode() {
+      return (Symbol != null ? Symbol.GetHashCode() : 0);
     }
 
-    /// <summary>
-    /// Implements the operator based on the Symbol property.
-    /// </summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "y"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "x")]
-    public static bool operator >(ChannelStatus x, ChannelStatus y) {
-      return String.Compare(x.symbol, y.symbol, StringComparison.OrdinalIgnoreCase) > 0;
+    public static bool operator ==(ChannelStatus leftOperand, ChannelStatus rightOperand) {
+      if (ReferenceEquals(null, leftOperand)) {
+        return ReferenceEquals(null, rightOperand);
+      }
+      return leftOperand.Equals(rightOperand);
+    }
+
+    public static bool operator !=(ChannelStatus leftOperand, ChannelStatus rightOperand) {
+      return !(leftOperand == rightOperand);
     }
 
     #endregion
 
-    #region IComparable<ChannelStatus> Members
-
-    /// <summary>
-    ///   Implements <see cref="IComparable.CompareTo"/>. </summary>
-    public int CompareTo(ChannelStatus other) {
-      if (other == null) {
-        return 1;
-      }
-
-      return String.Compare(this.symbol, other.symbol, StringComparison.OrdinalIgnoreCase);
-    }
-
-    #endregion
-
-    #region ISerializable
-
-    /// <summary>
-    /// Implements ISerializable.GetObjectData
-    /// </summary>
-    [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.SerializationFormatter)]
-    [SecurityPermission(SecurityAction.Demand, SerializationFormatter = true)]
-    public void GetObjectData(SerializationInfo info, StreamingContext context) {
-      if (info != null) {
-        info.SetType(typeof(ChannelStatusProxy));
-        info.AddValue("Symbol", this.symbol);
-      }
-    }
-
-    [Serializable]
-    private sealed class ChannelStatusProxy : IObjectReference, ISerializable {
-      private ChannelStatusProxy(SerializationInfo info, StreamingContext context) {
-        this.symbol = info.GetString("Symbol");
-      }
-      private String symbol = "";
-      public object GetRealObject(StreamingContext context) {
-        return ChannelStatus.GetInstance(this.symbol);
-      }
-      [SecurityPermission(SecurityAction.Demand, SerializationFormatter = true)]
-      public void GetObjectData(SerializationInfo info, StreamingContext context) {
-        throw new NotImplementedException();
-      }
-    }
-
-    #endregion
-
-  }
-
-}
+  } //class ChannelStatus
+} //namespace Supay.Irc
