@@ -2,8 +2,6 @@ using System;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
-using System.Runtime.Serialization;
-using System.Security.Permissions;
 
 namespace Supay.Irc.Messages {
 
@@ -13,7 +11,7 @@ namespace Supay.Irc.Messages {
   [Serializable]
   public sealed class ModeAction : IEquatable<ModeAction> {
 
-    private string _symbol;
+    private readonly string _symbol;
 
     #region Static Instances
 
@@ -33,9 +31,9 @@ namespace Supay.Irc.Messages {
     #region Static Constructor
 
     static ModeAction() {
-      ModeAction.Add = new ModeAction("+");
-      ModeAction.Remove = new ModeAction("-");
-      ModeAction.Values = new ReadOnlyCollection<ModeAction>(new[] { ModeAction.Add, ModeAction.Remove });
+      Add = new ModeAction("+");
+      Remove = new ModeAction("-");
+      Values = new ReadOnlyCollection<ModeAction>(new[] { Add, Remove });
     }
 
     #endregion
@@ -45,7 +43,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Determines if the given string value is representative of any defined ModeActions. </summary>
     public static bool IsDefined(string value) {
-      return ModeAction.Values.Any(modeAction => modeAction._symbol == value);
+      return Values.Any(modeAction => modeAction._symbol == value);
     }
 
     /// <summary>
@@ -57,8 +55,10 @@ namespace Supay.Irc.Messages {
         throw new ArgumentNullException("value");
       }
 
-      foreach (ModeAction modeAction in ModeAction.Values.Where(modeAction => modeAction._symbol == value)) {
-        return modeAction;
+      foreach (ModeAction modeAction in Values) {
+        if (modeAction._symbol == value) {
+          return modeAction;
+        }
       }
       throw new ArgumentException(string.Format(CultureInfo.InvariantCulture, Properties.Resources.ModeActionDoesNotExist, value), "value");
     }
