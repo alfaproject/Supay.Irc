@@ -148,9 +148,7 @@ namespace Supay.Irc.Network {
         //throw( ex );
       }
 
-      if (_listener != null) {
-        _listener.Stop();
-      }
+      _listener.Stop();
     }
 
   } //class Ident

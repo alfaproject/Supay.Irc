@@ -351,7 +351,7 @@ namespace Supay.Irc.Network {
         }
 
         _reader = new StreamReader(dataStream, Encoding);
-        _writer = new StreamWriter(dataStream, Encoding) {AutoFlush = true};
+        _writer = new StreamWriter(dataStream, Encoding) { AutoFlush = true };
       } catch (AuthenticationException e) {
         if (_client != null) {
           _client.Close();
@@ -389,6 +389,9 @@ namespace Supay.Irc.Network {
         disconnectReason = ex.Message + Environment.NewLine + ex.StackTrace;
       }
       Status = ConnectionStatus.Disconnected;
+
+      _client.Close();
+      _client = null;
 
       ConnectionDataEventArgs disconnectArgs = new ConnectionDataEventArgs(disconnectReason);
       OnDisconnected(disconnectArgs);
