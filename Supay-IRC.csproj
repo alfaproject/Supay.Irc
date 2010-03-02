@@ -165,6 +165,7 @@
     </Compile>
     <Compile Include="Model\ClientCollection.cs" />
     <Compile Include="Network\ClientConnection.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Network\ConnectionDataEvent.cs" />
     <Compile Include="Network\ConnectionStatus.cs" />
@@ -179,6 +180,7 @@
     <Compile Include="Dcc\DccTransfer.cs" />
     <Compile Include="Dcc\DccUtil.cs" />
     <Compile Include="Network\Ident.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Messages\IrcMessageWriter.cs" />
     <Compile Include="Messages\MessageConduit.cs">
