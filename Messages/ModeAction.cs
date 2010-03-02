@@ -17,10 +17,10 @@ namespace Supay.Irc.Messages {
 
     /// <summary>
     ///   Gets the <see cref="ModeAction"/> representing the addition of a mode to a user or channel. </summary>
-    public static readonly ModeAction Add = new ModeAction("+");
+    public static readonly ModeAction Add;
     /// <summary>
     ///   Gets the <see cref="ModeAction"/> representing the removal of a mode from a user or channel. </summary>
-    public static readonly ModeAction Remove = new ModeAction("-");
+    public static readonly ModeAction Remove;
 
     /// <summary>
     ///   Gets an array of <see cref="ModeAction"/> instances representing all the possible actions. </summary>
@@ -124,7 +124,7 @@ namespace Supay.Irc.Messages {
       return (_symbol != null ? _symbol.GetHashCode() : 0);
     }
 
-#endregion
+    #endregion
 
     #region Equality Operators
 
