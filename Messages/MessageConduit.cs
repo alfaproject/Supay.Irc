@@ -7,26 +7,26 @@ namespace Supay.Irc.Messages {
   public class MessageConduit {
 
     /// <summary>
-    ///   Occurs when an unrecognized message is received. </summary>
+    ///   Occurs when an unrecognised message is received. </summary>
     public event EventHandler<IrcMessageEventArgs<GenericMessage>> GenericMessage;
     /// <summary>
     ///   Raises the GenericMessage event. </summary>
     protected internal void OnGenericMessage(IrcMessageEventArgs<GenericMessage> e) {
-      if (this.GenericMessage != null) {
-        this.GenericMessage(this, e);
+      if (GenericMessage != null) {
+        GenericMessage(this, e);
       }
     }
 
     #region Errors
 
     /// <summary>
-    ///   Occurs when an unrecognized error message is received. </summary>
+    ///   Occurs when an unrecognised error message is received. </summary>
     public event EventHandler<IrcMessageEventArgs<GenericErrorMessage>> GenericErrorMessage;
     /// <summary>
     ///   Raises the GenericErrorMessage event. </summary>
     protected internal void OnGenericErrorMessage(IrcMessageEventArgs<GenericErrorMessage> e) {
-      if (this.GenericErrorMessage != null) {
-        this.GenericErrorMessage(this, e);
+      if (GenericErrorMessage != null) {
+        GenericErrorMessage(this, e);
       }
     }
 
@@ -36,8 +36,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the ErroneusNick event. </summary>
     protected internal void OnErroneousNick(IrcMessageEventArgs<ErroneousNickMessage> e) {
-      if (this.ErroneousNick != null) {
-        this.ErroneousNick(this, e);
+      if (ErroneousNick != null) {
+        ErroneousNick(this, e);
       }
     }
 
@@ -47,8 +47,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the NickCollision event. </summary>
     protected internal void OnNickCollision(IrcMessageEventArgs<NickCollisionMessage> e) {
-      if (this.NickCollision != null) {
-        this.NickCollision(this, e);
+      if (NickCollision != null) {
+        NickCollision(this, e);
       }
     }
 
@@ -58,8 +58,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the NickCollision event. </summary>
     protected internal void OnNickInUse(IrcMessageEventArgs<NickInUseMessage> e) {
-      if (this.NickInUse != null) {
-        this.NickInUse(this, e);
+      if (NickInUse != null) {
+        NickInUse(this, e);
       }
     }
 
@@ -69,8 +69,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the NoHostPermission event. </summary>
     protected internal void OnNoHostPermission(IrcMessageEventArgs<NoHostPermissionMessage> e) {
-      if (this.NoHostPermission != null) {
-        this.NoHostPermission(this, e);
+      if (NoHostPermission != null) {
+        NoHostPermission(this, e);
       }
     }
 
@@ -80,8 +80,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the NoNickGiven event. </summary>
     protected internal void OnNoNickGiven(IrcMessageEventArgs<NoNickGivenMessage> e) {
-      if (this.NoNickGiven != null) {
-        this.NoNickGiven(this, e);
+      if (NoNickGiven != null) {
+        NoNickGiven(this, e);
       }
     }
 
@@ -91,8 +91,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the NotRegistered event. </summary>
     protected internal void OnNotRegistered(IrcMessageEventArgs<NotRegisteredMessage> e) {
-      if (this.NotRegistered != null) {
-        this.NotRegistered(this, e);
+      if (NotRegistered != null) {
+        NotRegistered(this, e);
       }
     }
 
@@ -102,8 +102,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the YouAreBanned event. </summary>
     protected internal void OnYouAreBanned(IrcMessageEventArgs<YouAreBannedMessage> e) {
-      if (this.YouAreBanned != null) {
-        this.YouAreBanned(this, e);
+      if (YouAreBanned != null) {
+        YouAreBanned(this, e);
       }
     }
 
@@ -113,8 +113,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the NoSuchChannel event. </summary>
     protected internal void OnNoSuchChannel(IrcMessageEventArgs<NoSuchChannelMessage> e) {
-      if (this.NoSuchChannel != null) {
-        this.NoSuchChannel(this, e);
+      if (NoSuchChannel != null) {
+        NoSuchChannel(this, e);
       }
     }
 
@@ -124,8 +124,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the NoSuchNick event. </summary>
     protected internal void OnNoSuchNick(IrcMessageEventArgs<NoSuchNickMessage> e) {
-      if (this.NoSuchNick != null) {
-        this.NoSuchNick(this, e);
+      if (NoSuchNick != null) {
+        NoSuchNick(this, e);
       }
     }
 
@@ -135,8 +135,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the NoSuchServer event. </summary>
     protected internal void OnNoSuchServer(IrcMessageEventArgs<NoSuchServerMessage> e) {
-      if (this.NoSuchServer != null) {
-        this.NoSuchServer(this, e);
+      if (NoSuchServer != null) {
+        NoSuchServer(this, e);
       }
     }
 
@@ -146,8 +146,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the <see cref="CannotSendToChannel"/> event. </summary>
     protected internal void OnCannotSendToChannel(IrcMessageEventArgs<CannotSendToChannelMessage> e) {
-      if (this.CannotSendToChannel != null) {
-        this.CannotSendToChannel(this, e);
+      if (CannotSendToChannel != null) {
+        CannotSendToChannel(this, e);
       }
     }
 
@@ -157,8 +157,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the <see cref="TooManyChannels"/> event. </summary>
     protected internal void OnTooManyChannels(IrcMessageEventArgs<TooManyChannelsMessage> e) {
-      if (this.TooManyChannels != null) {
-        this.TooManyChannels(this, e);
+      if (TooManyChannels != null) {
+        TooManyChannels(this, e);
       }
     }
 
@@ -168,8 +168,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the <see cref="TooManyTargets"/> event. </summary>
     protected internal void OnTooManyTargets(IrcMessageEventArgs<TooManyTargetsMessage> e) {
-      if (this.TooManyTargets != null) {
-        this.TooManyTargets(this, e);
+      if (TooManyTargets != null) {
+        TooManyTargets(this, e);
       }
     }
 
@@ -179,8 +179,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the <see cref="WasNoSuchNick"/> event. </summary>
     protected internal void OnWasNoSuchNick(IrcMessageEventArgs<WasNoSuchNickMessage> e) {
-      if (this.WasNoSuchNick != null) {
-        this.WasNoSuchNick(this, e);
+      if (WasNoSuchNick != null) {
+        WasNoSuchNick(this, e);
       }
     }
 
@@ -190,8 +190,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the <see cref="CannotUseColors"/> event. </summary>
     protected internal void OnCannotUseColors(IrcMessageEventArgs<CannotUseColorsMessage> ircMessageEventArgs) {
-      if (this.CannotUseColors != null) {
-        this.CannotUseColors(this, ircMessageEventArgs);
+      if (CannotUseColors != null) {
+        CannotUseColors(this, ircMessageEventArgs);
       }
     }
 
@@ -201,8 +201,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the <see cref="NoPingOriginSpecified"/> event. </summary>
     protected internal void OnNoPingOriginSpecified(IrcMessageEventArgs<NoPingOriginSpecifiedMessage> ircMessageEventArgs) {
-      if (this.NoPingOriginSpecified != null) {
-        this.NoPingOriginSpecified(this, ircMessageEventArgs);
+      if (NoPingOriginSpecified != null) {
+        NoPingOriginSpecified(this, ircMessageEventArgs);
       }
     }
 
@@ -212,8 +212,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the <see cref="NoRecipientGiven"/> event. </summary>
     protected internal void OnNoRecipientGiven(IrcMessageEventArgs<NoRecipientGivenMessage> ircMessageEventArgs) {
-      if (this.NoRecipientGiven != null) {
-        this.NoRecipientGiven(this, ircMessageEventArgs);
+      if (NoRecipientGiven != null) {
+        NoRecipientGiven(this, ircMessageEventArgs);
       }
     }
 
@@ -223,8 +223,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the <see cref="NoTextToSend"/> event. </summary>
     protected internal void OnNoTextToSend(IrcMessageEventArgs<NoTextToSendMessage> ircMessageEventArgs) {
-      if (this.NoTextToSend != null) {
-        this.NoTextToSend(this, ircMessageEventArgs);
+      if (NoTextToSend != null) {
+        NoTextToSend(this, ircMessageEventArgs);
       }
     }
 
@@ -234,8 +234,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the <see cref="NoTextToSend"/> event. </summary>
     protected internal void OnTooManyLines(IrcMessageEventArgs<TooManyLinesMessage> ircMessageEventArgs) {
-      if (this.TooManyLines != null) {
-        this.TooManyLines(this, ircMessageEventArgs);
+      if (TooManyLines != null) {
+        TooManyLines(this, ircMessageEventArgs);
       }
     }
 
@@ -245,8 +245,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the <see cref="UnknownCommand"/> event. </summary>
     protected internal void OnUnknownCommand(IrcMessageEventArgs<UnknownCommandMessage> ircMessageEventArgs) {
-      if (this.UnknownCommand != null) {
-        this.UnknownCommand(this, ircMessageEventArgs);
+      if (UnknownCommand != null) {
+        UnknownCommand(this, ircMessageEventArgs);
       }
     }
 
@@ -256,8 +256,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the <see cref="CannotChangeNickWhileBanned"/> event. </summary>
     protected internal void OnCannotChangeNickWhileBanned(IrcMessageEventArgs<CannotChangeNickWhileBannedMessage> ircMessageEventArgs) {
-      if (this.CannotChangeNickWhileBanned != null) {
-        this.CannotChangeNickWhileBanned(this, ircMessageEventArgs);
+      if (CannotChangeNickWhileBanned != null) {
+        CannotChangeNickWhileBanned(this, ircMessageEventArgs);
       }
     }
 
@@ -267,8 +267,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the <see cref="NickChangeTooFast"/> event. </summary>
     protected internal void OnNickChangeTooFast(IrcMessageEventArgs<NickChangeTooFastMessage> ircMessageEventArgs) {
-      if (this.NickChangeTooFast != null) {
-        this.NickChangeTooFast(this, ircMessageEventArgs);
+      if (NickChangeTooFast != null) {
+        NickChangeTooFast(this, ircMessageEventArgs);
       }
     }
 
@@ -278,8 +278,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the <see cref="TargetChangeTooFast"/> event. </summary>
     protected internal void OnTargetChangeTooFast(IrcMessageEventArgs<TargetChangeTooFastMessage> ircMessageEventArgs) {
-      if (this.TargetChangeTooFast != null) {
-        this.TargetChangeTooFast(this, ircMessageEventArgs);
+      if (TargetChangeTooFast != null) {
+        TargetChangeTooFast(this, ircMessageEventArgs);
       }
     }
 
@@ -289,8 +289,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the <see cref="NotOnChannel"/> event. </summary>
     protected internal void OnNotOnChannel(IrcMessageEventArgs<NotOnChannelMessage> ircMessageEventArgs) {
-      if (this.NotOnChannel != null) {
-        this.NotOnChannel(this, ircMessageEventArgs);
+      if (NotOnChannel != null) {
+        NotOnChannel(this, ircMessageEventArgs);
       }
     }
 
@@ -300,8 +300,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the <see cref="AlreadyOnChannel"/> event. </summary>
     protected internal void OnAlreadyOnChannel(IrcMessageEventArgs<AlreadyOnChannelMessage> ircMessageEventArgs) {
-      if (this.AlreadyOnChannel != null) {
-        this.AlreadyOnChannel(this, ircMessageEventArgs);
+      if (AlreadyOnChannel != null) {
+        AlreadyOnChannel(this, ircMessageEventArgs);
       }
     }
 
@@ -311,8 +311,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the <see cref="IdentChanged"/> event. </summary>
     protected internal void OnIdentChanged(IrcMessageEventArgs<IdentChangedMessage> ircMessageEventArgs) {
-      if (this.IdentChanged != null) {
-        this.IdentChanged(this, ircMessageEventArgs);
+      if (IdentChanged != null) {
+        IdentChanged(this, ircMessageEventArgs);
       }
     }
 
@@ -322,8 +322,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the <see cref="NotEnoughParameters"/> event. </summary>
     protected internal void OnNotEnoughParameters(IrcMessageEventArgs<NotEnoughParametersMessage> ircMessageEventArgs) {
-      if (this.NotEnoughParameters != null) {
-        this.NotEnoughParameters(this, ircMessageEventArgs);
+      if (NotEnoughParameters != null) {
+        NotEnoughParameters(this, ircMessageEventArgs);
       }
     }
 
@@ -333,8 +333,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the <see cref="ChannelKeyAlreadySet"/> event. </summary>
     protected internal void OnChannelKeyAlreadySet(IrcMessageEventArgs<ChannelKeyAlreadySetMessage> ircMessageEventArgs) {
-      if (this.ChannelKeyAlreadySet != null) {
-        this.ChannelKeyAlreadySet(this, ircMessageEventArgs);
+      if (ChannelKeyAlreadySet != null) {
+        ChannelKeyAlreadySet(this, ircMessageEventArgs);
       }
     }
 
@@ -344,8 +344,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the <see cref="ChannelLimitReached"/> event. </summary>
     protected internal void OnChannelLimitReached(IrcMessageEventArgs<ChannelLimitReachedMessage> ircMessageEventArgs) {
-      if (this.ChannelLimitReached != null) {
-        this.ChannelLimitReached(this, ircMessageEventArgs);
+      if (ChannelLimitReached != null) {
+        ChannelLimitReached(this, ircMessageEventArgs);
       }
     }
 
@@ -355,8 +355,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the <see cref="UnknownChannelMode"/> event. </summary>
     protected internal void OnUnknownChannelMode(IrcMessageEventArgs<UnknownChannelModeMessage> ircMessageEventArgs) {
-      if (this.UnknownChannelMode != null) {
-        this.UnknownChannelMode(this, ircMessageEventArgs);
+      if (UnknownChannelMode != null) {
+        UnknownChannelMode(this, ircMessageEventArgs);
       }
     }
 
@@ -366,8 +366,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the <see cref="ChannelIsInviteOnly"/> event. </summary>
     protected internal void OnChannelIsInviteOnly(IrcMessageEventArgs<ChannelIsInviteOnlyMessage> ircMessageEventArgs) {
-      if (this.ChannelIsInviteOnly != null) {
-        this.ChannelIsInviteOnly(this, ircMessageEventArgs);
+      if (ChannelIsInviteOnly != null) {
+        ChannelIsInviteOnly(this, ircMessageEventArgs);
       }
     }
 
@@ -377,8 +377,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the <see cref="YouAreBannedFromChannel"/> event. </summary>
     protected internal void OnYouAreBannedFromChannel(IrcMessageEventArgs<YouAreBannedFromChannelMessage> ircMessageEventArgs) {
-      if (this.YouAreBannedFromChannel != null) {
-        this.YouAreBannedFromChannel(this, ircMessageEventArgs);
+      if (YouAreBannedFromChannel != null) {
+        YouAreBannedFromChannel(this, ircMessageEventArgs);
       }
     }
 
@@ -388,8 +388,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the <see cref="ChannelRequiresKey"/> event. </summary>
     protected internal void OnChannelRequiresKey(IrcMessageEventArgs<ChannelRequiresKeyMessage> ircMessageEventArgs) {
-      if (this.ChannelRequiresKey != null) {
-        this.ChannelRequiresKey(this, ircMessageEventArgs);
+      if (ChannelRequiresKey != null) {
+        ChannelRequiresKey(this, ircMessageEventArgs);
       }
     }
 
@@ -399,8 +399,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the <see cref="ChannelRequiresRegisteredNick"/> event. </summary>
     protected internal void OnChannelRequiresRegisteredNick(IrcMessageEventArgs<ChannelRequiresRegisteredNickMessage> ircMessageEventArgs) {
-      if (this.ChannelRequiresRegisteredNick != null) {
-        this.ChannelRequiresRegisteredNick(this, ircMessageEventArgs);
+      if (ChannelRequiresRegisteredNick != null) {
+        ChannelRequiresRegisteredNick(this, ircMessageEventArgs);
       }
     }
 
@@ -410,8 +410,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the <see cref="BanListFull"/> event. </summary>
     protected internal void OnBanListFull(IrcMessageEventArgs<BanListFullMessage> ircMessageEventArgs) {
-      if (this.BanListFull != null) {
-        this.BanListFull(this, ircMessageEventArgs);
+      if (BanListFull != null) {
+        BanListFull(this, ircMessageEventArgs);
       }
     }
 
@@ -421,8 +421,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the <see cref="ChannelOperatorStatusRequired"/> event. </summary>
     protected internal void OnChannelOperatorStatusRequired(IrcMessageEventArgs<ChannelOperatorStatusRequiredMessage> ircMessageEventArgs) {
-      if (this.ChannelOperatorStatusRequired != null) {
-        this.ChannelOperatorStatusRequired(this, ircMessageEventArgs);
+      if (ChannelOperatorStatusRequired != null) {
+        ChannelOperatorStatusRequired(this, ircMessageEventArgs);
       }
     }
 
@@ -432,8 +432,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the <see cref="CannotRemoveServiceBot"/> event. </summary>
     protected internal void OnCannotRemoveServiceBot(IrcMessageEventArgs<CannotRemoveServiceBotMessage> ircMessageEventArgs) {
-      if (this.CannotRemoveServiceBot != null) {
-        this.CannotRemoveServiceBot(this, ircMessageEventArgs);
+      if (CannotRemoveServiceBot != null) {
+        CannotRemoveServiceBot(this, ircMessageEventArgs);
       }
     }
 
@@ -443,8 +443,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the <see cref="ChannelBlocked"/> event. </summary>
     protected internal void OnChannelBlocked(IrcMessageEventArgs<ChannelBlockedMessage> ircMessageEventArgs) {
-      if (this.ChannelBlocked != null) {
-        this.ChannelBlocked(this, ircMessageEventArgs);
+      if (ChannelBlocked != null) {
+        ChannelBlocked(this, ircMessageEventArgs);
       }
     }
 
@@ -454,8 +454,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the <see cref="UnknownUserMode"/> event. </summary>
     protected internal void OnUnknownUserMode(IrcMessageEventArgs<UnknownUserModeMessage> ircMessageEventArgs) {
-      if (this.UnknownUserMode != null) {
-        this.UnknownUserMode(this, ircMessageEventArgs);
+      if (UnknownUserMode != null) {
+        UnknownUserMode(this, ircMessageEventArgs);
       }
     }
 
@@ -465,8 +465,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the <see cref="SilenceListFull"/> event. </summary>
     protected internal void OnSilenceListFull(IrcMessageEventArgs<SilenceListFullMessage> ircMessageEventArgs) {
-      if (this.SilenceListFull != null) {
-        this.SilenceListFull(this, ircMessageEventArgs);
+      if (SilenceListFull != null) {
+        SilenceListFull(this, ircMessageEventArgs);
       }
     }
 
@@ -476,8 +476,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the <see cref="AcceptListFull"/> event. </summary>
     protected internal void OnAcceptListFull(IrcMessageEventArgs<AcceptListFullMessage> ircMessageEventArgs) {
-      if (this.AcceptListFull != null) {
-        this.AcceptListFull(this, ircMessageEventArgs);
+      if (AcceptListFull != null) {
+        AcceptListFull(this, ircMessageEventArgs);
       }
     }
 
@@ -487,8 +487,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the <see cref="AcceptAlreadyExists"/> event. </summary>
     protected internal void OnAcceptAlreadyExists(IrcMessageEventArgs<AcceptAlreadyExistsMessage> ircMessageEventArgs) {
-      if (this.AcceptAlreadyExists != null) {
-        this.AcceptAlreadyExists(this, ircMessageEventArgs);
+      if (AcceptAlreadyExists != null) {
+        AcceptAlreadyExists(this, ircMessageEventArgs);
       }
     }
 
@@ -498,8 +498,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the <see cref="AcceptDoesNotExist"/> event. </summary>
     protected internal void OnAcceptDoesNotExist(IrcMessageEventArgs<AcceptDoesNotExistMessage> ircMessageEventArgs) {
-      if (this.AcceptDoesNotExist != null) {
-        this.AcceptDoesNotExist(this, ircMessageEventArgs);
+      if (AcceptDoesNotExist != null) {
+        AcceptDoesNotExist(this, ircMessageEventArgs);
       }
     }
 
@@ -513,8 +513,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the Ping event. </summary>
     protected internal void OnPing(IrcMessageEventArgs<PingMessage> e) {
-      if (this.Ping != null) {
-        this.Ping(this, e);
+      if (Ping != null) {
+        Ping(this, e);
       }
     }
 
@@ -524,8 +524,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the Pong event. </summary>
     protected internal void OnPong(IrcMessageEventArgs<PongMessage> e) {
-      if (this.Pong != null) {
-        this.Pong(this, e);
+      if (Pong != null) {
+        Pong(this, e);
       }
     }
 
@@ -535,8 +535,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the Chat event. </summary>
     protected internal void OnChat(IrcMessageEventArgs<TextMessage> e) {
-      if (this.Chat != null) {
-        this.Chat(this, e);
+      if (Chat != null) {
+        Chat(this, e);
       }
     }
 
@@ -546,8 +546,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the Notice event. </summary>
     protected internal void OnNotice(IrcMessageEventArgs<TextMessage> e) {
-      if (this.Notice != null) {
-        this.Notice(this, e);
+      if (Notice != null) {
+        Notice(this, e);
       }
     }
 
@@ -557,8 +557,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the NickChange event. </summary>
     protected internal void OnNickChange(IrcMessageEventArgs<NickChangeMessage> e) {
-      if (this.NickChange != null) {
-        this.NickChange(this, e);
+      if (NickChange != null) {
+        NickChange(this, e);
       }
     }
 
@@ -568,19 +568,19 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the Join event. </summary>
     protected internal void OnJoin(IrcMessageEventArgs<JoinMessage> e) {
-      if (this.Join != null) {
-        this.Join(this, e);
+      if (Join != null) {
+        Join(this, e);
       }
     }
-    
+
     /// <summary>
     ///   Occurs when a <see cref="PartMessage"/> is received. </summary>
     public event EventHandler<IrcMessageEventArgs<PartMessage>> Part;
     /// <summary>
     ///   Raises the Part event. </summary>
     protected internal void OnPart(IrcMessageEventArgs<PartMessage> e) {
-      if (this.Part != null) {
-        this.Part(this, e);
+      if (Part != null) {
+        Part(this, e);
       }
     }
 
@@ -590,8 +590,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the Quit event. </summary>
     protected internal void OnQuit(IrcMessageEventArgs<QuitMessage> e) {
-      if (this.Quit != null) {
-        this.Quit(this, e);
+      if (Quit != null) {
+        Quit(this, e);
       }
     }
 
@@ -601,19 +601,19 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the Kick event. </summary>
     protected internal void OnKick(IrcMessageEventArgs<KickMessage> e) {
-      if (this.Kick != null) {
-        this.Kick(this, e);
+      if (Kick != null) {
+        Kick(this, e);
       }
     }
-    
+
     /// <summary>
     ///   Occurs when a <see cref="TopicMessage"/> is received. </summary>
     public event EventHandler<IrcMessageEventArgs<TopicMessage>> Topic;
     /// <summary>
     ///   Raises the Topic event. </summary>
     protected internal void OnTopic(IrcMessageEventArgs<TopicMessage> e) {
-      if (this.Topic != null) {
-        this.Topic(this, e);
+      if (Topic != null) {
+        Topic(this, e);
       }
     }
 
@@ -623,8 +623,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the TopicReply event. </summary>
     protected internal void OnTopicReply(IrcMessageEventArgs<TopicReplyMessage> e) {
-      if (this.TopicReply != null) {
-        this.TopicReply(this, e);
+      if (TopicReply != null) {
+        TopicReply(this, e);
       }
     }
 
@@ -634,8 +634,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the TopicNoneReply event. </summary>
     protected internal void OnTopicNoneReply(IrcMessageEventArgs<TopicNoneReplyMessage> e) {
-      if (this.TopicNoneReply != null) {
-        this.TopicNoneReply(this, e);
+      if (TopicNoneReply != null) {
+        TopicNoneReply(this, e);
       }
     }
 
@@ -645,8 +645,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the Invite event. </summary>
     protected internal void OnInvite(IrcMessageEventArgs<InviteMessage> e) {
-      if (this.Invite != null) {
-        this.Invite(this, e);
+      if (Invite != null) {
+        Invite(this, e);
       }
     }
 
@@ -656,8 +656,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the Away event. </summary>
     protected internal void OnAway(IrcMessageEventArgs<AwayMessage> e) {
-      if (this.Away != null) {
-        this.Away(this, e);
+      if (Away != null) {
+        Away(this, e);
       }
     }
 
@@ -667,8 +667,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the Admin event. </summary>
     protected internal void OnAdmin(IrcMessageEventArgs<AdminMessage> e) {
-      if (this.Admin != null) {
-        this.Admin(this, e);
+      if (Admin != null) {
+        Admin(this, e);
       }
     }
 
@@ -678,8 +678,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the Back event. </summary>
     protected internal void OnBack(IrcMessageEventArgs<BackMessage> e) {
-      if (this.Back != null) {
-        this.Back(this, e);
+      if (Back != null) {
+        Back(this, e);
       }
     }
 
@@ -689,8 +689,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the GenericNumericMessage event. </summary>
     protected internal void OnGenericNumericMessage(IrcMessageEventArgs<GenericNumericMessage> e) {
-      if (this.GenericNumericMessage != null) {
-        this.GenericNumericMessage(this, e);
+      if (GenericNumericMessage != null) {
+        GenericNumericMessage(this, e);
       }
     }
 
@@ -700,8 +700,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the Info event. </summary>
     protected internal void OnInfo(IrcMessageEventArgs<InfoMessage> e) {
-      if (this.Info != null) {
-        this.Info(this, e);
+      if (Info != null) {
+        Info(this, e);
       }
     }
 
@@ -711,8 +711,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the IsOn event. </summary>
     protected internal void OnIsOn(IrcMessageEventArgs<IsOnMessage> e) {
-      if (this.IsOn != null) {
-        this.IsOn(this, e);
+      if (IsOn != null) {
+        IsOn(this, e);
       }
     }
 
@@ -722,8 +722,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the IsOnReply event. </summary>
     protected internal void OnIsOnReply(IrcMessageEventArgs<IsOnReplyMessage> e) {
-      if (this.IsOnReply != null) {
-        this.IsOnReply(this, e);
+      if (IsOnReply != null) {
+        IsOnReply(this, e);
       }
     }
 
@@ -733,8 +733,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the Kill event. </summary>
     protected internal void OnKill(IrcMessageEventArgs<KillMessage> e) {
-      if (this.Kill != null) {
-        this.Kill(this, e);
+      if (Kill != null) {
+        Kill(this, e);
       }
     }
 
@@ -744,8 +744,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the Links event. </summary>
     protected internal void OnLinks(IrcMessageEventArgs<LinksMessage> e) {
-      if (this.Links != null) {
-        this.Links(this, e);
+      if (Links != null) {
+        Links(this, e);
       }
     }
 
@@ -755,8 +755,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the LinksReply event. </summary>
     protected internal void OnLinksReply(IrcMessageEventArgs<LinksReplyMessage> e) {
-      if (this.LinksReply != null) {
-        this.LinksReply(this, e);
+      if (LinksReply != null) {
+        LinksReply(this, e);
       }
     }
 
@@ -766,8 +766,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the LinksEndReply event. </summary>
     protected internal void OnLinksEndReply(IrcMessageEventArgs<LinksEndReplyMessage> e) {
-      if (this.LinksEndReply != null) {
-        this.LinksEndReply(this, e);
+      if (LinksEndReply != null) {
+        LinksEndReply(this, e);
       }
     }
 
@@ -777,8 +777,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the List event. </summary>
     protected internal void OnList(IrcMessageEventArgs<ListMessage> e) {
-      if (this.List != null) {
-        this.List(this, e);
+      if (List != null) {
+        List(this, e);
       }
     }
 
@@ -788,8 +788,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the ListStartReply event. </summary>
     protected internal void OnListStartReply(IrcMessageEventArgs<ListStartReplyMessage> e) {
-      if (this.ListStartReply != null) {
-        this.ListStartReply(this, e);
+      if (ListStartReply != null) {
+        ListStartReply(this, e);
       }
     }
 
@@ -799,8 +799,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the ListReply event. </summary>
     protected internal void OnListReply(IrcMessageEventArgs<ListReplyMessage> e) {
-      if (this.ListReply != null) {
-        this.ListReply(this, e);
+      if (ListReply != null) {
+        ListReply(this, e);
       }
     }
 
@@ -810,8 +810,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the ListEndReply event. </summary>
     protected internal void OnListEndReply(IrcMessageEventArgs<ListEndReplyMessage> e) {
-      if (this.ListEndReply != null) {
-        this.ListEndReply(this, e);
+      if (ListEndReply != null) {
+        ListEndReply(this, e);
       }
     }
 
@@ -821,8 +821,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the Lusers event. </summary>
     protected internal void OnLusers(IrcMessageEventArgs<LusersMessage> e) {
-      if (this.Lusers != null) {
-        this.Lusers(this, e);
+      if (Lusers != null) {
+        Lusers(this, e);
       }
     }
 
@@ -832,8 +832,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the LusersReply event. </summary>
     protected internal void OnLusersReply(IrcMessageEventArgs<LusersReplyMessage> e) {
-      if (this.LusersReply != null) {
-        this.LusersReply(this, e);
+      if (LusersReply != null) {
+        LusersReply(this, e);
       }
     }
 
@@ -843,8 +843,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the LusersOpReply event. </summary>
     protected internal void OnLusersOpReply(IrcMessageEventArgs<LusersOpReplyMessage> e) {
-      if (this.LusersOpReply != null) {
-        this.LusersOpReply(this, e);
+      if (LusersOpReply != null) {
+        LusersOpReply(this, e);
       }
     }
 
@@ -854,8 +854,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the LusersMeReply event. </summary>
     protected internal void OnLusersMeReply(IrcMessageEventArgs<LusersMeReplyMessage> e) {
-      if (this.LusersMeReply != null) {
-        this.LusersMeReply(this, e);
+      if (LusersMeReply != null) {
+        LusersMeReply(this, e);
       }
     }
 
@@ -865,8 +865,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the LusersChannelsReply event. </summary>
     protected internal void OnLusersChannelsReply(IrcMessageEventArgs<LusersChannelsReplyMessage> e) {
-      if (this.LusersChannelsReply != null) {
-        this.LusersChannelsReply(this, e);
+      if (LusersChannelsReply != null) {
+        LusersChannelsReply(this, e);
       }
     }
 
@@ -876,8 +876,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the Motd event. </summary>
     protected internal void OnMotd(IrcMessageEventArgs<MotdMessage> e) {
-      if (this.Motd != null) {
-        this.Motd(this, e);
+      if (Motd != null) {
+        Motd(this, e);
       }
     }
 
@@ -887,8 +887,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the MotdStartReply event. </summary>
     protected internal void OnMotdStartReply(IrcMessageEventArgs<MotdStartReplyMessage> e) {
-      if (this.MotdStartReply != null) {
-        this.MotdStartReply(this, e);
+      if (MotdStartReply != null) {
+        MotdStartReply(this, e);
       }
     }
 
@@ -898,8 +898,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the MotdReply event. </summary>
     protected internal void OnMotdReply(IrcMessageEventArgs<MotdReplyMessage> e) {
-      if (this.MotdReply != null) {
-        this.MotdReply(this, e);
+      if (MotdReply != null) {
+        MotdReply(this, e);
       }
     }
 
@@ -909,8 +909,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the MotdEndReply event. </summary>
     protected internal void OnMotdEndReply(IrcMessageEventArgs<MotdEndReplyMessage> e) {
-      if (this.MotdEndReply != null) {
-        this.MotdEndReply(this, e);
+      if (MotdEndReply != null) {
+        MotdEndReply(this, e);
       }
     }
 
@@ -920,8 +920,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the Names event. </summary>
     protected internal void OnNames(IrcMessageEventArgs<NamesMessage> e) {
-      if (this.Names != null) {
-        this.Names(this, e);
+      if (Names != null) {
+        Names(this, e);
       }
     }
 
@@ -931,8 +931,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the NamesReply event. </summary>
     protected internal void OnNamesReply(IrcMessageEventArgs<NamesReplyMessage> e) {
-      if (this.NamesReply != null) {
-        this.NamesReply(this, e);
+      if (NamesReply != null) {
+        NamesReply(this, e);
       }
     }
 
@@ -942,8 +942,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the NamesEndReply event. </summary>
     protected internal void OnNamesEndReply(IrcMessageEventArgs<NamesEndReplyMessage> e) {
-      if (this.NamesEndReply != null) {
-        this.NamesEndReply(this, e);
+      if (NamesEndReply != null) {
+        NamesEndReply(this, e);
       }
     }
 
@@ -953,8 +953,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the Oper event. </summary>
     protected internal void OnOper(IrcMessageEventArgs<OperMessage> e) {
-      if (this.Oper != null) {
-        this.Oper(this, e);
+      if (Oper != null) {
+        Oper(this, e);
       }
     }
 
@@ -964,8 +964,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the OperReply event. </summary>
     protected internal void OnOperReply(IrcMessageEventArgs<OperReplyMessage> e) {
-      if (this.OperReply != null) {
-        this.OperReply(this, e);
+      if (OperReply != null) {
+        OperReply(this, e);
       }
     }
 
@@ -975,8 +975,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the Password event. </summary>
     protected internal void OnPassword(IrcMessageEventArgs<PasswordMessage> e) {
-      if (this.Password != null) {
-        this.Password(this, e);
+      if (Password != null) {
+        Password(this, e);
       }
     }
 
@@ -986,8 +986,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the SelfAway event. </summary>
     protected internal void OnSelfAway(IrcMessageEventArgs<SelfAwayMessage> e) {
-      if (this.SelfAway != null) {
-        this.SelfAway(this, e);
+      if (SelfAway != null) {
+        SelfAway(this, e);
       }
     }
 
@@ -997,8 +997,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the SelfUnAway event. </summary>
     protected internal void OnSelfUnAway(IrcMessageEventArgs<SelfUnAwayMessage> e) {
-      if (this.SelfUnAway != null) {
-        this.SelfUnAway(this, e);
+      if (SelfUnAway != null) {
+        SelfUnAway(this, e);
       }
     }
 
@@ -1008,8 +1008,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the Stats event. </summary>
     protected internal void OnStats(IrcMessageEventArgs<StatsMessage> e) {
-      if (this.Stats != null) {
-        this.Stats(this, e);
+      if (Stats != null) {
+        Stats(this, e);
       }
     }
 
@@ -1019,8 +1019,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the StatsReply event. </summary>
     protected internal void OnStatsReply(IrcMessageEventArgs<StatsReplyMessage> e) {
-      if (this.StatsReply != null) {
-        this.StatsReply(this, e);
+      if (StatsReply != null) {
+        StatsReply(this, e);
       }
     }
 
@@ -1030,8 +1030,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the Time event. </summary>
     protected internal void OnTime(IrcMessageEventArgs<TimeMessage> e) {
-      if (this.Time != null) {
-        this.Time(this, e);
+      if (Time != null) {
+        Time(this, e);
       }
     }
 
@@ -1041,8 +1041,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the ServerTimeReply event. </summary>
     protected internal void OnServerTimeReply(IrcMessageEventArgs<ServerTimeReplyMessage> e) {
-      if (this.ServerTimeReply != null) {
-        this.ServerTimeReply(this, e);
+      if (ServerTimeReply != null) {
+        ServerTimeReply(this, e);
       }
     }
 
@@ -1052,8 +1052,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the Trace event. </summary>
     protected internal void OnTrace(IrcMessageEventArgs<TraceMessage> e) {
-      if (this.Trace != null) {
-        this.Trace(this, e);
+      if (Trace != null) {
+        Trace(this, e);
       }
     }
 
@@ -1063,8 +1063,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the UserNotification event. </summary>
     protected internal void OnUserNotification(IrcMessageEventArgs<UserNotificationMessage> e) {
-      if (this.UserNotification != null) {
-        this.UserNotification(this, e);
+      if (UserNotification != null) {
+        UserNotification(this, e);
       }
     }
 
@@ -1074,8 +1074,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the <see cref="UserNotificationServerSide"/> event. </summary>
     protected internal void OnUserNotificationServerSide(IrcMessageEventArgs<UserNotificationServerSideMessage> ircMessageEventArgs) {
-      if (this.UserNotificationServerSide != null) {
-        this.UserNotificationServerSide(this, ircMessageEventArgs);
+      if (UserNotificationServerSide != null) {
+        UserNotificationServerSide(this, ircMessageEventArgs);
       }
     }
 
@@ -1085,8 +1085,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the UserAway event. </summary>
     protected internal void OnUserAway(IrcMessageEventArgs<UserAwayMessage> e) {
-      if (this.UserAway != null) {
-        this.UserAway(this, e);
+      if (UserAway != null) {
+        UserAway(this, e);
       }
     }
 
@@ -1096,8 +1096,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the Version event. </summary>
     protected internal void OnVersion(IrcMessageEventArgs<VersionMessage> e) {
-      if (this.Version != null) {
-        this.Version(this, e);
+      if (Version != null) {
+        Version(this, e);
       }
     }
 
@@ -1107,8 +1107,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the Wallops event. </summary>
     protected internal void OnWallops(IrcMessageEventArgs<WallopsMessage> e) {
-      if (this.Wallops != null) {
-        this.Wallops(this, e);
+      if (Wallops != null) {
+        Wallops(this, e);
       }
     }
 
@@ -1118,8 +1118,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the Wallchops event. </summary>
     protected internal void OnWallchops(IrcMessageEventArgs<WallchopsMessage> e) {
-      if (this.Wallchops != null) {
-        this.Wallchops(this, e);
+      if (Wallchops != null) {
+        Wallchops(this, e);
       }
     }
 
@@ -1129,8 +1129,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the Who event. </summary>
     protected internal void OnWho(IrcMessageEventArgs<WhoMessage> e) {
-      if (this.Who != null) {
-        this.Who(this, e);
+      if (Who != null) {
+        Who(this, e);
       }
     }
 
@@ -1140,8 +1140,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the WhoReply event. </summary>
     protected internal void OnWhoReply(IrcMessageEventArgs<WhoReplyMessage> e) {
-      if (this.WhoReply != null) {
-        this.WhoReply(this, e);
+      if (WhoReply != null) {
+        WhoReply(this, e);
       }
     }
 
@@ -1151,8 +1151,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the WhoEndReply event. </summary>
     protected internal void OnWhoEndReply(IrcMessageEventArgs<WhoEndReplyMessage> e) {
-      if (this.WhoEndReply != null) {
-        this.WhoEndReply(this, e);
+      if (WhoEndReply != null) {
+        WhoEndReply(this, e);
       }
     }
 
@@ -1162,8 +1162,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the WhoIs event. </summary>
     protected internal void OnWhoIs(IrcMessageEventArgs<WhoIsMessage> e) {
-      if (this.WhoIs != null) {
-        this.WhoIs(this, e);
+      if (WhoIs != null) {
+        WhoIs(this, e);
       }
     }
 
@@ -1173,8 +1173,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the WhoIsChannelsReply event. </summary>
     protected internal void OnWhoIsChannelsReply(IrcMessageEventArgs<WhoIsChannelsReplyMessage> e) {
-      if (this.WhoIsChannelsReply != null) {
-        this.WhoIsChannelsReply(this, e);
+      if (WhoIsChannelsReply != null) {
+        WhoIsChannelsReply(this, e);
       }
     }
 
@@ -1184,8 +1184,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the WhoIsIdleReply event. </summary>
     protected internal void OnWhoIsIdleReply(IrcMessageEventArgs<WhoIsIdleReplyMessage> e) {
-      if (this.WhoIsIdleReply != null) {
-        this.WhoIsIdleReply(this, e);
+      if (WhoIsIdleReply != null) {
+        WhoIsIdleReply(this, e);
       }
     }
 
@@ -1195,8 +1195,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the WhoIsOperReply event. </summary>
     protected internal void OnWhoIsOperReply(IrcMessageEventArgs<WhoIsOperReplyMessage> e) {
-      if (this.WhoIsOperReply != null) {
-        this.WhoIsOperReply(this, e);
+      if (WhoIsOperReply != null) {
+        WhoIsOperReply(this, e);
       }
     }
 
@@ -1206,8 +1206,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the WhoIsServerReply event. </summary>
     protected internal void OnWhoIsServerReply(IrcMessageEventArgs<WhoIsServerReplyMessage> e) {
-      if (this.WhoIsServerReply != null) {
-        this.WhoIsServerReply(this, e);
+      if (WhoIsServerReply != null) {
+        WhoIsServerReply(this, e);
       }
     }
 
@@ -1217,8 +1217,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the WhoIsUserReply event. </summary>
     protected internal void OnWhoIsUserReply(IrcMessageEventArgs<WhoIsUserReplyMessage> e) {
-      if (this.WhoIsUserReply != null) {
-        this.WhoIsUserReply(this, e);
+      if (WhoIsUserReply != null) {
+        WhoIsUserReply(this, e);
       }
     }
 
@@ -1228,8 +1228,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the WhoIsEndReply event. </summary>
     protected internal void OnWhoIsEndReply(IrcMessageEventArgs<WhoIsEndReplyMessage> e) {
-      if (this.WhoIsEndReply != null) {
-        this.WhoIsEndReply(this, e);
+      if (WhoIsEndReply != null) {
+        WhoIsEndReply(this, e);
       }
     }
 
@@ -1239,8 +1239,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the <see cref="WhoIsRegisteredNickReply"/> event. </summary>
     protected internal void OnWhoIsRegisteredNickReply(IrcMessageEventArgs<WhoIsRegisteredNickReplyMessage> ircMessageEventArgs) {
-      if (this.WhoIsRegisteredNickReply != null) {
-        this.WhoIsRegisteredNickReply(this, ircMessageEventArgs);
+      if (WhoIsRegisteredNickReply != null) {
+        WhoIsRegisteredNickReply(this, ircMessageEventArgs);
       }
     }
 
@@ -1250,8 +1250,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the WhoWas event. </summary>
     protected internal void OnWhoWas(IrcMessageEventArgs<WhoWasMessage> e) {
-      if (this.WhoWas != null) {
-        this.WhoWas(this, e);
+      if (WhoWas != null) {
+        WhoWas(this, e);
       }
     }
 
@@ -1261,8 +1261,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the WhoWasUserReply event. </summary>
     protected internal void OnWhoWasUserReply(IrcMessageEventArgs<WhoWasUserReplyMessage> e) {
-      if (this.WhoWasUserReply != null) {
-        this.WhoWasUserReply(this, e);
+      if (WhoWasUserReply != null) {
+        WhoWasUserReply(this, e);
       }
     }
 
@@ -1272,8 +1272,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the WhoWasEndReply event. </summary>
     protected internal void OnWhoWasEndReply(IrcMessageEventArgs<WhoWasEndReplyMessage> e) {
-      if (this.WhoWasEndReply != null) {
-        this.WhoWasEndReply(this, e);
+      if (WhoWasEndReply != null) {
+        WhoWasEndReply(this, e);
       }
     }
 
@@ -1283,8 +1283,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the UserHost event. </summary>
     protected internal void OnUserHost(IrcMessageEventArgs<UserHostMessage> e) {
-      if (this.UserHost != null) {
-        this.UserHost(this, e);
+      if (UserHost != null) {
+        UserHost(this, e);
       }
     }
 
@@ -1294,8 +1294,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the UserHostReply event. </summary>
     protected internal void OnUserHostReply(IrcMessageEventArgs<UserHostReplyMessage> e) {
-      if (this.UserHostReply != null) {
-        this.UserHostReply(this, e);
+      if (UserHostReply != null) {
+        UserHostReply(this, e);
       }
     }
 
@@ -1305,8 +1305,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the Silence event. </summary>
     protected internal void OnSilence(IrcMessageEventArgs<SilenceMessage> e) {
-      if (this.Silence != null) {
-        this.Silence(this, e);
+      if (Silence != null) {
+        Silence(this, e);
       }
     }
 
@@ -1316,8 +1316,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the SilenceReply event. </summary>
     protected internal void OnSilenceReply(IrcMessageEventArgs<SilenceReplyMessage> e) {
-      if (this.SilenceReply != null) {
-        this.SilenceReply(this, e);
+      if (SilenceReply != null) {
+        SilenceReply(this, e);
       }
     }
 
@@ -1327,8 +1327,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the SilenceEndReply event. </summary>
     protected internal void OnSilenceEndReply(IrcMessageEventArgs<SilenceEndReplyMessage> e) {
-      if (this.SilenceEndReply != null) {
-        this.SilenceEndReply(this, e);
+      if (SilenceEndReply != null) {
+        SilenceEndReply(this, e);
       }
     }
 
@@ -1338,8 +1338,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the <see cref="AcceptListEditor"/> event. </summary>
     protected internal void OnAcceptListEditor(IrcMessageEventArgs<AcceptListEditorMessage> ircMessageEventArgs) {
-      if (this.AcceptListEditor != null) {
-        this.AcceptListEditor(this, ircMessageEventArgs);
+      if (AcceptListEditor != null) {
+        AcceptListEditor(this, ircMessageEventArgs);
       }
     }
 
@@ -1349,8 +1349,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the <see cref="AcceptListRequest"/> event. </summary>
     protected internal void OnAcceptListRequest(IrcMessageEventArgs<AcceptListRequestMessage> ircMessageEventArgs) {
-      if (this.AcceptListRequest != null) {
-        this.AcceptListRequest(this, ircMessageEventArgs);
+      if (AcceptListRequest != null) {
+        AcceptListRequest(this, ircMessageEventArgs);
       }
     }
 
@@ -1360,8 +1360,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the <see cref="AcceptListReply"/> event. </summary>
     protected internal void OnAcceptListReply(IrcMessageEventArgs<AcceptListReplyMessage> ircMessageEventArgs) {
-      if (this.AcceptListReply != null) {
-        this.AcceptListReply(this, ircMessageEventArgs);
+      if (AcceptListReply != null) {
+        AcceptListReply(this, ircMessageEventArgs);
       }
     }
 
@@ -1371,8 +1371,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the <see cref="AcceptListEndReply"/> event. </summary>
     protected internal void OnAcceptListEndReply(IrcMessageEventArgs<AcceptListEndReplyMessage> ircMessageEventArgs) {
-      if (this.AcceptListEndReply != null) {
-        this.AcceptListEndReply(this, ircMessageEventArgs);
+      if (AcceptListEndReply != null) {
+        AcceptListEndReply(this, ircMessageEventArgs);
       }
     }
 
@@ -1386,8 +1386,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the ActionRequest event. </summary>
     protected internal void OnActionRequest(IrcMessageEventArgs<ActionRequestMessage> e) {
-      if (this.ActionRequest != null) {
-        this.ActionRequest(this, e);
+      if (ActionRequest != null) {
+        ActionRequest(this, e);
       }
     }
 
@@ -1639,8 +1639,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the <see cref="Mp3Request"/> event. </summary>
     protected internal void OnMp3Request(IrcMessageEventArgs<Mp3RequestMessage> ircMessageEventArgs) {
-      if (this.Mp3Request != null) {
-        this.Mp3Request(this, ircMessageEventArgs);
+      if (Mp3Request != null) {
+        Mp3Request(this, ircMessageEventArgs);
       }
     }
 
@@ -1650,8 +1650,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the <see cref="SlotsRequest"/> event. </summary>
     protected internal void OnSlotsRequest(IrcMessageEventArgs<SlotsRequestMessage> ircMessageEventArgs) {
-      if (this.SlotsRequest != null) {
-        this.SlotsRequest(this, ircMessageEventArgs);
+      if (SlotsRequest != null) {
+        SlotsRequest(this, ircMessageEventArgs);
       }
     }
 
@@ -1725,7 +1725,7 @@ namespace Supay.Irc.Messages {
     ///   Raises the UserMode event. </summary>
     protected internal void OnUserMode(IrcMessageEventArgs<UserModeMessage> e) {
       if (UserMode != null) {
-        this.UserMode(this, e);
+        UserMode(this, e);
       }
     }
 
@@ -1794,8 +1794,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the Welcome event. </summary>
     protected internal void OnWelcome(IrcMessageEventArgs<WelcomeMessage> e) {
-      if (this.Welcome != null) {
-        this.Welcome(this, e);
+      if (Welcome != null) {
+        Welcome(this, e);
       }
     }
 
@@ -1805,8 +1805,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the YourHost event. </summary>
     protected internal void OnYourHost(IrcMessageEventArgs<YourHostMessage> e) {
-      if (this.YourHost != null) {
-        this.YourHost(this, e);
+      if (YourHost != null) {
+        YourHost(this, e);
       }
     }
 
@@ -1816,8 +1816,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the ServerCreated event. </summary>
     protected internal void OnServerCreated(IrcMessageEventArgs<ServerCreatedMessage> e) {
-      if (this.ServerCreated != null) {
-        this.ServerCreated(this, e);
+      if (ServerCreated != null) {
+        ServerCreated(this, e);
       }
     }
 
@@ -1827,8 +1827,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the ServerInfo event. </summary>
     protected internal void OnServerInfo(IrcMessageEventArgs<ServerInfoMessage> e) {
-      if (this.ServerInfo != null) {
-        this.ServerInfo(this, e);
+      if (ServerInfo != null) {
+        ServerInfo(this, e);
       }
     }
 
@@ -1838,8 +1838,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the Support event. </summary>
     protected internal void OnSupport(IrcMessageEventArgs<SupportMessage> e) {
-      if (this.Support != null) {
-        this.Support(this, e);
+      if (Support != null) {
+        Support(this, e);
       }
     }
 
@@ -1849,8 +1849,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the <see cref="UnknownConnections"/> event. </summary>
     protected internal void OnUnknownConnections(IrcMessageEventArgs<UnknownConnectionsMessage> ircMessageEventArgs) {
-      if (this.UnknownConnections != null) {
-        this.UnknownConnections(this, ircMessageEventArgs);
+      if (UnknownConnections != null) {
+        UnknownConnections(this, ircMessageEventArgs);
       }
     }
 
@@ -1860,8 +1860,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the <see cref="UnknownConnections"/> event. </summary>
     protected internal void OnUniqueId(IrcMessageEventArgs<UniqueIdMessage> ircMessageEventArgs) {
-      if (this.UniqueId != null) {
-        this.UniqueId(this, ircMessageEventArgs);
+      if (UniqueId != null) {
+        UniqueId(this, ircMessageEventArgs);
       }
     }
 
@@ -1875,8 +1875,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the LocalUsersReply event. </summary>
     protected internal void OnLocalUsersReply(IrcMessageEventArgs<LocalUsersReplyMessage> e) {
-      if (this.LocalUsersReply != null) {
-        this.LocalUsersReply(this, e);
+      if (LocalUsersReply != null) {
+        LocalUsersReply(this, e);
       }
     }
 
@@ -1886,8 +1886,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the GlobalUsersReply event. </summary>
     protected internal void OnGlobalUsersReply(IrcMessageEventArgs<GlobalUsersReplyMessage> e) {
-      if (this.GlobalUsersReply != null) {
-        this.GlobalUsersReply(this, e);
+      if (GlobalUsersReply != null) {
+        GlobalUsersReply(this, e);
       }
     }
 
@@ -1897,8 +1897,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the TopicSetReply event. </summary>
     protected internal void OnTopicSetReply(IrcMessageEventArgs<TopicSetReplyMessage> e) {
-      if (this.TopicSetReply != null) {
-        this.TopicSetReply(this, e);
+      if (TopicSetReply != null) {
+        TopicSetReply(this, e);
       }
     }
 
@@ -1908,8 +1908,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the <see cref="ChannelCreationTime"/> event. </summary>
     protected internal void OnChannelCreationTime(IrcMessageEventArgs<ChannelCreationTimeMessage> ircMessageEventArgs) {
-      if (this.ChannelCreationTime != null) {
-        this.ChannelCreationTime(this, ircMessageEventArgs);
+      if (ChannelCreationTime != null) {
+        ChannelCreationTime(this, ircMessageEventArgs);
       }
     }
 
@@ -1923,8 +1923,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the ChannelProperty event. </summary>
     protected internal void OnChannelProperty(IrcMessageEventArgs<ChannelPropertyMessage> e) {
-      if (this.ChannelProperty != null) {
-        this.ChannelProperty(this, e);
+      if (ChannelProperty != null) {
+        ChannelProperty(this, e);
       }
     }
 
@@ -1934,8 +1934,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the ChannelPropertyReply event. </summary>
     protected internal void OnChannelPropertyReply(IrcMessageEventArgs<ChannelPropertyReplyMessage> e) {
-      if (this.ChannelPropertyReply != null) {
-        this.ChannelPropertyReply(this, e);
+      if (ChannelPropertyReply != null) {
+        ChannelPropertyReply(this, e);
       }
     }
 
@@ -1945,8 +1945,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the ChannelPropertyEndReply event. </summary>
     protected internal void OnChannelPropertyEndReply(IrcMessageEventArgs<ChannelPropertyEndReplyMessage> e) {
-      if (this.ChannelPropertyEndReply != null) {
-        this.ChannelPropertyEndReply(this, e);
+      if (ChannelPropertyEndReply != null) {
+        ChannelPropertyEndReply(this, e);
       }
     }
 
@@ -1956,8 +1956,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the Ircx event. </summary>
     protected internal void OnIrcx(IrcMessageEventArgs<IrcxMessage> e) {
-      if (this.Ircx != null) {
-        this.Ircx(this, e);
+      if (Ircx != null) {
+        Ircx(this, e);
       }
     }
 
@@ -1967,8 +1967,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the IsIrcx event. </summary>
     protected internal void OnIsIrcx(IrcMessageEventArgs<IsIrcxMessage> e) {
-      if (this.IsIrcx != null) {
-        this.IsIrcx(this, e);
+      if (IsIrcx != null) {
+        IsIrcx(this, e);
       }
     }
 
@@ -1978,8 +1978,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the IrcxReply event. </summary>
     protected internal void OnIrcxReply(IrcMessageEventArgs<IrcxReplyMessage> e) {
-      if (this.IrcxReply != null) {
-        this.IrcxReply(this, e);
+      if (IrcxReply != null) {
+        IrcxReply(this, e);
       }
     }
 
@@ -1989,8 +1989,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the Knock event. </summary>
     protected internal void OnKnock(IrcMessageEventArgs<KnockMessage> e) {
-      if (this.Knock != null) {
-        this.Knock(this, e);
+      if (Knock != null) {
+        Knock(this, e);
       }
     }
 
@@ -2000,8 +2000,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the KnockReply event. </summary>
     protected internal void OnKnockReply(IrcMessageEventArgs<KnockReplyMessage> e) {
-      if (this.KnockReply != null) {
-        this.KnockReply(this, e);
+      if (KnockReply != null) {
+        KnockReply(this, e);
       }
     }
 
@@ -2011,8 +2011,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the KnockRequest event. </summary>
     protected internal void OnKnockRequest(IrcMessageEventArgs<KnockRequestMessage> e) {
-      if (this.KnockRequest != null) {
-        this.KnockRequest(this, e);
+      if (KnockRequest != null) {
+        KnockRequest(this, e);
       }
     }
 
@@ -2022,8 +2022,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the Whisper event. </summary>
     protected internal void OnWhisper(IrcMessageEventArgs<WhisperMessage> e) {
-      if (this.Whisper != null) {
-        this.Whisper(this, e);
+      if (Whisper != null) {
+        Whisper(this, e);
       }
     }
 
@@ -2037,8 +2037,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the WatchListClear event. </summary>
     protected internal void OnWatchListClear(IrcMessageEventArgs<WatchListClearMessage> e) {
-      if (this.WatchListClear != null) {
-        this.WatchListClear(this, e);
+      if (WatchListClear != null) {
+        WatchListClear(this, e);
       }
     }
 
@@ -2048,8 +2048,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the WatchListEditor event. </summary>
     protected internal void OnWatchListEditor(IrcMessageEventArgs<WatchListEditorMessage> e) {
-      if (this.WatchListEditor != null) {
-        this.WatchListEditor(this, e);
+      if (WatchListEditor != null) {
+        WatchListEditor(this, e);
       }
     }
 
@@ -2059,8 +2059,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the WatchListRequest event. </summary>
     protected internal void OnWatchListRequest(IrcMessageEventArgs<WatchListRequestMessage> e) {
-      if (this.WatchListRequest != null) {
-        this.WatchListRequest(this, e);
+      if (WatchListRequest != null) {
+        WatchListRequest(this, e);
       }
     }
 
@@ -2070,8 +2070,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the WatchStatusRequest event. </summary>
     protected internal void OnWatchStatusRequest(IrcMessageEventArgs<WatchStatusRequestMessage> e) {
-      if (this.WatchStatusRequest != null) {
-        this.WatchStatusRequest(this, e);
+      if (WatchStatusRequest != null) {
+        WatchStatusRequest(this, e);
       }
     }
 
@@ -2081,8 +2081,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the WatchListEndReply event. </summary>
     protected internal void OnWatchListEndReply(IrcMessageEventArgs<WatchListEndReplyMessage> e) {
-      if (this.WatchListEndReply != null) {
-        this.WatchListEndReply(this, e);
+      if (WatchListEndReply != null) {
+        WatchListEndReply(this, e);
       }
     }
 
@@ -2092,8 +2092,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the WatchStatusReply event. </summary>
     protected internal void OnWatchStatusReply(IrcMessageEventArgs<WatchStatusReplyMessage> e) {
-      if (this.WatchStatusReply != null) {
-        this.WatchStatusReply(this, e);
+      if (WatchStatusReply != null) {
+        WatchStatusReply(this, e);
       }
     }
 
@@ -2103,8 +2103,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the <see cref="WatchStatusNicksReply"/> event. </summary>
     protected internal void OnWatchStatusNicksReply(IrcMessageEventArgs<WatchStatusNicksReplyMessage> ircMessageEventArgs) {
-      if (this.WatchStatusNicksReply != null) {
-        this.WatchStatusNicksReply(this, ircMessageEventArgs);
+      if (WatchStatusNicksReply != null) {
+        WatchStatusNicksReply(this, ircMessageEventArgs);
       }
     }
 
@@ -2114,8 +2114,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the WatchStoppedReply event. </summary>
     protected internal void OnWatchStopped(IrcMessageEventArgs<WatchStoppedMessage> e) {
-      if (this.WatchStopped != null) {
-        this.WatchStopped(this, e);
+      if (WatchStopped != null) {
+        WatchStopped(this, e);
       }
     }
 
@@ -2125,8 +2125,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the <see cref="WatchedUserOnline"/> event. </summary>
     protected internal void OnWatchedUserOnline(IrcMessageEventArgs<WatchedUserOnlineMessage> ircMessageEventArgs) {
-      if (this.WatchedUserOnline != null) {
-        this.WatchedUserOnline(this, ircMessageEventArgs);
+      if (WatchedUserOnline != null) {
+        WatchedUserOnline(this, ircMessageEventArgs);
       }
     }
 
@@ -2136,8 +2136,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the <see cref="WatchedUserOffline"/> event. </summary>
     protected internal void OnWatchedUserOffline(IrcMessageEventArgs<WatchedUserOfflineMessage> ircMessageEventArgs) {
-      if (this.WatchedUserOffline != null) {
-        this.WatchedUserOffline(this, ircMessageEventArgs);
+      if (WatchedUserOffline != null) {
+        WatchedUserOffline(this, ircMessageEventArgs);
       }
     }
 
@@ -2151,8 +2151,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the <see cref="MonitorListClear"/> event. </summary>
     protected internal void OnMonitorListClear(IrcMessageEventArgs<MonitorListClearMessage> ircMessageEventArgs) {
-      if (this.MonitorListClear != null) {
-        this.MonitorListClear(this, ircMessageEventArgs);
+      if (MonitorListClear != null) {
+        MonitorListClear(this, ircMessageEventArgs);
       }
     }
 
@@ -2162,8 +2162,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the <see cref="MonitorListRequest"/> event. </summary>
     protected internal void OnMonitorListRequest(IrcMessageEventArgs<MonitorListRequestMessage> ircMessageEventArgs) {
-      if (this.MonitorListRequest != null) {
-        this.MonitorListRequest(this, ircMessageEventArgs);
+      if (MonitorListRequest != null) {
+        MonitorListRequest(this, ircMessageEventArgs);
       }
     }
 
@@ -2173,8 +2173,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the <see cref="MonitorStatusRequest"/> event. </summary>
     protected internal void OnMonitorStatusRequest(IrcMessageEventArgs<MonitorStatusRequestMessage> ircMessageEventArgs) {
-      if (this.MonitorStatusRequest != null) {
-        this.MonitorStatusRequest(this, ircMessageEventArgs);
+      if (MonitorStatusRequest != null) {
+        MonitorStatusRequest(this, ircMessageEventArgs);
       }
     }
 
@@ -2184,8 +2184,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the <see cref="MonitorAddUsers"/> event. </summary>
     protected internal void OnMonitorAddUsers(IrcMessageEventArgs<MonitorAddUsersMessage> ircMessageEventArgs) {
-      if (this.MonitorAddUsers != null) {
-        this.MonitorAddUsers(this, ircMessageEventArgs);
+      if (MonitorAddUsers != null) {
+        MonitorAddUsers(this, ircMessageEventArgs);
       }
     }
 
@@ -2195,8 +2195,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the <see cref="MonitorRemoveUsers"/> event. </summary>
     protected internal void OnMonitorRemoveUsers(IrcMessageEventArgs<MonitorRemoveUsersMessage> ircMessageEventArgs) {
-      if (this.MonitorRemoveUsers != null) {
-        this.MonitorRemoveUsers(this, ircMessageEventArgs);
+      if (MonitorRemoveUsers != null) {
+        MonitorRemoveUsers(this, ircMessageEventArgs);
       }
     }
 
@@ -2206,8 +2206,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the <see cref="MonitoredUserOnline"/> event. </summary>
     protected internal void OnMonitoredUserOnline(IrcMessageEventArgs<MonitoredUserOnlineMessage> ircMessageEventArgs) {
-      if (this.MonitoredUserOnline != null) {
-        this.MonitoredUserOnline(this, ircMessageEventArgs);
+      if (MonitoredUserOnline != null) {
+        MonitoredUserOnline(this, ircMessageEventArgs);
       }
     }
 
@@ -2217,8 +2217,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the <see cref="MonitoredUserOffline"/> event. </summary>
     protected internal void OnMonitoredUserOffline(IrcMessageEventArgs<MonitoredUserOfflineMessage> ircMessageEventArgs) {
-      if (this.MonitoredUserOffline != null) {
-        this.MonitoredUserOffline(this, ircMessageEventArgs);
+      if (MonitoredUserOffline != null) {
+        MonitoredUserOffline(this, ircMessageEventArgs);
       }
     }
 
@@ -2228,8 +2228,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the <see cref="MonitorListReply"/> event. </summary>
     protected internal void OnMonitorListReply(IrcMessageEventArgs<MonitorListReplyMessage> ircMessageEventArgs) {
-      if (this.MonitorListReply != null) {
-        this.MonitorListReply(this, ircMessageEventArgs);
+      if (MonitorListReply != null) {
+        MonitorListReply(this, ircMessageEventArgs);
       }
     }
 
@@ -2239,8 +2239,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the <see cref="MonitorListEndReply"/> event. </summary>
     protected internal void OnMonitorListEndReply(IrcMessageEventArgs<MonitorListEndReplyMessage> ircMessageEventArgs) {
-      if (this.MonitorListEndReply != null) {
-        this.MonitorListEndReply(this, ircMessageEventArgs);
+      if (MonitorListEndReply != null) {
+        MonitorListEndReply(this, ircMessageEventArgs);
       }
     }
 
@@ -2250,8 +2250,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the <see cref="MonitorListFull"/> event. </summary>
     protected internal void OnMonitorListFull(IrcMessageEventArgs<MonitorListFullMessage> ircMessageEventArgs) {
-      if (this.MonitorListFull != null) {
-        this.MonitorListFull(this, ircMessageEventArgs);
+      if (MonitorListFull != null) {
+        MonitorListFull(this, ircMessageEventArgs);
       }
     }
 
@@ -2265,8 +2265,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the ChannelScopedChat event. </summary>
     protected internal void OnChannelScopedChat(IrcMessageEventArgs<ChannelScopedChatMessage> e) {
-      if (this.ChannelScopedChat != null) {
-        this.ChannelScopedChat(this, e);
+      if (ChannelScopedChat != null) {
+        ChannelScopedChat(this, e);
       }
     }
 
@@ -2276,8 +2276,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Raises the ChannelScopedNotice event. </summary>
     protected internal void OnChannelScopedNotice(IrcMessageEventArgs<ChannelScopedNoticeMessage> e) {
-      if (this.ChannelScopedNotice != null) {
-        this.ChannelScopedNotice(this, e);
+      if (ChannelScopedNotice != null) {
+        ChannelScopedNotice(this, e);
       }
     }
 
