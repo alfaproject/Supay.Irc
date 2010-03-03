@@ -4,79 +4,60 @@ using Supay.Irc.Dcc;
 namespace Supay.Irc.Messages {
 
   /// <summary>
-  /// This message is a request to start a dcc chat.
-  /// </summary>
+  ///   This message is a request to start a DCC chat. </summary>
   public class DccChatRequestMessage : DccRequestMessage {
 
     /// <summary>
-    /// Creates a new instance of the <see cref="DccChatRequestMessage"/> class.
-    /// </summary>
-    public DccChatRequestMessage()
-      : base() {
+    ///   Creates a new instance of the <see cref="DccChatRequestMessage"/> class. </summary>
+    public DccChatRequestMessage() {
+      Secure = false;
     }
 
     /// <summary>
-    /// Gets the dcc sub-command.
-    /// </summary>
-    protected override String DccCommand {
+    ///   Gets the DCC sub-command. </summary>
+    protected override string DccCommand {
       get {
-        if (this.Secure) {
+        if (Secure) {
           return "SCHAT";
-        } else {
-          return "CHAT";
         }
+        return "CHAT";
       }
     }
 
     /// <summary>
-    /// Gets the dcc sub-command's argument.
-    /// </summary>
-    protected override String DccArgument {
+    ///   Gets the DCC sub-command's argument. </summary>
+    protected override string DccArgument {
       get {
         return "chat";
       }
     }
 
     /// <summary>
-    /// Gets or sets if the dcc connection should use SSL.
-    /// </summary>
-    public virtual bool Secure {
-      get {
-        return secure;
-      }
-      set {
-        secure = value;
-      }
+    ///   Gets or sets if the DCC connection should use SSL. </summary>
+    public bool Secure {
+      get;
+      set;
     }
 
     /// <summary>
-    /// Determines if the message's DCC command is compatible with this message.
-    /// </summary>
-    public override bool CanParseDccCommand(String command) {
-      if (String.IsNullOrEmpty(command)) {
-        return false;
-      }
-      return command.ToUpperInvariant().EndsWith("CHAT", StringComparison.Ordinal);
+    ///   Determines if the message's DCC command is compatible with this message. </summary>
+    public override bool CanParseDccCommand(string command) {
+      return !string.IsNullOrEmpty(command) && command.EndsWith("CHAT", StringComparison.OrdinalIgnoreCase);
     }
 
     /// <summary>
-    /// Parses the given string to populate this <see cref="IrcMessage"/>.
-    /// </summary>
-    public override void Parse(String unparsedMessage) {
+    ///   Parses the given string to populate this <see cref="IrcMessage"/>. </summary>
+    public override void Parse(string unparsedMessage) {
       base.Parse(unparsedMessage);
-
-      this.Secure = DccUtil.GetCommand(unparsedMessage).ToUpperInvariant().StartsWith("S", StringComparison.Ordinal);
+      Secure = DccUtil.GetCommand(unparsedMessage).StartsWith("S", StringComparison.OrdinalIgnoreCase);
     }
 
     /// <summary>
-    /// Notifies the given <see cref="MessageConduit"/> by raising the appropriate event for the current <see cref="IrcMessage"/> subclass.
-    /// </summary>
-    public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
+    ///   Notifies the given <see cref="MessageConduit"/> by raising the appropriate event for the
+    ///   current <see cref="IrcMessage"/> subclass. </summary>
+    public override void Notify(MessageConduit conduit) {
       conduit.OnDccChatRequest(new IrcMessageEventArgs<DccChatRequestMessage>(this));
     }
 
-    private bool secure = false;
-
-  }
-
-}
+  } //class DccChatRequestMessage
+} //namespace Supay.Irc.Messages
