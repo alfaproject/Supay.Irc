@@ -8,7 +8,7 @@ namespace Supay.Irc.Messages {
   public abstract class CommandMessage : IrcMessage {
 
     /// <summary>
-    ///   Gets the Irc command associated with this message. </summary>
+    ///   Gets the IRC command associated with this message. </summary>
     protected abstract string Command {
       get;
     }
@@ -16,14 +16,14 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Overrides <see cref="IrcMessage.AddParametersToFormat"/>. </summary>
     protected override void AddParametersToFormat(IrcMessageWriter writer) {
-      writer.AddParameter(this.Command);
+      writer.AddParameter(Command);
     }
 
     /// <summary>
     ///   Determines if the message can be parsed by this type. </summary>
     public override bool CanParse(string unparsedMessage) {
       string messageCommand = MessageUtil.GetCommand(unparsedMessage);
-      return messageCommand.EqualsI(this.Command);
+      return messageCommand.EqualsI(Command);
     }
 
   } //class CommandMessage
