@@ -64,7 +64,7 @@ namespace Supay.Irc {
     /// Initializes a new instance of the <see cref="Client"/> with the given address.
     /// </summary>
     /// <param name="address">The address that will be connected to.</param>
-    /// <param name="nick">The <see cref="Supay.Irc.User.Nick"/> of the <see cref="Client.User"/></param>
+    /// <param name="nick">The <see cref="Supay.Irc.User.Nickname"/> of the <see cref="Client.User"/></param>
     /// <param name="realName">The <see cref="Supay.Irc.User.Name"/> of the <see cref="Client.User"/></param>
     public Client(String address, String nick, String realName)
       : this(address, nick) {
