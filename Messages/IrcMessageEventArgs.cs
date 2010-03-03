@@ -8,17 +8,17 @@ namespace Supay.Irc.Messages {
   public class IrcMessageEventArgs<T> : EventArgs where T : IrcMessage {
 
     /// <summary>
-    ///   Initializes a new instance of the <see cref="IrcMessageEventArgs&lt;T&gt;"/>
-    ///   class with the given <see cref="IrcMessage"/>. </summary>
+    ///   Initializes a new instance of the <see cref="IrcMessageEventArgs&lt;T&gt;"/> class with
+    ///   the given <see cref="IrcMessage"/>. </summary>
     public IrcMessageEventArgs(T msg) {
-      this.Message = msg;
+      Message = msg;
     }
 
     /// <summary>
     ///   Gets or sets the Message for the event. </summary>
     public T Message {
       get;
-      set;
+      private set;
     }
 
   } //class IrcMessageEventArgs<T>
