@@ -13,15 +13,10 @@ namespace Supay.Irc.Messages {
     private const int MinMessageLength = 1;
     private const int MaxMessageLength = 512;
 
-    private PrioritizedMessageList _numerics;
-    private PrioritizedMessageList _commands;
-    private PrioritizedMessageList _ctcps;
-    private PrioritizedMessageList _customs;
-
-    /// <summary>
-    ///   Explicit static constructor to tell C# compiler not to mark type as 'beforefieldinit'. </summary>
-    static MessageParserService() {
-    }
+    private LinkedList<IrcMessage> _numerics;
+    private LinkedList<IrcMessage> _commands;
+    private LinkedList<IrcMessage> _ctcps;
+    private LinkedList<IrcMessage> _customs;
 
     /// <summary>
     ///   Initializes a new instance of the <see cref="MessageParserService"/> class. </summary>
@@ -29,9 +24,9 @@ namespace Supay.Irc.Messages {
     ///   This is private because this class is a Singleton.
     ///   Use the <see cref="Service"/> to get the only instance of this class. </remarks>
     private MessageParserService() {
-      _numerics = new PrioritizedMessageList();
-      _commands = new PrioritizedMessageList();
-      _ctcps = new PrioritizedMessageList();
+      _numerics = new LinkedList<IrcMessage>();
+      _commands = new LinkedList<IrcMessage>();
+      _ctcps = new LinkedList<IrcMessage>();
 
       foreach (Type type in this.GetType().Assembly.GetTypes()) {
         if (type.IsSubclassOf(typeof(IrcMessage))) {
@@ -66,7 +61,7 @@ namespace Supay.Irc.Messages {
     ///   Adds a custom message to consider for parsing raw messages received from the server. </summary>
     public void AddCustomMessage(IrcMessage msg) {
       if (_customs == null) {
-        _customs = new PrioritizedMessageList();
+        _customs = new LinkedList<IrcMessage>();
       }
       _customs.AddLast(msg);
     }
@@ -141,7 +136,7 @@ namespace Supay.Irc.Messages {
       return msg;
     }
 
-    private static IrcMessage GetMessage(string unparsedMessage, PrioritizedMessageList potentialHandlers) {
+    private static IrcMessage GetMessage(string unparsedMessage, LinkedList<IrcMessage> potentialHandlers) {
       IrcMessage handler = null;
       LinkedListNode<IrcMessage> nodeToPrioritize = null;
 
@@ -165,8 +160,10 @@ namespace Supay.Irc.Messages {
         while (node != null && node.Next != potentialHandlers.First);
       }
 
-      if (nodeToPrioritize != null) {
-        potentialHandlers.Prioritize(nodeToPrioritize);
+      // prioritize this IrcMessage by moving it to the beginning of the list
+      if (nodeToPrioritize != null && nodeToPrioritize != potentialHandlers.First) {
+        potentialHandlers.Remove(nodeToPrioritize);
+        potentialHandlers.AddFirst(nodeToPrioritize);
       }
 
       return handler;

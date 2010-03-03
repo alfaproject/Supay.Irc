@@ -267,7 +267,6 @@
     <Compile Include="Messages\IrcX\WhisperMessage.cs" />
     <Compile Include="Messages\IrcMessage.cs" />
     <Compile Include="Messages\IrcMessageEventArgs.cs" />
-    <Compile Include="Messages\PrioritizedMessageList.cs" />
     <Compile Include="Messages\MessageUtil.cs" />
     <Compile Include="Messages\Misc\AwayMessage.cs" />
     <Compile Include="Messages\Misc\BackMessage.cs" />
