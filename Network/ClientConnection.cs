@@ -51,7 +51,7 @@ namespace Supay.Irc.Network {
     ///   The port to connect on. </param>
     public ClientConnection(string address, int port) {
       Status = ConnectionStatus.Disconnected;
-      Encoding = Encoding.UTF8;
+      Encoding = Encoding.ASCII;
       Ssl = false;
       Address = address;
       Port = port;
