@@ -1,136 +1,106 @@
 using System;
 using System.Globalization;
 using System.Net;
+using System.Net.Sockets;
 using Supay.Irc.Dcc;
 
 namespace Supay.Irc.Messages {
 
   /// <summary>
-  /// The base for dcc request messages.
-  /// </summary>
+  ///   The base for DCC request messages. </summary>
   [Serializable]
   public abstract class DccRequestMessage : CtcpRequestMessage {
 
     /// <summary>
-    /// Creates a new instance of the <see cref="DccRequestMessage"/> class.
-    /// </summary>
-    protected DccRequestMessage()
-      : base() {
-      this.InternalCommand = "DCC";
+    ///   Creates a new instance of the <see cref="DccRequestMessage"/> class. </summary>
+    protected DccRequestMessage() {
+      Port = -1;
+      Address = System.Net.IPAddress.None;
+      InternalCommand = "DCC";
     }
 
 
     /// <summary>
-    /// Gets the data payload of the Ctcp request.
-    /// </summary>
-    protected override String ExtendedData {
+    ///   Gets the data payload of the CTCP request. </summary>
+    protected override string ExtendedData {
       get {
-        return MessageUtil.ParametersToString(false, this.DccCommand, this.DccArgument, TransportAddressFromAddress(this.Address), this.Port.ToString(CultureInfo.InvariantCulture));
+        return MessageUtil.ParametersToString(false, DccCommand, DccArgument, TransportAddressFromAddress(Address), Port.ToString(CultureInfo.InvariantCulture));
       }
     }
 
 
     /// <summary>
-    /// Gets the dcc sub-command.
-    /// </summary>
-    protected abstract String DccCommand {
+    ///   Gets the DCC sub-command. </summary>
+    protected abstract string DccCommand {
       get;
     }
 
     /// <summary>
-    /// Gets the dcc sub-command's argument.
-    /// </summary>
-    protected abstract String DccArgument {
+    ///   Gets the DCC sub-command's argument. </summary>
+    protected abstract string DccArgument {
       get;
     }
 
     /// <summary>
-    /// Gets or sets the host address on which the initiator expects the connection.
-    /// </summary>
-    public virtual System.Net.IPAddress Address {
-      get {
-        return _address;
-      }
-      set {
-        _address = value;
-      }
+    ///   Gets or sets the host address on which the initiator expects the connection. </summary>
+    public IPAddress Address {
+      get;
+      set;
     }
 
     /// <summary>
-    /// Gets or sets the port on which the initiator expects the connection.
-    /// </summary>
-    public virtual int Port {
-      get {
-        return port;
-      }
-      set {
-        port = value;
-      }
+    ///   Gets or sets the port on which the initiator expects the connection. </summary>
+    public int Port {
+      get;
+      set;
     }
 
     /// <summary>
-    /// Determines if the message can be parsed by this type.
-    /// </summary>
-    public override bool CanParse(String unparsedMessage) {
-      if (!base.CanParse(unparsedMessage)) {
-        return false;
-      }
-
-      return CanParseDccCommand(DccUtil.GetCommand(unparsedMessage));
+    ///   Determines if the message can be parsed by this type. </summary>
+    public override bool CanParse(string unparsedMessage) {
+      return base.CanParse(unparsedMessage) && CanParseDccCommand(DccUtil.GetCommand(unparsedMessage));
     }
 
     /// <summary>
-    /// Determines if the message's DCC command is compatible with this message.
-    /// </summary>
-    public virtual bool CanParseDccCommand(String command) {
-      if (String.IsNullOrEmpty(command)) {
-        return false;
-      }
-      return this.DccCommand.EndsWith(command, StringComparison.OrdinalIgnoreCase);
+    ///   Determines if the message's DCC command is compatible with this message. </summary>
+    public virtual bool CanParseDccCommand(string command) {
+      return !string.IsNullOrEmpty(command) && DccCommand.EndsWith(command, StringComparison.OrdinalIgnoreCase);
     }
 
     /// <summary>
-    /// Parses the given string to populate this <see cref="IrcMessage"/>.
-    /// </summary>
-    public override void Parse(String unparsedMessage) {
+    ///   Parses the given string to populate this <see cref="IrcMessage"/>. </summary>
+    public override void Parse(string unparsedMessage) {
       base.Parse(unparsedMessage);
 
-      this.Address = AddressFromTransportAddress(DccUtil.GetAddress(unparsedMessage));
-      this.Port = Convert.ToInt32(DccUtil.GetPort(unparsedMessage), CultureInfo.InvariantCulture);
+      Address = AddressFromTransportAddress(DccUtil.GetAddress(unparsedMessage));
+      Port = Convert.ToInt32(DccUtil.GetPort(unparsedMessage), CultureInfo.InvariantCulture);
     }
 
-    private static IPAddress AddressFromTransportAddress(String transportAddress) {
+    private static IPAddress AddressFromTransportAddress(string transportAddress) {
       Double theAddress;
-      if (Double.TryParse(transportAddress, System.Globalization.NumberStyles.Integer, null, out theAddress)) {
+      if (Double.TryParse(transportAddress, NumberStyles.Integer, null, out theAddress)) {
         IPAddress backwards = new IPAddress(Convert.ToInt64(theAddress));
-        if (backwards.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork) {
-          String[] addy = backwards.ToString().Split('.');
-          System.Array.Reverse(addy);
-          return IPAddress.Parse(String.Join(".", addy));
-        } else {
-          return backwards;
+        if (backwards.AddressFamily == AddressFamily.InterNetwork) {
+          string[] addy = backwards.ToString().Split('.');
+          Array.Reverse(addy);
+          return IPAddress.Parse(string.Join(".", addy));
         }
-      } else {
-        return IPAddress.Parse(transportAddress);
+        return backwards;
       }
+      return IPAddress.Parse(transportAddress);
     }
 
 
-    private static String TransportAddressFromAddress(IPAddress address) {
-      if (address.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork) {
-        String[] nums = address.ToString().Split('.');
-        System.Array.Reverse(nums);
-        IPAddress backwards = IPAddress.Parse(String.Join(".", nums));
-
-        return backwards.Address.ToString(CultureInfo.InvariantCulture);
-      } else {
-        return address.ToString();
+    private static string TransportAddressFromAddress(IPAddress address) {
+      if (address.AddressFamily == AddressFamily.InterNetwork) {
+        string[] octets = address.ToString().Split('.');
+        Array.Reverse(octets);
+        
+        IPAddress backwards = IPAddress.Parse(string.Join(".", octets));
+        return backwards.ToString();
       }
+      return address.ToString();
     }
 
-    private System.Net.IPAddress _address = System.Net.IPAddress.None;
-    private int port = -1;
-
-  }
-
-}
+  } //class DccRequestMessage
+} //namespace Supay.Irc.Messages
