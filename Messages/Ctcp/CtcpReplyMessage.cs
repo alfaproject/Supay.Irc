@@ -14,7 +14,7 @@ namespace Supay.Irc.Messages {
     /// <remarks>
     /// A reply message uses the NOTICE command for transport.
     /// </remarks>
-    protected override String TransportCommand {
+    protected override string TransportCommand {
       get {
         return "NOTICE";
       }

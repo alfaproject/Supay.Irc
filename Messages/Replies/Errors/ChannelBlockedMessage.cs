@@ -24,7 +24,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the channel which is blocked
     /// </summary>
-    public String Channel {
+    public string Channel {
       get {
         return channel;
       }
@@ -32,12 +32,12 @@ namespace Supay.Irc.Messages {
         channel = value;
       }
     }
-    private String channel;
+    private string channel;
 
     /// <summary>
     /// Gets or sets the reason the channel is blocked
     /// </summary>
-    public String Reason {
+    public string Reason {
       get {
         return reason;
       }
@@ -45,14 +45,14 @@ namespace Supay.Irc.Messages {
         reason = value;
       }
     }
-    private String reason;
+    private string reason;
 
 
     /// <exclude />
     protected override void AddParametersToFormat(IrcMessageWriter writer) {
       base.AddParametersToFormat(writer);
       writer.AddParameter(this.Channel);
-      writer.AddParameter(String.Format(CultureInfo.InvariantCulture, "Cannot join channel ({0})", this.Reason));
+      writer.AddParameter(string.Format(CultureInfo.InvariantCulture, "Cannot join channel ({0})", this.Reason));
     }
 
     /// <exclude />

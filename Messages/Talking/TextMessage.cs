@@ -25,7 +25,7 @@ namespace Supay.Irc.Messages {
     /// <remarks>
     /// This property holds the core purpose of irc itself... sending text communication to others.
     /// </remarks>
-    public virtual String Text {
+    public virtual string Text {
       get {
         return this.text;
       }
@@ -33,7 +33,7 @@ namespace Supay.Irc.Messages {
         this.text = value;
       }
     }
-    private String text = "";
+    private string text = "";
 
     /// <summary>
     /// Overrides <see cref="IrcMessage.AddParametersToFormat"/>.
@@ -54,7 +54,7 @@ namespace Supay.Irc.Messages {
         this.Targets.AddRange(parameters[0].Split(','));
         this.Text = parameters[1];
       } else {
-        this.Text = String.Empty;
+        this.Text = string.Empty;
       }
     }
 
@@ -83,7 +83,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Determines if the current message is targeted at a query to the given user. </summary>
     protected virtual bool IsQueryToUser(User user) {
-      foreach (String target in this.Targets) {
+      foreach (string target in this.Targets) {
         if (user.Nickname.EqualsI(target)) {
           return true;
         }

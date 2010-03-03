@@ -16,7 +16,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the target of the ping.
     /// </summary>
-    public virtual String Target {
+    public virtual string Target {
       get {
         return this.target;
       }
@@ -24,12 +24,12 @@ namespace Supay.Irc.Messages {
         this.target = value;
       }
     }
-    private String target = "";
+    private string target = "";
 
     /// <summary>
     /// Gets or sets the server that the ping should be forwarded to.
     /// </summary>
-    public virtual String ForwardServer {
+    public virtual string ForwardServer {
       get {
         return this.forwardServer;
       }
@@ -37,12 +37,12 @@ namespace Supay.Irc.Messages {
         this.forwardServer = value;
       }
     }
-    private String forwardServer = "";
+    private string forwardServer = "";
 
     /// <summary>
     /// Gets the Irc command associated with this message.
     /// </summary>
-    protected override String Command {
+    protected override string Command {
       get {
         return "PING";
       }

@@ -24,7 +24,7 @@ namespace Supay.Irc.Contacts {
     void timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e) {
       if (this.Contacts.Client.Connection.Status == Supay.Irc.Network.ConnectionStatus.Connected) {
         IsOnMessage ison = new IsOnMessage();
-        foreach (String nick in this.trackedNicks) {
+        foreach (string nick in this.trackedNicks) {
           ison.Nicks.Add(nick);
           if (!waitingOnNicks.Contains(nick)) {
             waitingOnNicks.Add(nick);
@@ -35,18 +35,18 @@ namespace Supay.Irc.Contacts {
     }
 
     protected override void AddNicks(StringCollection nicks) {
-      foreach (String nick in nicks) {
+      foreach (string nick in nicks) {
         AddNick(nick);
       }
     }
 
-    protected override void AddNick(String nick) {
+    protected override void AddNick(string nick) {
       if (!trackedNicks.Contains(nick)) {
         trackedNicks.Add(nick);
       }
     }
 
-    protected override void RemoveNick(String nick) {
+    protected override void RemoveNick(string nick) {
       if (trackedNicks.Contains(nick)) {
         trackedNicks.Remove(nick);
       }
@@ -59,7 +59,7 @@ namespace Supay.Irc.Contacts {
     #region Reply Handlers
 
     void client_IsOnReply(object sender, Supay.Irc.Messages.IrcMessageEventArgs<Supay.Irc.Messages.IsOnReplyMessage> e) {
-      foreach (String onlineNick in e.Message.Nicks) {
+      foreach (string onlineNick in e.Message.Nicks) {
         if (waitingOnNicks.Contains(onlineNick)) {
           waitingOnNicks.Remove(onlineNick);
         }
@@ -70,7 +70,7 @@ namespace Supay.Irc.Contacts {
           this.trackedNicks.Remove(onlineNick);
         }
       }
-      foreach (String nick in this.waitingOnNicks) {
+      foreach (string nick in this.waitingOnNicks) {
         User offlineUser = this.Contacts.Users.Find(nick);
         offlineUser.Online = false;
         waitingOnNicks.Remove(nick);

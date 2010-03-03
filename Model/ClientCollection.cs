@@ -12,7 +12,7 @@ namespace Supay.Irc {
   [Serializable]
   public class ClientCollection : ObservableCollection<Client> {
 
-    //public Client FindClient( String serverName )
+    //public Client FindClient( string serverName )
     //{
     //    foreach ( Client c in this )
     //    {

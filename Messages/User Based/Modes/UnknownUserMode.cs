@@ -10,7 +10,7 @@ namespace Supay.Irc.Messages.Modes {
     /// <summary>
     /// Creates a new instance of the <see cref="UnknownUserMode"/> class with the given <see cref="ModeAction"/> and value.
     /// </summary>
-    public UnknownUserMode(ModeAction action, String symbol) {
+    public UnknownUserMode(ModeAction action, string symbol) {
       this.Action = action;
       this.symbol = symbol;
     }
@@ -18,13 +18,13 @@ namespace Supay.Irc.Messages.Modes {
     /// <summary>
     /// Gets the irc string representation of the mode being changed or applied.
     /// </summary>
-    protected override String Symbol {
+    protected override string Symbol {
       get {
         return symbol;
       }
     }
 
-    private String symbol;
+    private string symbol;
 
   }
 

@@ -20,7 +20,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the channel to which the message can't be sent.
     /// </summary>
-    public virtual String Channel {
+    public virtual string Channel {
       get {
         return channel;
       }
@@ -28,12 +28,12 @@ namespace Supay.Irc.Messages {
         channel = value;
       }
     }
-    private String channel = "";
+    private string channel = "";
 
     /// <summary>
     /// Gets or sets the text which wasn't sent to the channel.
     /// </summary>
-    public String Text {
+    public string Text {
       get {
         return _text;
       }
@@ -41,7 +41,7 @@ namespace Supay.Irc.Messages {
         _text = value;
       }
     }
-    private String _text;
+    private string _text;
 
 
     /// <summary>
@@ -59,13 +59,13 @@ namespace Supay.Irc.Messages {
     /// </summary>
     protected override void ParseParameters(StringCollection parameters) {
       base.ParseParameters(parameters);
-      this.Channel = String.Empty;
-      this.Text = String.Empty;
+      this.Channel = string.Empty;
+      this.Text = string.Empty;
 
       if (parameters.Count > 1) {
         this.Channel = parameters[1];
         if (parameters.Count == 3) {
-          String freeText = parameters[2];
+          string freeText = parameters[2];
           this.Text = freeText.Substring(freeText.IndexOf(": ", StringComparison.Ordinal) + 2);
         }
       }

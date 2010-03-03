@@ -21,7 +21,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// The name of the channel which has no topic set.
     /// </summary>
-    public virtual String Channel {
+    public virtual string Channel {
       get {
         return channel;
       }
@@ -30,7 +30,7 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private String channel = "";
+    private string channel = "";
 
     /// <summary>
     /// Overrides <see cref="IrcMessage.AddParametersToFormat"/>

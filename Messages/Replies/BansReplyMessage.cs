@@ -20,7 +20,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the channel the ban list refers to.
     /// </summary>
-    public virtual String Channel {
+    public virtual string Channel {
       get {
         return this.channel;
       }
@@ -32,7 +32,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the ban referenced.
     /// </summary>
-    public virtual String BanId {
+    public virtual string BanId {
       get {
         return banId;
       }
@@ -41,8 +41,8 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private String channel = "";
-    private String banId = "";
+    private string channel = "";
+    private string banId = "";
 
     /// <summary>
     /// Overrides <see cref="IrcMessage.AddParametersToFormat"/>

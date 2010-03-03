@@ -21,7 +21,7 @@ namespace Supay.Irc.Messages {
     /// Creates a new instance of the <see cref="ActionRequestMessage"/> class with the given text and target.
     /// </summary>
     /// <param name="target">The target of the action.</param>
-    public SlotsRequestMessage(String target)
+    public SlotsRequestMessage(string target)
       : this() {
       this.Target = target;
     }
@@ -55,7 +55,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// NextSend
     /// </summary>
-    public String NextSend {
+    public string NextSend {
       get {
         return nextSend;
       }
@@ -63,7 +63,7 @@ namespace Supay.Irc.Messages {
         nextSend = value;
       }
     }
-    private String nextSend;
+    private string nextSend;
 
     /// <summary>
     /// TakenQueueSlots
@@ -130,18 +130,18 @@ namespace Supay.Irc.Messages {
     /// </summary>
     protected override string ExtendedData {
       get {
-        return String.Format(CultureInfo.InvariantCulture, "{0} {1} {2} {3} {4} {5} {6}", TotalSendSlots, AvailableSendSlots, NextSend, TakenQueueSlots, TotalQueueSlots, CpsRecord, TotalFiles);
+        return string.Format(CultureInfo.InvariantCulture, "{0} {1} {2} {3} {4} {5} {6}", TotalSendSlots, AvailableSendSlots, NextSend, TakenQueueSlots, TotalQueueSlots, CpsRecord, TotalFiles);
       }
     }
 
     /// <summary>
     /// Parses the given string to populate this <see cref="IrcMessage"/>.
     /// </summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1806:DoNotIgnoreMethodResults", MessageId = "System.int.TryParse(System.String,System.Globalization.NumberStyles,System.IFormatProvider,System.int@)")]
-    public override void Parse(String unparsedMessage) {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1806:DoNotIgnoreMethodResults", MessageId = "System.int.TryParse(System.string,System.Globalization.NumberStyles,System.IFormatProvider,System.int@)")]
+    public override void Parse(string unparsedMessage) {
       base.Parse(unparsedMessage);
-      String slotInfo = CtcpUtil.GetExtendedData(unparsedMessage);
-      String[] slotInfoItems = slotInfo.Split(' ');
+      string slotInfo = CtcpUtil.GetExtendedData(unparsedMessage);
+      string[] slotInfoItems = slotInfo.Split(' ');
       if (slotInfoItems.Length >= 7) {
         int.TryParse(slotInfoItems[0], NumberStyles.Integer, CultureInfo.InvariantCulture, out this.totalSendSlots);
         int.TryParse(slotInfoItems[1], NumberStyles.Integer, CultureInfo.InvariantCulture, out this.availableSendSlots);

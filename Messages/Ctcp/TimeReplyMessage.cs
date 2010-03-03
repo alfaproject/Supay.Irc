@@ -19,7 +19,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the time, sent in any format the client finds useful.
     /// </summary>
-    public virtual String CurrentTime {
+    public virtual string CurrentTime {
       get {
         return this.currentTime;
       }
@@ -27,12 +27,12 @@ namespace Supay.Irc.Messages {
         this.currentTime = value;
       }
     }
-    private String currentTime = "";
+    private string currentTime = "";
 
     /// <summary>
     /// Gets the data payload of the Ctcp request.
     /// </summary>
-    protected override String ExtendedData {
+    protected override string ExtendedData {
       get {
         return this.currentTime;
       }
@@ -48,7 +48,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Parses the given string to populate this <see cref="IrcMessage"/>.
     /// </summary>
-    public override void Parse(String unparsedMessage) {
+    public override void Parse(string unparsedMessage) {
       base.Parse(unparsedMessage);
       this.CurrentTime = CtcpUtil.GetExtendedData(unparsedMessage);
     }

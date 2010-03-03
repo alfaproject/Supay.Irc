@@ -16,7 +16,7 @@ namespace Supay.Irc.Messages {
       this.InternalCommand = "CLIENTINFO";
     }
 
-    private String response = "";
+    private string response = "";
     /// <summary>
     /// Gets or sets the response to the request's query.
     /// </summary>
@@ -24,7 +24,7 @@ namespace Supay.Irc.Messages {
     /// This is only intended to be read by humans.
     /// It should be as complete and specific as the incoming request.
     /// </remarks>
-    public virtual String Response {
+    public virtual string Response {
       get {
         return this.response;
       }
@@ -37,7 +37,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets the data payload of the Ctcp request.
     /// </summary>
-    protected override String ExtendedData {
+    protected override string ExtendedData {
       get {
         return this.response;
       }
@@ -53,7 +53,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Parses the given string to populate this <see cref="IrcMessage"/>.
     /// </summary>
-    public override void Parse(String unparsedMessage) {
+    public override void Parse(string unparsedMessage) {
       base.Parse(unparsedMessage);
       this.Response = CtcpUtil.GetExtendedData(unparsedMessage);
     }

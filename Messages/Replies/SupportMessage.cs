@@ -35,8 +35,8 @@ namespace Supay.Irc.Messages {
       base.AddParametersToFormat(writer);
 
       StringCollection paramsToString = new StringCollection();
-      foreach (String name in this.SupportedItems.Keys) {
-        String value = this.SupportedItems[name];
+      foreach (string name in this.SupportedItems.Keys) {
+        string value = this.SupportedItems[name];
         if (value.Length != 0) {
           paramsToString.Add(name + "=" + this.SupportedItems[name]);
         } else {
@@ -47,7 +47,7 @@ namespace Supay.Irc.Messages {
       writer.AddParameter(areSupported);
     }
 
-    private String areSupported = "are supported by this server";
+    private string areSupported = "are supported by this server";
 
     /// <summary>
     /// Parses the parameters portion of the message.
@@ -55,9 +55,9 @@ namespace Supay.Irc.Messages {
     protected override void ParseParameters(StringCollection parameters) {
       base.ParseParameters(parameters);
       for (int i = 1; i < parameters.Count - 1; i++) {
-        String nameValue = parameters[i];
-        String name;
-        String value;
+        string nameValue = parameters[i];
+        string name;
+        string value;
         int indexOfEquals = nameValue.IndexOf("=", StringComparison.Ordinal);
         if (indexOfEquals > 0) {
           name = nameValue.Substring(0, indexOfEquals);
@@ -73,7 +73,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Determines if the message can be parsed by this type.
     /// </summary>
-    public override bool CanParse(String unparsedMessage) {
+    public override bool CanParse(string unparsedMessage) {
       if (unparsedMessage == null) {
         return false;
       }

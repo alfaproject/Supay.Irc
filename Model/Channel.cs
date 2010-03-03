@@ -192,7 +192,7 @@ namespace Supay.Irc {
         throw new ArgumentNullException("channelUser");
       }
       if (!_users.Contains(channelUser)) {
-        throw new ArgumentException(String.Format(CultureInfo.InvariantCulture, Supay.Irc.Properties.Resources.UserIsNotInChannel, channelUser.Nickname, this.Name), "channelUser");
+        throw new ArgumentException(string.Format(CultureInfo.InvariantCulture, Supay.Irc.Properties.Resources.UserIsNotInChannel, channelUser.Nickname, this.Name), "channelUser");
       }
     }
 

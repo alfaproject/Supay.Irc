@@ -22,7 +22,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the target of the message.
     /// </summary>
-    public virtual String Target {
+    public virtual string Target {
       get {
         return target;
       }
@@ -30,7 +30,7 @@ namespace Supay.Irc.Messages {
         target = value;
       }
     }
-    private String target = "";
+    private string target = "";
 
     /// <summary>
     /// Determines if the given numeric is an error message.
@@ -73,7 +73,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Determines if the message can be parsed by this type.
     /// </summary>
-    public override bool CanParse(String unparsedMessage) {
+    public override bool CanParse(string unparsedMessage) {
       Double foo;
       if (Double.TryParse(MessageUtil.GetCommand(unparsedMessage), System.Globalization.NumberStyles.Integer, null, out foo)) {
         if (0 <= foo && foo < 1000) {

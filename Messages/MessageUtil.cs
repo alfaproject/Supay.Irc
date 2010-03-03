@@ -68,7 +68,7 @@ namespace Supay.Irc.Messages {
     }
 
 
-    #region Parameters To String
+    #region Parameters To string
 
     /// <summary>
     ///   Creates a list of irc parameters from the given collection of strings. </summary>
@@ -283,7 +283,7 @@ namespace Supay.Irc.Messages {
 
     /// <summary>
     ///   Gets the nth parameter in the parameters collection of the given unparsed message. </summary>
-    public static String GetParameter(String rawMessage, int index) {
+    public static string GetParameter(string rawMessage, int index) {
       StringCollection p = MessageUtil.GetParameters(rawMessage);
       if (p.Count > index) {
         return p[index];
@@ -300,7 +300,7 @@ namespace Supay.Irc.Messages {
     ///   The string before the one you want. </param>
     /// <param name="after">
     ///   The string after the one you want. </param>
-    public static String StringBetweenStrings(String input, String before, String after) {
+    public static string StringBetweenStrings(string input, string before, string after) {
       if (input == null) {
         throw new ArgumentNullException("input");
       }
@@ -341,7 +341,7 @@ namespace Supay.Irc.Messages {
     ///   The place to start looking. </param>
     /// <param name="nthItem">
     ///   The item to stop at. </param>
-    public static int NthIndexOf(String text, String searchValue, int startIndex, int nthItem) {
+    public static int NthIndexOf(string text, string searchValue, int startIndex, int nthItem) {
       if (text == null) {
         throw new ArgumentNullException("text");
       }
@@ -391,7 +391,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    ///   Determines whether this instance and another specified String object have the same value. (case insensitive)</summary>
+    ///   Determines whether this instance and another specified string object have the same value. (case insensitive)</summary>
     /// <param name="value">
     ///   The string to compare to this instance. </param>
     public static bool EqualsI(this string self, string value) {
@@ -404,7 +404,7 @@ namespace Supay.Irc.Messages {
     ///   The list to look in. </param>
     /// <param name="match">
     ///   The string to look for. </param>
-    public static bool ContainsIgnoreCaseMatch(StringCollection strings, String match) {
+    public static bool ContainsIgnoreCaseMatch(StringCollection strings, string match) {
       foreach (string item in strings) {
         if (item.EqualsI(match)) {
           return true;

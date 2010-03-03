@@ -13,7 +13,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the nick of the user being examined.
     /// </summary>
-    public virtual String Nick {
+    public virtual string Nick {
       get {
         return this.nick;
       }
@@ -25,7 +25,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the server that should search for the information.
     /// </summary>
-    public virtual String Server {
+    public virtual string Server {
       get {
         return server;
       }
@@ -49,14 +49,14 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets the Irc command associated with this message.
     /// </summary>
-    protected override String Command {
+    protected override string Command {
       get {
         return "WHOWAS";
       }
     }
 
-    private String nick = "";
-    private String server = "";
+    private string nick = "";
+    private string server = "";
     private int maximumResults = 1;
 
     /// <summary>

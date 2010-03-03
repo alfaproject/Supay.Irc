@@ -20,7 +20,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the channel to which this reply list ends.
     /// </summary>
-    public virtual String Channel {
+    public virtual string Channel {
       get {
         return channel;
       }
@@ -28,7 +28,7 @@ namespace Supay.Irc.Messages {
         channel = value;
       }
     }
-    private String channel = "";
+    private string channel = "";
 
     /// <summary>
     /// Overrides <see cref="IrcMessage.AddParametersToFormat"/>

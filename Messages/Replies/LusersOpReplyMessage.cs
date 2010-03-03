@@ -34,7 +34,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets any additionaly information about the operators connected.
     /// </summary>
-    public virtual String Info {
+    public virtual string Info {
       get {
         return info;
       }
@@ -74,7 +74,7 @@ namespace Supay.Irc.Messages {
     }
 
     private int opCount = -1;
-    private String info = "";
+    private string info = "";
   }
 
 }

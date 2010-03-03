@@ -39,7 +39,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the server which should return the information.
     /// </summary>
-    public virtual String Server {
+    public virtual string Server {
       get {
         return server;
       }
@@ -51,13 +51,13 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets the Irc command associated with this message.
     /// </summary>
-    protected override String Command {
+    protected override string Command {
       get {
         return "WHOIS";
       }
     }
 
-    private String server = "";
+    private string server = "";
 
     /// <summary>
     /// Overrides <see cref="IrcMessage.AddParametersToFormat"/>.
@@ -79,7 +79,7 @@ namespace Supay.Irc.Messages {
         if (parameters.Count > 1) {
           this.Server = parameters[0];
         }
-        foreach (String maskString in parameters[parameters.Count - 1].Split(',')) {
+        foreach (string maskString in parameters[parameters.Count - 1].Split(',')) {
           this.Masks.Add(new User(maskString));
         }
       }

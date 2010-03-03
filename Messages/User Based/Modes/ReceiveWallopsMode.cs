@@ -23,7 +23,7 @@ namespace Supay.Irc.Messages.Modes {
     /// <summary>
     /// Gets the irc string representation of the mode being changed or applied.
     /// </summary>
-    protected override String Symbol {
+    protected override string Symbol {
       get {
         return "w";
       }

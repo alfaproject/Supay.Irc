@@ -12,13 +12,13 @@ namespace Supay.Irc.Messages {
   /// </remarks>
   [Serializable]
   public class KillMessage : CommandMessage {
-    private String nick = "";
-    private String reason = "";
+    private string nick = "";
+    private string reason = "";
 
     /// <summary>
     /// Gets or sets the nick of the user killed.
     /// </summary>
-    public virtual String Nick {
+    public virtual string Nick {
       get {
         return this.nick;
       }
@@ -30,7 +30,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the reason for the kill.
     /// </summary>
-    public virtual String Reason {
+    public virtual string Reason {
       get {
         return this.reason;
       }
@@ -42,7 +42,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets the Irc command associated with this message.
     /// </summary>
-    protected override String Command {
+    protected override string Command {
       get {
         return "KILL";
       }

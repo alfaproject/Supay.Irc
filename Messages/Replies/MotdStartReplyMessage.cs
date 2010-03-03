@@ -17,12 +17,12 @@ namespace Supay.Irc.Messages {
       this.InternalNumeric = 375;
     }
 
-    private String info;
+    private string info;
 
     /// <summary>
     /// Gets or sets the info included in the message.
     /// </summary>
-    public String Info {
+    public string Info {
       get {
         return info;
       }

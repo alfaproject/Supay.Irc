@@ -10,7 +10,7 @@ namespace Supay.Irc.Messages.Modes {
     /// <summary>
     /// Gets the irc string representation of the mode being changed or applied.
     /// </summary>
-    protected abstract String Symbol {
+    protected abstract string Symbol {
       get;
     }
 
@@ -30,7 +30,7 @@ namespace Supay.Irc.Messages.Modes {
     /// <summary>
     /// A string representation of the mode.
     /// </summary>
-    public override String ToString() {
+    public override string ToString() {
       return this.Action.ToString() + this.Symbol;
     }
 

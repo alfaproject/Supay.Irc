@@ -11,7 +11,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the information packaged with the ctcp command.
     /// </summary>
-    public virtual String DataPackage {
+    public virtual string DataPackage {
       get {
         return this.dataPackage;
       }
@@ -19,13 +19,13 @@ namespace Supay.Irc.Messages {
         this.dataPackage = value;
       }
     }
-    private String dataPackage = "";
+    private string dataPackage = "";
 
 
     /// <summary>
     /// Gets the data payload of the Ctcp request.
     /// </summary>
-    protected override String ExtendedData {
+    protected override string ExtendedData {
       get {
         return this.dataPackage;
       }
@@ -41,7 +41,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the Ctcp command.
     /// </summary>
-    public virtual String Command {
+    public virtual string Command {
       get {
         return this.InternalCommand;
       }
@@ -53,7 +53,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Parses the given string to populate this <see cref="IrcMessage"/>.
     /// </summary>
-    public override void Parse(String unparsedMessage) {
+    public override void Parse(string unparsedMessage) {
       base.Parse(unparsedMessage);
       this.Command = CtcpUtil.GetInternalCommand(unparsedMessage);
       this.DataPackage = CtcpUtil.GetExtendedData(unparsedMessage);

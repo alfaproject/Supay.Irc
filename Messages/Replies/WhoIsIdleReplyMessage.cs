@@ -22,7 +22,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the nick of the user who is being examined.
     /// </summary>
-    public virtual String Nick {
+    public virtual string Nick {
       get {
         return nick;
       }
@@ -59,7 +59,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets some additional info about the user being examined.
     /// </summary>
-    public virtual String Info {
+    public virtual string Info {
       get {
         return info;
       }
@@ -68,10 +68,10 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private String nick = "";
+    private string nick = "";
     private int idleTime = 0;
     private DateTime signOnTime = DateTime.Now;
-    private String info = "";
+    private string info = "";
 
 
     /// <summary>

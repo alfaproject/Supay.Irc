@@ -21,7 +21,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the channel with the changed topic.
     /// </summary>
-    public virtual String Channel {
+    public virtual string Channel {
       get {
         return channel;
       }
@@ -29,7 +29,7 @@ namespace Supay.Irc.Messages {
         channel = value;
       }
     }
-    private String channel = "";
+    private string channel = "";
 
     /// <summary>
     /// Gets or sets the user which changed the topic.

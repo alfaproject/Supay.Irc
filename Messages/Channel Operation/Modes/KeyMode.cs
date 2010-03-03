@@ -24,7 +24,7 @@ namespace Supay.Irc.Messages.Modes {
     /// Creates a new instance of the <see cref="KeyMode"/> class 
     /// with the given <see cref="ModeAction"/> and password.
     /// </summary>
-    public KeyMode(ModeAction action, String password) {
+    public KeyMode(ModeAction action, string password) {
       this.Action = action;
       this.password = password;
     }
@@ -33,14 +33,14 @@ namespace Supay.Irc.Messages.Modes {
     /// Creates a new instance of the <see cref="KeyMode"/> class 
     /// with the given password.
     /// </summary>
-    public KeyMode(String password) {
+    public KeyMode(string password) {
       this.password = password;
     }
 
     /// <summary>
     /// Gets the irc string representation of the mode being changed or applied.
     /// </summary>
-    protected override String Symbol {
+    protected override string Symbol {
       get {
         return "k";
       }
@@ -49,7 +49,7 @@ namespace Supay.Irc.Messages.Modes {
     /// <summary>
     /// Gets or sets the password needed to gain access to a channel.
     /// </summary>
-    public virtual String Password {
+    public virtual string Password {
       get {
         return password;
       }
@@ -57,7 +57,7 @@ namespace Supay.Irc.Messages.Modes {
         password = value;
       }
     }
-    private String password = "";
+    private string password = "";
 
     /// <summary>
     /// Applies this mode to the ModeArguments property of the given <see cref="ChannelModeMessage" />.

@@ -48,9 +48,9 @@ namespace Supay.Irc.Messages {
       base.ParseParameters(parameters);
 
       this.Nicks.Clear();
-      String lastParam = parameters[parameters.Count - 1];
-      if (!String.IsNullOrEmpty(lastParam)) {
-        this.Nicks.AddRange(lastParam.Split(new String[] { " " }, StringSplitOptions.RemoveEmptyEntries));
+      string lastParam = parameters[parameters.Count - 1];
+      if (!string.IsNullOrEmpty(lastParam)) {
+        this.Nicks.AddRange(lastParam.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
       }
     }
 

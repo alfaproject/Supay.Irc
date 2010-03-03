@@ -19,7 +19,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the string to be parroted back to you, with an indication that no error occured.
     /// </summary>
-    public virtual String Query {
+    public virtual string Query {
       get {
         return this.query;
       }
@@ -27,12 +27,12 @@ namespace Supay.Irc.Messages {
         this.query = value;
       }
     }
-    private String query = "";
+    private string query = "";
 
     /// <summary>
     /// Gets the data payload of the Ctcp request.
     /// </summary>
-    protected override String ExtendedData {
+    protected override string ExtendedData {
       get {
         return this.query;
       }
@@ -48,7 +48,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Parses the given string to populate this <see cref="IrcMessage"/>.
     /// </summary>
-    public override void Parse(String unparsedMessage) {
+    public override void Parse(string unparsedMessage) {
       base.Parse(unparsedMessage);
       this.Query = CtcpUtil.GetExtendedData(unparsedMessage);
     }

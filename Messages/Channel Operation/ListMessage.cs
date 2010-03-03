@@ -24,7 +24,7 @@ namespace Supay.Irc.Messages {
     /// Creates a new instance of the <see cref="ListMessage"/> class with the given channel.
     /// </summary>
     /// <param name="channel"></param>
-    public ListMessage(String channel) {
+    public ListMessage(string channel) {
       this.channels.Add(channel);
     }
 
@@ -44,7 +44,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the server that should return the info.
     /// </summary>
-    public virtual String Server {
+    public virtual string Server {
       get {
         return server;
       }
@@ -52,7 +52,7 @@ namespace Supay.Irc.Messages {
         server = value;
       }
     }
-    private String server = "";
+    private string server = "";
 
     /// <summary>
     /// Gets or sets the maximum number of users that channels can have to be returned.
@@ -111,7 +111,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the a mask which a channel must match to be returned.
     /// </summary>
-    public String MatchMask {
+    public string MatchMask {
       get {
         return matchMask;
       }
@@ -119,12 +119,12 @@ namespace Supay.Irc.Messages {
         matchMask = value;
       }
     }
-    private String matchMask = "";
+    private string matchMask = "";
 
     /// <summary>
     /// Gets or sets a mask which a channel cannot match to be returned.
     /// </summary>
-    public String NotMatchMask {
+    public string NotMatchMask {
       get {
         return notMatchMask;
       }
@@ -132,7 +132,7 @@ namespace Supay.Irc.Messages {
         notMatchMask = value;
       }
     }
-    private String notMatchMask = "";
+    private string notMatchMask = "";
 
     /// <summary>
     /// Gets or sets, in minutes, the shortest amount of time 
@@ -173,7 +173,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets the Irc command associated with this message.
     /// </summary>
-    protected override String Command {
+    protected override string Command {
       get {
         return "LIST";
       }
@@ -189,10 +189,10 @@ namespace Supay.Irc.Messages {
         if (this.YoungerThan >= 0 || this.OlderThan >= 0) {
           VerifySupport(serverSupport, ServerSupport.ExtendedListParameters.CreationTime);
         }
-        if (!String.IsNullOrEmpty(this.MatchMask)) {
+        if (!string.IsNullOrEmpty(this.MatchMask)) {
           VerifySupport(serverSupport, ServerSupport.ExtendedListParameters.Mask);
         }
-        if (!String.IsNullOrEmpty(this.NotMatchMask)) {
+        if (!string.IsNullOrEmpty(this.NotMatchMask)) {
           VerifySupport(serverSupport, ServerSupport.ExtendedListParameters.NotMask);
         }
         if (TopicOlderThan >= 0 || TopicYoungerThan >= 0) {
@@ -203,7 +203,7 @@ namespace Supay.Irc.Messages {
 
     private static void VerifySupport(ServerSupport serverSupport, ServerSupport.ExtendedListParameters parameter) {
       if ((serverSupport.ExtendedList & parameter) != parameter) {
-        throw new InvalidMessageException(String.Format(CultureInfo.InvariantCulture, Properties.Resources.ServerDoesNotSupportExtendedListParameter, parameter.ToString()));
+        throw new InvalidMessageException(string.Format(CultureInfo.InvariantCulture, Properties.Resources.ServerDoesNotSupportExtendedListParameter, parameter.ToString()));
       }
     }
 
@@ -229,7 +229,7 @@ namespace Supay.Irc.Messages {
       if (!string.IsNullOrEmpty(MatchMask)) {
         options.Add("*" + this.MatchMask + "*");
       }
-      if (!String.IsNullOrEmpty(NotMatchMask)) {
+      if (!string.IsNullOrEmpty(NotMatchMask)) {
         options.Add("!*" + this.NotMatchMask + "*");
       }
       if (this.TopicOlderThan >= 0) {
@@ -270,7 +270,7 @@ namespace Supay.Irc.Messages {
       if (parameters.Count >= 1) {
 
         if (IsExtendedParameter(parameters[0])) {
-          foreach (String extOption in parameters[0].Split(',')) {
+          foreach (string extOption in parameters[0].Split(',')) {
             if (extOption.StartsWith("!*", StringComparison.Ordinal)) {
               this.NotMatchMask = MessageUtil.StringBetweenStrings(extOption, "!*", "*");
             } else if (extOption.StartsWith("*", StringComparison.Ordinal)) {
@@ -299,12 +299,12 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private static bool IsExtendedParameter(String p) {
-      if (String.IsNullOrEmpty(p)) {
+    private static bool IsExtendedParameter(string p) {
+      if (string.IsNullOrEmpty(p)) {
         return false;
       }
-      String[] exList = new String[] { "!*", "*", "<", ">", "T", "C" };
-      foreach (String extStart in exList) {
+      string[] exList = new string[] { "!*", "*", "<", ">", "T", "C" };
+      foreach (string extStart in exList) {
         if (p.StartsWith(extStart, StringComparison.Ordinal)) {
           return true;
         }

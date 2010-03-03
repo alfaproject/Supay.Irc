@@ -27,7 +27,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets the Irc command associated with this message.
     /// </summary>
-    protected override String Command {
+    protected override string Command {
       get {
         return "PROP";
       }
@@ -39,7 +39,7 @@ namespace Supay.Irc.Messages {
     /// <remarks>
     /// Some implementations allow for this to be the name of a server, but this is an extension.
     /// </remarks>
-    public virtual String Channel {
+    public virtual string Channel {
       get {
         return channel;
       }
@@ -47,7 +47,7 @@ namespace Supay.Irc.Messages {
         channel = value;
       }
     }
-    private String channel = "";
+    private string channel = "";
 
     /// <summary>
     /// Gets or sets the channel property being targeted.
@@ -55,7 +55,7 @@ namespace Supay.Irc.Messages {
     /// <remarks>
     /// When this message is sent with an empty <see cref="Prop"/>, the values of all current channel properties are sent from the server.
     /// </remarks>
-    public virtual String Prop {
+    public virtual string Prop {
       get {
         return property;
       }
@@ -63,7 +63,7 @@ namespace Supay.Irc.Messages {
         property = value;
       }
     }
-    private String property = "";
+    private string property = "";
 
     /// <summary>
     /// Gets or sets the value being applied to the target channel property.
@@ -71,7 +71,7 @@ namespace Supay.Irc.Messages {
     /// <remarks>
     /// You can set the value of a channel property by specify its name in the <see cref="Prop"/> property, and the value in the <see cref="NewValue"/> property.
     /// </remarks>
-    public virtual String NewValue {
+    public virtual string NewValue {
       get {
         return newValue;
       }
@@ -79,7 +79,7 @@ namespace Supay.Irc.Messages {
         newValue = value;
       }
     }
-    private String newValue = "";
+    private string newValue = "";
 
     /// <summary>
     /// Validates this message against the given server support

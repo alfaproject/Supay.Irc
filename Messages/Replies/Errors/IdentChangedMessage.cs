@@ -25,7 +25,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the ident that was attempted
     /// </summary>
-    public String Ident {
+    public string Ident {
       get {
         return ident;
       }
@@ -33,12 +33,12 @@ namespace Supay.Irc.Messages {
         ident = value;
       }
     }
-    private String ident;
+    private string ident;
 
     /// <summary>
     /// Gets or sets the characters in the attempted ident which were invalid
     /// </summary>
-    public String InvalidCharacters {
+    public string InvalidCharacters {
       get {
         return invalidCharacters;
       }
@@ -46,12 +46,12 @@ namespace Supay.Irc.Messages {
         invalidCharacters = value;
       }
     }
-    private String invalidCharacters;
+    private string invalidCharacters;
 
     /// <summary>
     /// Gets or sets the new ident being assigned
     /// </summary>
-    public String NewIdent {
+    public string NewIdent {
       get {
         return newIdent;
       }
@@ -59,19 +59,19 @@ namespace Supay.Irc.Messages {
         newIdent = value;
       }
     }
-    private String newIdent;
+    private string newIdent;
 
     /// <exclude />
     protected override void AddParametersToFormat(IrcMessageWriter writer) {
       base.AddParametersToFormat(writer);
-      String param = String.Format(CultureInfo.InvariantCulture, "Your username {0} contained the invalid character(s) {1} and has been changed to {2}. Please use only the characters 0-9 a-z A-Z _ - or . in your username. Your username is the part before the @ in your email address.", this.Ident, this.InvalidCharacters, this.NewIdent);
+      string param = string.Format(CultureInfo.InvariantCulture, "Your username {0} contained the invalid character(s) {1} and has been changed to {2}. Please use only the characters 0-9 a-z A-Z _ - or . in your username. Your username is the part before the @ in your email address.", this.Ident, this.InvalidCharacters, this.NewIdent);
       writer.AddParameter(param);
     }
 
     /// <exclude />
     protected override void ParseParameters(StringCollection parameters) {
       base.ParseParameters(parameters);
-      String param = parameters[1];
+      string param = parameters[1];
       this.Ident = MessageUtil.StringBetweenStrings(param, "Your username ", " contained the invalid ");
       this.InvalidCharacters = MessageUtil.StringBetweenStrings(param, "invalid character(s) ", " and has ");
       this.NewIdent = MessageUtil.StringBetweenStrings(param, "has been changed to ", ". Please");

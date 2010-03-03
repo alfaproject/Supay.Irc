@@ -17,19 +17,19 @@ namespace Supay.Irc.Contacts {
 
     protected override void AddNicks(System.Collections.Specialized.StringCollection nicks) {
       MonitorAddUsersMessage add = new MonitorAddUsersMessage();
-      foreach (String nick in nicks) {
+      foreach (string nick in nicks) {
         add.Nicks.Add(nick);
       }
       this.Contacts.Client.Send(add);
     }
 
-    protected override void AddNick(String nick) {
+    protected override void AddNick(string nick) {
       MonitorAddUsersMessage add = new MonitorAddUsersMessage();
       add.Nicks.Add(nick);
       this.Contacts.Client.Send(add);
     }
 
-    protected override void RemoveNick(String nick) {
+    protected override void RemoveNick(string nick) {
       MonitorRemoveUsersMessage remove = new MonitorRemoveUsersMessage();
       remove.Nicks.Add(nick);
       this.Contacts.Client.Send(remove);
@@ -48,7 +48,7 @@ namespace Supay.Irc.Contacts {
     }
 
     void client_MonitoredUserOffline(object sender, Supay.Irc.Messages.IrcMessageEventArgs<Supay.Irc.Messages.MonitoredUserOfflineMessage> e) {
-      foreach (String offlineNick in e.Message.Nicks) {
+      foreach (string offlineNick in e.Message.Nicks) {
         User knownUser = this.Contacts.Users.Find(offlineNick);
         if (knownUser != null) {
           knownUser.Online = false;

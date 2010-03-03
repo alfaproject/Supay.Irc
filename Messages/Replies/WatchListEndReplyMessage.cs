@@ -20,7 +20,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the type of the list which was sent.
     /// </summary>
-    public String ListType {
+    public string ListType {
       get {
         return listType;
       }
@@ -28,7 +28,7 @@ namespace Supay.Irc.Messages {
         listType = value;
       }
     }
-    private String listType = "";
+    private string listType = "";
 
 
     /// <summary>
@@ -45,7 +45,7 @@ namespace Supay.Irc.Messages {
     protected override void ParseParameters(StringCollection parameters) {
       base.ParseParameters(parameters);
 
-      String lastParam = parameters[parameters.Count - 1];
+      string lastParam = parameters[parameters.Count - 1];
       this.ListType = lastParam.Substring(lastParam.Length - 1);
     }
 

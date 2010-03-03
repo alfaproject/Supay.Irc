@@ -20,7 +20,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the text of the motd line.
     /// </summary>
-    public virtual String Text {
+    public virtual string Text {
       get {
         return text;
       }
@@ -28,7 +28,7 @@ namespace Supay.Irc.Messages {
         text = value;
       }
     }
-    private String text = "";
+    private string text = "";
 
     /// <summary>
     /// Overrides <see cref="IrcMessage.AddParametersToFormat"/>
@@ -43,7 +43,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     protected override void ParseParameters(StringCollection parameters) {
       base.ParseParameters(parameters);
-      String lastOne = parameters[parameters.Count - 1];
+      string lastOne = parameters[parameters.Count - 1];
       if (lastOne.StartsWith("- ", StringComparison.Ordinal)) {
         this.Text = lastOne.Substring(2);
       }

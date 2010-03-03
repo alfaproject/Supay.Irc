@@ -20,7 +20,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the nick of the user being examined.
     /// </summary>
-    public virtual String Nick {
+    public virtual string Nick {
       get {
         return nick;
       }
@@ -32,7 +32,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the name of the server the user is connected to.
     /// </summary>
-    public virtual String ServerName {
+    public virtual string ServerName {
       get {
         return serverName;
       }
@@ -44,7 +44,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets additional information about the user's server connection.
     /// </summary>
-    public virtual String Info {
+    public virtual string Info {
       get {
         return info;
       }
@@ -53,9 +53,9 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private String nick = "";
-    private String serverName = "";
-    private String info = "";
+    private string nick = "";
+    private string serverName = "";
+    private string info = "";
 
     /// <summary>
     /// Overrides <see cref="IrcMessage.AddParametersToFormat"/>

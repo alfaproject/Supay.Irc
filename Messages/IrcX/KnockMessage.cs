@@ -19,7 +19,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets the Irc command associated with this message.
     /// </summary>
-    protected override String Command {
+    protected override string Command {
       get {
         return "KNOCK";
       }
@@ -28,7 +28,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the channel being targeted.
     /// </summary>
-    public virtual String Channel {
+    public virtual string Channel {
       get {
         return channel;
       }
@@ -36,7 +36,7 @@ namespace Supay.Irc.Messages {
         channel = value;
       }
     }
-    private String channel = "";
+    private string channel = "";
 
     /// <summary>
     /// Validates this message's properties according to the given <see cref="ServerSupport"/>.

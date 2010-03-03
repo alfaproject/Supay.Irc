@@ -20,7 +20,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the channel that was knocked on.
     /// </summary>
-    public virtual String Channel {
+    public virtual string Channel {
       get {
         return this.channel;
       }
@@ -28,7 +28,7 @@ namespace Supay.Irc.Messages {
         this.channel = value;
       }
     }
-    private String channel = "";
+    private string channel = "";
 
     /// <summary>
     /// Overrides <see cref="IrcMessage.AddParametersToFormat"/>

@@ -13,7 +13,7 @@ namespace Supay.Irc.Messages {
     /// <remarks>
     /// A request message uses the PRIVMSG command for transport.
     /// </remarks>
-    protected override String TransportCommand {
+    protected override string TransportCommand {
       get {
         return "PRIVMSG";
       }
@@ -22,7 +22,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets the data payload of the Ctcp request.
     /// </summary>
-    protected override String ExtendedData {
+    protected override string ExtendedData {
       get {
         return "";
       }

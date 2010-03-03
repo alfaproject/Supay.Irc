@@ -39,9 +39,9 @@ namespace Supay.Irc.Messages {
       this.Nicks.Clear();
 
       if (parameters.Count > 1) {
-        String userListParam = parameters[1];
-        String[] userList = userListParam.Split(new String[] { "," }, StringSplitOptions.RemoveEmptyEntries);
-        foreach (String nick in userList) {
+        string userListParam = parameters[1];
+        string[] userList = userListParam.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
+        foreach (string nick in userList) {
           this.Nicks.Add(nick);
         }
       }

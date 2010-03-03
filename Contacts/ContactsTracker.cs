@@ -41,9 +41,9 @@ namespace Supay.Irc.Contacts {
 
     protected abstract void AddNicks(StringCollection nicks);
 
-    protected abstract void AddNick(String nick);
+    protected abstract void AddNick(string nick);
 
-    protected abstract void RemoveNick(String nick);
+    protected abstract void RemoveNick(string nick);
 
   }
 

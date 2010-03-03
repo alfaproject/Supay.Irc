@@ -24,7 +24,7 @@ namespace Supay.Irc.Messages.Modes {
     /// Creates a new instance of the <see cref="OperatorMode"/> class 
     /// with the given <see cref="ModeAction"/> and member's nick.
     /// </summary>
-    public OperatorMode(ModeAction action, String nick) {
+    public OperatorMode(ModeAction action, string nick) {
       this.Action = action;
       this.Nick = nick;
     }
@@ -32,7 +32,7 @@ namespace Supay.Irc.Messages.Modes {
     /// <summary>
     /// Gets the irc string representation of the mode being changed or applied.
     /// </summary>
-    protected override String Symbol {
+    protected override string Symbol {
       get {
         return "o";
       }

@@ -20,7 +20,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// The channel to which the message can't be sent.
     /// </summary>
-    public virtual String Channel {
+    public virtual string Channel {
       get {
         return channel;
       }
@@ -28,7 +28,7 @@ namespace Supay.Irc.Messages {
         channel = value;
       }
     }
-    private String channel = "";
+    private string channel = "";
 
     /// <summary>
     /// Overrides <see cref="IrcMessage.AddParametersToFormat"/>

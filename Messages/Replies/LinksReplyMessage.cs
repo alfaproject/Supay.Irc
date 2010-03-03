@@ -21,7 +21,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the mask which will limit the list of returned servers.
     /// </summary>
-    public virtual String Mask {
+    public virtual string Mask {
       get {
         return this.mask;
       }
@@ -36,7 +36,7 @@ namespace Supay.Irc.Messages {
     /// <remarks>
     /// If empty, the current server is used.
     /// </remarks>
-    public virtual String Server {
+    public virtual string Server {
       get {
         return server;
       }
@@ -60,7 +60,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets any additional server information.
     /// </summary>
-    public virtual String ServerInfo {
+    public virtual string ServerInfo {
       get {
         return serverInfo;
       }
@@ -69,10 +69,10 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private String mask = "";
-    private String server = "";
+    private string mask = "";
+    private string server = "";
     private int hopCount = -1;
-    private String serverInfo = "";
+    private string serverInfo = "";
 
     /// <summary>
     /// Overrides <see cref="IrcMessage.AddParametersToFormat"/>
@@ -92,8 +92,8 @@ namespace Supay.Irc.Messages {
       if (parameters.Count == 4) {
         this.Mask = parameters[1];
         this.Server = parameters[2];
-        String trailing = parameters[3];
-        String first = trailing.Substring(0, trailing.IndexOf(" ", StringComparison.Ordinal));
+        string trailing = parameters[3];
+        string first = trailing.Substring(0, trailing.IndexOf(" ", StringComparison.Ordinal));
         this.HopCount = Convert.ToInt32(first, CultureInfo.InvariantCulture);
         this.ServerInfo = trailing.Substring(first.Length);
       } else {

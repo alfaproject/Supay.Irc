@@ -24,7 +24,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the nick or channel which was attempted
     /// </summary>
-    public String TargetChanged {
+    public string TargetChanged {
       get {
         return target;
       }
@@ -32,7 +32,7 @@ namespace Supay.Irc.Messages {
         target = value;
       }
     }
-    private String target;
+    private string target;
 
     /// <summary>
     /// Gets or sets the number of seconds which must be waited before attempting again.
@@ -52,7 +52,7 @@ namespace Supay.Irc.Messages {
     protected override void AddParametersToFormat(IrcMessageWriter writer) {
       base.AddParametersToFormat(writer);
       writer.AddParameter(this.TargetChanged);
-      writer.AddParameter(String.Format(CultureInfo.InvariantCulture, "Target change too fast. Please wait {0} seconds.", this.Seconds));
+      writer.AddParameter(string.Format(CultureInfo.InvariantCulture, "Target change too fast. Please wait {0} seconds.", this.Seconds));
     }
 
     /// <exclude />

@@ -20,7 +20,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets channel being referenced.
     /// </summary>
-    public virtual String Channel {
+    public virtual string Channel {
       get {
         return this.channel;
       }
@@ -28,7 +28,7 @@ namespace Supay.Irc.Messages {
         this.channel = value;
       }
     }
-    private String channel = "";
+    private string channel = "";
 
 
     /// <summary>

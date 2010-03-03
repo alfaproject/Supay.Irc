@@ -17,12 +17,12 @@ namespace Supay.Irc.Messages {
       this.InternalNumeric = 406;
     }
 
-    private String _nick;
+    private string _nick;
 
     /// <summary>
     /// The nick which had no information
     /// </summary>
-    public String Nick {
+    public string Nick {
       get {
         return _nick;
       }
@@ -49,7 +49,7 @@ namespace Supay.Irc.Messages {
       if (parameters.Count > 1) {
         this.Nick = parameters[1];
       } else {
-        this.Nick = String.Empty;
+        this.Nick = string.Empty;
       }
     }
 

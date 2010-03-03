@@ -21,12 +21,12 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the alpha-numeric id the server uses to identify the client.
     /// </summary>
-    public String UniqueId {
+    public string UniqueId {
       get;
       set;
     }
 
-    private String yourUniqueID = "your unique ID";
+    private string yourUniqueID = "your unique ID";
 
     /// <summary>
     /// Overrides <see cref="IrcMessage.AddParametersToFormat"/>

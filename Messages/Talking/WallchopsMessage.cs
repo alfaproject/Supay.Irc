@@ -12,7 +12,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the text of the <see cref="WallchopsMessage"/>.
     /// </summary>
-    public virtual String Text {
+    public virtual string Text {
       get {
         return this.text;
       }
@@ -23,12 +23,12 @@ namespace Supay.Irc.Messages {
         this.text = value;
       }
     }
-    private String text = "";
+    private string text = "";
 
     /// <summary>
     /// Gets or sets the channel being targeted by the message.
     /// </summary>
-    public virtual String Channel {
+    public virtual string Channel {
       get {
         return this.channel;
       }
@@ -39,12 +39,12 @@ namespace Supay.Irc.Messages {
         this.channel = value;
       }
     }
-    private String channel = "";
+    private string channel = "";
 
     /// <summary>
     /// Gets the Irc command associated with this message.
     /// </summary>
-    protected override String Command {
+    protected override string Command {
       get {
         return "WALLCHOPS";
       }
@@ -64,8 +64,8 @@ namespace Supay.Irc.Messages {
     /// </summary>
     protected override void ParseParameters(StringCollection parameters) {
       base.ParseParameters(parameters);
-      this.Text = String.Empty;
-      this.Channel = String.Empty;
+      this.Text = string.Empty;
+      this.Channel = string.Empty;
 
       if (parameters.Count >= 1) {
         this.Channel = parameters[0];

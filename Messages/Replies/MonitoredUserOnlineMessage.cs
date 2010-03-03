@@ -48,9 +48,9 @@ namespace Supay.Irc.Messages {
       this.Users.Clear();
 
       if (parameters.Count > 1) {
-        String userListParam = parameters[1];
-        String[] userList = userListParam.Split(new String[] { "," }, StringSplitOptions.RemoveEmptyEntries);
-        foreach (String userMask in userList) {
+        string userListParam = parameters[1];
+        string[] userList = userListParam.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
+        foreach (string userMask in userList) {
           User newUser = new User(userMask);
           this.Users.Add(newUser);
         }

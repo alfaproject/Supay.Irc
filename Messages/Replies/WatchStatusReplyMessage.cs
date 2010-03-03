@@ -49,7 +49,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     protected override void AddParametersToFormat(IrcMessageWriter writer) {
       base.AddParametersToFormat(writer);
-      writer.AddParameter(String.Format(CultureInfo.InvariantCulture, "You have {0} and are on {1} WATCH entries", this.WatchListCount, this.UsersWatchingYou));
+      writer.AddParameter(string.Format(CultureInfo.InvariantCulture, "You have {0} and are on {1} WATCH entries", this.WatchListCount, this.UsersWatchingYou));
     }
 
     /// <summary>
@@ -58,10 +58,10 @@ namespace Supay.Irc.Messages {
     protected override void ParseParameters(StringCollection parameters) {
       base.ParseParameters(parameters);
 
-      String unparsedSentence = parameters[parameters.Count - 1];
+      string unparsedSentence = parameters[parameters.Count - 1];
 
-      String watchesHave = MessageUtil.StringBetweenStrings(unparsedSentence, "You have ", " and are on ");
-      String watchesOn = MessageUtil.StringBetweenStrings(unparsedSentence, " and are on ", " WATCH entries");
+      string watchesHave = MessageUtil.StringBetweenStrings(unparsedSentence, "You have ", " and are on ");
+      string watchesOn = MessageUtil.StringBetweenStrings(unparsedSentence, " and are on ", " WATCH entries");
 
       this.WatchListCount = int.Parse(watchesHave, CultureInfo.InvariantCulture);
       this.UsersWatchingYou = int.Parse(watchesOn, CultureInfo.InvariantCulture);

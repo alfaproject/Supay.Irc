@@ -20,7 +20,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the nick of the user in the Who reply list.
     /// </summary>
-    public virtual String Nick {
+    public virtual string Nick {
       get {
         return nick;
       }
@@ -28,7 +28,7 @@ namespace Supay.Irc.Messages {
         nick = value;
       }
     }
-    private String nick = "";
+    private string nick = "";
 
     /// <summary>
     /// Overrides <see cref="IrcMessage.AddParametersToFormat"/>

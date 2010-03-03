@@ -31,7 +31,7 @@ namespace Supay.Irc.Messages.Modes {
     /// <summary>
     /// A string representation of the mode.
     /// </summary>
-    public override String ToString() {
+    public override string ToString() {
       return base.ToString() + " " + this.Mask.ToString();
     }
   }

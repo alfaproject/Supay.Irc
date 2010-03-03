@@ -20,7 +20,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the mode which the server didn't recognize
     /// </summary>
-    public String UnknownMode {
+    public string UnknownMode {
       get {
         return unknownMode;
       }
@@ -28,7 +28,7 @@ namespace Supay.Irc.Messages {
         unknownMode = value;
       }
     }
-    private String unknownMode;
+    private string unknownMode;
 
     /// <exclude />
     protected override void AddParametersToFormat(IrcMessageWriter writer) {

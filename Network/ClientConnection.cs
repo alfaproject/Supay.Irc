@@ -228,7 +228,7 @@ namespace Supay.Irc.Network {
     /// <summary>
     ///   Sends the given string over the network. </summary>
     /// <param name="data">
-    ///   The <see cref="System.String"/> to send. </param>
+    ///   The <see cref="System.string"/> to send. </param>
     public void Write(string data) {
       if (string.IsNullOrEmpty(data)) {
         return;

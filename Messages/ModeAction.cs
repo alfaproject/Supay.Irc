@@ -49,7 +49,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Returns the correct <see cref="ModeAction"/> for the given string value. </summary>
     /// <param name="value">
-    ///   The String to parse. </param>
+    ///   The string to parse. </param>
     public static ModeAction Parse(string value) {
       if (value == null) {
         throw new ArgumentNullException("value");

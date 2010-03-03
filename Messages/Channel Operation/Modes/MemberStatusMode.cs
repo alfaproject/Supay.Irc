@@ -10,7 +10,7 @@ namespace Supay.Irc.Messages.Modes {
     /// <summary>
     /// Gets or sets the nickname of the channel member who will be affected by this mode.
     /// </summary>
-    public virtual String Nick {
+    public virtual string Nick {
       get {
         return nick;
       }
@@ -18,7 +18,7 @@ namespace Supay.Irc.Messages.Modes {
         nick = value;
       }
     }
-    private String nick = "";
+    private string nick = "";
 
     /// <summary>
     /// Applies this mode to the ModeArguments property of the given <see cref="ChannelModeMessage" />.

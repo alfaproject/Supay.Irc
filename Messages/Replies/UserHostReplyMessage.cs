@@ -54,16 +54,16 @@ namespace Supay.Irc.Messages {
     protected override void ParseParameters(StringCollection parameters) {
       base.ParseParameters(parameters);
       this.Users.Clear();
-      String[] userInfo = parameters[parameters.Count - 1].Split(' ');
-      foreach (String info in userInfo) {
-        String nick = info.Substring(0, info.IndexOf("=", StringComparison.Ordinal));
+      string[] userInfo = parameters[parameters.Count - 1].Split(' ');
+      foreach (string info in userInfo) {
+        string nick = info.Substring(0, info.IndexOf("=", StringComparison.Ordinal));
         bool oper = false;
         if (nick.EndsWith("*", StringComparison.Ordinal)) {
           oper = true;
           nick = nick.Substring(0, nick.Length - 1);
         }
-        String away = info.Substring(info.IndexOf("=", StringComparison.Ordinal) + 1, 1);
-        String standardHost = info.Substring(info.IndexOf(away, StringComparison.Ordinal));
+        string away = info.Substring(info.IndexOf("=", StringComparison.Ordinal) + 1, 1);
+        string standardHost = info.Substring(info.IndexOf(away, StringComparison.Ordinal));
 
         User user = new User(standardHost);
         user.Nickname = nick;

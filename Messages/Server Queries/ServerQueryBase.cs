@@ -12,7 +12,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the target server of the query.
     /// </summary>
-    public virtual String Target {
+    public virtual string Target {
       get {
         return target;
       }
@@ -20,7 +20,7 @@ namespace Supay.Irc.Messages {
         target = value;
       }
     }
-    private String target = "";
+    private string target = "";
 
     /// <summary>
     /// Parses the parameters portion of the message.

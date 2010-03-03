@@ -12,7 +12,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets the targets of this <see cref="CtcpMessage"/>.
     /// </summary>
-    public String Target {
+    public string Target {
       get {
         return this.target;
       }
@@ -20,12 +20,12 @@ namespace Supay.Irc.Messages {
         this.target = value;
       }
     }
-    private String target = "";
+    private string target = "";
 
     /// <summary>
     /// Gets the ctcp Command requested.
     /// </summary>
-    protected String InternalCommand {
+    protected string InternalCommand {
       get {
         return internalCommand;
       }
@@ -33,19 +33,19 @@ namespace Supay.Irc.Messages {
         this.internalCommand = value;
       }
     }
-    private String internalCommand = "";
+    private string internalCommand = "";
 
     /// <summary>
     /// Gets the data payload of the Ctcp request.
     /// </summary>
-    protected abstract String ExtendedData {
+    protected abstract string ExtendedData {
       get;
     }
 
     /// <summary>
     /// Gets the irc command used to send the ctcp command to another user.
     /// </summary>
-    protected abstract String TransportCommand {
+    protected abstract string TransportCommand {
       get;
     }
 
@@ -54,18 +54,18 @@ namespace Supay.Irc.Messages {
     protected override void AddParametersToFormat(IrcMessageWriter writer) {
       writer.AddParameter(this.TransportCommand);
       writer.AddParameter(this.Target);
-      String extendedData = CtcpUtil.Escape(this.ExtendedData);
+      string extendedData = CtcpUtil.Escape(this.ExtendedData);
       if (extendedData.Length > 0) {
         extendedData = " " + extendedData;
       }
-      String payLoad = CtcpUtil.ExtendedDataMarker + this.InternalCommand + extendedData + CtcpUtil.ExtendedDataMarker;
+      string payLoad = CtcpUtil.ExtendedDataMarker + this.InternalCommand + extendedData + CtcpUtil.ExtendedDataMarker;
       writer.AddParameter(payLoad);
     }
 
     /// <summary>
     /// Determines if the message can be parsed by this type.
     /// </summary>
-    public override bool CanParse(String unparsedMessage) {
+    public override bool CanParse(string unparsedMessage) {
       if (!CtcpUtil.IsCtcpMessage(unparsedMessage)) {
         return false;
       }

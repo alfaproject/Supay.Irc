@@ -25,7 +25,7 @@ namespace Supay.Irc.Messages {
     /// In the case of a non-channel based WhoMessage, 
     /// Channel will contain the most recent channel which the user joined and is still on.
     /// </remarks>
-    public virtual String Channel {
+    public virtual string Channel {
       get {
         return channel;
       }
@@ -61,7 +61,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the server the user is on.
     /// </summary>
-    public virtual String Server {
+    public virtual string Server {
       get {
         return server;
       }
@@ -94,9 +94,9 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private String channel = "";
+    private string channel = "";
     private User user = new User();
-    private String server = "";
+    private string server = "";
     private int hopCount = -1;
     private bool isOper = false;
     private ChannelStatus status = ChannelStatus.None;
@@ -136,10 +136,10 @@ namespace Supay.Irc.Messages {
         this.Server = parameters[4];
         this.User.Nickname = parameters[5];
 
-        String levels = parameters[6];
+        string levels = parameters[6];
         // TODO I'm going to ignore the H/G issue until i know what it means.
         this.IsOper = (levels.IndexOf("*", StringComparison.Ordinal) != -1);
-        String lastLetter = levels.Substring(levels.Length - 1);
+        string lastLetter = levels.Substring(levels.Length - 1);
         if (ChannelStatus.IsDefined(lastLetter)) {
           // TODO fix
           // this.Status = ChannelStatus.GetInstance(lastLetter);
@@ -148,7 +148,7 @@ namespace Supay.Irc.Messages {
           // this.Status = ChannelStatus.None;
         }
 
-        String trailing = parameters[7];
+        string trailing = parameters[7];
         this.HopCount = Convert.ToInt32(trailing.Substring(0, trailing.IndexOf(" ", StringComparison.Ordinal)), CultureInfo.InvariantCulture);
         this.User.Name = trailing.Substring(trailing.IndexOf(" ", StringComparison.Ordinal));
       }

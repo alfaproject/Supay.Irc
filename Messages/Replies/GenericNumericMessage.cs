@@ -37,7 +37,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     protected override void AddParametersToFormat(IrcMessageWriter writer) {
       base.AddParametersToFormat(writer);
-      foreach (String datum in this.Data) {
+      foreach (string datum in this.Data) {
         writer.AddParameter(datum, false);
       }
     }
@@ -45,7 +45,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Parses the command portion of the message.
     /// </summary>
-    protected override void ParseCommand(String command) {
+    protected override void ParseCommand(string command) {
       base.ParseCommand(command);
       this.Command = Convert.ToInt32(command, CultureInfo.InvariantCulture);
     }

@@ -27,14 +27,14 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Creates a new instance of the SilenceMessage class with the given mask.
     /// </summary>
-    public SilenceMessage(String userMask)
+    public SilenceMessage(string userMask)
       : this(new User(userMask)) {
     }
 
     /// <summary>
     /// Gets the Irc command associated with this message.
     /// </summary>
-    protected override String Command {
+    protected override string Command {
       get {
         return "SILENCE";
       }
@@ -83,8 +83,8 @@ namespace Supay.Irc.Messages {
     protected override void ParseParameters(StringCollection parameters) {
       base.ParseParameters(parameters);
       if (parameters.Count > 0) {
-        String target = parameters[0];
-        String action = target.Substring(0, 1);
+        string target = parameters[0];
+        string action = target.Substring(0, 1);
         if (ModeAction.IsDefined(action)) {
           this.Action = ModeAction.Parse(action);
           target = target.Substring(1);

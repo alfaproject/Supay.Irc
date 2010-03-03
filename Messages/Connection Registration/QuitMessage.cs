@@ -24,7 +24,7 @@ namespace Supay.Irc.Messages {
     /// Creates a new instance of the QuitMessage class with the given reason.
     /// </summary>
     /// <param name="reason"></param>
-    public QuitMessage(String reason)
+    public QuitMessage(string reason)
       : base() {
       this.reason = reason;
     }
@@ -32,7 +32,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets the Irc command associated with this message.
     /// </summary>
-    protected override String Command {
+    protected override string Command {
       get {
         return "QUIT";
       }
@@ -41,7 +41,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the reason for quiting.
     /// </summary>
-    public virtual String Reason {
+    public virtual string Reason {
       get {
         return this.reason;
       }
@@ -49,7 +49,7 @@ namespace Supay.Irc.Messages {
         this.reason = value;
       }
     }
-    private String reason = "";
+    private string reason = "";
 
 
     /// <summary>

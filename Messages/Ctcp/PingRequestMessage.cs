@@ -25,7 +25,7 @@ namespace Supay.Irc.Messages {
     /// current one to determine the lag time.
     /// </remarks>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", MessageId = "TimeStamp")]
-    public virtual String TimeStamp {
+    public virtual string TimeStamp {
       get {
         return this.timeStamp;
       }
@@ -33,12 +33,12 @@ namespace Supay.Irc.Messages {
         this.timeStamp = value;
       }
     }
-    private String timeStamp = "";
+    private string timeStamp = "";
 
     /// <summary>
     /// Gets the data payload of the Ctcp request.
     /// </summary>
-    protected override String ExtendedData {
+    protected override string ExtendedData {
       get {
         return this.timeStamp;
       }
@@ -54,7 +54,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Parses the given string to populate this <see cref="IrcMessage"/>.
     /// </summary>
-    public override void Parse(String unparsedMessage) {
+    public override void Parse(string unparsedMessage) {
       base.Parse(unparsedMessage);
       this.TimeStamp = CtcpUtil.GetExtendedData(unparsedMessage);
     }

@@ -21,7 +21,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the channel reffered to.
     /// </summary>
-    public virtual String Channel {
+    public virtual string Channel {
       get {
         return channel;
       }
@@ -42,7 +42,7 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private String channel = "";
+    private string channel = "";
     private DateTime timeCreated = DateTime.MinValue;
 
 

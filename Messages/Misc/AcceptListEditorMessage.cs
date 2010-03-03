@@ -12,7 +12,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets the Irc command associated with this message.
     /// </summary>
-    protected override String Command {
+    protected override string Command {
       get {
         return "ACCEPT";
       }
@@ -65,11 +65,11 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Determines if the message can be parsed by this type.
     /// </summary>
-    public override bool CanParse(String unparsedMessage) {
+    public override bool CanParse(string unparsedMessage) {
       if (!base.CanParse(unparsedMessage)) {
         return false;
       }
-      String firstParam = MessageUtil.GetParameter(unparsedMessage, 0);
+      string firstParam = MessageUtil.GetParameter(unparsedMessage, 0);
       return (firstParam != "*");
     }
 
@@ -79,7 +79,7 @@ namespace Supay.Irc.Messages {
     protected override void ParseParameters(StringCollection parameters) {
       base.ParseParameters(parameters);
 
-      foreach (String nick in parameters[0].Split(',')) {
+      foreach (string nick in parameters[0].Split(',')) {
         if (nick.StartsWith("-", StringComparison.Ordinal)) {
           this.RemovedNicks.Add(nick.Substring(1));
         } else {
@@ -98,10 +98,10 @@ namespace Supay.Irc.Messages {
     protected override void AddParametersToFormat(IrcMessageWriter writer) {
       base.AddParametersToFormat(writer);
       StringCollection allNicks = new StringCollection();
-      foreach (String rNick in RemovedNicks) {
+      foreach (string rNick in RemovedNicks) {
         allNicks.Add("-" + rNick);
       }
-      foreach (String aNick in AddedNicks) {
+      foreach (string aNick in AddedNicks) {
         allNicks.Add(aNick);
       }
 

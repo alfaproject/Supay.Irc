@@ -21,7 +21,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the channel for this reply.
     /// </summary>
-    public virtual String Channel {
+    public virtual string Channel {
       get {
         return channel;
       }
@@ -45,7 +45,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the topic of the channel.
     /// </summary>
-    public virtual String Topic {
+    public virtual string Topic {
       get {
         return topic;
       }
@@ -54,9 +54,9 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private String topic = "";
+    private string topic = "";
     private int memberCount = -1;
-    private String channel = "";
+    private string channel = "";
 
     /// <summary>
     /// Overrides <see cref="IrcMessage.AddParametersToFormat"/>

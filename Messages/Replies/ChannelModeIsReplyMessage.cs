@@ -20,7 +20,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the channel reffered to.
     /// </summary>
-    public virtual String Channel {
+    public virtual string Channel {
       get {
         return channel;
       }
@@ -35,7 +35,7 @@ namespace Supay.Irc.Messages {
     /// <remarks>
     /// An example Modes might look like "+ml".
     /// </remarks>
-    public virtual String Modes {
+    public virtual string Modes {
       get {
         return modes;
       }
@@ -56,8 +56,8 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private String channel = "";
-    private String modes = "";
+    private string channel = "";
+    private string modes = "";
     private StringCollection modeArguments = new StringCollection();
 
     /// <summary>

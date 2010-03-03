@@ -12,7 +12,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets the Irc command associated with this message.
     /// </summary>
-    protected override String Command {
+    protected override string Command {
       get {
         return "USERHOST";
       }
@@ -43,7 +43,7 @@ namespace Supay.Irc.Messages {
     protected override void ParseParameters(StringCollection parameters) {
       base.ParseParameters(parameters);
       this.Nicks.Clear();
-      foreach (String nick in parameters) {
+      foreach (string nick in parameters) {
         this.Nicks.Add(nick);
       }
     }

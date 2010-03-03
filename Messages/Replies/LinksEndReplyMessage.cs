@@ -20,7 +20,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the server mask that the links list used.
     /// </summary>
-    public virtual String Mask {
+    public virtual string Mask {
       get {
         return mask;
       }
@@ -29,7 +29,7 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private String mask = "";
+    private string mask = "";
 
     /// <summary>
     /// Overrides <see cref="IrcMessage.AddParametersToFormat"/>

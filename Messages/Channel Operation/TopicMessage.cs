@@ -21,7 +21,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     /// <param name="channel">The channel to affect.</param>
     /// <param name="topic">The new topic to set.</param>
-    public TopicMessage(String channel, String topic)
+    public TopicMessage(string channel, string topic)
       : base() {
       this.channel = channel;
       this.topic = topic;
@@ -30,7 +30,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets the Irc command associated with this message.
     /// </summary>
-    protected override String Command {
+    protected override string Command {
       get {
         return "TOPIC";
       }
@@ -39,7 +39,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the channel affected
     /// </summary>
-    public virtual String Channel {
+    public virtual string Channel {
       get {
         return channel;
       }
@@ -55,7 +55,7 @@ namespace Supay.Irc.Messages {
     /// If Topic is blank, the server will send a <see cref="TopicReplyMessage"/> and probably a <see cref="TopicSetReplyMessage"/>,
     /// telling you what the current topic is, who set it, and when.
     /// </remarks>
-    public virtual String Topic {
+    public virtual string Topic {
       get {
         return topic;
       }
@@ -106,8 +106,8 @@ namespace Supay.Irc.Messages {
       conduit.OnTopic(new IrcMessageEventArgs<TopicMessage>(this));
     }
 
-    private String channel = "";
-    private String topic = "";
+    private string channel = "";
+    private string topic = "";
 
     #region IChannelTargetedMessage Members
 

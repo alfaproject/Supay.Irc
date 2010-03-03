@@ -20,7 +20,7 @@ namespace Supay.Irc.Messages {
     /// Creates a new instance of the <see cref="ActionRequestMessage"/> class with the given text and target.
     /// </summary>
     /// <param name="target">The target of the action.</param>
-    public Mp3RequestMessage(String target)
+    public Mp3RequestMessage(string target)
       : this() {
       this.Target = target;
     }
@@ -28,7 +28,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the filename of the mp3 being shared.
     /// </summary>
-    public String FileName {
+    public string FileName {
       get {
         return filename;
       }
@@ -36,7 +36,7 @@ namespace Supay.Irc.Messages {
         filename = value;
       }
     }
-    private String filename;
+    private string filename;
 
     /// <summary>
     /// Notifies the given <see cref="MessageConduit"/> by raising the appropriate event for the current <see cref="IrcMessage"/> subclass.
@@ -57,7 +57,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Parses the given string to populate this <see cref="IrcMessage"/>.
     /// </summary>
-    public override void Parse(String unparsedMessage) {
+    public override void Parse(string unparsedMessage) {
       base.Parse(unparsedMessage);
       this.FileName = CtcpUtil.GetExtendedData(unparsedMessage);
     }

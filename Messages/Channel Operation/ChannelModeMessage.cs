@@ -16,7 +16,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets the Irc command associated with this message.
     /// </summary>
-    protected override String Command {
+    protected override string Command {
       get {
         return "MODE";
       }
@@ -34,7 +34,7 @@ namespace Supay.Irc.Messages {
     /// <param name="channel">The name of the channel being affected.</param>
     /// <param name="modeChanges">The mode changes being applied.</param>
     /// <param name="modeArguments">The arguments ( parameters ) for the <see cref="ChannelModeMessage.ModeChanges"/> property.</param>
-    public ChannelModeMessage(String channel, String modeChanges, params String[] modeArguments) {
+    public ChannelModeMessage(string channel, string modeChanges, params string[] modeArguments) {
       this.channel = channel;
       this.modeChanges = modeChanges;
       this.modeArguments.AddRange(modeArguments);
@@ -43,7 +43,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the name of the channel being affected.
     /// </summary>
-    public virtual String Channel {
+    public virtual string Channel {
       get {
         return this.channel;
       }
@@ -51,7 +51,7 @@ namespace Supay.Irc.Messages {
         this.channel = value;
       }
     }
-    private String channel = "";
+    private string channel = "";
 
     /// <summary>
     /// Gets or sets the mode changes being applied.
@@ -60,7 +60,7 @@ namespace Supay.Irc.Messages {
     /// An example ModeChanges might look like "+ool".
     /// This means adding the cannel op mode for two users, and setting a limit on the user count.
     /// </remarks>
-    public virtual String ModeChanges {
+    public virtual string ModeChanges {
       get {
         return this.modeChanges;
       }
@@ -68,7 +68,7 @@ namespace Supay.Irc.Messages {
         this.modeChanges = value;
       }
     }
-    private String modeChanges = "";
+    private string modeChanges = "";
 
     /// <summary>
     /// Gets the collection of arguments ( parameters ) for the <see cref="ChannelModeMessage.ModeChanges"/> property.
@@ -86,7 +86,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Determines if the message can be parsed by this type.
     /// </summary>
-    public override bool CanParse(String unparsedMessage) {
+    public override bool CanParse(string unparsedMessage) {
       if (!base.CanParse(unparsedMessage)) {
         return false;
       }
@@ -125,9 +125,9 @@ namespace Supay.Irc.Messages {
     protected override void AddParametersToFormat(IrcMessageWriter writer) {
       base.AddParametersToFormat(writer);
       writer.AddParameter(this.Channel);
-      if (!String.IsNullOrEmpty(this.ModeChanges)) {
+      if (!string.IsNullOrEmpty(this.ModeChanges)) {
         writer.AddParameter(this.ModeChanges);
-        foreach (String modeArg in this.ModeArguments) {
+        foreach (string modeArg in this.ModeArguments) {
           writer.AddParameter(modeArg);
         }
       }

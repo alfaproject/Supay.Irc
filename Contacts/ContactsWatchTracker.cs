@@ -17,19 +17,19 @@ namespace Supay.Irc.Contacts {
 
     protected override void AddNicks(System.Collections.Specialized.StringCollection nicks) {
       WatchListEditorMessage addMsg = new WatchListEditorMessage();
-      foreach (String nick in nicks) {
+      foreach (string nick in nicks) {
         addMsg.AddedNicks.Add(nick);
       }
       this.Contacts.Client.Send(addMsg);
     }
 
-    protected override void AddNick(String nick) {
+    protected override void AddNick(string nick) {
       WatchListEditorMessage addMsg = new WatchListEditorMessage();
       addMsg.AddedNicks.Add(nick);
       this.Contacts.Client.Send(addMsg);
     }
 
-    protected override void RemoveNick(String nick) {
+    protected override void RemoveNick(string nick) {
       WatchListEditorMessage remMsg = new WatchListEditorMessage();
       remMsg.RemovedNicks.Add(nick);
       this.Contacts.Client.Send(remMsg);

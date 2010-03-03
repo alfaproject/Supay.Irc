@@ -24,7 +24,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Creates a new instance of the <see cref="ChatMessage"/> class with the given text string.
     /// </summary>
-    public ChatMessage(String text)
+    public ChatMessage(string text)
       : base() {
       this.Text = text;
     }
@@ -32,7 +32,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Creates a new instance of the <see cref="ChatMessage"/> class with the given text string and target channel or user.
     /// </summary>
-    public ChatMessage(String text, String target)
+    public ChatMessage(string text, string target)
       : this(text) {
       this.Targets.Add(target);
     }
@@ -40,7 +40,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Creates a new instance of the <see cref="ChatMessage"/> class with the given text string and target channels or users.
     /// </summary>
-    public ChatMessage(String text, params String[] targets)
+    public ChatMessage(string text, params string[] targets)
       : this(text) {
       this.Targets.AddRange(targets);
     }
@@ -48,7 +48,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets the Irc command associated with this message.
     /// </summary>
-    protected override String Command {
+    protected override string Command {
       get {
         return "PRIVMSG";
       }

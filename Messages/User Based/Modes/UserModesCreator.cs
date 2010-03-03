@@ -29,9 +29,9 @@ namespace Supay.Irc.Messages.Modes {
     /// <summary>
     /// Loads the given mode data into this <see cref="UserModesCreator"/>
     /// </summary>
-    public void Parse(String modeChanges) {
+    public void Parse(string modeChanges) {
       this.modes.Clear();
-      if (String.IsNullOrEmpty(modeChanges)) {
+      if (string.IsNullOrEmpty(modeChanges)) {
         return;
       }
       ModeAction currentAction = ModeAction.Add;

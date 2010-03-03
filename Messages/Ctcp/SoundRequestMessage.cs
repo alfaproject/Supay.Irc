@@ -20,7 +20,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets an optional additional test message going along with the request.
     /// </summary>
-    public virtual String Text {
+    public virtual string Text {
       get {
         return this.text;
       }
@@ -28,12 +28,12 @@ namespace Supay.Irc.Messages {
         this.text = value;
       }
     }
-    private String text = "";
+    private string text = "";
 
     /// <summary>
     /// Gets or sets the name of the requested sound file to be played.
     /// </summary>
-    public virtual String SoundFile {
+    public virtual string SoundFile {
       get {
         return this.soundFile;
       }
@@ -41,7 +41,7 @@ namespace Supay.Irc.Messages {
         this.soundFile = value;
       }
     }
-    private String soundFile = "";
+    private string soundFile = "";
 
     /// <summary>
     /// Notifies the given <see cref="MessageConduit"/> by raising the appropriate event for the current <see cref="IrcMessage"/> subclass.
@@ -62,9 +62,9 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Parses the given string to populate this <see cref="IrcMessage"/>.
     /// </summary>
-    public override void Parse(String unparsedMessage) {
+    public override void Parse(string unparsedMessage) {
       base.Parse(unparsedMessage);
-      String eData = CtcpUtil.GetExtendedData(unparsedMessage);
+      string eData = CtcpUtil.GetExtendedData(unparsedMessage);
       if (eData.Length > 0) {
         StringCollection p = MessageUtil.GetParameters(eData);
         this.SoundFile = p[0];

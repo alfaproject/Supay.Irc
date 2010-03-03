@@ -19,7 +19,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets the Irc command associated with this message.
     /// </summary>
-    protected override String Command {
+    protected override string Command {
       get {
         return "WHISPER";
       }
@@ -28,7 +28,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the channel being targeted.
     /// </summary>
-    public virtual String Channel {
+    public virtual string Channel {
       get {
         return channel;
       }
@@ -36,7 +36,7 @@ namespace Supay.Irc.Messages {
         channel = value;
       }
     }
-    private String channel = "";
+    private string channel = "";
 
     /// <summary>
     /// Gets the target of this <see cref="TextMessage"/>.
@@ -54,7 +54,7 @@ namespace Supay.Irc.Messages {
     /// <remarks>
     /// This property holds the core purpose of irc itself... sending text communication to others.
     /// </remarks>
-    public virtual String Text {
+    public virtual string Text {
       get {
         return this.text;
       }
@@ -62,7 +62,7 @@ namespace Supay.Irc.Messages {
         this.text = value;
       }
     }
-    private String text = "";
+    private string text = "";
 
     /// <summary>
     /// Overrides <see cref="IrcMessage.AddParametersToFormat"/>.
@@ -85,8 +85,8 @@ namespace Supay.Irc.Messages {
         this.Targets.AddRange(parameters[1].Split(','));
         this.Text = parameters[2];
       } else {
-        this.Channel = String.Empty;
-        this.Text = String.Empty;
+        this.Channel = string.Empty;
+        this.Text = string.Empty;
       }
     }
 

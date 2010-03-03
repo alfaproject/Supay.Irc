@@ -11,7 +11,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets the Irc command associated with this message.
     /// </summary>
-    protected override String Command {
+    protected override string Command {
       get {
         return "ACCEPT";
       }
@@ -31,11 +31,11 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Determines if the message can be parsed by this type.
     /// </summary>
-    public override bool CanParse(String unparsedMessage) {
+    public override bool CanParse(string unparsedMessage) {
       if (!base.CanParse(unparsedMessage)) {
         return false;
       }
-      String firstParam = MessageUtil.GetParameter(unparsedMessage, 0);
+      string firstParam = MessageUtil.GetParameter(unparsedMessage, 0);
       return (firstParam == "*");
     }
 

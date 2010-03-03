@@ -13,7 +13,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the text of the <see cref="WallopsMessage"/>.
     /// </summary>
-    public virtual String Text {
+    public virtual string Text {
       get {
         return this.text;
       }
@@ -21,12 +21,12 @@ namespace Supay.Irc.Messages {
         this.text = value;
       }
     }
-    private String text = "";
+    private string text = "";
 
     /// <summary>
     /// Gets the Irc command associated with this message.
     /// </summary>
-    protected override String Command {
+    protected override string Command {
       get {
         return "WALLOPS";
       }
@@ -48,7 +48,7 @@ namespace Supay.Irc.Messages {
       if (parameters.Count >= 1) {
         this.Text = parameters[0];
       } else {
-        this.Text = String.Empty;
+        this.Text = string.Empty;
       }
     }
 

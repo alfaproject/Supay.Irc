@@ -20,7 +20,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the nick of the bot
     /// </summary>
-    public String Nick {
+    public string Nick {
       get {
         return nick;
       }
@@ -28,12 +28,12 @@ namespace Supay.Irc.Messages {
         nick = value;
       }
     }
-    private String nick;
+    private string nick;
 
     /// <summary>
     /// Gets or sets the channel on which the bot resides
     /// </summary>
-    public String Channel {
+    public string Channel {
       get {
         return channel;
       }
@@ -41,7 +41,7 @@ namespace Supay.Irc.Messages {
         channel = value;
       }
     }
-    private String channel;
+    private string channel;
 
 
     /// <exclude />

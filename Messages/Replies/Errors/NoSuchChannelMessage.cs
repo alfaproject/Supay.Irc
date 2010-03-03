@@ -20,7 +20,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the Channel which was empty or didn't exist.
     /// </summary>
-    public virtual String Channel {
+    public virtual string Channel {
       get {
         return _channel;
       }
@@ -29,7 +29,7 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private String _channel = "";
+    private string _channel = "";
 
     /// <summary>
     /// Overrides <see cref="IrcMessage.AddParametersToFormat"/>
@@ -48,7 +48,7 @@ namespace Supay.Irc.Messages {
       if (parameters.Count > 1) {
         this.Channel = parameters[1];
       } else {
-        this.Channel = String.Empty;
+        this.Channel = string.Empty;
       }
     }
 

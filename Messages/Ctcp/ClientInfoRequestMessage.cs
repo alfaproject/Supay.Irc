@@ -34,7 +34,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets the data payload of the Ctcp request.
     /// </summary>
-    protected override String ExtendedData {
+    protected override string ExtendedData {
       get {
         return MessageUtil.CreateList(this.parameters, " ");
       }
@@ -50,10 +50,10 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Parses the given string to populate this <see cref="IrcMessage"/>.
     /// </summary>
-    public override void Parse(String unparsedMessage) {
+    public override void Parse(string unparsedMessage) {
       base.Parse(unparsedMessage);
       this.Parameters.Clear();
-      String paramsList = CtcpUtil.GetExtendedData(unparsedMessage);
+      string paramsList = CtcpUtil.GetExtendedData(unparsedMessage);
       this.Parameters.AddRange(paramsList.Split(' '));
     }
   }

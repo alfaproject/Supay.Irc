@@ -12,7 +12,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets the Irc command associated with this message.
     /// </summary>
-    protected override String Command {
+    protected override string Command {
       get {
         return "LUSERS";
       }
@@ -21,7 +21,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the mask that limits the servers which information will be returned.
     /// </summary>
-    public virtual String Mask {
+    public virtual string Mask {
       get {
         return mask;
       }
@@ -29,7 +29,7 @@ namespace Supay.Irc.Messages {
         mask = value;
       }
     }
-    private String mask = "";
+    private string mask = "";
 
     /// <summary>
     /// Overrides <see cref="IrcMessage.AddParametersToFormat"/>.

@@ -20,7 +20,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the command which caused the error.
     /// </summary>
-    public String Command {
+    public string Command {
       get {
         return command;
       }
@@ -28,7 +28,7 @@ namespace Supay.Irc.Messages {
         command = value;
       }
     }
-    private String command;
+    private string command;
 
     /// <exclude />
     protected override void AddParametersToFormat(IrcMessageWriter writer) {

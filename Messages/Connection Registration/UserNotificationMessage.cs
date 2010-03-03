@@ -13,7 +13,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets the Irc command associated with this message.
     /// </summary>
-    protected override String Command {
+    protected override string Command {
       get {
         return "USER";
       }
@@ -22,7 +22,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the UserName of client.
     /// </summary>
-    public virtual String UserName {
+    public virtual string UserName {
       get {
         return this.userName;
       }
@@ -30,7 +30,7 @@ namespace Supay.Irc.Messages {
         this.userName = value;
       }
     }
-    private String userName = "";
+    private string userName = "";
 
     /// <summary>
     /// Gets or sets if the client is initialized with a user mode of invisible.
@@ -61,7 +61,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the real name of the client.
     /// </summary>
-    public virtual String RealName {
+    public virtual string RealName {
       get {
         return this.realName;
       }
@@ -69,7 +69,7 @@ namespace Supay.Irc.Messages {
         this.realName = value;
       }
     }
-    private String realName = "";
+    private string realName = "";
 
     /// <exclude />
     public override bool CanParse(string unparsedMessage) {

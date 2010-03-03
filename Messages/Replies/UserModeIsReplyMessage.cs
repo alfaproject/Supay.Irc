@@ -23,7 +23,7 @@ namespace Supay.Irc.Messages {
     /// <remarks>
     /// An example Modes might look like "+i".
     /// </remarks>
-    public virtual String Modes {
+    public virtual string Modes {
       get {
         return modes;
       }
@@ -32,7 +32,7 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private String modes = "";
+    private string modes = "";
 
     /// <summary>
     /// Overrides <see cref="IrcMessage.AddParametersToFormat"/>

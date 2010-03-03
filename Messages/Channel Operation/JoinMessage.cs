@@ -25,7 +25,7 @@ namespace Supay.Irc.Messages {
     /// Creates a new instance of the <see cref="JoinMessage"/> class with the given channel.
     /// </summary>
     /// <param name="channel">The name of the channel to join.</param>
-    public JoinMessage(String channel)
+    public JoinMessage(string channel)
       : base() {
       this.channels.Add(channel);
     }
@@ -33,7 +33,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets the Irc command associated with this message.
     /// </summary>
-    protected override String Command {
+    protected override string Command {
       get {
         return "JOIN";
       }

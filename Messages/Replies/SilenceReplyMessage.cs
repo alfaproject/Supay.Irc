@@ -33,7 +33,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the nick of the owner of the silence list
     /// </summary>
-    public virtual String SilenceListOwner {
+    public virtual string SilenceListOwner {
       get {
         return this.silenceListOwner;
       }
@@ -41,7 +41,7 @@ namespace Supay.Irc.Messages {
         this.silenceListOwner = value;
       }
     }
-    private String silenceListOwner = "";
+    private string silenceListOwner = "";
 
 
     /// <summary>

@@ -21,7 +21,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the name of the software the server is running.
     /// </summary>
-    public virtual String ServerName {
+    public virtual string ServerName {
       get {
         return serverName;
       }
@@ -29,12 +29,12 @@ namespace Supay.Irc.Messages {
         serverName = value;
       }
     }
-    private String serverName = "";
+    private string serverName = "";
 
     /// <summary>
     /// Gets or sets the version of the software the server is running.
     /// </summary>
-    public virtual String Version {
+    public virtual string Version {
       get {
         return version;
       }
@@ -42,10 +42,10 @@ namespace Supay.Irc.Messages {
         version = value;
       }
     }
-    private String version = "";
+    private string version = "";
 
-    private const String yourHostIs = "Your host is ";
-    private const String runningVersion = ", running version ";
+    private const string yourHostIs = "Your host is ";
+    private const string runningVersion = ", running version ";
 
     /// <summary>
     /// Overrides <see cref="IrcMessage.AddParametersToFormat"/>
@@ -60,7 +60,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     protected override void ParseParameters(StringCollection parameters) {
       base.ParseParameters(parameters);
-      String reply = parameters[1];
+      string reply = parameters[1];
       if (reply.IndexOf(yourHostIs, StringComparison.Ordinal) != -1 && reply.IndexOf(runningVersion, StringComparison.Ordinal) != -1) {
         int startOfServerName = yourHostIs.Length;
         int startOfVersion = reply.IndexOf(runningVersion, StringComparison.Ordinal) + runningVersion.Length;

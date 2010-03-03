@@ -20,7 +20,7 @@ namespace Supay.Irc.Messages {
     /// Creates a new instance of the <see cref="NickChangeMessage"/> class with the given nick.
     /// </summary>
     /// <param name="newNick"></param>
-    public NickChangeMessage(String newNick)
+    public NickChangeMessage(string newNick)
       : base() {
       this.newNick = newNick;
     }
@@ -28,7 +28,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets the Irc command associated with this message.
     /// </summary>
-    protected override String Command {
+    protected override string Command {
       get {
         return "NICK";
       }
@@ -41,7 +41,7 @@ namespace Supay.Irc.Messages {
     /// Some servers limit you to 9 characters in you nick, while others allow more.
     /// Some servers will send a <see cref="SupportMessage"/> telling you the maximum nick length allowed.
     /// </remarks>
-    public virtual String NewNick {
+    public virtual string NewNick {
       get {
         return this.newNick;
       }
@@ -49,7 +49,7 @@ namespace Supay.Irc.Messages {
         this.newNick = value;
       }
     }
-    private String newNick = "";
+    private string newNick = "";
 
 
     /// <summary>
@@ -64,7 +64,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Parses the given string to populate this <see cref="IrcMessage"/>.
     /// </summary>
-    public override void Parse(String unparsedMessage) {
+    public override void Parse(string unparsedMessage) {
       base.Parse(unparsedMessage);
     }
 

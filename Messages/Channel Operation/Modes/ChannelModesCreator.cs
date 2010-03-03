@@ -37,8 +37,8 @@ namespace Supay.Irc.Messages.Modes {
     /// Loads the given mode data into this <see cref="ChannelModesCreator"/>
     /// </summary>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity")]
-    public void Parse(String modeChanges, StringCollection modeArguments) {
-      if (String.IsNullOrEmpty(modeChanges)) {
+    public void Parse(string modeChanges, StringCollection modeArguments) {
+      if (string.IsNullOrEmpty(modeChanges)) {
         return;
       }
       if (modeArguments == null) {
@@ -137,7 +137,7 @@ namespace Supay.Irc.Messages.Modes {
               this.modes.Add(voiceMode);
               break;
             default:
-              String unknownMode = c.ToString();
+              string unknownMode = c.ToString();
               if (this.serverSupports.ModesWithParameters.Contains(unknownMode) || (this.serverSupports.ModesWithParametersWhenSet.Contains(unknownMode) && currentAction == ModeAction.Add)) {
                 // I want to yank a parameter	
                 this.modes.Add(new UnknownChannelMode(currentAction, unknownMode, modeArguments[argIndex]));
@@ -166,8 +166,8 @@ namespace Supay.Irc.Messages.Modes {
     /// <summary>
     /// Loads the given mode data into this <see cref="ChannelModesCreator"/>
     /// </summary>
-    public void Parse(String modeChanges) {
-      if (String.IsNullOrEmpty(modeChanges)) {
+    public void Parse(string modeChanges) {
+      if (string.IsNullOrEmpty(modeChanges)) {
         return;
       }
       this.Parse(modeChanges, new StringCollection());

@@ -25,11 +25,11 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Determines if the message can be parsed by this type.
     /// </summary>
-    public override bool CanParse(String unparsedMessage) {
+    public override bool CanParse(string unparsedMessage) {
       if (!base.CanParse(unparsedMessage)) {
         return false;
       }
-      String firstParam = MessageUtil.GetParameter(unparsedMessage, 0);
+      string firstParam = MessageUtil.GetParameter(unparsedMessage, 0);
       return firstParam.StartsWith("+", StringComparison.Ordinal);
     }
 
@@ -38,9 +38,9 @@ namespace Supay.Irc.Messages {
     /// </summary>
     protected override void ParseParameters(StringCollection parameters) {
       base.ParseParameters(parameters);
-      String nicksParam = parameters[parameters.Count - 1];
-      String[] splitNicksParam = nicksParam.Split(new String[] { "," }, StringSplitOptions.RemoveEmptyEntries);
-      foreach (String nick in splitNicksParam) {
+      string nicksParam = parameters[parameters.Count - 1];
+      string[] splitNicksParam = nicksParam.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
+      foreach (string nick in splitNicksParam) {
         this.Nicks.Add(nick);
       }
     }

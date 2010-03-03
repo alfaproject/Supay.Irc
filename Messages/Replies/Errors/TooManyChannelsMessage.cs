@@ -20,7 +20,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// The channel to which entry was denied.
     /// </summary>
-    public virtual String Channel {
+    public virtual string Channel {
       get {
         return channel;
       }
@@ -29,7 +29,7 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private String channel = "";
+    private string channel = "";
 
     /// <summary>
     /// Overrides <see cref="IrcMessage.AddParametersToFormat"/>

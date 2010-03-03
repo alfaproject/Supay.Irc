@@ -20,7 +20,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the server replying to the time request.
     /// </summary>
-    public virtual String Server {
+    public virtual string Server {
       get {
         return server;
       }
@@ -32,7 +32,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the time value requested.
     /// </summary>
-    public virtual String Time {
+    public virtual string Time {
       get {
         return time;
       }
@@ -41,8 +41,8 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private String server = "";
-    private String time = "";
+    private string server = "";
+    private string time = "";
 
 
     /// <summary>

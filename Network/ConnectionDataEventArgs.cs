@@ -9,7 +9,7 @@ namespace Supay.Irc.Network {
     /// <summary>
     ///   Initializes a new instance of the ConnectionDataEventArgs class with the given data. </summary>
     /// <param name="data">
-    ///   The <see cref="ConnectionDataEventArgs.Data"/> <see cref="String"/>
+    ///   The <see cref="ConnectionDataEventArgs.Data"/> <see cref="string"/>
     ///   received by the <see cref="ClientConnection"/>. </param>
     public ConnectionDataEventArgs(string data) {
       Data = data;

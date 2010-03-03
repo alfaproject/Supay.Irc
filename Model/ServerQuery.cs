@@ -66,7 +66,7 @@ namespace Supay.Irc {
       }
     }
 
-    private void NotifyPropertyChanged(String propertyName) {
+    private void NotifyPropertyChanged(string propertyName) {
       this.OnPropertyChanged(new PropertyChangedEventArgs(propertyName));
     }
 

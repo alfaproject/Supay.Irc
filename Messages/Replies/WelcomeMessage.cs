@@ -21,7 +21,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// The content of the welcome message.
     /// </summary>
-    public virtual String Text {
+    public virtual string Text {
       get {
         return text;
       }
@@ -29,7 +29,7 @@ namespace Supay.Irc.Messages {
         text = value;
       }
     }
-    private String text = "";
+    private string text = "";
 
     /// <summary>
     /// Overrides <see cref="IrcMessage.AddParametersToFormat"/>
@@ -47,7 +47,7 @@ namespace Supay.Irc.Messages {
       if (parameters.Count == 2) {
         this.Text = parameters[1];
       } else {
-        this.Text = String.Empty;
+        this.Text = string.Empty;
       }
     }
 

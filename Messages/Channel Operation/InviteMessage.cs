@@ -12,8 +12,8 @@ namespace Supay.Irc.Messages {
   [Serializable]
   public class InviteMessage : CommandMessage, IChannelTargetedMessage {
 
-    private String channel = "";
-    private String nick = "";
+    private string channel = "";
+    private string nick = "";
 
     /// <summary>
     /// Creates a new instance of the <see cref="InviteMessage"/> class.
@@ -26,7 +26,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     /// <param name="channel">The channel the person is being invited into.</param>
     /// <param name="nick">The nick of the user invited</param>
-    public InviteMessage(String channel, String nick) {
+    public InviteMessage(string channel, string nick) {
       this.channel = channel;
       this.nick = nick;
     }
@@ -34,7 +34,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the channel the person is being invited into.
     /// </summary>
-    public virtual String Channel {
+    public virtual string Channel {
       get {
         return this.channel;
       }
@@ -46,7 +46,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the nick of the user invited
     /// </summary>
-    public virtual String Nick {
+    public virtual string Nick {
       get {
         return this.nick;
       }
@@ -58,7 +58,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets the Irc command associated with this message.
     /// </summary>
-    protected override String Command {
+    protected override string Command {
       get {
         return "INVITE";
       }

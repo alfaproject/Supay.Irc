@@ -45,7 +45,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Parses the command portion of the message.
     /// </summary>
-    protected override void ParseCommand(String command) {
+    protected override void ParseCommand(string command) {
       base.ParseCommand(command);
       this.Command = Convert.ToInt32(command, CultureInfo.InvariantCulture);
     }

@@ -38,7 +38,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     protected override void AddParametersToFormat(IrcMessageWriter writer) {
       base.AddParametersToFormat(writer);
-      foreach (String nick in this.Nicks) {
+      foreach (string nick in this.Nicks) {
         writer.AddParameter(nick);
       }
     }

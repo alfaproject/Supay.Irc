@@ -44,11 +44,11 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Determines if the message can be parsed by this type.
     /// </summary>
-    public override bool CanParse(String unparsedMessage) {
+    public override bool CanParse(string unparsedMessage) {
       if (!base.CanParse(unparsedMessage)) {
         return false;
       }
-      String firstParam = MessageUtil.GetParameter(unparsedMessage, 0);
+      string firstParam = MessageUtil.GetParameter(unparsedMessage, 0);
       return (firstParam.StartsWith("+", StringComparison.Ordinal) || firstParam.StartsWith("-", StringComparison.Ordinal));
     }
 
@@ -57,7 +57,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     protected override void ParseParameters(StringCollection parameters) {
       base.ParseParameters(parameters);
-      foreach (String param in parameters) {
+      foreach (string param in parameters) {
         if (param.StartsWith("+", StringComparison.Ordinal)) {
           this.AddedNicks.Add(param.Substring(1));
         }
@@ -77,12 +77,12 @@ namespace Supay.Irc.Messages {
     protected override void AddParametersToFormat(IrcMessageWriter writer) {
       base.AddParametersToFormat(writer);
       if (this.addedNicks != null) {
-        foreach (String aNick in this.addedNicks) {
+        foreach (string aNick in this.addedNicks) {
           writer.AddParameter("+" + aNick, true);
         }
       }
       if (this.removedNicks != null) {
-        foreach (String rNick in this.removedNicks) {
+        foreach (string rNick in this.removedNicks) {
           writer.AddParameter("-" + rNick, true);
         }
       }

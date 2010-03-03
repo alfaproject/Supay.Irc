@@ -21,7 +21,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the nick which wasn't added
     /// </summary>
-    public virtual String Nick {
+    public virtual string Nick {
       get {
         return nick;
       }
@@ -30,7 +30,7 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private String nick = "";
+    private string nick = "";
 
     /// <summary>
     /// Overrides <see cref="IrcMessage.AddParametersToFormat"/>

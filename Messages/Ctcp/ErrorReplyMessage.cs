@@ -20,7 +20,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the text of the query which couldn't be processed.
     /// </summary>
-    public virtual String Query {
+    public virtual string Query {
       get {
         return this.query;
       }
@@ -28,12 +28,12 @@ namespace Supay.Irc.Messages {
         this.query = value;
       }
     }
-    private String query = "";
+    private string query = "";
 
     /// <summary>
     /// Gets or sets the reason the request couldn't be processed.
     /// </summary>
-    public virtual String Reason {
+    public virtual string Reason {
       get {
         return this.reason;
       }
@@ -41,12 +41,12 @@ namespace Supay.Irc.Messages {
         this.reason = value;
       }
     }
-    private String reason = "";
+    private string reason = "";
 
     /// <summary>
     /// Gets the data payload of the Ctcp request.
     /// </summary>
-    protected override String ExtendedData {
+    protected override string ExtendedData {
       get {
         return this.query + " " + this.reason;
       }
@@ -62,9 +62,9 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Parses the given string to populate this <see cref="IrcMessage"/>.
     /// </summary>
-    public override void Parse(String unparsedMessage) {
+    public override void Parse(string unparsedMessage) {
       base.Parse(unparsedMessage);
-      String eData = CtcpUtil.GetExtendedData(unparsedMessage);
+      string eData = CtcpUtil.GetExtendedData(unparsedMessage);
       StringCollection p = MessageUtil.GetParameters(eData);
       if (p.Count == 2) {
         this.Query = p[0];

@@ -21,7 +21,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the date on which the server was created.
     /// </summary>
-    public virtual String CreatedDate {
+    public virtual string CreatedDate {
       get {
         return createdDate;
       }
@@ -29,9 +29,9 @@ namespace Supay.Irc.Messages {
         createdDate = value;
       }
     }
-    private String createdDate = "";
+    private string createdDate = "";
 
-    private String thisServerCreated = "This server was created ";
+    private string thisServerCreated = "This server was created ";
 
     /// <summary>
     /// Overrides <see cref="IrcMessage.AddParametersToFormat"/>
@@ -47,7 +47,7 @@ namespace Supay.Irc.Messages {
     protected override void ParseParameters(StringCollection parameters) {
       base.ParseParameters(parameters);
 
-      String reply = parameters[1];
+      string reply = parameters[1];
       if (reply.IndexOf(thisServerCreated, StringComparison.Ordinal) != -1) {
         int startOfDate = thisServerCreated.Length;
         this.CreatedDate = reply.Substring(startOfDate);

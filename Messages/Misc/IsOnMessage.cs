@@ -23,7 +23,7 @@ namespace Supay.Irc.Messages {
     /// Creates a new instance of the IsOnMessage class with the given nicks.
     /// </summary>
     /// <param name="nicks"></param>
-    public IsOnMessage(params String[] nicks) {
+    public IsOnMessage(params string[] nicks) {
       this.nicks.AddRange(nicks);
     }
 
@@ -40,7 +40,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets the Irc command associated with this message.
     /// </summary>
-    protected override String Command {
+    protected override string Command {
       get {
         return "ISON";
       }
@@ -60,7 +60,7 @@ namespace Supay.Irc.Messages {
     protected override void ParseParameters(StringCollection parameters) {
       base.ParseParameters(parameters);
       if (parameters.Count > 0) {
-        String nickParam = parameters[0];
+        string nickParam = parameters[0];
         this.Nicks.AddRange(nickParam.Split(' '));
       } else {
         this.Nicks.Clear();

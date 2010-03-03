@@ -52,7 +52,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the name of the channel specified in the reply.
     /// </summary>
-    public virtual String Channel {
+    public virtual string Channel {
       get {
         return channel;
       }
@@ -64,15 +64,15 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets the collection of nicks in the channel.
     /// </summary>
-    public virtual Dictionary<String, ChannelStatus> Nicks {
+    public virtual Dictionary<string, ChannelStatus> Nicks {
       get {
         return nicks;
       }
     }
 
     private ChannelVisibility visibility = ChannelVisibility.Public;
-    private Dictionary<String, ChannelStatus> nicks = new Dictionary<String, ChannelStatus>();
-    private String channel = "";
+    private Dictionary<string, ChannelStatus> nicks = new Dictionary<string, ChannelStatus>();
+    private string channel = "";
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.AddParametersToFormat"/>. </summary>
@@ -120,13 +120,13 @@ namespace Supay.Irc.Messages {
         }
         this.Channel = parameters[2];
         if (parameters.Count > 3) {
-          String[] msgNicks = parameters[3].Split(' ');
-          foreach (String nick in msgNicks) {
+          string[] msgNicks = parameters[3].Split(' ');
+          foreach (string nick in msgNicks) {
             ChannelStatus status = ChannelStatus.None;
-            String parsedNick = nick;
+            string parsedNick = nick;
 
             if (parsedNick.Length > 1) {
-              String firstLetter = parsedNick.Substring(0, 1);
+              string firstLetter = parsedNick.Substring(0, 1);
               if (ChannelStatus.IsDefined(firstLetter)) {
                 status = ChannelStatus.GetInstance(firstLetter);
                 parsedNick = parsedNick.Substring(1);

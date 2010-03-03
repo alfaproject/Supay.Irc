@@ -25,7 +25,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the channel which has reached its limit
     /// </summary>
-    public String Channel {
+    public string Channel {
       get {
         return channel;
       }
@@ -33,7 +33,7 @@ namespace Supay.Irc.Messages {
         channel = value;
       }
     }
-    private String channel;
+    private string channel;
 
     /// <exclude />
     protected override void AddParametersToFormat(IrcMessageWriter writer) {

@@ -20,7 +20,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the target which was invalid.
     /// </summary>
-    public virtual String InvalidTarget {
+    public virtual string InvalidTarget {
       get {
         return invalidTarget;
       }
@@ -28,13 +28,13 @@ namespace Supay.Irc.Messages {
         invalidTarget = value;
       }
     }
-    private String invalidTarget = "";
+    private string invalidTarget = "";
 
     /// <summary>
     /// Gets or sets the errorcode
     /// </summary>
     /// <remarks>An example error code might be, "Duplicate"</remarks>
-    public virtual String ErrorCode {
+    public virtual string ErrorCode {
       get {
         return errorCode;
       }
@@ -42,12 +42,12 @@ namespace Supay.Irc.Messages {
         errorCode = value;
       }
     }
-    private String errorCode = "";
+    private string errorCode = "";
 
     /// <summary>
     /// Gets or sets the message explaining what was done about the error.
     /// </summary>
-    public virtual String AbortMessage {
+    public virtual string AbortMessage {
       get {
         return abortMessage;
       }
@@ -55,7 +55,7 @@ namespace Supay.Irc.Messages {
         abortMessage = value;
       }
     }
-    private String abortMessage = "";
+    private string abortMessage = "";
 
     /// <summary>
     /// Overrides <see cref="IrcMessage.AddParametersToFormat"/>
@@ -79,7 +79,7 @@ namespace Supay.Irc.Messages {
       if (parameters.Count > 1) {
         this.InvalidTarget = parameters[1];
         if (parameters.Count > 2) {
-          String[] messagePieces = System.Text.RegularExpressions.Regex.Split(parameters[2], " recipients.");
+          string[] messagePieces = System.Text.RegularExpressions.Regex.Split(parameters[2], " recipients.");
           if (messagePieces.Length == 2) {
             this.ErrorCode = messagePieces[0];
             this.AbortMessage = messagePieces[1];

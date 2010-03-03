@@ -27,7 +27,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Creates a new instance of the <see cref="ChannelScopedNoticeMessage"/> class with the given text string.
     /// </summary>
-    public ChannelScopedNoticeMessage(String text)
+    public ChannelScopedNoticeMessage(string text)
       : base() {
       this.Text = text;
     }
@@ -35,7 +35,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Creates a new instance of the <see cref="ChannelScopedNoticeMessage"/> class with the given text string and target channel or user.
     /// </summary>
-    public ChannelScopedNoticeMessage(String text, String target)
+    public ChannelScopedNoticeMessage(string text, string target)
       : this(text) {
       this.Target = target;
     }
@@ -47,7 +47,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets the Irc command associated with this message.
     /// </summary>
-    protected override String Command {
+    protected override string Command {
       get {
         return "CNOTICE";
       }
@@ -56,7 +56,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the actual text of this message.
     /// </summary>
-    public virtual String Text {
+    public virtual string Text {
       get {
         return this.text;
       }
@@ -67,12 +67,12 @@ namespace Supay.Irc.Messages {
         this.text = value;
       }
     }
-    private String text = "";
+    private string text = "";
 
     /// <summary>
     /// Gets or sets the target of this message.
     /// </summary>
-    public virtual String Target {
+    public virtual string Target {
       get {
         return this.target;
       }
@@ -83,12 +83,12 @@ namespace Supay.Irc.Messages {
         target = value;
       }
     }
-    private String target = "";
+    private string target = "";
 
     /// <summary>
     /// Gets or sets the channel which this message is scoped to.
     /// </summary>
-    public virtual String Channel {
+    public virtual string Channel {
       get {
         return this.channel;
       }
@@ -99,7 +99,7 @@ namespace Supay.Irc.Messages {
         channel = value;
       }
     }
-    private String channel = "";
+    private string channel = "";
 
     #endregion
 
@@ -126,9 +126,9 @@ namespace Supay.Irc.Messages {
         this.Channel = parameters[1];
         this.Text = parameters[2];
       } else {
-        this.Target = String.Empty;
-        this.Channel = String.Empty;
-        this.Text = String.Empty;
+        this.Target = string.Empty;
+        this.Channel = string.Empty;
+        this.Text = string.Empty;
       }
     }
 
@@ -138,10 +138,10 @@ namespace Supay.Irc.Messages {
     public override void Validate(ServerSupport serverSupport) {
       base.Validate(serverSupport);
       MessageUtil.EnsureValidChannelName(this.Channel, serverSupport);
-      if (String.IsNullOrEmpty(this.Target)) {
+      if (string.IsNullOrEmpty(this.Target)) {
         throw new InvalidMessageException(Properties.Resources.TargetcannotBeEmpty);
       }
-      if (String.IsNullOrEmpty(this.Channel)) {
+      if (string.IsNullOrEmpty(this.Channel)) {
         throw new InvalidMessageException(Properties.Resources.ChannelCannotBeEmpty);
       }
     }

@@ -22,7 +22,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the user's away message.
     /// </summary>
-    public virtual String Text {
+    public virtual string Text {
       get {
         return text;
       }
@@ -34,7 +34,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the nick of the user who is away.
     /// </summary>
-    public virtual String Nick {
+    public virtual string Nick {
       get {
         return nick;
       }
@@ -43,8 +43,8 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private String text = "";
-    private String nick = "";
+    private string text = "";
+    private string nick = "";
 
     /// <summary>
     /// Overrides <see cref="IrcMessage.AddParametersToFormat"/>
@@ -64,8 +64,8 @@ namespace Supay.Irc.Messages {
         this.Nick = parameters[1];
         this.Text = parameters[2];
       } else {
-        this.Nick = String.Empty;
-        this.Text = String.Empty;
+        this.Nick = string.Empty;
+        this.Text = string.Empty;
       }
     }
 

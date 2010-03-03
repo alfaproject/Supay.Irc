@@ -23,7 +23,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Creates a new instance of the AwayMessage class with the given reason.
     /// </summary>
-    public AwayMessage(String reason)
+    public AwayMessage(string reason)
       : base() {
       this.reason = reason;
     }
@@ -31,7 +31,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets the Irc command associated with this message.
     /// </summary>
-    protected override String Command {
+    protected override string Command {
       get {
         return "AWAY";
       }
@@ -40,7 +40,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the reason for being away.
     /// </summary>
-    public virtual String Reason {
+    public virtual string Reason {
       get {
         return this.reason;
       }
@@ -48,7 +48,7 @@ namespace Supay.Irc.Messages {
         this.reason = value;
       }
     }
-    private String reason = String.Empty;
+    private string reason = string.Empty;
 
     /// <summary>
     /// Overrides <see cref="IrcMessage.AddParametersToFormat"/>.
@@ -65,7 +65,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Determines if the message can be parsed by this type.
     /// </summary>
-    public override bool CanParse(String unparsedMessage) {
+    public override bool CanParse(string unparsedMessage) {
       return (base.CanParse(unparsedMessage) && MessageUtil.GetParameters(unparsedMessage).Count > 0);
     }
 

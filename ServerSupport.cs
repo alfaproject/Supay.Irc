@@ -81,7 +81,7 @@ namespace Supay.Irc {
     /// <summary>
     /// Gets or sets the standard used by the server.
     /// </summary>
-    public String Standard {
+    public string Standard {
       get {
         return (this._standard);
       }
@@ -89,7 +89,7 @@ namespace Supay.Irc {
         this._standard = value;
       }
     }
-    private String _standard = "i-d";
+    private string _standard = "i-d";
 
     /// <summary>
     /// Gets or sets a list of channel modes a person can get and the respective prefix a channel or nickname will get in case the person has it.
@@ -98,7 +98,7 @@ namespace Supay.Irc {
     /// The order of the modes goes from most powerful to least powerful. 
     /// Those prefixes are shown in the output of the WHOIS, WHO and NAMES command.
     /// </remarks>
-    public String ChannelStatuses {
+    public string ChannelStatuses {
       get {
         return (this._channelStatuses);
       }
@@ -106,12 +106,12 @@ namespace Supay.Irc {
         this._channelStatuses = value;
       }
     }
-    private String _channelStatuses = "(ov)@+";
+    private string _channelStatuses = "(ov)@+";
 
     /// <summary>
     /// Gets or sets the channel status prefixes supported for matched-status-only messages
     /// </summary>
-    public String StatusMessages {
+    public string StatusMessages {
       get {
         return (this.statusMessages);
       }
@@ -119,7 +119,7 @@ namespace Supay.Irc {
         this.statusMessages = value;
       }
     }
-    private String statusMessages = String.Empty;
+    private string statusMessages = string.Empty;
 
     /// <summary>
     /// Gets the supported channel prefixes.
@@ -194,12 +194,12 @@ namespace Supay.Irc {
     /// Gets the collection of channel limits, grouped by channel type (ex, #, +).
     /// </summary>
     /// <remarks>This property has replaced MaxChannels becuase of the added flexibility.</remarks>
-    public Dictionary<String, int> ChannelLimits {
+    public Dictionary<string, int> ChannelLimits {
       get {
         return _channelLimits;
       }
     }
-    private Dictionary<String, int> _channelLimits = new Dictionary<string, int>();
+    private Dictionary<string, int> _channelLimits = new Dictionary<string, int>();
 
     /// <summary>
     /// Gets or sets the maximum nickname length.
@@ -295,7 +295,7 @@ namespace Supay.Irc {
     /// <summary>
     /// Gets or sets the name of the network which the server is on.
     /// </summary>
-    public String NetworkName {
+    public string NetworkName {
       get {
         return (this._networkName);
       }
@@ -303,7 +303,7 @@ namespace Supay.Irc {
         this._networkName = value;
       }
     }
-    private String _networkName = String.Empty;
+    private string _networkName = string.Empty;
 
     /// <summary>
     /// Gets or sets if the server supports channel ban exceptions. 
@@ -365,7 +365,7 @@ namespace Supay.Irc {
     /// Gets or sets the case mapping supported by the server.
     /// </summary>
     /// <remarks>"ascii", "rfc1459", and "strict-rfc1459" are the only known values.</remarks>
-    public String CaseMapping {
+    public string CaseMapping {
       get {
         return (this._caseMapping);
       }
@@ -373,12 +373,12 @@ namespace Supay.Irc {
         this._caseMapping = value;
       }
     }
-    private String _caseMapping = "rfc1459";
+    private string _caseMapping = "rfc1459";
 
     /// <summary>
     /// Gets or sets the text encoding used by the server.
     /// </summary>
-    public String CharacterSet {
+    public string CharacterSet {
       get {
         return (this._characterSet);
       }
@@ -386,7 +386,7 @@ namespace Supay.Irc {
         this._characterSet = value;
       }
     }
-    private String _characterSet = String.Empty;
+    private string _characterSet = string.Empty;
 
     /// <summary>
     /// Gets or sets if the server supports the standards declared in rfc 2812.
@@ -482,12 +482,12 @@ namespace Supay.Irc {
     /// <summary>
     /// Gets or sets the maximum number of targets allowed on targetted messages, grouped by message command
     /// </summary>
-    public Dictionary<String, int> MaxMessageTargets {
+    public Dictionary<string, int> MaxMessageTargets {
       get {
         return _maxMessageTargets;
       }
     }
-    private Dictionary<String, int> _maxMessageTargets = new Dictionary<string, int>();
+    private Dictionary<string, int> _maxMessageTargets = new Dictionary<string, int>();
 
     /// <summary>
     /// Gets or sets if the server supports the <see cref="Supay.Irc.Messages.KnockMessage"/>.
@@ -614,12 +614,12 @@ namespace Supay.Irc {
     /// <summary>
     /// Gets the collection of safe channel prefix lengths, grouped by the channel type they apply to.
     /// </summary>
-    public Dictionary<String, int> SafeChannelPrefixLengths {
+    public Dictionary<string, int> SafeChannelPrefixLengths {
       get {
         return _safeChannelPrefixLengths;
       }
     }
-    private Dictionary<String, int> _safeChannelPrefixLengths = new Dictionary<string, int>();
+    private Dictionary<string, int> _safeChannelPrefixLengths = new Dictionary<string, int>();
 
     /// <summary>
     /// Gets or sets the maximum length of away messages.
@@ -652,8 +652,8 @@ namespace Supay.Irc {
      System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1505:AvoidUnmaintainableCode")]
     public void LoadInfo(Supay.Irc.Messages.SupportMessage msg) {
       NameValueCollection items = msg.SupportedItems;
-      foreach (String key in items.Keys) {
-        String value = items[key] ?? "";
+      foreach (string key in items.Keys) {
+        string value = items[key] ?? "";
         switch (key) {
           case "DEAF":
             this.DeafMode = true;
@@ -683,7 +683,7 @@ namespace Supay.Irc {
             AddChars(this.ChannelTypes, value);
             break;
           case "CHANMODES":
-            String[] modeGroups = value.Split(',');
+            string[] modeGroups = value.Split(',');
             if (modeGroups.Length >= 4) {
               AddChars(this.ModesWithParameters, modeGroups[0]);
               AddChars(this.ModesWithParameters, modeGroups[1]);
@@ -848,13 +848,13 @@ namespace Supay.Irc {
       }
     }
 
-    private static void AddChars(StringCollection target, String source) {
+    private static void AddChars(StringCollection target, string source) {
       foreach (Char c in source) {
         target.Add(c.ToString());
       }
     }
 
-    private void SetIfNumeric(System.Reflection.PropertyInfo property, String value) {
+    private void SetIfNumeric(System.Reflection.PropertyInfo property, string value) {
       int intValue;
       if (value != null && int.TryParse(value, NumberStyles.Integer, CultureInfo.InvariantCulture, out intValue)) {
         property.SetValue(this, intValue, null);
@@ -863,11 +863,11 @@ namespace Supay.Irc {
       }
     }
 
-    private List<InfoPair> CreateInfoPairs(String value) {
+    private List<InfoPair> CreateInfoPairs(string value) {
       List<InfoPair> list = new List<InfoPair>();
-      foreach (String chanLimitPair in value.Split(',')) {
+      foreach (string chanLimitPair in value.Split(',')) {
         if (chanLimitPair.Contains(":")) {
-          String[] chanLimitInfo = chanLimitPair.Split(':');
+          string[] chanLimitInfo = chanLimitPair.Split(':');
           if (chanLimitInfo.Length == 2 && chanLimitInfo[0].Length > 0) {
             InfoPair pair = new InfoPair(chanLimitInfo[0], chanLimitInfo[1]);
             list.Add(pair);
@@ -878,13 +878,13 @@ namespace Supay.Irc {
     }
 
     private struct InfoPair {
-      public InfoPair(String key, String value) {
+      public InfoPair(string key, string value) {
         this.Key = key;
         this.Value = value;
       }
 
-      public String Key;
-      public String Value;
+      public string Key;
+      public string Value;
     }
   }
 

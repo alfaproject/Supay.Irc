@@ -19,7 +19,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Creates a new instance of the <see cref="NoticeMessage"/> class with the given text string.
     /// </summary>
-    public NoticeMessage(String text)
+    public NoticeMessage(string text)
       : base() {
       this.Text = text;
     }
@@ -27,7 +27,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Creates a new instance of the <see cref="NoticeMessage"/> class with the given text string and target channel or user.
     /// </summary>
-    public NoticeMessage(String text, String target)
+    public NoticeMessage(string text, string target)
       : this(text) {
       this.Targets.Add(target);
     }
@@ -35,7 +35,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Creates a new instance of the <see cref="NoticeMessage"/> class with the given text string and target channels or users.
     /// </summary>
-    public NoticeMessage(String text, params String[] targets)
+    public NoticeMessage(string text, params string[] targets)
       : this(text) {
       this.Targets.AddRange(targets);
     }
@@ -43,7 +43,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets the Irc command associated with this message.
     /// </summary>
-    protected override String Command {
+    protected override string Command {
       get {
         return "NOTICE";
       }

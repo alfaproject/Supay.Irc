@@ -20,7 +20,7 @@ namespace Supay.Irc.Dcc {
     }
 
     /// <summary>
-    ///   Gets the address of the connection instantiator in 64-bits format as a String. </summary>
+    ///   Gets the address of the connection instantiator in 64-bits format as a string. </summary>
     public static string GetAddress(string rawMessage) {
       return GetParameters(rawMessage)[2];
     }

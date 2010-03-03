@@ -34,7 +34,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the version of Ircx the server implements.
     /// </summary>
-    public virtual String Version {
+    public virtual string Version {
       get {
         return this.ircxVersion;
       }
@@ -42,7 +42,7 @@ namespace Supay.Irc.Messages {
         this.ircxVersion = value;
       }
     }
-    private String ircxVersion = "";
+    private string ircxVersion = "";
 
     /// <summary>
     /// Gets the collection of authentication packages
@@ -74,7 +74,7 @@ namespace Supay.Irc.Messages {
     /// There are no known servers that implement this property.
     /// It is almost always just *.
     /// </remarks>
-    public virtual String Tokens {
+    public virtual string Tokens {
       get {
         return this.tokens;
       }
@@ -82,7 +82,7 @@ namespace Supay.Irc.Messages {
         this.tokens = value;
       }
     }
-    private String tokens = "*";
+    private string tokens = "*";
 
     /// <summary>
     /// Overrides <see cref="IrcMessage.AddParametersToFormat"/>
@@ -109,7 +109,7 @@ namespace Supay.Irc.Messages {
         this.IsIrcxClientMode = (parameters[1] == "1");
         this.Version = parameters[2];
         this.AuthenticationPackages.Clear();
-        foreach (String package in parameters[3].Split(',')) {
+        foreach (string package in parameters[3].Split(',')) {
           this.AuthenticationPackages.Add(package);
         }
         this.MaximumMessageLength = int.Parse(parameters[4], CultureInfo.InvariantCulture);

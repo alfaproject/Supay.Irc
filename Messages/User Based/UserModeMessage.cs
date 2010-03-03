@@ -15,7 +15,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets the Irc command associated with this message.
     /// </summary>
-    protected override String Command {
+    protected override string Command {
       get {
         return "MODE";
       }
@@ -24,7 +24,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the affected user.
     /// </summary>
-    public virtual String User {
+    public virtual string User {
       get {
         return this.user;
       }
@@ -32,7 +32,7 @@ namespace Supay.Irc.Messages {
         this.user = value;
       }
     }
-    private String user = "";
+    private string user = "";
 
     /// <summary>
     /// Gets or sets the mode changes being applied.
@@ -41,7 +41,7 @@ namespace Supay.Irc.Messages {
     /// An example ModeChanges might look like "-w".
     /// This example means turning off the receipt of wallop message from the server.
     /// </remarks>
-    public virtual String ModeChanges {
+    public virtual string ModeChanges {
       get {
         return this.modeChanges;
       }
@@ -49,7 +49,7 @@ namespace Supay.Irc.Messages {
         this.modeChanges = value;
       }
     }
-    private String modeChanges = "";
+    private string modeChanges = "";
 
     /// <summary>
     /// Overrides <see cref="IrcMessage.AddParametersToFormat"/>.
@@ -63,7 +63,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Determines if the message can be parsed by this type.
     /// </summary>
-    public override bool CanParse(String unparsedMessage) {
+    public override bool CanParse(string unparsedMessage) {
       if (!base.CanParse(unparsedMessage)) {
         return false;
       }

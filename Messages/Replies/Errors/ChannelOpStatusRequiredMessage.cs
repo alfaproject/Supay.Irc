@@ -24,7 +24,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the channel on which the command requires OperatorMode status
     /// </summary>
-    public String Channel {
+    public string Channel {
       get {
         return channel;
       }
@@ -32,7 +32,7 @@ namespace Supay.Irc.Messages {
         channel = value;
       }
     }
-    private String channel;
+    private string channel;
 
 
     /// <exclude />

@@ -22,7 +22,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the real name of the user.
     /// </summary>
-    public virtual String RealName {
+    public virtual string RealName {
       get {
         return this.realName;
       }
@@ -35,7 +35,7 @@ namespace Supay.Irc.Messages {
     /// Gets or sets the login name of the user.
     /// </summary>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms", MessageId = "Login")]
-    public virtual String LoginName {
+    public virtual string LoginName {
       get {
         return this.loginName;
       }
@@ -60,7 +60,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets the data payload of the Ctcp request.
     /// </summary>
-    protected override String ExtendedData {
+    protected override string ExtendedData {
       get {
         StringBuilder result = new StringBuilder();
         result.Append(":");
@@ -81,16 +81,16 @@ namespace Supay.Irc.Messages {
       conduit.OnFingerReply(new IrcMessageEventArgs<FingerReplyMessage>(this));
     }
 
-    private String realName = "";
-    private String loginName = "";
+    private string realName = "";
+    private string loginName = "";
     private Double idleSeconds;
 
     /// <summary>
     /// Parses the given string to populate this <see cref="IrcMessage"/>.
     /// </summary>
-    public override void Parse(String unparsedMessage) {
+    public override void Parse(string unparsedMessage) {
       base.Parse(unparsedMessage);
-      String payload = CtcpUtil.GetExtendedData(unparsedMessage);
+      string payload = CtcpUtil.GetExtendedData(unparsedMessage);
       if (payload.StartsWith(":", StringComparison.Ordinal)) {
         payload = payload.Substring(1);
       }
@@ -105,7 +105,7 @@ namespace Supay.Irc.Messages {
         int startOfIdle = payload.IndexOf("- Idle ", StringComparison.Ordinal);
         if (startOfIdle > 0) {
           startOfIdle += 6;
-          String idleSecs = payload.Substring(startOfIdle, payload.Length - startOfIdle - 8);
+          string idleSecs = payload.Substring(startOfIdle, payload.Length - startOfIdle - 8);
           Double foo;
           if (Double.TryParse(idleSecs, System.Globalization.NumberStyles.Any, null, out foo)) {
             this.IdleSeconds = foo;

@@ -12,7 +12,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets the Irc command associated with this message.
     /// </summary>
-    protected override String Command {
+    protected override string Command {
       get {
         return "STATS";
       }
@@ -21,7 +21,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the code the what information is requested.
     /// </summary>
-    public virtual String Query {
+    public virtual string Query {
       get {
         return query;
       }
@@ -29,7 +29,7 @@ namespace Supay.Irc.Messages {
         query = value;
       }
     }
-    private String query;
+    private string query;
 
     /// <summary>
     /// Overrides <see cref="IrcMessage.AddParametersToFormat"/>.

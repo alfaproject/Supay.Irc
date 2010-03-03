@@ -26,14 +26,14 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Creates a new instance of the <see cref="PasswordMessage"/> class with the given password.
     /// </summary>
-    public PasswordMessage(String password) {
+    public PasswordMessage(string password) {
       this.password = password;
     }
 
     /// <summary>
     /// Gets the Irc command associated with this message.
     /// </summary>
-    protected override String Command {
+    protected override string Command {
       get {
         return "PASS";
       }
@@ -42,7 +42,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the password for the sender.
     /// </summary>
-    public virtual String Password {
+    public virtual string Password {
       get {
         return this.password;
       }
@@ -50,7 +50,7 @@ namespace Supay.Irc.Messages {
         this.password = value;
       }
     }
-    private String password = "";
+    private string password = "";
 
 
     /// <summary>

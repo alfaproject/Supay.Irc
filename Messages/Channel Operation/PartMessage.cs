@@ -20,7 +20,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Creates a new instance of the <see cref="PartMessage"/> class with the given channel.
     /// </summary>
-    public PartMessage(String channel)
+    public PartMessage(string channel)
       : base() {
       this.channels.Add(channel);
     }
@@ -37,7 +37,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the reason for the part.
     /// </summary>
-    public virtual String Reason {
+    public virtual string Reason {
       get {
         return this.reason;
       }
@@ -52,7 +52,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets the Irc command associated with this message.
     /// </summary>
-    protected override String Command {
+    protected override string Command {
       get {
         return "PART";
       }
@@ -101,7 +101,7 @@ namespace Supay.Irc.Messages {
     }
 
     private StringCollection channels = new StringCollection();
-    private String reason = "";
+    private string reason = "";
 
 
 

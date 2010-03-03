@@ -20,7 +20,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// The information requested.
     /// </summary>
-    public virtual String Stats {
+    public virtual string Stats {
       get {
         return stats;
       }
@@ -28,7 +28,7 @@ namespace Supay.Irc.Messages {
         stats = value;
       }
     }
-    private String stats = "";
+    private string stats = "";
 
     /// <summary>
     /// Overrides <see cref="IrcMessage.AddParametersToFormat"/>

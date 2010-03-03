@@ -22,7 +22,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the server that hosts the client's distribution.
     /// </summary>
-    public virtual String Server {
+    public virtual string Server {
       get {
         return this.server;
       }
@@ -30,12 +30,12 @@ namespace Supay.Irc.Messages {
         this.server = value;
       }
     }
-    private String server = "";
+    private string server = "";
 
     /// <summary>
     /// Gets or sets the folder path to the client's distribution.
     /// </summary>
-    public virtual String Folder {
+    public virtual string Folder {
       get {
         return this.folder;
       }
@@ -43,7 +43,7 @@ namespace Supay.Irc.Messages {
         this.folder = value;
       }
     }
-    private String folder = "";
+    private string folder = "";
 
     /// <summary>
     /// Gets the list of files that must be downloaded.
@@ -58,7 +58,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets the data payload of the Ctcp request.
     /// </summary>
-    protected override String ExtendedData {
+    protected override string ExtendedData {
       get {
         StringBuilder result = new StringBuilder();
         result.Append(Server);
@@ -75,17 +75,17 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Parses the given string to populate this <see cref="IrcMessage"/>.
     /// </summary>
-    public override void Parse(String unparsedMessage) {
+    public override void Parse(string unparsedMessage) {
       base.Parse(unparsedMessage);
-      String eData = CtcpUtil.GetExtendedData(unparsedMessage);
-      String[] p = eData.Split(':');
+      string eData = CtcpUtil.GetExtendedData(unparsedMessage);
+      string[] p = eData.Split(':');
       if (p.Length > 0) {
         this.Server = p[0];
         if (p.Length > 1) {
           this.Folder = p[1];
           if (p.Length == 3) {
             StringCollection fs = MessageUtil.GetParameters(p[2]);
-            foreach (String f in fs) {
+            foreach (string f in fs) {
               this.Files.Add(f);
             }
           }

@@ -45,7 +45,7 @@ namespace Supay.Irc {
     /// Initializes a new instance of the <see cref="Client"/> with the given address.
     /// </summary>
     /// <param name="address">The address that will be connected to.</param>
-    public Client(String address)
+    public Client(string address)
       : this() {
       this.Connection.Address = address;
     }
@@ -55,7 +55,7 @@ namespace Supay.Irc {
     /// </summary>
     /// <param name="address">The address that will be connected to.</param>
     /// <param name="nick">The nick of the <see cref="Client.User"/></param>
-    public Client(String address, String nick)
+    public Client(string address, string nick)
       : this(address) {
       this.User.Nickname = nick;
     }
@@ -66,7 +66,7 @@ namespace Supay.Irc {
     /// <param name="address">The address that will be connected to.</param>
     /// <param name="nick">The <see cref="Supay.Irc.User.Nickname"/> of the <see cref="Client.User"/></param>
     /// <param name="realName">The <see cref="Supay.Irc.User.Name"/> of the <see cref="Client.User"/></param>
-    public Client(String address, String nick, String realName)
+    public Client(string address, string nick, string realName)
       : this(address, nick) {
       this.User.Name = realName;
     }
@@ -87,7 +87,7 @@ namespace Supay.Irc {
     /// Gets or sets the default quit message if the client 
     /// has to close the connection itself.
     /// </summary>
-    public String DefaultQuitMessage {
+    public string DefaultQuitMessage {
       get;
       set;
     }
@@ -123,7 +123,7 @@ namespace Supay.Irc {
     /// <remarks>
     /// This is the name that server referes to itself by in messages, not neccesarily the name you use to connect.
     /// </remarks>
-    public String ServerName {
+    public string ServerName {
       get;
       private set;
     }
@@ -216,7 +216,7 @@ namespace Supay.Irc {
     /// </summary>
     /// <param name="text">The text of the message.</param>
     /// <param name="target">The target of the message, either a channel or nick.</param>
-    public virtual void SendChat(String text, String target) {
+    public virtual void SendChat(string text, string target) {
       this.Send(new ChatMessage(text, target));
     }
 
@@ -225,7 +225,7 @@ namespace Supay.Irc {
     /// </summary>
     /// <param name="text">The text of the action.</param>
     /// <param name="target">The target of the message, either a channel or nick.</param>
-    public virtual void SendAction(String text, String target) {
+    public virtual void SendAction(string text, string target) {
       this.Send(new ActionRequestMessage(text, target));
     }
 
@@ -233,7 +233,7 @@ namespace Supay.Irc {
     /// Sends a <see cref="JoinMessage"/> for the given channel.
     /// </summary>
     /// <param name="channel">The channel to join.</param>
-    public virtual void SendJoin(String channel) {
+    public virtual void SendJoin(string channel) {
       this.Send(new JoinMessage(channel));
     }
 
@@ -241,7 +241,7 @@ namespace Supay.Irc {
     /// Sends a <see cref="PartMessage"/> for the given channel. 
     /// </summary>
     /// <param name="channel">The channel to part.</param>
-    public virtual void SendPart(String channel) {
+    public virtual void SendPart(string channel) {
       this.Send(new PartMessage(channel));
     }
 
@@ -249,7 +249,7 @@ namespace Supay.Irc {
     /// Sends an <see cref="AwayMessage"/> with the given reason.
     /// </summary>
     /// <param name="reason">The reason for being away.</param>
-    public virtual void SendAway(String reason) {
+    public virtual void SendAway(string reason) {
       this.Send(new AwayMessage(reason));
     }
 
@@ -271,7 +271,7 @@ namespace Supay.Irc {
     /// Sends a <see cref="QuitMessage"/> with the given reason.
     /// </summary>
     /// <param name="reason">The reason for quitting.</param>
-    public virtual void SendQuit(String reason) {
+    public virtual void SendQuit(string reason) {
       this.Send(new QuitMessage(reason));
     }
 
@@ -287,7 +287,7 @@ namespace Supay.Irc {
       return (msg.Sender.Nickname == this.ServerName);
     }
 
-    private bool IsMe(String nick) {
+    private bool IsMe(string nick) {
       return this.User.Nickname.EqualsI(nick);
     }
 
@@ -592,7 +592,7 @@ namespace Supay.Irc {
       User msgUser = e.Message.Sender;
       User joinedUser = (IsMe(msgUser.Nickname)) ? User : this.Peers.EnsureUser(msgUser);
 
-      foreach (String channelname in e.Message.Channels) {
+      foreach (string channelname in e.Message.Channels) {
         Channel joinedChannel = this.Channels.EnsureChannel(channelname, this);
         joinedChannel.Open = true;
         joinedChannel.Users.Add(joinedUser);
@@ -601,8 +601,8 @@ namespace Supay.Irc {
 
     private void routeKicks(object sender, IrcMessageEventArgs<KickMessage> e) {
       for (int i = 0; i < e.Message.Channels.Count; i++) {
-        String channelName = e.Message.Channels[i];
-        String nick = e.Message.Nicks[i];
+        string channelName = e.Message.Channels[i];
+        string nick = e.Message.Nicks[i];
         Channel channel = this.Channels.Find(channelName);
 
         if (IsMe(nick)) {
@@ -616,7 +616,7 @@ namespace Supay.Irc {
     }
 
     private void routeKills(object sender, IrcMessageEventArgs<KillMessage> e) {
-      String nick = e.Message.Nick;
+      string nick = e.Message.Nick;
       if (IsMe(nick)) {
         foreach (Channel c in this.Channels) {
           c.Open = false;
@@ -630,7 +630,7 @@ namespace Supay.Irc {
 
     private void routeNames(object sender, IrcMessageEventArgs<NamesReplyMessage> e) {
       Channel channel = this.Channels.EnsureChannel(e.Message.Channel, this);
-      foreach (String nick in e.Message.Nicks.Keys) {
+      foreach (string nick in e.Message.Nicks.Keys) {
         User user = this.Peers.EnsureUser(nick);
         if (!channel.Users.Contains(user)) {
           channel.Users.Add(user);
@@ -641,8 +641,8 @@ namespace Supay.Irc {
     }
 
     private void routeNicks(object sender, IrcMessageEventArgs<NickChangeMessage> e) {
-      String oldNick = e.Message.Sender.Nickname;
-      String newNick = e.Message.NewNick;
+      string oldNick = e.Message.Sender.Nickname;
+      string newNick = e.Message.NewNick;
       if (IsMe(oldNick)) {
         this.User.Nickname = newNick;
       } else {
@@ -654,8 +654,8 @@ namespace Supay.Irc {
     }
 
     private void routeParts(object sender, IrcMessageEventArgs<PartMessage> e) {
-      String nick = e.Message.Sender.Nickname;
-      foreach (String channelName in e.Message.Channels) {
+      string nick = e.Message.Sender.Nickname;
+      foreach (string channelName in e.Message.Channels) {
         Channel channel = this.Channels.Find(channelName);
         if (IsMe(nick)) {
           channel.Open = false;
@@ -666,7 +666,7 @@ namespace Supay.Irc {
     }
 
     private void routeQuits(object sender, IrcMessageEventArgs<QuitMessage> e) {
-      String nick = e.Message.Sender.Nickname;
+      string nick = e.Message.Sender.Nickname;
       if (IsMe(nick)) {
         foreach (Channel c in this.Channels) {
           c.Open = false;
@@ -703,7 +703,7 @@ namespace Supay.Irc {
 
     private void routeWhoReplies(object sender, IrcMessageEventArgs<WhoReplyMessage> e) {
       User whoUser = this.Peers.EnsureUser(e.Message.User);
-      String channelName = e.Message.Channel;
+      string channelName = e.Message.Channel;
 
       Channel channel = this.Channels.Find(channelName);
       if (channel != null) {
@@ -722,7 +722,7 @@ namespace Supay.Irc {
     }
 
     private void client_NoSuchNick(object sender, IrcMessageEventArgs<NoSuchNickMessage> e) {
-      String nick = e.Message.Nick;
+      string nick = e.Message.Nick;
 
       if (MessageUtil.HasValidChannelPrefix(nick)) { // NoSuchNickMessage is sent by some servers instead of a NoSuchChannelMessage
         Channel channel = this.Channels.Find(e.Message.Nick);

@@ -21,7 +21,7 @@ namespace Supay.Irc.Messages {
     /// Creates a new instance of the <see cref="ActionRequestMessage"/> class with the given text.
     /// </summary>
     /// <param name="text">The text of the action.</param>
-    public ActionRequestMessage(String text)
+    public ActionRequestMessage(string text)
       : this() {
       this.text = text;
     }
@@ -31,7 +31,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     /// <param name="text">The text of the action.</param>
     /// <param name="target">The target of the action.</param>
-    public ActionRequestMessage(String text, String target)
+    public ActionRequestMessage(string text, string target)
       : this(text) {
       this.Target = target;
     }
@@ -39,7 +39,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the communicated text of this <see cref="ActionRequestMessage"/>.
     /// </summary>
-    public virtual String Text {
+    public virtual string Text {
       get {
         return this.text;
       }
@@ -47,7 +47,7 @@ namespace Supay.Irc.Messages {
         this.text = value;
       }
     }
-    private String text = "";
+    private string text = "";
 
     /// <summary>
     /// Notifies the given <see cref="MessageConduit"/> by raising the appropriate event for the current <see cref="IrcMessage"/> subclass.
@@ -68,7 +68,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Parses the given string to populate this <see cref="IrcMessage"/>.
     /// </summary>
-    public override void Parse(String unparsedMessage) {
+    public override void Parse(string unparsedMessage) {
       base.Parse(unparsedMessage);
       this.Text = CtcpUtil.GetExtendedData(unparsedMessage);
     }

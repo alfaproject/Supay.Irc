@@ -20,7 +20,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the name of the server being referenced.
     /// </summary>
-    public virtual String ServerName {
+    public virtual string ServerName {
       get {
         return serverName;
       }
@@ -28,12 +28,12 @@ namespace Supay.Irc.Messages {
         serverName = value;
       }
     }
-    private String serverName = "";
+    private string serverName = "";
 
     /// <summary>
     /// Gets or sets the version of the server.
     /// </summary>
-    public virtual String Version {
+    public virtual string Version {
       get {
         return version;
       }
@@ -41,12 +41,12 @@ namespace Supay.Irc.Messages {
         version = value;
       }
     }
-    private String version = "";
+    private string version = "";
 
     /// <summary>
     /// Gets or sets the user modes supported by this server.
     /// </summary>
-    public virtual String UserModes {
+    public virtual string UserModes {
       get {
         return userModes;
       }
@@ -54,12 +54,12 @@ namespace Supay.Irc.Messages {
         userModes = value;
       }
     }
-    private String userModes = "";
+    private string userModes = "";
 
     /// <summary>
     /// Gets or sets the channel modes supported by this server.
     /// </summary>
-    public virtual String ChannelModes {
+    public virtual string ChannelModes {
       get {
         return channelModes;
       }
@@ -67,12 +67,12 @@ namespace Supay.Irc.Messages {
         channelModes = value;
       }
     }
-    private String channelModes = "";
+    private string channelModes = "";
 
     /// <summary>
     /// Gets or sets the channel modes that require a parameter.
     /// </summary>
-    public virtual String ChannelModesWithParams {
+    public virtual string ChannelModesWithParams {
       get {
         return channelModesWithParams;
       }
@@ -80,12 +80,12 @@ namespace Supay.Irc.Messages {
         channelModesWithParams = value;
       }
     }
-    private String channelModesWithParams = "";
+    private string channelModesWithParams = "";
 
     /// <summary>
     /// Gets or sets the user modes that require a parameter.
     /// </summary>
-    public virtual String UserModesWithParams {
+    public virtual string UserModesWithParams {
       get {
         return userModesWithParams;
       }
@@ -93,12 +93,12 @@ namespace Supay.Irc.Messages {
         userModesWithParams = value;
       }
     }
-    private String userModesWithParams = "";
+    private string userModesWithParams = "";
 
     /// <summary>
     /// Gets or sets the server modes supported by this server.
     /// </summary>
-    public virtual String ServerModes {
+    public virtual string ServerModes {
       get {
         return serverModes;
       }
@@ -106,12 +106,12 @@ namespace Supay.Irc.Messages {
         serverModes = value;
       }
     }
-    private String serverModes = "";
+    private string serverModes = "";
 
     /// <summary>
     /// Gets or sets the server modes which require parameters.
     /// </summary>
-    public virtual String ServerModesWithParams {
+    public virtual string ServerModesWithParams {
       get {
         return serverModesWithParams;
       }
@@ -119,7 +119,7 @@ namespace Supay.Irc.Messages {
         serverModesWithParams = value;
       }
     }
-    private String serverModesWithParams = "";
+    private string serverModesWithParams = "";
 
     /// <summary>
     /// Overrides <see cref="IrcMessage.AddParametersToFormat"/>

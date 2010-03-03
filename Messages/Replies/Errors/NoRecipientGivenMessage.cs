@@ -24,7 +24,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the command of the message which was invalid.
     /// </summary>
-    public virtual String Command {
+    public virtual string Command {
       get {
         return command;
       }
@@ -32,14 +32,14 @@ namespace Supay.Irc.Messages {
         command = value;
       }
     }
-    private String command = "";
+    private string command = "";
 
     /// <summary>
     /// Overrides <see cref="IrcMessage.AddParametersToFormat"/>
     /// </summary>
     protected override void AddParametersToFormat(IrcMessageWriter writer) {
       base.AddParametersToFormat(writer);
-      writer.AddParameter(String.Format(CultureInfo.InvariantCulture, "No recipient given ({0})", this.Command));
+      writer.AddParameter(string.Format(CultureInfo.InvariantCulture, "No recipient given ({0})", this.Command));
     }
 
     /// <summary>

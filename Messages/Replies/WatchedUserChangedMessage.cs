@@ -40,7 +40,7 @@ namespace Supay.Irc.Messages {
     private DateTime changeTime;
 
     /// <exclude />
-    protected abstract String ChangeMessage {
+    protected abstract string ChangeMessage {
       get;
     }
 

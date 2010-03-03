@@ -20,7 +20,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets channel being referenced.
     /// </summary>
-    public virtual String Channel {
+    public virtual string Channel {
       get {
         return this.channel;
       }
@@ -28,12 +28,12 @@ namespace Supay.Irc.Messages {
         this.channel = value;
       }
     }
-    private String channel = "";
+    private string channel = "";
 
     /// <summary>
     /// Gets or sets the name of the channel property being referenced.
     /// </summary>
-    public virtual String Prop {
+    public virtual string Prop {
       get {
         return this.property;
       }
@@ -41,12 +41,12 @@ namespace Supay.Irc.Messages {
         this.property = value;
       }
     }
-    private String property = "";
+    private string property = "";
 
     /// <summary>
     /// Gets or sets the value of the channel property.
     /// </summary>
-    public virtual String Value {
+    public virtual string Value {
       get {
         return this.propValue;
       }
@@ -54,7 +54,7 @@ namespace Supay.Irc.Messages {
         this.propValue = value;
       }
     }
-    private String propValue = "";
+    private string propValue = "";
 
     /// <summary>
     /// Overrides <see cref="IrcMessage.AddParametersToFormat"/>

@@ -26,19 +26,19 @@ namespace Supay.Irc.Messages {
     /// </summary>
     /// <param name="channel">The name of the channel affected.</param>
     /// <param name="nick">The nick of the user being kicked out.</param>
-    public KickMessage(String channel, String nick) {
+    public KickMessage(string channel, string nick) {
       this.channels.Add(channel);
       this.nicks.Add(nick);
     }
 
     private StringCollection channels = new StringCollection();
     private StringCollection nicks = new StringCollection();
-    private String reason = "";
+    private string reason = "";
 
     /// <summary>
     /// Gets the Irc command associated with this message.
     /// </summary>
-    protected override String Command {
+    protected override string Command {
       get {
         return "KICK";
       }
@@ -65,7 +65,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the reason for the kick
     /// </summary>
-    public virtual String Reason {
+    public virtual string Reason {
       get {
         return this.reason;
       }

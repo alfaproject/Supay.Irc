@@ -20,7 +20,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the Nick of the user being 
     /// </summary>
-    public virtual String Nick {
+    public virtual string Nick {
       get {
         return nick;
       }
@@ -38,7 +38,7 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private String nick = "";
+    private string nick = "";
     private StringCollection channels = new StringCollection();
 
     /// <summary>

@@ -20,7 +20,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Creates a new instance of the OperMessage class with the given name and password.
     /// </summary>
-    public OperMessage(String name, String password) {
+    public OperMessage(string name, string password) {
       this.name = name;
       this.password = password;
     }
@@ -28,7 +28,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets the Irc command associated with this message.
     /// </summary>
-    protected override String Command {
+    protected override string Command {
       get {
         return "OPER";
       }
@@ -37,7 +37,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets or sets the password for the sender.
     /// </summary>
-    public virtual String Password {
+    public virtual string Password {
       get {
         return this.password;
       }
@@ -45,12 +45,12 @@ namespace Supay.Irc.Messages {
         this.password = value;
       }
     }
-    private String password = "";
+    private string password = "";
 
     /// <summary>
     /// Gets or sets the name for the sender.
     /// </summary>
-    public virtual String Name {
+    public virtual string Name {
       get {
         return this.name;
       }
@@ -58,7 +58,7 @@ namespace Supay.Irc.Messages {
         this.name = value;
       }
     }
-    private String name = "";
+    private string name = "";
 
     /// <summary>
     /// Overrides <see cref="IrcMessage.AddParametersToFormat"/>.
