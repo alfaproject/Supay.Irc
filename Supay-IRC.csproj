@@ -186,7 +186,7 @@
     <Compile Include="Messages\IrcMessageWriter.cs" />
     <Compile Include="Messages\MessageConduit.cs">
     </Compile>
-    <Compile Include="Messages\MessageParserService.cs" />
+    <Compile Include="Messages\IrcMessageFactory.cs" />
     <Compile Include="Messages\Command\Channel\ChannelModeMessage.cs" />
     <Compile Include="Messages\Command\Channel\InviteMessage.cs" />
     <Compile Include="Messages\Command\Channel\JoinMessage.cs" />

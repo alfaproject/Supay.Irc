@@ -11,13 +11,6 @@ namespace Supay.Irc.Messages {
   public abstract class IrcMessage {
 
     /// <summary>
-    ///   Creates an instance of whatever type is deriving from <see cref="IrcMessage"/>.
-    ///   This is not meant to be used from application code. </summary>
-    public IrcMessage CreateInstance() {
-      return (IrcMessage)Activator.CreateInstance(GetType());
-    }
-
-    /// <summary>
     ///   Generates a string representation of the message. </summary>
     public override string ToString() {
       using (StringWriter target = new StringWriter(CultureInfo.InvariantCulture)) {

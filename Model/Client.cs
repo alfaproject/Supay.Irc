@@ -294,7 +294,7 @@ namespace Supay.Irc {
     private void RouteData(string messageData) {
       IrcMessage msg = null;
       try {
-        msg = MessageParserService.Service.Parse(messageData);
+        msg = IrcMessageFactory.Parse(messageData);
       } catch (Supay.Irc.Messages.InvalidMessageException ex) {
         // Try one more time to load it as a generic message
         msg = new GenericMessage();
