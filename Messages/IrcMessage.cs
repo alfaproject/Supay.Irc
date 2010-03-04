@@ -21,9 +21,8 @@ namespace Supay.Irc.Messages {
     ///   Generates a string representation of the message. </summary>
     public override string ToString() {
       using (StringWriter target = new StringWriter(CultureInfo.InvariantCulture)) {
-        IrcMessageWriter writer = new IrcMessageWriter(target);
-        writer.AppendNewLine = false;
-        this.Format(writer);
+        IrcMessageWriter writer = new IrcMessageWriter(target) { AppendNewLine = false };
+        Format(writer);
         return target.ToString();
       }
     }
@@ -36,17 +35,18 @@ namespace Supay.Irc.Messages {
       if (writer == null) {
         return;
       }
-      if (this.Sender != null && !string.IsNullOrEmpty(this.Sender.Nickname)) {
-        writer.Sender = this.Sender.IrcMask;
+      if (Sender != null && !string.IsNullOrEmpty(Sender.Nickname)) {
+        writer.Sender = Sender.IrcMask;
       }
-      this.AddParametersToFormat(writer);
+      AddParametersToFormat(writer);
       writer.Write();
     }
 
     /// <summary>
     ///   Adds parameters to the given <see cref="IrcMessageWriter"/> for formatting of the message. </summary>
     /// <remarks>
-    ///   When deriving from IrcMessage, override this method to add parameters to the formatted output of the message. </remarks>
+    ///   When deriving from <see cref="IrcMessage"/>, override this method to add parameters to
+    ///   the formatted output of the message. </remarks>
     /// <param name="writer">
     ///   The <see cref="IrcMessageWriter"/> object that receives the message content. </param>
     protected abstract void AddParametersToFormat(IrcMessageWriter writer);
@@ -59,9 +59,9 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Parses the given string to populate this <see cref="IrcMessage"/>. </summary>
     public virtual void Parse(string unparsedMessage) {
-      this.Sender = new User(MessageUtil.GetPrefix(unparsedMessage));
-      this.ParseCommand(MessageUtil.GetCommand(unparsedMessage));
-      this.ParseParameters(MessageUtil.GetParameters(unparsedMessage));
+      Sender = new User(MessageUtil.GetPrefix(unparsedMessage));
+      ParseCommand(MessageUtil.GetCommand(unparsedMessage));
+      ParseParameters(MessageUtil.GetParameters(unparsedMessage));
     }
 
     /// <summary>
@@ -75,7 +75,8 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    ///   Notifies the given <see cref="MessageConduit"/> by raising the appropriate event for the current <see cref="IrcMessage"/> subclass. </summary>
+    ///   Notifies the given <see cref="MessageConduit"/> by raising the appropriate event for the
+    ///   current <see cref="IrcMessage"/> subclass. </summary>
     public abstract void Notify(MessageConduit conduit);
 
     /// <summary>
@@ -85,8 +86,9 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   The computer or user who sent the current message. </summary>
     /// <remarks>
-    ///   In the case of a server message, the Sender.Nick is the the name that the server calls itself, usually its address.
-    ///   In the case of a user message, the Sender is a User containing the Nick, UserName, and HostName... </remarks>
+    ///   In the case of a server message, the Sender.Nick is the the name that the server calls
+    ///   itself, usually its address. In the case of a user message, the Sender is a User
+    ///   containing the Nick, UserName, and HostName... </remarks>
     public User Sender {
       get;
       set;
