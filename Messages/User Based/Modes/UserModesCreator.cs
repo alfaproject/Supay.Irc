@@ -36,43 +36,46 @@ namespace Supay.Irc.Messages.Modes {
       }
       ModeAction currentAction = ModeAction.Add;
       foreach (Char c in modeChanges) {
-        if (ModeAction.IsDefined(c.ToString())) {
-          currentAction = ModeAction.Parse(c.ToString());
-        } else {
+        switch (c) {
+          case '+':
+            currentAction = ModeAction.Add;
+            break;
+          case '-':
+            currentAction = ModeAction.Remove;
+            break;
+
           // PONDER This probably won't correctly parse incorrect mode messages, should I?
-          switch (c) {
-            case 'a':
-              this.modes.Add(new AwayMode(currentAction));
-              break;
-            case 'g':
-              this.modes.Add(new CallerIdMode(currentAction));
-              break;
-            case 'i':
-              this.modes.Add(new InvisibleMode(currentAction));
-              break;
-            case 'o':
-              this.modes.Add(new NetworkOperatorMode(currentAction));
-              break;
-            case 'O':
-              this.modes.Add(new ServerOperatorMode(currentAction));
-              break;
-            case 'k':
-              this.modes.Add(new ReceiveServerKillsMode(currentAction));
-              break;
-            case 's':
-              this.modes.Add(new ReceiveServerKillsMode(currentAction));
-              break;
-            case 'w':
-              this.modes.Add(new ReceiveWallopsMode(currentAction));
-              break;
-            case 'r':
-              this.modes.Add(new RestrictedMode(currentAction));
-              break;
-            default:
-              this.modes.Add(new UnknownUserMode(currentAction, c.ToString()));
-              Trace.WriteLine("Unknown UserMode '" + c.ToString() + "'");
-              break;
-          }
+          case 'a':
+            this.modes.Add(new AwayMode(currentAction));
+            break;
+          case 'g':
+            this.modes.Add(new CallerIdMode(currentAction));
+            break;
+          case 'i':
+            this.modes.Add(new InvisibleMode(currentAction));
+            break;
+          case 'o':
+            this.modes.Add(new NetworkOperatorMode(currentAction));
+            break;
+          case 'O':
+            this.modes.Add(new ServerOperatorMode(currentAction));
+            break;
+          case 'k':
+            this.modes.Add(new ReceiveServerKillsMode(currentAction));
+            break;
+          case 's':
+            this.modes.Add(new ReceiveServerKillsMode(currentAction));
+            break;
+          case 'w':
+            this.modes.Add(new ReceiveWallopsMode(currentAction));
+            break;
+          case 'r':
+            this.modes.Add(new RestrictedMode(currentAction));
+            break;
+          default:
+            this.modes.Add(new UnknownUserMode(currentAction, c.ToString()));
+            Trace.WriteLine("Unknown UserMode '" + c.ToString() + "'");
+            break;
         }
       }
       this.CollapseModes();

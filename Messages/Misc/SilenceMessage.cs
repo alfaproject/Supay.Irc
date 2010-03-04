@@ -84,12 +84,18 @@ namespace Supay.Irc.Messages {
       base.ParseParameters(parameters);
       if (parameters.Count > 0) {
         string target = parameters[0];
-        string action = target.Substring(0, 1);
-        if (ModeAction.IsDefined(action)) {
-          this.Action = ModeAction.Parse(action);
-          target = target.Substring(1);
-        } else {
-          this.Action = ModeAction.Add;
+        switch (target[0]) {
+          case '+':
+            Action = ModeAction.Add;
+            target = target.Substring(1);
+            break;
+          case '-':
+            Action = ModeAction.Remove;
+            target = target.Substring(1);
+            break;
+          default:
+            Action = ModeAction.Add;
+            break;
         }
         this.SilencedUser = new User(target);
       } else {

@@ -49,105 +49,108 @@ namespace Supay.Irc.Messages.Modes {
       ModeAction currentAction = ModeAction.Add;
       int argIndex = 0;
       foreach (Char c in modeChanges) {
-        if (ModeAction.IsDefined(c.ToString())) {
-          currentAction = ModeAction.Parse(c.ToString());
-        } else {
+        switch (c) {
+          case '+':
+            currentAction = ModeAction.Add;
+            break;
+          case '-':
+            currentAction = ModeAction.Remove;
+            break;
+
           // PONDER This probably won't correctly parse incorrect mode messages, should I?
-          switch (c) {
-            case 'a':
-              this.modes.Add(new AnonymousMode(currentAction));
-              break;
-            case 'b':
-              BanMode banMode = new BanMode(currentAction, new User(modeArguments[argIndex]));
+          case 'a':
+            this.modes.Add(new AnonymousMode(currentAction));
+            break;
+          case 'b':
+            BanMode banMode = new BanMode(currentAction, new User(modeArguments[argIndex]));
+            argIndex++;
+            this.modes.Add(banMode);
+            break;
+          case 'e':
+            BanExceptionMode banExceptionMode = new BanExceptionMode(currentAction, new User(modeArguments[argIndex]));
+            argIndex++;
+            this.modes.Add(banExceptionMode);
+            break;
+          case 'h':
+            HalfOpMode halfOpMode = new HalfOpMode(currentAction, modeArguments[argIndex]);
+            argIndex++;
+            this.modes.Add(halfOpMode);
+            break;
+          case 'I':
+            InvitationExceptionMode invitationExceptionMode = new InvitationExceptionMode(currentAction, new User(modeArguments[argIndex]));
+            argIndex++;
+            this.modes.Add(invitationExceptionMode);
+            break;
+          case 'i':
+            InviteOnlyMode inviteOnlyMode = new InviteOnlyMode(currentAction);
+            this.modes.Add(inviteOnlyMode);
+            break;
+          case 'k':
+            KeyMode keyMode = new KeyMode(currentAction);
+            if (currentAction == ModeAction.Add) {
+              keyMode.Password = modeArguments[argIndex];
               argIndex++;
-              this.modes.Add(banMode);
-              break;
-            case 'e':
-              BanExceptionMode banExceptionMode = new BanExceptionMode(currentAction, new User(modeArguments[argIndex]));
+            }
+            this.modes.Add(keyMode);
+            break;
+          case 'l':
+            LimitMode limitMode = new LimitMode(currentAction);
+            if (currentAction == ModeAction.Add) {
+              limitMode.UserLimit = Convert.ToInt32(modeArguments[argIndex], CultureInfo.InvariantCulture);
               argIndex++;
-              this.modes.Add(banExceptionMode);
-              break;
-            case 'h':
-              HalfOpMode halfOpMode = new HalfOpMode(currentAction, modeArguments[argIndex]);
+            }
+            this.modes.Add(limitMode);
+            break;
+          case 'm':
+            this.modes.Add(new ModeratedMode(currentAction));
+            break;
+          case 'n':
+            this.modes.Add(new NoOutsideMessagesMode(currentAction));
+            break;
+          case 'O':
+            CreatorMode creatorMode = new CreatorMode(currentAction, modeArguments[argIndex]);
+            argIndex++;
+            this.modes.Add(creatorMode);
+            break;
+          case 'o':
+            OperatorMode operatorMode = new OperatorMode(currentAction, modeArguments[argIndex]);
+            argIndex++;
+            this.modes.Add(operatorMode);
+            break;
+          case 'p':
+            this.modes.Add(new PrivateMode(currentAction));
+            break;
+          case 'q':
+            this.modes.Add(new QuietMode(currentAction));
+            break;
+          case 's':
+            this.modes.Add(new SecretMode(currentAction));
+            break;
+          case 'r':
+            this.modes.Add(new ServerReopMode(currentAction));
+            break;
+          case 'R':
+            this.modes.Add(new RegisteredNicksOnlyMode(currentAction));
+            break;
+          case 't':
+            this.modes.Add(new TopicGuardedMode(currentAction));
+            break;
+          case 'v':
+            VoiceMode voiceMode = new VoiceMode(currentAction, modeArguments[argIndex]);
+            argIndex++;
+            this.modes.Add(voiceMode);
+            break;
+          default:
+            string unknownMode = c.ToString();
+            if (this.serverSupports.ModesWithParameters.Contains(unknownMode) || (this.serverSupports.ModesWithParametersWhenSet.Contains(unknownMode) && currentAction == ModeAction.Add)) {
+              // I want to yank a parameter	
+              this.modes.Add(new UnknownChannelMode(currentAction, unknownMode, modeArguments[argIndex]));
               argIndex++;
-              this.modes.Add(halfOpMode);
-              break;
-            case 'I':
-              InvitationExceptionMode invitationExceptionMode = new InvitationExceptionMode(currentAction, new User(modeArguments[argIndex]));
-              argIndex++;
-              this.modes.Add(invitationExceptionMode);
-              break;
-            case 'i':
-              InviteOnlyMode inviteOnlyMode = new InviteOnlyMode(currentAction);
-              this.modes.Add(inviteOnlyMode);
-              break;
-            case 'k':
-              KeyMode keyMode = new KeyMode(currentAction);
-              if (currentAction == ModeAction.Add) {
-                keyMode.Password = modeArguments[argIndex];
-                argIndex++;
-              }
-              this.modes.Add(keyMode);
-              break;
-            case 'l':
-              LimitMode limitMode = new LimitMode(currentAction);
-              if (currentAction == ModeAction.Add) {
-                limitMode.UserLimit = Convert.ToInt32(modeArguments[argIndex], CultureInfo.InvariantCulture);
-                argIndex++;
-              }
-              this.modes.Add(limitMode);
-              break;
-            case 'm':
-              this.modes.Add(new ModeratedMode(currentAction));
-              break;
-            case 'n':
-              this.modes.Add(new NoOutsideMessagesMode(currentAction));
-              break;
-            case 'O':
-              CreatorMode creatorMode = new CreatorMode(currentAction, modeArguments[argIndex]);
-              argIndex++;
-              this.modes.Add(creatorMode);
-              break;
-            case 'o':
-              OperatorMode operatorMode = new OperatorMode(currentAction, modeArguments[argIndex]);
-              argIndex++;
-              this.modes.Add(operatorMode);
-              break;
-            case 'p':
-              this.modes.Add(new PrivateMode(currentAction));
-              break;
-            case 'q':
-              this.modes.Add(new QuietMode(currentAction));
-              break;
-            case 's':
-              this.modes.Add(new SecretMode(currentAction));
-              break;
-            case 'r':
-              this.modes.Add(new ServerReopMode(currentAction));
-              break;
-            case 'R':
-              this.modes.Add(new RegisteredNicksOnlyMode(currentAction));
-              break;
-            case 't':
-              this.modes.Add(new TopicGuardedMode(currentAction));
-              break;
-            case 'v':
-              VoiceMode voiceMode = new VoiceMode(currentAction, modeArguments[argIndex]);
-              argIndex++;
-              this.modes.Add(voiceMode);
-              break;
-            default:
-              string unknownMode = c.ToString();
-              if (this.serverSupports.ModesWithParameters.Contains(unknownMode) || (this.serverSupports.ModesWithParametersWhenSet.Contains(unknownMode) && currentAction == ModeAction.Add)) {
-                // I want to yank a parameter	
-                this.modes.Add(new UnknownChannelMode(currentAction, unknownMode, modeArguments[argIndex]));
-                argIndex++;
-              } else {
-                // I don't
-                this.modes.Add(new UnknownChannelMode(currentAction, unknownMode));
-              }
-              break;
-          }
+            } else {
+              // I don't
+              this.modes.Add(new UnknownChannelMode(currentAction, unknownMode));
+            }
+            break;
         }
       }
       this.CollapseModes();
