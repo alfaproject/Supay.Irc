@@ -6,15 +6,15 @@ using System.IO;
 namespace Supay.Irc.Messages {
 
   /// <summary>
-  ///   The astract base class for all IRC messages. </summary>
+  ///   The abstract base class for all IRC messages. </summary>
   [Serializable]
   public abstract class IrcMessage {
 
     /// <summary>
-    ///   Creates an instance of whatever type is deriving from IrcMessage.
+    ///   Creates an instance of whatever type is deriving from <see cref="IrcMessage"/>.
     ///   This is not meant to be used from application code. </summary>
-    public virtual IrcMessage CreateInstance() {
-      return (IrcMessage)Activator.CreateInstance(this.GetType());
+    public IrcMessage CreateInstance() {
+      return (IrcMessage)Activator.CreateInstance(GetType());
     }
 
     /// <summary>

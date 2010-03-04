@@ -225,7 +225,7 @@ namespace Supay.Irc.Dcc {
         Transfer.TransferSocket = socket;
         Transfer.Send();
 
-      } catch (Exception) {
+      } catch (Exception ex) {
         System.Diagnostics.Trace.WriteLine("Error Opening DccServerConnection On Port " + _port.ToString(CultureInfo.InvariantCulture) + ", " + ex.ToString(), "DccServerConnection");
         throw;
       

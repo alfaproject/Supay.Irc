@@ -7,12 +7,6 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class ChatMessage : TextMessage {
-    /// <summary>
-    /// Creates a new instance of the <see cref="ChatMessage"/> class.
-    /// </summary>
-    public override IrcMessage CreateInstance() {
-      return new ChatMessage();
-    }
 
     /// <summary>
     /// Creates a new instance of the <see cref="ChatMessage"/> class.
