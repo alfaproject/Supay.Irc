@@ -324,7 +324,7 @@ namespace Supay.Irc {
 
       this.Messages.Welcome += new EventHandler<IrcMessageEventArgs<WelcomeMessage>>(serverNameAquired);
       this.Messages.Ping += new EventHandler<IrcMessageEventArgs<PingMessage>>(autoPingPong);
-      this.Messages.NickChange += new EventHandler<IrcMessageEventArgs<NickChangeMessage>>(keepOwnNickCorrect);
+      this.Messages.NickChange += new EventHandler<IrcMessageEventArgs<NickMessage>>(keepOwnNickCorrect);
       this.Messages.Support += new EventHandler<IrcMessageEventArgs<SupportMessage>>(populateSupports);
 
       this.MessageParsed += new EventHandler<IrcMessageEventArgs<IrcMessage>>(messageParsed);
@@ -343,7 +343,7 @@ namespace Supay.Irc {
       this.Messages.ChannelPropertyReply += new EventHandler<IrcMessageEventArgs<ChannelPropertyReplyMessage>>(client_ChannelPropertyReply);
 
       this.Messages.NamesReply += new EventHandler<IrcMessageEventArgs<NamesReplyMessage>>(routeNames);
-      this.Messages.NickChange += new EventHandler<IrcMessageEventArgs<NickChangeMessage>>(routeNicks);
+      this.Messages.NickChange += new EventHandler<IrcMessageEventArgs<NickMessage>>(routeNicks);
       this.Messages.WhoReply += new EventHandler<IrcMessageEventArgs<WhoReplyMessage>>(routeWhoReplies);
       this.Messages.WhoIsOperReply += new EventHandler<IrcMessageEventArgs<WhoIsOperReplyMessage>>(client_WhoIsOperReply);
       this.Messages.WhoIsServerReply += new EventHandler<IrcMessageEventArgs<WhoIsServerReplyMessage>>(client_WhoIsServerReply);
@@ -494,7 +494,7 @@ namespace Supay.Irc {
       }
 
       //Send Nick
-      NickChangeMessage nick = new NickChangeMessage();
+      NickMessage nick = new NickMessage();
       nick.NewNick = User.Nickname;
       this.Send(nick);
 
@@ -529,7 +529,7 @@ namespace Supay.Irc {
 
     }
 
-    private void keepOwnNickCorrect(object sender, IrcMessageEventArgs<NickChangeMessage> e) {
+    private void keepOwnNickCorrect(object sender, IrcMessageEventArgs<NickMessage> e) {
       if (e.Message.Sender.Nickname == this.User.Nickname) {
         this.User.Nickname = e.Message.NewNick;
       }
@@ -640,7 +640,7 @@ namespace Supay.Irc {
       }
     }
 
-    private void routeNicks(object sender, IrcMessageEventArgs<NickChangeMessage> e) {
+    private void routeNicks(object sender, IrcMessageEventArgs<NickMessage> e) {
       string oldNick = e.Message.Sender.Nickname;
       string newNick = e.Message.NewNick;
       if (IsMe(oldNick)) {

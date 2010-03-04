@@ -4,7 +4,7 @@ using System.Collections.Specialized;
 namespace Supay.Irc.Messages {
 
   /// <summary>
-  /// Returned when a <see cref="NickChangeMessage"/> is processed that results in an attempt to change to a currently existing nickname. 
+  /// Returned when a <see cref="NickMessage"/> is processed that results in an attempt to change to a currently existing nickname. 
   /// </summary>
   [Serializable]
   public class NickInUseMessage : ErrorMessage {

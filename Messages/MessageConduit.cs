@@ -552,11 +552,11 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    ///   Occurs when a <see cref="NickChangeMessage"/> is received. </summary>
-    public event EventHandler<IrcMessageEventArgs<NickChangeMessage>> NickChange;
+    ///   Occurs when a <see cref="NickMessage"/> is received. </summary>
+    public event EventHandler<IrcMessageEventArgs<NickMessage>> NickChange;
     /// <summary>
     ///   Raises the NickChange event. </summary>
-    protected internal void OnNickChange(IrcMessageEventArgs<NickChangeMessage> e) {
+    protected internal void OnNickChange(IrcMessageEventArgs<NickMessage> e) {
       if (NickChange != null) {
         NickChange(this, e);
       }

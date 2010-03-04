@@ -4,7 +4,7 @@ using System.Collections.Specialized;
 namespace Supay.Irc.Messages {
 
   /// <summary>
-  /// Returned after receiving a <see cref="NickChangeMessage"/> which contains characters which do not fall in the defined set.
+  /// Returned after receiving a <see cref="NickMessage"/> which contains characters which do not fall in the defined set.
   /// </summary>
   [Serializable]
   public class ErroneousNickMessage : ErrorMessage {

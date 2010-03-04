@@ -221,7 +221,7 @@
     <Compile Include="Messages\Command\Channel\PartMessage.cs" />
     <Compile Include="Messages\Command\Channel\TopicMessage.cs" />
     <Compile Include="Messages\Command\CommandMessage.cs" />
-    <Compile Include="Messages\Command\Connection\NickChangeMessage.cs" />
+    <Compile Include="Messages\Command\Connection\NickMessage.cs" />
     <Compile Include="Messages\Command\Connection\OperMessage.cs" />
     <Compile Include="Messages\Command\Connection\PasswordMessage.cs" />
     <Compile Include="Messages\Command\Connection\QuitMessage.cs" />
