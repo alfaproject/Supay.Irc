@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Specialized;
 using System.Globalization;
@@ -17,27 +16,8 @@ namespace Supay.Irc.Messages {
     #region Constructor
 
     /// <summary>
-    ///   Creates a new instance of the IrcMessageWriter class. </summary>
+    ///   Initializes a new instance of the <see cref="IrcMessageWriter"/> class. </summary>
     public IrcMessageWriter() {
-      resetDefaults();
-    }
-
-    #endregion
-
-    #region Properties
-
-    /// <summary>
-    ///   Gets or sets the ID of the sender of the message. </summary>
-    public string Sender {
-      get;
-      set;
-    }
-
-    /// <summary>
-    ///   Gets or sets if a new line is appended to the end of messages when they are written. </summary>
-    public bool AppendNewLine {
-      get;
-      set;
     }
 
     #endregion
@@ -73,16 +53,17 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    /// <summary>
-    ///   Writes the current message data to the inner writer in IRC protocol format. </summary>
-    public void Write() {
-      //TODO Implement message splitting on IrcMessageWriter.Write
+    public void Write(IrcMessage message) {
+      //TODO Implement message splitting.
 
-      if (!string.IsNullOrEmpty(Sender)) {
+      if (message.Sender != null && !string.IsNullOrEmpty(message.Sender.Nickname)) {
         Write(":");
-        Write(Sender);
+        Write(message.Sender.IrcMask);
         Write(" ");
       }
+
+      // fill parameters list
+      message.AddParametersToFormat(this);
 
       int paramCount = _parameters.Count;
       if (paramCount > 0) {
@@ -96,23 +77,16 @@ namespace Supay.Irc.Messages {
         }
         Write(lastParam);
       }
-      if (AppendNewLine) {
-        Write(Environment.NewLine);
-      }
+    }
 
-      resetDefaults();
+    public void WriteLine(IrcMessage message) {
+      Write(message);
+      WriteLine();
     }
 
     #endregion
 
     #region Private Methods
-
-    private void resetDefaults() {
-      AppendNewLine = true;
-      Sender = null;
-      _parameters.Clear();
-      _listParams.Clear();
-    }
 
     private void addSplittableParameter() {
       _splitParams[_parameters.Count.ToString(CultureInfo.InvariantCulture)] = string.Empty;

@@ -46,7 +46,7 @@ namespace Supay.Irc.Messages {
     private StringCollection nicks;
 
     /// <exclude />
-    protected override void AddParametersToFormat(IrcMessageWriter writer) {
+    public override void AddParametersToFormat(IrcMessageWriter writer) {
       base.AddParametersToFormat(writer);
       writer.AddParameter(this.Limit.ToString(CultureInfo.InvariantCulture));
       writer.AddParameter(MessageUtil.CreateList(this.Nicks, ","));

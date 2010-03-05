@@ -31,7 +31,7 @@ namespace Supay.Irc.Messages {
     private string unknownMode;
 
     /// <exclude />
-    protected override void AddParametersToFormat(IrcMessageWriter writer) {
+    public override void AddParametersToFormat(IrcMessageWriter writer) {
       base.AddParametersToFormat(writer);
       writer.AddParameter(this.UnknownMode);
       writer.AddParameter("is unknown mode char to me");

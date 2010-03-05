@@ -12,7 +12,7 @@ namespace Supay.Irc.Messages {
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.AddParametersToFormat"/>. </summary>
-    protected override void AddParametersToFormat(IrcMessageWriter writer) {
+    public override void AddParametersToFormat(IrcMessageWriter writer) {
       writer.AddParameter(this.internalNumeric.ToString("000", CultureInfo.InvariantCulture));
       if (this.Target.Length != 0) {
         writer.AddParameter(this.Target);

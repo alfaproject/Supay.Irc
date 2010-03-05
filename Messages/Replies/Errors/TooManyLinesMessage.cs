@@ -31,7 +31,7 @@ namespace Supay.Irc.Messages {
     private string command;
 
     /// <exclude />
-    protected override void AddParametersToFormat(IrcMessageWriter writer) {
+    public override void AddParametersToFormat(IrcMessageWriter writer) {
       base.AddParametersToFormat(writer);
       writer.AddParameter(this.Command);
       writer.AddParameter("Too many lines in the output, restrict your query");

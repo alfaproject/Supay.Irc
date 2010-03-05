@@ -35,7 +35,7 @@ namespace Supay.Irc.Messages {
     private string channel;
 
     /// <exclude />
-    protected override void AddParametersToFormat(IrcMessageWriter writer) {
+    public override void AddParametersToFormat(IrcMessageWriter writer) {
       base.AddParametersToFormat(writer);
       writer.AddParameter(this.Channel);
       writer.AddParameter("Channel key already set");

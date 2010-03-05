@@ -62,7 +62,7 @@ namespace Supay.Irc.Messages {
     private string newIdent;
 
     /// <exclude />
-    protected override void AddParametersToFormat(IrcMessageWriter writer) {
+    public override void AddParametersToFormat(IrcMessageWriter writer) {
       base.AddParametersToFormat(writer);
       string param = string.Format(CultureInfo.InvariantCulture, "Your username {0} contained the invalid character(s) {1} and has been changed to {2}. Please use only the characters 0-9 a-z A-Z _ - or . in your username. Your username is the part before the @ in your email address.", this.Ident, this.InvalidCharacters, this.NewIdent);
       writer.AddParameter(param);

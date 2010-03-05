@@ -197,7 +197,7 @@ namespace Supay.Irc {
 
       using (IrcMessageWriter writer = new IrcMessageWriter()) {
         message.Validate(ServerSupports);
-        message.Format(writer);
+        writer.WriteLine(message);
         Connection.Write(writer.ToString());
       }
     }

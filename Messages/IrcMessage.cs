@@ -13,25 +13,10 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Generates a string representation of the message. </summary>
     public override string ToString() {
-      using (IrcMessageWriter writer = new IrcMessageWriter { AppendNewLine = false }) {
-        Format(writer);
+      using (IrcMessageWriter writer = new IrcMessageWriter()) {
+        writer.Write(this);
         return writer.ToString();
       }
-    }
-
-    /// <summary>
-    ///   Outputs message content to a provided <see cref="IrcMessageWriter"/> object. </summary>
-    /// <param name="writer">
-    ///   The <see cref="IrcMessageWriter"/> object that receives the message content. </param>
-    public void Format(IrcMessageWriter writer) {
-      if (writer == null) {
-        return;
-      }
-      if (Sender != null && !string.IsNullOrEmpty(Sender.Nickname)) {
-        writer.Sender = Sender.IrcMask;
-      }
-      AddParametersToFormat(writer);
-      writer.Write();
     }
 
     /// <summary>
@@ -41,7 +26,7 @@ namespace Supay.Irc.Messages {
     ///   the formatted output of the message. </remarks>
     /// <param name="writer">
     ///   The <see cref="IrcMessageWriter"/> object that receives the message content. </param>
-    protected abstract void AddParametersToFormat(IrcMessageWriter writer);
+    public abstract void AddParametersToFormat(IrcMessageWriter writer);
 
     /// <summary>
     ///   Validates this message against the given server support. </summary>

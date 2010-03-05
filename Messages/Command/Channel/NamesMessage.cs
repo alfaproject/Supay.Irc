@@ -36,7 +36,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Overrides <see cref="IrcMessage.AddParametersToFormat"/>.
     /// </summary>
-    protected override void AddParametersToFormat(IrcMessageWriter writer) {
+    public override void AddParametersToFormat(IrcMessageWriter writer) {
       base.AddParametersToFormat(writer);
       if (this.Channels.Count != 0) {
         writer.AddList(this.Channels, ",", true);

@@ -36,7 +36,7 @@ namespace Supay.Irc.Messages {
     private string channel;
 
     /// <exclude />
-    protected override void AddParametersToFormat(IrcMessageWriter writer) {
+    public override void AddParametersToFormat(IrcMessageWriter writer) {
       base.AddParametersToFormat(writer);
       writer.AddParameter(this.Channel);
       writer.AddParameter("You need a registered nick to join that channel.");

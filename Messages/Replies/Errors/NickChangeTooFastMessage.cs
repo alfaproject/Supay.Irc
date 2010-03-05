@@ -46,7 +46,7 @@ namespace Supay.Irc.Messages {
 
 
     /// <exclude />
-    protected override void AddParametersToFormat(IrcMessageWriter writer) {
+    public override void AddParametersToFormat(IrcMessageWriter writer) {
       base.AddParametersToFormat(writer);
       writer.AddParameter(this.Nick);
       writer.AddParameter(string.Format(CultureInfo.InvariantCulture, "Nick change too fast. Please wait {0} seconds.", this.Seconds));

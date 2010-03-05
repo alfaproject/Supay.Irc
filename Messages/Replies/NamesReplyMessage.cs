@@ -76,7 +76,7 @@ namespace Supay.Irc.Messages {
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.AddParametersToFormat"/>. </summary>
-    protected override void AddParametersToFormat(IrcMessageWriter writer) {
+    public override void AddParametersToFormat(IrcMessageWriter writer) {
       base.AddParametersToFormat(writer);
 
       switch (this.Visibility) {

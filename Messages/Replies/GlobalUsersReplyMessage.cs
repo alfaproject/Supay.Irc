@@ -50,7 +50,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Overrides <see cref="IrcMessage.AddParametersToFormat"/>
     /// </summary>
-    protected override void AddParametersToFormat(IrcMessageWriter writer) {
+    public override void AddParametersToFormat(IrcMessageWriter writer) {
       // we only write the official version of this message, although other versions exist,
       // thus the message may not be the same raw as parsed.
       base.AddParametersToFormat(writer);
