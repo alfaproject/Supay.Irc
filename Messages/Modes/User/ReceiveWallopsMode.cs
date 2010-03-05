@@ -1,5 +1,3 @@
-using System;
-
 namespace Supay.Irc.Messages.Modes {
 
   /// <summary>
