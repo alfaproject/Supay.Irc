@@ -20,7 +20,7 @@ namespace Supay.Irc {
     #region Constructors
 
     /// <summary>
-    ///   Initializes a new instance of the <see cref="Mask" /> class with the given mask values. </summary>
+    ///   Initializes a new instance of the <see cref="Mask"/> class with the given mask values. </summary>
     /// <param name="nickname">
     ///   The nickname of this mask. </param>
     /// <param name="username">
@@ -34,7 +34,7 @@ namespace Supay.Irc {
     }
 
     /// <summary>
-    ///   Initializes a new instance of the <see cref="Mask" /> class with the given mask string. </summary>
+    ///   Initializes a new instance of the <see cref="Mask"/> class with the given mask string. </summary>
     /// <param name="mask">
     ///   The mask string to parse. </param>
     public Mask(string mask) {
@@ -56,7 +56,7 @@ namespace Supay.Irc {
     }
 
     /// <summary>
-    ///   Initializes a new empty instance of the <see cref="Mask" /> class. </summary>
+    ///   Initializes a new empty instance of the <see cref="Mask"/> class. </summary>
     public Mask() {
     }
 

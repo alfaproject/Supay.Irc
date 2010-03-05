@@ -167,7 +167,7 @@ namespace Supay.Irc {
     }
 
     /// <summary>
-    /// Gets the <see cref="Supay.Irc.Contacts.ContactList" /> for this client.
+    /// Gets the <see cref="Supay.Irc.Contacts.ContactList"/> for this client.
     /// </summary>
     public Contacts.ContactList Contacts {
       get;
@@ -363,7 +363,7 @@ namespace Supay.Irc {
     #region IDisposable
 
     /// <summary>
-    ///   Releases the unmanaged resources used by the <see cref="Client" /> and optionally releases the managed resources. </summary>
+    ///   Releases the unmanaged resources used by the <see cref="Client"/> and optionally releases the managed resources. </summary>
     /// <param name="disposing">
     ///   true to release both managed and unmanaged resources;
     ///   false to release only unmanaged resources. </param>
@@ -377,7 +377,7 @@ namespace Supay.Irc {
     }
 
     /// <summary>
-    ///   Releases all resources used by the <see cref="Client" />. </summary>
+    ///   Releases all resources used by the <see cref="Client"/>. </summary>
     public void Dispose() {
       Dispose(true);
       GC.SuppressFinalize(this);

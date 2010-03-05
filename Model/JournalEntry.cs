@@ -11,7 +11,7 @@ namespace Supay.Irc {
   public class JournalEntry : INotifyPropertyChanged {
 
     /// <summary>
-    /// Creates a new instance of the <see href="JournalEntry" /> class.
+    /// Creates a new instance of the <see href="JournalEntry"/> class.
     /// </summary>
     public JournalEntry() {
     }

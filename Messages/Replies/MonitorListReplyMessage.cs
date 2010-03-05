@@ -6,8 +6,8 @@ namespace Supay.Irc.Messages {
   /// A Monitor system message giving you the list of users on your monitor list.
   /// </summary>
   /// <remarks>
-  /// You may receive more than 1 of these replies in response to a <see cref="T:MonitorListRequestMessage" />.
-  /// </remarks>
+  ///   You may receive more than 1 of these replies in response to a
+  ///   <see cref="MonitorListRequestMessage"/>. </remarks>
   [Serializable]
   public class MonitorListReplyMessage : MonitoredNicksListMessage {
 

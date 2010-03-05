@@ -8,22 +8,21 @@ namespace Supay.Irc.Messages {
   /// Requests information from the server about the users specified.
   /// </summary>
   /// <remarks>
-  /// <para>
-  /// Possible reply messages include:
-  /// <see cref="T:NoSuchServerMessage"/>
-  /// <see cref="T:NoNickGivenMessage"/>
-  /// <see cref="T:NoSuchNickMessage"/>
+  ///   <para>
+  ///     Possible reply messages include:
+  ///     <see cref="NoSuchServerMessage"/>
+  ///     <see cref="NoNickGivenMessage"/>
+  ///     <see cref="NoSuchNickMessage"/>
   /// 
-  /// <see cref="T:WhoIsUserReplyMessage"/>
-  /// <see cref="T:WhoIsChannelsReplyMessage"/>
-  /// <see cref="T:WhoIsServerReplyMessage"/>
-  /// <see cref="T:WhoIsOperReplyMessage"/>
-  /// <see cref="T:WhoIsIdleReplyMessage"/>
+  ///     <see cref="WhoIsUserReplyMessage"/>
+  ///     <see cref="WhoIsChannelsReplyMessage"/>
+  ///     <see cref="WhoIsServerReplyMessage"/>
+  ///     <see cref="WhoIsOperReplyMessage"/>
+  ///     <see cref="WhoIsIdleReplyMessage"/>
   /// 
-  /// <see cref="T:UserAwayMessage" />
-  /// <see cref="T:WhoIsEndReplyMessage"/>
-  /// </para>
-  /// </remarks>
+  ///     <see cref="UserAwayMessage"/>
+  ///     <see cref="WhoIsEndReplyMessage"/>
+  ///   </para> </remarks>
   [Serializable]
   public class WhoIsMessage : CommandMessage {
 

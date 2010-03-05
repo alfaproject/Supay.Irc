@@ -20,7 +20,7 @@ namespace Supay.Irc {
     #region Constructors
 
     /// <summary>
-    ///   Initializes a new instance of the <see cref="User" /> class. </summary>
+    ///   Initializes a new instance of the <see cref="User"/> class. </summary>
     public User()
       : base(string.Empty, string.Empty, string.Empty) {
       this.Initialize();

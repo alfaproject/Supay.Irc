@@ -43,8 +43,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Parses the parameters portion of the message.
-    /// </summary;
+    ///   Parses the parameters portion of the message. </summary>
     protected override void ParseParameters(StringCollection parameters) {
       base.ParseParameters(parameters);
       if (parameters.Count > 1) {

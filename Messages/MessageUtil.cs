@@ -151,6 +151,10 @@ namespace Supay.Irc.Messages {
 
     /// <summary>
     ///   Creates a char-delimited list from the given IEnumerable of objects, using delimiter. </summary>
+    /// <param name="items">
+    ///   The items to join. </param>
+    /// <param name="delimiter">
+    ///   The separator between each joined item. </param>
     /// <param name="customListItemRender">
     ///   A delegate which provides custom format rendering for the items in a list. </param>
     public static string CreateList<T>(IEnumerable<T> items, string delimiter, Func<T, string> customListItemRender) {
@@ -392,6 +396,8 @@ namespace Supay.Irc.Messages {
 
     /// <summary>
     ///   Determines whether this instance and another specified string object have the same value. (case insensitive)</summary>
+    /// <param name="self">
+    ///   The first <see cref="String"/> to compare. </param>
     /// <param name="value">
     ///   The string to compare to this instance. </param>
     public static bool EqualsI(this string self, string value) {
@@ -399,7 +405,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    ///   Determines if the given collection of strings contains a string which matches the given string using <see href="StringComparison.InvariantCultureIgnoreCase" /> matching. </summary>
+    ///   Determines if the given collection of strings contains a string which matches the given string using <see href="StringComparison.InvariantCultureIgnoreCase"/> matching. </summary>
     /// <param name="strings">
     ///   The list to look in. </param>
     /// <param name="match">

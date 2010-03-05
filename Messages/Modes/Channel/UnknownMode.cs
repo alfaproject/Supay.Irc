@@ -49,7 +49,7 @@ namespace Supay.Irc.Messages.Modes {
     private string parameter = "";
 
     /// <summary>
-    /// Applies this mode to the ModeArguments property of the given <see cref="ChannelModeMessage" />.
+    /// Applies this mode to the ModeArguments property of the given <see cref="ChannelModeMessage"/>.
     /// </summary>
     /// <param name="msg">The message which will be modified to include this mode.</param>
     protected override void AddParameter(Supay.Irc.Messages.ChannelModeMessage msg) {

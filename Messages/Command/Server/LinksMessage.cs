@@ -5,7 +5,7 @@ using System.Collections.Specialized;
 namespace Supay.Irc.Messages {
 
   /// <summary>
-  /// The <see cref="LinksMessage" /> asks the server to send a list all servers which are known by the server answering the message.
+  /// The <see cref="LinksMessage"/> asks the server to send a list all servers which are known by the server answering the message.
   /// </summary>
   [Serializable]
   public class LinksMessage : ServerQueryBase {

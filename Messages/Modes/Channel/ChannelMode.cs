@@ -43,7 +43,7 @@ namespace Supay.Irc.Messages.Modes {
     }
 
     /// <summary>
-    /// Applies this mode to the ModeChanges property of the given <see cref="ChannelModeMessage" />.
+    /// Applies this mode to the ModeChanges property of the given <see cref="ChannelModeMessage"/>.
     /// </summary>
     /// <param name="msg">The message which will be modified to include this mode.</param>
     /// <param name="includeAction">Specifies if the action modifier should be applied.</param>
@@ -55,7 +55,7 @@ namespace Supay.Irc.Messages.Modes {
     }
 
     /// <summary>
-    /// Applies this mode to the ModeArguments property of the given <see cref="ChannelModeMessage" />.
+    /// Applies this mode to the ModeArguments property of the given <see cref="ChannelModeMessage"/>.
     /// </summary>
     /// <param name="msg">The message which will be modified to include this mode.</param>
     protected virtual void AddParameter(ChannelModeMessage msg) {

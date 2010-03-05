@@ -42,7 +42,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Overrides <see cref="IrcMessage.ParseParameters" />
+    /// Overrides <see cref="IrcMessage.ParseParameters"/>
     /// </summary>
     /// <param name="parameters"></param>
     protected override void ParseParameters(StringCollection parameters) {

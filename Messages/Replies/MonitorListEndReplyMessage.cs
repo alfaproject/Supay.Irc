@@ -18,7 +18,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    ///   Overrides <see href="IrcMessage.GetParameters" />. </summary>
+    ///   Overrides <see href="IrcMessage.GetParameters"/>. </summary>
     protected override Collection<string> GetParameters() {
       Collection<string> parameters = base.GetParameters();
       parameters.Add("End of MONITOR list");
