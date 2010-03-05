@@ -1,4 +1,5 @@
 using System;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Globalization;
 
@@ -48,13 +49,13 @@ namespace Supay.Irc.Messages {
     private string max = " Max: ";
 
     /// <summary>
-    /// Overrides <see cref="IrcMessage.AddParametersToFormat"/>
-    /// </summary>
-    public override void AddParametersToFormat(IrcMessageWriter writer) {
+    ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
+    protected override Collection<string> GetParameters() {
       // we only write the official version of this message, although other versions exist,
       // thus the message may not be the same raw as parsed.
-      base.AddParametersToFormat(writer);
-      writer.AddParameter(this.currentGlobalUsers + this.userCount + this.max + this.UserLimit);
+      Collection<string> parameters = base.GetParameters();
+      parameters.Add(currentGlobalUsers + UserCount + max + UserLimit);
+      return parameters;
     }
 
     /// <summary>

@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Globalization;
 
@@ -9,14 +11,16 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public abstract class NumericMessage : IrcMessage {
-
     /// <summary>
-    ///   Overrides <see cref="IrcMessage.AddParametersToFormat"/>. </summary>
-    public override void AddParametersToFormat(IrcMessageWriter writer) {
-      writer.AddParameter(this.internalNumeric.ToString("000", CultureInfo.InvariantCulture));
-      if (this.Target.Length != 0) {
-        writer.AddParameter(this.Target);
+    ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
+    protected override Collection<string> GetParameters() {
+      Collection<string> parameters = new Collection<string> {
+        InternalNumeric.ToString("000", CultureInfo.InvariantCulture)
+      };
+      if (!string.IsNullOrEmpty(Target)) {
+        parameters.Add(Target);
       }
+      return parameters;
     }
 
     /// <summary>

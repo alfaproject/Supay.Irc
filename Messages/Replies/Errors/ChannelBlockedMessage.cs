@@ -1,4 +1,5 @@
 using System;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Globalization;
 
@@ -49,10 +50,11 @@ namespace Supay.Irc.Messages {
 
 
     /// <exclude />
-    public override void AddParametersToFormat(IrcMessageWriter writer) {
-      base.AddParametersToFormat(writer);
-      writer.AddParameter(this.Channel);
-      writer.AddParameter(string.Format(CultureInfo.InvariantCulture, "Cannot join channel ({0})", this.Reason));
+    protected override Collection<string> GetParameters() {
+      Collection<string> parameters = base.GetParameters();
+      parameters.Add(Channel);
+      parameters.Add(string.Format(CultureInfo.InvariantCulture, "Cannot join channel ({0})", Reason));
+      return parameters;
     }
 
     /// <exclude />

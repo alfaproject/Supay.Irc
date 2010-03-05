@@ -1,4 +1,5 @@
 using System;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Globalization;
 
@@ -46,11 +47,12 @@ namespace Supay.Irc.Messages {
     private StringCollection nicks;
 
     /// <exclude />
-    public override void AddParametersToFormat(IrcMessageWriter writer) {
-      base.AddParametersToFormat(writer);
-      writer.AddParameter(this.Limit.ToString(CultureInfo.InvariantCulture));
-      writer.AddParameter(MessageUtil.CreateList(this.Nicks, ","));
-      writer.AddParameter("Monitor list is full.");
+    protected override Collection<string> GetParameters() {
+      Collection<string> parameters = base.GetParameters();
+      parameters.Add(Limit.ToString(CultureInfo.InvariantCulture));
+      parameters.Add(MessageUtil.CreateList(Nicks, ","));
+      parameters.Add("Monitor list is full.");
+      return parameters;
     }
 
     /// <exclude />

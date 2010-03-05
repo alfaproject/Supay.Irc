@@ -1,4 +1,5 @@
 using System;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 
 namespace Supay.Irc.Messages {
@@ -50,16 +51,19 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    ///   Overrides <see cref="IrcMessage.AddParametersToFormat"/>. </summary>
-    public override void AddParametersToFormat(IrcMessageWriter writer) {
-      writer.AddParameter(this.TransportCommand);
-      writer.AddParameter(this.Target);
-      string extendedData = CtcpUtil.Escape(this.ExtendedData);
-      if (extendedData.Length > 0) {
+    ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
+    protected override Collection<string> GetParameters() {
+      Collection<string> parameters = new Collection<string> {
+        TransportCommand,
+        Target
+      };
+      string extendedData = CtcpUtil.Escape(ExtendedData);
+      if (extendedData.Length != 0) {
         extendedData = " " + extendedData;
       }
-      string payLoad = CtcpUtil.ExtendedDataMarker + this.InternalCommand + extendedData + CtcpUtil.ExtendedDataMarker;
-      writer.AddParameter(payLoad);
+      string payLoad = CtcpUtil.ExtendedDataMarker + InternalCommand + extendedData + CtcpUtil.ExtendedDataMarker;
+      parameters.Add(payLoad);
+      return parameters;
     }
 
     /// <summary>

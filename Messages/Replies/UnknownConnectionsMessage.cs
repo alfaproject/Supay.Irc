@@ -1,4 +1,5 @@
 using System;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Globalization;
 
@@ -38,12 +39,12 @@ namespace Supay.Irc.Messages {
     private int userCount = -1;
 
     /// <summary>
-    /// Overrides <see cref="IrcMessage.AddParametersToFormat"/>
-    /// </summary>
-    public override void AddParametersToFormat(IrcMessageWriter writer) {
-      base.AddParametersToFormat(writer);
-      writer.AddParameter(this.UnknownConnectionCount.ToString(CultureInfo.InvariantCulture));
-      writer.AddParameter("unknown connection(s)");
+    ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
+    protected override Collection<string> GetParameters() {
+      Collection<string> parameters = base.GetParameters();
+      parameters.Add(UnknownConnectionCount.ToString(CultureInfo.InvariantCulture));
+      parameters.Add("unknown connection(s)");
+      return parameters;
     }
 
     /// <summary>

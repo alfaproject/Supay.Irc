@@ -1,4 +1,5 @@
 using System;
+using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
 
@@ -17,9 +18,10 @@ namespace Supay.Irc.Messages {
     }
 
     /// <exclude />
-    public override void AddParametersToFormat(IrcMessageWriter writer) {
-      base.AddParametersToFormat(writer);
-      writer.AddParameter("Accept list is full");
+    protected override Collection<string> GetParameters() {
+      Collection<string> parameters = base.GetParameters();
+      parameters.Add("Accept list is full");
+      return parameters;
     }
 
     /// <summary>

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 
 namespace Supay.Irc.Messages {
@@ -31,10 +32,11 @@ namespace Supay.Irc.Messages {
 
 
     /// <exclude />
-    public override void AddParametersToFormat(IrcMessageWriter writer) {
-      base.AddParametersToFormat(writer);
-      writer.AddParameter(this.SilenceMask.ToString());
-      writer.AddParameter("Your silence list is full");
+    protected override Collection<string> GetParameters() {
+      Collection<string> parameters = base.GetParameters();
+      parameters.Add(SilenceMask.ToString());
+      parameters.Add("Your silence list is full");
+      return parameters;
     }
 
     /// <exclude />

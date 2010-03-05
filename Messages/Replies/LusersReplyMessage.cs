@@ -1,4 +1,5 @@
 using System;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Globalization;
 
@@ -64,11 +65,11 @@ namespace Supay.Irc.Messages {
     private string servers = " servers";
 
     /// <summary>
-    /// Overrides <see cref="IrcMessage.AddParametersToFormat"/>
-    /// </summary>
-    public override void AddParametersToFormat(IrcMessageWriter writer) {
-      base.AddParametersToFormat(writer);
-      writer.AddParameter(this.thereAre + this.UserCount + this.usersAnd + this.InvisibleCount + this.invisibleOn + this.serverCount + this.servers);
+    ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
+    protected override Collection<string> GetParameters() {
+      Collection<string> parameters = base.GetParameters();
+      parameters.Add(thereAre + UserCount + usersAnd + InvisibleCount + invisibleOn + ServerCount + servers);
+      return parameters;
     }
 
     /// <summary>

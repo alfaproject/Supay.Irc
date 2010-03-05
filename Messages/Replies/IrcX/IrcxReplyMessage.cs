@@ -1,4 +1,5 @@
 using System;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Globalization;
 
@@ -85,19 +86,15 @@ namespace Supay.Irc.Messages {
     private string tokens = "*";
 
     /// <summary>
-    /// Overrides <see cref="IrcMessage.AddParametersToFormat"/>
-    /// </summary>
-    public override void AddParametersToFormat(IrcMessageWriter writer) {
-      base.AddParametersToFormat(writer);
-      if (this.IsIrcxClientMode) {
-        writer.AddParameter("1");
-      } else {
-        writer.AddParameter("0");
-      }
-      writer.AddParameter(this.Version);
-      writer.AddList(this.AuthenticationPackages, ",", false);
-      writer.AddParameter(this.MaximumMessageLength.ToString(CultureInfo.InvariantCulture));
-      writer.AddParameter(this.Tokens);
+    ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
+    protected override Collection<string> GetParameters() {
+      Collection<string> parameters = base.GetParameters();
+      parameters.Add(IsIrcxClientMode ? "1" : "0");
+      parameters.Add(Version);
+      parameters.Add(MessageUtil.CreateList(AuthenticationPackages, ","));
+      parameters.Add(MaximumMessageLength.ToString(CultureInfo.InvariantCulture));
+      parameters.Add(Tokens);
+      return parameters;
     }
 
     /// <summary>

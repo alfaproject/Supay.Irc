@@ -1,4 +1,5 @@
 using System;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 
 namespace Supay.Irc.Messages {
@@ -29,22 +30,22 @@ namespace Supay.Irc.Messages {
     private NameValueCollection supportedItems = new NameValueCollection();
 
     /// <summary>
-    /// Overrides <see cref="IrcMessage.AddParametersToFormat"/>
-    /// </summary>
-    public override void AddParametersToFormat(IrcMessageWriter writer) {
-      base.AddParametersToFormat(writer);
-
+    ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
+    protected override Collection<string> GetParameters() {
       StringCollection paramsToString = new StringCollection();
-      foreach (string name in this.SupportedItems.Keys) {
-        string value = this.SupportedItems[name];
+      foreach (string name in SupportedItems.Keys) {
+        string value = SupportedItems[name];
         if (value.Length != 0) {
-          paramsToString.Add(name + "=" + this.SupportedItems[name]);
+          paramsToString.Add(name + "=" + SupportedItems[name]);
         } else {
           paramsToString.Add(name);
         }
       }
-      writer.AddList(paramsToString, " ", false);
-      writer.AddParameter(areSupported);
+
+      Collection<string> parameters = base.GetParameters();
+      parameters.Add(MessageUtil.CreateList(paramsToString, " "));
+      parameters.Add(areSupported);
+      return parameters;
     }
 
     private string areSupported = "are supported by this server";

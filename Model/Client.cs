@@ -1,6 +1,4 @@
 using System;
-using System.Globalization;
-using System.IO;
 using Supay.Irc.Messages;
 using Supay.Irc.Messages.Modes;
 using Supay.Irc.Network;
@@ -195,11 +193,8 @@ namespace Supay.Irc {
         return;
       }
 
-      using (IrcMessageWriter writer = new IrcMessageWriter()) {
-        message.Validate(ServerSupports);
-        writer.WriteLine(message);
-        Connection.Write(writer.ToString());
-      }
+      message.Validate(ServerSupports);
+      Connection.Write(message + Environment.NewLine);
     }
 
     #region Send Helpers

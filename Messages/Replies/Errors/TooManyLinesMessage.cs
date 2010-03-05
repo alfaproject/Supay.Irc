@@ -1,4 +1,5 @@
 using System;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 
 namespace Supay.Irc.Messages {
@@ -31,10 +32,11 @@ namespace Supay.Irc.Messages {
     private string command;
 
     /// <exclude />
-    public override void AddParametersToFormat(IrcMessageWriter writer) {
-      base.AddParametersToFormat(writer);
-      writer.AddParameter(this.Command);
-      writer.AddParameter("Too many lines in the output, restrict your query");
+    protected override Collection<string> GetParameters() {
+      Collection<string> parameters = base.GetParameters();
+      parameters.Add(Command);
+      parameters.Add("Too many lines in the output, restrict your query");
+      return parameters;
     }
 
     /// <exclude />

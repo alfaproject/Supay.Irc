@@ -1,4 +1,5 @@
 using System;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Globalization;
 
@@ -85,19 +86,21 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Overrides <see cref="IrcMessage.AddParametersToFormat"/>.
-    /// </summary>
-    public override void AddParametersToFormat(IrcMessageWriter writer) {
-      base.AddParametersToFormat(writer);
-      writer.AddParameter(this.UserName);
+    ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
+    protected override Collection<string> GetParameters() {
+      Collection<string> parameters = base.GetParameters();
+      parameters.Add(UserName);
       int modeBitMask = 0;
-      if (this.InitialInvisibility)
+      if (InitialInvisibility) {
         modeBitMask += 8;
-      if (this.InitialWallops)
+      }
+      if (InitialWallops) {
         modeBitMask += 4;
-      writer.AddParameter(modeBitMask.ToString(CultureInfo.InvariantCulture));
-      writer.AddParameter("*");
-      writer.AddParameter(this.RealName);
+      }
+      parameters.Add(modeBitMask.ToString(CultureInfo.InvariantCulture));
+      parameters.Add("*");
+      parameters.Add(RealName);
+      return parameters;
     }
 
     /// <summary>

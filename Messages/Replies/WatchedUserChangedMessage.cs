@@ -1,4 +1,5 @@
 using System;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Globalization;
 
@@ -46,15 +47,15 @@ namespace Supay.Irc.Messages {
 
 
     /// <summary>
-    /// Overrides <see cref="IrcMessage.AddParametersToFormat"/>
-    /// </summary>
-    public override void AddParametersToFormat(IrcMessageWriter writer) {
-      base.AddParametersToFormat(writer);
-      writer.AddParameter(this.WatchedUser.Nickname);
-      writer.AddParameter(this.WatchedUser.Username);
-      writer.AddParameter(this.WatchedUser.Host);
-      writer.AddParameter(MessageUtil.ConvertToUnixTime(this.TimeOfChange).ToString(CultureInfo.InvariantCulture));
-      writer.AddParameter(this.ChangeMessage);
+    ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
+    protected override Collection<string> GetParameters() {
+      Collection<string> parameters = base.GetParameters();
+      parameters.Add(WatchedUser.Nickname);
+      parameters.Add(WatchedUser.Username);
+      parameters.Add(WatchedUser.Host);
+      parameters.Add(MessageUtil.ConvertToUnixTime(TimeOfChange).ToString(CultureInfo.InvariantCulture));
+      parameters.Add(ChangeMessage);
+      return parameters;
     }
 
     /// <summary>

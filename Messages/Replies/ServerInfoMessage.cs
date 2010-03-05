@@ -1,4 +1,5 @@
 using System;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 
 namespace Supay.Irc.Messages {
@@ -122,28 +123,26 @@ namespace Supay.Irc.Messages {
     private string serverModesWithParams = "";
 
     /// <summary>
-    /// Overrides <see cref="IrcMessage.AddParametersToFormat"/>
-    /// </summary>
-    public override void AddParametersToFormat(IrcMessageWriter writer) {
-      base.AddParametersToFormat(writer);
-
-      writer.AddParameter(this.ServerName);
-      writer.AddParameter(this.Version);
-      writer.AddParameter(this.UserModes);
-      writer.AddParameter(this.ChannelModes);
-      if (this.ChannelModesWithParams.Length != 0) {
-        writer.AddParameter(this.ChannelModesWithParams);
-        if (this.UserModesWithParams.Length != 0) {
-          writer.AddParameter(this.UserModesWithParams);
-          if (this.ServerModes.Length != 0) {
-            writer.AddParameter(this.ServerModes);
-            if (this.ServerModesWithParams.Length != 0) {
-              writer.AddParameter(this.ServerModesWithParams);
+    ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
+    protected override Collection<string> GetParameters() {
+      Collection<string> parameters = base.GetParameters();
+      parameters.Add(ServerName);
+      parameters.Add(Version);
+      parameters.Add(UserModes);
+      parameters.Add(ChannelModes);
+      if (!string.IsNullOrEmpty(ChannelModesWithParams)) {
+        parameters.Add(ChannelModesWithParams);
+        if (!string.IsNullOrEmpty(UserModesWithParams)) {
+          parameters.Add(UserModesWithParams);
+          if (!string.IsNullOrEmpty(ServerModes)) {
+            parameters.Add(ServerModes);
+            if (!string.IsNullOrEmpty(ServerModesWithParams)) {
+              parameters.Add(ServerModesWithParams);
             }
           }
         }
       }
-
+      return parameters;
     }
 
     /// <summary>

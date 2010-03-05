@@ -1,4 +1,5 @@
 using System;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 
 namespace Supay.Irc.Messages {
@@ -36,10 +37,11 @@ namespace Supay.Irc.Messages {
     private string channel;
 
     /// <exclude />
-    public override void AddParametersToFormat(IrcMessageWriter writer) {
-      base.AddParametersToFormat(writer);
-      writer.AddParameter(this.Channel);
-      writer.AddParameter("You need a registered nick to join that channel.");
+    protected override Collection<string> GetParameters() {
+      Collection<string> parameters = base.GetParameters();
+      parameters.Add(Channel);
+      parameters.Add("You need a registered nick to join that channel.");
+      return parameters;
     }
 
     /// <exclude />

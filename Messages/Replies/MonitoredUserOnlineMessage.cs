@@ -1,4 +1,5 @@
 using System;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 
 namespace Supay.Irc.Messages {
@@ -31,12 +32,11 @@ namespace Supay.Irc.Messages {
     private UserCollection users;
 
     /// <summary>
-    ///   Overrides <see cref="IrcMessage.AddParametersToFormat"/>. </summary>
-    public override void AddParametersToFormat(IrcMessageWriter writer) {
-      base.AddParametersToFormat(writer);
-
-      string usersOnline = MessageUtil.CreateList<User>(this.Users, ",", user => user.IrcMask);
-      writer.AddParameter(usersOnline);
+    ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
+    protected override Collection<string> GetParameters() {
+      Collection<string> parameters = base.GetParameters();
+      parameters.Add(MessageUtil.CreateList(Users, ",", user => user.IrcMask));
+      return parameters;
     }
 
     /// <summary>

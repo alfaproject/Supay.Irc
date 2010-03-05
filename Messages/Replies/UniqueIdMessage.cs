@@ -1,4 +1,5 @@
 using System;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Diagnostics;
 
@@ -29,13 +30,13 @@ namespace Supay.Irc.Messages {
     private string yourUniqueID = "your unique ID";
 
     /// <summary>
-    /// Overrides <see cref="IrcMessage.AddParametersToFormat"/>
-    /// </summary>
-    public override void AddParametersToFormat(IrcMessageWriter writer) {
-      base.AddParametersToFormat(writer);
-      writer.AddParameter(this.Target);
-      writer.AddParameter(this.UniqueId);
-      writer.AddParameter(this.yourUniqueID);
+    ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
+    protected override Collection<string> GetParameters() {
+      Collection<string> parameters = base.GetParameters();
+      parameters.Add(Target);
+      parameters.Add(UniqueId);
+      parameters.Add(yourUniqueID);
+      return parameters;
     }
 
     /// <summary>

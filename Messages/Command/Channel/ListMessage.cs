@@ -1,4 +1,5 @@
 using System;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Globalization;
 
@@ -208,46 +209,44 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Overrides <see cref="IrcMessage.AddParametersToFormat"/>.
-    /// </summary>
-    public override void AddParametersToFormat(IrcMessageWriter writer) {
-      base.AddParametersToFormat(writer);
-
+    ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
+    protected override Collection<string> GetParameters() {
       StringCollection options = new StringCollection();
-      if (this.MaxUsers >= 0) {
-        options.Add("<" + this.MaxUsers.ToString(CultureInfo.InvariantCulture));
+      if (MaxUsers >= 0) {
+        options.Add("<" + MaxUsers.ToString(CultureInfo.InvariantCulture));
       }
-      if (this.MinUsers >= 0) {
-        options.Add(">" + this.MinUsers.ToString(CultureInfo.InvariantCulture));
+      if (MinUsers >= 0) {
+        options.Add(">" + MinUsers.ToString(CultureInfo.InvariantCulture));
       }
-      if (this.YoungerThan >= 0) {
-        options.Add("C<" + this.YoungerThan.ToString(CultureInfo.InvariantCulture));
+      if (YoungerThan >= 0) {
+        options.Add("C<" + YoungerThan.ToString(CultureInfo.InvariantCulture));
       }
-      if (this.OlderThan >= 0) {
-        options.Add("C>" + this.OlderThan.ToString(CultureInfo.InvariantCulture));
+      if (OlderThan >= 0) {
+        options.Add("C>" + OlderThan.ToString(CultureInfo.InvariantCulture));
       }
       if (!string.IsNullOrEmpty(MatchMask)) {
-        options.Add("*" + this.MatchMask + "*");
+        options.Add("*" + MatchMask + "*");
       }
       if (!string.IsNullOrEmpty(NotMatchMask)) {
-        options.Add("!*" + this.NotMatchMask + "*");
+        options.Add("!*" + NotMatchMask + "*");
       }
-      if (this.TopicOlderThan >= 0) {
-        options.Add("T>" + this.TopicOlderThan.ToString(CultureInfo.InvariantCulture));
+      if (TopicOlderThan >= 0) {
+        options.Add("T>" + TopicOlderThan.ToString(CultureInfo.InvariantCulture));
       }
-      if (this.TopicYoungerThan >= 0) {
-        options.Add("T<" + this.TopicYoungerThan.ToString(CultureInfo.InvariantCulture));
+      if (TopicYoungerThan >= 0) {
+        options.Add("T<" + TopicYoungerThan.ToString(CultureInfo.InvariantCulture));
       }
 
-
-      if (options.Count > 0) {
-        writer.AddList(options, ",", false);
-      } else if (this.Channels.Count != 0) {
-        writer.AddList(this.Channels, ",", false);
-        if (this.Server.Length != 0) {
-          writer.AddParameter(this.Server);
+      Collection<string> parameters = base.GetParameters();
+      if (options.Count != 0) {
+        parameters.Add(MessageUtil.CreateList(options, ","));
+      } else if (Channels.Count != 0) {
+        parameters.Add(MessageUtil.CreateList(Channels, ","));
+        if (!string.IsNullOrEmpty(Server)) {
+          parameters.Add(Server);
         }
       }
+      return parameters;
     }
 
     /// <summary>

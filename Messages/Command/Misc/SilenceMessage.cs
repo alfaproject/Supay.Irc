@@ -1,4 +1,5 @@
 using System;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 
 namespace Supay.Irc.Messages {
@@ -67,14 +68,14 @@ namespace Supay.Irc.Messages {
     private ModeAction _action = ModeAction.Add;
 
     /// <summary>
-    /// Overrides <see cref="IrcMessage.AddParametersToFormat"/>.
-    /// </summary>
-    public override void AddParametersToFormat(IrcMessageWriter writer) {
+    ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
+    protected override Collection<string> GetParameters() {
       // SILENCE [{{+|-}<user>@<host>}]
-      base.AddParametersToFormat(writer);
-      if (this.SilencedUser != null && this.SilencedUser.ToString().Length != 0) {
-        writer.AddParameter(this.Action.ToString() + this.SilencedUser.ToString());
+      Collection<string> parameters = base.GetParameters();
+      if (SilencedUser != null && !string.IsNullOrEmpty(SilencedUser.Host)) {
+        parameters.Add((Action == ModeAction.Add ? "+" : "-") + SilencedUser.IrcMask);
       }
+      return parameters;
     }
 
     /// <summary>

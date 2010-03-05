@@ -1,7 +1,7 @@
 using System;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
-using System.Globalization;
-using System.IO;
+using System.Text;
 
 namespace Supay.Irc.Messages {
 
@@ -11,22 +11,11 @@ namespace Supay.Irc.Messages {
   public abstract class IrcMessage {
 
     /// <summary>
-    ///   Generates a string representation of the message. </summary>
-    public override string ToString() {
-      using (IrcMessageWriter writer = new IrcMessageWriter()) {
-        writer.Write(this);
-        return writer.ToString();
-      }
-    }
-
-    /// <summary>
-    ///   Adds parameters to the given <see cref="IrcMessageWriter"/> for formatting of the message. </summary>
+    ///   Gets the parameters needed to rebuild this message. </summary>
     /// <remarks>
-    ///   When deriving from <see cref="IrcMessage"/>, override this method to add parameters to
-    ///   the formatted output of the message. </remarks>
-    /// <param name="writer">
-    ///   The <see cref="IrcMessageWriter"/> object that receives the message content. </param>
-    public abstract void AddParametersToFormat(IrcMessageWriter writer);
+    ///   When deriving from <see cref="IrcMessage"/>, override this method to add the needed
+    ///   parameters for proper message rebuilding. </remarks>
+    protected abstract Collection<string> GetParameters();
 
     /// <summary>
     ///   Validates this message against the given server support. </summary>
@@ -69,6 +58,30 @@ namespace Supay.Irc.Messages {
     public User Sender {
       get;
       set;
+    }
+
+    /// <summary>
+    ///   Generates a string representation of the message. </summary>
+    public override string ToString() {
+      StringBuilder sb = new StringBuilder(512);
+      if (Sender != null && !string.IsNullOrEmpty(Sender.Nickname)) {
+        sb.Append(':');
+        sb.Append(Sender.IrcMask);
+        sb.Append(' ');
+      }
+
+      Collection<string> parameters = GetParameters();
+      for (int i = 0; i < parameters.Count - 1; i++) {
+        sb.Append(parameters[i]);
+        sb.Append(' ');
+      }
+      string lastParameter = parameters[parameters.Count - 1];
+      if (lastParameter.IndexOf(' ') > 0) {
+        sb.Append(':');
+      }
+      sb.Append(lastParameter);
+
+      return sb.ToString();
     }
 
   } //class IrcMessage

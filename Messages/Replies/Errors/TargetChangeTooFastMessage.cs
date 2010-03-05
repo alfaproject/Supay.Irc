@@ -1,4 +1,5 @@
 using System;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Globalization;
 
@@ -49,10 +50,11 @@ namespace Supay.Irc.Messages {
 
 
     /// <exclude />
-    public override void AddParametersToFormat(IrcMessageWriter writer) {
-      base.AddParametersToFormat(writer);
-      writer.AddParameter(this.TargetChanged);
-      writer.AddParameter(string.Format(CultureInfo.InvariantCulture, "Target change too fast. Please wait {0} seconds.", this.Seconds));
+    protected override Collection<string> GetParameters() {
+      Collection<string> parameters = base.GetParameters();
+      parameters.Add(TargetChanged);
+      parameters.Add(string.Format(CultureInfo.InvariantCulture, "Target change too fast. Please wait {0} seconds.", Seconds));
+      return parameters;
     }
 
     /// <exclude />

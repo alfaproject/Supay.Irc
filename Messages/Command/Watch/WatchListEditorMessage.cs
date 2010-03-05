@@ -1,4 +1,5 @@
 using System;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 
 namespace Supay.Irc.Messages {
@@ -72,20 +73,20 @@ namespace Supay.Irc.Messages {
     #region Formatting
 
     /// <summary>
-    /// Overrides <see cref="IrcMessage.AddParametersToFormat"/>
-    /// </summary>
-    public override void AddParametersToFormat(IrcMessageWriter writer) {
-      base.AddParametersToFormat(writer);
-      if (this.addedNicks != null) {
-        foreach (string aNick in this.addedNicks) {
-          writer.AddParameter("+" + aNick, true);
+    ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
+    protected override Collection<string> GetParameters() {
+      Collection<string> parameters = base.GetParameters();
+      if (AddedNicks != null) {
+        foreach (string addedNick in AddedNicks) {
+          parameters.Add("+" + addedNick);
         }
       }
-      if (this.removedNicks != null) {
-        foreach (string rNick in this.removedNicks) {
-          writer.AddParameter("-" + rNick, true);
+      if (RemovedNicks != null) {
+        foreach (string removedNick in RemovedNicks) {
+          parameters.Add("-" + removedNick);
         }
       }
+      return parameters;
     }
 
     #endregion

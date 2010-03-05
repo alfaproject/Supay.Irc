@@ -1,4 +1,5 @@
 using System;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Globalization;
 
@@ -60,19 +61,17 @@ namespace Supay.Irc.Messages {
     private int maximumResults = 1;
 
     /// <summary>
-    /// Overrides <see cref="IrcMessage.AddParametersToFormat"/>.
-    /// </summary>
-    public override void AddParametersToFormat(IrcMessageWriter writer) {
-      base.AddParametersToFormat(writer);
-      writer.AddParameter(this.Nick);
-
-      if (this.MaximumResults > 0) {
-        writer.AddParameter(this.MaximumResults.ToString(CultureInfo.InvariantCulture));
-        if (this.Server.Length != 0) {
-          writer.AddParameter(this.Server);
+    ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
+    protected override Collection<string> GetParameters() {
+      Collection<string> parameters = base.GetParameters();
+      parameters.Add(Nick);
+      if (MaximumResults > 0) {
+        parameters.Add(MaximumResults.ToString(CultureInfo.InvariantCulture));
+        if (!string.IsNullOrEmpty(Server)) {
+          parameters.Add(Server);
         }
       }
-
+      return parameters;
     }
 
     /// <summary>

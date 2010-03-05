@@ -1,4 +1,5 @@
 using System;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 
 namespace Supay.Irc.Messages {
@@ -31,10 +32,11 @@ namespace Supay.Irc.Messages {
     private string unknownMode;
 
     /// <exclude />
-    public override void AddParametersToFormat(IrcMessageWriter writer) {
-      base.AddParametersToFormat(writer);
-      writer.AddParameter(this.UnknownMode);
-      writer.AddParameter("is unknown mode char to me");
+    protected override Collection<string> GetParameters() {
+      Collection<string> parameters = base.GetParameters();
+      parameters.Add(UnknownMode);
+      parameters.Add("is unknown mode char to me");
+      return parameters;
     }
 
     /// <exclude />

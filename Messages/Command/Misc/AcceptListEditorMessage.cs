@@ -1,4 +1,5 @@
 using System;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 
 namespace Supay.Irc.Messages {
@@ -93,19 +94,18 @@ namespace Supay.Irc.Messages {
     #region Formatting
 
     /// <summary>
-    /// Overrides <see cref="IrcMessage.AddParametersToFormat"/>
-    /// </summary>
-    public override void AddParametersToFormat(IrcMessageWriter writer) {
-      base.AddParametersToFormat(writer);
+    ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
+    protected override Collection<string> GetParameters() {
       StringCollection allNicks = new StringCollection();
-      foreach (string rNick in RemovedNicks) {
-        allNicks.Add("-" + rNick);
+      foreach (string removedNick in RemovedNicks) {
+        allNicks.Add("-" + removedNick);
       }
-      foreach (string aNick in AddedNicks) {
-        allNicks.Add(aNick);
+      foreach (string addedNick in AddedNicks) {
+        allNicks.Add(addedNick);
       }
-
-      writer.AddList(allNicks, ",", true);
+      Collection<string> parameters = base.GetParameters();
+      parameters.Add(MessageUtil.CreateList(allNicks, ","));
+      return parameters;
     }
 
     #endregion

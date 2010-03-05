@@ -1,4 +1,5 @@
 using System;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Globalization;
 
@@ -103,23 +104,18 @@ namespace Supay.Irc.Messages {
 
 
     /// <summary>
-    /// Overrides <see cref="IrcMessage.AddParametersToFormat"/>
-    /// </summary>
-    public override void AddParametersToFormat(IrcMessageWriter writer) {
-      base.AddParametersToFormat(writer);
-      writer.AddParameter(this.Channel);
-      writer.AddParameter(this.User.Username);
-      writer.AddParameter(this.User.Host);
-      writer.AddParameter(this.Server);
-      writer.AddParameter(this.User.Nickname);
-      //HACK it could also be a G, but I was unable to determine what it meant.
-      if (this.IsOper) {
-        writer.AddParameter("H*");
-      } else {
-        writer.AddParameter("H");
-      }
-      writer.AddParameter(this.Status.ToString());
-      writer.AddParameter(this.HopCount.ToString(CultureInfo.InvariantCulture) + " " + this.User.Name);
+    ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
+    protected override Collection<string> GetParameters() {
+      Collection<string> parameters = base.GetParameters();
+      parameters.Add(Channel);
+      parameters.Add(User.Username);
+      parameters.Add(User.Host);
+      parameters.Add(Server);
+      parameters.Add(User.Nickname);
+      parameters.Add(IsOper ? "H*" : "H"); // HACK it could also be a G, but I was unable to determine what it meant.
+      parameters.Add(Status.ToString());
+      parameters.Add(HopCount.ToString(CultureInfo.InvariantCulture) + " " + User.Name);
+      return parameters;
     }
 
     /// <summary>

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Globalization;
 
@@ -32,12 +33,12 @@ namespace Supay.Irc.Messages {
     private int channelCount = -1;
 
     /// <summary>
-    /// Overrides <see cref="IrcMessage.AddParametersToFormat"/>
-    /// </summary>
-    public override void AddParametersToFormat(IrcMessageWriter writer) {
-      base.AddParametersToFormat(writer);
-      writer.AddParameter(this.ChannelCount.ToString(CultureInfo.InvariantCulture));
-      writer.AddParameter(this.channelsFormed);
+    ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
+    protected override Collection<string> GetParameters() {
+      Collection<string> parameters = base.GetParameters();
+      parameters.Add(ChannelCount.ToString(CultureInfo.InvariantCulture));
+      parameters.Add(channelsFormed);
+      return parameters;
     }
 
     /// <summary>

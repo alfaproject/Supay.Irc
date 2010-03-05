@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 
 namespace Supay.Irc.Messages {
@@ -75,25 +76,23 @@ namespace Supay.Irc.Messages {
     private string channel = "";
 
     /// <summary>
-    ///   Overrides <see cref="IrcMessage.AddParametersToFormat"/>. </summary>
-    public override void AddParametersToFormat(IrcMessageWriter writer) {
-      base.AddParametersToFormat(writer);
-
-      switch (this.Visibility) {
+    ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
+    protected override Collection<string> GetParameters() {
+      Collection<string> parameters = base.GetParameters();
+      switch (Visibility) {
         case ChannelVisibility.Public:
-          writer.AddParameter("=");
+          parameters.Add("=");
           break;
         case ChannelVisibility.Private:
-          writer.AddParameter("*");
+          parameters.Add("*");
           break;
         case ChannelVisibility.Secret:
-          writer.AddParameter("@");
+          parameters.Add("@");
           break;
       }
-      writer.AddParameter(this.Channel);
-
-      string names = MessageUtil.CreateList<string>(this.Nicks.Keys, " ", nick => this.Nicks[nick].Symbol + nick);
-      writer.AddParameter(names);
+      parameters.Add(Channel);
+      parameters.Add(MessageUtil.CreateList(Nicks.Keys, " ", nick => Nicks[nick].Symbol + nick));
+      return parameters;
     }
 
     /// <summary>

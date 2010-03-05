@@ -1,4 +1,5 @@
 using System;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 
 namespace Supay.Irc.Messages {
@@ -32,14 +33,14 @@ namespace Supay.Irc.Messages {
     private string query;
 
     /// <summary>
-    /// Overrides <see cref="IrcMessage.AddParametersToFormat"/>.
-    /// </summary>
-    public override void AddParametersToFormat(IrcMessageWriter writer) {
-      base.AddParametersToFormat(writer);
-      if (this.Query != null && this.Query.Length != 0) {
-        writer.AddParameter(this.Query);
-        writer.AddParameter(this.Target);
+    ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
+    protected override Collection<string> GetParameters() {
+      Collection<string> parameters = base.GetParameters();
+      if (!string.IsNullOrEmpty(Query)) {
+        parameters.Add(Query);
+        parameters.Add(Target);
       }
+      return parameters;
     }
 
     /// <summary>

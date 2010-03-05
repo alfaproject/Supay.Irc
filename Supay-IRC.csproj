@@ -183,7 +183,6 @@
     <Compile Include="Network\Ident.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Messages\IrcMessageWriter.cs" />
     <Compile Include="Messages\MessageConduit.cs">
     </Compile>
     <Compile Include="Messages\IrcMessageFactory.cs" />
