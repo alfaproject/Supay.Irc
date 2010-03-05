@@ -13,10 +13,9 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Generates a string representation of the message. </summary>
     public override string ToString() {
-      using (StringWriter target = new StringWriter(CultureInfo.InvariantCulture)) {
-        IrcMessageWriter writer = new IrcMessageWriter(target) { AppendNewLine = false };
+      using (IrcMessageWriter writer = new IrcMessageWriter { AppendNewLine = false }) {
         Format(writer);
-        return target.ToString();
+        return writer.ToString();
       }
     }
 

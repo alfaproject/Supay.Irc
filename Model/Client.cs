@@ -195,18 +195,11 @@ namespace Supay.Irc {
         return;
       }
 
-      TextWriter originalWriter = this.writer.InnerWriter;
-      using (StringWriter myInnerWriter = new StringWriter(CultureInfo.InvariantCulture)) {
-        this.writer.InnerWriter = myInnerWriter;
-
-        message.Validate(this.ServerSupports);
+      using (IrcMessageWriter writer = new IrcMessageWriter()) {
+        message.Validate(ServerSupports);
         message.Format(writer);
-        this.Connection.Write(myInnerWriter.ToString());
-
-
-        this.writer.InnerWriter = originalWriter;
+        Connection.Write(writer.ToString());
       }
-
     }
 
     #region Send Helpers
@@ -878,7 +871,6 @@ namespace Supay.Irc {
     #region Private
 
     private bool readyRaised = false;
-    IrcMessageWriter writer = new IrcMessageWriter();
 
     private void StartIdent() {
       if (this.EnableAutoIdent) {
