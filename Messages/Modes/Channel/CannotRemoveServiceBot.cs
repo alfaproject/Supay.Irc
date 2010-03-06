@@ -14,8 +14,7 @@ namespace Supay.Irc.Messages {
     /// Creates a new instances of the <see cref="CannotRemoveServiceBotMessage"/> class.
     /// </summary>
     public CannotRemoveServiceBotMessage()
-      : base() {
-      this.InternalNumeric = 484;
+      : base(484) {
     }
 
     /// <summary>

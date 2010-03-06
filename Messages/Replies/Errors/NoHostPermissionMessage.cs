@@ -13,8 +13,7 @@ namespace Supay.Irc.Messages {
     /// Creates a new instances of the <see cref="NoHostPermissionMessage"/> class.
     /// </summary>
     public NoHostPermissionMessage()
-      : base() {
-      this.InternalNumeric = 463;
+      : base(463) {
     }
 
     /// <summary>

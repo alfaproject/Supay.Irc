@@ -19,8 +19,7 @@ namespace Supay.Irc.Messages {
     /// Creates a new instances of the <see cref="ChannelRequiresKeyMessage"/> class.
     /// </summary>
     public ChannelRequiresKeyMessage()
-      : base() {
-      this.InternalNumeric = 475;
+      : base(475) {
     }
 
     /// <summary>

@@ -18,8 +18,7 @@ namespace Supay.Irc.Messages {
     /// Creates a new instances of the <see cref="ChannelOperatorStatusRequiredMessage"/> class.
     /// </summary>
     public ChannelOperatorStatusRequiredMessage()
-      : base() {
-      this.InternalNumeric = 482;
+      : base(482) {
     }
 
     /// <summary>

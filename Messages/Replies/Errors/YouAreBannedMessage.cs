@@ -13,8 +13,7 @@ namespace Supay.Irc.Messages {
     /// Creates a new instances of the <see cref="YouAreBannedMessage"/> class.
     /// </summary>
     public YouAreBannedMessage()
-      : base() {
-      this.InternalNumeric = 465;
+      : base(465) {
     }
 
     /// <summary>

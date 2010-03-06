@@ -18,8 +18,7 @@ namespace Supay.Irc.Messages {
     /// Creates a new instances of the <see cref="ChannelIsInviteOnlyMessage"/> class.
     /// </summary>
     public ChannelIsInviteOnlyMessage()
-      : base() {
-      this.InternalNumeric = 473;
+      : base(473) {
     }
 
     /// <summary>

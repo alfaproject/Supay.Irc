@@ -14,8 +14,7 @@ namespace Supay.Irc.Messages {
     /// Creates a new instances of the <see cref="NotEnoughParametersMessage"/> class.
     /// </summary>
     public NotEnoughParametersMessage()
-      : base() {
-      this.InternalNumeric = 461;
+      : base(461) {
     }
 
     /// <summary>

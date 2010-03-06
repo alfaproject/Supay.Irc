@@ -14,8 +14,7 @@ namespace Supay.Irc.Messages {
     /// Creates a new instances of the <see cref="TooManyChannelsMessage"/> class.
     /// </summary>
     public TooManyChannelsMessage()
-      : base() {
-      this.InternalNumeric = 405;
+      : base(405) {
     }
 
     /// <summary>

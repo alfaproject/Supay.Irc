@@ -14,8 +14,7 @@ namespace Supay.Irc.Messages {
     /// Creates a new instances of the <see cref="NickCollisionMessage"/> class.
     /// </summary>
     public NickCollisionMessage()
-      : base() {
-      this.InternalNumeric = 436;
+      : base(436) {
     }
 
     /// <summary>

@@ -14,8 +14,7 @@ namespace Supay.Irc.Messages {
     /// Creates a new instances of the <see cref="SilenceListFullMessage"/> class.
     /// </summary>
     public SilenceListFullMessage()
-      : base() {
-      this.InternalNumeric = 511;
+      : base(511) {
     }
 
     /// <summary>

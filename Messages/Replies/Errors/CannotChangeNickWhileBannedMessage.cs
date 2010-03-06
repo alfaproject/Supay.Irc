@@ -17,8 +17,7 @@ namespace Supay.Irc.Messages {
     /// Creates a new instances of the <see cref="TooManyLinesMessage"/> class.
     /// </summary>
     public CannotChangeNickWhileBannedMessage()
-      : base() {
-      this.InternalNumeric = 437;
+      : base(437) {
     }
 
     /// <summary>

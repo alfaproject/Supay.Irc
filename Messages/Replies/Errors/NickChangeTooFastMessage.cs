@@ -15,8 +15,7 @@ namespace Supay.Irc.Messages {
     /// Creates a new instances of the <see cref="NickChangeTooFastMessage"/> class.
     /// </summary>
     public NickChangeTooFastMessage()
-      : base() {
-      this.InternalNumeric = 438;
+      : base(438) {
     }
 
     /// <summary>

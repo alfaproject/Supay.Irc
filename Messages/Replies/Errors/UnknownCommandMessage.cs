@@ -14,8 +14,7 @@ namespace Supay.Irc.Messages {
     /// Creates a new instances of the <see cref="TooManyLinesMessage"/> class.
     /// </summary>
     public UnknownCommandMessage()
-      : base() {
-      this.InternalNumeric = 421;
+      : base(421) {
     }
 
     /// <summary>

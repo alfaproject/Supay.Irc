@@ -14,8 +14,7 @@ namespace Supay.Irc.Messages {
     /// Creates a new instances of the <see cref="NoSuchNickMessage"/> class.
     /// </summary>
     public NoSuchNickMessage()
-      : base() {
-      this.InternalNumeric = 401;
+      : base(401) {
     }
 
     /// <summary>

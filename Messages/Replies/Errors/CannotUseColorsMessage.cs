@@ -14,8 +14,7 @@ namespace Supay.Irc.Messages {
     /// Creates a new instances of the <see cref="CannotUseColorsMessage"/> class.
     /// </summary>
     public CannotUseColorsMessage()
-      : base() {
-      this.InternalNumeric = 408;
+      : base(408) {
     }
 
     /// <summary>

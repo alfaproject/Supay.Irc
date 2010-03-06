@@ -13,8 +13,7 @@ namespace Supay.Irc.Messages {
     /// Creates a new instances of the <see cref="NotRegisteredMessage"/> class.
     /// </summary>
     public NotRegisteredMessage()
-      : base() {
-      this.InternalNumeric = 451;
+      : base(451) {
     }
 
     /// <summary>

@@ -14,8 +14,7 @@ namespace Supay.Irc.Messages {
     /// Creates a new instances of the <see cref="ChannelRequiresRegisteredNickMessage"/> class.
     /// </summary>
     public ChannelRequiresRegisteredNickMessage()
-      : base() {
-      this.InternalNumeric = 477;
+      : base(477) {
     }
 
     /// <summary>

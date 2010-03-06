@@ -12,8 +12,7 @@ namespace Supay.Irc.Messages {
     /// Creates a new instances of the <see cref="NoPingOriginSpecifiedMessage"/> class.
     /// </summary>
     public NoPingOriginSpecifiedMessage()
-      : base() {
-      this.InternalNumeric = 409;
+      : base(409) {
     }
 
     /// <summary>

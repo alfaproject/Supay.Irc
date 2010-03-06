@@ -15,8 +15,7 @@ namespace Supay.Irc.Messages {
     /// Creates a new instances of the <see cref="AcceptDoesNotExistMessage"/> class.
     /// </summary>
     public AcceptDoesNotExistMessage()
-      : base() {
-      this.InternalNumeric = 458;
+      : base(458) {
     }
 
     /// <summary>

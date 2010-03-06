@@ -19,8 +19,7 @@ namespace Supay.Irc.Messages {
     /// Creates a new instances of the <see cref="ChannelBlockedMessage"/> class.
     /// </summary>
     public ChannelBlockedMessage()
-      : base() {
-      this.InternalNumeric = 485;
+      : base(485) {
     }
 
     /// <summary>

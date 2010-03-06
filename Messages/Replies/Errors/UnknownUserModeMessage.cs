@@ -14,8 +14,7 @@ namespace Supay.Irc.Messages {
     /// Creates a new instances of the <see cref="UnknownUserModeMessage"/> class.
     /// </summary>
     public UnknownUserModeMessage()
-      : base() {
-      this.InternalNumeric = 501;
+      : base(501) {
     }
 
     /// <exclude />

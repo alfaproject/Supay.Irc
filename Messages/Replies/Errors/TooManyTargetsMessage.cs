@@ -14,8 +14,7 @@ namespace Supay.Irc.Messages {
     /// Creates a new instances of the <see cref="TooManyTargetsMessage"/> class.
     /// </summary>
     public TooManyTargetsMessage()
-      : base() {
-      this.InternalNumeric = 407;
+      : base(407) {
     }
 
     /// <summary>

@@ -14,8 +14,7 @@ namespace Supay.Irc.Messages {
     /// Creates a new instances of the <see cref="NickInUseMessage"/> class.
     /// </summary>
     public NickInUseMessage()
-      : base() {
-      this.InternalNumeric = 433;
+      : base(433) {
     }
 
     /// <summary>

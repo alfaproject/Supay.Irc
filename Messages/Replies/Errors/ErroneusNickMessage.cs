@@ -14,8 +14,7 @@ namespace Supay.Irc.Messages {
     /// Creates a new instances of the <see cref="ErroneousNickMessage"/> class.
     /// </summary>
     public ErroneousNickMessage()
-      : base() {
-      this.InternalNumeric = 432;
+      : base(432) {
     }
 
     /// <summary>

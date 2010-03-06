@@ -19,8 +19,7 @@ namespace Supay.Irc.Messages {
     /// Creates a new instances of the <see cref="IdentChangedMessage"/> class.
     /// </summary>
     public IdentChangedMessage()
-      : base() {
-      this.InternalNumeric = 455;
+      : base(455) {
     }
 
     /// <summary>

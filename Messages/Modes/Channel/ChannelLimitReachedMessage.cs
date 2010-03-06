@@ -20,8 +20,7 @@ namespace Supay.Irc.Messages {
     /// Creates a new instances of the <see cref="ChannelLimitReachedMessage"/> class.
     /// </summary>
     public ChannelLimitReachedMessage()
-      : base() {
-      this.InternalNumeric = 471;
+      : base(471) {
     }
 
     /// <summary>

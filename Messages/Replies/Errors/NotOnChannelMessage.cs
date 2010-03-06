@@ -19,8 +19,7 @@ namespace Supay.Irc.Messages {
     /// Creates a new instances of the <see cref="NotOnChannelMessage"/> class.
     /// </summary>
     public NotOnChannelMessage()
-      : base() {
-      this.InternalNumeric = 441;
+      : base(441) {
     }
 
     /// <summary>

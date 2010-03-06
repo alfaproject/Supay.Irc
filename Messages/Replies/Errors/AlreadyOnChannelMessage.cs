@@ -15,8 +15,7 @@ namespace Supay.Irc.Messages {
     /// Creates a new instances of the <see cref="AlreadyOnChannelMessage"/> class.
     /// </summary>
     public AlreadyOnChannelMessage()
-      : base() {
-      this.InternalNumeric = 443;
+      : base(443) {
     }
 
     /// <summary>

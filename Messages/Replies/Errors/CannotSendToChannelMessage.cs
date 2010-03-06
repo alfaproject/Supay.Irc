@@ -14,8 +14,7 @@ namespace Supay.Irc.Messages {
     /// Creates a new instances of the <see cref="CannotSendToChannelMessage"/> class.
     /// </summary>
     public CannotSendToChannelMessage()
-      : base() {
-      this.InternalNumeric = 404;
+      : base(404) {
     }
 
     /// <summary>
