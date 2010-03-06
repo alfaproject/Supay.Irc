@@ -29,7 +29,7 @@ namespace Supay.Irc.Messages {
         this.userName = value;
       }
     }
-    private string userName = "";
+    private string userName = string.Empty;
 
     /// <summary>
     /// Gets or sets the name of the user's host.
@@ -68,7 +68,7 @@ namespace Supay.Irc.Messages {
         this.realName = value;
       }
     }
-    private string realName = "";
+    private string realName = string.Empty;
 
     /// <exclude />
     public override bool CanParse(string unparsedMessage) {
@@ -104,10 +104,10 @@ namespace Supay.Irc.Messages {
         this.ServerName = parameters[2];
         this.RealName = parameters[3];
       } else {
-        this.UserName = "";
-        this.HostName = "";
-        this.ServerName = "";
-        this.RealName = "";
+        this.UserName = string.Empty;
+        this.HostName = string.Empty;
+        this.ServerName = string.Empty;
+        this.RealName = string.Empty;
       }
     }
 

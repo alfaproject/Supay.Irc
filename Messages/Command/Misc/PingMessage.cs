@@ -25,7 +25,7 @@ namespace Supay.Irc.Messages {
         this.target = value;
       }
     }
-    private string target = "";
+    private string target = string.Empty;
 
     /// <summary>
     /// Gets or sets the server that the ping should be forwarded to.
@@ -38,7 +38,7 @@ namespace Supay.Irc.Messages {
         this.forwardServer = value;
       }
     }
-    private string forwardServer = "";
+    private string forwardServer = string.Empty;
 
     /// <summary>
     /// Gets the IRC command associated with this message.
@@ -65,8 +65,8 @@ namespace Supay.Irc.Messages {
     /// </summary>
     protected override void ParseParameters(StringCollection parameters) {
       base.ParseParameters(parameters);
-      ForwardServer = "";
-      Target = "";
+      ForwardServer = string.Empty;
+      Target = string.Empty;
       if (parameters.Count >= 1) {
         Target = parameters[0];
         if (parameters.Count == 2) {

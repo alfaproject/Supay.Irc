@@ -31,7 +31,7 @@ namespace Supay.Irc.Messages {
         command = value;
       }
     }
-    private string command = "";
+    private string command = string.Empty;
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
@@ -46,7 +46,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     protected override void ParseParameters(StringCollection parameters) {
       base.ParseParameters(parameters);
-      this.Command = "";
+      this.Command = string.Empty;
       if (parameters.Count > 1) {
         this.Command = MessageUtil.StringBetweenStrings(parameters[1], "No recipient given (", ")");
       }

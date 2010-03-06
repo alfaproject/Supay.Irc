@@ -43,7 +43,7 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private string channel = "";
+    private string channel = string.Empty;
     private DateTime timeCreated = DateTime.MinValue;
 
 
@@ -61,7 +61,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     protected override void ParseParameters(StringCollection parameters) {
       base.ParseParameters(parameters);
-      this.Channel = "";
+      this.Channel = string.Empty;
       this.TimeCreated = DateTime.MinValue;
 
       if (parameters.Count > 2) {

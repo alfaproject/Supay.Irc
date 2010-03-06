@@ -74,7 +74,7 @@ namespace Supay.Irc.Messages {
       if (parameters.Count > 0) {
         this.Reason = parameters[0];
       } else {
-        this.Reason = "";
+        this.Reason = string.Empty;
       }
     }
 

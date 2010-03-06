@@ -24,7 +24,7 @@ namespace Supay.Irc.Messages {
         this.text = value;
       }
     }
-    private string text = "";
+    private string text = string.Empty;
 
     /// <summary>
     /// Gets or sets the channel being targeted by the message.
@@ -40,7 +40,7 @@ namespace Supay.Irc.Messages {
         this.channel = value;
       }
     }
-    private string channel = "";
+    private string channel = string.Empty;
 
     /// <summary>
     /// Gets the IRC command associated with this message.

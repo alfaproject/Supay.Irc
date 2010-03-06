@@ -49,7 +49,7 @@ namespace Supay.Irc.Messages {
       this.ChannelCount = Convert.ToInt32(parameters[1], CultureInfo.InvariantCulture);
     }
 
-    private string channelsFormed = "channels formed";
+    private const string channelsFormed = "channels formed";
 
     /// <summary>
     /// Notifies the given <see cref="MessageConduit"/> by raising the appropriate event for the current <see cref="IrcMessage"/> subclass.

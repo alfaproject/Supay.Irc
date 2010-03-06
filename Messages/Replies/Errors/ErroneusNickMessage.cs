@@ -30,14 +30,14 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private string nick = "";
+    private string nick = string.Empty;
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
     protected override Collection<string> GetParameters() {
       Collection<string> parameters = base.GetParameters();
       parameters.Add(Nick);
-      parameters.Add("Erroneus nickname");
+      parameters.Add("Erroneous nickname");
       return parameters;
     }
 
@@ -49,7 +49,7 @@ namespace Supay.Irc.Messages {
       if (parameters.Count > 1) {
         this.Nick = parameters[1];
       } else {
-        this.Nick = "";
+        this.Nick = string.Empty;
       }
     }
 

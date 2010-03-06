@@ -29,7 +29,7 @@ namespace Supay.Irc.Messages {
         stats = value;
       }
     }
-    private string stats = "";
+    private string stats = string.Empty;
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>

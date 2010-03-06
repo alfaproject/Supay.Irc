@@ -42,8 +42,8 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private string server = "";
-    private string time = "";
+    private string server = string.Empty;
+    private string time = string.Empty;
 
 
     /// <summary>
@@ -64,8 +64,8 @@ namespace Supay.Irc.Messages {
         this.Server = parameters[1];
         this.Time = parameters[2];
       } else {
-        this.Server = "";
-        this.Time = "";
+        this.Server = string.Empty;
+        this.Time = string.Empty;
       }
     }
 

@@ -73,7 +73,7 @@ namespace Supay.Irc.Messages {
 
     private ChannelVisibility visibility = ChannelVisibility.Public;
     private Dictionary<string, ChannelStatus> nicks = new Dictionary<string, ChannelStatus>();
-    private string channel = "";
+    private string channel = string.Empty;
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
@@ -102,7 +102,7 @@ namespace Supay.Irc.Messages {
       base.ParseParameters(parameters);
 
       this.Visibility = ChannelVisibility.Public;
-      this.Channel = "";
+      this.Channel = string.Empty;
       this.Nicks.Clear();
 
       if (parameters.Count >= 3) {

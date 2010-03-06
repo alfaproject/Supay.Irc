@@ -37,7 +37,7 @@ namespace Supay.Irc.Messages {
         channel = value;
       }
     }
-    private string channel = "";
+    private string channel = string.Empty;
 
     /// <summary>
     /// Validates this message's properties according to the given <see cref="ServerSupport"/>.
@@ -70,7 +70,7 @@ namespace Supay.Irc.Messages {
       if (parameters.Count > 0) {
         this.Channel = parameters[0];
       } else {
-        this.Channel = "";
+        this.Channel = string.Empty;
       }
     }
 

@@ -89,8 +89,8 @@ namespace Supay.Irc.Messages {
     /// </summary>
     protected override void ParseParameters(StringCollection parameters) {
       base.ParseParameters(parameters);
-      this.Channel = "";
-      this.Topic = "";
+      this.Channel = string.Empty;
+      this.Topic = string.Empty;
       if (parameters.Count >= 1) {
         this.Channel = parameters[0];
         if (parameters.Count >= 2) {
@@ -106,8 +106,8 @@ namespace Supay.Irc.Messages {
       conduit.OnTopic(new IrcMessageEventArgs<TopicMessage>(this));
     }
 
-    private string channel = "";
-    private string topic = "";
+    private string channel = string.Empty;
+    private string topic = string.Empty;
 
     #region IChannelTargetedMessage Members
 

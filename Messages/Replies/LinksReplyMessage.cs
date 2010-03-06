@@ -70,10 +70,10 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private string mask = "";
-    private string server = "";
+    private string mask = string.Empty;
+    private string server = string.Empty;
     private int hopCount = -1;
-    private string serverInfo = "";
+    private string serverInfo = string.Empty;
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
@@ -98,10 +98,10 @@ namespace Supay.Irc.Messages {
         this.HopCount = Convert.ToInt32(first, CultureInfo.InvariantCulture);
         this.ServerInfo = trailing.Substring(first.Length);
       } else {
-        this.Mask = "";
-        this.Server = "";
+        this.Mask = string.Empty;
+        this.Server = string.Empty;
         this.HopCount = -1;
-        this.ServerInfo = "";
+        this.ServerInfo = string.Empty;
       }
     }
 

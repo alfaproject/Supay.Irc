@@ -194,7 +194,7 @@ namespace Supay.Irc.Messages.Modes {
       if (msg == null) {
         return;
       }
-      msg.ModeChanges = "";
+      msg.ModeChanges = string.Empty;
       msg.ModeArguments.Clear();
       if (this.modes.Count > 0) {
         // The first one always adds its mode

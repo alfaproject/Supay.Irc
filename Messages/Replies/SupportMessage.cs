@@ -48,7 +48,7 @@ namespace Supay.Irc.Messages {
       return parameters;
     }
 
-    private string areSupported = "are supported by this server";
+    private const string areSupported = "are supported by this server";
 
     /// <summary>
     /// Parses the parameters portion of the message.
@@ -65,7 +65,7 @@ namespace Supay.Irc.Messages {
           value = nameValue.Substring(indexOfEquals + 1);
         } else {
           name = nameValue;
-          value = "";
+          value = string.Empty;
         }
         this.SupportedItems[name] = value;
       }
@@ -78,7 +78,7 @@ namespace Supay.Irc.Messages {
       if (unparsedMessage == null) {
         return false;
       }
-      return (base.CanParse(unparsedMessage) && unparsedMessage.IndexOf(this.areSupported, StringComparison.Ordinal) > 0);
+      return (base.CanParse(unparsedMessage) && unparsedMessage.IndexOf(areSupported, StringComparison.Ordinal) > 0);
     }
 
     /// <summary>

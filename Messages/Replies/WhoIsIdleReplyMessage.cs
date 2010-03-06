@@ -69,10 +69,10 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private string nick = "";
+    private string nick = string.Empty;
     private int idleTime = 0;
     private DateTime signOnTime = DateTime.Now;
-    private string info = "";
+    private string info = string.Empty;
 
 
     /// <summary>
@@ -92,10 +92,10 @@ namespace Supay.Irc.Messages {
     protected override void ParseParameters(StringCollection parameters) {
       base.ParseParameters(parameters);
 
-      this.Nick = "";
+      this.Nick = string.Empty;
       this.IdleLength = 0;
       this.SignOnTime = DateTime.Now;
-      this.Info = "";
+      this.Info = string.Empty;
 
       if (parameters.Count > 2) {
         this.Nick = parameters[1];

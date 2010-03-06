@@ -30,7 +30,7 @@ namespace Supay.Irc.Messages {
         this.server = value;
       }
     }
-    private string server = "";
+    private string server = string.Empty;
 
     /// <summary>
     /// Gets or sets the folder path to the client's distribution.
@@ -43,7 +43,7 @@ namespace Supay.Irc.Messages {
         this.folder = value;
       }
     }
-    private string folder = "";
+    private string folder = string.Empty;
 
     /// <summary>
     /// Gets the list of files that must be downloaded.

@@ -44,8 +44,8 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private string text = "";
-    private string nick = "";
+    private string text = string.Empty;
+    private string nick = string.Empty;
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>

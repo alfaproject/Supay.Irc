@@ -30,7 +30,7 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private string nick = "";
+    private string nick = string.Empty;
 
 
     /// <summary>
@@ -50,7 +50,7 @@ namespace Supay.Irc.Messages {
       if (parameters.Count == 3) {
         this.Nick = parameters[1];
       } else {
-        this.Nick = "";
+        this.Nick = string.Empty;
       }
     }
 

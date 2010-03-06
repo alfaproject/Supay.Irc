@@ -30,7 +30,7 @@ namespace Supay.Irc.Messages {
         mask = value;
       }
     }
-    private string mask = "";
+    private string mask = string.Empty;
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
@@ -60,7 +60,7 @@ namespace Supay.Irc.Messages {
       if (parameters.Count >= 1) {
         this.Mask = parameters[0];
       } else {
-        this.Mask = "";
+        this.Mask = string.Empty;
       }
     }
 

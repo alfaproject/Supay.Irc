@@ -56,8 +56,8 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private string nick = "";
-    private string server = "";
+    private string nick = string.Empty;
+    private string server = string.Empty;
     private int maximumResults = 1;
 
     /// <summary>
@@ -80,8 +80,8 @@ namespace Supay.Irc.Messages {
     protected override void ParseParameters(StringCollection parameters) {
       base.ParseParameters(parameters);
 
-      this.Nick = "";
-      this.Server = "";
+      this.Nick = string.Empty;
+      this.Server = string.Empty;
       this.MaximumResults = 1;
 
       if (parameters.Count > 0) {

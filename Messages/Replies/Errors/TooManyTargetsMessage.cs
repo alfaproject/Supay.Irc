@@ -29,7 +29,7 @@ namespace Supay.Irc.Messages {
         invalidTarget = value;
       }
     }
-    private string invalidTarget = "";
+    private string invalidTarget = string.Empty;
 
     /// <summary>
     /// Gets or sets the error code
@@ -43,7 +43,7 @@ namespace Supay.Irc.Messages {
         errorCode = value;
       }
     }
-    private string errorCode = "";
+    private string errorCode = string.Empty;
 
     /// <summary>
     /// Gets or sets the message explaining what was done about the error.
@@ -56,7 +56,7 @@ namespace Supay.Irc.Messages {
         abortMessage = value;
       }
     }
-    private string abortMessage = "";
+    private string abortMessage = string.Empty;
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
@@ -73,9 +73,9 @@ namespace Supay.Irc.Messages {
     protected override void ParseParameters(StringCollection parameters) {
       base.ParseParameters(parameters);
 
-      this.InvalidTarget = "";
-      this.ErrorCode = "";
-      this.AbortMessage = "";
+      this.InvalidTarget = string.Empty;
+      this.ErrorCode = string.Empty;
+      this.AbortMessage = string.Empty;
 
       if (parameters.Count > 1) {
         this.InvalidTarget = parameters[1];

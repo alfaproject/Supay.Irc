@@ -33,7 +33,7 @@ namespace Supay.Irc.Messages {
         this.user = value;
       }
     }
-    private string user = "";
+    private string user = string.Empty;
 
     /// <summary>
     /// Gets or sets the mode changes being applied.
@@ -50,7 +50,7 @@ namespace Supay.Irc.Messages {
         this.modeChanges = value;
       }
     }
-    private string modeChanges = "";
+    private string modeChanges = string.Empty;
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
@@ -87,8 +87,8 @@ namespace Supay.Irc.Messages {
         this.User = parameters[0];
         this.ModeChanges = parameters[1];
       } else {
-        this.User = "";
-        this.ModeChanges = "";
+        this.User = string.Empty;
+        this.ModeChanges = string.Empty;
       }
     }
 

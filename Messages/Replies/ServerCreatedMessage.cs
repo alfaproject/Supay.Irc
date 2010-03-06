@@ -30,9 +30,9 @@ namespace Supay.Irc.Messages {
         createdDate = value;
       }
     }
-    private string createdDate = "";
+    private string createdDate = string.Empty;
 
-    private string thisServerCreated = "This server was created ";
+    private const string thisServerCreated = "This server was created ";
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>

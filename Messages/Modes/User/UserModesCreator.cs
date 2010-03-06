@@ -99,7 +99,7 @@ namespace Supay.Irc.Messages.Modes {
         return;
       }
 
-      msg.ModeChanges = "";
+      msg.ModeChanges = string.Empty;
       if (this.modes.Count > 0) {
         // The first one always adds its mode
         UserMode currentMode = this.modes[0];

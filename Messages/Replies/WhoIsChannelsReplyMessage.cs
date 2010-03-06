@@ -39,7 +39,7 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private string nick = "";
+    private string nick = string.Empty;
     private StringCollection channels = new StringCollection();
 
     /// <summary>
@@ -58,7 +58,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     protected override void ParseParameters(StringCollection parameters) {
       base.ParseParameters(parameters);
-      this.Nick = "";
+      this.Nick = string.Empty;
       this.Channels.Clear();
 
       if (parameters.Count == 3) {

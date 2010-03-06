@@ -27,7 +27,7 @@ namespace Supay.Irc.Messages {
         this.query = value;
       }
     }
-    private string query = "";
+    private string query = string.Empty;
 
     /// <summary>
     /// Gets the data payload of the Ctcp request.

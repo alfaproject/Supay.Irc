@@ -93,9 +93,9 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private string channel = "";
+    private string channel = string.Empty;
     private User user = new User();
-    private string server = "";
+    private string server = string.Empty;
     private int hopCount = -1;
     private bool isOper = false;
     private ChannelStatus status = ChannelStatus.None;

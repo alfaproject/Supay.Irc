@@ -57,7 +57,7 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private string server = "";
+    private string server = string.Empty;
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
@@ -74,7 +74,7 @@ namespace Supay.Irc.Messages {
     protected override void ParseParameters(StringCollection parameters) {
       base.ParseParameters(parameters);
       this.Masks.Clear();
-      this.Server = "";
+      this.Server = string.Empty;
       if (parameters.Count >= 1) {
         if (parameters.Count > 1) {
           this.Server = parameters[0];

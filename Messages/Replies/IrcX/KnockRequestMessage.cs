@@ -29,7 +29,7 @@ namespace Supay.Irc.Messages {
         this.channel = value;
       }
     }
-    private string channel = "";
+    private string channel = string.Empty;
 
     /// <summary>
     /// Gets or sets the user which knocked on the channel.
@@ -62,7 +62,7 @@ namespace Supay.Irc.Messages {
       if (parameters.Count > 1) {
         this.Channel = parameters[1];
       } else {
-        this.Channel = "";
+        this.Channel = string.Empty;
       }
       if (parameters.Count > 2) {
         this.Knocker = new User(parameters[2]);

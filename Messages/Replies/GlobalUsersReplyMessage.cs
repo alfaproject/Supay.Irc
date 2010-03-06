@@ -45,8 +45,8 @@ namespace Supay.Irc.Messages {
     }
     private int userLimit = -1;
 
-    private string currentGlobalUsers = "Current global users: ";
-    private string max = " Max: ";
+    private const string currentGlobalUsers = "Current global users: ";
+    private const string max = " Max: ";
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
@@ -65,8 +65,8 @@ namespace Supay.Irc.Messages {
       base.ParseParameters(parameters);
       if (parameters.Count == 2) {
         string payload = parameters[1];
-        this.UserCount = Convert.ToInt32(MessageUtil.StringBetweenStrings(payload, this.currentGlobalUsers, this.max), CultureInfo.InvariantCulture);
-        this.UserLimit = Convert.ToInt32(payload.Substring(payload.IndexOf(this.max, StringComparison.Ordinal) + this.max.Length), CultureInfo.InvariantCulture);
+        this.UserCount = Convert.ToInt32(MessageUtil.StringBetweenStrings(payload, currentGlobalUsers, max), CultureInfo.InvariantCulture);
+        this.UserLimit = Convert.ToInt32(payload.Substring(payload.IndexOf(max, StringComparison.Ordinal) + max.Length), CultureInfo.InvariantCulture);
       } else if (parameters.Count == 4) {
         this.UserCount = Convert.ToInt32(parameters[1], CultureInfo.InvariantCulture);
         this.UserLimit = Convert.ToInt32(parameters[2], CultureInfo.InvariantCulture);

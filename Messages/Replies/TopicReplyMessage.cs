@@ -42,8 +42,8 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private string channel = "";
-    private string topic = "";
+    private string channel = string.Empty;
+    private string topic = string.Empty;
 
 
     /// <summary>
@@ -64,8 +64,8 @@ namespace Supay.Irc.Messages {
         this.Channel = parameters[1];
         this.Topic = parameters[2];
       } else {
-        this.Channel = "";
-        this.Topic = "";
+        this.Channel = string.Empty;
+        this.Topic = string.Empty;
       }
     }
 

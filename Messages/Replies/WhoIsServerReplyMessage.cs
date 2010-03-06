@@ -54,9 +54,9 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private string nick = "";
-    private string serverName = "";
-    private string info = "";
+    private string nick = string.Empty;
+    private string serverName = string.Empty;
+    private string info = string.Empty;
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
@@ -78,9 +78,9 @@ namespace Supay.Irc.Messages {
         this.ServerName = parameters[2];
         this.Info = parameters[3];
       } else {
-        this.Nick = "";
-        this.ServerName = "";
-        this.Info = "";
+        this.Nick = string.Empty;
+        this.ServerName = string.Empty;
+        this.Info = string.Empty;
       }
     }
 

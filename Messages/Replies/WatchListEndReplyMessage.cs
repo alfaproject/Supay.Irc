@@ -29,7 +29,7 @@ namespace Supay.Irc.Messages {
         listType = value;
       }
     }
-    private string listType = "";
+    private string listType = string.Empty;
 
 
     /// <summary>

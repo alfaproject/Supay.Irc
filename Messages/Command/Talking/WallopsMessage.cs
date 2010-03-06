@@ -22,7 +22,7 @@ namespace Supay.Irc.Messages {
         this.text = value;
       }
     }
-    private string text = "";
+    private string text = string.Empty;
 
     /// <summary>
     /// Gets the IRC command associated with this message.

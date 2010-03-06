@@ -63,7 +63,7 @@ namespace Supay.Irc.Messages {
         this.Info = parameters[2];
       } else {
         this.OpCount = -1;
-        this.Info = "";
+        this.Info = string.Empty;
       }
     }
 
@@ -75,7 +75,7 @@ namespace Supay.Irc.Messages {
     }
 
     private int opCount = -1;
-    private string info = "";
+    private string info = string.Empty;
   }
 
 }

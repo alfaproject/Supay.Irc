@@ -59,10 +59,10 @@ namespace Supay.Irc.Messages {
     private int userCount = -1;
     private int invisibleCount = -1;
     private int serverCount = -1;
-    private string thereAre = "There are ";
-    private string usersAnd = " users and ";
-    private string invisibleOn = " invisible on ";
-    private string servers = " servers";
+    private const string thereAre = "There are ";
+    private const string usersAnd = " users and ";
+    private const string invisibleOn = " invisible on ";
+    private const string servers = " servers";
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
@@ -78,9 +78,9 @@ namespace Supay.Irc.Messages {
     protected override void ParseParameters(StringCollection parameters) {
       base.ParseParameters(parameters);
       string payload = parameters[1];
-      this.UserCount = Convert.ToInt32(MessageUtil.StringBetweenStrings(payload, this.thereAre, this.usersAnd), CultureInfo.InvariantCulture);
-      this.InvisibleCount = Convert.ToInt32(MessageUtil.StringBetweenStrings(payload, this.usersAnd, this.invisibleOn), CultureInfo.InvariantCulture);
-      this.ServerCount = Convert.ToInt32(MessageUtil.StringBetweenStrings(payload, this.invisibleOn, this.servers), CultureInfo.InvariantCulture);
+      this.UserCount = Convert.ToInt32(MessageUtil.StringBetweenStrings(payload, thereAre, usersAnd), CultureInfo.InvariantCulture);
+      this.InvisibleCount = Convert.ToInt32(MessageUtil.StringBetweenStrings(payload, usersAnd, invisibleOn), CultureInfo.InvariantCulture);
+      this.ServerCount = Convert.ToInt32(MessageUtil.StringBetweenStrings(payload, invisibleOn, servers), CultureInfo.InvariantCulture);
 
     }
 

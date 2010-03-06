@@ -33,16 +33,16 @@ namespace Supay.Irc.Messages {
         target = value;
       }
     }
-    private string target = "";
+    private string target = string.Empty;
 
     /// <summary>
     /// Determines if the given numeric is an error message.
     /// </summary>
     public static bool IsError(int numeric) {
-      int normalStart = 400;
-      int normalEnd = 599;
-      int ircxStart = 900;
-      int ircxEnd = 998;
+      const int normalStart = 400;
+      const int normalEnd = 599;
+      const int ircxStart = 900;
+      const int ircxEnd = 998;
       return ((normalStart <= numeric && numeric <= normalEnd) || (ircxStart <= numeric && numeric <= ircxEnd));
     }
 
@@ -101,7 +101,7 @@ namespace Supay.Irc.Messages {
       if (parameters.Count > 0) {
         this.Target = parameters[0];
       } else {
-        this.Target = "";
+        this.Target = string.Empty;
       }
     }
 

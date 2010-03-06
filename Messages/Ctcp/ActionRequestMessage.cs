@@ -47,7 +47,7 @@ namespace Supay.Irc.Messages {
         this.text = value;
       }
     }
-    private string text = "";
+    private string text = string.Empty;
 
     /// <summary>
     /// Notifies the given <see cref="MessageConduit"/> by raising the appropriate event for the current <see cref="IrcMessage"/> subclass.

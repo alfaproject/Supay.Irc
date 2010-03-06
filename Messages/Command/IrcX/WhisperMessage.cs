@@ -37,7 +37,7 @@ namespace Supay.Irc.Messages {
         channel = value;
       }
     }
-    private string channel = "";
+    private string channel = string.Empty;
 
     /// <summary>
     /// Gets the target of this <see cref="TextMessage"/>.
@@ -63,7 +63,7 @@ namespace Supay.Irc.Messages {
         this.text = value;
       }
     }
-    private string text = "";
+    private string text = string.Empty;
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>

@@ -29,7 +29,7 @@ namespace Supay.Irc.Messages {
         serverName = value;
       }
     }
-    private string serverName = "";
+    private string serverName = string.Empty;
 
     /// <summary>
     /// Gets or sets the version of the server.
@@ -42,7 +42,7 @@ namespace Supay.Irc.Messages {
         version = value;
       }
     }
-    private string version = "";
+    private string version = string.Empty;
 
     /// <summary>
     /// Gets or sets the user modes supported by this server.
@@ -55,7 +55,7 @@ namespace Supay.Irc.Messages {
         userModes = value;
       }
     }
-    private string userModes = "";
+    private string userModes = string.Empty;
 
     /// <summary>
     /// Gets or sets the channel modes supported by this server.
@@ -68,7 +68,7 @@ namespace Supay.Irc.Messages {
         channelModes = value;
       }
     }
-    private string channelModes = "";
+    private string channelModes = string.Empty;
 
     /// <summary>
     /// Gets or sets the channel modes that require a parameter.
@@ -81,7 +81,7 @@ namespace Supay.Irc.Messages {
         channelModesWithParams = value;
       }
     }
-    private string channelModesWithParams = "";
+    private string channelModesWithParams = string.Empty;
 
     /// <summary>
     /// Gets or sets the user modes that require a parameter.
@@ -94,7 +94,7 @@ namespace Supay.Irc.Messages {
         userModesWithParams = value;
       }
     }
-    private string userModesWithParams = "";
+    private string userModesWithParams = string.Empty;
 
     /// <summary>
     /// Gets or sets the server modes supported by this server.
@@ -107,7 +107,7 @@ namespace Supay.Irc.Messages {
         serverModes = value;
       }
     }
-    private string serverModes = "";
+    private string serverModes = string.Empty;
 
     /// <summary>
     /// Gets or sets the server modes which require parameters.
@@ -120,7 +120,7 @@ namespace Supay.Irc.Messages {
         serverModesWithParams = value;
       }
     }
-    private string serverModesWithParams = "";
+    private string serverModesWithParams = string.Empty;
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>

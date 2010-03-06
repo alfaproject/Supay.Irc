@@ -68,7 +68,7 @@ namespace Supay.Irc.Messages {
         this.text = value;
       }
     }
-    private string text = "";
+    private string text = string.Empty;
 
     /// <summary>
     /// Gets or sets the target of this message.
@@ -84,7 +84,7 @@ namespace Supay.Irc.Messages {
         target = value;
       }
     }
-    private string target = "";
+    private string target = string.Empty;
 
     /// <summary>
     /// Gets or sets the channel which this message is scoped to.
@@ -100,7 +100,7 @@ namespace Supay.Irc.Messages {
         channel = value;
       }
     }
-    private string channel = "";
+    private string channel = string.Empty;
 
     #endregion
 

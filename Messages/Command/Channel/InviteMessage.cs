@@ -13,8 +13,8 @@ namespace Supay.Irc.Messages {
   [Serializable]
   public class InviteMessage : CommandMessage, IChannelTargetedMessage {
 
-    private string channel = "";
-    private string nick = "";
+    private string channel = string.Empty;
+    private string nick = string.Empty;
 
     /// <summary>
     /// Creates a new instance of the <see cref="InviteMessage"/> class.
@@ -91,8 +91,8 @@ namespace Supay.Irc.Messages {
         this.Channel = parameters[0];
         this.Nick = parameters[1];
       } else {
-        this.Channel = "";
-        this.Nick = "";
+        this.Channel = string.Empty;
+        this.Nick = string.Empty;
       }
     }
 

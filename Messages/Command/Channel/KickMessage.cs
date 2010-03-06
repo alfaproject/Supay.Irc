@@ -34,7 +34,7 @@ namespace Supay.Irc.Messages {
 
     private StringCollection channels = new StringCollection();
     private StringCollection nicks = new StringCollection();
-    private string reason = "";
+    private string reason = string.Empty;
 
     /// <summary>
     /// Gets the IRC command associated with this message.
@@ -112,7 +112,7 @@ namespace Supay.Irc.Messages {
       base.ParseParameters(parameters);
       this.Channels.Clear();
       this.Nicks.Clear();
-      this.Reason = "";
+      this.Reason = string.Empty;
       if (parameters.Count >= 2) {
         this.Channels.AddRange(parameters[0].Split(','));
         this.Nicks.AddRange(parameters[1].Split(','));

@@ -30,7 +30,7 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private string channel = "";
+    private string channel = string.Empty;
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>

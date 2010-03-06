@@ -33,7 +33,7 @@ namespace Supay.Irc.Messages {
         this.timeStamp = value;
       }
     }
-    private string timeStamp = "";
+    private string timeStamp = string.Empty;
 
     /// <summary>
     /// Gets the data payload of the Ctcp request.

@@ -274,7 +274,7 @@ namespace Supay.Irc.Messages {
       return parameters;
     }
 
-    private static string cachedRawMessage = "";
+    private static string cachedRawMessage = string.Empty;
     private static StringCollection cachedParams;
 
 

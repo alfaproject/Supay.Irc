@@ -29,7 +29,7 @@ namespace Supay.Irc.Messages {
         this.channel = value;
       }
     }
-    private string channel = "";
+    private string channel = string.Empty;
 
     /// <summary>
     /// Gets or sets the name of the channel property being referenced.
@@ -42,7 +42,7 @@ namespace Supay.Irc.Messages {
         this.property = value;
       }
     }
-    private string property = "";
+    private string property = string.Empty;
 
     /// <summary>
     /// Gets or sets the value of the channel property.
@@ -55,7 +55,7 @@ namespace Supay.Irc.Messages {
         this.propValue = value;
       }
     }
-    private string propValue = "";
+    private string propValue = string.Empty;
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
@@ -73,9 +73,9 @@ namespace Supay.Irc.Messages {
     protected override void ParseParameters(StringCollection parameters) {
       base.ParseParameters(parameters);
 
-      this.Channel = "";
-      this.Prop = "";
-      this.Value = "";
+      this.Channel = string.Empty;
+      this.Prop = string.Empty;
+      this.Value = string.Empty;
 
       if (parameters.Count > 1) {
         this.Channel = parameters[1];

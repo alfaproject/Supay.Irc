@@ -16,7 +16,7 @@ namespace Supay.Irc.Messages {
       this.InternalCommand = "CLIENTINFO";
     }
 
-    private string response = "";
+    private string response = string.Empty;
     /// <summary>
     /// Gets or sets the response to the request's query.
     /// </summary>

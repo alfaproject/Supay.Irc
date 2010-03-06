@@ -27,7 +27,7 @@ namespace Supay.Irc.Messages {
         this.currentTime = value;
       }
     }
-    private string currentTime = "";
+    private string currentTime = string.Empty;
 
     /// <summary>
     /// Gets the data payload of the Ctcp request.

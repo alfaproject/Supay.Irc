@@ -55,9 +55,9 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private string topic = "";
+    private string topic = string.Empty;
     private int memberCount = -1;
-    private string channel = "";
+    private string channel = string.Empty;
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
@@ -79,9 +79,9 @@ namespace Supay.Irc.Messages {
         this.MemberCount = Convert.ToInt32(parameters[2], CultureInfo.InvariantCulture);
         this.Topic = parameters[3];
       } else {
-        this.Channel = "";
+        this.Channel = string.Empty;
         this.MemberCount = -1;
-        this.Topic = "";
+        this.Topic = string.Empty;
       }
     }
 

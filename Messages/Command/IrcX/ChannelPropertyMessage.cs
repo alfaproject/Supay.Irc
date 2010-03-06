@@ -48,7 +48,7 @@ namespace Supay.Irc.Messages {
         channel = value;
       }
     }
-    private string channel = "";
+    private string channel = string.Empty;
 
     /// <summary>
     /// Gets or sets the channel property being targeted.
@@ -64,7 +64,7 @@ namespace Supay.Irc.Messages {
         property = value;
       }
     }
-    private string property = "";
+    private string property = string.Empty;
 
     /// <summary>
     /// Gets or sets the value being applied to the target channel property.
@@ -80,7 +80,7 @@ namespace Supay.Irc.Messages {
         newValue = value;
       }
     }
-    private string newValue = "";
+    private string newValue = string.Empty;
 
     /// <summary>
     /// Validates this message against the given server support
@@ -112,16 +112,16 @@ namespace Supay.Irc.Messages {
     protected override void ParseParameters(StringCollection parameters) {
       base.ParseParameters(parameters);
 
-      this.Channel = "";
-      this.Prop = "";
-      this.NewValue = "";
+      this.Channel = string.Empty;
+      this.Prop = string.Empty;
+      this.NewValue = string.Empty;
 
       if (parameters.Count > 0) {
         this.Channel = parameters[0];
         if (parameters.Count > 1) {
           this.Prop = parameters[1];
           if (this.Prop == "*") {
-            this.Prop = "";
+            this.Prop = string.Empty;
           }
           if (parameters.Count > 2) {
             this.NewValue = parameters[2];

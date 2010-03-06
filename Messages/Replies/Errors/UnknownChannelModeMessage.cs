@@ -43,7 +43,7 @@ namespace Supay.Irc.Messages {
     /// <exclude />
     protected override void ParseParameters(StringCollection parameters) {
       base.ParseParameters(parameters);
-      this.UnknownMode = "";
+      this.UnknownMode = string.Empty;
       if (parameters.Count > 2) {
         this.UnknownMode = parameters[1];
       }

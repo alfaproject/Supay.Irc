@@ -102,7 +102,7 @@ namespace Supay.Irc.Messages {
     }
 
     private StringCollection channels = new StringCollection();
-    private string reason = "";
+    private string reason = string.Empty;
 
 
 

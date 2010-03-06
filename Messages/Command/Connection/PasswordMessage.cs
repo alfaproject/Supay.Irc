@@ -51,7 +51,7 @@ namespace Supay.Irc.Messages {
         this.password = value;
       }
     }
-    private string password = "";
+    private string password = string.Empty;
 
 
     /// <summary>
@@ -71,7 +71,7 @@ namespace Supay.Irc.Messages {
       if (parameters.Count >= 1) {
         this.Password = parameters[0];
       } else {
-        this.Password = "";
+        this.Password = string.Empty;
       }
     }
 

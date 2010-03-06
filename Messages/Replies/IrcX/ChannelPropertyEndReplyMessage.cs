@@ -29,7 +29,7 @@ namespace Supay.Irc.Messages {
         this.channel = value;
       }
     }
-    private string channel = "";
+    private string channel = string.Empty;
 
 
     /// <summary>

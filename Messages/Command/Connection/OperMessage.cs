@@ -46,7 +46,7 @@ namespace Supay.Irc.Messages {
         this.password = value;
       }
     }
-    private string password = "";
+    private string password = string.Empty;
 
     /// <summary>
     /// Gets or sets the name for the sender.
@@ -59,7 +59,7 @@ namespace Supay.Irc.Messages {
         this.name = value;
       }
     }
-    private string name = "";
+    private string name = string.Empty;
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
@@ -79,8 +79,8 @@ namespace Supay.Irc.Messages {
         this.Name = parameters[0];
         this.Password = parameters[1];
       } else {
-        this.Name = "";
-        this.Password = "";
+        this.Name = string.Empty;
+        this.Password = string.Empty;
       }
     }
 

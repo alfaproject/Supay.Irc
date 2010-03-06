@@ -30,7 +30,7 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private string nick = "";
+    private string nick = string.Empty;
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
@@ -49,7 +49,7 @@ namespace Supay.Irc.Messages {
       if (parameters.Count > 1) {
         this.Nick = parameters[1];
       } else {
-        this.Nick = "";
+        this.Nick = string.Empty;
       }
     }
 

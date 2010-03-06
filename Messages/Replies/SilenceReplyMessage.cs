@@ -42,7 +42,7 @@ namespace Supay.Irc.Messages {
         this.silenceListOwner = value;
       }
     }
-    private string silenceListOwner = "";
+    private string silenceListOwner = string.Empty;
 
 
     /// <summary>

@@ -30,7 +30,7 @@ namespace Supay.Irc.Messages {
         channel = value;
       }
     }
-    private string channel = "";
+    private string channel = string.Empty;
 
     /// <summary>
     /// Gets or sets the user which changed the topic.

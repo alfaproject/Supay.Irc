@@ -53,7 +53,7 @@ namespace Supay.Irc.Messages {
         server = value;
       }
     }
-    private string server = "";
+    private string server = string.Empty;
 
     /// <summary>
     /// Gets or sets the maximum number of users that channels can have to be returned.
@@ -120,7 +120,7 @@ namespace Supay.Irc.Messages {
         matchMask = value;
       }
     }
-    private string matchMask = "";
+    private string matchMask = string.Empty;
 
     /// <summary>
     /// Gets or sets a mask which a channel cannot match to be returned.
@@ -133,7 +133,7 @@ namespace Supay.Irc.Messages {
         notMatchMask = value;
       }
     }
-    private string notMatchMask = "";
+    private string notMatchMask = string.Empty;
 
     /// <summary>
     /// Gets or sets, in minutes, the shortest amount of time 
@@ -256,9 +256,9 @@ namespace Supay.Irc.Messages {
       base.ParseParameters(parameters);
 
       this.Channels.Clear();
-      this.Server = "";
-      this.MatchMask = "";
-      this.NotMatchMask = "";
+      this.Server = string.Empty;
+      this.MatchMask = string.Empty;
+      this.NotMatchMask = string.Empty;
       this.MaxUsers = -1;
       this.MinUsers = -1;
       this.OlderThan = -1;

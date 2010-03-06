@@ -57,8 +57,8 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private string channel = "";
-    private string modes = "";
+    private string channel = string.Empty;
+    private string modes = string.Empty;
     private StringCollection modeArguments = new StringCollection();
 
     /// <summary>
@@ -87,8 +87,8 @@ namespace Supay.Irc.Messages {
           this.ModeArguments.Add(parameters[i]);
         }
       } else {
-        this.Channel = "";
-        this.Modes = "";
+        this.Channel = string.Empty;
+        this.Modes = string.Empty;
       }
     }
 

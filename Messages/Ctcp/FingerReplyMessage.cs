@@ -81,8 +81,8 @@ namespace Supay.Irc.Messages {
       conduit.OnFingerReply(new IrcMessageEventArgs<FingerReplyMessage>(this));
     }
 
-    private string realName = "";
-    private string loginName = "";
+    private string realName = string.Empty;
+    private string loginName = string.Empty;
     private Double idleSeconds;
 
     /// <summary>

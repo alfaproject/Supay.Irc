@@ -21,7 +21,7 @@ namespace Supay.Irc.Messages {
         this.target = value;
       }
     }
-    private string target = "";
+    private string target = string.Empty;
 
     /// <summary>
     /// Gets the CTCP Command requested.
@@ -34,7 +34,7 @@ namespace Supay.Irc.Messages {
         this.internalCommand = value;
       }
     }
-    private string internalCommand = "";
+    private string internalCommand = string.Empty;
 
     /// <summary>
     /// Gets the data payload of the CTCP request.
@@ -93,7 +93,7 @@ namespace Supay.Irc.Messages {
       if (parameters.Count > 0) {
         this.Target = parameters[0];
       } else {
-        this.Target = "";
+        this.Target = string.Empty;
       }
     }
 

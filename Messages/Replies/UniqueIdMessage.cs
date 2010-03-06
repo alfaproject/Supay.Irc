@@ -27,7 +27,7 @@ namespace Supay.Irc.Messages {
       set;
     }
 
-    private string yourUniqueID = "your unique ID";
+    private const string yourUniqueID = "your unique ID";
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
@@ -47,7 +47,7 @@ namespace Supay.Irc.Messages {
       if (parameters.Count == 4) {
         this.UniqueId = parameters[2];
       } else {
-        this.UniqueId = "";
+        this.UniqueId = string.Empty;
         Trace.WriteLine("Unknown format of UniqueIDMessage parameters: '" + MessageUtil.ParametersToString(parameters) + "'");
       }
     }

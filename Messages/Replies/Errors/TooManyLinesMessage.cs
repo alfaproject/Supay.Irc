@@ -42,7 +42,7 @@ namespace Supay.Irc.Messages {
     /// <exclude />
     protected override void ParseParameters(StringCollection parameters) {
       base.ParseParameters(parameters);
-      this.Command = "";
+      this.Command = string.Empty;
       if (parameters.Count > 1) {
         this.Command = parameters[1];
       }

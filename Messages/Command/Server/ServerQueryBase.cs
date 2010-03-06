@@ -20,7 +20,7 @@ namespace Supay.Irc.Messages {
         target = value;
       }
     }
-    private string target = "";
+    private string target = string.Empty;
 
     /// <summary>
     /// Parses the parameters portion of the message.
@@ -30,7 +30,7 @@ namespace Supay.Irc.Messages {
       if (parameters.Count >= this.TargetParsingPosition + 1) {
         this.Target = parameters[this.TargetParsingPosition];
       } else {
-        this.Target = "";
+        this.Target = string.Empty;
       }
     }
 

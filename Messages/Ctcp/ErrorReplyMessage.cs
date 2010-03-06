@@ -28,7 +28,7 @@ namespace Supay.Irc.Messages {
         this.query = value;
       }
     }
-    private string query = "";
+    private string query = string.Empty;
 
     /// <summary>
     /// Gets or sets the reason the request couldn't be processed.
@@ -41,7 +41,7 @@ namespace Supay.Irc.Messages {
         this.reason = value;
       }
     }
-    private string reason = "";
+    private string reason = string.Empty;
 
     /// <summary>
     /// Gets the data payload of the Ctcp request.

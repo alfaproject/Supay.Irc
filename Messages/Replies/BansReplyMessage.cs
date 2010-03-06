@@ -42,8 +42,8 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private string channel = "";
-    private string banId = "";
+    private string channel = string.Empty;
+    private string banId = string.Empty;
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>

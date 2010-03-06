@@ -30,7 +30,7 @@ namespace Supay.Irc.Messages {
         mask = value;
       }
     }
-    private string mask = "";
+    private string mask = string.Empty;
 
 
     /// <summary>
@@ -53,7 +53,7 @@ namespace Supay.Irc.Messages {
       if (parameters.Count >= 2) {
         this.Mask = parameters[1];
       } else {
-        this.Mask = "";
+        this.Mask = string.Empty;
       }
     }
 

@@ -15,7 +15,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// The character used to indicate the start and end of an extended data section in a CTCP message.
     /// </summary>
-    public static readonly Char ExtendedDataMarker = '\x0001';
+    public const Char ExtendedDataMarker = '\x0001';
 
     /// <summary>
     /// Escapes the given text for use in a ctcp message.
@@ -76,7 +76,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public static string GetExtendedData(string rawMessage) {
       string ctcpMessage = MessageUtil.GetLastParameter(rawMessage);
-      string extendedData = "";
+      string extendedData = string.Empty;
       if (ctcpMessage.IndexOf(" ", StringComparison.Ordinal) > 0) {
         extendedData = ctcpMessage.Substring(ctcpMessage.IndexOf(" ", StringComparison.Ordinal) + 1);
         extendedData = extendedData.Substring(0, extendedData.Length - 1);

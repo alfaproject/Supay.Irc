@@ -13,8 +13,8 @@ namespace Supay.Irc.Messages {
   /// </remarks>
   [Serializable]
   public class KillMessage : CommandMessage {
-    private string nick = "";
-    private string reason = "";
+    private string nick = string.Empty;
+    private string reason = string.Empty;
 
     /// <summary>
     /// Gets or sets the nick of the user killed.
@@ -67,8 +67,8 @@ namespace Supay.Irc.Messages {
         this.Nick = parameters[0];
         this.Reason = parameters[1];
       } else {
-        this.Nick = "";
-        this.Reason = "";
+        this.Nick = string.Empty;
+        this.Reason = string.Empty;
       }
     }
 

@@ -17,9 +17,9 @@ namespace Supay.Irc {
 
     /// <summary>Initializes a new instance of the <see cref="Client"/> class.</summary>
     public Client() {
-      this.DefaultQuitMessage = "Quiting";
+      this.DefaultQuitMessage = "Quitting";
       this.EnableAutoIdent = true;
-      this.ServerName = "";
+      this.ServerName = string.Empty;
       this.ServerSupports = new ServerSupport();
 
       this.Messages = new MessageConduit();
@@ -668,7 +668,7 @@ namespace Supay.Irc {
     private void routeTopicNones(object sender, IrcMessageEventArgs<TopicNoneReplyMessage> e) {
       Channel channel = this.Channels.Find(e.Message.Channel);
       if (channel != null) {
-        channel.Topic = "";
+        channel.Topic = string.Empty;
       }
     }
 
@@ -781,7 +781,7 @@ namespace Supay.Irc {
 
     private void client_SelfUnAway(object sender, IrcMessageEventArgs<SelfUnAwayMessage> e) {
       this.User.Away = false;
-      this.User.AwayMessage = "";
+      this.User.AwayMessage = string.Empty;
     }
 
     private void client_SelfAway(object sender, IrcMessageEventArgs<SelfAwayMessage> e) {
@@ -805,7 +805,7 @@ namespace Supay.Irc {
     private void client_Back(object sender, IrcMessageEventArgs<BackMessage> e) {
       User user = this.Peers.EnsureUser(e.Message.Sender);
       user.Away = false;
-      user.AwayMessage = "";
+      user.AwayMessage = string.Empty;
     }
 
     private void client_Away(object sender, IrcMessageEventArgs<AwayMessage> e) {

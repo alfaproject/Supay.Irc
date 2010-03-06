@@ -45,9 +45,9 @@ namespace Supay.Irc.Messages {
 
     private int clientCount = -1;
     private int serverCount = -1;
-    private string iHave = "I have ";
-    private string clientsAnd = " clients and ";
-    private string servers = " servers";
+    private const string iHave = "I have ";
+    private const string clientsAnd = " clients and ";
+    private const string servers = " servers";
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
@@ -63,8 +63,8 @@ namespace Supay.Irc.Messages {
     protected override void ParseParameters(StringCollection parameters) {
       base.ParseParameters(parameters);
       string payload = parameters[1];
-      this.ClientCount = Convert.ToInt32(MessageUtil.StringBetweenStrings(payload, this.iHave, this.clientsAnd), CultureInfo.InvariantCulture);
-      this.ServerCount = Convert.ToInt32(MessageUtil.StringBetweenStrings(payload, this.clientsAnd, this.servers), CultureInfo.InvariantCulture);
+      this.ClientCount = Convert.ToInt32(MessageUtil.StringBetweenStrings(payload, iHave, clientsAnd), CultureInfo.InvariantCulture);
+      this.ServerCount = Convert.ToInt32(MessageUtil.StringBetweenStrings(payload, clientsAnd, servers), CultureInfo.InvariantCulture);
 
     }
 

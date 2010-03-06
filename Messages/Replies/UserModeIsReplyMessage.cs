@@ -33,7 +33,7 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private string modes = "";
+    private string modes = string.Empty;
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
@@ -52,7 +52,7 @@ namespace Supay.Irc.Messages {
       if (parameters.Count >= 1) {
         this.Modes = parameters[1];
       } else {
-        this.Modes = "";
+        this.Modes = string.Empty;
       }
     }
 

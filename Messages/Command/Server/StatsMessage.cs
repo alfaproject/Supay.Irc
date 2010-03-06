@@ -51,7 +51,7 @@ namespace Supay.Irc.Messages {
       if (parameters.Count >= 1) {
         this.Query = parameters[0];
       } else {
-        this.Query = "";
+        this.Query = string.Empty;
       }
 
     }

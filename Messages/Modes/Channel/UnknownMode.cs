@@ -46,7 +46,7 @@ namespace Supay.Irc.Messages.Modes {
 
 
     private string symbol;
-    private string parameter = "";
+    private string parameter = string.Empty;
 
     /// <summary>
     /// Applies this mode to the ModeArguments property of the given <see cref="ChannelModeMessage"/>.

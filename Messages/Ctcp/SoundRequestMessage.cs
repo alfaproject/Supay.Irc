@@ -28,7 +28,7 @@ namespace Supay.Irc.Messages {
         this.text = value;
       }
     }
-    private string text = "";
+    private string text = string.Empty;
 
     /// <summary>
     /// Gets or sets the name of the requested sound file to be played.
@@ -41,7 +41,7 @@ namespace Supay.Irc.Messages {
         this.soundFile = value;
       }
     }
-    private string soundFile = "";
+    private string soundFile = string.Empty;
 
     /// <summary>
     /// Notifies the given <see cref="MessageConduit"/> by raising the appropriate event for the current <see cref="IrcMessage"/> subclass.

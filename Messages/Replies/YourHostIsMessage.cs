@@ -30,7 +30,7 @@ namespace Supay.Irc.Messages {
         serverName = value;
       }
     }
-    private string serverName = "";
+    private string serverName = string.Empty;
 
     /// <summary>
     /// Gets or sets the version of the software the server is running.
@@ -43,7 +43,7 @@ namespace Supay.Irc.Messages {
         version = value;
       }
     }
-    private string version = "";
+    private string version = string.Empty;
 
     private const string yourHostIs = "Your host is ";
     private const string runningVersion = ", running version ";

@@ -43,7 +43,7 @@ namespace Supay.Irc.Messages {
         this.ircxVersion = value;
       }
     }
-    private string ircxVersion = "";
+    private string ircxVersion = string.Empty;
 
     /// <summary>
     /// Gets the collection of authentication packages
@@ -113,14 +113,14 @@ namespace Supay.Irc.Messages {
         if (parameters.Count == 6) {
           this.Tokens = parameters[5];
         } else {
-          this.Tokens = "";
+          this.Tokens = string.Empty;
         }
       } else {
         this.IsIrcxClientMode = false;
-        this.Version = "";
+        this.Version = string.Empty;
         this.AuthenticationPackages.Clear();
         this.MaximumMessageLength = -1;
-        this.Tokens = "";
+        this.Tokens = string.Empty;
       }
     }
 

@@ -29,7 +29,7 @@ namespace Supay.Irc.Messages {
         this.channel = value;
       }
     }
-    private string channel = "";
+    private string channel = string.Empty;
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
@@ -48,7 +48,7 @@ namespace Supay.Irc.Messages {
       if (parameters.Count > 1) {
         this.Channel = parameters[1];
       } else {
-        this.Channel = "";
+        this.Channel = string.Empty;
       }
     }
 

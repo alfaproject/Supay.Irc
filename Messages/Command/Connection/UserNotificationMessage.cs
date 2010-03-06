@@ -31,7 +31,7 @@ namespace Supay.Irc.Messages {
         this.userName = value;
       }
     }
-    private string userName = "";
+    private string userName = string.Empty;
 
     /// <summary>
     /// Gets or sets if the client is initialized with a user mode of invisible.
@@ -70,7 +70,7 @@ namespace Supay.Irc.Messages {
         this.realName = value;
       }
     }
-    private string realName = "";
+    private string realName = string.Empty;
 
     /// <exclude />
     public override bool CanParse(string unparsedMessage) {
@@ -115,8 +115,8 @@ namespace Supay.Irc.Messages {
         this.InitialInvisibility = ((modeBitMask & 8) == 8);
         this.InitialWallops = ((modeBitMask & 4) == 4);
       } else {
-        this.UserName = "";
-        this.RealName = "";
+        this.UserName = string.Empty;
+        this.RealName = string.Empty;
         this.InitialInvisibility = true;
         this.InitialWallops = false;
       }

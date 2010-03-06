@@ -52,7 +52,7 @@ namespace Supay.Irc.Messages {
         this.channel = value;
       }
     }
-    private string channel = "";
+    private string channel = string.Empty;
 
     /// <summary>
     /// Gets or sets the mode changes being applied.
@@ -69,7 +69,7 @@ namespace Supay.Irc.Messages {
         this.modeChanges = value;
       }
     }
-    private string modeChanges = "";
+    private string modeChanges = string.Empty;
 
     /// <summary>
     /// Gets the collection of arguments ( parameters ) for the <see cref="ChannelModeMessage.ModeChanges"/> property.
@@ -109,7 +109,7 @@ namespace Supay.Irc.Messages {
       if (parameters.Count > 1) {
         this.ModeChanges = parameters[1];
       } else {
-        this.ModeChanges = "";
+        this.ModeChanges = string.Empty;
       }
 
       this.ModeArguments.Clear();

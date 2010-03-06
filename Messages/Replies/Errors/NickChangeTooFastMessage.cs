@@ -57,7 +57,7 @@ namespace Supay.Irc.Messages {
     /// <exclude />
     protected override void ParseParameters(StringCollection parameters) {
       base.ParseParameters(parameters);
-      this.Nick = "";
+      this.Nick = string.Empty;
       this.Seconds = -1;
       if (parameters.Count > 1) {
         this.Nick = parameters[1];

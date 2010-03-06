@@ -19,7 +19,7 @@ namespace Supay.Irc.Messages {
         this.dataPackage = value;
       }
     }
-    private string dataPackage = "";
+    private string dataPackage = string.Empty;
 
     /// <summary>
     /// Gets the data payload of the Ctcp request.
