@@ -5,7 +5,7 @@ using System.Collections.Specialized;
 namespace Supay.Irc.Messages {
 
   /// <summary>
-  /// The ErrorMessage sent when a command is sent to a server which didn't recognize it.
+  /// The <see cref="ErrorMessage"/> sent when a command is sent to a server which didn't recognize it.
   /// </summary>
   [Serializable]
   public class UnknownCommandMessage : ErrorMessage {

@@ -19,7 +19,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Gets or sets the text of the motd line.
+    /// Gets or sets the text of the MOTD line.
     /// </summary>
     public virtual string Text {
       get {

@@ -5,13 +5,8 @@ using System.Collections.Specialized;
 namespace Supay.Irc.Messages {
 
   /// <summary>
-  /// The ErrorMessage received when attempting to join a channel which requires a registered nick, 
-  /// and the user does not have one.
-  /// </summary>
-  /// <remarks>
-  /// A channel can require a key with the ChannelModeMessage with a KeyMode.
-  /// The key must be set on the JoinMessage to join such channels.
-  /// </remarks>
+  ///   The <see cref="ErrorMessage"/> received when attempting to join a channel which requires a
+  ///   registered nick, and the user does not have one. </summary>
   [Serializable]
   public class ChannelRequiresRegisteredNickMessage : ErrorMessage, IChannelTargetedMessage {
 

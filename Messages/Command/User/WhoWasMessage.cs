@@ -6,7 +6,7 @@ using System.Globalization;
 namespace Supay.Irc.Messages {
 
   /// <summary>
-  /// Requests information about a user who is no longer connected to irc.
+  /// Requests information about a user who is no longer connected to IRC.
   /// </summary>
   [Serializable]
   public class WhoWasMessage : CommandMessage {
@@ -48,7 +48,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Gets the Irc command associated with this message.
+    /// Gets the IRC command associated with this message.
     /// </summary>
     protected override string Command {
       get {

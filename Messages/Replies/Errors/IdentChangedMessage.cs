@@ -6,10 +6,10 @@ using System.Globalization;
 namespace Supay.Irc.Messages {
 
   /// <summary>
-  /// The ErrorMessage sent when a user tries to connect with an ident containing invalid characters
+  /// The <see cref="ErrorMessage"/> sent when a user tries to connect with an user name containing invalid characters
   /// </summary>
   /// <remarks>
-  /// Not all networks will send this message, some will silently change your ident,
+  /// Not all networks will send this message, some will silently change your user name,
   /// while others will simply disconnect you.
   /// </remarks>
   [Serializable]
@@ -24,7 +24,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Gets or sets the ident that was attempted
+    /// Gets or sets the username that was attempted
     /// </summary>
     public string Ident {
       get {
@@ -37,7 +37,7 @@ namespace Supay.Irc.Messages {
     private string ident;
 
     /// <summary>
-    /// Gets or sets the characters in the attempted ident which were invalid
+    /// Gets or sets the characters in the attempted username which were invalid
     /// </summary>
     public string InvalidCharacters {
       get {
@@ -50,7 +50,7 @@ namespace Supay.Irc.Messages {
     private string invalidCharacters;
 
     /// <summary>
-    /// Gets or sets the new ident being assigned
+    /// Gets or sets the new username being assigned
     /// </summary>
     public string NewIdent {
       get {

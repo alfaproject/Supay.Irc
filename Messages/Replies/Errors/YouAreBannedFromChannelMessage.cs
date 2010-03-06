@@ -5,7 +5,7 @@ using System.Collections.Specialized;
 namespace Supay.Irc.Messages {
 
   /// <summary>
-  /// The ErrorMessage received when attempting to join a channel on which the user is banned.
+  /// The <see cref="ErrorMessage"/> received when attempting to join a channel on which the user is banned.
   /// </summary>
   [Serializable]
   public class YouAreBannedFromChannelMessage : ErrorMessage, IChannelTargetedMessage {

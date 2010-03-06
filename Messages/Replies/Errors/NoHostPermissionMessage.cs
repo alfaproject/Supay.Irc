@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 namespace Supay.Irc.Messages {
 
   /// <summary>
-  /// Returned to a client which attempts to register with a server which has not been setup to allow connections from which the host attempted connection.
+  /// Returned to a client which attempts to register with a server which has not been set up to allow connections from which the host attempted connection.
   /// </summary>
   [Serializable]
   public class NoHostPermissionMessage : ErrorMessage {

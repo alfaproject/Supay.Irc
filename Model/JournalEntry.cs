@@ -1,11 +1,12 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Runtime.Serialization;
+using Supay.Irc.Messages;
 
 namespace Supay.Irc {
 
   /// <summary>
-  /// A single entry in the journal of messages and related information related to an irc channel or query.
+  /// A single entry in the journal of messages and related information related to an IRC channel or query.
   /// </summary>
   [DataContractAttribute]
   public class JournalEntry : INotifyPropertyChanged {
@@ -43,7 +44,7 @@ namespace Supay.Irc {
 
 
     /// <summary>
-    /// The entry data, usually an IrcMessage, but can be any object.
+    /// The entry data, usually an <see cref="IrcMessage"/>, but can be any object.
     /// </summary>
     [DataMember]
     public object Item {

@@ -5,8 +5,8 @@ using System.Collections.Specialized;
 namespace Supay.Irc.Messages {
 
   /// <summary>
-  /// Returned from the server in response to a WhoWasMessage to indicate there is no history information for that nick.
-  /// </summary>
+  ///   Returned from the server in response to a <see cref="WhoWasMessage"/> to indicate that
+  ///   there is no history information for that nick. </summary>
   [Serializable]
   public class WasNoSuchNickMessage : ErrorMessage {
 

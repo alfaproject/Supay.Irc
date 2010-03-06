@@ -6,7 +6,7 @@ namespace Supay.Irc.Messages {
 
   /// <summary>
   /// This is a message sent from a server to a client upon connection 
-  /// to tell the client what irc features the server supports.
+  /// to tell the client what IRC features the server supports.
   /// </summary>
   [Serializable]
   public class SupportMessage : NumericMessage {

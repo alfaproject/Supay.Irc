@@ -5,7 +5,7 @@ using System.Collections.Specialized;
 namespace Supay.Irc.Messages {
 
   /// <summary>
-  /// OperMessage is used by a normal user to obtain irc operator privileges.
+  /// OperMessage is used by a normal user to obtain IRC operator privileges.
   /// ( This does not refer to channel ops )
   /// The correct combination of <see cref="Name"/> and <see cref="Password"/> are required to gain Operator privileges.
   /// </summary>
@@ -27,7 +27,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Gets the Irc command associated with this message.
+    /// Gets the IRC command associated with this message.
     /// </summary>
     protected override string Command {
       get {

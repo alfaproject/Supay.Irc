@@ -5,7 +5,7 @@ using System.Collections.Specialized;
 namespace Supay.Irc.Messages {
 
   /// <summary>
-  /// The ErrorMessage received when a user tries to perform a channel-specific operation on a user, 
+  /// The <see cref="ErrorMessage"/> received when a user tries to perform a channel-specific operation on a user, 
   /// and the user isn't in the channel.
   /// </summary>
   /// <remarks>

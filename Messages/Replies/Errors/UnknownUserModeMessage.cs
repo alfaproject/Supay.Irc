@@ -1,11 +1,12 @@
 using System;
 using System.Collections.ObjectModel;
+using Supay.Irc.Messages.Modes;
 
 namespace Supay.Irc.Messages {
 
   /// <summary>
-  /// The ErrorMessage received when a UserModeMessage was sent with a UserMode which the server didn't recognize.
-  /// </summary>
+  ///   The <see cref="ErrorMessage"/> received when a <see cref="UserModeMessage"/> was sent with
+  ///   a <see cref="UserMode"/> which the server didn't recognize. </summary>
   [Serializable]
   public class UnknownUserModeMessage : ErrorMessage {
 

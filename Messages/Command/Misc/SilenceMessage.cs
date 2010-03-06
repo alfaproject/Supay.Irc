@@ -5,7 +5,7 @@ using System.Collections.Specialized;
 namespace Supay.Irc.Messages {
 
   /// <summary>
-  /// With the SilenceMessage, clients can tell a server to never send messages to them from a given user. This, effectively, is a serverside ignore command.
+  /// With the SilenceMessage, clients can tell a server to never send messages to them from a given user. This, effectively, is a server-side ignore command.
   /// </summary>
   [Serializable]
   public class SilenceMessage : CommandMessage {
@@ -33,7 +33,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Gets the Irc command associated with this message.
+    /// Gets the IRC command associated with this message.
     /// </summary>
     protected override string Command {
       get {

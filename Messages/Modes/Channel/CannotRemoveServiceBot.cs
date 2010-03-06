@@ -5,7 +5,7 @@ using System.Collections.Specialized;
 namespace Supay.Irc.Messages {
 
   /// <summary>
-  /// The ErrorMessage received when a user tries to kill, kick, or deop a bot which provides channel services.
+  /// The <see cref="ErrorMessage"/> received when a user tries to kill, kick, or de-op a bot which provides channel services.
   /// </summary>
   [Serializable]
   public class CannotRemoveServiceBotMessage : ErrorMessage {

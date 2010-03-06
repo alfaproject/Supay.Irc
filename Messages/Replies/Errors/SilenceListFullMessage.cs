@@ -5,8 +5,8 @@ using System.Collections.Specialized;
 namespace Supay.Irc.Messages {
 
   /// <summary>
-  /// The ErrorMessage received when a user's silence list is full, and a SilenceMessage is sent adding a User to the list.
-  /// </summary>
+  ///   The <see cref="ErrorMessage"/> received when an user's silence list is full, and a
+  ///   <see cref="SilenceMessage"/> is sent adding an user to the list. </summary>
   [Serializable]
   public class SilenceListFullMessage : ErrorMessage {
 

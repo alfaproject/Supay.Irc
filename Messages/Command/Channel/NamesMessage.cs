@@ -25,7 +25,7 @@ namespace Supay.Irc.Messages {
     private StringCollection channels = new StringCollection();
 
     /// <summary>
-    /// Gets the Irc command associated with this message.
+    /// Gets the IRC command associated with this message.
     /// </summary>
     protected override string Command {
       get {

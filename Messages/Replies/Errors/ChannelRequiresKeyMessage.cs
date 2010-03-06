@@ -1,15 +1,17 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using Supay.Irc.Messages.Modes;
 
 namespace Supay.Irc.Messages {
 
   /// <summary>
-  /// The ErrorMessage received when attempting to join a channel which has a key set, and the user has not provided it.
-  /// </summary>
+  ///   The <see cref="ErrorMessage"/> received when attempting to join a channel which has a key
+  ///   set, and the user has not provided it. </summary>
   /// <remarks>
-  /// A channel can require a key with the ChannelModeMessage with a RegisteredNicksOnlyMode.
-  /// </remarks>
+  ///   A channel can require a key with the <see cref="ChannelModeMessage"/> with a
+  ///   <see cref="KeyMode"/>. The key must be set on the <see cref="JoinMessage"/> to join such
+  ///   channels. </remarks>
   [Serializable]
   public class ChannelRequiresKeyMessage : ErrorMessage, IChannelTargetedMessage {
 

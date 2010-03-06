@@ -4,8 +4,8 @@ using System.Collections.ObjectModel;
 namespace Supay.Irc.Messages {
 
   /// <summary>
-  /// The ErrorMessage sent when a TextMessage is sent with an empty Text property.
-  /// </summary>
+  ///   The <see cref="ErrorMessage"/> received when a <see cref="TextMessage"/> is sent with an
+  ///   empty Text property. </summary>
   [Serializable]
   public class NoTextToSendMessage : ErrorMessage {
 

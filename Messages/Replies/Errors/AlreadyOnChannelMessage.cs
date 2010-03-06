@@ -5,7 +5,7 @@ using System.Collections.Specialized;
 namespace Supay.Irc.Messages {
 
   /// <summary>
-  /// The ErrorMessage sent when a user tries to invite a person onto a channel which they
+  /// The <see cref="ErrorMessage"/> sent when a user tries to invite a person onto a channel which they
   /// are already on
   /// </summary>
   [Serializable]

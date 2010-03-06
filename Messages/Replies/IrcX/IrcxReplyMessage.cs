@@ -20,7 +20,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Gets or sets if the server has set the client into ircx mode.
+    /// Gets or sets if the server has set the client into IRCX mode.
     /// </summary>
     public virtual bool IsIrcxClientMode {
       get {
@@ -33,7 +33,7 @@ namespace Supay.Irc.Messages {
     private bool isIrcxClientMode = false;
 
     /// <summary>
-    /// Gets or sets the version of Ircx the server implements.
+    /// Gets or sets the version of IRCX the server implements.
     /// </summary>
     public virtual string Version {
       get {

@@ -37,7 +37,7 @@ namespace Supay.Irc.Messages {
     private string reason = "";
 
     /// <summary>
-    /// Gets the Irc command associated with this message.
+    /// Gets the IRC command associated with this message.
     /// </summary>
     protected override string Command {
       get {

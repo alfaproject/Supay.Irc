@@ -4,8 +4,8 @@ using System.Collections.ObjectModel;
 namespace Supay.Irc.Messages {
 
   /// <summary>
-  /// An Accept/CallerId system message marking the end of the responses to an AcceptListRequestMessage.
-  /// </summary>
+  ///   An Accept/CallerId system message marking the end of the responses to an
+  ///   <see chref="AcceptListRequestMessage"/>. </summary>
   [Serializable]
   public class AcceptListEndReplyMessage : NumericMessage {
 

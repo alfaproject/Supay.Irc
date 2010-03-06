@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 namespace Supay.Irc {
 
   /// <summary>
-  ///   Represents a Mask on an IRC server. (nickname!username@host) </summary>
+  ///   Represents a Mask on an IRC server. (nickname!userName@host) </summary>
   [Serializable]
   public class Mask : IEquatable<Mask>, INotifyPropertyChanged {
 
@@ -24,7 +24,7 @@ namespace Supay.Irc {
     /// <param name="nickname">
     ///   The nickname of this mask. </param>
     /// <param name="username">
-    ///   The hostname of this mask. </param>
+    ///   The username of this mask. </param>
     /// <param name="host">
     ///   The host of this mask. </param>
     public Mask(string nickname, string username, string host) {
@@ -110,7 +110,7 @@ namespace Supay.Irc {
     }
 
     /// <summary>
-    ///   Gets this Mask information with a guarenteed nickname!username@host format. </summary>
+    ///   Gets this Mask information with a guaranteed nickname!username@host format. </summary>
     public string IrcMask {
       get {
         return (string.IsNullOrEmpty(_nickname) ? "*" : _nickname) +
@@ -120,7 +120,7 @@ namespace Supay.Irc {
     }
 
     /// <summary>
-    ///   Indicates wether this mask has wildcards. </summary>
+    ///   Indicates whether this mask has wildcards. </summary>
     public bool HasWildcards {
       get {
         return (this.IrcMask.IndexOfAny(new char[] { '?', '*' }) == -1);

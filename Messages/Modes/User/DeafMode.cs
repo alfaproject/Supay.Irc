@@ -1,7 +1,7 @@
 namespace Supay.Irc.Messages.Modes {
 
   /// <summary>
-  /// This mode signifies that the user does not receive channal chat messages
+  /// This mode signifies that the user does not receive channel chat messages
   /// </summary>
   public class DeafMode : UserMode {
 
@@ -19,7 +19,7 @@ namespace Supay.Irc.Messages.Modes {
     }
 
     /// <summary>
-    /// Gets the irc string representation of the mode being changed or applied.
+    /// Gets the IRC string representation of the mode being changed or applied.
     /// </summary>
     protected override string Symbol {
       get {

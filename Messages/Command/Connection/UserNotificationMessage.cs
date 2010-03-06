@@ -6,13 +6,13 @@ using System.Globalization;
 namespace Supay.Irc.Messages {
 
   /// <summary>
-  /// The UserNotificationMessage is used at the beginning of connection to specify the username, hostname and realname of a new user.
+  /// The UserNotificationMessage is used at the beginning of connection to specify the username, hostname and real name of a new user.
   /// </summary>
   [Serializable]
   public class UserNotificationMessage : CommandMessage {
 
     /// <summary>
-    /// Gets the Irc command associated with this message.
+    /// Gets the IRC command associated with this message.
     /// </summary>
     protected override string Command {
       get {

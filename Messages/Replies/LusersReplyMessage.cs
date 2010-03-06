@@ -21,7 +21,7 @@ namespace Supay.Irc.Messages {
 
 
     /// <summary>
-    /// Gets or sets the number of users connected to irc.
+    /// Gets or sets the number of users connected to IRC.
     /// </summary>
     public virtual int UserCount {
       get {
@@ -33,7 +33,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Gets or sets the number of invisible users connected to irc.
+    /// Gets or sets the number of invisible users connected to IRC.
     /// </summary>
     public virtual int InvisibleCount {
       get {

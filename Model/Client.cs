@@ -6,9 +6,9 @@ using Supay.Irc.Network;
 namespace Supay.Irc {
 
   /// <summary>
-  /// Represents an irc client. it has a connection, a user, etc
+  /// Represents an IRC client. it has a connection, a user, etc.
   /// </summary>
-  /// <remarks>A gui frontend should use one instance of these per client/server <see cref="ClientConnection"/> it wants to make.</remarks>
+  /// <remarks>A GUI front-end should use one instance of these per client/server <see cref="ClientConnection"/> it wants to make.</remarks>
   [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling")]
   [System.ComponentModel.DesignerCategory("Code")]
   public class Client : IDisposable {
@@ -74,7 +74,7 @@ namespace Supay.Irc {
     #region Properties
 
     /// <summary>
-    /// Gets the conduit thru which individual message received events can be attached.
+    /// Gets the conduit through which individual message received events can be attached.
     /// </summary>
     public MessageConduit Messages {
       get;
@@ -91,8 +91,8 @@ namespace Supay.Irc {
     }
 
     /// <summary>
-    /// Gets or sets whether the <see cref="Client"/> will automaticly start and stop
-    /// an <see cref="Ident"/> service as needed to connect to the irc server.
+    /// Gets or sets whether the <see cref="Client"/> will automatically start and stop
+    /// an <see cref="Ident"/> service as needed to connect to the IRC server.
     /// </summary>
     public bool EnableAutoIdent {
       get;
@@ -119,7 +119,7 @@ namespace Supay.Irc {
     /// Gets the name of the server that you are connected to.
     /// </summary>
     /// <remarks>
-    /// This is the name that server referes to itself by in messages, not neccesarily the name you use to connect.
+    /// This is the name that the server refers to itself by in messages, not necessarily the name you use to connect.
     /// </remarks>
     public string ServerName {
       get;
@@ -151,7 +151,7 @@ namespace Supay.Irc {
     }
 
     /// <summary>
-    /// Gets the collection of queries the user is enganged in
+    /// Gets the collection of queries the user is engaged in
     /// </summary>
     public QueryCollection Queries {
       get;
@@ -179,7 +179,7 @@ namespace Supay.Irc {
     #region Methods
 
     /// <summary>
-    /// Sends a <see cref="IrcMessage"/> over a <see cref="ClientConnection"/> to an irc server.
+    /// Sends a <see cref="IrcMessage"/> over a <see cref="ClientConnection"/> to an IRC server.
     /// </summary>
     /// <param name="message">The <see cref="IrcMessage"/> to send.</param>
     public virtual void Send(IrcMessage message) {
@@ -390,7 +390,7 @@ namespace Supay.Irc {
     #region Events
 
     /// <summary>
-    /// Occurs when the <see cref="ClientConnection"/> recieves data.
+    /// Occurs when the <see cref="ClientConnection"/> receives data.
     /// </summary>
     public event EventHandler<ConnectionDataEventArgs> DataReceived;
 
@@ -403,7 +403,8 @@ namespace Supay.Irc {
     /// Occurs when any message is received and parsed.
     /// </summary>
     public event EventHandler<IrcMessageEventArgs<IrcMessage>> MessageParsed;
-    /// <summary>Raises the MessageParsed event.</summary>
+    /// <summary>
+    ///   Raises the <see cref="MessageParsed"/> event. </summary>
     protected void OnMessageParsed(IrcMessageEventArgs<IrcMessage> e) {
       if (this.MessageParsed != null) {
         this.MessageParsed(this, e);
@@ -414,7 +415,7 @@ namespace Supay.Irc {
     /// Occurs when the connection is opened and the server has sent a welcome message.
     /// </summary>
     /// <remarks>
-    /// This is the earliest the messages can be sent over the irc nextwork
+    /// This is the earliest the messages can be sent over the IRC network
     /// </remarks>
     public event EventHandler Ready;
 
@@ -423,9 +424,7 @@ namespace Supay.Irc {
     /// </summary>
     public event EventHandler<CancelIrcMessageEventArgs<IrcMessage>> MessageSending;
     /// <summary>
-    /// Raises the MessageSending event.
-    /// </summary>
-    /// <param name="e"></param>
+    ///   Raises the <see cref="MessageSending"/> event. </summary>
     protected void OnMessageSending(CancelIrcMessageEventArgs<IrcMessage> e) {
       if (this.MessageSending != null) {
         this.MessageSending(this, e);
@@ -456,11 +455,11 @@ namespace Supay.Irc {
     }
 
     /// <summary>
-    /// Keeps an irc connection alive.
+    /// Keeps an IRC connection alive.
     /// </summary>
     /// <remarks>
-    /// An irc server will ping you every x seconds to make sure you are still alive.
-    /// This method will auto-pong a return to keep the <see cref="ClientConnection"/> alive automagically.
+    /// An IRC server will ping you every x seconds to make sure you are still alive.
+    /// This method will auto-pong a return to keep the <see cref="ClientConnection"/> alive auto-magically.
     /// </remarks>
     /// <param name="sender">the connection object sending the ping</param>
     /// <param name="e">the message sent</param>

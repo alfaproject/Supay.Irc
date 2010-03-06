@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 namespace Supay.Irc.Messages {
 
   /// <summary>
-  /// A Monitor system message signaling the end of a monitor list request.
+  /// A Monitor system message signalling the end of a monitor list request.
   /// </summary>
   [Serializable]
   public class MonitorListEndReplyMessage : NumericMessage {

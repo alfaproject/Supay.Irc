@@ -5,11 +5,10 @@ using System.Collections.Specialized;
 namespace Supay.Irc.Messages {
 
   /// <summary>
-  /// An Accept/CallerId system message received in response to an AcceptListRequestMessage.
-  /// </summary>
+  ///   An Accept/CallerId system message received in response to an
+  ///   <see cref="AcceptListRequestMessage"/>. </summary>
   /// <remarks>
-  /// You may receive more than 1 of these in response to the request.
-  /// </remarks>
+  ///   You may receive more than 1 of these in response to the request. </remarks>
   [Serializable]
   public class AcceptListReplyMessage : NumericMessage {
 

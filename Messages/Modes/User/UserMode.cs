@@ -6,7 +6,7 @@ namespace Supay.Irc.Messages.Modes {
   public abstract class UserMode {
 
     /// <summary>
-    /// Gets the irc string representation of the mode being changed or applied.
+    /// Gets the IRC string representation of the mode being changed or applied.
     /// </summary>
     protected abstract string Symbol {
       get;

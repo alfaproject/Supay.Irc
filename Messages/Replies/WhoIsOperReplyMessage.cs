@@ -5,7 +5,7 @@ using System.Collections.Specialized;
 namespace Supay.Irc.Messages {
 
   /// <summary>
-  /// A reply to a <see cref="WhoIsMessage"/> when the user is an irc operator.
+  /// A reply to a <see cref="WhoIsMessage"/> when the user is an IRC operator.
   /// </summary>
   [Serializable]
   public class WhoIsOperReplyMessage : NumericMessage {

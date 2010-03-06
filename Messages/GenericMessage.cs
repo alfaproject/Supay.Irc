@@ -50,7 +50,7 @@ namespace Supay.Irc.Messages {
     ///   This is not meant to be used from your code. </summary>
     /// <remarks>
     ///   The conduit calls Notify on messages to have the message raise the appropriate event on the conduit.
-    ///   This is done automaticly by your <see cref="Client"/> after message are recieved and parsed. </remarks>
+    ///   This is done automatically by your <see cref="Client"/> after messages are received and parsed. </remarks>
     public override void Notify(MessageConduit conduit) {
       conduit.OnGenericMessage(new IrcMessageEventArgs<GenericMessage>(this));
     }

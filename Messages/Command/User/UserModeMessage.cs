@@ -8,13 +8,13 @@ namespace Supay.Irc.Messages {
   /// The UserModeMessage allows users to have their mode changed.
   /// </summary>
   /// <remarks>
-  /// Modes include such things as invisibility and irc operator.
+  /// Modes include such things as invisibility and IRC operator.
   /// This message wraps the MODE command.
   /// </remarks>
   [Serializable]
   public class UserModeMessage : CommandMessage {
     /// <summary>
-    /// Gets the Irc command associated with this message.
+    /// Gets the IRC command associated with this message.
     /// </summary>
     protected override string Command {
       get {

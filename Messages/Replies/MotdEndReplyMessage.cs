@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 namespace Supay.Irc.Messages {
 
   /// <summary>
-  /// Signifies the end of the motd sent by the server.
+  /// Signifies the end of the MOTD sent by the server.
   /// </summary>
   [Serializable]
   public class MotdEndReplyMessage : NumericMessage {

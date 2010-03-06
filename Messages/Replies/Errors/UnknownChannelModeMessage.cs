@@ -1,12 +1,13 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using Supay.Irc.Messages.Modes;
 
 namespace Supay.Irc.Messages {
 
   /// <summary>
-  /// The ErrorMessage received when a ChannelModeMessage was sent with a ChannelMode which the server didn't recognize.
-  /// </summary>
+  ///   The <see cref="ErrorMessage"/> received when a <see cref="ChannelModeMessage"/> was sent
+  ///   with a <see cref="ChannelMode"/> which the server didn't recognize. </summary>
   [Serializable]
   public class UnknownChannelModeMessage : ErrorMessage {
 

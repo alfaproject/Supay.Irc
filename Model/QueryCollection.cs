@@ -8,7 +8,7 @@ namespace Supay.Irc {
   public class QueryCollection : ObservableCollection<Query> {
 
     /// <summary>
-    /// Finds the <see href="Query"/> instance within the colleciton which is with the given user.
+    /// Finds the <see href="Query"/> instance within the collection which is with the given user.
     /// </summary>
     /// <returns>The found query, or null.</returns>
     public Query FindQuery(User user) {

@@ -1,7 +1,7 @@
 namespace Supay.Irc.Messages.Modes {
 
   /// <summary>
-  /// When thi mode is set, 
+  /// When this mode is set, 
   /// new members are only accepted if their mask matches Invite-list (See <see cref="InvitationExceptionMode"/>) 
   /// or they have been invited by a channel operator.
   /// </summary>
@@ -21,7 +21,7 @@ namespace Supay.Irc.Messages.Modes {
     }
 
     /// <summary>
-    /// Gets the irc string representation of the mode being changed or applied.
+    /// Gets the IRC string representation of the mode being changed or applied.
     /// </summary>
     protected override string Symbol {
       get {

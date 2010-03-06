@@ -1,15 +1,16 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using Supay.Irc.Messages.Modes;
 
 namespace Supay.Irc.Messages {
 
   /// <summary>
-  /// The ErrorMessage received when attempting to join a channel which invite-only.
-  /// </summary>
+  ///   The <see cref="ErrorMessage"/> received when attempting to join a channel which is invite
+  ///   only. </summary>
   /// <remarks>
-  /// A channel can be set invite-only with a ChannelModeMessage containing a InviteOnlyMode.
-  /// </remarks>
+  ///   A channel can be set invite-only with a <see cref="ChannelModeMessage"/> containing an
+  ///   <see cref="InviteOnlyMode"/>. </remarks>
   [Serializable]
   public class ChannelIsInviteOnlyMessage : ErrorMessage, IChannelTargetedMessage {
 

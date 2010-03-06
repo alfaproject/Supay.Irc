@@ -1,16 +1,16 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using Supay.Irc.Messages.Modes;
 
 namespace Supay.Irc.Messages {
 
   /// <summary>
-  /// The ErrorMessage sent when attempting to set a key on a channel which already has a key set.
-  /// </summary>
+  ///   The <see cref="ErrorMessage"/> sent when attempting to set a key on a channel which already
+  ///   has a key set. </summary>
   /// <remarks>
-  /// A channel must have its key removed before setting a new one.
-  /// This is done with a ChannelModeMessage and the KeyMode mode.
-  /// </remarks>
+  ///   A channel must have its key removed before setting a new one. This is done with a
+  ///   <see cref="ChannelModeMessage"/> and the <see cref="KeyMode"/>. </remarks>
   [Serializable]
   public class ChannelKeyAlreadySetMessage : ErrorMessage, IChannelTargetedMessage {
 

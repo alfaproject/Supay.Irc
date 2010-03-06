@@ -18,7 +18,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Gets the Irc command associated with this message.
+    /// Gets the IRC command associated with this message.
     /// </summary>
     protected override string Command {
       get {
@@ -53,7 +53,7 @@ namespace Supay.Irc.Messages {
     /// Gets or sets the actual text of this <see cref="TextMessage"/>.
     /// </summary>
     /// <remarks>
-    /// This property holds the core purpose of irc itself... sending text communication to others.
+    /// This property holds the core purpose of IRC itself... sending text communication to others.
     /// </remarks>
     public virtual string Text {
       get {

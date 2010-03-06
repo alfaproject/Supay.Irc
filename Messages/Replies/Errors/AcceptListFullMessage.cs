@@ -4,8 +4,7 @@ using System.Collections.ObjectModel;
 namespace Supay.Irc.Messages {
 
   /// <summary>
-  /// The ErrorMessage received when a user adds too many users to his Accept list.
-  /// </summary>
+  ///   The <see cref="ErrorMessage"/> received when a user adds too many users to his accept list. </summary>
   [Serializable]
   public class AcceptListFullMessage : ErrorMessage {
 

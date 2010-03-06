@@ -5,7 +5,7 @@ using System.Collections.Specialized;
 namespace Supay.Irc.Messages {
 
   /// <summary>
-  /// The ErrorMessage sent when a command would result in too many lines in the reply.
+  /// The <see cref="ErrorMessage"/> sent when a command would result in too many lines in the reply.
   /// </summary>
   [Serializable]
   public class TooManyLinesMessage : ErrorMessage {

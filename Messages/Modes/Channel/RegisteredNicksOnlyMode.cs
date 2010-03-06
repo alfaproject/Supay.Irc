@@ -20,7 +20,7 @@ namespace Supay.Irc.Messages.Modes {
     }
 
     /// <summary>
-    /// Gets the irc string representation of the mode being changed or applied.
+    /// Gets the IRC string representation of the mode being changed or applied.
     /// </summary>
     protected override string Symbol {
       get {

@@ -15,7 +15,7 @@ namespace Supay.Irc.Messages {
   public class ChannelModeMessage : CommandMessage, IChannelTargetedMessage {
 
     /// <summary>
-    /// Gets the Irc command associated with this message.
+    /// Gets the IRC command associated with this message.
     /// </summary>
     protected override string Command {
       get {
@@ -59,7 +59,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     /// <remarks>
     /// An example ModeChanges might look like "+ool".
-    /// This means adding the cannel op mode for two users, and setting a limit on the user count.
+    /// This means adding the channel op mode for two users, and setting a limit on the user count.
     /// </remarks>
     public virtual string ModeChanges {
       get {

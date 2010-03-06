@@ -5,7 +5,7 @@ using System.Collections.Specialized;
 namespace Supay.Irc.Messages {
 
   /// <summary>
-  /// A Message which carries a ctcp command.
+  /// A Message which carries a CTCP command.
   /// </summary>
   [Serializable]
   public abstract class CtcpMessage : IrcMessage, IChannelTargetedMessage, IQueryTargetedMessage {
@@ -24,7 +24,7 @@ namespace Supay.Irc.Messages {
     private string target = "";
 
     /// <summary>
-    /// Gets the ctcp Command requested.
+    /// Gets the CTCP Command requested.
     /// </summary>
     protected string InternalCommand {
       get {
@@ -37,14 +37,14 @@ namespace Supay.Irc.Messages {
     private string internalCommand = "";
 
     /// <summary>
-    /// Gets the data payload of the Ctcp request.
+    /// Gets the data payload of the CTCP request.
     /// </summary>
     protected abstract string ExtendedData {
       get;
     }
 
     /// <summary>
-    /// Gets the irc command used to send the ctcp command to another user.
+    /// Gets the IRC command used to send the CTCP command to another user.
     /// </summary>
     protected abstract string TransportCommand {
       get;

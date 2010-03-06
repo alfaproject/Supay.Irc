@@ -6,7 +6,7 @@ using System.Globalization;
 namespace Supay.Irc.Messages {
 
   /// <summary>
-  /// The ErrorMessage sent when a user tries to send commands to too many targets in a short amount of time.
+  /// The <see cref="ErrorMessage"/> sent when a user tries to send commands to too many targets in a short amount of time.
   /// </summary>
   /// <remarks>
   /// The purpose of this error condition is to help stop spammers.

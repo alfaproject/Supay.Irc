@@ -5,7 +5,7 @@ using System.Collections.Specialized;
 namespace Supay.Irc.Messages {
 
   /// <summary>
-  /// The ErrorMessage sent when a user tries to change his nick while on a channel in which he is banned.
+  /// The <see cref="ErrorMessage"/> sent when a user tries to change his nick while on a channel in which he is banned.
   /// </summary>
   /// <remarks>
   /// This is error code is also defined as "Resource Unavailable", but this message variant is more common.

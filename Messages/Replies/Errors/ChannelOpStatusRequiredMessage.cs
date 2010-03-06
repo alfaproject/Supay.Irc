@@ -1,16 +1,16 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using Supay.Irc.Messages.Modes;
 
 namespace Supay.Irc.Messages {
 
   /// <summary>
-  /// The ErrorMessage received when a user tries to perform a command which requires
-  /// channel-operator status.
-  /// </summary>
+  ///   The <see cref="ErrorMessage"/> received when a user tries to perform a command which
+  ///   requires channel-operator status. </summary>
   /// <remarks>
-  /// Channel-operator status is set with the OperatorMode of the ChannelModeMessage.
-  /// </remarks>
+  ///   Channel-operator status is set with the <see cref="OperatorMode"/> of the
+  ///   <see cref="ChannelModeMessage"/>. </remarks>
   [Serializable]
   public class ChannelOperatorStatusRequiredMessage : ErrorMessage, IChannelTargetedMessage {
 
@@ -23,8 +23,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Gets or sets the channel on which the command requires OperatorMode status
-    /// </summary>
+    ///   Gets or sets the channel on which the command requires <see cref="OperatorMode"/> status. </summary>
     public string Channel {
       get {
         return channel;

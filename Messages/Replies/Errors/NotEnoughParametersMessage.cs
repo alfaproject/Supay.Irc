@@ -5,7 +5,7 @@ using System.Collections.Specialized;
 namespace Supay.Irc.Messages {
 
   /// <summary>
-  /// The ErrorMessage sent when a command is sent which doesn't contain all the required parameters
+  /// The <see cref="ErrorMessage"/> sent when a command is sent which doesn't contain all the required parameters
   /// </summary>
   [Serializable]
   public class NotEnoughParametersMessage : ErrorMessage {

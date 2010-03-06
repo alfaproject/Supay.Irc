@@ -20,12 +20,10 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Gets or sets the channel associated with the user.
-    /// </summary>
+    ///   Gets or sets the channel associated with the user. </summary>
     /// <remarks>
-    /// In the case of a non-channel based WhoMessage, 
-    /// Channel will contain the most recent channel which the user joined and is still on.
-    /// </remarks>
+    ///   In the case of a non-channel based <see cref="WhoMessage"/>, Channel will contain the
+    ///   most recent channel which the user joined and is still on. </remarks>
     public virtual string Channel {
       get {
         return channel;
@@ -84,7 +82,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Gets or sets if the user is an irc operator.
+    /// Gets or sets if the user is an IRC operator.
     /// </summary>
     public virtual bool IsOper {
       get {

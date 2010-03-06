@@ -6,7 +6,7 @@ using System.Globalization;
 namespace Supay.Irc.Messages {
 
   /// <summary>
-  /// The ErrorMessage sent when a user tries to change his nick too many times too quickly.
+  /// The <see cref="ErrorMessage"/> sent when a user tries to change his nick too many times too quickly.
   /// </summary>
   [Serializable]
   public class NickChangeTooFastMessage : ErrorMessage {

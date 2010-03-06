@@ -5,15 +5,15 @@ using System.Collections.Specialized;
 namespace Supay.Irc.Messages {
 
   /// <summary>
-  /// With the ChannelPropertyMessage, clients can read and write property values for IrcX enabled channels.
+  /// With the ChannelPropertyMessage, clients can read and write property values for IRCX enabled channels.
   /// </summary>
   /// <remarks>
   /// <p>
-  /// To read all channel proprties for a channel, simply set the <see cref="Channel"/> property.
+  /// To read all channel properties for a channel, simply set the <see cref="Channel"/> property.
   /// To read a channel property, set  <see cref="Channel"/> and <see cref="Prop"/>.
   /// To write a channel property, set the <see cref="Channel"/>, <see cref="Prop"/>, and <see cref="NewValue"/> properties. When a server sets the property, the client will receive the same property message back.
   /// </p>
-  /// <p>This command is only effective for an IrcX enabled server.</p>
+  /// <p>This command is only effective for an IRCX enabled server.</p>
   /// </remarks>
   [Serializable]
   public class ChannelPropertyMessage : CommandMessage {
@@ -26,7 +26,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Gets the Irc command associated with this message.
+    /// Gets the IRC command associated with this message.
     /// </summary>
     protected override string Command {
       get {

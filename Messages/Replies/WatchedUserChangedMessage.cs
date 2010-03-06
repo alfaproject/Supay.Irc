@@ -28,7 +28,7 @@ namespace Supay.Irc.Messages {
     private User watchedUser;
 
     /// <summary>
-    /// Gets or sets the time at which the change occured.
+    /// Gets or sets the time at which the change occurred.
     /// </summary>
     public DateTime TimeOfChange {
       get {

@@ -5,7 +5,7 @@ using System.Collections.Specialized;
 namespace Supay.Irc.Messages {
 
   /// <summary>
-  /// The error recieved when a message containing target parameters has too many targets specified.
+  /// The error received when a message containing target parameters has too many targets specified.
   /// </summary>
   [Serializable]
   public class TooManyTargetsMessage : ErrorMessage {
@@ -32,7 +32,7 @@ namespace Supay.Irc.Messages {
     private string invalidTarget = "";
 
     /// <summary>
-    /// Gets or sets the errorcode
+    /// Gets or sets the error code
     /// </summary>
     /// <remarks>An example error code might be, "Duplicate"</remarks>
     public virtual string ErrorCode {

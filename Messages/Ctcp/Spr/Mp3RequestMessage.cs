@@ -26,7 +26,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Gets or sets the filename of the mp3 being shared.
+    /// Gets or sets the file name of the mp3 being shared.
     /// </summary>
     public string FileName {
       get {
@@ -46,7 +46,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Gets the data payload of the Ctcp request.
+    /// Gets the data payload of the CTCP request.
     /// </summary>
     protected override string ExtendedData {
       get {

@@ -6,11 +6,9 @@ using System.Globalization;
 namespace Supay.Irc.Messages {
 
   /// <summary>
-  /// Error message received primarily when a TextMessage is sent without any Targets.
-  /// </summary>
+  ///   Error message received primarily when a <see cref="TextMessage"/> is sent without any Targets. </summary>
   /// <remarks>
-  /// Some other commands may also send this when no recipients are specified.
-  /// </remarks>
+  ///   Some other commands may also send this when no recipients are specified. </remarks>
   [Serializable]
   public class NoRecipientGivenMessage : ErrorMessage {
 

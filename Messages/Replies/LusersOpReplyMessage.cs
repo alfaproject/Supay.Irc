@@ -20,7 +20,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Gets or sets the number of irc operators connected to the server.
+    /// Gets or sets the number of IRC operators connected to the server.
     /// </summary>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "Op")]
     public virtual int OpCount {
@@ -33,7 +33,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Gets or sets any additionaly information about the operators connected.
+    /// Gets or sets any additional information about the operators connected.
     /// </summary>
     public virtual string Info {
       get {

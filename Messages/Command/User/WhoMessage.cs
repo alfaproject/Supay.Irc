@@ -24,7 +24,7 @@ namespace Supay.Irc.Messages {
     private User mask = new Supay.Irc.User();
 
     /// <summary>
-    /// Gets or sets if the results should only contain irc operators.
+    /// Gets or sets if the results should only contain IRC operators.
     /// </summary>
     public virtual bool RestrictToOps {
       get {
@@ -36,7 +36,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Gets the Irc command associated with this message.
+    /// Gets the IRC command associated with this message.
     /// </summary>
     protected override string Command {
       get {

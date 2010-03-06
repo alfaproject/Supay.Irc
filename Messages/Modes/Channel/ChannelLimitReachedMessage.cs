@@ -1,17 +1,18 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using Supay.Irc.Messages.Modes;
 
 namespace Supay.Irc.Messages {
 
   /// <summary>
-  /// The ErrorMessage received when attempting to join a channel which has reached its limit of users.
-  /// </summary>
+  ///   The <see cref="ErrorMessage"/> received when attempting to join a channel which has reached
+  ///   its limit of users. </summary>
   /// <remarks>
-  /// A channel can set it's user limit with a ChannelModeMessage containing a LimitMode.
-  /// Once that many users are in the channel, any other users attempting to join will get this reply.
-  /// On some networks, an Invite allows a user to bypass the limit.
-  /// </remarks>
+  ///   A channel can set it's user limit with a <see cref="ChannelModeMessage"/> containing a
+  ///   <see cref="LimitMode"/>. Once that many users are in the channel, any other users
+  ///   attempting to join will get this reply. On some networks, an invite allows an user to
+  ///   bypass the limit. </remarks>
   [Serializable]
   public class ChannelLimitReachedMessage : ErrorMessage {
 

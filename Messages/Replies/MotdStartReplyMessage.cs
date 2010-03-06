@@ -5,7 +5,7 @@ using System.Collections.Specialized;
 namespace Supay.Irc.Messages {
   
   /// <summary>
-  /// Signifies the start of the motd sent by the server.
+  /// Signifies the start of the MOTD sent by the server.
   /// </summary>
   [Serializable]
   public class MotdStartReplyMessage : NumericMessage {

@@ -18,7 +18,7 @@ namespace Supay.Irc.Messages {
     /// <param name="channelName">
     ///   The channel name to examine. </param>
     /// <param name="support">
-    ///   The feature support of an irc server. </param>
+    ///   The feature support of an IRC server. </param>
     /// <returns>
     ///   A valid channel name on the given server. </returns>
     public static string EnsureValidChannelName(string channelName, ServerSupport support) {
@@ -45,7 +45,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Determines if the given channel name has a valid namespace prefix. </summary>
     /// <remarks>
-    ///   This is according to the IRC spec, and is not representative of what a particular server may support. </remarks>
+    ///   This is according to the IRC specification, and is not representative of what a
+    ///   particular server may support. </remarks>
     public static bool HasValidChannelPrefix(string channelName) {
       if (string.IsNullOrEmpty(channelName)) {
         return false;
@@ -71,7 +72,7 @@ namespace Supay.Irc.Messages {
     #region Parameters To string
 
     /// <summary>
-    ///   Creates a list of irc parameters from the given collection of strings. </summary>
+    ///   Creates a list of IRC parameters from the given collection of strings. </summary>
     public static string ParametersToString(bool useColon, StringCollection parameters) {
       if (parameters == null) {
         return string.Empty;
@@ -82,7 +83,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    ///   Creates a list of irc parameters from the given array of strings. </summary>
+    ///   Creates a list of IRC parameters from the given array of strings. </summary>
     public static string ParametersToString(bool useColon, params string[] parameters) {
       StringBuilder result = new StringBuilder();
       if (parameters.Length > 1) {
@@ -101,13 +102,13 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    ///   Creates a list of irc parameters from the given collection of strings. </summary>
+    ///   Creates a list of IRC parameters from the given collection of strings. </summary>
     public static string ParametersToString(StringCollection parameters) {
       return ParametersToString(true, parameters);
     }
 
     /// <summary>
-    ///   Creates a list of irc parameters from the given array of strings. </summary>
+    ///   Creates a list of IRC parameters from the given array of strings. </summary>
     public static string ParametersToString(params string[] parameters) {
       return ParametersToString(true, parameters);
     }
@@ -117,7 +118,8 @@ namespace Supay.Irc.Messages {
     #region Create Lists
 
     /// <summary>
-    ///   Creates a space-delimited list from the given StringCollection, using delimiter. </summary>
+    ///   Creates a space-delimited list from the given <see cref="StringCollection"/>, using
+    ///   delimiter. </summary>
     public static string CreateList(StringCollection items, string delimiter) {
       if (items == null) {
         return string.Empty;
@@ -134,7 +136,8 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    ///   Creates a char-delimited list from the given IList of objects, using delimiter. </summary>
+    ///   Creates a char-delimited list from the given <see cref="IList"/> of objects, using
+    ///   delimiter. </summary>
     public static string CreateList(IList items, string delimiter) {
       if (items == null || items.Count == 0) {
         return string.Empty;
@@ -150,7 +153,8 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    ///   Creates a char-delimited list from the given IEnumerable of objects, using delimiter. </summary>
+    ///   Creates a char-delimited list from the given <see cref="IEnumerable"/> of objects, using
+    ///   delimiter. </summary>
     /// <param name="items">
     ///   The items to join. </param>
     /// <param name="delimiter">
@@ -235,7 +239,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    ///   Seperates the given space-delimted parameter string into a collection. </summary>
+    ///   Separates the given space-delimited parameter string into a collection. </summary>
     public static StringCollection Tokenize(string rawMessage, int startIndex) {
       if (rawMessage == null) {
         throw new ArgumentNullException("rawMessage");
@@ -336,7 +340,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    ///   Gets the index of the nth time that searchValue shows up in text. </summary>
+    ///   Gets the index of the nth time that <paramref name="searchValue"/> shows up in text. </summary>
     /// <param name="text">
     ///   The string to search in. </param>
     /// <param name="searchValue">
@@ -363,7 +367,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    ///   Turns a <see cref="DateTime"/> into the int representation as is commonly used on Unix machines. </summary>
+    ///   Turns a <see cref="DateTime"/> into the integer representation as is commonly used on Unix machines. </summary>
     public static int ConvertToUnixTime(DateTime dt) {
       DateTime unixEpochStartDate = new DateTime(1970, 1, 1, 0, 0, 0, 0);
       long ticksSinceEpochStart = dt.Ticks - unixEpochStartDate.Ticks;
@@ -372,16 +376,16 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    ///   Turns the given Unix representation of a datetime into a <see cref="DateTime"/>. </summary>
+    ///   Turns the given Unix representation of a date/time into a <see cref="DateTime"/>. </summary>
     public static DateTime ConvertFromUnixTime(int ut) {
       DateTime unixEpochStartDate = new DateTime(1970, 1, 1, 0, 0, 0, 0);
       return unixEpochStartDate.AddSeconds(ut);
     }
 
     /// <summary>
-    ///   Converts the given Unix representation of a datetime into a <see cref="Nullable&lt;DateTime&gt;"/>. </summary>
+    ///   Converts the given Unix representation of a date/time into a <see cref="Nullable&lt;DateTime&gt;"/>. </summary>
     /// <remarks>
-    ///   If the string can't be parsed, a null DateTime is returned. </remarks>
+    ///   If the string can't be parsed, a null <see cref="DateTime"/> is returned. </remarks>
     public static DateTime? ConvertFromUnixTime(string unixTimeString) {
       if (string.IsNullOrEmpty(unixTimeString)) {
         return null;

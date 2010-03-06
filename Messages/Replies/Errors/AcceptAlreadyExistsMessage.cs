@@ -5,7 +5,7 @@ using System.Collections.Specialized;
 namespace Supay.Irc.Messages {
 
   /// <summary>
-  /// The ErrorMessage received when the client attempts to add a nick to his accept list
+  /// The <see cref="ErrorMessage"/> received when the client attempts to add a nick to his accept list
   /// when that nick is already on the list.
   /// </summary>
   [Serializable]

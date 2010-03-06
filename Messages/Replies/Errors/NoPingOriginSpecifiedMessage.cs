@@ -4,8 +4,7 @@ using System.Collections.ObjectModel;
 namespace Supay.Irc.Messages {
 
   /// <summary>
-  /// Sent to a user who sends a PingMessage which doesn't have a valid origin.
-  /// </summary>
+  ///   Sent to a user who sends a <see cref="PingMessage"/> which doesn't have a valid origin. </summary>
   [Serializable]
   public class NoPingOriginSpecifiedMessage : ErrorMessage {
 
