@@ -850,7 +850,7 @@ namespace Supay.Irc {
       }
     }
 
-    private static void AddChars(Collection<string> target, string source) {
+    private static void AddChars(Collection<string> target, IEnumerable<char> source) {
       foreach (Char c in source) {
         target.Add(c.ToString());
       }
@@ -865,8 +865,8 @@ namespace Supay.Irc {
       }
     }
 
-    private List<InfoPair> CreateInfoPairs(string value) {
-      List<InfoPair> list = new List<InfoPair>();
+    private IEnumerable<InfoPair> CreateInfoPairs(string value) {
+      Collection<InfoPair> list = new Collection<InfoPair>();
       foreach (string chanLimitPair in value.Split(',')) {
         if (chanLimitPair.Contains(":")) {
           string[] chanLimitInfo = chanLimitPair.Split(':');

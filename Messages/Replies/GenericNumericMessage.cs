@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
 
@@ -25,7 +26,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets the text of the Message
     /// </summary>
-    public virtual Collection<string> Data {
+    public virtual IEnumerable<string> Data {
       get {
         return data;
       }

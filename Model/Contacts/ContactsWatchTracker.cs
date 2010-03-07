@@ -1,5 +1,5 @@
 using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using Supay.Irc.Messages;
 
 namespace Supay.Irc.Contacts {
@@ -16,7 +16,7 @@ namespace Supay.Irc.Contacts {
       base.Initialize();
     }
 
-    protected override void AddNicks(Collection<string> nicks) {
+    protected override void AddNicks(IEnumerable<string> nicks) {
       WatchListEditorMessage addMsg = new WatchListEditorMessage();
       foreach (string nick in nicks) {
         addMsg.AddedNicks.Add(nick);

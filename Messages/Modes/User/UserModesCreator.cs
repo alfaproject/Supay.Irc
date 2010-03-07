@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace Supay.Irc.Messages.Modes {
@@ -118,7 +119,7 @@ namespace Supay.Irc.Messages.Modes {
     /// <summary>
     /// Gets the collection of modes parsed or to be applied.
     /// </summary>
-    public virtual UserModeCollection Modes {
+    public virtual IEnumerable<UserMode> Modes {
       get {
         return modes;
       }

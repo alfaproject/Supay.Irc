@@ -214,7 +214,7 @@ namespace Supay.Irc.Messages.Modes {
     /// <summary>
     /// Gets the collection of modes parsed or to be applied.
     /// </summary>
-    public virtual ChannelModeCollection Modes {
+    public virtual IEnumerable<ChannelMode> Modes {
       get {
         return modes;
       }

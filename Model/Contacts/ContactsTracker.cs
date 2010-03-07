@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 
@@ -39,7 +40,7 @@ namespace Supay.Irc.Contacts {
       this.AddNicks(nicks);
     }
 
-    protected abstract void AddNicks(Collection<string> nicks);
+    protected abstract void AddNicks(IEnumerable<string> nicks);
 
     protected abstract void AddNick(string nick);
 

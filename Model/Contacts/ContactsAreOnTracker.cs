@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Supay.Irc.Messages;
 using System.Timers;
@@ -26,7 +27,7 @@ namespace Supay.Irc.Contacts {
       _timer.Start();
     }
 
-    protected override void AddNicks(Collection<string> nicks) {
+    protected override void AddNicks(IEnumerable<string> nicks) {
       foreach (string nick in nicks) {
         AddNick(nick);
       }
