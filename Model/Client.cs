@@ -583,7 +583,7 @@ namespace Supay.Irc {
       User joinedUser = (IsMe(msgUser.Nickname)) ? User : this.Peers.EnsureUser(msgUser);
 
       foreach (string channelname in e.Message.Channels) {
-        Channel joinedChannel = this.Channels.EnsureChannel(channelname, this);
+        Channel joinedChannel = this.Channels.EnsureChannel(channelname);
         joinedChannel.Open = true;
         joinedChannel.Users.Add(joinedUser);
       }
@@ -619,7 +619,7 @@ namespace Supay.Irc {
     }
 
     private void routeNames(object sender, IrcMessageEventArgs<NamesReplyMessage> e) {
-      Channel channel = this.Channels.EnsureChannel(e.Message.Channel, this);
+      Channel channel = this.Channels.EnsureChannel(e.Message.Channel);
       foreach (string nick in e.Message.Nicks.Keys) {
         User user = this.Peers.EnsureUser(nick);
         if (!channel.Users.Contains(user)) {
@@ -797,12 +797,12 @@ namespace Supay.Irc {
     }
 
     private void client_ChannelProperty(object sender, IrcMessageEventArgs<ChannelPropertyMessage> e) {
-      Channel channel = this.Channels.EnsureChannel(e.Message.Channel, this);
+      Channel channel = this.Channels.EnsureChannel(e.Message.Channel);
       channel.Properties[e.Message.Prop] = e.Message.NewValue;
     }
 
     private void client_ChannelPropertyReply(object sender, IrcMessageEventArgs<ChannelPropertyReplyMessage> e) {
-      Channel channel = this.Channels.EnsureChannel(e.Message.Channel, this);
+      Channel channel = this.Channels.EnsureChannel(e.Message.Channel);
       channel.Properties[e.Message.Prop] = e.Message.Value;
     }
 
