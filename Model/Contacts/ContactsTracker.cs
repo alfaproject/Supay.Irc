@@ -6,7 +6,7 @@ namespace Supay.Irc.Contacts {
 
   internal abstract class ContactsTracker {
   
-    public ContactsTracker(ContactList contacts) {
+    protected ContactsTracker(ContactList contacts) {
       this.contacts = contacts;
       this.contacts.Users.CollectionChanged += new NotifyCollectionChangedEventHandler(Users_CollectionChanged);
     }
