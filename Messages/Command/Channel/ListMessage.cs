@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
+using System.Linq;
 
 namespace Supay.Irc.Messages {
 
@@ -303,12 +304,7 @@ namespace Supay.Irc.Messages {
         return false;
       }
       string[] exList = new string[] { "!*", "*", "<", ">", "T", "C" };
-      foreach (string extStart in exList) {
-        if (p.StartsWith(extStart, StringComparison.Ordinal)) {
-          return true;
-        }
-      }
-      return false;
+      return exList.Any(extStart => p.StartsWith(extStart, StringComparison.Ordinal));
     }
 
     /// <summary>

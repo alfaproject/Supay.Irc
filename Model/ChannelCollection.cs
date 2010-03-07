@@ -1,5 +1,6 @@
 using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace Supay.Irc {
 
@@ -13,12 +14,7 @@ namespace Supay.Irc {
     /// <returns>
     ///   The so-named channel, or null. </returns>
     public Channel Find(string channelName) {
-      foreach (Channel channel in this) {
-        if (channel.Name.Equals(channelName, StringComparison.OrdinalIgnoreCase)) {
-          return channel;
-        }
-      }
-      return null;
+      return this.FirstOrDefault(channel => channel.Name.Equals(channelName, StringComparison.OrdinalIgnoreCase));
     }
 
     /// <summary>

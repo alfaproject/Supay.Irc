@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace Supay.Irc {
 
@@ -12,12 +13,7 @@ namespace Supay.Irc {
     /// </summary>
     /// <returns>The found query, or null.</returns>
     public Query FindQuery(User user) {
-      foreach (Query q in this) {
-        if (q.User == user || q.User.IsMatch(user)) {
-          return q;
-        }
-      }
-      return null;
+      return this.FirstOrDefault(q => q.User == user || q.User.IsMatch(user));
     }
 
     /// <summary>
