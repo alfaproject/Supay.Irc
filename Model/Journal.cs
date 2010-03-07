@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc {
@@ -6,6 +7,7 @@ namespace Supay.Irc {
   /// <summary>
   /// The journal of messages and related information related to an irc channel or query.
   /// </summary>
+  [Serializable]
   public class Journal : ObservableCollection<JournalEntry> {
 
     /// <summary>
