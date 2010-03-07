@@ -72,7 +72,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Determines if the current message is targeted at a query to the given user. </summary>
     public virtual bool IsQueryToUser(User user) {
-      return Targets.Cast<string>().Any(target => user.Nickname.EqualsI(target));
+      return Targets.Any(target => user.Nickname.EqualsI(target));
     }
 
     #endregion
