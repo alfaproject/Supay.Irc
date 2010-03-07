@@ -15,8 +15,7 @@ namespace Supay.Irc.Messages {
     /// Creates a new instance of the <see cref="LocalUsersReplyMessage"/> class.
     /// </summary>
     public LocalUsersReplyMessage()
-      : base() {
-      this.InternalNumeric = 265;
+      : base(265) {
     }
 
     /// <summary>

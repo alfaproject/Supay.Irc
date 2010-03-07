@@ -13,6 +13,10 @@ namespace Supay.Irc.Messages {
   [Serializable]
   public abstract class WatchedUserOfflineMessage : WatchedUserChangedMessage {
 
+    protected WatchedUserOfflineMessage(int number)
+      : base(number) {
+    }
+    
     /// <summary>
     /// Notifies the given <see cref="MessageConduit"/> by raising the appropriate event for the current <see cref="IrcMessage"/> subclass.
     /// </summary>

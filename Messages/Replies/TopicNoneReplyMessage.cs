@@ -15,8 +15,7 @@ namespace Supay.Irc.Messages {
     /// Creates a new instance of the <see cref="TopicNoneReplyMessage"/> class.
     /// </summary>
     public TopicNoneReplyMessage()
-      : base() {
-      this.InternalNumeric = 331;
+      : base(331) {
     }
 
     /// <summary>

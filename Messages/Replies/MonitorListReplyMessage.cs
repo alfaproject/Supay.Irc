@@ -15,8 +15,7 @@ namespace Supay.Irc.Messages {
     /// Creates a new instance of the <see cref="MonitorListReplyMessage"/>.
     /// </summary>
     public MonitorListReplyMessage()
-      : base() {
-      this.InternalNumeric = 732;
+      : base(732) {
     }
 
     /// <summary>

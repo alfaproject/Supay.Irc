@@ -5,23 +5,21 @@ using System.Collections.Specialized;
 namespace Supay.Irc.Messages {
 
   /// <summary>
-  /// A Monitor system notification that contains a list of nicks
-  /// </summary>
+  ///   A Monitor system notification that contains a list of nicks. </summary>
   [Serializable]
   public abstract class MonitoredNicksListMessage : NumericMessage {
 
-    /// <summary>
-    /// Gets the collection of nicks of users for the message.
-    /// </summary>
-    public StringCollection Nicks {
-      get {
-        if (nicks == null) {
-          nicks = new StringCollection();
-        }
-        return nicks;
-      }
+    protected MonitoredNicksListMessage(int number)
+      : base(number) {
+      Nicks = new StringCollection();
     }
-    private StringCollection nicks;
+
+    /// <summary>
+    ///   Gets the collection of nicks of users for the message. </summary>
+    public StringCollection Nicks {
+      get;
+      private set;
+    }
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
@@ -32,22 +30,19 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Parses the parameters portion of the message.
-    /// </summary>
+    ///   Parses the parameters portion of the message. </summary>
     protected override void ParseParameters(StringCollection parameters) {
       base.ParseParameters(parameters);
 
-      this.Nicks.Clear();
-
+      Nicks.Clear();
       if (parameters.Count > 1) {
         string userListParam = parameters[1];
-        string[] userList = userListParam.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
+        string[] userList = userListParam.Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries);
         foreach (string nick in userList) {
-          this.Nicks.Add(nick);
+          Nicks.Add(nick);
         }
       }
     }
 
-  }
-
-}
+  } //class MonitoredNicksListMessage
+} //namespace Supay.Irc.Messages

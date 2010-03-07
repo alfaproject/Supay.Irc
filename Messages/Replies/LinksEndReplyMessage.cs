@@ -14,8 +14,7 @@ namespace Supay.Irc.Messages {
     /// Creates a new instance of the <see cref="LinksEndReplyMessage"/> class.
     /// </summary>
     public LinksEndReplyMessage()
-      : base() {
-      this.InternalNumeric = 365;
+      : base(365) {
     }
 
     /// <summary>

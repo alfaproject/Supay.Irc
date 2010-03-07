@@ -12,8 +12,7 @@ namespace Supay.Irc.Messages {
     /// Creates a new instance of the <see cref="WatchedUserNowOnlineMessage"/>.
     /// </summary>
     public WatchedUserNowOnlineMessage()
-      : base() {
-      this.InternalNumeric = 601;
+      : base(601) {
     }
 
     /// <exclude />

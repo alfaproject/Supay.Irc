@@ -13,25 +13,18 @@ namespace Supay.Irc.Messages {
   public class AcceptListReplyMessage : NumericMessage {
 
     /// <summary>
-    /// Creates a new instance of the <see cref="AcceptListReplyMessage"/>.
-    /// </summary>
+    ///   Creates a new instance of the <see cref="AcceptListReplyMessage"/>. </summary>
     public AcceptListReplyMessage()
-      : base() {
-      this.InternalNumeric = 281;
+      : base(281) {
+      Nicks = new StringCollection();
     }
 
     /// <summary>
-    /// Gets the collection of nicks of the users on the watch list.
-    /// </summary>
+    ///   Gets the collection of nicks of the users on the watch list. </summary>
     public StringCollection Nicks {
-      get {
-        if (nicks == null) {
-          nicks = new StringCollection();
-        }
-        return nicks;
-      }
+      get;
+      private set;
     }
-    private StringCollection nicks;
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
@@ -44,24 +37,22 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Parses the parameters portion of the message.
-    /// </summary>
+    ///   Parses the parameters portion of the message. </summary>
     protected override void ParseParameters(StringCollection parameters) {
       base.ParseParameters(parameters);
 
-      this.Nicks.Clear();
+      Nicks.Clear();
       for (int i = 1; i < parameters.Count; i++) {
-        this.Nicks.Add(parameters[i]);
+        Nicks.Add(parameters[i]);
       }
     }
 
     /// <summary>
-    /// Notifies the given <see cref="MessageConduit"/> by raising the appropriate event for the current <see cref="IrcMessage"/> subclass.
-    /// </summary>
-    public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
+    ///   Notifies the given <see cref="MessageConduit"/> by raising the appropriate event for the
+    ///   current <see cref="IrcMessage"/> subclass. </summary>
+    public override void Notify(MessageConduit conduit) {
       conduit.OnAcceptListReply(new IrcMessageEventArgs<AcceptListReplyMessage>(this));
     }
 
-  }
-
-}
+  } //class AcceptListReplyMessage
+} //namespace Supay.Irc.Messages

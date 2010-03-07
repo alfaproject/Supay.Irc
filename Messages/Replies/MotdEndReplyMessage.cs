@@ -13,8 +13,7 @@ namespace Supay.Irc.Messages {
     /// Creates a new instance of the <see cref="MotdEndReplyMessage"/> class.
     /// </summary>
     public MotdEndReplyMessage()
-      : base() {
-      this.InternalNumeric = 376;
+      : base(376) {
     }
 
     /// <summary>

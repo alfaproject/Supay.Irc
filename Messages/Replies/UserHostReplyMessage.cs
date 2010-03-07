@@ -14,8 +14,7 @@ namespace Supay.Irc.Messages {
     /// Creates a new instance of the <see cref="UserHostReplyMessage"/> class.
     /// </summary>
     public UserHostReplyMessage()
-      : base() {
-      this.InternalNumeric = 302;
+      : base(302) {
     }
 
     /// <summary>

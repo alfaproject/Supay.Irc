@@ -15,8 +15,7 @@ namespace Supay.Irc.Messages {
     /// Creates a new instance of the <see cref="ChannelCreationTimeMessage"/> class.
     /// </summary>
     public ChannelCreationTimeMessage()
-      : base() {
-      this.InternalNumeric = 329;
+      : base(329) {
     }
 
     /// <summary>

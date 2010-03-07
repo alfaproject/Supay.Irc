@@ -15,8 +15,7 @@ namespace Supay.Irc.Messages {
     /// Creates a new instance of the <see cref="WatchStatusRequestMessage"/>.
     /// </summary>
     public WatchStatusReplyMessage()
-      : base() {
-      this.InternalNumeric = 603;
+      : base(603) {
     }
 
     /// <summary>

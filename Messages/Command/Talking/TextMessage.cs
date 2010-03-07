@@ -1,40 +1,41 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.Linq;
 
 namespace Supay.Irc.Messages {
 
   /// <summary>
-  /// A <see cref="IrcMessage"/> which carries communication from a person to another person or channel.
-  /// </summary>
+  ///   A <see cref="IrcMessage"/> which carries communication from a person to another person or
+  ///   channel. </summary>
   [Serializable]
   public abstract class TextMessage : CommandMessage, IChannelTargetedMessage, IQueryTargetedMessage {
 
-    /// <summary>
-    /// Gets the target of this <see cref="TextMessage"/>.
-    /// </summary>
-    public virtual StringCollection Targets {
-      get {
-        return this.targets;
-      }
+    protected TextMessage()
+      : this(string.Empty) {
     }
-    private StringCollection targets = new StringCollection();
+
+    protected TextMessage(string text) {
+      Text = text;
+      Targets = new StringCollection();
+    }
 
     /// <summary>
-    /// Gets or sets the actual text of this <see cref="TextMessage"/>.
-    /// </summary>
-    /// <remarks>
-    /// This property holds the core purpose of IRC itself... sending text communication to others.
-    /// </remarks>
-    public virtual string Text {
-      get {
-        return this.text;
-      }
-      set {
-        this.text = value;
-      }
+    ///   Gets the target of this <see cref="TextMessage"/>. </summary>
+    public StringCollection Targets {
+      get;
+      private set;
     }
-    private string text = string.Empty;
+
+    /// <summary>
+    ///   Gets or sets the actual text of this <see cref="TextMessage"/>. </summary>
+    /// <remarks>
+    ///   This property holds the core purpose of IRC itself... sending text communication to
+    ///   others. </remarks>
+    public string Text {
+      get;
+      set;
+    }
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
@@ -46,53 +47,35 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Parses the parameters portion of the message.
-    /// </summary>
+    ///   Parses the parameters portion of the message. </summary>
     protected override void ParseParameters(StringCollection parameters) {
       base.ParseParameters(parameters);
-      this.Targets.Clear();
+      Targets.Clear();
       if (parameters.Count >= 2) {
-        this.Targets.AddRange(parameters[0].Split(','));
-        this.Text = parameters[1];
-      } else {
-        this.Text = string.Empty;
+        Targets.AddRange(parameters[0].Split(','));
+        Text = parameters[1];
       }
     }
 
-
     #region IChannelTargetedMessage Members
 
-    bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
-      return IsTargetedAtChannel(channelName);
-    }
-
     /// <summary>
-    /// Determines if the the current message is targeted at the given channel.
-    /// </summary>
-    protected virtual bool IsTargetedAtChannel(string channelName) {
-      return MessageUtil.ContainsIgnoreCaseMatch(this.Targets, channelName);
+    ///   Determines if the the current message is targeted at the given channel. </summary>
+    public virtual bool IsTargetedAtChannel(string channelName) {
+      return MessageUtil.ContainsIgnoreCaseMatch(Targets, channelName);
     }
 
     #endregion
 
     #region IQueryTargetedMessage Members
 
-    bool IQueryTargetedMessage.IsQueryToUser(User user) {
-      return IsQueryToUser(user);
-    }
-
     /// <summary>
     ///   Determines if the current message is targeted at a query to the given user. </summary>
-    protected virtual bool IsQueryToUser(User user) {
-      foreach (string target in this.Targets) {
-        if (user.Nickname.EqualsI(target)) {
-          return true;
-        }
-      }
-      return false;
+    public virtual bool IsQueryToUser(User user) {
+      return Targets.Cast<string>().Any(target => user.Nickname.EqualsI(target));
     }
 
     #endregion
-  }
 
-}
+  } //class TextMessage
+} //namespace Supay.Irc.Messages

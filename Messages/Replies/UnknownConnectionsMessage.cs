@@ -21,8 +21,7 @@ namespace Supay.Irc.Messages {
     /// Creates a new instance of the <see cref="UnknownConnectionsMessage"/> class.
     /// </summary>
     public UnknownConnectionsMessage()
-      : base() {
-      this.InternalNumeric = 253;
+      : base(253) {
     }
 
     /// <summary>

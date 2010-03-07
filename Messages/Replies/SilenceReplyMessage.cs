@@ -14,8 +14,7 @@ namespace Supay.Irc.Messages {
     /// Creates a new instance of the <see cref="SilenceReplyMessage"/>.
     /// </summary>
     public SilenceReplyMessage()
-      : base() {
-      this.InternalNumeric = 271;
+      : base(271) {
     }
 
     /// <summary>

@@ -15,8 +15,7 @@ namespace Supay.Irc.Messages {
     /// Creates a new instance of the <see cref="WelcomeMessage"/> class.
     /// </summary>
     public WelcomeMessage()
-      : base() {
-      this.InternalNumeric = 001;
+      : base(001) {
     }
 
     /// <summary>

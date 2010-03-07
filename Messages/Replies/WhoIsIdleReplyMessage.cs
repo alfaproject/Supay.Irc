@@ -16,8 +16,7 @@ namespace Supay.Irc.Messages {
     /// Creates a new instance of the <see cref="WhoIsIdleReplyMessage"/> class.
     /// </summary>
     public WhoIsIdleReplyMessage()
-      : base() {
-      this.InternalNumeric = 317;
+      : base(317) {
     }
 
     /// <summary>

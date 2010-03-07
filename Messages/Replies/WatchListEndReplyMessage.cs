@@ -14,8 +14,7 @@ namespace Supay.Irc.Messages {
     /// Creates a new instance of the <see cref="WatchListEndReplyMessage"/>.
     /// </summary>
     public WatchListEndReplyMessage()
-      : base() {
-      this.InternalNumeric = 607;
+      : base(607) {
     }
 
     /// <summary>

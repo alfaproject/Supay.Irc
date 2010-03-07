@@ -14,8 +14,7 @@ namespace Supay.Irc.Messages {
     /// Creates a new instance of the <see cref="IsOnReplyMessage"/> class.
     /// </summary>
     public IsOnReplyMessage()
-      : base() {
-      this.InternalNumeric = 303;
+      : base(303) {
     }
 
     /// <summary>

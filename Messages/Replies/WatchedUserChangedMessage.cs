@@ -11,6 +11,10 @@ namespace Supay.Irc.Messages {
   [Serializable]
   public abstract class WatchedUserChangedMessage : NumericMessage {
 
+    protected WatchedUserChangedMessage(int number)
+      : base(number) {
+    }
+
     /// <summary>
     /// Gets or sets the watched User who's status has changed.
     /// </summary>

@@ -14,8 +14,7 @@ namespace Supay.Irc.Messages {
     /// Creates a new instance of the <see cref="SelfAwayMessage"/> class.
     /// </summary>
     public SelfAwayMessage()
-      : base() {
-      this.InternalNumeric = 306;
+      : base(306) {
     }
 
     /// <summary>

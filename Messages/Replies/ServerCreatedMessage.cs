@@ -15,8 +15,7 @@ namespace Supay.Irc.Messages {
     /// Creates a new instance of the <see cref="ServerCreatedMessage"/> class.
     /// </summary>
     public ServerCreatedMessage()
-      : base() {
-      this.InternalNumeric = 003;
+      : base(003) {
     }
 
     /// <summary>

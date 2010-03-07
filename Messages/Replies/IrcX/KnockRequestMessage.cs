@@ -14,8 +14,7 @@ namespace Supay.Irc.Messages {
     /// Creates a new instance of the <see cref="KnockRequestMessage"/>.
     /// </summary>
     public KnockRequestMessage()
-      : base() {
-      this.InternalNumeric = 710;
+      : base(710) {
     }
 
     /// <summary>

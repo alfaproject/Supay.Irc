@@ -10,11 +10,9 @@ namespace Supay.Irc.Messages {
   public class AcceptListEndReplyMessage : NumericMessage {
 
     /// <summary>
-    /// Creates a new instance of the <see cref="AcceptListEndReplyMessage"/>.
-    /// </summary>
+    ///   Creates a new instance of the <see cref="AcceptListEndReplyMessage"/>. </summary>
     public AcceptListEndReplyMessage()
-      : base() {
-      this.InternalNumeric = 282;
+      : base(282) {
     }
 
     /// <summary>
@@ -26,12 +24,11 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Notifies the given <see cref="MessageConduit"/> by raising the appropriate event for the current <see cref="IrcMessage"/> subclass.
-    /// </summary>
-    public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
+    ///   Notifies the given <see cref="MessageConduit"/> by raising the appropriate event for the
+    ///   current <see cref="IrcMessage"/> subclass. </summary>
+    public override void Notify(MessageConduit conduit) {
       conduit.OnAcceptListEndReply(new IrcMessageEventArgs<AcceptListEndReplyMessage>(this));
     }
 
-  }
-
-}
+  } //class AcceptListEndReplyMessage
+} //namespace Supay.Irc.Messages

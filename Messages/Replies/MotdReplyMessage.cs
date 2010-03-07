@@ -14,8 +14,7 @@ namespace Supay.Irc.Messages {
     /// Creates a new instance of the <see cref="MotdReplyMessage"/> class.
     /// </summary>
     public MotdReplyMessage()
-      : base() {
-      this.InternalNumeric = 372;
+      : base(372) {
     }
 
     /// <summary>

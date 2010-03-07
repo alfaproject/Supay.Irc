@@ -15,8 +15,7 @@ namespace Supay.Irc.Messages {
     /// Creates a new instance of the <see cref="IrcxReplyMessage"/>.
     /// </summary>
     public IrcxReplyMessage()
-      : base() {
-      this.InternalNumeric = 800;
+      : base(800) {
     }
 
     /// <summary>

@@ -14,8 +14,7 @@ namespace Supay.Irc.Messages {
     /// Creates a new instance of the <see cref="ChannelPropertyReplyMessage"/>.
     /// </summary>
     public ChannelPropertyReplyMessage()
-      : base() {
-      this.InternalNumeric = 818;
+      : base(818) {
     }
 
     /// <summary>
