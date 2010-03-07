@@ -850,7 +850,7 @@ namespace Supay.Irc {
       }
     }
 
-    private static void AddChars(Collection<string> target, IEnumerable<char> source) {
+    private static void AddChars(ICollection<string> target, IEnumerable<char> source) {
       foreach (Char c in source) {
         target.Add(c.ToString());
       }
