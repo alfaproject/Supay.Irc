@@ -57,20 +57,23 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Parses the parameters portion of the message.
-    /// </summary>
+    ///   Parses the parameters portion of the message. </summary>
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
-      if (parameters.Count == 2) {
-        string payload = parameters[1];
-        this.UserCount = Convert.ToInt32(MessageUtil.StringBetweenStrings(payload, currentGlobalUsers, max), CultureInfo.InvariantCulture);
-        this.UserLimit = Convert.ToInt32(payload.Substring(payload.IndexOf(max, StringComparison.Ordinal) + max.Length), CultureInfo.InvariantCulture);
-      } else if (parameters.Count == 4) {
-        this.UserCount = Convert.ToInt32(parameters[1], CultureInfo.InvariantCulture);
-        this.UserLimit = Convert.ToInt32(parameters[2], CultureInfo.InvariantCulture);
-      } else {
-        this.UserCount = -1;
-        this.UserLimit = -1;
+      switch (parameters.Count) {
+        case 2:
+          string payload = parameters[1];
+          UserCount = Convert.ToInt32(MessageUtil.StringBetweenStrings(payload, currentGlobalUsers, max), CultureInfo.InvariantCulture);
+          UserLimit = Convert.ToInt32(payload.Substring(payload.IndexOf(max, StringComparison.Ordinal) + max.Length), CultureInfo.InvariantCulture);
+          break;
+        case 4:
+          UserCount = Convert.ToInt32(parameters[1], CultureInfo.InvariantCulture);
+          UserLimit = Convert.ToInt32(parameters[2], CultureInfo.InvariantCulture);
+          break;
+        default:
+          UserCount = -1;
+          UserLimit = -1;
+          break;
       }
     }
 
