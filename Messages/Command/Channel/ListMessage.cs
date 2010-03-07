@@ -205,7 +205,7 @@ namespace Supay.Irc.Messages {
 
     private static void VerifySupport(ServerSupport serverSupport, ServerSupport.ExtendedListParameters parameter) {
       if ((serverSupport.ExtendedList & parameter) != parameter) {
-        throw new InvalidMessageException(string.Format(CultureInfo.InvariantCulture, Properties.Resources.ServerDoesNotSupportExtendedListParameter, parameter.ToString()));
+        throw new InvalidMessageException(string.Format(CultureInfo.InvariantCulture, Properties.Resources.ServerDoesNotSupportExtendedListParameter, parameter));
       }
     }
 
