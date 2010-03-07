@@ -464,8 +464,9 @@ namespace Supay.Irc {
     /// <param name="sender">the connection object sending the ping</param>
     /// <param name="e">the message sent</param>
     private void autoPingPong(object sender, IrcMessageEventArgs<PingMessage> e) {
-      PongMessage pong = new PongMessage();
-      pong.Target = e.Message.Target;
+      PongMessage pong = new PongMessage {
+        Target = e.Message.Target
+      };
       this.Send(pong);
     }
 
@@ -474,15 +475,17 @@ namespace Supay.Irc {
       readyRaised = false;
 
       //Send Password
-      if (User.Password != null && User.Password.Length != 0) {
-        PasswordMessage pass = new PasswordMessage();
-        pass.Password = User.Password;
+      if (!string.IsNullOrEmpty(User.Password)) {
+        PasswordMessage pass = new PasswordMessage {
+          Password = User.Password
+        };
         this.Send(pass);
       }
 
       //Send Nick
-      NickMessage nick = new NickMessage();
-      nick.NewNick = User.Nickname;
+      NickMessage nick = new NickMessage {
+        NewNick = User.Nickname
+      };
       this.Send(nick);
 
       //Send User
@@ -727,8 +730,9 @@ namespace Supay.Irc {
     private void client_ChannelModeIsReply(object sender, IrcMessageEventArgs<ChannelModeIsReplyMessage> e) {
       Channel channel = this.Channels.Find(e.Message.Channel);
       if (channel != null) {
-        ChannelModesCreator modes = new ChannelModesCreator();
-        modes.ServerSupport = this.ServerSupports;
+        ChannelModesCreator modes = new ChannelModesCreator {
+          ServerSupport = ServerSupports
+        };
         modes.Parse(e.Message.Modes, e.Message.ModeArguments);
         channel.Modes.ResetWith(modes.Modes);
       }

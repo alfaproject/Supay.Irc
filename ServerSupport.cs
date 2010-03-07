@@ -795,12 +795,13 @@ namespace Supay.Irc {
             this.SafeList = true;
             break;
           case "ELIST":
-            Dictionary<Char, ExtendedListParameters> elistMap = new Dictionary<char, ExtendedListParameters>();
-            elistMap.Add('M', ExtendedListParameters.Mask);
-            elistMap.Add('N', ExtendedListParameters.NotMask);
-            elistMap.Add('U', ExtendedListParameters.UserCount);
-            elistMap.Add('C', ExtendedListParameters.CreationTime);
-            elistMap.Add('T', ExtendedListParameters.Topic);
+            Dictionary<Char, ExtendedListParameters> elistMap = new Dictionary<char, ExtendedListParameters> {
+              { 'M', ExtendedListParameters.Mask },
+              { 'N', ExtendedListParameters.NotMask },
+              { 'U', ExtendedListParameters.UserCount },
+              { 'C', ExtendedListParameters.CreationTime },
+              { 'T', ExtendedListParameters.Topic }
+            };
 
             this.ExtendedList = ExtendedListParameters.None;
             foreach (Char c in value.ToUpperInvariant()) {
