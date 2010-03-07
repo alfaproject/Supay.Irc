@@ -19,10 +19,8 @@ namespace Supay.Irc {
     }
 
     /// <summary>
-    /// Creates a new instance of the Journal class starting with the given entry list.
-    /// </summary>
-    /// <param name="list"></param>
-    public Journal(IList<JournalEntry> list)
+    ///   Creates a new instance of the Journal class starting with the given entry list. </summary>
+    public Journal(IEnumerable<JournalEntry> list)
       : base(list) {
     }
 
