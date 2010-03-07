@@ -1,6 +1,5 @@
 using System;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 
 namespace Supay.Irc.Messages {
 
@@ -36,28 +35,28 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets the collection of nicks being added to the accept list.
     /// </summary>
-    public StringCollection AddedNicks {
+    public Collection<string> AddedNicks {
       get {
         if (addedNicks == null) {
-          addedNicks = new StringCollection();
+          addedNicks = new Collection<string>();
         }
         return addedNicks;
       }
     }
-    private StringCollection addedNicks;
+    private Collection<string> addedNicks;
 
     /// <summary>
     /// Gets the collection of nicks being removed from the accept list.
     /// </summary>
-    public StringCollection RemovedNicks {
+    public Collection<string> RemovedNicks {
       get {
         if (removedNicks == null) {
-          removedNicks = new StringCollection();
+          removedNicks = new Collection<string>();
         }
         return removedNicks;
       }
     }
-    private StringCollection removedNicks;
+    private Collection<string> removedNicks;
 
     #endregion
 
@@ -77,7 +76,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Parses the parameters portion of the message.
     /// </summary>
-    protected override void ParseParameters(StringCollection parameters) {
+    protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
 
       foreach (string nick in parameters[0].Split(',')) {
@@ -96,7 +95,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
     protected override Collection<string> GetParameters() {
-      StringCollection allNicks = new StringCollection();
+      Collection<string> allNicks = new Collection<string>();
       foreach (string removedNick in RemovedNicks) {
         allNicks.Add("-" + removedNick);
       }

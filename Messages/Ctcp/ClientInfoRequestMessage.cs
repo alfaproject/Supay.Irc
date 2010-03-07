@@ -1,5 +1,5 @@
 using System;
-using System.Collections.Specialized;
+using System.Collections.Generic;
 
 namespace Supay.Irc.Messages {
 
@@ -24,12 +24,12 @@ namespace Supay.Irc.Messages {
     /// <remarks>
     /// To specificly ask about support for the "TIME" command, add "TIME" as the first parameter.
     /// </remarks>
-    public virtual StringCollection Parameters {
+    public virtual List<string> Parameters {
       get {
         return this.parameters;
       }
     }
-    private StringCollection parameters = new StringCollection();
+    private List<string> parameters = new List<string>();
 
     /// <summary>
     /// Gets the data payload of the Ctcp request.

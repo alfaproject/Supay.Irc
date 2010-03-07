@@ -1,6 +1,5 @@
 using System;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 
 namespace Supay.Irc.Messages {
 
@@ -22,13 +21,13 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets the collection of nicks to request information for.
     /// </summary>
-    public virtual StringCollection Nicks {
+    public virtual Collection<string> Nicks {
       get {
         return nicks;
       }
     }
 
-    private StringCollection nicks = new StringCollection();
+    private Collection<string> nicks = new Collection<string>();
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
@@ -41,7 +40,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Parses the parameters portion of the message.
     /// </summary>
-    protected override void ParseParameters(StringCollection parameters) {
+    protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
       this.Nicks.Clear();
       foreach (string nick in parameters) {

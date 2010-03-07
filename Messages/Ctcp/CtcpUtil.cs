@@ -1,5 +1,5 @@
 using System;
-using System.Collections.Specialized;
+using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
 
@@ -88,7 +88,7 @@ namespace Supay.Irc.Messages {
     /// Determines if the given message is a Ctcp message.
     /// </summary>
     public static bool IsCtcpMessage(string rawMessage) {
-      StringCollection p = MessageUtil.GetParameters(rawMessage);
+      Collection<string> p = MessageUtil.GetParameters(rawMessage);
       if (p.Count != 2) {
         return false;
       }

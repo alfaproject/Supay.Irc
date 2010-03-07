@@ -1,6 +1,5 @@
 using System;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 using System.Globalization;
 
 namespace Supay.Irc.Messages {
@@ -47,12 +46,12 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets the collection of authentication packages
     /// </summary>
-    public virtual StringCollection AuthenticationPackages {
+    public virtual Collection<string> AuthenticationPackages {
       get {
         return this.authenticationPackages;
       }
     }
-    private StringCollection authenticationPackages = new StringCollection();
+    private Collection<string> authenticationPackages = new Collection<string>();
 
     /// <summary>
     /// Gets or sets the maximum message length, in bytes.
@@ -99,7 +98,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Parses the parameters portion of the message.
     /// </summary>
-    protected override void ParseParameters(StringCollection parameters) {
+    protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
       if (parameters.Count >= 5) {
         this.IsIrcxClientMode = (parameters[1] == "1");

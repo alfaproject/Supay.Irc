@@ -1,5 +1,5 @@
 using System;
-using System.Collections.Specialized;
+using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
 
@@ -66,7 +66,7 @@ namespace Supay.Irc.Messages {
       base.Parse(unparsedMessage);
       string eData = CtcpUtil.GetExtendedData(unparsedMessage);
       if (eData.Length > 0) {
-        StringCollection p = MessageUtil.GetParameters(eData);
+        Collection<string> p = MessageUtil.GetParameters(eData);
         this.SoundFile = p[0];
         if (p.Count > 1) {
           this.Text = p[1];

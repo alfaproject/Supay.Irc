@@ -1,6 +1,5 @@
 using System;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 
 namespace Supay.Irc.Messages {
 
@@ -16,12 +15,12 @@ namespace Supay.Irc.Messages {
     ///   Creates a new instance of the <see cref="AcceptListReplyMessage"/>. </summary>
     public AcceptListReplyMessage()
       : base(281) {
-      Nicks = new StringCollection();
+      Nicks = new Collection<string>();
     }
 
     /// <summary>
     ///   Gets the collection of nicks of the users on the watch list. </summary>
-    public StringCollection Nicks {
+    public Collection<string> Nicks {
       get;
       private set;
     }
@@ -38,7 +37,7 @@ namespace Supay.Irc.Messages {
 
     /// <summary>
     ///   Parses the parameters portion of the message. </summary>
-    protected override void ParseParameters(StringCollection parameters) {
+    protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
 
       Nicks.Clear();

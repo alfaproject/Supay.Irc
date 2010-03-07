@@ -1,6 +1,5 @@
 using System;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 
 namespace Supay.Irc.Messages {
 
@@ -17,7 +16,7 @@ namespace Supay.Irc.Messages {
       if (!base.CanParse(unparsedMessage)) {
         return false;
       }
-      StringCollection param = MessageUtil.GetParameters(unparsedMessage);
+      Collection<string> param = MessageUtil.GetParameters(unparsedMessage);
       return (param.Count == 1 && param[0].EqualsI("S"));
     }
 

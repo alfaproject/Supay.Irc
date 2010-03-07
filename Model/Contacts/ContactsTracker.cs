@@ -1,3 +1,4 @@
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 
 namespace Supay.Irc.Contacts {
@@ -31,14 +32,14 @@ namespace Supay.Irc.Contacts {
     }
 
     public virtual void Initialize() {
-      StringCollection nicks = new StringCollection();
+      Collection<string> nicks = new Collection<string>();
       foreach (User u in this.Contacts.Users) {
         nicks.Add(u.Nickname);
       }
       this.AddNicks(nicks);
     }
 
-    protected abstract void AddNicks(StringCollection nicks);
+    protected abstract void AddNicks(Collection<string> nicks);
 
     protected abstract void AddNick(string nick);
 

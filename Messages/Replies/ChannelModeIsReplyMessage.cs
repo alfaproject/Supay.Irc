@@ -1,6 +1,6 @@
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 
 namespace Supay.Irc.Messages {
 
@@ -50,7 +50,7 @@ namespace Supay.Irc.Messages {
     /// <remarks>
     /// Some modes require a parameter, such as +l ( user limit ) requires the number being limited to.
     /// </remarks>
-    public virtual StringCollection ModeArguments {
+    public virtual List<string> ModeArguments {
       get {
         return modeArguments;
       }
@@ -58,7 +58,7 @@ namespace Supay.Irc.Messages {
 
     private string channel = string.Empty;
     private string modes = string.Empty;
-    private StringCollection modeArguments = new StringCollection();
+    private List<string> modeArguments = new List<string>();
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
@@ -75,7 +75,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Parses the parameters portion of the message.
     /// </summary>
-    protected override void ParseParameters(StringCollection parameters) {
+    protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
 
       this.ModeArguments.Clear();

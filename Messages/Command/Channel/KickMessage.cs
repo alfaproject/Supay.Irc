@@ -1,6 +1,6 @@
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 
 namespace Supay.Irc.Messages {
 
@@ -32,8 +32,8 @@ namespace Supay.Irc.Messages {
       this.nicks.Add(nick);
     }
 
-    private StringCollection channels = new StringCollection();
-    private StringCollection nicks = new StringCollection();
+    private List<string> channels = new List<string>();
+    private List<string> nicks = new List<string>();
     private string reason = string.Empty;
 
     /// <summary>
@@ -48,7 +48,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets the channels affected.
     /// </summary>
-    public virtual StringCollection Channels {
+    public virtual List<string> Channels {
       get {
         return this.channels;
       }
@@ -57,7 +57,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets the nicks of the users being kicked.
     /// </summary>
-    public virtual StringCollection Nicks {
+    public virtual List<string> Nicks {
       get {
         return this.nicks;
       }
@@ -108,7 +108,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Parses the parameters portion of the message
     /// </summary>
-    protected override void ParseParameters(StringCollection parameters) {
+    protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
       this.Channels.Clear();
       this.Nicks.Clear();

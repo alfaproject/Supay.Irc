@@ -1,5 +1,5 @@
 using System;
-using System.Collections.Specialized;
+using System.Collections.ObjectModel;
 using System.Text;
 
 namespace Supay.Irc.Messages {
@@ -48,12 +48,12 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets the list of files that must be downloaded.
     /// </summary>
-    public virtual StringCollection Files {
+    public virtual Collection<string> Files {
       get {
         return this.files;
       }
     }
-    private StringCollection files = new StringCollection();
+    private Collection<string> files = new Collection<string>();
 
     /// <summary>
     /// Gets the data payload of the Ctcp request.
@@ -84,7 +84,7 @@ namespace Supay.Irc.Messages {
         if (p.Length > 1) {
           this.Folder = p[1];
           if (p.Length == 3) {
-            StringCollection fs = MessageUtil.GetParameters(p[2]);
+            Collection<string> fs = MessageUtil.GetParameters(p[2]);
             foreach (string f in fs) {
               this.Files.Add(f);
             }

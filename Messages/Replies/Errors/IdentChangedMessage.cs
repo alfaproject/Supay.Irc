@@ -1,6 +1,5 @@
 using System;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 using System.Globalization;
 
 namespace Supay.Irc.Messages {
@@ -69,7 +68,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <exclude />
-    protected override void ParseParameters(StringCollection parameters) {
+    protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
       string param = parameters[1];
       this.Ident = MessageUtil.StringBetweenStrings(param, "Your username ", " contained the invalid ");

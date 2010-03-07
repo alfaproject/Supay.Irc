@@ -1,6 +1,6 @@
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 
 namespace Supay.Irc.Messages {
 
@@ -43,7 +43,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets the channel names joined
     /// </summary>
-    public virtual StringCollection Channels {
+    public virtual List<string> Channels {
       get {
         return this.channels;
       }
@@ -53,14 +53,14 @@ namespace Supay.Irc.Messages {
     /// Gets the key (password) of the channels
     /// </summary>
     /// <remarks>Only relevant for channels that have a key</remarks>
-    public virtual StringCollection Keys {
+    public virtual List<string> Keys {
       get {
         return this.keys;
       }
     }
 
-    private StringCollection channels = new StringCollection();
-    private StringCollection keys = new StringCollection();
+    private List<string> channels = new List<string>();
+    private List<string> keys = new List<string>();
 
     /// <summary>
     /// Validates this message against the given server support
@@ -88,7 +88,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Parses the parameters portion of the message
     /// </summary>
-    protected override void ParseParameters(StringCollection parameters) {
+    protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
       this.Channels.Clear();
       this.Keys.Clear();

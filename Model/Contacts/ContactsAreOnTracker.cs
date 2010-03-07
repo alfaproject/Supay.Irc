@@ -1,5 +1,5 @@
 using System;
-using System.Collections.Specialized;
+using System.Collections.ObjectModel;
 using Supay.Irc.Messages;
 using System.Timers;
 
@@ -7,8 +7,8 @@ namespace Supay.Irc.Contacts {
 
   internal class ContactsAreOnTracker : ContactsTracker, IDisposable {
 
-    private readonly StringCollection _trackedNicks = new StringCollection();
-    private readonly StringCollection _waitingOnNicks = new StringCollection();
+    private readonly Collection<string> _trackedNicks = new Collection<string>();
+    private readonly Collection<string> _waitingOnNicks = new Collection<string>();
     private Timer _timer;
 
     public ContactsAreOnTracker(ContactList contacts)
@@ -26,7 +26,7 @@ namespace Supay.Irc.Contacts {
       _timer.Start();
     }
 
-    protected override void AddNicks(StringCollection nicks) {
+    protected override void AddNicks(Collection<string> nicks) {
       foreach (string nick in nicks) {
         AddNick(nick);
       }

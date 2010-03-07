@@ -1,6 +1,6 @@
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 
 namespace Supay.Irc.Messages {
 
@@ -32,14 +32,14 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets the collection of channels the user is a member of.
     /// </summary>
-    public virtual StringCollection Channels {
+    public virtual List<string> Channels {
       get {
         return channels;
       }
     }
 
     private string nick = string.Empty;
-    private StringCollection channels = new StringCollection();
+    private List<string> channels = new List<string>();
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
@@ -55,7 +55,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Parses the parameters portion of the message.
     /// </summary>
-    protected override void ParseParameters(StringCollection parameters) {
+    protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
       this.Nick = string.Empty;
       this.Channels.Clear();

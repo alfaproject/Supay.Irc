@@ -1,6 +1,6 @@
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 using System.Linq;
 
 namespace Supay.Irc.Messages {
@@ -17,12 +17,12 @@ namespace Supay.Irc.Messages {
 
     protected TextMessage(string text) {
       Text = text;
-      Targets = new StringCollection();
+      Targets = new List<string>();
     }
 
     /// <summary>
     ///   Gets the target of this <see cref="TextMessage"/>. </summary>
-    public StringCollection Targets {
+    public List<string> Targets {
       get;
       private set;
     }
@@ -48,7 +48,7 @@ namespace Supay.Irc.Messages {
 
     /// <summary>
     ///   Parses the parameters portion of the message. </summary>
-    protected override void ParseParameters(StringCollection parameters) {
+    protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
       Targets.Clear();
       if (parameters.Count >= 2) {

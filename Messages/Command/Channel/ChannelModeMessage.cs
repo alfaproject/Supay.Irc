@@ -1,6 +1,6 @@
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 
 namespace Supay.Irc.Messages {
 
@@ -77,12 +77,12 @@ namespace Supay.Irc.Messages {
     /// <remarks>
     /// Some modes require a parameter, such as +o requires the mask of the person to be given ops.
     /// </remarks>
-    public virtual StringCollection ModeArguments {
+    public virtual List<string> ModeArguments {
       get {
         return this.modeArguments;
       }
     }
-    private StringCollection modeArguments = new StringCollection();
+    private List<string> modeArguments = new List<string>();
 
     /// <summary>
     /// Determines if the message can be parsed by this type.
@@ -91,7 +91,7 @@ namespace Supay.Irc.Messages {
       if (!base.CanParse(unparsedMessage)) {
         return false;
       }
-      StringCollection p = MessageUtil.GetParameters(unparsedMessage);
+      Collection<string> p = MessageUtil.GetParameters(unparsedMessage);
       if (p.Count >= 1) {
         return MessageUtil.HasValidChannelPrefix(p[0]);
       } else {
@@ -102,7 +102,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Parses the parameters portion of the message.
     /// </summary>
-    protected override void ParseParameters(StringCollection parameters) {
+    protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
       this.Channel = parameters[0];
 

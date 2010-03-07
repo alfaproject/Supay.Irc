@@ -1,6 +1,5 @@
 using System;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 
 namespace Supay.Irc.Messages {
 
@@ -35,14 +34,14 @@ namespace Supay.Irc.Messages {
       if (!base.CanParse(unparsedMessage)) {
         return false;
       }
-      StringCollection param = MessageUtil.GetParameters(unparsedMessage);
+      Collection<string> param = MessageUtil.GetParameters(unparsedMessage);
       return (param.Count == 0 || (param.Count == 1 && param[0].EqualsI("L")));
     }
 
     /// <summary>
     /// Overrides <see href="IrcMessage.ParseParameters"/>
     /// </summary>
-    protected override void ParseParameters(StringCollection parameters) {
+    protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
       this.OnlineOnly = parameters.Count == 0 || parameters[0] == "l";
     }

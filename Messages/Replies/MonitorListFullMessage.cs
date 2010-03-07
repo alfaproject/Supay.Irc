@@ -1,6 +1,5 @@
 using System;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 using System.Globalization;
 
 namespace Supay.Irc.Messages {
@@ -35,15 +34,15 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets the collection of nicks which couldn't be added to the monitor list.
     /// </summary>
-    public StringCollection Nicks {
+    public Collection<string> Nicks {
       get {
         if (nicks == null) {
-          nicks = new StringCollection();
+          nicks = new Collection<string>();
         }
         return nicks;
       }
     }
-    private StringCollection nicks;
+    private Collection<string> nicks;
 
     /// <exclude />
     protected override Collection<string> GetParameters() {
@@ -55,7 +54,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <exclude />
-    protected override void ParseParameters(StringCollection parameters) {
+    protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
       this.Limit = -1;
       this.Nicks.Clear();

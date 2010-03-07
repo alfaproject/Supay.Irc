@@ -1,6 +1,5 @@
 using System;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 
 namespace Supay.Irc.Messages {
 
@@ -13,15 +12,15 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets the collection of nicks being removed from the monitor list.
     /// </summary>
-    public StringCollection Nicks {
+    public Collection<string> Nicks {
       get {
         if (nicks == null) {
-          nicks = new StringCollection();
+          nicks = new Collection<string>();
         }
         return nicks;
       }
     }
-    private StringCollection nicks;
+    private Collection<string> nicks;
 
     /// <summary>
     /// Determines if the message can be parsed by this type.
@@ -37,7 +36,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Parses the parameters portion of the message.
     /// </summary>
-    protected override void ParseParameters(StringCollection parameters) {
+    protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
       string nicksParam = parameters[parameters.Count - 1];
       string[] splitNicksParam = nicksParam.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);

@@ -1,6 +1,5 @@
 using System;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 using System.Text;
 
 namespace Supay.Irc.Messages {
@@ -37,7 +36,7 @@ namespace Supay.Irc.Messages {
 
     /// <summary>
     ///   Parses the parameter portion of the message. </summary>
-    protected virtual void ParseParameters(StringCollection parameters) {
+    protected virtual void ParseParameters(Collection<string> parameters) {
     }
 
     /// <summary>

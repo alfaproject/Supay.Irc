@@ -1,6 +1,5 @@
 using System;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 
 namespace Supay.Irc.Messages {
 
@@ -11,12 +10,12 @@ namespace Supay.Irc.Messages {
 
     protected MonitoredNicksListMessage(int number)
       : base(number) {
-      Nicks = new StringCollection();
+      Nicks = new Collection<string>();
     }
 
     /// <summary>
     ///   Gets the collection of nicks of users for the message. </summary>
-    public StringCollection Nicks {
+    public Collection<string> Nicks {
       get;
       private set;
     }
@@ -31,7 +30,7 @@ namespace Supay.Irc.Messages {
 
     /// <summary>
     ///   Parses the parameters portion of the message. </summary>
-    protected override void ParseParameters(StringCollection parameters) {
+    protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
 
       Nicks.Clear();

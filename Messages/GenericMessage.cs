@@ -1,6 +1,5 @@
 using System;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 
 namespace Supay.Irc.Messages {
 
@@ -13,7 +12,7 @@ namespace Supay.Irc.Messages {
 
     public GenericMessage() {
       _command = string.Empty;
-      this.Parameters = new StringCollection();
+      this.Parameters = new Collection<string>();
     }
 
     #endregion
@@ -37,7 +36,7 @@ namespace Supay.Irc.Messages {
 
     /// <summary>
     ///   Gets the message's parameters after the command. </summary>
-    public StringCollection Parameters {
+    public Collection<string> Parameters {
       get;
       private set;
     }
@@ -84,7 +83,7 @@ namespace Supay.Irc.Messages {
 
     /// <summary>
     ///   Parses the parameter portion of the message. </summary>
-    protected override void ParseParameters(StringCollection parameters) {
+    protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
       this.Parameters = parameters;
     }

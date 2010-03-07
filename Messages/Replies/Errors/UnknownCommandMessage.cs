@@ -1,6 +1,5 @@
 using System;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 
 namespace Supay.Irc.Messages {
 
@@ -39,7 +38,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <exclude />
-    protected override void ParseParameters(StringCollection parameters) {
+    protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
       this.Command = string.Empty;
       if (parameters.Count > 1) {

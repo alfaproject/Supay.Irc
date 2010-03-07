@@ -1,8 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Collections.Specialized;
+using System.Collections.ObjectModel;
 using System.Globalization;
+using System.Linq;
 using System.Text;
 
 namespace Supay.Irc.Messages {
@@ -73,7 +74,7 @@ namespace Supay.Irc.Messages {
 
     /// <summary>
     ///   Creates a list of IRC parameters from the given collection of strings. </summary>
-    public static string ParametersToString(bool useColon, StringCollection parameters) {
+    public static string ParametersToString(bool useColon, Collection<string> parameters) {
       if (parameters == null) {
         return string.Empty;
       }
@@ -103,7 +104,7 @@ namespace Supay.Irc.Messages {
 
     /// <summary>
     ///   Creates a list of IRC parameters from the given collection of strings. </summary>
-    public static string ParametersToString(StringCollection parameters) {
+    public static string ParametersToString(Collection<string> parameters) {
       return ParametersToString(true, parameters);
     }
 
@@ -118,9 +119,8 @@ namespace Supay.Irc.Messages {
     #region Create Lists
 
     /// <summary>
-    ///   Creates a space-delimited list from the given <see cref="StringCollection"/>, using
-    ///   delimiter. </summary>
-    public static string CreateList(StringCollection items, string delimiter) {
+    ///   Creates a space-delimited list from the given items, using delimiter. </summary>
+    public static string CreateList(Collection<string> items, string delimiter) {
       if (items == null) {
         return string.Empty;
       }
@@ -217,30 +217,29 @@ namespace Supay.Irc.Messages {
     ///   Gets the parameters of the raw message. </summary>
     /// <param name="rawMessage">
     ///   The message string which has the parameters. </param>
-    public static StringCollection GetParameters(string rawMessage) {
+    public static Collection<string> GetParameters(string rawMessage) {
       if (string.IsNullOrEmpty(rawMessage)) {
-        return new StringCollection();
+        return new Collection<string>();
       }
 
       int startIndex;
-
       if (rawMessage.StartsWith(":", StringComparison.Ordinal)) {
         // then the params start after space 2
-        startIndex = MessageUtil.NthIndexOf(rawMessage, " ", 0, 2) + 1;
+        startIndex = NthIndexOf(rawMessage, " ", 0, 2) + 1;
       } else {
         // then the params start after space 1
-        startIndex = MessageUtil.NthIndexOf(rawMessage, " ", 0, 1) + 1;
+        startIndex = NthIndexOf(rawMessage, " ", 0, 1) + 1;
       }
 
       if (startIndex == 0) {
-        return new StringCollection();
+        return new Collection<string>();
       }
       return Tokenize(rawMessage, startIndex);
     }
 
     /// <summary>
     ///   Separates the given space-delimited parameter string into a collection. </summary>
-    public static StringCollection Tokenize(string rawMessage, int startIndex) {
+    public static Collection<string> Tokenize(string rawMessage, int startIndex) {
       if (rawMessage == null) {
         throw new ArgumentNullException("rawMessage");
       }
@@ -249,7 +248,7 @@ namespace Supay.Irc.Messages {
         return cachedParams;
       }
 
-      StringCollection parameters = new StringCollection();
+      Collection<string> parameters = new Collection<string>();
       StringBuilder param = new StringBuilder();
       for (int i = startIndex; i < rawMessage.Length; i++) {
         char c = rawMessage[i];
@@ -275,13 +274,13 @@ namespace Supay.Irc.Messages {
     }
 
     private static string cachedRawMessage = string.Empty;
-    private static StringCollection cachedParams;
+    private static Collection<string> cachedParams;
 
 
     /// <summary>
     ///   Gets the last parameter in the parameters collection of the given unparsed message. </summary>
     public static string GetLastParameter(string rawMessage) {
-      StringCollection p = MessageUtil.GetParameters(rawMessage);
+      Collection<string> p = MessageUtil.GetParameters(rawMessage);
       if (p.Count > 0) {
         return p[p.Count - 1];
       } else {
@@ -292,7 +291,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Gets the nth parameter in the parameters collection of the given unparsed message. </summary>
     public static string GetParameter(string rawMessage, int index) {
-      StringCollection p = MessageUtil.GetParameters(rawMessage);
+      Collection<string> p = MessageUtil.GetParameters(rawMessage);
       if (p.Count > index) {
         return p[index];
       } else {
@@ -414,13 +413,8 @@ namespace Supay.Irc.Messages {
     ///   The list to look in. </param>
     /// <param name="match">
     ///   The string to look for. </param>
-    public static bool ContainsIgnoreCaseMatch(StringCollection strings, string match) {
-      foreach (string item in strings) {
-        if (item.EqualsI(match)) {
-          return true;
-        }
-      }
-      return false;
+    public static bool ContainsIgnoreCaseMatch(IEnumerable<string> strings, string match) {
+      return strings.Any(item => item.EqualsI(match));
     }
 
   } //class MessageUtil

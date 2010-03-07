@@ -1,5 +1,5 @@
 using System;
-using System.Collections.Specialized;
+using System.Collections.Generic;
 using System.Globalization;
 
 namespace Supay.Irc.Messages.Modes {
@@ -37,12 +37,12 @@ namespace Supay.Irc.Messages.Modes {
     /// Loads the given mode data into this <see cref="ChannelModesCreator"/>
     /// </summary>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity")]
-    public void Parse(string modeChanges, StringCollection modeArguments) {
+    public void Parse(string modeChanges, List<string> modeArguments) {
       if (string.IsNullOrEmpty(modeChanges)) {
         return;
       }
       if (modeArguments == null) {
-        modeArguments = new StringCollection();
+        modeArguments = new List<string>();
       }
 
       this.modes.Clear();
@@ -173,7 +173,7 @@ namespace Supay.Irc.Messages.Modes {
       if (string.IsNullOrEmpty(modeChanges)) {
         return;
       }
-      this.Parse(modeChanges, new StringCollection());
+      this.Parse(modeChanges, new List<string>());
     }
 
     #endregion

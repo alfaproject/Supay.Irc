@@ -1,6 +1,6 @@
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 using System.Globalization;
 
 namespace Supay.Irc.Messages {
@@ -35,12 +35,12 @@ namespace Supay.Irc.Messages {
     /// <remarks>
     /// If this is empty, information about all channels is requested.
     /// </remarks>
-    public virtual StringCollection Channels {
+    public virtual List<string> Channels {
       get {
         return this.channels;
       }
     }
-    private StringCollection channels = new StringCollection();
+    private List<string> channels = new List<string>();
 
     /// <summary>
     /// Gets or sets the server that should return the info.
@@ -211,7 +211,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
     protected override Collection<string> GetParameters() {
-      StringCollection options = new StringCollection();
+      Collection<string> options = new Collection<string>();
       if (MaxUsers >= 0) {
         options.Add("<" + MaxUsers.ToString(CultureInfo.InvariantCulture));
       }
@@ -252,7 +252,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Parses the parameters portion of the message.
     /// </summary>
-    protected override void ParseParameters(StringCollection parameters) {
+    protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
 
       this.Channels.Clear();

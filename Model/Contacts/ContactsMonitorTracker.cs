@@ -1,4 +1,5 @@
 using System;
+using System.Collections.ObjectModel;
 using Supay.Irc.Messages;
 
 namespace Supay.Irc.Contacts {
@@ -15,7 +16,7 @@ namespace Supay.Irc.Contacts {
       base.Initialize();
     }
 
-    protected override void AddNicks(System.Collections.Specialized.StringCollection nicks) {
+    protected override void AddNicks(Collection<string> nicks) {
       MonitorAddUsersMessage add = new MonitorAddUsersMessage();
       foreach (string nick in nicks) {
         add.Nicks.Add(nick);

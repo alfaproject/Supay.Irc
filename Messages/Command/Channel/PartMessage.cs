@@ -1,6 +1,6 @@
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 
 namespace Supay.Irc.Messages {
 
@@ -29,7 +29,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Gets the channel name parted.
     /// </summary>
-    public virtual StringCollection Channels {
+    public virtual List<string> Channels {
       get {
         return this.channels;
       }
@@ -83,7 +83,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     /// Parse the parameters portion of the message.
     /// </summary>
-    protected override void ParseParameters(StringCollection parameters) {
+    protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
       this.Channels.Clear();
       if (parameters.Count >= 1) {
@@ -101,7 +101,7 @@ namespace Supay.Irc.Messages {
       conduit.OnPart(new IrcMessageEventArgs<PartMessage>(this));
     }
 
-    private StringCollection channels = new StringCollection();
+    private List<string> channels = new List<string>();
     private string reason = string.Empty;
 
 

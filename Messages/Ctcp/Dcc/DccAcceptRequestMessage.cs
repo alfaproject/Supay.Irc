@@ -1,5 +1,5 @@
 using System;
-using System.Collections.Specialized;
+using System.Collections.ObjectModel;
 using System.Globalization;
 using Supay.Irc.Dcc;
 
@@ -78,7 +78,7 @@ namespace Supay.Irc.Messages {
 
     /// <summary>
     ///   Parses the parameters portion of the message. </summary>
-    protected override void ParseParameters(StringCollection parameters) {
+    protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
       if (parameters.Count >= 4) {
         Port = Convert.ToInt32(parameters[2], CultureInfo.InvariantCulture);

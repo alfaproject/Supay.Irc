@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Diagnostics;
 using System.Globalization;
@@ -124,42 +125,42 @@ namespace Supay.Irc {
     /// <summary>
     /// Gets the supported channel prefixes.
     /// </summary>
-    public StringCollection ChannelTypes {
+    public Collection<string> ChannelTypes {
       get {
         return (this._channelTypes);
       }
     }
-    private StringCollection _channelTypes = new StringCollection();
+    private Collection<string> _channelTypes = new Collection<string>();
 
     /// <summary>
     /// Gets the modes that require parameters
     /// </summary>
-    public StringCollection ModesWithParameters {
+    public Collection<string> ModesWithParameters {
       get {
         return (this._modesWithParameters);
       }
     }
-    private StringCollection _modesWithParameters = new StringCollection();
+    private Collection<string> _modesWithParameters = new Collection<string>();
 
     /// <summary>
     /// Gets the modes that require parameters only when set.
     /// </summary>
-    public StringCollection ModesWithParametersWhenSet {
+    public Collection<string> ModesWithParametersWhenSet {
       get {
         return (this._modesWithParametersWhenSet);
       }
     }
-    private StringCollection _modesWithParametersWhenSet = new StringCollection();
+    private Collection<string> _modesWithParametersWhenSet = new Collection<string>();
 
     /// <summary>
     /// Gets the modes that do not require parameters.
     /// </summary>
-    public StringCollection ModesWithoutParameters {
+    public Collection<string> ModesWithoutParameters {
       get {
         return (this._modesWithoutParameters);
       }
     }
-    private StringCollection _modesWithoutParameters = new StringCollection();
+    private Collection<string> _modesWithoutParameters = new Collection<string>();
 
     /// <summary>
     /// Maximum number of channel modes with parameter allowed per <see cref="Supay.Irc.Messages.ChannelModeMessage"/> command.
@@ -848,7 +849,7 @@ namespace Supay.Irc {
       }
     }
 
-    private static void AddChars(StringCollection target, string source) {
+    private static void AddChars(Collection<string> target, string source) {
       foreach (Char c in source) {
         target.Add(c.ToString());
       }
