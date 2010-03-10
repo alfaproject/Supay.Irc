@@ -85,7 +85,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ChannelStatus.cs" />
+    <Compile Include="Messages\Modes\ChannelStatus.cs" />
     <Compile Include="Model\Contacts\ContactsTracker.cs" />
     <Compile Include="Model\Contacts\ContactsWatchTracker.cs" />
     <Compile Include="Model\Contacts\ContactsMonitorTracker.cs" />
