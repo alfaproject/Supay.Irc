@@ -1,5 +1,5 @@
 using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace Supay.Irc {
@@ -13,50 +13,37 @@ namespace Supay.Irc {
 
     /// <summary>
     ///   Gets the <see cref="ChannelStatus"/> representing the operator status level. </summary>
-    public static readonly ChannelStatus Operator;
+    public static readonly ChannelStatus Operator = new ChannelStatus("@");
 
     /// <summary>
     ///   Gets the <see cref="ChannelStatus"/> representing the half-operator status level. </summary>
-    public static readonly ChannelStatus HalfOperator;
+    public static readonly ChannelStatus HalfOperator = new ChannelStatus("%");
 
     /// <summary>
     ///   Gets the <see cref="ChannelStatus"/> representing the voiced status level. </summary>
-    public static readonly ChannelStatus Voice;
+    public static readonly ChannelStatus Voice = new ChannelStatus("+");
     
     /// <summary>
     ///   Gets the <see cref="ChannelStatus"/> representing the no special status level. </summary>
-    public static readonly ChannelStatus None;
+    public static readonly ChannelStatus None = new ChannelStatus(string.Empty);
 
     /// <summary>
-    ///   Gets a collection of <see cref="ChannelStatus"/> instances representing all built statuses. </summary>
-    public static readonly List<ChannelStatus> Values;
-
-    #endregion
-
-    #region Static Constructor
-
-    static ChannelStatus() {
-      None = new ChannelStatus("");
-      Voice = new ChannelStatus("+");
-      HalfOperator = new ChannelStatus("%");
-      Operator = new ChannelStatus("@");
-      Values = new List<ChannelStatus>(new[] { None, Voice, HalfOperator, Operator });
-    }
+    ///   Gets a collection of <see cref="ChannelStatus"/> instances representing all built
+    ///   statuses. </summary>
+    public static readonly Collection<ChannelStatus> Values = new Collection<ChannelStatus> { None, Voice, HalfOperator, Operator };
 
     #endregion
 
     #region Static Methods
 
     /// <summary>
-    ///   Gets a ChannelStatus instance with the given symbol. </summary>
+    ///   Gets a <see cref="ChannelStatus"/> instance with the given symbol. </summary>
     /// <remarks>
-    ///   If the given status is not defined already, a new status is created.
-    ///   This same new status is used for all future calls to GetInstance. </remarks>
+    ///   If the given status is not defined already, a new status is created. This same new status
+    ///   is used for all future calls to GetInstance. </remarks>
     public static ChannelStatus GetInstance(string symbol) {
-      foreach (ChannelStatus channelStatus in Values) {
-        if (channelStatus.Symbol == symbol) {
-          return channelStatus;
-        }
+      foreach (ChannelStatus channelStatus in Values.Where(channelStatus => channelStatus.Symbol == symbol)) {
+        return channelStatus;
       }
 
       ChannelStatus newChannelStatus = new ChannelStatus(symbol);
@@ -96,7 +83,7 @@ namespace Supay.Irc {
     #region Methods
 
     /// <summary>
-    ///   Creates a representation of the message in irc format. </summary>
+    ///   Creates a representation of the message in IRC format. </summary>
     public override string ToString() {
       return Symbol;
     }
@@ -107,10 +94,11 @@ namespace Supay.Irc {
 
     /// <summary>
     ///   Indicates whether the current object is equal to another object of the same type. </summary>
-    /// <returns>
-    ///   true if the current object is equal to the <paramref name="other"/> parameter; otherwise, false. </returns>
     /// <param name="other">
     ///   An object to compare with this object. </param>
+    /// <returns>
+    ///   true if the current object is equal to the <paramref name="other"/> parameter;
+    ///   otherwise, false. </returns>
     public bool Equals(ChannelStatus other) {
       if (ReferenceEquals(null, other)) {
         return false;
@@ -122,12 +110,13 @@ namespace Supay.Irc {
     }
 
     /// <summary>
-    ///   Determines whether the specified <see cref="Object"/> is equal to the current <see cref="ChannelStatus"/>. </summary>
-    /// <returns>
-    ///   true if the specified <see cref="Object"/> is equal to the current <see cref="ChannelStatus"/>;
-    ///   otherwise, false. </returns>
+    ///   Determines whether the specified <see cref="Object"/> is equal to the current
+    ///   <see cref="ChannelStatus"/>. </summary>
     /// <param name="obj">
     ///   The <see cref="Object"/> to compare with the current <see cref="ChannelStatus"/>. </param>
+    /// <returns>
+    ///   true if the specified <see cref="Object"/> is equal to the current
+    ///   <see cref="ChannelStatus"/>; otherwise, false. </returns>
     public override bool Equals(object obj) {
       return Equals(obj as ChannelStatus);
     }
@@ -137,7 +126,7 @@ namespace Supay.Irc {
     /// <returns>
     ///   A hash code for the current <see cref="ChannelStatus"/>. </returns>
     public override int GetHashCode() {
-      return (Symbol != null ? Symbol.GetHashCode() : 0);
+      return Symbol.GetHashCode();
     }
 
     public static bool operator ==(ChannelStatus leftOperand, ChannelStatus rightOperand) {
