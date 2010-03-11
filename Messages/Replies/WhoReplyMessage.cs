@@ -52,7 +52,7 @@ namespace Supay.Irc.Messages {
         return _status;
       }
       set {
-        Status = value;
+        _status = value;
       }
     }
 
