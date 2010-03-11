@@ -12,7 +12,7 @@ namespace Supay.Irc.Messages {
     private string _channel = string.Empty;
     private User _user = new User();
     private int _hopCount = -1;
-    private readonly ChannelStatus _status = ChannelStatus.None;
+    private ChannelStatus _status = ChannelStatus.None;
 
     /// <summary>
     ///   Creates a new instance of the <see cref="WhoReplyMessage"/> class. </summary>
