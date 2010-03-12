@@ -14,7 +14,7 @@ namespace Supay.Irc {
   ///   <see cref="ClientConnection"/> it wants to make. </remarks>
   [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling")]
   [DesignerCategory("Code")]
-  public class Client : IDisposable {
+  public class Client : Component {
 
     #region Constructors
 
@@ -292,32 +292,6 @@ namespace Supay.Irc {
         msg.Notify(Messages);
       }
     }
-
-    #region IDisposable
-
-    /// <summary>
-    ///   Releases the unmanaged resources used by the <see cref="Client"/> and optionally releases
-    ///   the managed resources. </summary>
-    /// <param name="disposing">
-    ///   true to release both managed and unmanaged resources;
-    ///   false to release only unmanaged resources. </param>
-    protected virtual void Dispose(bool disposing) {
-      if (disposing) {
-        if (Connection != null) {
-          Connection.Dispose();
-          Connection = null;
-        }
-      }
-    }
-
-    /// <summary>
-    ///   Releases all resources used by the <see cref="Client"/>. </summary>
-    public void Dispose() {
-      Dispose(true);
-      GC.SuppressFinalize(this);
-    }
-
-    #endregion
 
     #endregion
 
