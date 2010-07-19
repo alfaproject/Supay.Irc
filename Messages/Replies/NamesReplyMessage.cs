@@ -30,10 +30,10 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Creates a new instance of the <see cref="NamesReplyMessage"/> class.
-    /// </summary>
+    ///   Creates a new instance of the <see cref="NamesReplyMessage"/> class. </summary>
     public NamesReplyMessage()
       : base(353) {
+      this.Nicks = new Dictionary<string, ChannelStatus>();
     }
 
     /// <summary>
@@ -61,16 +61,13 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Gets the collection of nicks in the channel.
-    /// </summary>
-    public virtual Dictionary<string, ChannelStatus> Nicks {
-      get {
-        return nicks;
-      }
+    ///   Gets the collection of nicks in the channel. </summary>
+    public Dictionary<string, ChannelStatus> Nicks {
+      get;
+      private set;
     }
 
     private ChannelVisibility visibility = ChannelVisibility.Public;
-    private Dictionary<string, ChannelStatus> nicks = new Dictionary<string, ChannelStatus>();
     private string channel = string.Empty;
 
     /// <summary>
