@@ -4,20 +4,20 @@ using System.Globalization;
 
 namespace Supay.Irc.Messages {
   /// <summary>
-  /// One of the responses to the <see cref="LusersMessage"/> query.
+  ///   One of the responses to the <see cref="LusersMessage" /> query.
   /// </summary>
   [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "Op")]
   [Serializable]
   public class LusersOpReplyMessage : NumericMessage {
     /// <summary>
-    /// Creates a new instance of the <see cref="LusersOpReplyMessage"/> class
+    ///   Creates a new instance of the <see cref="LusersOpReplyMessage" /> class
     /// </summary>
     public LusersOpReplyMessage()
       : base(252) {
     }
 
     /// <summary>
-    /// Gets or sets the number of IRC operators connected to the server.
+    ///   Gets or sets the number of IRC operators connected to the server.
     /// </summary>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "Op")]
     public virtual int OpCount {
@@ -30,7 +30,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Gets or sets any additional information about the operators connected.
+    ///   Gets or sets any additional information about the operators connected.
     /// </summary>
     public virtual string Info {
       get {
@@ -42,7 +42,8 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
+    ///   Overrides <see cref="IrcMessage.GetParameters" />.
+    /// </summary>
     protected override Collection<string> GetParameters() {
       Collection<string> parameters = base.GetParameters();
       parameters.Add(OpCount.ToString(CultureInfo.InvariantCulture));
@@ -51,7 +52,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Parses the parameters portion of the message.
+    ///   Parses the parameters portion of the message.
     /// </summary>
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
@@ -65,7 +66,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Notifies the given <see cref="MessageConduit"/> by raising the appropriate event for the current <see cref="IrcMessage"/> subclass.
+    ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnLusersOpReply(new IrcMessageEventArgs<LusersOpReplyMessage>(this));

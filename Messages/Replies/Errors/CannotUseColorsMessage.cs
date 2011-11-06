@@ -3,19 +3,19 @@ using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
   /// <summary>
-  /// Sent to a user who is trying to send control codes to a channel that is set +c.
+  ///   Sent to a user who is trying to send control codes to a channel that is set +c.
   /// </summary>
   [Serializable]
   public class CannotUseColorsMessage : ErrorMessage, IChannelTargetedMessage {
     /// <summary>
-    /// Creates a new instances of the <see cref="CannotUseColorsMessage"/> class.
+    ///   Creates a new instances of the <see cref="CannotUseColorsMessage" /> class.
     /// </summary>
     public CannotUseColorsMessage()
       : base(408) {
     }
 
     /// <summary>
-    /// Gets or sets the channel to which the message can't be sent.
+    ///   Gets or sets the channel to which the message can't be sent.
     /// </summary>
     public virtual string Channel {
       get {
@@ -29,7 +29,7 @@ namespace Supay.Irc.Messages {
     private string channel = string.Empty;
 
     /// <summary>
-    /// Gets or sets the text which wasn't sent to the channel.
+    ///   Gets or sets the text which wasn't sent to the channel.
     /// </summary>
     public string Text {
       get {
@@ -43,7 +43,8 @@ namespace Supay.Irc.Messages {
     private string _text;
 
     /// <summary>
-    ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
+    ///   Overrides <see cref="IrcMessage.GetParameters" />.
+    /// </summary>
     protected override Collection<string> GetParameters() {
       Collection<string> parameters = base.GetParameters();
       parameters.Add(Channel);
@@ -53,7 +54,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Parses the parameters portion of the message.
+    ///   Parses the parameters portion of the message.
     /// </summary>
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
@@ -70,7 +71,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Notifies the given <see cref="MessageConduit"/> by raising the appropriate event for the current <see cref="IrcMessage"/> subclass.
+    ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnCannotUseColors(new IrcMessageEventArgs<CannotUseColorsMessage>(this));
@@ -83,7 +84,8 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    ///   Determines if the the current message is targeted at the given channel. </summary>
+    ///   Determines if the the current message is targeted at the given channel.
+    /// </summary>
     protected virtual bool IsTargetedAtChannel(string channelName) {
       return this.Channel.EqualsI(channelName);
     }

@@ -3,20 +3,20 @@ using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
   /// <summary>
-  /// The <see cref="ErrorMessage"/> sent when a user tries to invite a person onto a channel which they
-  /// are already on
+  ///   The <see cref="ErrorMessage" /> sent when a user tries to invite a person onto a channel which they
+  ///   are already on
   /// </summary>
   [Serializable]
   public class AlreadyOnChannelMessage : ErrorMessage, IChannelTargetedMessage {
     /// <summary>
-    /// Creates a new instances of the <see cref="AlreadyOnChannelMessage"/> class.
+    ///   Creates a new instances of the <see cref="AlreadyOnChannelMessage" /> class.
     /// </summary>
     public AlreadyOnChannelMessage()
       : base(443) {
     }
 
     /// <summary>
-    /// Gets or sets the nick of the user invited
+    ///   Gets or sets the nick of the user invited
     /// </summary>
     public string Nick {
       get {
@@ -30,7 +30,7 @@ namespace Supay.Irc.Messages {
     private string nick;
 
     /// <summary>
-    /// Gets or sets the channel being invited to
+    ///   Gets or sets the channel being invited to
     /// </summary>
     public string Channel {
       get {
@@ -64,7 +64,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Notifies the given <see cref="MessageConduit"/> by raising the appropriate event for the current <see cref="IrcMessage"/> subclass.
+    ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnAlreadyOnChannel(new IrcMessageEventArgs<AlreadyOnChannelMessage>(this));
@@ -77,7 +77,8 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    ///   Determines if the the current message is targeted at the given channel. </summary>
+    ///   Determines if the the current message is targeted at the given channel.
+    /// </summary>
     protected virtual bool IsTargetedAtChannel(string channelName) {
       return this.Channel.EqualsI(channelName);
     }

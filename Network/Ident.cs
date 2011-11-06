@@ -9,7 +9,8 @@ using System.Threading;
 namespace Supay.Irc.Network {
   /// <summary>
   ///   An Ident daemon which is still used by some
-  ///   IRC networks for authentication. </summary>
+  ///   IRC networks for authentication.
+  /// </summary>
   [DesignerCategory("Code")]
   public sealed class Ident : Component {
     private static readonly Ident _instance = new Ident();
@@ -29,7 +30,8 @@ namespace Supay.Irc.Network {
     }
 
     /// <summary>
-    ///   The singleton Ident service. </summary>
+    ///   The singleton Ident service.
+    /// </summary>
     public static Ident Service {
       get {
         return _instance;
@@ -37,24 +39,25 @@ namespace Supay.Irc.Network {
     }
 
     /// <summary>
-    ///   Gets or sets the <see cref="Supay.Irc.User"/> to respond to an ident request with. </summary>
+    ///   Gets or sets the <see cref="Supay.Irc.User" /> to respond to an ident request with.
+    /// </summary>
     public User User {
       get;
       set;
     }
 
     /// <summary>
-    ///   Gets the status of the Ident service. </summary>
+    ///   Gets the status of the Ident service.
+    /// </summary>
     public ConnectionStatus Status {
       get;
       private set;
     }
 
     /// <summary>
-    ///   Starts the Ident server. </summary>
-    /// <param name="stopAfterFirstAnswer">
-    ///   If true, Ident will stop immediately after answering.
-    ///   If false, will continue until <see cref="Ident.Stop"/> is called. </param>
+    ///   Starts the Ident server.
+    /// </summary>
+    /// <param name="stopAfterFirstAnswer">If true, Ident will stop immediately after answering. If false, will continue until <see cref="Ident.Stop" /> is called.</param>
     public void Start(bool stopAfterFirstAnswer = false) {
       lock (_syncLock) {
         if (Status != ConnectionStatus.Disconnected) {
@@ -64,7 +67,7 @@ namespace Supay.Irc.Network {
 
         _stopAfter = stopAfterFirstAnswer;
         _socketThread = new Thread(Run) {
-          Name = "Identd",
+          name="Identd",
           IsBackground = true
         };
         _socketThread.Start();
@@ -72,7 +75,8 @@ namespace Supay.Irc.Network {
     }
 
     /// <summary>
-    ///   Stops the Ident server. </summary>
+    ///   Stops the Ident server.
+    /// </summary>
     public void Stop() {
       lock (_syncLock) {
         Status = ConnectionStatus.Disconnected;
@@ -111,7 +115,7 @@ namespace Supay.Irc.Network {
               if (User.Nickname.Length != 0) {
                 identName = User.Nickname;
               } else {
-                identName = "supay";
+                identname="supay";
               }
             }
             string identReply = identRequest.Trim() + REPLY + identName.ToLower(CultureInfo.InvariantCulture);

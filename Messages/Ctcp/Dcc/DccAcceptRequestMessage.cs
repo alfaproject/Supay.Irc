@@ -6,11 +6,13 @@ using Supay.Irc.Dcc;
 namespace Supay.Irc.Messages {
   /// <summary>
   ///   This message is an acknowledgement to resume sending a file previously, but not completely
-  ///   sent to the requester. </summary>
+  ///   sent to the requester.
+  /// </summary>
   [Serializable]
   public class DccAcceptRequestMessage : CtcpRequestMessage {
     /// <summary>
-    ///   Creates a new instance of the <see cref="DccAcceptRequestMessage"/> class. </summary>
+    ///   Creates a new instance of the <see cref="DccAcceptRequestMessage" /> class.
+    /// </summary>
     public DccAcceptRequestMessage() {
       Position = -1;
       Port = -1;
@@ -19,7 +21,8 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    ///   Gets the data payload of the CTCP request. </summary>
+    ///   Gets the data payload of the CTCP request.
+    /// </summary>
     protected override string ExtendedData {
       get {
         return MessageUtil.ParametersToString(false, DccCommand, FileName, Port.ToString(CultureInfo.InvariantCulture), Position.ToString(CultureInfo.InvariantCulture));
@@ -27,7 +30,8 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    ///   Gets the DCC sub-command. </summary>
+    ///   Gets the DCC sub-command.
+    /// </summary>
     protected string DccCommand {
       get {
         return "ACCEPT";
@@ -35,47 +39,54 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    ///   Gets or sets the name of the file being sent. </summary>
+    ///   Gets or sets the name of the file being sent.
+    /// </summary>
     public string FileName {
       get;
       set;
     }
 
     /// <summary>
-    ///   Gets or sets the port the connection should be on. </summary>
+    ///   Gets or sets the port the connection should be on.
+    /// </summary>
     public int Port {
       get;
       set;
     }
 
     /// <summary>
-    ///   Gets or sets the position in the file at which to resume sending. </summary>
+    ///   Gets or sets the position in the file at which to resume sending.
+    /// </summary>
     public int Position {
       get;
       set;
     }
 
     /// <summary>
-    ///   Determines if the message can be parsed by this type. </summary>
+    ///   Determines if the message can be parsed by this type.
+    /// </summary>
     public override bool CanParse(string unparsedMessage) {
       return base.CanParse(unparsedMessage) && CanParseDccCommand(DccUtil.GetCommand(unparsedMessage));
     }
 
     /// <summary>
-    ///   Determines if the message's DCC command is compatible with this message. </summary>
+    ///   Determines if the message's DCC command is compatible with this message.
+    /// </summary>
     public bool CanParseDccCommand(string command) {
       return !string.IsNullOrEmpty(command) && (DccCommand.EndsWith(command, StringComparison.OrdinalIgnoreCase));
     }
 
     /// <summary>
-    ///   Parses the given string to populate this <see cref="IrcMessage"/>. </summary>
+    ///   Parses the given string to populate this <see cref="IrcMessage" />.
+    /// </summary>
     public override void Parse(string unparsedMessage) {
       base.Parse(unparsedMessage);
       FileName = DccUtil.GetArgument(unparsedMessage);
     }
 
     /// <summary>
-    ///   Parses the parameters portion of the message. </summary>
+    ///   Parses the parameters portion of the message.
+    /// </summary>
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
       if (parameters.Count >= 4) {
@@ -88,8 +99,9 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    ///   Notifies the given <see cref="MessageConduit"/> by raising the appropriate event for the
-    ///   current <see cref="IrcMessage"/> subclass. </summary>
+    ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the
+    ///   current <see cref="IrcMessage" /> subclass.
+    /// </summary>
     public override void Notify(MessageConduit conduit) {
       conduit.OnDccAcceptRequest(new IrcMessageEventArgs<DccAcceptRequestMessage>(this));
     }

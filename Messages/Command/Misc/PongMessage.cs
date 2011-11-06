@@ -3,12 +3,12 @@ using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
   /// <summary>
-  /// PongMessage is a reply to ping message.
+  ///   PongMessage is a reply to ping message.
   /// </summary>
   [Serializable]
   public class PongMessage : CommandMessage {
     /// <summary>
-    /// Gets the IRC command associated with this message.
+    ///   Gets the IRC command associated with this message.
     /// </summary>
     protected override string Command {
       get {
@@ -17,7 +17,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Gets or sets the target of the pong.
+    ///   Gets or sets the target of the pong.
     /// </summary>
     public virtual string Target {
       get {
@@ -31,7 +31,7 @@ namespace Supay.Irc.Messages {
     private string target = string.Empty;
 
     /// <summary>
-    /// Gets or sets the server that the ping should be forwarded to.
+    ///   Gets or sets the server that the ping should be forwarded to.
     /// </summary>
     public virtual string ForwardServer {
       get {
@@ -45,7 +45,8 @@ namespace Supay.Irc.Messages {
     private string forwardServer = string.Empty;
 
     /// <summary>
-    ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
+    ///   Overrides <see cref="IrcMessage.GetParameters" />.
+    /// </summary>
     protected override Collection<string> GetParameters() {
       Collection<string> parameters = base.GetParameters();
       parameters.Add(Target);
@@ -56,7 +57,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Parses the parameters portion of the message.
+    ///   Parses the parameters portion of the message.
     /// </summary>
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
@@ -70,7 +71,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Notifies the given <see cref="MessageConduit"/> by raising the appropriate event for the current <see cref="IrcMessage"/> subclass.
+    ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnPong(new IrcMessageEventArgs<PongMessage>(this));

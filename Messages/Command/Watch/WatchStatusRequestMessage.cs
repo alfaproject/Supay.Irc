@@ -3,14 +3,14 @@ using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
   /// <summary>
-  /// A Message that requests the status of the users on your watch list.
+  ///   A Message that requests the status of the users on your watch list.
   /// </summary>
   [Serializable]
   public class WatchStatusRequestMessage : WatchMessage {
     #region Parsing
 
     /// <summary>
-    /// Determines if the message can be parsed by this type.
+    ///   Determines if the message can be parsed by this type.
     /// </summary>
     public override bool CanParse(string unparsedMessage) {
       if (!base.CanParse(unparsedMessage)) {
@@ -25,7 +25,8 @@ namespace Supay.Irc.Messages {
     #region Formatting
 
     /// <summary>
-    ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
+    ///   Overrides <see cref="IrcMessage.GetParameters" />.
+    /// </summary>
     protected override Collection<string> GetParameters() {
       Collection<string> parameters = base.GetParameters();
       parameters.Add("S");
@@ -37,7 +38,7 @@ namespace Supay.Irc.Messages {
     #region Events
 
     /// <summary>
-    /// Notifies the given <see cref="MessageConduit"/> by raising the appropriate event for the current <see cref="IrcMessage"/> subclass.
+    ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
     public override void Notify(MessageConduit conduit) {
       conduit.OnWatchStatusRequest(new IrcMessageEventArgs<WatchStatusRequestMessage>(this));

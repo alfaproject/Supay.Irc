@@ -3,19 +3,19 @@ using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
   /// <summary>
-  /// One line of data in a reply to the <see cref="MotdMessage"/> query.
+  ///   One line of data in a reply to the <see cref="MotdMessage" /> query.
   /// </summary>
   [Serializable]
   public class MotdReplyMessage : NumericMessage {
     /// <summary>
-    /// Creates a new instance of the <see cref="MotdReplyMessage"/> class.
+    ///   Creates a new instance of the <see cref="MotdReplyMessage" /> class.
     /// </summary>
     public MotdReplyMessage()
       : base(372) {
     }
 
     /// <summary>
-    /// Gets or sets the text of the MOTD line.
+    ///   Gets or sets the text of the MOTD line.
     /// </summary>
     public virtual string Text {
       get {
@@ -29,7 +29,8 @@ namespace Supay.Irc.Messages {
     private string text = string.Empty;
 
     /// <summary>
-    ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
+    ///   Overrides <see cref="IrcMessage.GetParameters" />.
+    /// </summary>
     protected override Collection<string> GetParameters() {
       Collection<string> parameters = base.GetParameters();
       parameters.Add("- " + Text);
@@ -37,7 +38,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Parses the parameters portion of the message.
+    ///   Parses the parameters portion of the message.
     /// </summary>
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
@@ -48,7 +49,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Notifies the given <see cref="MessageConduit"/> by raising the appropriate event for the current <see cref="IrcMessage"/> subclass.
+    ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnMotdReply(new IrcMessageEventArgs<MotdReplyMessage>(this));

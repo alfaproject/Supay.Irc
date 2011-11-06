@@ -3,12 +3,12 @@ using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
   /// <summary>
-  /// A Message that edits the list of users on your accept list.
+  ///   A Message that edits the list of users on your accept list.
   /// </summary>
   [Serializable]
   public class AcceptListEditorMessage : CommandMessage {
     /// <summary>
-    /// Gets the IRC command associated with this message.
+    ///   Gets the IRC command associated with this message.
     /// </summary>
     protected override string Command {
       get {
@@ -17,7 +17,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Validates this message against the given server support
+    ///   Validates this message against the given server support
     /// </summary>
     public override void Validate(ServerSupport serverSupport) {
       base.Validate(serverSupport);
@@ -29,7 +29,7 @@ namespace Supay.Irc.Messages {
     #region Properties
 
     /// <summary>
-    /// Gets the collection of nicks being added to the accept list.
+    ///   Gets the collection of nicks being added to the accept list.
     /// </summary>
     public Collection<string> AddedNicks {
       get {
@@ -43,7 +43,7 @@ namespace Supay.Irc.Messages {
     private Collection<string> addedNicks;
 
     /// <summary>
-    /// Gets the collection of nicks being removed from the accept list.
+    ///   Gets the collection of nicks being removed from the accept list.
     /// </summary>
     public Collection<string> RemovedNicks {
       get {
@@ -61,7 +61,7 @@ namespace Supay.Irc.Messages {
     #region Parsing
 
     /// <summary>
-    /// Determines if the message can be parsed by this type.
+    ///   Determines if the message can be parsed by this type.
     /// </summary>
     public override bool CanParse(string unparsedMessage) {
       if (!base.CanParse(unparsedMessage)) {
@@ -72,7 +72,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Parses the parameters portion of the message.
+    ///   Parses the parameters portion of the message.
     /// </summary>
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
@@ -91,7 +91,8 @@ namespace Supay.Irc.Messages {
     #region Formatting
 
     /// <summary>
-    ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
+    ///   Overrides <see cref="IrcMessage.GetParameters" />.
+    /// </summary>
     protected override Collection<string> GetParameters() {
       Collection<string> allNicks = new Collection<string>();
       foreach (string removedNick in RemovedNicks) {
@@ -110,7 +111,7 @@ namespace Supay.Irc.Messages {
     #region Events
 
     /// <summary>
-    /// Notifies the given <see cref="MessageConduit"/> by raising the appropriate event for the current <see cref="IrcMessage"/> subclass.
+    ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
     public override void Notify(MessageConduit conduit) {
       conduit.OnAcceptListEditor(new IrcMessageEventArgs<AcceptListEditorMessage>(this));

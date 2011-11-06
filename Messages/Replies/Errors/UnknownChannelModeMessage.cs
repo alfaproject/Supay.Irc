@@ -4,19 +4,20 @@ using Supay.Irc.Messages.Modes;
 
 namespace Supay.Irc.Messages {
   /// <summary>
-  ///   The <see cref="ErrorMessage"/> received when a <see cref="ChannelModeMessage"/> was sent
-  ///   with a <see cref="ChannelMode"/> which the server didn't recognize. </summary>
+  ///   The <see cref="ErrorMessage" /> received when a <see cref="ChannelModeMessage" /> was sent
+  ///   with a <see cref="ChannelMode" /> which the server didn't recognize.
+  /// </summary>
   [Serializable]
   public class UnknownChannelModeMessage : ErrorMessage {
     /// <summary>
-    /// Creates a new instances of the <see cref="UnknownChannelModeMessage"/> class.
+    ///   Creates a new instances of the <see cref="UnknownChannelModeMessage" /> class.
     /// </summary>
     public UnknownChannelModeMessage()
       : base(472) {
     }
 
     /// <summary>
-    /// Gets or sets the mode which the server didn't recognize
+    ///   Gets or sets the mode which the server didn't recognize
     /// </summary>
     public string UnknownMode {
       get {
@@ -47,7 +48,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Notifies the given <see cref="MessageConduit"/> by raising the appropriate event for the current <see cref="IrcMessage"/> subclass.
+    ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnUnknownChannelMode(new IrcMessageEventArgs<UnknownChannelModeMessage>(this));

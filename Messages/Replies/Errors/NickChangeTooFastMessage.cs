@@ -4,19 +4,19 @@ using System.Globalization;
 
 namespace Supay.Irc.Messages {
   /// <summary>
-  /// The <see cref="ErrorMessage"/> sent when a user tries to change his nick too many times too quickly.
+  ///   The <see cref="ErrorMessage" /> sent when a user tries to change his nick too many times too quickly.
   /// </summary>
   [Serializable]
   public class NickChangeTooFastMessage : ErrorMessage {
     /// <summary>
-    /// Creates a new instances of the <see cref="NickChangeTooFastMessage"/> class.
+    ///   Creates a new instances of the <see cref="NickChangeTooFastMessage" /> class.
     /// </summary>
     public NickChangeTooFastMessage()
       : base(438) {
     }
 
     /// <summary>
-    /// Gets or sets the Nick which was attempted
+    ///   Gets or sets the Nick which was attempted
     /// </summary>
     public string Nick {
       get {
@@ -30,7 +30,7 @@ namespace Supay.Irc.Messages {
     private string nick;
 
     /// <summary>
-    /// Gets or sets the number of seconds which must be waited before attempting again.
+    ///   Gets or sets the number of seconds which must be waited before attempting again.
     /// </summary>
     public int Seconds {
       get {
@@ -65,7 +65,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Notifies the given <see cref="MessageConduit"/> by raising the appropriate event for the current <see cref="IrcMessage"/> subclass.
+    ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnNickChangeTooFast(new IrcMessageEventArgs<NickChangeTooFastMessage>(this));

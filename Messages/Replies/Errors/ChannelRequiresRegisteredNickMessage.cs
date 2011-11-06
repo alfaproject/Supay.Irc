@@ -3,19 +3,20 @@ using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
   /// <summary>
-  ///   The <see cref="ErrorMessage"/> received when attempting to join a channel which requires a
-  ///   registered nick, and the user does not have one. </summary>
+  ///   The <see cref="ErrorMessage" /> received when attempting to join a channel which requires a
+  ///   registered nick, and the user does not have one.
+  /// </summary>
   [Serializable]
   public class ChannelRequiresRegisteredNickMessage : ErrorMessage, IChannelTargetedMessage {
     /// <summary>
-    /// Creates a new instances of the <see cref="ChannelRequiresRegisteredNickMessage"/> class.
+    ///   Creates a new instances of the <see cref="ChannelRequiresRegisteredNickMessage" /> class.
     /// </summary>
     public ChannelRequiresRegisteredNickMessage()
       : base(477) {
     }
 
     /// <summary>
-    /// Gets or sets the channel which has a key
+    ///   Gets or sets the channel which has a key
     /// </summary>
     public string Channel {
       get {
@@ -46,7 +47,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Notifies the given <see cref="MessageConduit"/> by raising the appropriate event for the current <see cref="IrcMessage"/> subclass.
+    ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnChannelRequiresRegisteredNick(new IrcMessageEventArgs<ChannelRequiresRegisteredNickMessage>(this));
@@ -59,7 +60,8 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    ///   Determines if the the current message is targeted at the given channel. </summary>
+    ///   Determines if the the current message is targeted at the given channel.
+    /// </summary>
     protected virtual bool IsTargetedAtChannel(string channelName) {
       return this.Channel.EqualsI(channelName);
     }

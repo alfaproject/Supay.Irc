@@ -4,20 +4,20 @@ using System.Globalization;
 
 namespace Supay.Irc.Messages {
   /// <summary>
-  /// A Monitor system error message informing the user which nicks couldn't be added 
-  /// to their monitor list because it is full.
+  ///   A Monitor system error message informing the user which nicks couldn't be added 
+  ///   to their monitor list because it is full.
   /// </summary>
   [Serializable]
   public class MonitorListFullMessage : NumericMessage {
     /// <summary>
-    /// Creates a new instance of the <see cref="MonitorListFullMessage"/>.
+    ///   Creates a new instance of the <see cref="MonitorListFullMessage" />.
     /// </summary>
     public MonitorListFullMessage()
       : base(734) {
     }
 
     /// <summary>
-    /// Gets or sets the limit of monitor lists on the server.
+    ///   Gets or sets the limit of monitor lists on the server.
     /// </summary>
     public int Limit {
       get {
@@ -31,7 +31,7 @@ namespace Supay.Irc.Messages {
     private int limit;
 
     /// <summary>
-    /// Gets the collection of nicks which couldn't be added to the monitor list.
+    ///   Gets the collection of nicks which couldn't be added to the monitor list.
     /// </summary>
     public Collection<string> Nicks {
       get {
@@ -71,7 +71,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Notifies the given <see cref="MessageConduit"/> by raising the appropriate event for the current <see cref="IrcMessage"/> subclass.
+    ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnMonitorListFull(new IrcMessageEventArgs<MonitorListFullMessage>(this));

@@ -4,17 +4,17 @@ using System.Globalization;
 
 namespace Supay.Irc.Messages.Modes {
   /// <summary>
-  /// ChannelModesCreator parses, builds, and writes the modes used by the <see cref="ChannelModeMessage"/> class.
+  ///   ChannelModesCreator parses, builds, and writes the modes used by the <see cref="ChannelModeMessage" /> class.
   /// </summary>
   public class ChannelModesCreator {
     /// <summary>
-    /// Creates a new instance of the <see cref="ChannelModesCreator"/> class.
+    ///   Creates a new instance of the <see cref="ChannelModesCreator" /> class.
     /// </summary>
     public ChannelModesCreator() {
     }
 
     /// <summary>
-    /// A <see cref="Supay.Irc.ServerSupport"/> instance is required in order to parse non-standard modes.
+    ///   A <see cref="Supay.Irc.ServerSupport" /> instance is required in order to parse non-standard modes.
     /// </summary>
     public Supay.Irc.ServerSupport ServerSupport {
       get {
@@ -33,7 +33,7 @@ namespace Supay.Irc.Messages.Modes {
     #region Parsing
 
     /// <summary>
-    /// Loads the given mode data into this <see cref="ChannelModesCreator"/>
+    ///   Loads the given mode data into this <see cref="ChannelModesCreator" />
     /// </summary>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity")]
     public void Parse(string modeChanges, List<string> modeArguments) {
@@ -156,7 +156,7 @@ namespace Supay.Irc.Messages.Modes {
     }
 
     /// <summary>
-    /// Loads the given mode data into this <see cref="ChannelModesCreator"/>
+    ///   Loads the given mode data into this <see cref="ChannelModesCreator" />
     /// </summary>
     public void Parse(ChannelModeMessage msg) {
       if (msg == null) {
@@ -166,7 +166,7 @@ namespace Supay.Irc.Messages.Modes {
     }
 
     /// <summary>
-    /// Loads the given mode data into this <see cref="ChannelModesCreator"/>
+    ///   Loads the given mode data into this <see cref="ChannelModesCreator" />
     /// </summary>
     public void Parse(string modeChanges) {
       if (string.IsNullOrEmpty(modeChanges)) {
@@ -178,14 +178,14 @@ namespace Supay.Irc.Messages.Modes {
     #endregion
 
     /// <summary>
-    /// Removes redundant or overridden modes from the modes collection.
+    ///   Removes redundant or overridden modes from the modes collection.
     /// </summary>
     private void CollapseModes() {
       //TODO Implement CollapseModes
     }
 
     /// <summary>
-    /// Applies the current modes to the given <see cref="ChannelModeMessage"/>.
+    ///   Applies the current modes to the given <see cref="ChannelModeMessage" />.
     /// </summary>
     /// <param name="msg">The message to be altered.</param>
     public virtual void ApplyTo(ChannelModeMessage msg) {
@@ -209,7 +209,7 @@ namespace Supay.Irc.Messages.Modes {
     }
 
     /// <summary>
-    /// Gets the collection of modes parsed or to be applied.
+    ///   Gets the collection of modes parsed or to be applied.
     /// </summary>
     public virtual IEnumerable<ChannelMode> Modes {
       get {

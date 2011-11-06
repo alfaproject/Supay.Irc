@@ -2,12 +2,12 @@ using System;
 
 namespace Supay.Irc.Messages {
   /// <summary>
-  /// With the BackMessage, clients can set disable the automatic reply string set by an <see cref="AwayMessage"/>.
+  ///   With the BackMessage, clients can set disable the automatic reply string set by an <see cref="AwayMessage" />.
   /// </summary>
   [Serializable]
   public class BackMessage : CommandMessage {
     /// <summary>
-    /// Gets the Irc command associated with this message.
+    ///   Gets the Irc command associated with this message.
     /// </summary>
     protected override string Command {
       get {
@@ -16,14 +16,14 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Determines if the message can be parsed by this type.
+    ///   Determines if the message can be parsed by this type.
     /// </summary>
     public override bool CanParse(string unparsedMessage) {
       return (base.CanParse(unparsedMessage) && MessageUtil.GetParameters(unparsedMessage).Count == 0);
     }
 
     /// <summary>
-    /// Notifies the given <see cref="MessageConduit"/> by raising the appropriate event for the current <see cref="IrcMessage"/> subclass.
+    ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnBack(new IrcMessageEventArgs<BackMessage>(this));

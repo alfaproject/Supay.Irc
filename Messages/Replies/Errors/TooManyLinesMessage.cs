@@ -3,19 +3,19 @@ using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
   /// <summary>
-  /// The <see cref="ErrorMessage"/> sent when a command would result in too many lines in the reply.
+  ///   The <see cref="ErrorMessage" /> sent when a command would result in too many lines in the reply.
   /// </summary>
   [Serializable]
   public class TooManyLinesMessage : ErrorMessage {
     /// <summary>
-    /// Creates a new instances of the <see cref="TooManyLinesMessage"/> class.
+    ///   Creates a new instances of the <see cref="TooManyLinesMessage" /> class.
     /// </summary>
     public TooManyLinesMessage()
       : base(416) {
     }
 
     /// <summary>
-    /// Gets or sets the command which caused the error.
+    ///   Gets or sets the command which caused the error.
     /// </summary>
     public string Command {
       get {
@@ -46,7 +46,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Notifies the given <see cref="MessageConduit"/> by raising the appropriate event for the current <see cref="IrcMessage"/> subclass.
+    ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnTooManyLines(new IrcMessageEventArgs<TooManyLinesMessage>(this));

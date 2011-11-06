@@ -3,19 +3,21 @@ using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
   /// <summary>
-  ///   The <see cref="ErrorMessage"/> received when an user's silence list is full, and a
-  ///   <see cref="SilenceMessage"/> is sent adding an user to the list. </summary>
+  ///   The <see cref="ErrorMessage" /> received when an user's silence list is full, and a
+  ///   <see cref="SilenceMessage" /> is sent adding an user to the list.
+  /// </summary>
   [Serializable]
   public class SilenceListFullMessage : ErrorMessage {
     /// <summary>
-    /// Creates a new instances of the <see cref="SilenceListFullMessage"/> class.
+    ///   Creates a new instances of the <see cref="SilenceListFullMessage" /> class.
     /// </summary>
     public SilenceListFullMessage()
       : base(511) {
     }
 
     /// <summary>
-    ///   Gets or sets the mask of the user being silenced. </summary>
+    ///   Gets or sets the mask of the user being silenced.
+    /// </summary>
     public Mask SilenceMask {
       get {
         return silenceMask;
@@ -46,7 +48,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Notifies the given <see cref="MessageConduit"/> by raising the appropriate event for the current <see cref="IrcMessage"/> subclass.
+    ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnSilenceListFull(new IrcMessageEventArgs<SilenceListFullMessage>(this));

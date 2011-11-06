@@ -5,7 +5,8 @@ using System.Linq;
 
 namespace Supay.Irc.Messages {
   /// <summary>
-  ///   Provides clients with a correct <see cref="IrcMessage"/> for a given raw message string. </summary>
+  ///   Provides clients with a correct <see cref="IrcMessage" /> for a given raw message string.
+  /// </summary>
   public sealed class IrcMessageFactory {
     private static readonly IrcMessageFactory _factory = new IrcMessageFactory();
 
@@ -18,9 +19,11 @@ namespace Supay.Irc.Messages {
     private readonly LinkedList<IrcMessage> _customs;
 
     /// <summary>
-    ///   Initializes a new instance of the <see cref="IrcMessageFactory"/> class. </summary>
+    ///   Initializes a new instance of the <see cref="IrcMessageFactory" /> class.
+    /// </summary>
     /// <remarks>
-    ///   This is private because this class is a Singleton. </remarks>
+    ///   This is private because this class is a Singleton.
+    /// </remarks>
     private IrcMessageFactory() {
       _numerics = new LinkedList<IrcMessage>();
       _commands = new LinkedList<IrcMessage>();
@@ -46,17 +49,17 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    ///   Adds a custom message to consider for parsing raw messages received from the server. </summary>
+    ///   Adds a custom message to consider for parsing raw messages received from the server.
+    /// </summary>
     public static void AddCustomMessage(IrcMessage msg) {
       _factory._customs.AddLast(msg);
     }
 
     /// <summary>
-    ///   Parses the given string into an <see cref="IrcMessage"/>. </summary>
-    /// <param name="unparsedMessage">
-    ///   The string to parse. </param>
-    /// <returns>
-    ///   An <see cref="IrcMessage"/> which represents the given string. </returns>
+    ///   Parses the given string into an <see cref="IrcMessage" />.
+    /// </summary>
+    /// <param name="unparsedMessage">The string to parse.</param>
+    /// <returns>An <see cref="IrcMessage" /> which represents the given string.</returns>
     public static IrcMessage Parse(string unparsedMessage) {
       if (unparsedMessage == null) {
         unparsedMessage = string.Empty;
@@ -79,8 +82,9 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    ///   Determines and instantiates the correct subclass of <see cref="IrcMessage"/> for the
-    ///   given string. </summary>
+    ///   Determines and instantiates the correct subclass of <see cref="IrcMessage" /> for the
+    ///   given string.
+    /// </summary>
     private IrcMessage determineMessage(string unparsedMessage) {
       IrcMessage msg;
 

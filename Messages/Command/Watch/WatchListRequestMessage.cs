@@ -3,14 +3,14 @@ using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
   /// <summary>
-  /// A Watch system message that requests the list of nicks currently being watched.
+  ///   A Watch system message that requests the list of nicks currently being watched.
   /// </summary>
   [Serializable]
   public class WatchListRequestMessage : WatchMessage {
     #region Properties
 
     /// <summary>
-    /// Gets or sets if the message requests that only online contacts are in the list.
+    ///   Gets or sets if the message requests that only online contacts are in the list.
     /// </summary>
     public bool OnlineOnly {
       get {
@@ -28,7 +28,8 @@ namespace Supay.Irc.Messages {
     #region Parsing
 
     /// <summary>
-    ///   Determines if the message can be parsed by this type. </summary>
+    ///   Determines if the message can be parsed by this type.
+    /// </summary>
     public override bool CanParse(string unparsedMessage) {
       if (!base.CanParse(unparsedMessage)) {
         return false;
@@ -38,7 +39,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Overrides <see href="IrcMessage.ParseParameters"/>
+    ///   Overrides <see href = "IrcMessage.ParseParameters" />
     /// </summary>
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
@@ -50,7 +51,8 @@ namespace Supay.Irc.Messages {
     #region Formatting
 
     /// <summary>
-    ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
+    ///   Overrides <see cref="IrcMessage.GetParameters" />.
+    /// </summary>
     protected override Collection<string> GetParameters() {
       Collection<string> parameters = base.GetParameters();
       parameters.Add(OnlineOnly ? "l" : "L");
@@ -62,7 +64,7 @@ namespace Supay.Irc.Messages {
     #region Events
 
     /// <summary>
-    /// Notifies the given <see cref="MessageConduit"/> by raising the appropriate event for the current <see cref="IrcMessage"/> subclass.
+    ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
     public override void Notify(MessageConduit conduit) {
       conduit.OnWatchListRequest(new IrcMessageEventArgs<WatchListRequestMessage>(this));

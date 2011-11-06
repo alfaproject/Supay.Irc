@@ -7,17 +7,20 @@ using Supay.Irc.Network;
 
 namespace Supay.Irc {
   /// <summary>
-  ///   Represents an IRC client. It has a connection, a user, etc. </summary>
+  ///   Represents an IRC client. It has a connection, a user, etc.
+  /// </summary>
   /// <remarks>
   ///   A GUI front-end should use one instance of these per client / server
-  ///   <see cref="ClientConnection"/> it wants to make. </remarks>
+  ///   <see cref="ClientConnection" /> it wants to make.
+  /// </remarks>
   [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling")]
   [DesignerCategory("Code")]
   public class Client : Component {
     #region Constructors
 
     /// <summary>
-    ///   Initializes a new instance of the <see cref="Client"/> class. </summary>
+    ///   Initializes a new instance of the <see cref="Client" /> class.
+    /// </summary>
     public Client() {
       DefaultQuitMessage = "Quitting";
       EnableAutoIdent = true;
@@ -40,33 +43,30 @@ namespace Supay.Irc {
     }
 
     /// <summary>
-    ///   Initializes a new instance of the <see cref="Client"/> with the given address. </summary>
-    /// <param name="address">
-    ///   The address that will be connected to. </param>
+    ///   Initializes a new instance of the <see cref="Client" /> with the given address.
+    /// </summary>
+    /// <param name="address">The address that will be connected to.</param>
     public Client(string address)
       : this() {
       Connection.Address = address;
     }
 
     /// <summary>
-    ///   Initializes a new instance of the <see cref="Client"/> with the given address. </summary>
-    /// <param name="address">
-    ///   The address that will be connected to. </param>
-    /// <param name="nick">
-    ///   The nick of the <see cref="User"/> </param>
+    ///   Initializes a new instance of the <see cref="Client" /> with the given address.
+    /// </summary>
+    /// <param name="address">The address that will be connected to.</param>
+    /// <param name="nick">The nick of the <see cref="User" />.</param>
     public Client(string address, string nick)
       : this(address) {
       User.Nickname = nick;
     }
 
     /// <summary>
-    ///   Initializes a new instance of the <see cref="Client"/> with the given address. </summary>
-    /// <param name="address">
-    ///   The address that will be connected to. </param>
-    /// <param name="nick">
-    ///   The <see cref="Supay.Irc.User.Nickname"/> of the <see cref="Client.User"/>. </param>
-    /// <param name="realName">
-    ///   The <see cref="Supay.Irc.User.Name"/> of the <see cref="Client.User"/>. </param>
+    ///   Initializes a new instance of the <see cref="Client" /> with the given address.
+    /// </summary>
+    /// <param name="address">The address that will be connected to.</param>
+    /// <param name="nick">The <see cref="Supay.Irc.User.Nickname" /> of the <see cref="Client.User" />.</param>
+    /// <param name="realName">The <see cref="Supay.Irc.User.Name" /> of the <see cref="Client.User" />.</param>
     public Client(string address, string nick, string realName)
       : this(address, nick) {
       User.Name = realName;
@@ -77,89 +77,102 @@ namespace Supay.Irc {
     #region Properties
 
     /// <summary>
-    ///   Gets the conduit through which individual message received events can be attached. </summary>
+    ///   Gets the conduit through which individual message received events can be attached.
+    /// </summary>
     public MessageConduit Messages {
       get;
       protected set;
     }
 
     /// <summary>
-    ///   Gets or sets the default quit message if the client has to close the connection itself. </summary>
+    ///   Gets or sets the default quit message if the client has to close the connection itself.
+    /// </summary>
     public string DefaultQuitMessage {
       get;
       set;
     }
 
     /// <summary>
-    ///   Gets or sets whether the <see cref="Client"/> will automatically start and stop an
-    ///   <see cref="Ident"/> service as needed to connect to the IRC server. </summary>
+    ///   Gets or sets whether the <see cref="Client" /> will automatically start and stop an
+    ///   <see cref="Ident" /> service as needed to connect to the IRC server.
+    /// </summary>
     public bool EnableAutoIdent {
       get;
       set;
     }
 
     /// <summary>
-    ///   Gets the <see cref="ClientConnection"/> of the current <see cref="Client"/>. </summary>
+    ///   Gets the <see cref="ClientConnection" /> of the current <see cref="Client" />.
+    /// </summary>
     public ClientConnection Connection {
       get;
       private set;
     }
 
     /// <summary>
-    ///   Gets or sets the <see cref="User"/> of the current <see cref="Client"/>. </summary>
+    ///   Gets or sets the <see cref="User" /> of the current <see cref="Client" />.
+    /// </summary>
     public User User {
       get;
       private set;
     }
 
     /// <summary>
-    ///   Gets the name of the server that you are connected to. </summary>
+    ///   Gets the name of the server that you are connected to.
+    /// </summary>
     /// <remarks>
     ///   This is the name that the server refers to itself by in messages, not necessarily the
-    ///   name you use to connect. </remarks>
+    ///   name you use to connect.
+    /// </remarks>
     public string ServerName {
       get;
       private set;
     }
 
     /// <summary>
-    ///   Gets a <see cref="ServerSupport"/> object containing knowledge about what the current
-    ///   server supports. </summary>
+    ///   Gets a <see cref="ServerSupport" /> object containing knowledge about what the current
+    ///   server supports.
+    /// </summary>
     public ServerSupport ServerSupports {
       get;
       private set;
     }
 
     /// <summary>
-    ///   Gets the query window to the server to which this client is connected. </summary>
+    ///   Gets the query window to the server to which this client is connected.
+    /// </summary>
     public ServerQuery ServerQuery {
       get;
       protected set;
     }
 
     /// <summary>
-    ///   Gets the collection of channels which the user has joined. </summary>
+    ///   Gets the collection of channels which the user has joined.
+    /// </summary>
     public ChannelCollection Channels {
       get;
       private set;
     }
 
     /// <summary>
-    ///   Gets the collection of queries the user is engaged in. </summary>
+    ///   Gets the collection of queries the user is engaged in.
+    /// </summary>
     public QueryCollection Queries {
       get;
       private set;
     }
 
     /// <summary>
-    ///   Gets the collection of users which the user has seen. </summary>
+    ///   Gets the collection of users which the user has seen.
+    /// </summary>
     public UserCollection Peers {
       get;
       private set;
     }
 
     /// <summary>
-    ///   Gets the <see cref="Supay.Irc.Contacts.ContactList"/> for this client. </summary>
+    ///   Gets the <see cref="Supay.Irc.Contacts.ContactList" /> for this client.
+    /// </summary>
     public Contacts.ContactList Contacts {
       get;
       protected set;
@@ -170,9 +183,9 @@ namespace Supay.Irc {
     #region Methods
 
     /// <summary>
-    ///   Sends a <see cref="IrcMessage"/> over a <see cref="ClientConnection"/> to an IRC server. </summary>
-    /// <param name="message">
-    ///   The <see cref="IrcMessage"/> to send. </param>
+    ///   Sends a <see cref="IrcMessage" /> over a <see cref="ClientConnection" /> to an IRC server.
+    /// </summary>
+    /// <param name="message">The <see cref="IrcMessage" /> to send.</param>
     public virtual void Send(IrcMessage message) {
       if (message == null) {
         return;
@@ -191,66 +204,66 @@ namespace Supay.Irc {
     #region Send Helpers
 
     /// <summary>
-    ///   Sends a <see cref="ChatMessage"/> with the given text to the given channel or user. </summary>
-    /// <param name="text">
-    ///   The text of the message. </param>
-    /// <param name="target">
-    ///   The target of the message, either a channel or nick. </param>
+    ///   Sends a <see cref="ChatMessage" /> with the given text to the given channel or user.
+    /// </summary>
+    /// <param name="text">The text of the message.</param>
+    /// <param name="target">The target of the message, either a channel or nick.</param>
     public virtual void SendChat(string text, string target) {
       Send(new ChatMessage(text, target));
     }
 
     /// <summary>
-    ///   Sends a <see cref="ActionRequestMessage"/> with the given text to the given channel or
-    ///   user. </summary>
-    /// <param name="text">
-    ///   The text of the action. </param>
-    /// <param name="target">
-    ///   The target of the message, either a channel or nick. </param>
+    ///   Sends a <see cref="ActionRequestMessage" /> with the given text to the given channel or
+    ///   user.
+    /// </summary>
+    /// <param name="text">The text of the action.</param>
+    /// <param name="target">The target of the message, either a channel or nick.</param>
     public virtual void SendAction(string text, string target) {
       Send(new ActionRequestMessage(text, target));
     }
 
     /// <summary>
-    ///   Sends a <see cref="JoinMessage"/> for the given channel. </summary>
-    /// <param name="channel">
-    ///   The channel to join. </param>
+    ///   Sends a <see cref="JoinMessage" /> for the given channel.
+    /// </summary>
+    /// <param name="channel">The channel to join.</param>
     public virtual void SendJoin(string channel) {
       Send(new JoinMessage(channel));
     }
 
     /// <summary>
-    ///   Sends a <see cref="PartMessage"/> for the given channel. </summary>
-    /// <param name="channel">
-    ///   The channel to part. </param>
+    ///   Sends a <see cref="PartMessage" /> for the given channel.
+    /// </summary>
+    /// <param name="channel">The channel to part.</param>
     public virtual void SendPart(string channel) {
       Send(new PartMessage(channel));
     }
 
     /// <summary>
-    ///   Sends an <see cref="AwayMessage"/> with the given reason. </summary>
-    /// <param name="reason">
-    ///   The reason for being away. </param>
+    ///   Sends an <see cref="AwayMessage" /> with the given reason.
+    /// </summary>
+    /// <param name="reason">The reason for being away.</param>
     public virtual void SendAway(string reason) {
       Send(new AwayMessage(reason));
     }
 
     /// <summary>
-    ///   Sends a <see cref="BackMessage"/>. </summary>
+    ///   Sends a <see cref="BackMessage" />.
+    /// </summary>
     public virtual void SendBack() {
       Send(new BackMessage());
     }
 
     /// <summary>
-    ///   Sends a <see cref="QuitMessage"/>. </summary>
+    ///   Sends a <see cref="QuitMessage" />.
+    /// </summary>
     public virtual void SendQuit() {
       SendQuit(DefaultQuitMessage);
     }
 
     /// <summary>
-    ///   Sends a <see cref="QuitMessage"/> with the given reason. </summary>
-    /// <param name="reason">
-    ///   The reason for quitting. </param>
+    ///   Sends a <see cref="QuitMessage" /> with the given reason.
+    /// </summary>
+    /// <param name="reason">The reason for quitting.</param>
     public virtual void SendQuit(string reason) {
       Send(new QuitMessage(reason));
     }
@@ -258,7 +271,8 @@ namespace Supay.Irc {
     #endregion
 
     /// <summary>
-    ///   Determines if the given message originated from the currently connected server. </summary>
+    ///   Determines if the given message originated from the currently connected server.
+    /// </summary>
     public virtual bool IsMessageFromServer(IrcMessage msg) {
       if (msg == null) {
         return false;
@@ -296,19 +310,23 @@ namespace Supay.Irc {
     #region Events
 
     /// <summary>
-    ///   Occurs when the <see cref="ClientConnection"/> receives data. </summary>
+    ///   Occurs when the <see cref="ClientConnection" /> receives data.
+    /// </summary>
     public event EventHandler<ConnectionDataEventArgs> DataReceived;
 
     /// <summary>
-    ///   Occurs when the <see cref="ClientConnection"/> sends data. </summary>
+    ///   Occurs when the <see cref="ClientConnection" /> sends data.
+    /// </summary>
     public event EventHandler<ConnectionDataEventArgs> DataSent;
 
     /// <summary>
-    ///   Occurs when any message is received and parsed. </summary>
+    ///   Occurs when any message is received and parsed.
+    /// </summary>
     public event EventHandler<IrcMessageEventArgs<IrcMessage>> MessageParsed;
 
     /// <summary>
-    ///   Raises the <see cref="MessageParsed"/> event. </summary>
+    ///   Raises the <see cref="MessageParsed" /> event.
+    /// </summary>
     protected void OnMessageParsed(IrcMessageEventArgs<IrcMessage> e) {
       if (MessageParsed != null) {
         MessageParsed(this, e);
@@ -316,17 +334,21 @@ namespace Supay.Irc {
     }
 
     /// <summary>
-    ///   Occurs when the connection is opened and the server has sent a welcome message. </summary>
+    ///   Occurs when the connection is opened and the server has sent a welcome message.
+    /// </summary>
     /// <remarks>
-    ///   This is the earliest the messages can be sent over the IRC network. </remarks>
+    ///   This is the earliest the messages can be sent over the IRC network.
+    /// </remarks>
     public event EventHandler Ready;
 
     /// <summary>
-    ///   Occurs when any message is about to be sent. </summary>
+    ///   Occurs when any message is about to be sent.
+    /// </summary>
     public event EventHandler<CancelIrcMessageEventArgs<IrcMessage>> MessageSending;
 
     /// <summary>
-    ///   Raises the <see cref="MessageSending"/> event. </summary>
+    ///   Raises the <see cref="MessageSending" /> event.
+    /// </summary>
     protected void OnMessageSending(CancelIrcMessageEventArgs<IrcMessage> e) {
       if (MessageSending != null) {
         MessageSending(this, e);
@@ -389,7 +411,8 @@ namespace Supay.Irc {
     }
 
     /// <summary>
-    ///   Transforms <see cref="ClientConnection"/> data into raised <see cref="IrcMessage"/> events. </summary>
+    ///   Transforms <see cref="ClientConnection" /> data into raised <see cref="IrcMessage" /> events.
+    /// </summary>
     private void handleConnectionDataReceived(object sender, ConnectionDataEventArgs e) {
       if (DataReceived != null) {
         DataReceived(this, e);
@@ -405,14 +428,14 @@ namespace Supay.Irc {
     }
 
     /// <summary>
-    ///   Keeps an IRC connection alive. </summary>
+    ///   Keeps an IRC connection alive.
+    /// </summary>
     /// <remarks>
     ///   An IRC server will ping you every x seconds to make sure you are still alive. This method
-    ///   will auto-pong a return to keep the <see cref="ClientConnection"/> alive auto-magically. </remarks>
-    /// <param name="sender">
-    ///   The connection object sending the ping. </param>
-    /// <param name="e">
-    ///   The message sent. </param>
+    ///   will auto-pong a return to keep the <see cref="ClientConnection" /> alive auto-magically.
+    /// </remarks>
+    /// <param name="sender">The connection object sending the ping.</param>
+    /// <param name="e">The message sent.</param>
     private void handlePing(object sender, IrcMessageEventArgs<PingMessage> e) {
       Send(new PongMessage {
         Target = e.Message.Target

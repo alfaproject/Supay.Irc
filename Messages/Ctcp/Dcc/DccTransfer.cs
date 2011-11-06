@@ -5,7 +5,8 @@ using System.Net.Sockets;
 
 namespace Supay.Irc.Dcc {
   /// <summary>
-  ///   Handles the networks level communication protocols for sending and receiving files over DCC. </summary>
+  ///   Handles the networks level communication protocols for sending and receiving files over DCC.
+  /// </summary>
   public class DccTransfer {
     private byte[] _buffer;
     private int _bufferSize = 4096;
@@ -13,7 +14,8 @@ namespace Supay.Irc.Dcc {
     #region Constructor
 
     /// <summary>
-    ///   Initializes a new instance of the DccTransfer class. </summary>
+    ///   Initializes a new instance of the DccTransfer class.
+    /// </summary>
     public DccTransfer() {
       FileSize = -1;
       BytesTransferred = 0;
@@ -28,28 +30,32 @@ namespace Supay.Irc.Dcc {
     #region Properties
 
     /// <summary>
-    ///   Gets or sets a stream to the file being transferred. </summary>
+    ///   Gets or sets a stream to the file being transferred.
+    /// </summary>
     public FileStream File {
       get;
       set;
     }
 
     /// <summary>
-    ///   Gets or sets the start position in the file to transfer the information. </summary>
+    ///   Gets or sets the start position in the file to transfer the information.
+    /// </summary>
     public long StartPosition {
       get;
       set;
     }
 
     /// <summary>
-    ///   Gets or sets the socket the file transfer will use. </summary>
+    ///   Gets or sets the socket the file transfer will use.
+    /// </summary>
     public Socket TransferSocket {
       get;
       set;
     }
 
     /// <summary>
-    ///   Gets or sets the size of the buffer for transfer of the file. </summary>
+    ///   Gets or sets the size of the buffer for transfer of the file.
+    /// </summary>
     public int BufferSize {
       get {
         return _bufferSize;
@@ -63,35 +69,40 @@ namespace Supay.Irc.Dcc {
     }
 
     /// <summary>
-    ///   Gets or sets if the transfer uses the "turbo" extension to increase transfer speed. </summary>
+    ///   Gets or sets if the transfer uses the "turbo" extension to increase transfer speed.
+    /// </summary>
     public bool TurboMode {
       get;
       set;
     }
 
     /// <summary>
-    ///   Gets or sets if the transfer uses SSL to secure the transfer. </summary>
+    ///   Gets or sets if the transfer uses SSL to secure the transfer.
+    /// </summary>
     public bool Secure {
       get;
       set;
     }
 
     /// <summary>
-    ///   Gets or sets if the transfer uses the "send ahead" extension to increase transfer speed. </summary>
+    ///   Gets or sets if the transfer uses the "send ahead" extension to increase transfer speed.
+    /// </summary>
     public bool SendAhead {
       get;
       set;
     }
 
     /// <summary>
-    ///   Gets the number of bytes transferred so far. </summary>
+    ///   Gets the number of bytes transferred so far.
+    /// </summary>
     public long BytesTransferred {
       get;
       private set;
     }
 
     /// <summary>
-    ///   Gets or sets the size of the file being transferred. </summary>
+    ///   Gets or sets the size of the file being transferred.
+    /// </summary>
     public long FileSize {
       get;
       set;
@@ -103,11 +114,13 @@ namespace Supay.Irc.Dcc {
 
     /// <summary>
     ///   The TransferInterruption event occurs when the file has not completely transferred, but
-    ///   the connection has been stopped. </summary>
+    ///   the connection has been stopped.
+    /// </summary>
     public event EventHandler TransferInterruption;
 
     /// <summary>
-    ///   Raises the <see cref="TransferInterruption"/> event. </summary>
+    ///   Raises the <see cref="TransferInterruption" /> event.
+    /// </summary>
     protected void OnTransferInterruption(EventArgs e) {
       if (TransferInterruption != null) {
         TransferInterruption(this, e);
@@ -115,11 +128,13 @@ namespace Supay.Irc.Dcc {
     }
 
     /// <summary>
-    ///   The TransferComplete event occurs when the file has been completely transferred. </summary>
+    ///   The TransferComplete event occurs when the file has been completely transferred.
+    /// </summary>
     public event EventHandler TransferComplete;
 
     /// <summary>
-    ///   Raises the <see cref="TransferComplete"/> event. </summary>
+    ///   Raises the <see cref="TransferComplete" /> event.
+    /// </summary>
     protected void OnTransferComplete(EventArgs e) {
       if (TransferComplete != null) {
         TransferComplete(this, e);
@@ -131,7 +146,8 @@ namespace Supay.Irc.Dcc {
     #region Internal Methods
 
     /// <summary>
-    ///   Sends the file over the current socket. </summary>
+    ///   Sends the file over the current socket.
+    /// </summary>
     internal void Send() {
       if (!File.CanRead) {
         throw new InvalidOperationException(Properties.Resources.CannotReadFromFile);
@@ -164,7 +180,8 @@ namespace Supay.Irc.Dcc {
     }
 
     /// <summary>
-    ///   Receives the file over the current socket. </summary>
+    ///   Receives the file over the current socket.
+    /// </summary>
     internal void Receive() {
       BytesTransferred = 0;
 

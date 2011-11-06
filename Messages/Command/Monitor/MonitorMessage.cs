@@ -2,12 +2,12 @@ using System;
 
 namespace Supay.Irc.Messages {
   /// <summary>
-  /// A Message that participates in the Monitor system.
+  ///   A Message that participates in the Monitor system.
   /// </summary>
   [Serializable]
   public abstract class MonitorMessage : CommandMessage {
     /// <summary>
-    /// Gets the IRC command associated with this message.
+    ///   Gets the IRC command associated with this message.
     /// </summary>
     protected override string Command {
       get {
@@ -16,7 +16,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Validates this message against the given server support
+    ///   Validates this message against the given server support
     /// </summary>
     public override void Validate(ServerSupport serverSupport) {
       base.Validate(serverSupport);

@@ -4,23 +4,25 @@ using Supay.Irc.Messages.Modes;
 
 namespace Supay.Irc.Messages {
   /// <summary>
-  ///   The <see cref="ErrorMessage"/> received when attempting to join a channel which has a key
-  ///   set, and the user has not provided it. </summary>
+  ///   The <see cref="ErrorMessage" /> received when attempting to join a channel which has a key
+  ///   set, and the user has not provided it.
+  /// </summary>
   /// <remarks>
-  ///   A channel can require a key with the <see cref="ChannelModeMessage"/> with a
-  ///   <see cref="KeyMode"/>. The key must be set on the <see cref="JoinMessage"/> to join such
-  ///   channels. </remarks>
+  ///   A channel can require a key with the <see cref="ChannelModeMessage" /> with a
+  ///   <see cref="KeyMode" />. The key must be set on the <see cref="JoinMessage" /> to join such
+  ///   channels.
+  /// </remarks>
   [Serializable]
   public class ChannelRequiresKeyMessage : ErrorMessage, IChannelTargetedMessage {
     /// <summary>
-    /// Creates a new instances of the <see cref="ChannelRequiresKeyMessage"/> class.
+    ///   Creates a new instances of the <see cref="ChannelRequiresKeyMessage" /> class.
     /// </summary>
     public ChannelRequiresKeyMessage()
       : base(475) {
     }
 
     /// <summary>
-    /// Gets or sets the channel which has a key
+    ///   Gets or sets the channel which has a key
     /// </summary>
     public string Channel {
       get {
@@ -51,7 +53,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Notifies the given <see cref="MessageConduit"/> by raising the appropriate event for the current <see cref="IrcMessage"/> subclass.
+    ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnChannelRequiresKey(new IrcMessageEventArgs<ChannelRequiresKeyMessage>(this));
@@ -64,7 +66,8 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    ///   Determines if the the current message is targeted at the given channel. </summary>
+    ///   Determines if the the current message is targeted at the given channel.
+    /// </summary>
     protected virtual bool IsTargetedAtChannel(string channelName) {
       return this.Channel.EqualsI(channelName);
     }

@@ -5,11 +5,13 @@ using Supay.Irc.Dcc;
 namespace Supay.Irc.Messages {
   /// <summary>
   ///   This message is a request to send a file directly from the sender of the request to the
-  ///   receiver. </summary>
+  ///   receiver.
+  /// </summary>
   [Serializable]
   public class DccSendRequestMessage : DccRequestMessage {
     /// <summary>
-    ///   Creates a new instance of the <see cref="DccSendRequestMessage"/> class. </summary>
+    ///   Creates a new instance of the <see cref="DccSendRequestMessage" /> class.
+    /// </summary>
     public DccSendRequestMessage() {
       Secure = false;
       TurboMode = false;
@@ -18,7 +20,8 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    ///   Gets the data payload of the CTCP request. </summary>
+    ///   Gets the data payload of the CTCP request.
+    /// </summary>
     protected override string ExtendedData {
       get {
         return base.ExtendedData + " " + Size.ToString(CultureInfo.InvariantCulture);
@@ -26,7 +29,8 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    ///   Gets the DCC sub-command. </summary>
+    ///   Gets the DCC sub-command.
+    /// </summary>
     protected override string DccCommand {
       get {
         string result = "SEND";
@@ -41,7 +45,8 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    ///   Gets the DCC sub-command's argument. </summary>
+    ///   Gets the DCC sub-command's argument.
+    /// </summary>
     protected override string DccArgument {
       get {
         return FileName;
@@ -49,41 +54,47 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    ///   Gets or sets the name of the file being sent. </summary>
+    ///   Gets or sets the name of the file being sent.
+    /// </summary>
     public string FileName {
       get;
       set;
     }
 
     /// <summary>
-    ///   Gets or sets the size of the file being sent. </summary>
+    ///   Gets or sets the size of the file being sent.
+    /// </summary>
     public int Size {
       get;
       set;
     }
 
     /// <summary>
-    ///   Gets or sets if the DCC connection should use turbo mode. </summary>
+    ///   Gets or sets if the DCC connection should use turbo mode.
+    /// </summary>
     public bool TurboMode {
       get;
       set;
     }
 
     /// <summary>
-    ///   Gets or sets if the DCC connection should use SSL. </summary>
+    ///   Gets or sets if the DCC connection should use SSL.
+    /// </summary>
     public bool Secure {
       get;
       set;
     }
 
     /// <summary>
-    ///   Determines if the message's DCC command is compatible with this message. </summary>
+    ///   Determines if the message's DCC command is compatible with this message.
+    /// </summary>
     public override bool CanParseDccCommand(string command) {
       return command != null && command.EndsWith("SEND", StringComparison.OrdinalIgnoreCase);
     }
 
     /// <summary>
-    ///   Parses the given string to populate this <see cref="IrcMessage"/>. </summary>
+    ///   Parses the given string to populate this <see cref="IrcMessage" />.
+    /// </summary>
     public override void Parse(string unparsedMessage) {
       base.Parse(unparsedMessage);
       FileName = DccUtil.GetArgument(unparsedMessage);
@@ -95,8 +106,9 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    ///   Notifies the given <see cref="MessageConduit"/> by raising the appropriate event for the
-    ///   current <see cref="IrcMessage"/> subclass. </summary>
+    ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the
+    ///   current <see cref="IrcMessage" /> subclass.
+    /// </summary>
     public override void Notify(MessageConduit conduit) {
       conduit.OnDccSendRequest(new IrcMessageEventArgs<DccSendRequestMessage>(this));
     }

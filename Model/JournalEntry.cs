@@ -5,18 +5,18 @@ using Supay.Irc.Messages;
 
 namespace Supay.Irc {
   /// <summary>
-  /// A single entry in the journal of messages and related information related to an IRC channel or query.
+  ///   A single entry in the journal of messages and related information related to an IRC channel or query.
   /// </summary>
   [DataContract]
   public class JournalEntry : INotifyPropertyChanged {
     /// <summary>
-    /// Creates a new instance of the <see href="JournalEntry"/> class.
+    ///   Creates a new instance of the <see href = "JournalEntry" /> class.
     /// </summary>
     public JournalEntry() {
     }
 
     /// <summary>
-    /// Creates a new instance of the <see href="JournalEntry"/> class, populated with the given item.
+    ///   Creates a new instance of the <see href = "JournalEntry" /> class, populated with the given item.
     /// </summary>
     public JournalEntry(object item) {
       this.Item = item;
@@ -25,7 +25,7 @@ namespace Supay.Irc {
     #region Properties
 
     /// <summary>
-    /// The time at which the entry was added to the journal.
+    ///   The time at which the entry was added to the journal.
     /// </summary>
     [DataMember]
     public DateTime Time {
@@ -41,7 +41,7 @@ namespace Supay.Irc {
     private DateTime _time;
 
     /// <summary>
-    /// The entry data, usually an <see cref="IrcMessage"/>, but can be any object.
+    ///   The entry data, usually an <see cref="IrcMessage" />, but can be any object.
     /// </summary>
     [DataMember]
     public object Item {
@@ -61,7 +61,7 @@ namespace Supay.Irc {
     #region INotifyPropertyChanged
 
     /// <summary>
-    /// Raised when a property on the instance has changed.
+    ///   Raised when a property on the instance has changed.
     /// </summary>
     public event PropertyChangedEventHandler PropertyChanged;
 

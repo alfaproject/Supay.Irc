@@ -4,24 +4,26 @@ using Supay.Irc.Messages.Modes;
 
 namespace Supay.Irc.Messages {
   /// <summary>
-  ///   The <see cref="ErrorMessage"/> received when attempting to join a channel which has reached
-  ///   its limit of users. </summary>
+  ///   The <see cref="ErrorMessage" /> received when attempting to join a channel which has reached
+  ///   its limit of users.
+  /// </summary>
   /// <remarks>
-  ///   A channel can set it's user limit with a <see cref="ChannelModeMessage"/> containing a
-  ///   <see cref="LimitMode"/>. Once that many users are in the channel, any other users
+  ///   A channel can set it's user limit with a <see cref="ChannelModeMessage" /> containing a
+  ///   <see cref="LimitMode" />. Once that many users are in the channel, any other users
   ///   attempting to join will get this reply. On some networks, an invite allows an user to
-  ///   bypass the limit. </remarks>
+  ///   bypass the limit.
+  /// </remarks>
   [Serializable]
   public class ChannelLimitReachedMessage : ErrorMessage {
     /// <summary>
-    /// Creates a new instances of the <see cref="ChannelLimitReachedMessage"/> class.
+    ///   Creates a new instances of the <see cref="ChannelLimitReachedMessage" /> class.
     /// </summary>
     public ChannelLimitReachedMessage()
       : base(471) {
     }
 
     /// <summary>
-    /// Gets or sets the channel which has reached its limit
+    ///   Gets or sets the channel which has reached its limit
     /// </summary>
     public string Channel {
       get {
@@ -52,7 +54,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Notifies the given <see cref="MessageConduit"/> by raising the appropriate event for the current <see cref="IrcMessage"/> subclass.
+    ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnChannelLimitReached(new IrcMessageEventArgs<ChannelLimitReachedMessage>(this));

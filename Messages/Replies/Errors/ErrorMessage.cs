@@ -2,7 +2,8 @@ using System;
 
 namespace Supay.Irc.Messages {
   /// <summary>
-  ///   This class of message is sent to a client from a server when something bad happens. </summary>
+  ///   This class of message is sent to a client from a server when something bad happens.
+  /// </summary>
   [Serializable]
   public abstract class ErrorMessage : NumericMessage {
     protected ErrorMessage() {
@@ -13,7 +14,8 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    ///   Gets the Numeric command of the Message </summary>
+    ///   Gets the Numeric command of the Message
+    /// </summary>
     public override int InternalNumeric {
       get {
         return base.InternalNumeric;

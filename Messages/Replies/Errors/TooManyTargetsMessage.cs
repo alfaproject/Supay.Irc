@@ -3,19 +3,19 @@ using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
   /// <summary>
-  /// The error received when a message containing target parameters has too many targets specified.
+  ///   The error received when a message containing target parameters has too many targets specified.
   /// </summary>
   [Serializable]
   public class TooManyTargetsMessage : ErrorMessage {
     /// <summary>
-    /// Creates a new instances of the <see cref="TooManyTargetsMessage"/> class.
+    ///   Creates a new instances of the <see cref="TooManyTargetsMessage" /> class.
     /// </summary>
     public TooManyTargetsMessage()
       : base(407) {
     }
 
     /// <summary>
-    /// Gets or sets the target which was invalid.
+    ///   Gets or sets the target which was invalid.
     /// </summary>
     public virtual string InvalidTarget {
       get {
@@ -29,9 +29,11 @@ namespace Supay.Irc.Messages {
     private string invalidTarget = string.Empty;
 
     /// <summary>
-    /// Gets or sets the error code
+    ///   Gets or sets the error code
     /// </summary>
-    /// <remarks>An example error code might be, "Duplicate"</remarks>
+    /// <remarks>
+    ///   An example error code might be, "Duplicate"
+    /// </remarks>
     public virtual string ErrorCode {
       get {
         return errorCode;
@@ -44,7 +46,7 @@ namespace Supay.Irc.Messages {
     private string errorCode = string.Empty;
 
     /// <summary>
-    /// Gets or sets the message explaining what was done about the error.
+    ///   Gets or sets the message explaining what was done about the error.
     /// </summary>
     public virtual string AbortMessage {
       get {
@@ -58,7 +60,8 @@ namespace Supay.Irc.Messages {
     private string abortMessage = string.Empty;
 
     /// <summary>
-    ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
+    ///   Overrides <see cref="IrcMessage.GetParameters" />.
+    /// </summary>
     protected override Collection<string> GetParameters() {
       Collection<string> parameters = base.GetParameters();
       parameters.Add(InvalidTarget);
@@ -67,7 +70,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Parses the parameters portion of the message.
+    ///   Parses the parameters portion of the message.
     /// </summary>
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
@@ -91,7 +94,7 @@ namespace Supay.Irc.Messages {
     // "<target> :<error code> recipients. <abort message>"
 
     /// <summary>
-    /// Notifies the given <see cref="MessageConduit"/> by raising the appropriate event for the current <see cref="IrcMessage"/> subclass.
+    ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnTooManyTargets(new IrcMessageEventArgs<TooManyTargetsMessage>(this));

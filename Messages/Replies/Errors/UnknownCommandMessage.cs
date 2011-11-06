@@ -3,19 +3,19 @@ using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
   /// <summary>
-  /// The <see cref="ErrorMessage"/> sent when a command is sent to a server which didn't recognize it.
+  ///   The <see cref="ErrorMessage" /> sent when a command is sent to a server which didn't recognize it.
   /// </summary>
   [Serializable]
   public class UnknownCommandMessage : ErrorMessage {
     /// <summary>
-    /// Creates a new instances of the <see cref="TooManyLinesMessage"/> class.
+    ///   Creates a new instances of the <see cref="TooManyLinesMessage" /> class.
     /// </summary>
     public UnknownCommandMessage()
       : base(421) {
     }
 
     /// <summary>
-    /// Gets or sets the command which caused the error.
+    ///   Gets or sets the command which caused the error.
     /// </summary>
     public string Command {
       get {
@@ -46,7 +46,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Notifies the given <see cref="MessageConduit"/> by raising the appropriate event for the current <see cref="IrcMessage"/> subclass.
+    ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnUnknownCommand(new IrcMessageEventArgs<UnknownCommandMessage>(this));

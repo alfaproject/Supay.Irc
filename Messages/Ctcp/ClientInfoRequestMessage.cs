@@ -3,13 +3,13 @@ using System.Collections.Generic;
 
 namespace Supay.Irc.Messages {
   /// <summary>
-  /// This message is a request that the target of the message reply with a human-readable
-  /// list stating what Ctcp commands they support.
+  ///   This message is a request that the target of the message reply with a human-readable
+  ///   list stating what Ctcp commands they support.
   /// </summary>
   [Serializable]
   public class ClientInfoRequestMessage : CtcpRequestMessage {
     /// <summary>
-    /// Creates a new instance of the <see cref="ClientInfoRequestMessage"/> class
+    ///   Creates a new instance of the <see cref="ClientInfoRequestMessage" /> class
     /// </summary>
     public ClientInfoRequestMessage()
       : base() {
@@ -17,10 +17,10 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Gets the list of parameters which signify interest in a specific command or subcommand.
+    ///   Gets the list of parameters which signify interest in a specific command or subcommand.
     /// </summary>
     /// <remarks>
-    /// To specificly ask about support for the "TIME" command, add "TIME" as the first parameter.
+    ///   To specificly ask about support for the "TIME" command, add "TIME" as the first parameter.
     /// </remarks>
     public virtual List<string> Parameters {
       get {
@@ -31,7 +31,7 @@ namespace Supay.Irc.Messages {
     private List<string> parameters = new List<string>();
 
     /// <summary>
-    /// Gets the data payload of the Ctcp request.
+    ///   Gets the data payload of the Ctcp request.
     /// </summary>
     protected override string ExtendedData {
       get {
@@ -40,14 +40,14 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Notifies the given <see cref="MessageConduit"/> by raising the appropriate event for the current <see cref="IrcMessage"/> subclass.
+    ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnClientInfoRequest(new IrcMessageEventArgs<ClientInfoRequestMessage>(this));
     }
 
     /// <summary>
-    /// Parses the given string to populate this <see cref="IrcMessage"/>.
+    ///   Parses the given string to populate this <see cref="IrcMessage" />.
     /// </summary>
     public override void Parse(string unparsedMessage) {
       base.Parse(unparsedMessage);

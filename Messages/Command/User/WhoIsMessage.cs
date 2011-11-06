@@ -3,28 +3,29 @@ using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
   /// <summary>
-  /// Requests information from the server about the users specified.
+  ///   Requests information from the server about the users specified.
   /// </summary>
   /// <remarks>
   ///   <para>
   ///     Possible reply messages include:
-  ///     <see cref="NoSuchServerMessage"/>
-  ///     <see cref="NoNickGivenMessage"/>
-  ///     <see cref="NoSuchNickMessage"/>
+  ///     <see cref="NoSuchServerMessage" />
+  ///     <see cref="NoNickGivenMessage" />
+  ///     <see cref="NoSuchNickMessage" />
   /// 
-  ///     <see cref="WhoIsUserReplyMessage"/>
-  ///     <see cref="WhoIsChannelsReplyMessage"/>
-  ///     <see cref="WhoIsServerReplyMessage"/>
-  ///     <see cref="WhoIsOperReplyMessage"/>
-  ///     <see cref="WhoIsIdleReplyMessage"/>
+  ///     <see cref="WhoIsUserReplyMessage" />
+  ///     <see cref="WhoIsChannelsReplyMessage" />
+  ///     <see cref="WhoIsServerReplyMessage" />
+  ///     <see cref="WhoIsOperReplyMessage" />
+  ///     <see cref="WhoIsIdleReplyMessage" />
   /// 
-  ///     <see cref="UserAwayMessage"/>
-  ///     <see cref="WhoIsEndReplyMessage"/>
-  ///   </para> </remarks>
+  ///     <see cref="UserAwayMessage" />
+  ///     <see cref="WhoIsEndReplyMessage" />
+  ///   </para>
+  /// </remarks>
   [Serializable]
   public class WhoIsMessage : CommandMessage {
     /// <summary>
-    /// Gets the collection of users that information is requested for.
+    ///   Gets the collection of users that information is requested for.
     /// </summary>
     public virtual UserCollection Masks {
       get {
@@ -35,7 +36,7 @@ namespace Supay.Irc.Messages {
     private UserCollection masks = new UserCollection();
 
     /// <summary>
-    /// Gets or sets the server which should return the information.
+    ///   Gets or sets the server which should return the information.
     /// </summary>
     public virtual string Server {
       get {
@@ -47,7 +48,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Gets the IRC command associated with this message.
+    ///   Gets the IRC command associated with this message.
     /// </summary>
     protected override string Command {
       get {
@@ -58,7 +59,8 @@ namespace Supay.Irc.Messages {
     private string server = string.Empty;
 
     /// <summary>
-    ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
+    ///   Overrides <see cref="IrcMessage.GetParameters" />.
+    /// </summary>
     protected override Collection<string> GetParameters() {
       Collection<string> parameters = base.GetParameters();
       parameters.Add(Server);
@@ -67,7 +69,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Parses the parameters portion of the message.
+    ///   Parses the parameters portion of the message.
     /// </summary>
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
@@ -84,7 +86,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Notifies the given <see cref="MessageConduit"/> by raising the appropriate event for the current <see cref="IrcMessage"/> subclass.
+    ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnWhoIs(new IrcMessageEventArgs<WhoIsMessage>(this));

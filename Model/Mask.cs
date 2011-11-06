@@ -4,11 +4,13 @@ using System.Text.RegularExpressions;
 
 namespace Supay.Irc {
   /// <summary>
-  ///   Represents a Mask on an IRC server. (nickname!userName@host) </summary>
+  ///   Represents a Mask on an IRC server. (nickname!userName@host)
+  /// </summary>
   [Serializable]
   public class Mask : IEquatable<Mask>, INotifyPropertyChanged {
     /// <summary>
-    ///   Raised when a property on the instance has changed. </summary>
+    ///   Raised when a property on the instance has changed.
+    /// </summary>
     public event PropertyChangedEventHandler PropertyChanged;
 
     private string _nickname;
@@ -18,13 +20,11 @@ namespace Supay.Irc {
     #region Constructors
 
     /// <summary>
-    ///   Initializes a new instance of the <see cref="Mask"/> class with the given mask values. </summary>
-    /// <param name="nickname">
-    ///   The nickname of this mask. </param>
-    /// <param name="username">
-    ///   The username of this mask. </param>
-    /// <param name="host">
-    ///   The host of this mask. </param>
+    ///   Initializes a new instance of the <see cref="Mask" /> class with the given mask values.
+    /// </summary>
+    /// <param name="nickname">The nickname of this mask.</param>
+    /// <param name="username">The username of this mask.</param>
+    /// <param name="host">The host of this mask.</param>
     public Mask(string nickname, string username, string host) {
       _nickname = nickname;
       _username = username;
@@ -32,9 +32,9 @@ namespace Supay.Irc {
     }
 
     /// <summary>
-    ///   Initializes a new instance of the <see cref="Mask"/> class with the given mask string. </summary>
-    /// <param name="mask">
-    ///   The mask string to parse. </param>
+    ///   Initializes a new instance of the <see cref="Mask" /> class with the given mask string.
+    /// </summary>
+    /// <param name="mask">The mask string to parse.</param>
     public Mask(string mask) {
       int indexOfAt = mask.LastIndexOf('@');
       if (indexOfAt != -1) {
@@ -54,7 +54,8 @@ namespace Supay.Irc {
     }
 
     /// <summary>
-    ///   Initializes a new empty instance of the <see cref="Mask"/> class. </summary>
+    ///   Initializes a new empty instance of the <see cref="Mask" /> class.
+    /// </summary>
     public Mask() {
     }
 
@@ -63,7 +64,8 @@ namespace Supay.Irc {
     #region Properties
 
     /// <summary>
-    ///   Gets or sets the nickname of this mask. </summary>
+    ///   Gets or sets the nickname of this mask.
+    /// </summary>
     public string Nickname {
       get {
         return _nickname;
@@ -78,7 +80,8 @@ namespace Supay.Irc {
     }
 
     /// <summary>
-    ///   Gets or sets the username of this mask. </summary>
+    ///   Gets or sets the username of this mask.
+    /// </summary>
     public string Username {
       get {
         return _username;
@@ -93,7 +96,8 @@ namespace Supay.Irc {
     }
 
     /// <summary>
-    ///   Gets or sets the host of this mask. </summary>
+    ///   Gets or sets the host of this mask.
+    /// </summary>
     public string Host {
       get {
         return _host;
@@ -108,7 +112,8 @@ namespace Supay.Irc {
     }
 
     /// <summary>
-    ///   Gets this Mask information with a guaranteed nickname!username@host format. </summary>
+    ///   Gets this Mask information with a guaranteed nickname!username@host format.
+    /// </summary>
     public string IrcMask {
       get {
         return (string.IsNullOrEmpty(_nickname) ? "*" : _nickname) + "!" + (string.IsNullOrEmpty(_username) ? "*" : _username) + "@" + (string.IsNullOrEmpty(_host) ? "*" : _host);
@@ -116,7 +121,8 @@ namespace Supay.Irc {
     }
 
     /// <summary>
-    ///   Indicates whether this mask has wildcards. </summary>
+    ///   Indicates whether this mask has wildcards.
+    /// </summary>
     public bool HasWildcards {
       get {
         return (this.IrcMask.IndexOfAny(new char[] { '?', '*' }) == -1);
@@ -128,18 +134,17 @@ namespace Supay.Irc {
     #region Public Methods
 
     /// <summary>
-    ///   Represents this mask using IRC format. </summary>
+    ///   Represents this mask using IRC format.
+    /// </summary>
     public override string ToString() {
       return this.IrcMask;
     }
 
     /// <summary>
-    ///   Determines whether this instance and another specified <see cref="Mask"/> object have the same value. </summary>
-    /// <param name="other">
-    ///   A <see cref="Mask"/>. </param>
-    /// <returns>
-    ///   true if the value of the <paramref name="other"/> parameter is the same as this instance;
-    ///   otherwise, false. </returns>
+    ///   Determines whether this instance and another specified <see cref="Mask" /> object have the same value.
+    /// </summary>
+    /// <param name="other">A <see cref="Mask" />.</param>
+    /// <returns>true if the value of the <paramref name="other" /> parameter is the same as this instance; otherwise, false.</returns>
     public bool Equals(Mask other) {
       if (object.ReferenceEquals(null, other)) {
         return false;
@@ -148,43 +153,38 @@ namespace Supay.Irc {
     }
 
     /// <summary>
-    ///   Determines whether this instance of <see cref="Mask"/> and a specified object,
-    ///   which must also be a <see cref="Mask"/> object, have the same value. </summary>
-    /// <param name="obj">
-    ///   An <see cref="Object"/>. </param>
-    /// <returns>
-    ///   true if <paramref name="obj"/> is a <see cref="Mask"/> and its value is the same as this instance;
-    ///   otherwise, false. </returns>
+    ///   Determines whether this instance of <see cref="Mask" /> and a specified object,
+    ///   which must also be a <see cref="Mask" /> object, have the same value.
+    /// </summary>
+    /// <param name="obj">An <see cref="Object" />.</param>
+    /// <returns>true if <paramref name="obj" /> is a <see cref="Mask" /> and its value is the same as this instance; otherwise, false.</returns>
     public override bool Equals(object obj) {
       return this.Equals(obj as Mask);
     }
 
     /// <summary>
-    ///   Serves as a hash function for this particular type. </summary>
-    /// <returns>
-    ///   A hash code for the current <see cref="Mask"/>. </returns>
+    ///   Serves as a hash function for this particular type.
+    /// </summary>
+    /// <returns>A hash code for the current <see cref="Mask" />.</returns>
     public override int GetHashCode() {
       return this.IrcMask.GetHashCode();
     }
 
     /// <summary>
-    ///   Indicates whether pattern mask matches this instance mask. </summary>
-    /// <param name="pattern">
-    ///   The <see cref="Mask"/> pattern to match. </param>
-    /// <returns>
-    ///   true if there is a match; otherwise, false. </returns>
+    ///   Indicates whether pattern mask matches this instance mask.
+    /// </summary>
+    /// <param name="pattern">The <see cref="Mask" /> pattern to match.</param>
+    /// <returns>true if there is a match; otherwise, false.</returns>
     public bool IsMatch(Mask pattern) {
       return Mask.IsMatch(this, pattern);
     }
 
     /// <summary>
-    ///   Indicates whether pattern mask matches input mask. </summary>
-    /// <param name="input">
-    ///   The <see cref="Mask"/> to check for a match. </param>
-    /// <param name="pattern">
-    ///   The <see cref="Mask"/> pattern to match. </param>
-    /// <returns>
-    ///   true if there is a match; otherwise, false. </returns>
+    ///   Indicates whether pattern mask matches input mask.
+    /// </summary>
+    /// <param name="input">The <see cref="Mask" /> to check for a match.</param>
+    /// <param name="pattern">The <see cref="Mask" /> pattern to match.</param>
+    /// <returns>true if there is a match; otherwise, false.</returns>
     public static bool IsMatch(Mask input, Mask pattern) {
       string regexPattern = Regex.Escape(pattern.IrcMask).Replace(@"\?", ".").Replace(@"\*", ".*");
       return Regex.IsMatch(input.IrcMask, regexPattern, RegexOptions.IgnoreCase);

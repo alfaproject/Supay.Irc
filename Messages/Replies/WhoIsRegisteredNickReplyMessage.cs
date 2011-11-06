@@ -3,19 +3,19 @@ using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
   /// <summary>
-  /// One of the possible replies to a <see cref="WhoIsMessage"/> message.
+  ///   One of the possible replies to a <see cref="WhoIsMessage" /> message.
   /// </summary>
   [Serializable]
   public class WhoIsRegisteredNickReplyMessage : NumericMessage {
     /// <summary>
-    /// Creates a new instance of the <see cref="WhoIsRegisteredNickReplyMessage"/> class.
+    ///   Creates a new instance of the <see cref="WhoIsRegisteredNickReplyMessage" /> class.
     /// </summary>
     public WhoIsRegisteredNickReplyMessage()
       : base(307) {
     }
 
     /// <summary>
-    /// Gets or sets the nick for the user examined.
+    ///   Gets or sets the nick for the user examined.
     /// </summary>
     public virtual string Nick {
       get {
@@ -29,7 +29,8 @@ namespace Supay.Irc.Messages {
     private string nick = string.Empty;
 
     /// <summary>
-    ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
+    ///   Overrides <see cref="IrcMessage.GetParameters" />.
+    /// </summary>
     protected override Collection<string> GetParameters() {
       Collection<string> parameters = base.GetParameters();
       parameters.Add(Nick);
@@ -38,7 +39,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Parses the parameters portion of the message.
+    ///   Parses the parameters portion of the message.
     /// </summary>
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
@@ -48,7 +49,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Notifies the given <see cref="MessageConduit"/> by raising the appropriate event for the current <see cref="IrcMessage"/> subclass.
+    ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnWhoIsRegisteredNickReply(new IrcMessageEventArgs<WhoIsRegisteredNickReplyMessage>(this));

@@ -6,22 +6,22 @@ using System.Linq;
 
 namespace Supay.Irc.Messages {
   /// <summary>
-  /// The <see cref="ListMessage"/> is used to list channels and their topics.
+  ///   The <see cref="ListMessage" /> is used to list channels and their topics.
   /// </summary>
   /// <remarks>
-  /// A server sent a <see cref="ListMessage"/> will reply with a 
-  /// <see cref="ListStartReplyMessage"/>, <see cref="ListReplyMessage"/>, and a <see cref="ListEndReplyMessage"/>.
+  ///   A server sent a <see cref="ListMessage" /> will reply with a 
+  ///   <see cref="ListStartReplyMessage" />, <see cref="ListReplyMessage" />, and a <see cref="ListEndReplyMessage" />.
   /// </remarks>
   [Serializable]
   public class ListMessage : CommandMessage {
     /// <summary>
-    /// Creates a new instance of the <see cref="ListMessage"/> class.
+    ///   Creates a new instance of the <see cref="ListMessage" /> class.
     /// </summary>
     public ListMessage() {
     }
 
     /// <summary>
-    /// Creates a new instance of the <see cref="ListMessage"/> class with the given channel.
+    ///   Creates a new instance of the <see cref="ListMessage" /> class with the given channel.
     /// </summary>
     /// <param name="channel"></param>
     public ListMessage(string channel) {
@@ -29,10 +29,10 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Gets the channels to get info about.
+    ///   Gets the channels to get info about.
     /// </summary>
     /// <remarks>
-    /// If this is empty, information about all channels is requested.
+    ///   If this is empty, information about all channels is requested.
     /// </remarks>
     public virtual List<string> Channels {
       get {
@@ -43,7 +43,7 @@ namespace Supay.Irc.Messages {
     private List<string> channels = new List<string>();
 
     /// <summary>
-    /// Gets or sets the server that should return the info.
+    ///   Gets or sets the server that should return the info.
     /// </summary>
     public virtual string Server {
       get {
@@ -57,7 +57,7 @@ namespace Supay.Irc.Messages {
     private string server = string.Empty;
 
     /// <summary>
-    /// Gets or sets the maximum number of users that channels can have to be returned.
+    ///   Gets or sets the maximum number of users that channels can have to be returned.
     /// </summary>
     public int MaxUsers {
       get {
@@ -71,7 +71,7 @@ namespace Supay.Irc.Messages {
     private int maxUsers = -1;
 
     /// <summary>
-    /// Gets or sets the minimum number of users that channels can have to be returned.
+    ///   Gets or sets the minimum number of users that channels can have to be returned.
     /// </summary>
     public int MinUsers {
       get {
@@ -85,8 +85,8 @@ namespace Supay.Irc.Messages {
     private int minUsers = -1;
 
     /// <summary>
-    /// Gets or sets, in minutes, the longest amount of time 
-    /// which may have passed since a channel was created in order to be returned.
+    ///   Gets or sets, in minutes, the longest amount of time 
+    ///   which may have passed since a channel was created in order to be returned.
     /// </summary>
     public int YoungerThan {
       get {
@@ -100,8 +100,8 @@ namespace Supay.Irc.Messages {
     private int youngerThan = -1;
 
     /// <summary>
-    /// Gets or sets, in minutes, the shortest amount of time 
-    /// which may have passed since a channel was created in order to be returned.
+    ///   Gets or sets, in minutes, the shortest amount of time 
+    ///   which may have passed since a channel was created in order to be returned.
     /// </summary>
     public int OlderThan {
       get {
@@ -115,7 +115,7 @@ namespace Supay.Irc.Messages {
     private int olderThan = -1;
 
     /// <summary>
-    /// Gets or sets the a mask which a channel must match to be returned.
+    ///   Gets or sets the a mask which a channel must match to be returned.
     /// </summary>
     public string MatchMask {
       get {
@@ -129,7 +129,7 @@ namespace Supay.Irc.Messages {
     private string matchMask = string.Empty;
 
     /// <summary>
-    /// Gets or sets a mask which a channel cannot match to be returned.
+    ///   Gets or sets a mask which a channel cannot match to be returned.
     /// </summary>
     public string NotMatchMask {
       get {
@@ -143,12 +143,12 @@ namespace Supay.Irc.Messages {
     private string notMatchMask = string.Empty;
 
     /// <summary>
-    /// Gets or sets, in minutes, the shortest amount of time 
-    /// which may have passed since a channel's topic was changed, to be returned.
+    ///   Gets or sets, in minutes, the shortest amount of time 
+    ///   which may have passed since a channel's topic was changed, to be returned.
     /// </summary>
     /// <remarks>
-    /// Setting this property to "5" will cause only channels to be returned where their
-    /// topic hasn't been changed in the last 5 minutes.
+    ///   Setting this property to "5" will cause only channels to be returned where their
+    ///   topic hasn't been changed in the last 5 minutes.
     /// </remarks>
     public int TopicOlderThan {
       get {
@@ -162,12 +162,12 @@ namespace Supay.Irc.Messages {
     private int topicOlderThan = -1;
 
     /// <summary>
-    /// Gets or sets, in minutes, the longest amount of time 
-    /// which may have passed since a channel's topic was changed, to be returned.
+    ///   Gets or sets, in minutes, the longest amount of time 
+    ///   which may have passed since a channel's topic was changed, to be returned.
     /// </summary>
     /// <remarks>
-    /// Setting this property to "5" will cause only channels to be returned where their
-    /// topic has been changed in the last 5 minutes.
+    ///   Setting this property to "5" will cause only channels to be returned where their
+    ///   topic has been changed in the last 5 minutes.
     /// </remarks>
     public int TopicYoungerThan {
       get {
@@ -181,7 +181,7 @@ namespace Supay.Irc.Messages {
     private int topicYoungerThan = -1;
 
     /// <summary>
-    /// Gets the IRC command associated with this message.
+    ///   Gets the IRC command associated with this message.
     /// </summary>
     protected override string Command {
       get {
@@ -218,7 +218,8 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
+    ///   Overrides <see cref="IrcMessage.GetParameters" />.
+    /// </summary>
     protected override Collection<string> GetParameters() {
       Collection<string> options = new Collection<string>();
       if (MaxUsers >= 0) {
@@ -259,7 +260,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Parses the parameters portion of the message.
+    ///   Parses the parameters portion of the message.
     /// </summary>
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
@@ -314,7 +315,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Notifies the given <see cref="MessageConduit"/> by raising the appropriate event for the current <see cref="IrcMessage"/> subclass.
+    ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnList(new IrcMessageEventArgs<ListMessage>(this));

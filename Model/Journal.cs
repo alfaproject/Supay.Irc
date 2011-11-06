@@ -4,25 +4,26 @@ using System.Collections.ObjectModel;
 
 namespace Supay.Irc {
   /// <summary>
-  /// The journal of messages and related information related to an irc channel or query.
+  ///   The journal of messages and related information related to an irc channel or query.
   /// </summary>
   [Serializable]
   public class Journal : ObservableCollection<JournalEntry> {
     /// <summary>
-    /// Creates a new instance of the Journal class.
+    ///   Creates a new instance of the Journal class.
     /// </summary>
     public Journal()
       : base() {
     }
 
     /// <summary>
-    ///   Creates a new instance of the Journal class starting with the given entry list. </summary>
+    ///   Creates a new instance of the Journal class starting with the given entry list.
+    /// </summary>
     public Journal(IEnumerable<JournalEntry> list)
       : base(list) {
     }
 
     /// <summary>
-    /// Inserts the given entry into the collection at the given index.
+    ///   Inserts the given entry into the collection at the given index.
     /// </summary>
     protected override void InsertItem(int index, JournalEntry item) {
       this.CheckReentrancy();
@@ -36,7 +37,7 @@ namespace Supay.Irc {
     }
 
     /// <summary>
-    /// The maximum number of entries kept in the journal at once.
+    ///   The maximum number of entries kept in the journal at once.
     /// </summary>
     public int MaxEntries {
       get {

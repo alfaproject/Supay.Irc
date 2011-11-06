@@ -3,33 +3,39 @@ using System;
 namespace Supay.Irc.Contacts {
   /// <summary>
   ///   A contact list which tracks the online and offline status of the users within the Users
-  ///   collection property. </summary>
+  ///   collection property.
+  /// </summary>
   /// <remarks>
   ///   The ContactList will use Watch, Monitor, or IsOn, depending on server support. User status
-  ///   changes will be updated via the User.OnlineStatus property. </remarks>
+  ///   changes will be updated via the User.OnlineStatus property.
+  /// </remarks>
   public class ContactList : IDisposable {
     private ContactsTracker _tracker;
 
     /// <summary>
-    ///   Gets the collection of users being tracked as a contact list. </summary>
+    ///   Gets the collection of users being tracked as a contact list.
+    /// </summary>
     public UserCollection Users {
       get;
       private set;
     }
 
     /// <summary>
-    ///   The client on which the list is tracked. </summary>
+    ///   The client on which the list is tracked.
+    /// </summary>
     public Client Client {
       get;
       private set;
     }
 
     /// <summary>
-    ///   Initializes the <see cref="ContactList"/> on the given client. </summary>
+    ///   Initializes the <see cref="ContactList" /> on the given client.
+    /// </summary>
     /// <remarks>
     ///   This method should not be called until the Client receives the
-    ///   <see cref="ServerSupport"/> is populated. An easy way to make sure is to wait until the
-    ///   Ready event of the Client. </remarks>
+    ///   <see cref="ServerSupport" /> is populated. An easy way to make sure is to wait until the
+    ///   Ready event of the Client.
+    /// </remarks>
     public void Initialize(Client client) {
       if (client == null) {
         throw new ArgumentNullException("client");
@@ -59,7 +65,8 @@ namespace Supay.Irc.Contacts {
 
     /// <summary>
     ///   Performs application-defined tasks associated with freeing, releasing, or resetting
-    ///   unmanaged resources. </summary>
+    ///   unmanaged resources.
+    /// </summary>
     public void Dispose() {
       Dispose(true);
       GC.SuppressFinalize(this);

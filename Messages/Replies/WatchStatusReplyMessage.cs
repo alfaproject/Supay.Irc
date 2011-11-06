@@ -4,19 +4,19 @@ using System.Globalization;
 
 namespace Supay.Irc.Messages {
   /// <summary>
-  /// A reply for the <see cref="WatchStatusRequestMessage"/> query.
+  ///   A reply for the <see cref="WatchStatusRequestMessage" /> query.
   /// </summary>
   [Serializable]
   public class WatchStatusReplyMessage : NumericMessage {
     /// <summary>
-    /// Creates a new instance of the <see cref="WatchStatusRequestMessage"/>.
+    ///   Creates a new instance of the <see cref="WatchStatusRequestMessage" />.
     /// </summary>
     public WatchStatusReplyMessage()
       : base(603) {
     }
 
     /// <summary>
-    /// Gets or sets the number of watched users that you have on your watch list.
+    ///   Gets or sets the number of watched users that you have on your watch list.
     /// </summary>
     public int WatchListCount {
       get {
@@ -30,7 +30,7 @@ namespace Supay.Irc.Messages {
     private int watchesYouHave = 0;
 
     /// <summary>
-    /// Gets or sets the number of users which you on their watch list.
+    ///   Gets or sets the number of users which you on their watch list.
     /// </summary>
     public int UsersWatchingYou {
       get {
@@ -44,7 +44,8 @@ namespace Supay.Irc.Messages {
     private int watchesThatHaveYou = 0;
 
     /// <summary>
-    ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
+    ///   Overrides <see cref="IrcMessage.GetParameters" />.
+    /// </summary>
     protected override Collection<string> GetParameters() {
       Collection<string> parameters = base.GetParameters();
       parameters.Add(string.Format(CultureInfo.InvariantCulture, "You have {0} and are on {1} WATCH entries", WatchListCount, UsersWatchingYou));
@@ -52,7 +53,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Parses the parameters portion of the message.
+    ///   Parses the parameters portion of the message.
     /// </summary>
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
@@ -67,7 +68,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Notifies the given <see cref="MessageConduit"/> by raising the appropriate event for the current <see cref="IrcMessage"/> subclass.
+    ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnWatchStatusReply(new IrcMessageEventArgs<WatchStatusReplyMessage>(this));

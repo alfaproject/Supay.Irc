@@ -3,19 +3,19 @@ using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
   /// <summary>
-  /// The reply to the <see cref="SilenceMessage"/> query.
+  ///   The reply to the <see cref="SilenceMessage" /> query.
   /// </summary>
   [Serializable]
   public class SilenceReplyMessage : NumericMessage {
     /// <summary>
-    /// Creates a new instance of the <see cref="SilenceReplyMessage"/>.
+    ///   Creates a new instance of the <see cref="SilenceReplyMessage" />.
     /// </summary>
     public SilenceReplyMessage()
       : base(271) {
     }
 
     /// <summary>
-    /// Gets or sets the user being silenced.
+    ///   Gets or sets the user being silenced.
     /// </summary>
     public virtual User SilencedUser {
       get {
@@ -29,7 +29,7 @@ namespace Supay.Irc.Messages {
     private User silencedUser = new User();
 
     /// <summary>
-    /// Gets or sets the nick of the owner of the silence list
+    ///   Gets or sets the nick of the owner of the silence list
     /// </summary>
     public virtual string SilenceListOwner {
       get {
@@ -43,7 +43,8 @@ namespace Supay.Irc.Messages {
     private string silenceListOwner = string.Empty;
 
     /// <summary>
-    ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
+    ///   Overrides <see cref="IrcMessage.GetParameters" />.
+    /// </summary>
     protected override Collection<string> GetParameters() {
       Collection<string> parameters = base.GetParameters();
       parameters.Add(SilenceListOwner);
@@ -52,7 +53,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Parses the parameters portion of the message.
+    ///   Parses the parameters portion of the message.
     /// </summary>
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
@@ -63,7 +64,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Notifies the given <see cref="MessageConduit"/> by raising the appropriate event for the current <see cref="IrcMessage"/> subclass.
+    ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnSilenceReply(new IrcMessageEventArgs<SilenceReplyMessage>(this));

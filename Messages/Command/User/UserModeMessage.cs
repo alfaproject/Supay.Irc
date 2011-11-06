@@ -3,16 +3,16 @@ using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
   /// <summary>
-  /// The UserModeMessage allows users to have their mode changed.
+  ///   The UserModeMessage allows users to have their mode changed.
   /// </summary>
   /// <remarks>
-  /// Modes include such things as invisibility and IRC operator.
-  /// This message wraps the MODE command.
+  ///   Modes include such things as invisibility and IRC operator.
+  ///   This message wraps the MODE command.
   /// </remarks>
   [Serializable]
   public class UserModeMessage : CommandMessage {
     /// <summary>
-    /// Gets the IRC command associated with this message.
+    ///   Gets the IRC command associated with this message.
     /// </summary>
     protected override string Command {
       get {
@@ -21,7 +21,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Gets or sets the affected user.
+    ///   Gets or sets the affected user.
     /// </summary>
     public virtual string User {
       get {
@@ -35,11 +35,11 @@ namespace Supay.Irc.Messages {
     private string user = string.Empty;
 
     /// <summary>
-    /// Gets or sets the mode changes being applied.
+    ///   Gets or sets the mode changes being applied.
     /// </summary>
     /// <remarks>
-    /// An example ModeChanges might look like "-w".
-    /// This example means turning off the receipt of wallop message from the server.
+    ///   An example ModeChanges might look like "-w".
+    ///   This example means turning off the receipt of wallop message from the server.
     /// </remarks>
     public virtual string ModeChanges {
       get {
@@ -53,7 +53,8 @@ namespace Supay.Irc.Messages {
     private string modeChanges = string.Empty;
 
     /// <summary>
-    ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
+    ///   Overrides <see cref="IrcMessage.GetParameters" />.
+    /// </summary>
     protected override Collection<string> GetParameters() {
       Collection<string> parameters = base.GetParameters();
       parameters.Add(User);
@@ -62,7 +63,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Determines if the message can be parsed by this type.
+    ///   Determines if the message can be parsed by this type.
     /// </summary>
     public override bool CanParse(string unparsedMessage) {
       if (!base.CanParse(unparsedMessage)) {
@@ -79,7 +80,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Parses the parameters portion of the message.
+    ///   Parses the parameters portion of the message.
     /// </summary>
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
@@ -93,7 +94,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Notifies the given <see cref="MessageConduit"/> by raising the appropriate event for the current <see cref="IrcMessage"/> subclass.
+    ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnUserMode(new IrcMessageEventArgs<UserModeMessage>(this));

@@ -3,19 +3,19 @@ using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
   /// <summary>
-  /// The <see cref="ErrorMessage"/> received when a user tries to kill, kick, or de-op a bot which provides channel services.
+  ///   The <see cref="ErrorMessage" /> received when a user tries to kill, kick, or de-op a bot which provides channel services.
   /// </summary>
   [Serializable]
   public class CannotRemoveServiceBotMessage : ErrorMessage {
     /// <summary>
-    /// Creates a new instances of the <see cref="CannotRemoveServiceBotMessage"/> class.
+    ///   Creates a new instances of the <see cref="CannotRemoveServiceBotMessage" /> class.
     /// </summary>
     public CannotRemoveServiceBotMessage()
       : base(484) {
     }
 
     /// <summary>
-    /// Gets or sets the nick of the bot
+    ///   Gets or sets the nick of the bot
     /// </summary>
     public string Nick {
       get {
@@ -29,7 +29,7 @@ namespace Supay.Irc.Messages {
     private string nick;
 
     /// <summary>
-    /// Gets or sets the channel on which the bot resides
+    ///   Gets or sets the channel on which the bot resides
     /// </summary>
     public string Channel {
       get {
@@ -63,7 +63,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Notifies the given <see cref="MessageConduit"/> by raising the appropriate event for the current <see cref="IrcMessage"/> subclass.
+    ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnCannotRemoveServiceBot(new IrcMessageEventArgs<CannotRemoveServiceBotMessage>(this));

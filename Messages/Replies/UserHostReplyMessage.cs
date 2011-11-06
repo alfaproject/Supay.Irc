@@ -3,19 +3,19 @@ using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
   /// <summary>
-  /// Reply for the <see cref="UserHostMessage"/> to list replies to the query list.
+  ///   Reply for the <see cref="UserHostMessage" /> to list replies to the query list.
   /// </summary>
   [Serializable]
   public class UserHostReplyMessage : NumericMessage {
     /// <summary>
-    /// Creates a new instance of the <see cref="UserHostReplyMessage"/> class.
+    ///   Creates a new instance of the <see cref="UserHostReplyMessage" /> class.
     /// </summary>
     public UserHostReplyMessage()
       : base(302) {
     }
 
     /// <summary>
-    /// Gets the list of replies in the message.
+    ///   Gets the list of replies in the message.
     /// </summary>
     public virtual UserCollection Users {
       get {
@@ -26,7 +26,8 @@ namespace Supay.Irc.Messages {
     private UserCollection replies = new UserCollection();
 
     /// <summary>
-    ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
+    ///   Overrides <see cref="IrcMessage.GetParameters" />.
+    /// </summary>
     protected override Collection<string> GetParameters() {
       Collection<string> parameters = base.GetParameters();
       parameters.Add(MessageUtil.CreateList(Users, " ", user => {
@@ -45,7 +46,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Parses the parameters portion of the message.
+    ///   Parses the parameters portion of the message.
     /// </summary>
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
@@ -72,7 +73,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Notifies the given <see cref="MessageConduit"/> by raising the appropriate event for the current <see cref="IrcMessage"/> subclass.
+    ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnUserHostReply(new IrcMessageEventArgs<UserHostReplyMessage>(this));

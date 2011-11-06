@@ -4,12 +4,12 @@ using System.Globalization;
 
 namespace Supay.Irc.Messages {
   /// <summary>
-  /// Requests information about a user who is no longer connected to IRC.
+  ///   Requests information about a user who is no longer connected to IRC.
   /// </summary>
   [Serializable]
   public class WhoWasMessage : CommandMessage {
     /// <summary>
-    /// Gets or sets the nick of the user being examined.
+    ///   Gets or sets the nick of the user being examined.
     /// </summary>
     public virtual string Nick {
       get {
@@ -21,7 +21,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Gets or sets the server that should search for the information.
+    ///   Gets or sets the server that should search for the information.
     /// </summary>
     public virtual string Server {
       get {
@@ -33,7 +33,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Gets or sets the maximum number of results to receive.
+    ///   Gets or sets the maximum number of results to receive.
     /// </summary>
     public virtual int MaximumResults {
       get {
@@ -45,7 +45,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Gets the IRC command associated with this message.
+    ///   Gets the IRC command associated with this message.
     /// </summary>
     protected override string Command {
       get {
@@ -58,7 +58,8 @@ namespace Supay.Irc.Messages {
     private int maximumResults = 1;
 
     /// <summary>
-    ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
+    ///   Overrides <see cref="IrcMessage.GetParameters" />.
+    /// </summary>
     protected override Collection<string> GetParameters() {
       Collection<string> parameters = base.GetParameters();
       parameters.Add(Nick);
@@ -72,7 +73,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Parses the parameters portion of the message.
+    ///   Parses the parameters portion of the message.
     /// </summary>
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
@@ -93,7 +94,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Notifies the given <see cref="MessageConduit"/> by raising the appropriate event for the current <see cref="IrcMessage"/> subclass.
+    ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnWhoWas(new IrcMessageEventArgs<WhoWasMessage>(this));

@@ -3,7 +3,8 @@ using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
   /// <summary>
-  ///   A Monitor system notification that contains a list of nicks. </summary>
+  ///   A Monitor system notification that contains a list of nicks.
+  /// </summary>
   [Serializable]
   public abstract class MonitoredNicksListMessage : NumericMessage {
     protected MonitoredNicksListMessage(int number)
@@ -12,14 +13,16 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    ///   Gets the collection of nicks of users for the message. </summary>
+    ///   Gets the collection of nicks of users for the message.
+    /// </summary>
     public Collection<string> Nicks {
       get;
       private set;
     }
 
     /// <summary>
-    ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
+    ///   Overrides <see cref="IrcMessage.GetParameters" />.
+    /// </summary>
     protected override Collection<string> GetParameters() {
       Collection<string> parameters = base.GetParameters();
       parameters.Add(MessageUtil.CreateList(Nicks, ","));
@@ -27,7 +30,8 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    ///   Parses the parameters portion of the message. </summary>
+    ///   Parses the parameters portion of the message.
+    /// </summary>
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
 

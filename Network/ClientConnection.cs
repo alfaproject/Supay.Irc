@@ -10,10 +10,12 @@ using System.Threading;
 
 namespace Supay.Irc.Network {
   /// <summary>
-  ///   Represents a network connection to an IRC server. </summary>
+  ///   Represents a network connection to an IRC server.
+  /// </summary>
   /// <remarks>
-  ///   Use the <see cref="ClientConnection"/> class to send a <see cref="Supay.Irc.Messages.IrcMessage"/>
-  ///   to an IRC server, and to be notified when it returns a <see cref="Supay.Irc.Messages.IrcMessage"/>. </remarks>
+  ///   Use the <see cref="ClientConnection" /> class to send a <see cref="Supay.Irc.Messages.IrcMessage" />
+  ///   to an IRC server, and to be notified when it returns a <see cref="Supay.Irc.Messages.IrcMessage" />.
+  /// </remarks>
   [DesignerCategory("Code")]
   public class ClientConnection : Component {
     private readonly object _syncLock = new object();
@@ -33,20 +35,21 @@ namespace Supay.Irc.Network {
     #region Constructors
 
     /// <summary>
-    ///   Initializes a new instance of the <see cref="ClientConnection"/> class. </summary>
+    ///   Initializes a new instance of the <see cref="ClientConnection" /> class.
+    /// </summary>
     /// <remarks>
-    ///   With this constructor, the <see cref="Address"/> defaults to localhost,
-    ///   and the <see cref="Port"/> defaults to 6667.</remarks>
+    ///   With this constructor, the <see cref="Address" /> defaults to localhost,
+    ///   and the <see cref="Port" /> defaults to 6667.
+    /// </remarks>
     public ClientConnection()
       : this("localhost", 6667) {
     }
 
     /// <summary>
-    ///   Initializes a new instance of the <see cref="ClientConnection"/> class with the given address on the given port. </summary>
-    /// <param name="address">
-    ///   The network address to connect to. </param>
-    /// <param name="port">
-    ///   The port to connect on. </param>
+    ///   Initializes a new instance of the <see cref="ClientConnection" /> class with the given address on the given port.
+    /// </summary>
+    /// <param name="address">The network address to connect to.</param>
+    /// <param name="port">The port to connect on.</param>
     public ClientConnection(string address, int port) {
       Status = ConnectionStatus.Disconnected;
       Encoding = Encoding.ASCII;
@@ -60,23 +63,28 @@ namespace Supay.Irc.Network {
     #region Events
 
     /// <summary>
-    ///   Occurs when the <see cref="ClientConnection"/> recieves data. </summary>
+    ///   Occurs when the <see cref="ClientConnection" /> recieves data.
+    /// </summary>
     internal event EventHandler<ConnectionDataEventArgs> DataReceived;
 
     /// <summary>
-    ///   Occurs when the <see cref="ClientConnection"/> sends data. </summary>
+    ///   Occurs when the <see cref="ClientConnection" /> sends data.
+    /// </summary>
     internal event EventHandler<ConnectionDataEventArgs> DataSent;
 
     /// <summary>
-    ///   Occurs when starting the connecting sequence to a server. </summary>
+    ///   Occurs when starting the connecting sequence to a server.
+    /// </summary>
     public event EventHandler Connecting;
 
     /// <summary>
-    ///   Occurs after the connecting sequence is successful. </summary>
+    ///   Occurs after the connecting sequence is successful.
+    /// </summary>
     public event EventHandler Connected;
 
     /// <summary>
-    ///   Occurs when the disconnecting sequence is successful. </summary>
+    ///   Occurs when the disconnecting sequence is successful.
+    /// </summary>
     public event EventHandler<ConnectionDataEventArgs> Disconnected;
 
     #endregion
@@ -84,11 +92,13 @@ namespace Supay.Irc.Network {
     #region Properties
 
     /// <summary>
-    ///   Gets or sets the internet address which the current <see cref="ClientConnection"/> uses. </summary>
+    ///   Gets or sets the internet address which the current <see cref="ClientConnection" /> uses.
+    /// </summary>
     /// <remarks>
-    ///   A <see cref="NotSupportedException"/> will be thrown if an attempt is made to change
-    ///   the <see cref="ClientConnection.Address"/> if the <see cref="ClientConnection.Status"/>
-    ///   is not <see cref="ConnectionStatus.Disconnected"/>. </remarks>
+    ///   A <see cref="NotSupportedException" /> will be thrown if an attempt is made to change
+    ///   the <see cref="ClientConnection.Address" /> if the <see cref="ClientConnection.Status" />
+    ///   is not <see cref="ConnectionStatus.Disconnected" />.
+    /// </remarks>
     public string Address {
       get {
         return _address;
@@ -103,12 +113,14 @@ namespace Supay.Irc.Network {
     }
 
     /// <summary>
-    ///   Gets or sets the port which the <see cref="ClientConnection"/> will communicate over. </summary>
+    ///   Gets or sets the port which the <see cref="ClientConnection" /> will communicate over.
+    /// </summary>
     /// <remarks>
-    ///   <para>For IRC, the <see cref="Port"/> is generally between 6667 and 7000.</para>
-    ///   <para>A <see cref="NotSupportedException"/> will be thrown if an attempt is made to change
-    ///   the <see cref="ClientConnection.Port"/> if the <see cref="ClientConnection.Status"/>
-    ///   is not <see cref="ConnectionStatus.Disconnected"/>.</para> </remarks>
+    ///   <para>For IRC, the <see cref="Port" /> is generally between 6667 and 7000.</para>
+    ///   <para>A <see cref="NotSupportedException" /> will be thrown if an attempt is made to change
+    ///     the <see cref="ClientConnection.Port" /> if the <see cref="ClientConnection.Status" />
+    ///     is not <see cref="ConnectionStatus.Disconnected" />.</para>
+    /// </remarks>
     public int Port {
       get {
         return _port;
@@ -123,26 +135,31 @@ namespace Supay.Irc.Network {
     }
 
     /// <summary>
-    ///   Gets the <see cref="ConnectionStatus"/> of the <see cref="ClientConnection"/>. </summary>
+    ///   Gets the <see cref="ConnectionStatus" /> of the <see cref="ClientConnection" />.
+    /// </summary>
     public ConnectionStatus Status {
       get;
       private set;
     }
 
     /// <summary>
-    ///   Gets or sets the <see cref="ISynchronizeInvoke"/> implementor which
-    ///   will be used to synchronize threads and events. </summary>
+    ///   Gets or sets the <see cref="ISynchronizeInvoke" /> implementor which
+    ///   will be used to synchronize threads and events.
+    /// </summary>
     /// <remarks>
-    ///   This is usually the main form of the application. </remarks>
+    ///   This is usually the main form of the application.
+    /// </remarks>
     public ISynchronizeInvoke SynchronizationObject {
       get;
       set;
     }
 
     /// <summary>
-    ///   Gets or sets the encoding used by stream reader and writer. </summary>
+    ///   Gets or sets the encoding used by stream reader and writer.
+    /// </summary>
     /// <remarks>
-    ///   Generally, only ASCII and UTF-8 are supported. </remarks>
+    ///   Generally, only ASCII and UTF-8 are supported.
+    /// </remarks>
     public Encoding Encoding {
       get {
         return _encoding;
@@ -157,7 +174,8 @@ namespace Supay.Irc.Network {
     }
 
     /// <summary>
-    ///   Gets or sets if the connection will use SSL to connect to the server. </summary>
+    ///   Gets or sets if the connection will use SSL to connect to the server.
+    /// </summary>
     public bool Ssl {
       get {
         return _ssl;
@@ -176,11 +194,13 @@ namespace Supay.Irc.Network {
     #region Methods
 
     /// <summary>
-    ///   Creates a network connection to the current <see cref="ClientConnection.Address"/>
-    ///   and <see cref="ClientConnection.Port"/>. </summary>
+    ///   Creates a network connection to the current <see cref="ClientConnection.Address" />
+    ///   and <see cref="ClientConnection.Port" />.
+    /// </summary>
     /// <remarks>
     ///   Only use this overload if your application is not a Windows.Forms application, you've set
-    ///   the <see cref="SynchronizationObject"/> property, or you want to handle threading issues yourself. </remarks>
+    ///   the <see cref="SynchronizationObject" /> property, or you want to handle threading issues yourself.
+    /// </remarks>
     public void Connect() {
       lock (_syncLock) {
         if (Status != ConnectionStatus.Disconnected) {
@@ -198,11 +218,12 @@ namespace Supay.Irc.Network {
     }
 
     /// <summary>
-    ///   Creates a network connection to the current <see cref="ClientConnection.Address"/>
-    ///   and <see cref="ClientConnection.Port"/>. </summary>
+    ///   Creates a network connection to the current <see cref="ClientConnection.Address" />
+    ///   and <see cref="ClientConnection.Port" />.
+    /// </summary>
     /// <remarks>
     ///   <p>When using this class from an application, you need to pass in a control so that
-    ///   data-receiving thread can sync with your application.</p>
+    ///     data-receiving thread can sync with your application.</p>
     ///   <p>If calling this from a form or other control, just pass in the current instance.</p>
     /// </remarks>
     public void Connect(ISynchronizeInvoke syncObject) {
@@ -211,13 +232,15 @@ namespace Supay.Irc.Network {
     }
 
     /// <summary>
-    ///   Closes the current network connection. </summary>
+    ///   Closes the current network connection.
+    /// </summary>
     public void Disconnect() {
       Status = ConnectionStatus.Disconnected;
     }
 
     /// <summary>
-    ///   Forces closing the current network connection and kills the thread running it. </summary>
+    ///   Forces closing the current network connection and kills the thread running it.
+    /// </summary>
     public void DisconnectForce() {
       Disconnect();
       if (_worker != null && _worker.IsAlive) {
@@ -226,9 +249,9 @@ namespace Supay.Irc.Network {
     }
 
     /// <summary>
-    ///   Sends the given string over the network. </summary>
-    /// <param name="data">
-    ///   The <see cref="System.string"/> to send. </param>
+    ///   Sends the given string over the network.
+    /// </summary>
+    /// <param name="data">The <see cref="System.string" /> to send.</param>
     public void Write(string data) {
       if (string.IsNullOrEmpty(data)) {
         return;
@@ -261,7 +284,8 @@ namespace Supay.Irc.Network {
     #region Protected Event Raisers
 
     /// <summary>
-    ///   Raises the <see cref="ClientConnection.Connecting"/> event of the <see cref="ClientConnection"/> object. </summary>
+    ///   Raises the <see cref="ClientConnection.Connecting" /> event of the <see cref="ClientConnection" /> object.
+    /// </summary>
     protected void OnConnecting(EventArgs e) {
       if (Connecting != null) {
         Connecting(this, e);
@@ -269,7 +293,8 @@ namespace Supay.Irc.Network {
     }
 
     /// <summary>
-    ///   Raises the <see cref="ClientConnection.Connected"/> event of the <see cref="ClientConnection"/> object. </summary>
+    ///   Raises the <see cref="ClientConnection.Connected" /> event of the <see cref="ClientConnection" /> object.
+    /// </summary>
     protected void OnConnected(EventArgs e) {
       if (SynchronizationObject != null && SynchronizationObject.InvokeRequired) {
         SyncInvoke del = () => OnConnected(e);
@@ -283,9 +308,9 @@ namespace Supay.Irc.Network {
     }
 
     /// <summary>
-    ///   Raises the <see cref="ClientConnection.DataReceived"/> event of the <see cref="ClientConnection"/> object. </summary>
-    /// <param name="e">
-    ///   A <see cref="ConnectionDataEventArgs"/> that contains the data. </param>
+    ///   Raises the <see cref="ClientConnection.DataReceived" /> event of the <see cref="ClientConnection" /> object.
+    /// </summary>
+    /// <param name="e">A <see cref="ConnectionDataEventArgs" /> that contains the data.</param>
     protected void OnDataReceived(ConnectionDataEventArgs e) {
       if (SynchronizationObject != null && SynchronizationObject.InvokeRequired) {
         SyncInvoke del = () => OnDataReceived(e);
@@ -299,9 +324,9 @@ namespace Supay.Irc.Network {
     }
 
     /// <summary>
-    ///   Raises the <see cref="ClientConnection.DataSent"/> event of the <see cref="ClientConnection"/> object. </summary>
-    /// <param name="data">
-    ///   A <see cref="ConnectionDataEventArgs"/> that contains the data. </param>
+    ///   Raises the <see cref="ClientConnection.DataSent" /> event of the <see cref="ClientConnection" /> object.
+    /// </summary>
+    /// <param name="data">A <see cref="ConnectionDataEventArgs" /> that contains the data.</param>
     protected void OnDataSent(ConnectionDataEventArgs data) {
       if (DataSent != null) {
         DataSent(this, data);
@@ -309,7 +334,8 @@ namespace Supay.Irc.Network {
     }
 
     /// <summary>
-    ///   Raises the <see cref="ClientConnection.Disconnected"/> event of the <see cref="ClientConnection"/> object. </summary>
+    ///   Raises the <see cref="ClientConnection.Disconnected" /> event of the <see cref="ClientConnection" /> object.
+    /// </summary>
     protected void OnDisconnected(ConnectionDataEventArgs e) {
       if (SynchronizationObject != null && SynchronizationObject.InvokeRequired) {
         SyncInvoke del = () => OnDisconnected(e);
@@ -336,9 +362,11 @@ namespace Supay.Irc.Network {
     }
 
     /// <summary>
-    ///   This method listens for data over the network until the Connection.State is Disconnected. </summary>
+    ///   This method listens for data over the network until the Connection.State is Disconnected.
+    /// </summary>
     /// <remarks>
-    ///   ReceiveData runs in its own thread. </remarks>
+    ///   ReceiveData runs in its own thread.
+    /// </remarks>
     private void ReceiveData() {
       try {
         _client = new TcpClient(Address, Port);

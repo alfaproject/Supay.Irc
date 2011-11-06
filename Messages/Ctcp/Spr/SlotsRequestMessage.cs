@@ -3,12 +3,12 @@ using System.Globalization;
 
 namespace Supay.Irc.Messages {
   /// <summary>
-  /// An SPR Jukebox message that notifies the recipient of the senders available mp3 serving capabilities.
+  ///   An SPR Jukebox message that notifies the recipient of the senders available mp3 serving capabilities.
   /// </summary>
   [Serializable]
   public class SlotsRequestMessage : CtcpRequestMessage {
     /// <summary>
-    /// Creates a new instance of the <see cref="SlotsRequestMessage"/> class.
+    ///   Creates a new instance of the <see cref="SlotsRequestMessage" /> class.
     /// </summary>
     public SlotsRequestMessage()
       : base() {
@@ -16,7 +16,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Creates a new instance of the <see cref="ActionRequestMessage"/> class with the given text and target.
+    ///   Creates a new instance of the <see cref="ActionRequestMessage" /> class with the given text and target.
     /// </summary>
     /// <param name="target">The target of the action.</param>
     public SlotsRequestMessage(string target)
@@ -25,7 +25,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// TotalSendSlots
+    ///   TotalSendSlots
     /// </summary>
     public int TotalSendSlots {
       get {
@@ -39,7 +39,7 @@ namespace Supay.Irc.Messages {
     private int totalSendSlots;
 
     /// <summary>
-    /// AvailableSendSlots
+    ///   AvailableSendSlots
     /// </summary>
     public int AvailableSendSlots {
       get {
@@ -53,7 +53,7 @@ namespace Supay.Irc.Messages {
     private int availableSendSlots;
 
     /// <summary>
-    /// NextSend
+    ///   NextSend
     /// </summary>
     public string NextSend {
       get {
@@ -67,7 +67,7 @@ namespace Supay.Irc.Messages {
     private string nextSend;
 
     /// <summary>
-    /// TakenQueueSlots
+    ///   TakenQueueSlots
     /// </summary>
     public int TakenQueueSlots {
       get {
@@ -81,7 +81,7 @@ namespace Supay.Irc.Messages {
     private int takenQueueSlots;
 
     /// <summary>
-    /// TotalQueueSlots
+    ///   TotalQueueSlots
     /// </summary>
     public int TotalQueueSlots {
       get {
@@ -95,7 +95,7 @@ namespace Supay.Irc.Messages {
     private int totalQueueSlots;
 
     /// <summary>
-    /// CpsRecord
+    ///   CpsRecord
     /// </summary>
     public int CpsRecord {
       get {
@@ -109,7 +109,7 @@ namespace Supay.Irc.Messages {
     private int cpsRecord;
 
     /// <summary>
-    /// TotalFiles
+    ///   TotalFiles
     /// </summary>
     public int TotalFiles {
       get {
@@ -123,14 +123,14 @@ namespace Supay.Irc.Messages {
     private int totalFiles;
 
     /// <summary>
-    /// Notifies the given <see cref="MessageConduit"/> by raising the appropriate event for the current <see cref="IrcMessage"/> subclass.
+    ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
     public override void Notify(MessageConduit conduit) {
       conduit.OnSlotsRequest(new IrcMessageEventArgs<SlotsRequestMessage>(this));
     }
 
     /// <summary>
-    /// Gets the data payload of the Ctcp request.
+    ///   Gets the data payload of the Ctcp request.
     /// </summary>
     protected override string ExtendedData {
       get {
@@ -139,7 +139,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Parses the given string to populate this <see cref="IrcMessage"/>.
+    ///   Parses the given string to populate this <see cref="IrcMessage" />.
     /// </summary>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1806:DoNotIgnoreMethodResults", MessageId = "System.int.TryParse(System.string,System.Globalization.NumberStyles,System.IFormatProvider,System.int@)")]
     public override void Parse(string unparsedMessage) {

@@ -4,7 +4,8 @@ using System.Globalization;
 
 namespace Supay.Irc.Messages {
   /// <summary>
-  ///   A reply to a <see cref="WhoMessage"/> query. </summary>
+  ///   A reply to a <see cref="WhoMessage" /> query.
+  /// </summary>
   [Serializable]
   public class WhoReplyMessage : NumericMessage, IChannelTargetedMessage {
     private string _channel = string.Empty;
@@ -13,16 +14,19 @@ namespace Supay.Irc.Messages {
     private ChannelStatus _status = ChannelStatus.None;
 
     /// <summary>
-    ///   Creates a new instance of the <see cref="WhoReplyMessage"/> class. </summary>
+    ///   Creates a new instance of the <see cref="WhoReplyMessage" /> class.
+    /// </summary>
     public WhoReplyMessage()
       : base(352) {
     }
 
     /// <summary>
-    ///   Gets or sets the channel associated with the user. </summary>
+    ///   Gets or sets the channel associated with the user.
+    /// </summary>
     /// <remarks>
-    ///   In the case of a non-channel based <see cref="WhoMessage"/>, Channel will contain the
-    ///   most recent channel which the user joined and is still on. </remarks>
+    ///   In the case of a non-channel based <see cref="WhoMessage" />, Channel will contain the
+    ///   most recent channel which the user joined and is still on.
+    /// </remarks>
     public virtual string Channel {
       get {
         return _channel;
@@ -33,7 +37,8 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    ///   Gets or sets the user being examined. </summary>
+    ///   Gets or sets the user being examined.
+    /// </summary>
     public virtual User User {
       get {
         return _user;
@@ -44,7 +49,8 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    ///   Gets or sets the status of the user on the associated channel. </summary>
+    ///   Gets or sets the status of the user on the associated channel.
+    /// </summary>
     public virtual ChannelStatus Status {
       get {
         return _status;
@@ -55,7 +61,8 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    ///   Gets or sets the number of hops to the server the user is on. </summary>
+    ///   Gets or sets the number of hops to the server the user is on.
+    /// </summary>
     public virtual int HopCount {
       get {
         return _hopCount;
@@ -66,7 +73,8 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
+    ///   Overrides <see cref="IrcMessage.GetParameters" />.
+    /// </summary>
     protected override Collection<string> GetParameters() {
       Collection<string> parameters = base.GetParameters();
       parameters.Add(Channel);
@@ -80,7 +88,8 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    ///   Parses the parameters portion of the message. </summary>
+    ///   Parses the parameters portion of the message.
+    /// </summary>
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
       User = new User();
@@ -127,8 +136,9 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    ///   Notifies the given <see cref="MessageConduit"/> by raising the appropriate event for the
-    ///   current <see cref="IrcMessage"/> subclass. </summary>
+    ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the
+    ///   current <see cref="IrcMessage" /> subclass.
+    /// </summary>
     public override void Notify(MessageConduit conduit) {
       conduit.OnWhoReply(new IrcMessageEventArgs<WhoReplyMessage>(this));
     }
@@ -136,7 +146,8 @@ namespace Supay.Irc.Messages {
     #region IChannelTargetedMessage Members
 
     /// <summary>
-    ///   Determines if the the current message is targeted at the given channel. </summary>
+    ///   Determines if the the current message is targeted at the given channel.
+    /// </summary>
     public virtual bool IsTargetedAtChannel(string channelName) {
       return Channel.EqualsI(channelName);
     }

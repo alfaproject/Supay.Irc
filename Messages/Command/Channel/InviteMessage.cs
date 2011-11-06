@@ -3,10 +3,10 @@ using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
   /// <summary>
-  /// The InviteMessage is used to invite users to a channel.
+  ///   The InviteMessage is used to invite users to a channel.
   /// </summary>
   /// <remarks>
-  /// This message wraps the INVITE command.
+  ///   This message wraps the INVITE command.
   /// </remarks>
   [Serializable]
   public class InviteMessage : CommandMessage, IChannelTargetedMessage {
@@ -14,13 +14,13 @@ namespace Supay.Irc.Messages {
     private string nick = string.Empty;
 
     /// <summary>
-    /// Creates a new instance of the <see cref="InviteMessage"/> class.
+    ///   Creates a new instance of the <see cref="InviteMessage" /> class.
     /// </summary>
     public InviteMessage() {
     }
 
     /// <summary>
-    /// Creates a new instance of the <see cref="InviteMessage"/> class with the given channel and nick.
+    ///   Creates a new instance of the <see cref="InviteMessage" /> class with the given channel and nick.
     /// </summary>
     /// <param name="channel">The channel the person is being invited into.</param>
     /// <param name="nick">The nick of the user invited</param>
@@ -30,7 +30,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Gets or sets the channel the person is being invited into.
+    ///   Gets or sets the channel the person is being invited into.
     /// </summary>
     public virtual string Channel {
       get {
@@ -42,7 +42,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Gets or sets the nick of the user invited
+    ///   Gets or sets the nick of the user invited
     /// </summary>
     public virtual string Nick {
       get {
@@ -54,7 +54,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Gets the IRC command associated with this message.
+    ///   Gets the IRC command associated with this message.
     /// </summary>
     protected override string Command {
       get {
@@ -63,7 +63,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Validates this message against the given server support
+    ///   Validates this message against the given server support
     /// </summary>
     public override void Validate(ServerSupport serverSupport) {
       base.Validate(serverSupport);
@@ -71,7 +71,8 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
+    ///   Overrides <see cref="IrcMessage.GetParameters" />.
+    /// </summary>
     protected override Collection<string> GetParameters() {
       Collection<string> parameters = base.GetParameters();
       parameters.Add(Channel);
@@ -80,7 +81,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Parses the parameters portion of the message.
+    ///   Parses the parameters portion of the message.
     /// </summary>
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
@@ -94,7 +95,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Notifies the given <see cref="MessageConduit"/> by raising the appropriate event for the current <see cref="IrcMessage"/> subclass.
+    ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnInvite(new IrcMessageEventArgs<InviteMessage>(this));
@@ -107,7 +108,8 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    ///   Determines if the the current message is targeted at the given channel. </summary>
+    ///   Determines if the the current message is targeted at the given channel.
+    /// </summary>
     protected virtual bool IsTargetedAtChannel(string channelName) {
       return this.Channel.EqualsI(channelName);
     }

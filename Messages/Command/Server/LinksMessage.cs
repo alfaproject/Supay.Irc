@@ -3,12 +3,12 @@ using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
   /// <summary>
-  /// The <see cref="LinksMessage"/> asks the server to send a list all servers which are known by the server answering the message.
+  ///   The <see cref="LinksMessage" /> asks the server to send a list all servers which are known by the server answering the message.
   /// </summary>
   [Serializable]
   public class LinksMessage : ServerQueryBase {
     /// <summary>
-    /// Gets the IRC command associated with this message.
+    ///   Gets the IRC command associated with this message.
     /// </summary>
     protected override string Command {
       get {
@@ -17,7 +17,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Gets or sets the mask for server info to limit the list or replies.
+    ///   Gets or sets the mask for server info to limit the list or replies.
     /// </summary>
     public virtual string Mask {
       get {
@@ -31,7 +31,8 @@ namespace Supay.Irc.Messages {
     private string mask = string.Empty;
 
     /// <summary>
-    ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
+    ///   Overrides <see cref="IrcMessage.GetParameters" />.
+    /// </summary>
     protected override Collection<string> GetParameters() {
       Collection<string> parameters = base.GetParameters();
       if (!string.IsNullOrEmpty(Mask)) {
@@ -42,7 +43,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Parses the parameters portion of the message.
+    ///   Parses the parameters portion of the message.
     /// </summary>
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
@@ -54,7 +55,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Notifies the given <see cref="MessageConduit"/> by raising the appropriate event for the current <see cref="IrcMessage"/> subclass.
+    ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnLinks(new IrcMessageEventArgs<LinksMessage>(this));

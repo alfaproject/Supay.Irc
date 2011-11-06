@@ -4,20 +4,22 @@ using System.Globalization;
 
 namespace Supay.Irc.Messages {
   /// <summary>
-  ///   Error message received primarily when a <see cref="TextMessage"/> is sent without any Targets. </summary>
+  ///   Error message received primarily when a <see cref="TextMessage" /> is sent without any Targets.
+  /// </summary>
   /// <remarks>
-  ///   Some other commands may also send this when no recipients are specified. </remarks>
+  ///   Some other commands may also send this when no recipients are specified.
+  /// </remarks>
   [Serializable]
   public class NoRecipientGivenMessage : ErrorMessage {
     /// <summary>
-    /// Creates a new instances of the <see cref="NoRecipientGivenMessage"/> class.
+    ///   Creates a new instances of the <see cref="NoRecipientGivenMessage" /> class.
     /// </summary>
     public NoRecipientGivenMessage()
       : base(411) {
     }
 
     /// <summary>
-    /// Gets or sets the command of the message which was invalid.
+    ///   Gets or sets the command of the message which was invalid.
     /// </summary>
     public virtual string Command {
       get {
@@ -31,7 +33,8 @@ namespace Supay.Irc.Messages {
     private string command = string.Empty;
 
     /// <summary>
-    ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
+    ///   Overrides <see cref="IrcMessage.GetParameters" />.
+    /// </summary>
     protected override Collection<string> GetParameters() {
       Collection<string> parameters = base.GetParameters();
       parameters.Add(string.Format(CultureInfo.InvariantCulture, "No recipient given ({0})", Command));
@@ -39,7 +42,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Parses the parameters portion of the message.
+    ///   Parses the parameters portion of the message.
     /// </summary>
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
@@ -50,7 +53,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Notifies the given <see cref="MessageConduit"/> by raising the appropriate event for the current <see cref="IrcMessage"/> subclass.
+    ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnNoRecipientGiven(new IrcMessageEventArgs<NoRecipientGivenMessage>(this));

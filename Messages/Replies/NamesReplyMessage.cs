@@ -4,40 +4,41 @@ using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
   /// <summary>
-  /// A single reply to the <see cref="NamesMessage"/> query.
+  ///   A single reply to the <see cref="NamesMessage" /> query.
   /// </summary>
   [Serializable]
   public class NamesReplyMessage : NumericMessage, IChannelTargetedMessage {
     /// <summary>
-    /// The list of channel visibility settings for the <see cref="NamesReplyMessage"/>.
+    ///   The list of channel visibility settings for the <see cref="NamesReplyMessage" />.
     /// </summary>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1034:NestedTypesShouldNotBeVisible")]
     public enum ChannelVisibility {
       /// <summary>
-      /// The channel is in <see cref="Supay.Irc.Messages.Modes.SecretMode"/>
+      ///   The channel is in <see cref="Supay.Irc.Messages.Modes.SecretMode" />
       /// </summary>
       Secret,
 
       /// <summary>
-      /// The channel is in <see cref="Supay.Irc.Messages.Modes.PrivateMode"/>
+      ///   The channel is in <see cref="Supay.Irc.Messages.Modes.PrivateMode" />
       /// </summary>
       Private,
 
       /// <summary>
-      /// The channel has no hidden modes applied.
+      ///   The channel has no hidden modes applied.
       /// </summary>
       Public
     }
 
     /// <summary>
-    ///   Creates a new instance of the <see cref="NamesReplyMessage"/> class. </summary>
+    ///   Creates a new instance of the <see cref="NamesReplyMessage" /> class.
+    /// </summary>
     public NamesReplyMessage()
       : base(353) {
       this.Nicks = new Dictionary<string, ChannelStatus>();
     }
 
     /// <summary>
-    /// Gets or sets the visibility of the channel specified in the reply.
+    ///   Gets or sets the visibility of the channel specified in the reply.
     /// </summary>
     public virtual ChannelVisibility Visibility {
       get {
@@ -49,7 +50,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Gets or sets the name of the channel specified in the reply.
+    ///   Gets or sets the name of the channel specified in the reply.
     /// </summary>
     public virtual string Channel {
       get {
@@ -61,7 +62,8 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    ///   Gets the collection of nicks in the channel. </summary>
+    ///   Gets the collection of nicks in the channel.
+    /// </summary>
     public Dictionary<string, ChannelStatus> Nicks {
       get;
       private set;
@@ -71,7 +73,8 @@ namespace Supay.Irc.Messages {
     private string channel = string.Empty;
 
     /// <summary>
-    ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
+    ///   Overrides <see cref="IrcMessage.GetParameters" />.
+    /// </summary>
     protected override Collection<string> GetParameters() {
       Collection<string> parameters = base.GetParameters();
       switch (Visibility) {
@@ -91,7 +94,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Parses the parameters portion of the message.
+    ///   Parses the parameters portion of the message.
     /// </summary>
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
@@ -133,7 +136,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Notifies the given <see cref="MessageConduit"/> by raising the appropriate event for the current <see cref="IrcMessage"/> subclass.
+    ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnNamesReply(new IrcMessageEventArgs<NamesReplyMessage>(this));
@@ -146,7 +149,8 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    ///   Determines if the the current message is targeted at the given channel. </summary>
+    ///   Determines if the the current message is targeted at the given channel.
+    /// </summary>
     protected virtual bool IsTargetedAtChannel(string channelName) {
       return this.Channel.EqualsI(channelName);
     }

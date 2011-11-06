@@ -3,24 +3,24 @@ using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
   /// <summary>
-  /// The <see cref="ErrorMessage"/> received when a user tries to perform a channel-specific operation on a user, 
-  /// and the user isn't in the channel.
+  ///   The <see cref="ErrorMessage" /> received when a user tries to perform a channel-specific operation on a user, 
+  ///   and the user isn't in the channel.
   /// </summary>
   /// <remarks>
-  /// You will often get this if you attempt to kick a user but someone else kicks them before you do. 
-  /// If the user does not actually exist at all, 401 will be returned instead. 
+  ///   You will often get this if you attempt to kick a user but someone else kicks them before you do. 
+  ///   If the user does not actually exist at all, 401 will be returned instead.
   /// </remarks>
   [Serializable]
   public class NotOnChannelMessage : ErrorMessage, IChannelTargetedMessage {
     /// <summary>
-    /// Creates a new instances of the <see cref="NotOnChannelMessage"/> class.
+    ///   Creates a new instances of the <see cref="NotOnChannelMessage" /> class.
     /// </summary>
     public NotOnChannelMessage()
       : base(441) {
     }
 
     /// <summary>
-    /// Gets or sets the nick of the user being targeted
+    ///   Gets or sets the nick of the user being targeted
     /// </summary>
     public string Nick {
       get {
@@ -34,7 +34,7 @@ namespace Supay.Irc.Messages {
     private string nick;
 
     /// <summary>
-    /// Gets or sets the channel being targeted
+    ///   Gets or sets the channel being targeted
     /// </summary>
     public string Channel {
       get {
@@ -68,7 +68,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Notifies the given <see cref="MessageConduit"/> by raising the appropriate event for the current <see cref="IrcMessage"/> subclass.
+    ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnNotOnChannel(new IrcMessageEventArgs<NotOnChannelMessage>(this));
@@ -81,7 +81,8 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    ///   Determines if the the current message is targeted at the given channel. </summary>
+    ///   Determines if the the current message is targeted at the given channel.
+    /// </summary>
     protected virtual bool IsTargetedAtChannel(string channelName) {
       return this.Channel.EqualsI(channelName);
     }

@@ -4,7 +4,7 @@ using System.Globalization;
 
 namespace Supay.Irc.Messages {
   /// <summary>
-  /// A Watch system notification that a watched user's status has changed
+  ///   A Watch system notification that a watched user's status has changed
   /// </summary>
   [Serializable]
   public abstract class WatchedUserChangedMessage : NumericMessage {
@@ -13,7 +13,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Gets or sets the watched User who's status has changed.
+    ///   Gets or sets the watched User who's status has changed.
     /// </summary>
     public User WatchedUser {
       get {
@@ -30,7 +30,7 @@ namespace Supay.Irc.Messages {
     private User watchedUser;
 
     /// <summary>
-    /// Gets or sets the time at which the change occurred.
+    ///   Gets or sets the time at which the change occurred.
     /// </summary>
     public DateTime TimeOfChange {
       get {
@@ -49,7 +49,8 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
+    ///   Overrides <see cref="IrcMessage.GetParameters" />.
+    /// </summary>
     protected override Collection<string> GetParameters() {
       Collection<string> parameters = base.GetParameters();
       parameters.Add(WatchedUser.Nickname);
@@ -61,7 +62,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Parses the parameters portion of the message.
+    ///   Parses the parameters portion of the message.
     /// </summary>
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);

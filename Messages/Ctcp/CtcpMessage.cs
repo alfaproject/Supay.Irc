@@ -3,12 +3,12 @@ using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
   /// <summary>
-  /// A Message which carries a CTCP command.
+  ///   A Message which carries a CTCP command.
   /// </summary>
   [Serializable]
   public abstract class CtcpMessage : IrcMessage, IChannelTargetedMessage, IQueryTargetedMessage {
     /// <summary>
-    /// Gets the targets of this <see cref="CtcpMessage"/>.
+    ///   Gets the targets of this <see cref="CtcpMessage" />.
     /// </summary>
     public string Target {
       get {
@@ -22,7 +22,7 @@ namespace Supay.Irc.Messages {
     private string target = string.Empty;
 
     /// <summary>
-    /// Gets the CTCP Command requested.
+    ///   Gets the CTCP Command requested.
     /// </summary>
     protected string InternalCommand {
       get {
@@ -36,21 +36,22 @@ namespace Supay.Irc.Messages {
     private string internalCommand = string.Empty;
 
     /// <summary>
-    /// Gets the data payload of the CTCP request.
+    ///   Gets the data payload of the CTCP request.
     /// </summary>
     protected abstract string ExtendedData {
       get;
     }
 
     /// <summary>
-    /// Gets the IRC command used to send the CTCP command to another user.
+    ///   Gets the IRC command used to send the CTCP command to another user.
     /// </summary>
     protected abstract string TransportCommand {
       get;
     }
 
     /// <summary>
-    ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
+    ///   Overrides <see cref="IrcMessage.GetParameters" />.
+    /// </summary>
     protected override Collection<string> GetParameters() {
       Collection<string> parameters = new Collection<string> {
         TransportCommand,
@@ -66,7 +67,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Determines if the message can be parsed by this type.
+    ///   Determines if the message can be parsed by this type.
     /// </summary>
     public override bool CanParse(string unparsedMessage) {
       if (!CtcpUtil.IsCtcpMessage(unparsedMessage)) {
@@ -85,7 +86,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Parses the parameters portion of the message.
+    ///   Parses the parameters portion of the message.
     /// </summary>
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
@@ -103,7 +104,8 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    ///   Determines if the the current message is targeted at the given channel. </summary>
+    ///   Determines if the the current message is targeted at the given channel.
+    /// </summary>
     protected virtual bool IsTargetedAtChannel(string channelName) {
       return this.Target.EqualsI(channelName);
     }
@@ -117,7 +119,8 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    ///   Determines if the current message is targeted at a query to the given user. </summary>
+    ///   Determines if the current message is targeted at a query to the given user.
+    /// </summary>
     protected virtual bool IsQueryToUser(User user) {
       return user.Nickname.Equals(target);
     }

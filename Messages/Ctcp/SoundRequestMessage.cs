@@ -3,12 +3,12 @@ using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
   /// <summary>
-  /// A request that a client plays a local sound.
+  ///   A request that a client plays a local sound.
   /// </summary>
   [Serializable]
   public class SoundRequestMessage : CtcpRequestMessage {
     /// <summary>
-    /// Creates a new instance of the <see cref="SoundRequestMessage"/> class.
+    ///   Creates a new instance of the <see cref="SoundRequestMessage" /> class.
     /// </summary>
     public SoundRequestMessage()
       : base() {
@@ -16,7 +16,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Gets or sets an optional additional test message going along with the request.
+    ///   Gets or sets an optional additional test message going along with the request.
     /// </summary>
     public virtual string Text {
       get {
@@ -30,7 +30,7 @@ namespace Supay.Irc.Messages {
     private string text = string.Empty;
 
     /// <summary>
-    /// Gets or sets the name of the requested sound file to be played.
+    ///   Gets or sets the name of the requested sound file to be played.
     /// </summary>
     public virtual string SoundFile {
       get {
@@ -44,14 +44,14 @@ namespace Supay.Irc.Messages {
     private string soundFile = string.Empty;
 
     /// <summary>
-    /// Notifies the given <see cref="MessageConduit"/> by raising the appropriate event for the current <see cref="IrcMessage"/> subclass.
+    ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
     public override void Notify(MessageConduit conduit) {
       conduit.OnSoundRequest(new IrcMessageEventArgs<SoundRequestMessage>(this));
     }
 
     /// <summary>
-    /// Gets the data payload of the Ctcp request.
+    ///   Gets the data payload of the Ctcp request.
     /// </summary>
     protected override string ExtendedData {
       get {
@@ -60,7 +60,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Parses the given string to populate this <see cref="IrcMessage"/>.
+    ///   Parses the given string to populate this <see cref="IrcMessage" />.
     /// </summary>
     public override void Parse(string unparsedMessage) {
       base.Parse(unparsedMessage);

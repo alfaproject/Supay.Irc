@@ -3,12 +3,12 @@ using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
   /// <summary>
-  /// Requests that the server send information about the size of the IRC network.
+  ///   Requests that the server send information about the size of the IRC network.
   /// </summary>
   [Serializable]
   public class LusersMessage : ServerQueryBase {
     /// <summary>
-    /// Gets the IRC command associated with this message.
+    ///   Gets the IRC command associated with this message.
     /// </summary>
     protected override string Command {
       get {
@@ -17,7 +17,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Gets or sets the mask that limits the servers which information will be returned.
+    ///   Gets or sets the mask that limits the servers which information will be returned.
     /// </summary>
     public virtual string Mask {
       get {
@@ -31,7 +31,8 @@ namespace Supay.Irc.Messages {
     private string mask = string.Empty;
 
     /// <summary>
-    ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
+    ///   Overrides <see cref="IrcMessage.GetParameters" />.
+    /// </summary>
     protected override Collection<string> GetParameters() {
       Collection<string> parameters = base.GetParameters();
       if (!string.IsNullOrEmpty(Mask)) {
@@ -42,7 +43,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Gets the index of the parameter which holds the server which should respond to the query.
+    ///   Gets the index of the parameter which holds the server which should respond to the query.
     /// </summary>
     protected override int TargetParsingPosition {
       get {
@@ -51,7 +52,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Parses the parameters portion of the message.
+    ///   Parses the parameters portion of the message.
     /// </summary>
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
@@ -63,7 +64,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Notifies the given <see cref="MessageConduit"/> by raising the appropriate event for the current <see cref="IrcMessage"/> subclass.
+    ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnLusers(new IrcMessageEventArgs<LusersMessage>(this));

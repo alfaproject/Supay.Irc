@@ -3,7 +3,8 @@ using Supay.Irc.Messages.Modes;
 
 namespace Supay.Irc {
   /// <summary>
-  ///   Represents a User on an IRC server. </summary>
+  ///   Represents a User on an IRC server.
+  /// </summary>
   [Serializable]
   public class User : Mask {
     private string _name;
@@ -18,16 +19,17 @@ namespace Supay.Irc {
     #region Constructors
 
     /// <summary>
-    ///   Initializes a new instance of the <see cref="User"/> class. </summary>
+    ///   Initializes a new instance of the <see cref="User" /> class.
+    /// </summary>
     public User()
       : base(string.Empty, string.Empty, string.Empty) {
       this.Initialize();
     }
 
     /// <summary>
-    ///   Initializes a new instance of the <see cref="User"/> class with the given mask string. </summary>
-    /// <param name="mask">
-    ///   The mask string to parse. </param>
+    ///   Initializes a new instance of the <see cref="User" /> class with the given mask string.
+    /// </summary>
+    /// <param name="mask">The mask string to parse.</param>
     public User(string mask)
       : base(mask) {
       this.Initialize();
@@ -51,7 +53,8 @@ namespace Supay.Irc {
     #region Properties
 
     /// <summary>
-    ///   Gets or sets the supposed real name of the User. </summary>
+    ///   Gets or sets the supposed real name of the User.
+    /// </summary>
     public string Name {
       get {
         return _name;
@@ -65,7 +68,8 @@ namespace Supay.Irc {
     }
 
     /// <summary>
-    ///   Gets or sets the Password the User will use on the server. </summary>
+    ///   Gets or sets the Password the User will use on the server.
+    /// </summary>
     public string Password {
       get {
         return _password;
@@ -79,7 +83,8 @@ namespace Supay.Irc {
     }
 
     /// <summary>
-    ///   Gets or sets the name of the server which the User is connected to. </summary>
+    ///   Gets or sets the name of the server which the User is connected to.
+    /// </summary>
     public string Server {
       get {
         return _server;
@@ -93,7 +98,8 @@ namespace Supay.Irc {
     }
 
     /// <summary>
-    ///   Gets or sets if the User is an IRC Operator. </summary>
+    ///   Gets or sets if the User is an IRC Operator.
+    /// </summary>
     public bool IrcOperator {
       get {
         return _ircOperator;
@@ -107,7 +113,8 @@ namespace Supay.Irc {
     }
 
     /// <summary>
-    ///   Gets or sets the online status of this User. </summary>
+    ///   Gets or sets the online status of this User.
+    /// </summary>
     public bool Online {
       get {
         return _online;
@@ -121,7 +128,8 @@ namespace Supay.Irc {
     }
 
     /// <summary>
-    ///   Gets or sets the away status of this User. </summary>
+    ///   Gets or sets the away status of this User.
+    /// </summary>
     public bool Away {
       get {
         return _away;
@@ -135,7 +143,8 @@ namespace Supay.Irc {
     }
 
     /// <summary>
-    ///   Gets or sets the away message of this User. </summary>
+    ///   Gets or sets the away message of this User.
+    /// </summary>
     public string AwayMessage {
       get {
         return _awayMessage;
@@ -149,7 +158,8 @@ namespace Supay.Irc {
     }
 
     /// <summary>
-    ///   Gets the modes which apply to the user. </summary>
+    ///   Gets the modes which apply to the user.
+    /// </summary>
     public UserModeCollection Modes {
       get {
         return _modes;
@@ -157,7 +167,8 @@ namespace Supay.Irc {
     }
 
     /// <summary>
-    ///   Gets a string that uniquely identifies this user. </summary>
+    ///   Gets a string that uniquely identifies this user.
+    /// </summary>
     public string FingerPrint {
       get {
         if (string.IsNullOrEmpty(this.Host) || string.IsNullOrEmpty(this.Username)) {
@@ -178,13 +189,15 @@ namespace Supay.Irc {
     #region Public Methods
 
     /// <summary>
-    ///   Represents this User's information as an IRC mask. </summary>
+    ///   Represents this User's information as an IRC mask.
+    /// </summary>
     public override string ToString() {
       return this.IrcMask;
     }
 
     /// <summary>
-    ///   Copies the properties of the given User onto this User. </summary>
+    ///   Copies the properties of the given User onto this User.
+    /// </summary>
     public void CopyFrom(User user) {
       this.Host = user.Host;
       this.Nickname = user.Nickname;

@@ -3,19 +3,19 @@ using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
   /// <summary>
-  /// Contains basic information about a server.
+  ///   Contains basic information about a server.
   /// </summary>
   [Serializable]
   public class ServerInfoMessage : NumericMessage {
     /// <summary>
-    /// Creates a new instance of the <see cref="ServerInfoMessage"/> class.
+    ///   Creates a new instance of the <see cref="ServerInfoMessage" /> class.
     /// </summary>
     public ServerInfoMessage()
       : base(004) {
     }
 
     /// <summary>
-    /// Gets or sets the name of the server being referenced.
+    ///   Gets or sets the name of the server being referenced.
     /// </summary>
     public virtual string ServerName {
       get {
@@ -29,7 +29,7 @@ namespace Supay.Irc.Messages {
     private string serverName = string.Empty;
 
     /// <summary>
-    /// Gets or sets the version of the server.
+    ///   Gets or sets the version of the server.
     /// </summary>
     public virtual string Version {
       get {
@@ -43,7 +43,7 @@ namespace Supay.Irc.Messages {
     private string version = string.Empty;
 
     /// <summary>
-    /// Gets or sets the user modes supported by this server.
+    ///   Gets or sets the user modes supported by this server.
     /// </summary>
     public virtual string UserModes {
       get {
@@ -57,7 +57,7 @@ namespace Supay.Irc.Messages {
     private string userModes = string.Empty;
 
     /// <summary>
-    /// Gets or sets the channel modes supported by this server.
+    ///   Gets or sets the channel modes supported by this server.
     /// </summary>
     public virtual string ChannelModes {
       get {
@@ -71,7 +71,7 @@ namespace Supay.Irc.Messages {
     private string channelModes = string.Empty;
 
     /// <summary>
-    /// Gets or sets the channel modes that require a parameter.
+    ///   Gets or sets the channel modes that require a parameter.
     /// </summary>
     public virtual string ChannelModesWithParams {
       get {
@@ -85,7 +85,7 @@ namespace Supay.Irc.Messages {
     private string channelModesWithParams = string.Empty;
 
     /// <summary>
-    /// Gets or sets the user modes that require a parameter.
+    ///   Gets or sets the user modes that require a parameter.
     /// </summary>
     public virtual string UserModesWithParams {
       get {
@@ -99,7 +99,7 @@ namespace Supay.Irc.Messages {
     private string userModesWithParams = string.Empty;
 
     /// <summary>
-    /// Gets or sets the server modes supported by this server.
+    ///   Gets or sets the server modes supported by this server.
     /// </summary>
     public virtual string ServerModes {
       get {
@@ -113,7 +113,7 @@ namespace Supay.Irc.Messages {
     private string serverModes = string.Empty;
 
     /// <summary>
-    /// Gets or sets the server modes which require parameters.
+    ///   Gets or sets the server modes which require parameters.
     /// </summary>
     public virtual string ServerModesWithParams {
       get {
@@ -127,7 +127,8 @@ namespace Supay.Irc.Messages {
     private string serverModesWithParams = string.Empty;
 
     /// <summary>
-    ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
+    ///   Overrides <see cref="IrcMessage.GetParameters" />.
+    /// </summary>
     protected override Collection<string> GetParameters() {
       Collection<string> parameters = base.GetParameters();
       parameters.Add(ServerName);
@@ -150,7 +151,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Parses the parameters portion of the message.
+    ///   Parses the parameters portion of the message.
     /// </summary>
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
@@ -179,7 +180,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Notifies the given <see cref="MessageConduit"/> by raising the appropriate event for the current <see cref="IrcMessage"/> subclass.
+    ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnServerInfo(new IrcMessageEventArgs<ServerInfoMessage>(this));

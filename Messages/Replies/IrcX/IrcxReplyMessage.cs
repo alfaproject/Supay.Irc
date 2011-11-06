@@ -4,19 +4,19 @@ using System.Globalization;
 
 namespace Supay.Irc.Messages {
   /// <summary>
-  /// A reply to a <see cref="IrcxMessage"/> or a <see cref="IsIrcxMessage"/>.
+  ///   A reply to a <see cref="IrcxMessage" /> or a <see cref="IsIrcxMessage" />.
   /// </summary>
   [Serializable]
   public class IrcxReplyMessage : NumericMessage {
     /// <summary>
-    /// Creates a new instance of the <see cref="IrcxReplyMessage"/>.
+    ///   Creates a new instance of the <see cref="IrcxReplyMessage" />.
     /// </summary>
     public IrcxReplyMessage()
       : base(800) {
     }
 
     /// <summary>
-    /// Gets or sets if the server has set the client into IRCX mode.
+    ///   Gets or sets if the server has set the client into IRCX mode.
     /// </summary>
     public virtual bool IsIrcxClientMode {
       get {
@@ -30,7 +30,7 @@ namespace Supay.Irc.Messages {
     private bool isIrcxClientMode = false;
 
     /// <summary>
-    /// Gets or sets the version of IRCX the server implements.
+    ///   Gets or sets the version of IRCX the server implements.
     /// </summary>
     public virtual string Version {
       get {
@@ -44,7 +44,7 @@ namespace Supay.Irc.Messages {
     private string ircxVersion = string.Empty;
 
     /// <summary>
-    /// Gets the collection of authentication packages
+    ///   Gets the collection of authentication packages
     /// </summary>
     public virtual Collection<string> AuthenticationPackages {
       get {
@@ -55,7 +55,7 @@ namespace Supay.Irc.Messages {
     private Collection<string> authenticationPackages = new Collection<string>();
 
     /// <summary>
-    /// Gets or sets the maximum message length, in bytes.
+    ///   Gets or sets the maximum message length, in bytes.
     /// </summary>
     public virtual int MaximumMessageLength {
       get {
@@ -69,11 +69,11 @@ namespace Supay.Irc.Messages {
     private int maximumMessageLength = -1;
 
     /// <summary>
-    /// Gets or sets the tokens
+    ///   Gets or sets the tokens
     /// </summary>
     /// <remarks>
-    /// There are no known servers that implement this property.
-    /// It is almost always just *.
+    ///   There are no known servers that implement this property.
+    ///   It is almost always just *.
     /// </remarks>
     public virtual string Tokens {
       get {
@@ -87,7 +87,8 @@ namespace Supay.Irc.Messages {
     private string tokens = "*";
 
     /// <summary>
-    ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
+    ///   Overrides <see cref="IrcMessage.GetParameters" />.
+    /// </summary>
     protected override Collection<string> GetParameters() {
       Collection<string> parameters = base.GetParameters();
       parameters.Add(IsIrcxClientMode ? "1" : "0");
@@ -99,7 +100,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Parses the parameters portion of the message.
+    ///   Parses the parameters portion of the message.
     /// </summary>
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
@@ -126,7 +127,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Notifies the given <see cref="MessageConduit"/> by raising the appropriate event for the current <see cref="IrcMessage"/> subclass.
+    ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnIrcxReply(new IrcMessageEventArgs<IrcxReplyMessage>(this));

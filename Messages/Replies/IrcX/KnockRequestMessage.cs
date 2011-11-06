@@ -3,19 +3,19 @@ using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
   /// <summary>
-  /// The notification to the channel that a user has knocked on their channel.
+  ///   The notification to the channel that a user has knocked on their channel.
   /// </summary>
   [Serializable]
   public class KnockRequestMessage : NumericMessage {
     /// <summary>
-    /// Creates a new instance of the <see cref="KnockRequestMessage"/>.
+    ///   Creates a new instance of the <see cref="KnockRequestMessage" />.
     /// </summary>
     public KnockRequestMessage()
       : base(710) {
     }
 
     /// <summary>
-    /// Gets or sets the channel that was knocked on.
+    ///   Gets or sets the channel that was knocked on.
     /// </summary>
     public virtual string Channel {
       get {
@@ -29,7 +29,7 @@ namespace Supay.Irc.Messages {
     private string channel = string.Empty;
 
     /// <summary>
-    /// Gets or sets the user which knocked on the channel.
+    ///   Gets or sets the user which knocked on the channel.
     /// </summary>
     public virtual User Knocker {
       get {
@@ -43,7 +43,8 @@ namespace Supay.Irc.Messages {
     private User knocker = new User();
 
     /// <summary>
-    ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
+    ///   Overrides <see cref="IrcMessage.GetParameters" />.
+    /// </summary>
     protected override Collection<string> GetParameters() {
       Collection<string> parameters = base.GetParameters();
       parameters.Add(Channel);
@@ -53,7 +54,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Parses the parameters portion of the message.
+    ///   Parses the parameters portion of the message.
     /// </summary>
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
@@ -70,7 +71,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Notifies the given <see cref="MessageConduit"/> by raising the appropriate event for the current <see cref="IrcMessage"/> subclass.
+    ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnKnockRequest(new IrcMessageEventArgs<KnockRequestMessage>(this));

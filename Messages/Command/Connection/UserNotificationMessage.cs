@@ -4,12 +4,12 @@ using System.Globalization;
 
 namespace Supay.Irc.Messages {
   /// <summary>
-  /// The UserNotificationMessage is used at the beginning of connection to specify the username, hostname and real name of a new user.
+  ///   The UserNotificationMessage is used at the beginning of connection to specify the username, hostname and real name of a new user.
   /// </summary>
   [Serializable]
   public class UserNotificationMessage : CommandMessage {
     /// <summary>
-    /// Gets the IRC command associated with this message.
+    ///   Gets the IRC command associated with this message.
     /// </summary>
     protected override string Command {
       get {
@@ -18,7 +18,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Gets or sets the UserName of client.
+    ///   Gets or sets the UserName of client.
     /// </summary>
     public virtual string UserName {
       get {
@@ -32,7 +32,7 @@ namespace Supay.Irc.Messages {
     private string userName = string.Empty;
 
     /// <summary>
-    /// Gets or sets if the client is initialized with a user mode of invisible.
+    ///   Gets or sets if the client is initialized with a user mode of invisible.
     /// </summary>
     public virtual bool InitialInvisibility {
       get {
@@ -46,7 +46,7 @@ namespace Supay.Irc.Messages {
     private bool initialInvisibility = true;
 
     /// <summary>
-    /// Gets or sets if the client is initialized with a user mode of receiving wallops.
+    ///   Gets or sets if the client is initialized with a user mode of receiving wallops.
     /// </summary>
     public virtual bool InitialWallops {
       get {
@@ -60,7 +60,7 @@ namespace Supay.Irc.Messages {
     private bool initialWallops = false;
 
     /// <summary>
-    /// Gets or sets the real name of the client.
+    ///   Gets or sets the real name of the client.
     /// </summary>
     public virtual string RealName {
       get {
@@ -87,7 +87,8 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
+    ///   Overrides <see cref="IrcMessage.GetParameters" />.
+    /// </summary>
     protected override Collection<string> GetParameters() {
       Collection<string> parameters = base.GetParameters();
       parameters.Add(UserName);
@@ -105,7 +106,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Parses the parameters portion of the message.
+    ///   Parses the parameters portion of the message.
     /// </summary>
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
@@ -124,7 +125,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Notifies the given <see cref="MessageConduit"/> by raising the appropriate event for the current <see cref="IrcMessage"/> subclass.
+    ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnUserNotification(new IrcMessageEventArgs<UserNotificationMessage>(this));

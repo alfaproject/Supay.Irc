@@ -5,22 +5,24 @@ using Supay.Irc.Messages.Modes;
 
 namespace Supay.Irc.Messages {
   /// <summary>
-  ///   The <see cref="ErrorMessage"/> received when attempting to join a channel which is invite
-  ///   only. </summary>
+  ///   The <see cref="ErrorMessage" /> received when attempting to join a channel which is invite
+  ///   only.
+  /// </summary>
   /// <remarks>
-  ///   A channel can be set invite only with a <see cref="ChannelModeMessage"/> containing an
-  ///   <see cref="InviteOnlyMode"/>. </remarks>
+  ///   A channel can be set invite only with a <see cref="ChannelModeMessage" /> containing an
+  ///   <see cref="InviteOnlyMode" />.
+  /// </remarks>
   [Serializable]
   public class ChannelBlockedMessage : ErrorMessage, IChannelTargetedMessage {
     /// <summary>
-    /// Creates a new instances of the <see cref="ChannelBlockedMessage"/> class.
+    ///   Creates a new instances of the <see cref="ChannelBlockedMessage" /> class.
     /// </summary>
     public ChannelBlockedMessage()
       : base(485) {
     }
 
     /// <summary>
-    /// Gets or sets the channel which is blocked
+    ///   Gets or sets the channel which is blocked
     /// </summary>
     public string Channel {
       get {
@@ -34,7 +36,7 @@ namespace Supay.Irc.Messages {
     private string channel;
 
     /// <summary>
-    /// Gets or sets the reason the channel is blocked
+    ///   Gets or sets the reason the channel is blocked
     /// </summary>
     public string Reason {
       get {
@@ -69,7 +71,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Notifies the given <see cref="MessageConduit"/> by raising the appropriate event for the current <see cref="IrcMessage"/> subclass.
+    ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnChannelBlocked(new IrcMessageEventArgs<ChannelBlockedMessage>(this));
@@ -82,7 +84,8 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    ///   Determines if the the current message is targeted at the given channel. </summary>
+    ///   Determines if the the current message is targeted at the given channel.
+    /// </summary>
     protected virtual bool IsTargetedAtChannel(string channelName) {
       return this.Channel.EqualsI(channelName);
     }

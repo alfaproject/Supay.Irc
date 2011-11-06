@@ -4,23 +4,23 @@ using System.Globalization;
 
 namespace Supay.Irc.Messages {
   /// <summary>
-  /// The <see cref="ErrorMessage"/> sent when a user tries to connect with an user name containing invalid characters
+  ///   The <see cref="ErrorMessage" /> sent when a user tries to connect with an user name containing invalid characters
   /// </summary>
   /// <remarks>
-  /// Not all networks will send this message, some will silently change your user name,
-  /// while others will simply disconnect you.
+  ///   Not all networks will send this message, some will silently change your user name,
+  ///   while others will simply disconnect you.
   /// </remarks>
   [Serializable]
   public class IdentChangedMessage : ErrorMessage {
     /// <summary>
-    /// Creates a new instances of the <see cref="IdentChangedMessage"/> class.
+    ///   Creates a new instances of the <see cref="IdentChangedMessage" /> class.
     /// </summary>
     public IdentChangedMessage()
       : base(455) {
     }
 
     /// <summary>
-    /// Gets or sets the username that was attempted
+    ///   Gets or sets the username that was attempted
     /// </summary>
     public string Ident {
       get {
@@ -34,7 +34,7 @@ namespace Supay.Irc.Messages {
     private string ident;
 
     /// <summary>
-    /// Gets or sets the characters in the attempted username which were invalid
+    ///   Gets or sets the characters in the attempted username which were invalid
     /// </summary>
     public string InvalidCharacters {
       get {
@@ -48,7 +48,7 @@ namespace Supay.Irc.Messages {
     private string invalidCharacters;
 
     /// <summary>
-    /// Gets or sets the new username being assigned
+    ///   Gets or sets the new username being assigned
     /// </summary>
     public string NewIdent {
       get {
@@ -78,7 +78,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Notifies the given <see cref="MessageConduit"/> by raising the appropriate event for the current <see cref="IrcMessage"/> subclass.
+    ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnIdentChanged(new IrcMessageEventArgs<IdentChangedMessage>(this));

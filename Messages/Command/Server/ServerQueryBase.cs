@@ -3,12 +3,12 @@ using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
   /// <summary>
-  /// The base class for server query messages.
+  ///   The base class for server query messages.
   /// </summary>
   [Serializable]
   public abstract class ServerQueryBase : CommandMessage {
     /// <summary>
-    /// Gets or sets the target server of the query.
+    ///   Gets or sets the target server of the query.
     /// </summary>
     public virtual string Target {
       get {
@@ -22,7 +22,7 @@ namespace Supay.Irc.Messages {
     private string target = string.Empty;
 
     /// <summary>
-    /// Parses the parameters portion of the message.
+    ///   Parses the parameters portion of the message.
     /// </summary>
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
@@ -34,7 +34,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Gets the index of the parameter which holds the server which should respond to the query.
+    ///   Gets the index of the parameter which holds the server which should respond to the query.
     /// </summary>
     protected virtual int TargetParsingPosition {
       get {

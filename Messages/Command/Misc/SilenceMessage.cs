@@ -3,19 +3,19 @@ using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
   /// <summary>
-  /// With the SilenceMessage, clients can tell a server to never send messages to them from a given user. This, effectively, is a server-side ignore command.
+  ///   With the SilenceMessage, clients can tell a server to never send messages to them from a given user. This, effectively, is a server-side ignore command.
   /// </summary>
   [Serializable]
   public class SilenceMessage : CommandMessage {
     /// <summary>
-    /// Creates a new instance of the SilenceMessage class.
+    ///   Creates a new instance of the SilenceMessage class.
     /// </summary>
     public SilenceMessage()
       : base() {
     }
 
     /// <summary>
-    /// Creates a new instance of the SilenceMessage class with the <see cref="User"/>.
+    ///   Creates a new instance of the SilenceMessage class with the <see cref="User" />.
     /// </summary>
     public SilenceMessage(User silencedUser)
       : base() {
@@ -23,14 +23,14 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Creates a new instance of the SilenceMessage class with the given mask.
+    ///   Creates a new instance of the SilenceMessage class with the given mask.
     /// </summary>
     public SilenceMessage(string userMask)
       : this(new User(userMask)) {
     }
 
     /// <summary>
-    /// Gets the IRC command associated with this message.
+    ///   Gets the IRC command associated with this message.
     /// </summary>
     protected override string Command {
       get {
@@ -39,7 +39,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Gets or sets the user being silenced.
+    ///   Gets or sets the user being silenced.
     /// </summary>
     public virtual User SilencedUser {
       get {
@@ -53,7 +53,7 @@ namespace Supay.Irc.Messages {
     private User silencedUser = new User();
 
     /// <summary>
-    /// Gets or sets the action being applied to the silenced user on the list.
+    ///   Gets or sets the action being applied to the silenced user on the list.
     /// </summary>
     public virtual ModeAction Action {
       get {
@@ -67,7 +67,8 @@ namespace Supay.Irc.Messages {
     private ModeAction _action = ModeAction.Add;
 
     /// <summary>
-    ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
+    ///   Overrides <see cref="IrcMessage.GetParameters" />.
+    /// </summary>
     protected override Collection<string> GetParameters() {
       // SILENCE [{{+|-}<user>@<host>}]
       Collection<string> parameters = base.GetParameters();
@@ -78,7 +79,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Parses the parameters portion of the message.
+    ///   Parses the parameters portion of the message.
     /// </summary>
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
@@ -105,7 +106,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Notifies the given <see cref="MessageConduit"/> by raising the appropriate event for the current <see cref="IrcMessage"/> subclass.
+    ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnSilence(new IrcMessageEventArgs<SilenceMessage>(this));

@@ -4,19 +4,19 @@ using System.Globalization;
 
 namespace Supay.Irc.Messages {
   /// <summary>
-  /// A single reply to the <see cref="ListMessage"/> query.
+  ///   A single reply to the <see cref="ListMessage" /> query.
   /// </summary>
   [Serializable]
   public class ListReplyMessage : NumericMessage, IChannelTargetedMessage {
     /// <summary>
-    /// Creates a new instance of the <see cref="ListReplyMessage"/> class.
+    ///   Creates a new instance of the <see cref="ListReplyMessage" /> class.
     /// </summary>
     public ListReplyMessage()
       : base(322) {
     }
 
     /// <summary>
-    /// Gets or sets the channel for this reply.
+    ///   Gets or sets the channel for this reply.
     /// </summary>
     public virtual string Channel {
       get {
@@ -28,7 +28,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Gets or sets the number of people in the channel.
+    ///   Gets or sets the number of people in the channel.
     /// </summary>
     public virtual int MemberCount {
       get {
@@ -40,7 +40,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Gets or sets the topic of the channel.
+    ///   Gets or sets the topic of the channel.
     /// </summary>
     public virtual string Topic {
       get {
@@ -56,7 +56,8 @@ namespace Supay.Irc.Messages {
     private string channel = string.Empty;
 
     /// <summary>
-    ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
+    ///   Overrides <see cref="IrcMessage.GetParameters" />.
+    /// </summary>
     protected override Collection<string> GetParameters() {
       Collection<string> parameters = base.GetParameters();
       parameters.Add(Channel);
@@ -66,7 +67,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Parses the parameters portion of the message.
+    ///   Parses the parameters portion of the message.
     /// </summary>
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
@@ -82,7 +83,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Notifies the given <see cref="MessageConduit"/> by raising the appropriate event for the current <see cref="IrcMessage"/> subclass.
+    ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnListReply(new IrcMessageEventArgs<ListReplyMessage>(this));
@@ -95,7 +96,8 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    ///   Determines if the the current message is targeted at the given channel. </summary>
+    ///   Determines if the the current message is targeted at the given channel.
+    /// </summary>
     protected virtual bool IsTargetedAtChannel(string channelName) {
       return this.Channel.EqualsI(channelName);
     }

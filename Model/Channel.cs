@@ -7,7 +7,8 @@ using Supay.Irc.Messages.Modes;
 
 namespace Supay.Irc {
   /// <summary>
-  ///   Represents a single irc channel, with it's users. </summary>
+  ///   Represents a single irc channel, with it's users.
+  /// </summary>
   [Serializable]
   public class Channel : INotifyPropertyChanged {
     private bool _open = false;
@@ -20,13 +21,15 @@ namespace Supay.Irc {
     private Journal _journal;
 
     /// <summary>
-    ///   The event raised when a property on the object changes. </summary>
+    ///   The event raised when a property on the object changes.
+    /// </summary>
     public event PropertyChangedEventHandler PropertyChanged;
 
     #region Constructors
 
     /// <summary>
-    ///   Creates a new instance of the <see cref="Channel"/> class on the given client with the given name. </summary>
+    ///   Creates a new instance of the <see cref="Channel" /> class on the given client with the given name.
+    /// </summary>
     public Channel(string name) {
       _open = false;
 
@@ -47,7 +50,8 @@ namespace Supay.Irc {
     }
 
     /// <summary>
-    ///   Creates a new instance of the <see cref="Channel"/> class on the given client. </summary>
+    ///   Creates a new instance of the <see cref="Channel" /> class on the given client.
+    /// </summary>
     public Channel()
       : this(string.Empty) {
     }
@@ -57,7 +61,8 @@ namespace Supay.Irc {
     #region Properties
 
     /// <summary>
-    ///   Gets or sets whether the channel is currently open. </summary>
+    ///   Gets or sets whether the channel is currently open.
+    /// </summary>
     public bool Open {
       get {
         return _open;
@@ -69,7 +74,8 @@ namespace Supay.Irc {
     }
 
     /// <summary>
-    ///   Gets or sets the name of the channel. </summary>
+    ///   Gets or sets the name of the channel.
+    /// </summary>
     public string Name {
       get {
         return _properties["NAME"];
@@ -83,7 +89,8 @@ namespace Supay.Irc {
     }
 
     /// <summary>
-    ///   Gets or sets the topic of the channel. </summary>
+    ///   Gets or sets the topic of the channel.
+    /// </summary>
     public string Topic {
       get {
         return this.Properties["TOPIC"];
@@ -97,7 +104,8 @@ namespace Supay.Irc {
     }
 
     /// <summary>
-    ///   Gets or sets the user which set the current topic. </summary>
+    ///   Gets or sets the user which set the current topic.
+    /// </summary>
     public User TopicSetter {
       get {
         return _topicSetter;
@@ -111,7 +119,8 @@ namespace Supay.Irc {
     }
 
     /// <summary>
-    ///   Gets or sets the time which topic was set. </summary>
+    ///   Gets or sets the time which topic was set.
+    /// </summary>
     public DateTime TopicSetTime {
       get {
         return _topicSetTime;
@@ -125,7 +134,8 @@ namespace Supay.Irc {
     }
 
     /// <summary>
-    ///   Gets the collection of general properties assigned to this channel. </summary>
+    ///   Gets the collection of general properties assigned to this channel.
+    /// </summary>
     public NameValueCollection Properties {
       get {
         return _properties;
@@ -133,7 +143,8 @@ namespace Supay.Irc {
     }
 
     /// <summary>
-    ///   Gets the users in the channel. </summary>
+    ///   Gets the users in the channel.
+    /// </summary>
     public UserCollection Users {
       get {
         return _users;
@@ -141,7 +152,8 @@ namespace Supay.Irc {
     }
 
     /// <summary>
-    ///   Gets the modes in the channel. </summary>
+    ///   Gets the modes in the channel.
+    /// </summary>
     public ChannelModeCollection Modes {
       get {
         return _modes;
@@ -149,7 +161,8 @@ namespace Supay.Irc {
     }
 
     /// <summary>
-    ///   Gets the journal of messages on the channel. </summary>
+    ///   Gets the journal of messages on the channel.
+    /// </summary>
     public Journal Journal {
       get {
         return _journal;
@@ -161,7 +174,8 @@ namespace Supay.Irc {
     #region Users Status
 
     /// <summary>
-    ///   Gets the status for the given <see cref="User"/> in the channel. </summary>
+    ///   Gets the status for the given <see cref="User" /> in the channel.
+    /// </summary>
     public ChannelStatus GetStatusForUser(User channelUser) {
       VerifyUserInChannel(channelUser);
       if (_userModes.ContainsKey(channelUser)) {
@@ -171,7 +185,8 @@ namespace Supay.Irc {
     }
 
     /// <summary>
-    ///   Applies the given <see cref="ChannelStatus"/> to the given <see cref="User"/> in the channel. </summary>
+    ///   Applies the given <see cref="ChannelStatus" /> to the given <see cref="User" /> in the channel.
+    /// </summary>
     public void SetStatusForUser(User channelUser, ChannelStatus status) {
       if (status == ChannelStatus.None && _userModes.ContainsKey(channelUser)) {
         _userModes.Remove(channelUser);
@@ -211,7 +226,8 @@ namespace Supay.Irc {
     #region Protected Methods
 
     /// <summary>
-    ///   Raises the PropertyChanged event. </summary>
+    ///   Raises the PropertyChanged event.
+    /// </summary>
     protected void RaisePropertyChanged(string propertyName) {
       PropertyChangedEventHandler handler = this.PropertyChanged;
       if (handler != null) {

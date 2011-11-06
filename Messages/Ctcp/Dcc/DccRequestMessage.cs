@@ -6,11 +6,13 @@ using Supay.Irc.Dcc;
 
 namespace Supay.Irc.Messages {
   /// <summary>
-  ///   The base for DCC request messages. </summary>
+  ///   The base for DCC request messages.
+  /// </summary>
   [Serializable]
   public abstract class DccRequestMessage : CtcpRequestMessage {
     /// <summary>
-    ///   Creates a new instance of the <see cref="DccRequestMessage"/> class. </summary>
+    ///   Creates a new instance of the <see cref="DccRequestMessage" /> class.
+    /// </summary>
     protected DccRequestMessage() {
       Port = -1;
       Address = System.Net.IPAddress.None;
@@ -18,7 +20,8 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    ///   Gets the data payload of the CTCP request. </summary>
+    ///   Gets the data payload of the CTCP request.
+    /// </summary>
     protected override string ExtendedData {
       get {
         return MessageUtil.ParametersToString(false, DccCommand, DccArgument, TransportAddressFromAddress(Address), Port.ToString(CultureInfo.InvariantCulture));
@@ -26,45 +29,52 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    ///   Gets the DCC sub-command. </summary>
+    ///   Gets the DCC sub-command.
+    /// </summary>
     protected abstract string DccCommand {
       get;
     }
 
     /// <summary>
-    ///   Gets the DCC sub-command's argument. </summary>
+    ///   Gets the DCC sub-command's argument.
+    /// </summary>
     protected abstract string DccArgument {
       get;
     }
 
     /// <summary>
-    ///   Gets or sets the host address on which the initiator expects the connection. </summary>
+    ///   Gets or sets the host address on which the initiator expects the connection.
+    /// </summary>
     public IPAddress Address {
       get;
       set;
     }
 
     /// <summary>
-    ///   Gets or sets the port on which the initiator expects the connection. </summary>
+    ///   Gets or sets the port on which the initiator expects the connection.
+    /// </summary>
     public int Port {
       get;
       set;
     }
 
     /// <summary>
-    ///   Determines if the message can be parsed by this type. </summary>
+    ///   Determines if the message can be parsed by this type.
+    /// </summary>
     public override bool CanParse(string unparsedMessage) {
       return base.CanParse(unparsedMessage) && CanParseDccCommand(DccUtil.GetCommand(unparsedMessage));
     }
 
     /// <summary>
-    ///   Determines if the message's DCC command is compatible with this message. </summary>
+    ///   Determines if the message's DCC command is compatible with this message.
+    /// </summary>
     public virtual bool CanParseDccCommand(string command) {
       return !string.IsNullOrEmpty(command) && DccCommand.EndsWith(command, StringComparison.OrdinalIgnoreCase);
     }
 
     /// <summary>
-    ///   Parses the given string to populate this <see cref="IrcMessage"/>. </summary>
+    ///   Parses the given string to populate this <see cref="IrcMessage" />.
+    /// </summary>
     public override void Parse(string unparsedMessage) {
       base.Parse(unparsedMessage);
 

@@ -4,13 +4,13 @@ using System.Text;
 
 namespace Supay.Irc.Messages {
   /// <summary>
-  /// The reply to a <see cref="SourceRequestMessage"/>, 
-  /// telling the requestor where to download this client.
+  ///   The reply to a <see cref="SourceRequestMessage" />, 
+  ///   telling the requestor where to download this client.
   /// </summary>
   [Serializable]
   public class SourceReplyMessage : CtcpReplyMessage {
     /// <summary>
-    /// Creates a new instance of the <see cref="SourceReplyMessage"/> class.
+    ///   Creates a new instance of the <see cref="SourceReplyMessage" /> class.
     /// </summary>
     public SourceReplyMessage()
       : base() {
@@ -18,7 +18,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Gets or sets the server that hosts the client's distribution.
+    ///   Gets or sets the server that hosts the client's distribution.
     /// </summary>
     public virtual string Server {
       get {
@@ -32,7 +32,7 @@ namespace Supay.Irc.Messages {
     private string server = string.Empty;
 
     /// <summary>
-    /// Gets or sets the folder path to the client's distribution.
+    ///   Gets or sets the folder path to the client's distribution.
     /// </summary>
     public virtual string Folder {
       get {
@@ -46,7 +46,7 @@ namespace Supay.Irc.Messages {
     private string folder = string.Empty;
 
     /// <summary>
-    /// Gets the list of files that must be downloaded.
+    ///   Gets the list of files that must be downloaded.
     /// </summary>
     public virtual Collection<string> Files {
       get {
@@ -57,7 +57,7 @@ namespace Supay.Irc.Messages {
     private Collection<string> files = new Collection<string>();
 
     /// <summary>
-    /// Gets the data payload of the Ctcp request.
+    ///   Gets the data payload of the Ctcp request.
     /// </summary>
     protected override string ExtendedData {
       get {
@@ -74,7 +74,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Parses the given string to populate this <see cref="IrcMessage"/>.
+    ///   Parses the given string to populate this <see cref="IrcMessage" />.
     /// </summary>
     public override void Parse(string unparsedMessage) {
       base.Parse(unparsedMessage);
@@ -95,7 +95,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Notifies the given <see cref="MessageConduit"/> by raising the appropriate event for the current <see cref="IrcMessage"/> subclass.
+    ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnSourceReply(new IrcMessageEventArgs<SourceReplyMessage>(this));

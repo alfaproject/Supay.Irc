@@ -3,21 +3,21 @@ using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
   /// <summary>
-  /// Utility class for Ctcp messages.
+  ///   Utility class for Ctcp messages.
   /// </summary>
   /// <remarks>
-  /// This most likely doesn't need to be used from lib-user code.
+  ///   This most likely doesn't need to be used from lib-user code.
   /// </remarks>
   [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Util")]
   [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Ctcp")]
   public static class CtcpUtil {
     /// <summary>
-    /// The character used to indicate the start and end of an extended data section in a CTCP message.
+    ///   The character used to indicate the start and end of an extended data section in a CTCP message.
     /// </summary>
     public const Char ExtendedDataMarker = '\x0001';
 
     /// <summary>
-    /// Escapes the given text for use in a ctcp message.
+    ///   Escapes the given text for use in a ctcp message.
     /// </summary>
     public static string Escape(string text) {
       string escaper = '\x0014'.ToString();
@@ -31,7 +31,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Unescapes the given text for use outside a ctcp message.
+    ///   Unescapes the given text for use outside a ctcp message.
     /// </summary>
     public static string Unescape(string text) {
       string escaper = '\x0014'.ToString();
@@ -47,19 +47,19 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Extracts the TransportCommand from the given message string.
+    ///   Extracts the TransportCommand from the given message string.
     /// </summary>
     /// <remarks>
-    /// A Ctcp TransportCommand is the irc command used to send the message to another user,
-    /// and is not to be confused with the Ctcp Command.
-    /// It is always either PRIVMSG or NOTICE for a valid ctcp command.
+    ///   A Ctcp TransportCommand is the irc command used to send the message to another user,
+    ///   and is not to be confused with the Ctcp Command.
+    ///   It is always either PRIVMSG or NOTICE for a valid ctcp command.
     /// </remarks>
     public static string GetTransportCommand(string rawMessage) {
       return MessageUtil.GetCommand(rawMessage);
     }
 
     /// <summary>
-    /// Extracts the actual Ctcp command from the given message string.
+    ///   Extracts the actual Ctcp command from the given message string.
     /// </summary>
     public static string GetInternalCommand(string rawMessage) {
       string ctcpMessage = MessageUtil.GetLastParameter(rawMessage);
@@ -71,7 +71,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Extracts the extended data section of a Ctcp message.
+    ///   Extracts the extended data section of a Ctcp message.
     /// </summary>
     public static string GetExtendedData(string rawMessage) {
       string ctcpMessage = MessageUtil.GetLastParameter(rawMessage);
@@ -84,7 +84,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Determines if the given message is a Ctcp message.
+    ///   Determines if the given message is a Ctcp message.
     /// </summary>
     public static bool IsCtcpMessage(string rawMessage) {
       Collection<string> p = MessageUtil.GetParameters(rawMessage);
@@ -99,14 +99,14 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Determines if the given ctcp message is a request message.
+    ///   Determines if the given ctcp message is a request message.
     /// </summary>
     public static bool IsRequestMessage(string rawMessage) {
       return CtcpUtil.GetTransportCommand(rawMessage) == "PRIVMSG";
     }
 
     /// <summary>
-    /// Determines if the given ctcp message is a reply message.
+    ///   Determines if the given ctcp message is a reply message.
     /// </summary>
     public static bool IsReplyMessage(string rawMessage) {
       return CtcpUtil.GetTransportCommand(rawMessage) == "NOTICE";

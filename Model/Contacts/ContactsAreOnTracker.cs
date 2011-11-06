@@ -89,7 +89,8 @@ namespace Supay.Irc.Contacts {
 
     /// <summary>
     ///   Performs application-defined tasks associated with freeing, releasing, or resetting
-    ///   unmanaged resources. </summary>
+    ///   unmanaged resources.
+    /// </summary>
     public void Dispose() {
       Dispose(true);
       GC.SuppressFinalize(this);

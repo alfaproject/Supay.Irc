@@ -4,11 +4,11 @@ using System.Diagnostics;
 
 namespace Supay.Irc.Messages.Modes {
   /// <summary>
-  /// UserModesCreator parses, builds, and writes the modes used by the <see cref="UserModeMessage"/> class.
+  ///   UserModesCreator parses, builds, and writes the modes used by the <see cref="UserModeMessage" /> class.
   /// </summary>
   public class UserModesCreator {
     /// <summary>
-    /// Creates a new instance of the <see cref="UserModesCreator"/> class.
+    ///   Creates a new instance of the <see cref="UserModesCreator" /> class.
     /// </summary>
     public UserModesCreator() {
     }
@@ -16,7 +16,7 @@ namespace Supay.Irc.Messages.Modes {
     #region Parsing
 
     /// <summary>
-    /// Loads the given mode data into this <see cref="UserModesCreator"/>
+    ///   Loads the given mode data into this <see cref="UserModesCreator" />
     /// </summary>
     public void Parse(Supay.Irc.Messages.UserModeMessage msg) {
       if (msg == null) {
@@ -26,7 +26,7 @@ namespace Supay.Irc.Messages.Modes {
     }
 
     /// <summary>
-    /// Loads the given mode data into this <see cref="UserModesCreator"/>
+    ///   Loads the given mode data into this <see cref="UserModesCreator" />
     /// </summary>
     public void Parse(string modeChanges) {
       this.modes.Clear();
@@ -83,14 +83,14 @@ namespace Supay.Irc.Messages.Modes {
     #endregion
 
     /// <summary>
-    /// Removes redundant or overridden modes from the modes collection.
+    ///   Removes redundant or overridden modes from the modes collection.
     /// </summary>
     private void CollapseModes() {
       //TODO Implement CollapseModes
     }
 
     /// <summary>
-    /// Applies the current modes to the given <see cref="UserModeMessage"/>.
+    ///   Applies the current modes to the given <see cref="UserModeMessage" />.
     /// </summary>
     /// <param name="msg">The message to be altered.</param>
     public virtual void ApplyTo(UserModeMessage msg) {
@@ -114,7 +114,7 @@ namespace Supay.Irc.Messages.Modes {
     }
 
     /// <summary>
-    /// Gets the collection of modes parsed or to be applied.
+    ///   Gets the collection of modes parsed or to be applied.
     /// </summary>
     public virtual IEnumerable<UserMode> Modes {
       get {

@@ -3,20 +3,20 @@ using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
   /// <summary>
-  /// OperMessage is used by a normal user to obtain IRC operator privileges.
-  /// ( This does not refer to channel ops )
-  /// The correct combination of <see cref="Name"/> and <see cref="Password"/> are required to gain Operator privileges.
+  ///   OperMessage is used by a normal user to obtain IRC operator privileges.
+  ///   ( This does not refer to channel ops )
+  ///   The correct combination of <see cref="Name" /> and <see cref="Password" /> are required to gain Operator privileges.
   /// </summary>
   [Serializable]
   public class OperMessage : CommandMessage {
     /// <summary>
-    /// Creates a new instance of the OperMessage class.
+    ///   Creates a new instance of the OperMessage class.
     /// </summary>
     public OperMessage() {
     }
 
     /// <summary>
-    /// Creates a new instance of the OperMessage class with the given name and password.
+    ///   Creates a new instance of the OperMessage class with the given name and password.
     /// </summary>
     public OperMessage(string name, string password) {
       this.name = name;
@@ -24,7 +24,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Gets the IRC command associated with this message.
+    ///   Gets the IRC command associated with this message.
     /// </summary>
     protected override string Command {
       get {
@@ -33,7 +33,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Gets or sets the password for the sender.
+    ///   Gets or sets the password for the sender.
     /// </summary>
     public virtual string Password {
       get {
@@ -47,7 +47,7 @@ namespace Supay.Irc.Messages {
     private string password = string.Empty;
 
     /// <summary>
-    /// Gets or sets the name for the sender.
+    ///   Gets or sets the name for the sender.
     /// </summary>
     public virtual string Name {
       get {
@@ -61,7 +61,8 @@ namespace Supay.Irc.Messages {
     private string name = string.Empty;
 
     /// <summary>
-    ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
+    ///   Overrides <see cref="IrcMessage.GetParameters" />.
+    /// </summary>
     protected override Collection<string> GetParameters() {
       Collection<string> parameters = base.GetParameters();
       parameters.Add(Name);
@@ -70,7 +71,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Parses the parameters portion of the message.
+    ///   Parses the parameters portion of the message.
     /// </summary>
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
@@ -84,7 +85,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
-    /// Notifies the given <see cref="MessageConduit"/> by raising the appropriate event for the current <see cref="IrcMessage"/> subclass.
+    ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnOper(new IrcMessageEventArgs<OperMessage>(this));
