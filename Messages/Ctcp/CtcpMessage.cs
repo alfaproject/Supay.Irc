@@ -105,11 +105,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
-      if (parameters.Count > 0) {
-        Target = parameters[0];
-      } else {
-        Target = string.Empty;
-      }
+      Target = parameters.Count > 0 ? parameters[0] : string.Empty;
     }
 
     /// <summary>

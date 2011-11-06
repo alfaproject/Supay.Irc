@@ -57,16 +57,8 @@ namespace Supay.Irc.Messages {
     /// </summary>
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
-      if (parameters.Count > 1) {
-        Channel = parameters[1];
-      } else {
-        Channel = string.Empty;
-      }
-      if (parameters.Count > 2) {
-        Knocker = new User(parameters[2]);
-      } else {
-        Knocker = new User();
-      }
+      Channel = parameters.Count > 1 ? parameters[1] : string.Empty;
+      Knocker = parameters.Count > 2 ? new User(parameters[2]) : new User();
     }
 
     /// <summary>

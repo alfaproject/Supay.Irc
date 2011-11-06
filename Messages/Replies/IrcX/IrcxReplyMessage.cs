@@ -108,11 +108,7 @@ namespace Supay.Irc.Messages {
           AuthenticationPackages.Add(package);
         }
         MaximumMessageLength = int.Parse(parameters[4], CultureInfo.InvariantCulture);
-        if (parameters.Count == 6) {
-          Tokens = parameters[5];
-        } else {
-          Tokens = string.Empty;
-        }
+        Tokens = parameters.Count == 6 ? parameters[5] : string.Empty;
       } else {
         IsIrcxClientMode = false;
         Version = string.Empty;

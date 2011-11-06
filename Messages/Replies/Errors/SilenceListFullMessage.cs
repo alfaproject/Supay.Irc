@@ -40,11 +40,7 @@ namespace Supay.Irc.Messages {
     /// <exclude />
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
-      if (parameters.Count > 1) {
-        SilenceMask = new Mask(parameters[1]);
-      } else {
-        SilenceMask = new Mask();
-      }
+      SilenceMask = parameters.Count > 1 ? new Mask(parameters[1]) : new Mask();
     }
 
     /// <summary>

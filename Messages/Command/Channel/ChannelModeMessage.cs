@@ -112,11 +112,7 @@ namespace Supay.Irc.Messages {
       base.ParseParameters(parameters);
       Channel = parameters[0];
 
-      if (parameters.Count > 1) {
-        ModeChanges = parameters[1];
-      } else {
-        ModeChanges = string.Empty;
-      }
+      ModeChanges = parameters.Count > 1 ? parameters[1] : string.Empty;
 
       ModeArguments.Clear();
       if (parameters.Count > 2) {

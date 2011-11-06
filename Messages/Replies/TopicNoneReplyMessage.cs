@@ -52,11 +52,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
-      if (parameters.Count >= 2) {
-        Channel = parameters[1];
-      } else {
-        Channel = string.Empty;
-      }
+      Channel = parameters.Count >= 2 ? parameters[1] : string.Empty;
     }
 
     /// <summary>

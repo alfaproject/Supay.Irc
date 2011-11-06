@@ -112,11 +112,7 @@ namespace Supay.Irc.Network {
               var writer = new StreamWriter(client.GetStream());
               string identName = User.Username;
               if (identName.Length == 0) {
-                if (User.Nickname.Length != 0) {
-                  identName = User.Nickname;
-                } else {
-                  identName = "supay";
-                }
+                identName = User.Nickname.Length != 0 ? User.Nickname : "supay";
               }
               string identReply = identRequest.Trim() + REPLY + identName.ToLower(CultureInfo.InvariantCulture);
               writer.WriteLine(identReply);
