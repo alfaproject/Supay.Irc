@@ -43,7 +43,7 @@ namespace Supay.Irc.Messages {
     ///   Overrides <see cref="IrcMessage.GetParameters" />.
     /// </summary>
     protected override Collection<string> GetParameters() {
-      Collection<string> parameters = new Collection<string> {
+      var parameters = new Collection<string> {
         InternalNumeric.ToString("000", CultureInfo.InvariantCulture)
       };
       if (!string.IsNullOrEmpty(Target)) {

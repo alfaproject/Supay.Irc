@@ -157,7 +157,7 @@ namespace Supay.Irc.Dcc {
       BytesTransferred = 0;
 
       _buffer = new byte[BufferSize];
-      byte[] acknowledgment = new byte[4];
+      var acknowledgment = new byte[4];
 
       int bytesSent;
       while ((bytesSent = File.Read(_buffer, 0, _buffer.Length)) != 0) {
@@ -235,7 +235,7 @@ namespace Supay.Irc.Dcc {
     }
 
     private byte[] DccBytesReceivedFormat() {
-      byte[] size = new byte[4];
+      var size = new byte[4];
       byte[] longBytes = BitConverter.GetBytes(NetworkUnsignedLong(BytesTransferred));
       Array.Copy(longBytes, 0, size, 0, 4);
       return size;

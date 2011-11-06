@@ -195,7 +195,7 @@ namespace Supay.Irc {
         return;
       }
 
-      CancelIrcMessageEventArgs<IrcMessage> e = new CancelIrcMessageEventArgs<IrcMessage>(message);
+      var e = new CancelIrcMessageEventArgs<IrcMessage>(message);
       OnMessageSending(e);
       if (e.Cancel) {
         return;
@@ -499,7 +499,7 @@ namespace Supay.Irc {
     }
 
     private void handleMessageParsed(object sender, IrcMessageEventArgs<IrcMessage> e) {
-      IChannelTargetedMessage channelMessage = e.Message as IChannelTargetedMessage;
+      var channelMessage = e.Message as IChannelTargetedMessage;
       if (channelMessage != null) {
         Channel channel = Channels.FirstOrDefault(c => channelMessage.IsTargetedAtChannel(c.Name));
         if (channel != null) {
@@ -507,7 +507,7 @@ namespace Supay.Irc {
           return;
         }
       } else {
-        IQueryTargetedMessage queryMessage = e.Message as IQueryTargetedMessage;
+        var queryMessage = e.Message as IQueryTargetedMessage;
         if (queryMessage != null && queryMessage.IsQueryToUser(User)) {
           User msgSender = Peers.EnsureUser(e.Message.Sender);
           Query qry = Queries.EnsureQuery(msgSender, this);
@@ -655,7 +655,7 @@ namespace Supay.Irc {
     private void handleChannelModeIs(object sender, IrcMessageEventArgs<ChannelModeIsReplyMessage> e) {
       Channel channel = Channels.Find(e.Message.Channel);
       if (channel != null) {
-        ChannelModesCreator modes = new ChannelModesCreator {
+        var modes = new ChannelModesCreator {
           ServerSupport = ServerSupports
         };
         modes.Parse(e.Message.Modes, e.Message.ModeArguments);
@@ -665,7 +665,7 @@ namespace Supay.Irc {
 
     private void handleUserModeIs(object sender, IrcMessageEventArgs<UserModeIsReplyMessage> e) {
       if (isMe(e.Message.Target)) {
-        UserModesCreator modeCreator = new UserModesCreator();
+        var modeCreator = new UserModesCreator();
         modeCreator.Parse(e.Message.Modes);
         User.Modes.Clear();
         foreach (UserMode mode in modeCreator.Modes) {
@@ -676,7 +676,7 @@ namespace Supay.Irc {
 
     private void handleUserMode(object sender, IrcMessageEventArgs<UserModeMessage> e) {
       if (isMe(e.Message.User)) {
-        UserModesCreator modeCreator = new UserModesCreator();
+        var modeCreator = new UserModesCreator();
         modeCreator.Parse(e.Message.ModeChanges);
         User.Modes.Clear();
         foreach (UserMode mode in modeCreator.Modes) {
@@ -786,7 +786,7 @@ namespace Supay.Irc {
         Ident.Service.User = User;
         Ident.Service.Start(true);
         DateTime started = DateTime.Now;
-        TimeSpan tooMuchTime = new TimeSpan(0, 0, 5);
+        var tooMuchTime = new TimeSpan(0, 0, 5);
         while (Ident.Service.Status != ConnectionStatus.Connected && DateTime.Now.Subtract(started) < tooMuchTime) {
           Thread.Sleep(25);
         }

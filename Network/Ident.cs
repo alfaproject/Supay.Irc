@@ -106,11 +106,11 @@ namespace Supay.Irc.Network {
             Status = ConnectionStatus.Connected;
 
             //Read query
-            StreamReader reader = new StreamReader(client.GetStream());
+            var reader = new StreamReader(client.GetStream());
             string identRequest = reader.ReadLine();
 
             //Send back reply
-            StreamWriter writer = new StreamWriter(client.GetStream());
+            var writer = new StreamWriter(client.GetStream());
             string identName = User.Username;
             if (identName.Length == 0) {
               if (User.Nickname.Length != 0) {

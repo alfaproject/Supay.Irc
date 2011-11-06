@@ -95,7 +95,7 @@ namespace Supay.Irc.Messages {
     ///   Overrides <see cref="IrcMessage.GetParameters" />.
     /// </summary>
     protected override Collection<string> GetParameters() {
-      Collection<string> allNicks = new Collection<string>();
+      var allNicks = new Collection<string>();
       foreach (string removedNick in RemovedNicks) {
         allNicks.Add("-" + removedNick);
       }

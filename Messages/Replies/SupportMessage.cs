@@ -31,7 +31,7 @@ namespace Supay.Irc.Messages {
     ///   Overrides <see cref="IrcMessage.GetParameters" />.
     /// </summary>
     protected override Collection<string> GetParameters() {
-      Collection<string> paramsToString = new Collection<string>();
+      var paramsToString = new Collection<string>();
       foreach (string name in SupportedItems.Keys) {
         string value = SupportedItems[name];
         if (value.Length != 0) {

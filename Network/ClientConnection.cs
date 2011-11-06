@@ -425,7 +425,7 @@ namespace Supay.Irc.Network {
       _client.Close();
       _client = null;
 
-      ConnectionDataEventArgs disconnectArgs = new ConnectionDataEventArgs(disconnectReason);
+      var disconnectArgs = new ConnectionDataEventArgs(disconnectReason);
       OnDisconnected(disconnectArgs);
     }
 

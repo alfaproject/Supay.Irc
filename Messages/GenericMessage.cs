@@ -62,7 +62,7 @@ namespace Supay.Irc.Messages {
     ///   Overrides <see cref="GetParameters" />.
     /// </summary>
     protected override Collection<string> GetParameters() {
-      Collection<string> parameters = new Collection<string> {
+      var parameters = new Collection<string> {
         Command
       };
       foreach (string parameter in Parameters) {

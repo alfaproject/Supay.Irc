@@ -53,7 +53,7 @@ namespace Supay.Irc.Messages {
     ///   Overrides <see cref="IrcMessage.GetParameters" />.
     /// </summary>
     protected override Collection<string> GetParameters() {
-      Collection<string> parameters = new Collection<string> {
+      var parameters = new Collection<string> {
         TransportCommand,
         Target
       };

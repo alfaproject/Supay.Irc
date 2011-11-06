@@ -78,7 +78,7 @@ namespace Supay.Irc.Messages {
       if (parameters == null) {
         return string.Empty;
       }
-      string[] foo = new string[parameters.Count];
+      var foo = new string[parameters.Count];
       parameters.CopyTo(foo, 0);
       return ParametersToString(useColon, foo);
     }
@@ -87,7 +87,7 @@ namespace Supay.Irc.Messages {
     ///   Creates a list of IRC parameters from the given array of strings.
     /// </summary>
     public static string ParametersToString(bool useColon, params string[] parameters) {
-      StringBuilder result = new StringBuilder();
+      var result = new StringBuilder();
       if (parameters.Length > 1) {
         for (int i = 0; i < parameters.Length - 1; i++) {
           result.Append(parameters[i]);
@@ -128,7 +128,7 @@ namespace Supay.Irc.Messages {
       if (items == null) {
         return string.Empty;
       }
-      string[] itemsArray = new string[items.Count];
+      var itemsArray = new string[items.Count];
       items.CopyTo(itemsArray, 0);
       return CreateList(itemsArray, delimiter);
     }
@@ -149,7 +149,7 @@ namespace Supay.Irc.Messages {
         return string.Empty;
       }
 
-      StringBuilder result = new StringBuilder();
+      var result = new StringBuilder();
       result.Append(items[0].ToString());
       for (int i = 1; i < items.Count; i++) {
         result.Append(delimiter);
@@ -169,7 +169,7 @@ namespace Supay.Irc.Messages {
       if (items == null) {
         return string.Empty;
       }
-      StringBuilder result = new StringBuilder();
+      var result = new StringBuilder();
       foreach (T item in items) {
         string itemValue = customListItemRender(item);
         result.Append(itemValue);
@@ -254,8 +254,8 @@ namespace Supay.Irc.Messages {
         return cachedParams;
       }
 
-      Collection<string> parameters = new Collection<string>();
-      StringBuilder param = new StringBuilder();
+      var parameters = new Collection<string>();
+      var param = new StringBuilder();
       for (int i = startIndex; i < rawMessage.Length; i++) {
         char c = rawMessage[i];
         if (c == ' ') {
@@ -372,9 +372,9 @@ namespace Supay.Irc.Messages {
     ///   Turns a <see cref="DateTime" /> into the integer representation as is commonly used on Unix machines.
     /// </summary>
     public static int ConvertToUnixTime(DateTime dt) {
-      DateTime unixEpochStartDate = new DateTime(1970, 1, 1, 0, 0, 0, 0);
+      var unixEpochStartDate = new DateTime(1970, 1, 1, 0, 0, 0, 0);
       long ticksSinceEpochStart = dt.Ticks - unixEpochStartDate.Ticks;
-      TimeSpan ts = new TimeSpan(ticksSinceEpochStart);
+      var ts = new TimeSpan(ticksSinceEpochStart);
       return Convert.ToInt32(ts.TotalSeconds);
     }
 
@@ -382,7 +382,7 @@ namespace Supay.Irc.Messages {
     ///   Turns the given Unix representation of a date/time into a <see cref="DateTime" />.
     /// </summary>
     public static DateTime ConvertFromUnixTime(int ut) {
-      DateTime unixEpochStartDate = new DateTime(1970, 1, 1, 0, 0, 0, 0);
+      var unixEpochStartDate = new DateTime(1970, 1, 1, 0, 0, 0, 0);
       return unixEpochStartDate.AddSeconds(ut);
     }
 

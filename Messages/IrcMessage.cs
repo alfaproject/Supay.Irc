@@ -72,7 +72,7 @@ namespace Supay.Irc.Messages {
     ///   Generates a string representation of the message.
     /// </summary>
     public override string ToString() {
-      StringBuilder sb = new StringBuilder(512);
+      var sb = new StringBuilder(512);
       if (Sender != null && !string.IsNullOrEmpty(Sender.Nickname)) {
         sb.Append(':');
         sb.Append(Sender.IrcMask);

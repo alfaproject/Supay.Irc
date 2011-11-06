@@ -62,7 +62,7 @@ namespace Supay.Irc.Messages {
         string away = info.Substring(info.IndexOf("=", StringComparison.Ordinal) + 1, 1);
         string standardHost = info.Substring(info.IndexOf(away, StringComparison.Ordinal));
 
-        User user = new User(standardHost) {
+        var user = new User(standardHost) {
           Nickname = nick,
           IrcOperator = oper,
           Away = (away == "+")

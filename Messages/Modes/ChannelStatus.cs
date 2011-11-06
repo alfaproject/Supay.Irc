@@ -57,7 +57,7 @@ namespace Supay.Irc {
         return channelStatus;
       }
 
-      ChannelStatus newChannelStatus = new ChannelStatus(symbol);
+      var newChannelStatus = new ChannelStatus(symbol);
       Values.Add(newChannelStatus);
       return newChannelStatus;
     }

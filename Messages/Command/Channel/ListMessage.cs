@@ -222,7 +222,7 @@ namespace Supay.Irc.Messages {
     ///   Overrides <see cref="IrcMessage.GetParameters" />.
     /// </summary>
     protected override Collection<string> GetParameters() {
-      Collection<string> options = new Collection<string>();
+      var options = new Collection<string>();
       if (MaxUsers >= 0) {
         options.Add("<" + MaxUsers.ToString(CultureInfo.InvariantCulture));
       }
@@ -311,7 +311,7 @@ namespace Supay.Irc.Messages {
       if (string.IsNullOrEmpty(p)) {
         return false;
       }
-      string[] exList = new[] { "!*", "*", "<", ">", "T", "C" };
+      var exList = new[] { "!*", "*", "<", ">", "T", "C" };
       return exList.Any(extStart => p.StartsWith(extStart, StringComparison.Ordinal));
     }
 

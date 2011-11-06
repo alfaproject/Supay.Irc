@@ -14,7 +14,7 @@ namespace Supay.Irc.Contacts {
     }
 
     protected override void AddNicks(IEnumerable<string> nicks) {
-      MonitorAddUsersMessage add = new MonitorAddUsersMessage();
+      var add = new MonitorAddUsersMessage();
       foreach (string nick in nicks) {
         add.Nicks.Add(nick);
       }
@@ -22,13 +22,13 @@ namespace Supay.Irc.Contacts {
     }
 
     protected override void AddNick(string nick) {
-      MonitorAddUsersMessage add = new MonitorAddUsersMessage();
+      var add = new MonitorAddUsersMessage();
       add.Nicks.Add(nick);
       Contacts.Client.Send(add);
     }
 
     protected override void RemoveNick(string nick) {
-      MonitorRemoveUsersMessage remove = new MonitorRemoveUsersMessage();
+      var remove = new MonitorRemoveUsersMessage();
       remove.Nicks.Add(nick);
       Contacts.Client.Send(remove);
     }

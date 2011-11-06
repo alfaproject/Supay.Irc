@@ -49,7 +49,7 @@ namespace Supay.Irc.Messages {
         string userListParam = parameters[1];
         string[] userList = userListParam.Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries);
         foreach (string userMask in userList) {
-          User newUser = new User(userMask);
+          var newUser = new User(userMask);
           Users.Add(newUser);
         }
       }

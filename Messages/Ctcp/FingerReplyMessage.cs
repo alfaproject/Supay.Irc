@@ -58,7 +58,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     protected override string ExtendedData {
       get {
-        StringBuilder result = new StringBuilder();
+        var result = new StringBuilder();
         result.Append(":");
         result.Append(RealName);
         result.Append(" (");

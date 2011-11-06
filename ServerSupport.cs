@@ -851,7 +851,7 @@ namespace Supay.Irc {
             SafeList = true;
             break;
           case "ELIST":
-            Dictionary<Char, ExtendedListParameters> elistMap = new Dictionary<char, ExtendedListParameters> {
+            var elistMap = new Dictionary<char, ExtendedListParameters> {
               { 'M', ExtendedListParameters.Mask },
               { 'N', ExtendedListParameters.NotMask },
               { 'U', ExtendedListParameters.UserCount },
@@ -922,12 +922,12 @@ namespace Supay.Irc {
     }
 
     private IEnumerable<InfoPair> CreateInfoPairs(string value) {
-      Collection<InfoPair> list = new Collection<InfoPair>();
+      var list = new Collection<InfoPair>();
       foreach (string chanLimitPair in value.Split(',')) {
         if (chanLimitPair.Contains(":")) {
           string[] chanLimitInfo = chanLimitPair.Split(':');
           if (chanLimitInfo.Length == 2 && chanLimitInfo[0].Length > 0) {
-            InfoPair pair = new InfoPair(chanLimitInfo[0], chanLimitInfo[1]);
+            var pair = new InfoPair(chanLimitInfo[0], chanLimitInfo[1]);
             list.Add(pair);
           }
         }

@@ -67,7 +67,7 @@ namespace Supay.Irc.Contacts {
 
     private void timer_Elapsed(object sender, ElapsedEventArgs e) {
       if (Contacts.Client.Connection.Status == ConnectionStatus.Connected) {
-        IsOnMessage ison = new IsOnMessage();
+        var ison = new IsOnMessage();
         foreach (string nick in _trackedNicks) {
           ison.Nicks.Add(nick);
           if (!_waitingOnNicks.Contains(nick)) {

@@ -31,7 +31,7 @@ namespace Supay.Irc.Contacts {
     }
 
     public virtual void Initialize() {
-      Collection<string> nicks = new Collection<string>();
+      var nicks = new Collection<string>();
       foreach (User u in Contacts.Users) {
         nicks.Add(u.Nickname);
       }
