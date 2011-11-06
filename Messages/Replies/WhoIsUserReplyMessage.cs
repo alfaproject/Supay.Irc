@@ -48,11 +48,12 @@ namespace Supay.Irc.Messages {
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
       if (parameters.Count > 5) {
-        user = new User();
-        user.Nickname = parameters[1];
-        user.Username = parameters[2];
-        user.Host = parameters[3];
-        user.Name = parameters[5];
+        user = new User {
+          Nickname = parameters[1],
+          Username = parameters[2],
+          Host = parameters[3],
+          Name = parameters[5]
+        };
       }
     }
 
