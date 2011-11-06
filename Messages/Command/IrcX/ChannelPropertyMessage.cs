@@ -15,6 +15,10 @@ namespace Supay.Irc.Messages {
   /// </remarks>
   [Serializable]
   public class ChannelPropertyMessage : CommandMessage {
+    private string channel = string.Empty;
+    private string newValue = string.Empty;
+    private string property = string.Empty;
+
     /// <summary>
     ///   Gets the IRC command associated with this message.
     /// </summary>
@@ -39,8 +43,6 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private string channel = string.Empty;
-
     /// <summary>
     ///   Gets or sets the channel property being targeted.
     /// </summary>
@@ -56,8 +58,6 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private string property = string.Empty;
-
     /// <summary>
     ///   Gets or sets the value being applied to the target channel property.
     /// </summary>
@@ -72,8 +72,6 @@ namespace Supay.Irc.Messages {
         newValue = value;
       }
     }
-
-    private string newValue = string.Empty;
 
     /// <summary>
     ///   Validates this message against the given server support

@@ -9,6 +9,8 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class UnknownChannelModeMessage : ErrorMessage {
+    private string unknownMode;
+
     /// <summary>
     ///   Creates a new instances of the <see cref="UnknownChannelModeMessage" /> class.
     /// </summary>
@@ -27,8 +29,6 @@ namespace Supay.Irc.Messages {
         unknownMode = value;
       }
     }
-
-    private string unknownMode;
 
     /// <exclude />
     protected override Collection<string> GetParameters() {

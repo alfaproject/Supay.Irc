@@ -7,14 +7,14 @@ namespace Supay.Irc {
   /// </summary>
   [Serializable]
   public class User : Mask {
-    private string _name;
-    private string _password;
-    private string _server;
-    private bool _ircOperator;
-    private bool _online;
     private bool _away;
     private string _awayMessage;
+    private bool _ircOperator;
     private UserModeCollection _modes;
+    private string _name;
+    private bool _online;
+    private string _password;
+    private string _server;
 
     #region Constructors
 

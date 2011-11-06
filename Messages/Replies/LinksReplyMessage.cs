@@ -8,6 +8,11 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class LinksReplyMessage : NumericMessage {
+    private int hopCount = -1;
+    private string mask = string.Empty;
+    private string server = string.Empty;
+    private string serverInfo = string.Empty;
+
     /// <summary>
     ///   Creates a new instance of the <see cref="LinksReplyMessage" />.
     /// </summary>
@@ -65,11 +70,6 @@ namespace Supay.Irc.Messages {
         serverInfo = value;
       }
     }
-
-    private string mask = string.Empty;
-    private string server = string.Empty;
-    private int hopCount = -1;
-    private string serverInfo = string.Empty;
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.

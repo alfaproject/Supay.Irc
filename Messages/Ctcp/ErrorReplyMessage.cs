@@ -7,6 +7,9 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class ErrorReplyMessage : CtcpReplyMessage {
+    private string query = string.Empty;
+    private string reason = string.Empty;
+
     /// <summary>
     ///   Creates a new instance of the <see cref="ErrorReplyMessage" /> class.
     /// </summary>
@@ -26,8 +29,6 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private string query = string.Empty;
-
     /// <summary>
     ///   Gets or sets the reason the request couldn't be processed.
     /// </summary>
@@ -39,8 +40,6 @@ namespace Supay.Irc.Messages {
         reason = value;
       }
     }
-
-    private string reason = string.Empty;
 
     /// <summary>
     ///   Gets the data payload of the Ctcp request.

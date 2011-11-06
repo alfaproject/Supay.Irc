@@ -18,6 +18,8 @@ namespace Supay.Irc.Messages {
 
     #region Properties
 
+    private string _command;
+
     /// <summary>
     ///   Gets or sets the message's command.
     /// </summary>
@@ -32,8 +34,6 @@ namespace Supay.Irc.Messages {
         _command = value;
       }
     }
-
-    private string _command;
 
     /// <summary>
     ///   Gets the message's parameters after the command.

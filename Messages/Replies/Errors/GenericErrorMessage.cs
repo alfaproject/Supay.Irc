@@ -8,6 +8,8 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class GenericErrorMessage : ErrorMessage {
+    private Collection<string> data = new Collection<string>();
+
     /// <summary>
     ///   Gets or sets the Numeric command of the Message
     /// </summary>
@@ -28,8 +30,6 @@ namespace Supay.Irc.Messages {
         return data;
       }
     }
-
-    private Collection<string> data = new Collection<string>();
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.

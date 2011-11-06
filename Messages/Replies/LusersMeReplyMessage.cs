@@ -8,6 +8,12 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class LusersMeReplyMessage : NumericMessage {
+    private const string iHave = "I have ";
+    private const string clientsAnd = " clients and ";
+    private const string servers = " servers";
+    private int clientCount = -1;
+    private int serverCount = -1;
+
     /// <summary>
     ///   Creates a new instance of the <see cref="LusersMeReplyMessage" /> class.
     /// </summary>
@@ -38,12 +44,6 @@ namespace Supay.Irc.Messages {
         serverCount = value;
       }
     }
-
-    private int clientCount = -1;
-    private int serverCount = -1;
-    private const string iHave = "I have ";
-    private const string clientsAnd = " clients and ";
-    private const string servers = " servers";
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.

@@ -13,9 +13,9 @@ namespace Supay.Irc.Messages {
   /// </remarks>
   [Serializable]
   public class ChannelScopedNoticeMessage : CommandMessage, IChannelTargetedMessage {
-    private string _text;
-    private string _target;
     private string _channel;
+    private string _target;
+    private string _text;
 
     #region Constructors
 

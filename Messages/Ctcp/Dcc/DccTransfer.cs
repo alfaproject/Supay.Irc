@@ -208,6 +208,15 @@ namespace Supay.Irc.Dcc {
 
     #region Private Methods
 
+    private bool IsTransferComplete {
+      get {
+        if (FileSize == -1) {
+          return false;
+        }
+        return StartPosition + BytesTransferred >= FileSize;
+      }
+    }
+
     private void SendAcknowledgement() {
       if (TurboMode) {
         return;
@@ -223,15 +232,6 @@ namespace Supay.Irc.Dcc {
     private bool AllAcknowledgementsReceived(byte[] lastAck) {
       long acknowledgedBytes = DccBytesToLong(lastAck);
       return acknowledgedBytes >= BytesTransferred;
-    }
-
-    private bool IsTransferComplete {
-      get {
-        if (FileSize == -1) {
-          return false;
-        }
-        return StartPosition + BytesTransferred >= FileSize;
-      }
     }
 
     private byte[] DccBytesReceivedFormat() {

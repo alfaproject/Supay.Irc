@@ -11,6 +11,8 @@ namespace Supay.Irc.Messages {
   /// </remarks>
   [Serializable]
   public class WatchStatusNicksReplyMessage : NumericMessage {
+    private List<string> nicks;
+
     /// <summary>
     ///   Creates a new instance of the <see cref="WatchStatusNicksReplyMessage" />.
     /// </summary>
@@ -29,8 +31,6 @@ namespace Supay.Irc.Messages {
         return nicks;
       }
     }
-
-    private List<string> nicks;
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.

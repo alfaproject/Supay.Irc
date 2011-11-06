@@ -5,6 +5,8 @@ namespace Supay.Irc.Messages.Modes {
   ///   A user limit may be set on channels by using this mode.
   /// </summary>
   public class LimitMode : FlagMode {
+    private int userLimit = -1;
+
     /// <summary>
     ///   Creates a new instance of the <see cref="LimitMode" /> class.
     /// </summary>
@@ -55,8 +57,6 @@ namespace Supay.Irc.Messages.Modes {
         userLimit = value;
       }
     }
-
-    private int userLimit = -1;
 
     /// <summary>
     ///   Applies this mode to the ModeArguments property of the given <see cref="ChannelModeMessage" />.

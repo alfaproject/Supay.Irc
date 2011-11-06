@@ -8,6 +8,10 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class TopicSetReplyMessage : NumericMessage, IChannelTargetedMessage {
+    private string channel = string.Empty;
+    private DateTime timeSet = DateTime.Now;
+    private User user = new User();
+
     /// <summary>
     ///   Creates a new instance of the <see cref="TopicSetReplyMessage" /> class.
     /// </summary>
@@ -27,8 +31,6 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private string channel = string.Empty;
-
     /// <summary>
     ///   Gets or sets the user which changed the topic.
     /// </summary>
@@ -40,8 +42,6 @@ namespace Supay.Irc.Messages {
         user = value;
       }
     }
-
-    private User user = new User();
 
     /// <summary>
     ///   Gets or sets the time at which the topic was changed.
@@ -55,7 +55,13 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private DateTime timeSet = DateTime.Now;
+    #region IChannelTargetedMessage Members
+
+    bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
+      return IsTargetedAtChannel(channelName);
+    }
+
+    #endregion
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.
@@ -85,19 +91,11 @@ namespace Supay.Irc.Messages {
       conduit.OnTopicSetReply(new IrcMessageEventArgs<TopicSetReplyMessage>(this));
     }
 
-    #region IChannelTargetedMessage Members
-
-    bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
-      return IsTargetedAtChannel(channelName);
-    }
-
     /// <summary>
     ///   Determines if the the current message is targeted at the given channel.
     /// </summary>
     protected virtual bool IsTargetedAtChannel(string channelName) {
       return Channel.EqualsI(channelName);
     }
-
-    #endregion
   }
 }

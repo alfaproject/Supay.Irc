@@ -7,6 +7,9 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class TopicReplyMessage : NumericMessage, IChannelTargetedMessage {
+    private string channel = string.Empty;
+    private string topic = string.Empty;
+
     /// <summary>
     ///   Creates a new instance of the <see cref="TopicReplyMessage" /> class.
     /// </summary>
@@ -38,8 +41,13 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private string channel = string.Empty;
-    private string topic = string.Empty;
+    #region IChannelTargetedMessage Members
+
+    bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
+      return IsTargetedAtChannel(channelName);
+    }
+
+    #endregion
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.
@@ -72,19 +80,11 @@ namespace Supay.Irc.Messages {
       conduit.OnTopicReply(new IrcMessageEventArgs<TopicReplyMessage>(this));
     }
 
-    #region IChannelTargetedMessage Members
-
-    bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
-      return IsTargetedAtChannel(channelName);
-    }
-
     /// <summary>
     ///   Determines if the the current message is targeted at the given channel.
     /// </summary>
     protected virtual bool IsTargetedAtChannel(string channelName) {
       return Channel.EqualsI(channelName);
     }
-
-    #endregion
   }
 }

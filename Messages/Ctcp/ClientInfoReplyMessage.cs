@@ -6,14 +6,14 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class ClientInfoReplyMessage : CtcpReplyMessage {
+    private string response = string.Empty;
+
     /// <summary>
     ///   Creates a new instances of the <see cref="ClientInfoReplyMessage" /> class.
     /// </summary>
     public ClientInfoReplyMessage() {
       InternalCommand = "CLIENTINFO";
     }
-
-    private string response = string.Empty;
 
     /// <summary>
     ///   Gets or sets the response to the request's query.

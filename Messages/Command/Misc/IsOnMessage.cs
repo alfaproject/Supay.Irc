@@ -11,6 +11,8 @@ namespace Supay.Irc.Messages {
   /// </remarks>
   [Serializable]
   public class IsOnMessage : CommandMessage {
+    private readonly List<string> nicks = new List<string>();
+
     /// <summary>
     ///   Creates a new instance of the IsOnMessage class.
     /// </summary>
@@ -33,8 +35,6 @@ namespace Supay.Irc.Messages {
         return nicks;
       }
     }
-
-    private readonly List<string> nicks = new List<string>();
 
     /// <summary>
     ///   Gets the IRC command associated with this message.

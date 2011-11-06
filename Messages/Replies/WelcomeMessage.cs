@@ -8,6 +8,8 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class WelcomeMessage : NumericMessage {
+    private string text = string.Empty;
+
     /// <summary>
     ///   Creates a new instance of the <see cref="WelcomeMessage" /> class.
     /// </summary>
@@ -26,8 +28,6 @@ namespace Supay.Irc.Messages {
         text = value;
       }
     }
-
-    private string text = string.Empty;
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.

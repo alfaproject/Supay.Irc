@@ -23,16 +23,20 @@ namespace Supay.Irc.Network {
     private readonly object _syncLock = new object();
 
     private string _address;
-    private int _port;
-    private Encoding _encoding;
-    private bool _ssl;
 
     private TcpClient _client;
+    private Encoding _encoding;
+    private int _port;
     private StreamReader _reader;
-    private StreamWriter _writer;
+    private bool _ssl;
     private Thread _worker;
+    private StreamWriter _writer;
+
+    #region Nested type: SyncInvoke
 
     private delegate void SyncInvoke();
+
+    #endregion
 
     #region Constructors
 

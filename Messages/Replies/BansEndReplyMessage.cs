@@ -52,6 +52,17 @@ namespace Supay.Irc.Messages {
       }
     }
 
+    #region IChannelTargetedMessage Members
+
+    /// <summary>
+    ///   Determines if the the current message is targeted at the given channel.
+    /// </summary>
+    public virtual bool IsTargetedAtChannel(string channelName) {
+      return Channel.EqualsI(channelName);
+    }
+
+    #endregion
+
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.
     /// </summary>
@@ -80,16 +91,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(MessageConduit conduit) {
       conduit.OnBansEndReply(new IrcMessageEventArgs<BansEndReplyMessage>(this));
     }
-
-    #region IChannelTargetedMessage Members
-
-    /// <summary>
-    ///   Determines if the the current message is targeted at the given channel.
-    /// </summary>
-    public virtual bool IsTargetedAtChannel(string channelName) {
-      return Channel.EqualsI(channelName);
-    }
-
-    #endregion
   }
 }

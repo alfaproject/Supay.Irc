@@ -62,6 +62,14 @@ namespace Supay.Irc.Messages {
       }
     }
 
+    #region IChannelTargetedMessage Members
+
+    bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
+      return IsTargetedAtChannel(channelName);
+    }
+
+    #endregion
+
     /// <summary>
     ///   Validates this message against the given server support
     /// </summary>
@@ -101,19 +109,11 @@ namespace Supay.Irc.Messages {
       conduit.OnInvite(new IrcMessageEventArgs<InviteMessage>(this));
     }
 
-    #region IChannelTargetedMessage Members
-
-    bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
-      return IsTargetedAtChannel(channelName);
-    }
-
     /// <summary>
     ///   Determines if the the current message is targeted at the given channel.
     /// </summary>
     protected virtual bool IsTargetedAtChannel(string channelName) {
       return Channel.EqualsI(channelName);
     }
-
-    #endregion
   }
 }

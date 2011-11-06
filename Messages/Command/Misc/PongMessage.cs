@@ -7,6 +7,9 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class PongMessage : CommandMessage {
+    private string forwardServer = string.Empty;
+    private string target = string.Empty;
+
     /// <summary>
     ///   Gets the IRC command associated with this message.
     /// </summary>
@@ -28,8 +31,6 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private string target = string.Empty;
-
     /// <summary>
     ///   Gets or sets the server that the ping should be forwarded to.
     /// </summary>
@@ -41,8 +42,6 @@ namespace Supay.Irc.Messages {
         forwardServer = value;
       }
     }
-
-    private string forwardServer = string.Empty;
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.

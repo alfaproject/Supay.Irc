@@ -8,6 +8,8 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class WallopsMessage : CommandMessage {
+    private string text = string.Empty;
+
     /// <summary>
     ///   Gets or sets the text of the <see cref="WallopsMessage" />.
     /// </summary>
@@ -19,8 +21,6 @@ namespace Supay.Irc.Messages {
         text = value;
       }
     }
-
-    private string text = string.Empty;
 
     /// <summary>
     ///   Gets the IRC command associated with this message.

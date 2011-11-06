@@ -7,6 +7,8 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class UserModeIsReplyMessage : NumericMessage {
+    private string modes = string.Empty;
+
     /// <summary>
     ///   Creates a new instance of the <see cref="UserModeIsReplyMessage" /> class.
     /// </summary>
@@ -28,8 +30,6 @@ namespace Supay.Irc.Messages {
         modes = value;
       }
     }
-
-    private string modes = string.Empty;
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.

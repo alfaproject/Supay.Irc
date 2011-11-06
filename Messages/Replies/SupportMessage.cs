@@ -9,6 +9,9 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class SupportMessage : NumericMessage {
+    private const string areSupported = "are supported by this server";
+    private readonly NameValueCollection supportedItems = new NameValueCollection();
+
     /// <summary>
     ///   Creates a new instance of the <see cref="SupportMessage" /> class.
     /// </summary>
@@ -24,8 +27,6 @@ namespace Supay.Irc.Messages {
         return supportedItems;
       }
     }
-
-    private readonly NameValueCollection supportedItems = new NameValueCollection();
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.
@@ -46,8 +47,6 @@ namespace Supay.Irc.Messages {
       parameters.Add(areSupported);
       return parameters;
     }
-
-    private const string areSupported = "are supported by this server";
 
     /// <summary>
     ///   Parses the parameters portion of the message.

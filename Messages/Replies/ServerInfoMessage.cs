@@ -7,6 +7,15 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class ServerInfoMessage : NumericMessage {
+    private string channelModes = string.Empty;
+    private string channelModesWithParams = string.Empty;
+    private string serverModes = string.Empty;
+    private string serverModesWithParams = string.Empty;
+    private string serverName = string.Empty;
+    private string userModes = string.Empty;
+    private string userModesWithParams = string.Empty;
+    private string version = string.Empty;
+
     /// <summary>
     ///   Creates a new instance of the <see cref="ServerInfoMessage" /> class.
     /// </summary>
@@ -26,8 +35,6 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private string serverName = string.Empty;
-
     /// <summary>
     ///   Gets or sets the version of the server.
     /// </summary>
@@ -39,8 +46,6 @@ namespace Supay.Irc.Messages {
         version = value;
       }
     }
-
-    private string version = string.Empty;
 
     /// <summary>
     ///   Gets or sets the user modes supported by this server.
@@ -54,8 +59,6 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private string userModes = string.Empty;
-
     /// <summary>
     ///   Gets or sets the channel modes supported by this server.
     /// </summary>
@@ -67,8 +70,6 @@ namespace Supay.Irc.Messages {
         channelModes = value;
       }
     }
-
-    private string channelModes = string.Empty;
 
     /// <summary>
     ///   Gets or sets the channel modes that require a parameter.
@@ -82,8 +83,6 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private string channelModesWithParams = string.Empty;
-
     /// <summary>
     ///   Gets or sets the user modes that require a parameter.
     /// </summary>
@@ -95,8 +94,6 @@ namespace Supay.Irc.Messages {
         userModesWithParams = value;
       }
     }
-
-    private string userModesWithParams = string.Empty;
 
     /// <summary>
     ///   Gets or sets the server modes supported by this server.
@@ -110,8 +107,6 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private string serverModes = string.Empty;
-
     /// <summary>
     ///   Gets or sets the server modes which require parameters.
     /// </summary>
@@ -123,8 +118,6 @@ namespace Supay.Irc.Messages {
         serverModesWithParams = value;
       }
     }
-
-    private string serverModesWithParams = string.Empty;
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.

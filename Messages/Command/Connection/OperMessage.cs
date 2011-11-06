@@ -9,6 +9,9 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class OperMessage : CommandMessage {
+    private string name = string.Empty;
+    private string password = string.Empty;
+
     /// <summary>
     ///   Creates a new instance of the OperMessage class.
     /// </summary>
@@ -44,8 +47,6 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private string password = string.Empty;
-
     /// <summary>
     ///   Gets or sets the name for the sender.
     /// </summary>
@@ -57,8 +58,6 @@ namespace Supay.Irc.Messages {
         name = value;
       }
     }
-
-    private string name = string.Empty;
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.

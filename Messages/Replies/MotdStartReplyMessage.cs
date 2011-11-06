@@ -7,14 +7,14 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class MotdStartReplyMessage : NumericMessage {
+    private string info;
+
     /// <summary>
     ///   Creates a new instance of the <see cref="MotdStartReplyMessage" /> class.
     /// </summary>
     public MotdStartReplyMessage()
       : base(375) {
     }
-
-    private string info;
 
     /// <summary>
     ///   Gets or sets the info included in the message.

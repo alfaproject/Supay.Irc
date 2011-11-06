@@ -8,6 +8,10 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class WhoWasMessage : CommandMessage {
+    private int maximumResults = 1;
+    private string nick = string.Empty;
+    private string server = string.Empty;
+
     /// <summary>
     ///   Gets or sets the nick of the user being examined.
     /// </summary>
@@ -52,10 +56,6 @@ namespace Supay.Irc.Messages {
         return "WHOWAS";
       }
     }
-
-    private string nick = string.Empty;
-    private string server = string.Empty;
-    private int maximumResults = 1;
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.

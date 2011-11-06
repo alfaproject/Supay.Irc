@@ -6,6 +6,8 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class GenericCtcpRequestMessage : CtcpRequestMessage {
+    private string dataPackage = string.Empty;
+
     /// <summary>
     ///   Gets or sets the information packaged with the ctcp command.
     /// </summary>
@@ -18,8 +20,6 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private string dataPackage = string.Empty;
-
     /// <summary>
     ///   Gets the data payload of the Ctcp request.
     /// </summary>
@@ -27,13 +27,6 @@ namespace Supay.Irc.Messages {
       get {
         return dataPackage;
       }
-    }
-
-    /// <summary>
-    ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
-    /// </summary>
-    public override void Notify(MessageConduit conduit) {
-      conduit.OnGenericCtcpRequest(new IrcMessageEventArgs<GenericCtcpRequestMessage>(this));
     }
 
     /// <summary>
@@ -46,6 +39,13 @@ namespace Supay.Irc.Messages {
       set {
         InternalCommand = value;
       }
+    }
+
+    /// <summary>
+    ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
+    /// </summary>
+    public override void Notify(MessageConduit conduit) {
+      conduit.OnGenericCtcpRequest(new IrcMessageEventArgs<GenericCtcpRequestMessage>(this));
     }
 
     /// <summary>

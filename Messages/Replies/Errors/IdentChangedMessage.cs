@@ -12,6 +12,10 @@ namespace Supay.Irc.Messages {
   /// </remarks>
   [Serializable]
   public class IdentChangedMessage : ErrorMessage {
+    private string ident;
+    private string invalidCharacters;
+    private string newIdent;
+
     /// <summary>
     ///   Creates a new instances of the <see cref="IdentChangedMessage" /> class.
     /// </summary>
@@ -31,8 +35,6 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private string ident;
-
     /// <summary>
     ///   Gets or sets the characters in the attempted username which were invalid
     /// </summary>
@@ -45,8 +47,6 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private string invalidCharacters;
-
     /// <summary>
     ///   Gets or sets the new username being assigned
     /// </summary>
@@ -58,8 +58,6 @@ namespace Supay.Irc.Messages {
         newIdent = value;
       }
     }
-
-    private string newIdent;
 
     /// <exclude />
     protected override Collection<string> GetParameters() {

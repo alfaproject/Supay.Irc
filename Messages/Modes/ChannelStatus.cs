@@ -105,7 +105,7 @@ namespace Supay.Irc {
 
     #endregion
 
-    #region Equality Members
+    #region IEquatable<ChannelStatus> Members
 
     /// <summary>
     ///   Indicates whether the current object is equal to another object of the same type.
@@ -121,6 +121,8 @@ namespace Supay.Irc {
       }
       return Symbol == other.Symbol;
     }
+
+    #endregion
 
     /// <summary>
     ///   Determines whether the specified <see cref="Object" /> is equal to the current
@@ -150,7 +152,5 @@ namespace Supay.Irc {
     public static bool operator !=(ChannelStatus leftOperand, ChannelStatus rightOperand) {
       return !(leftOperand == rightOperand);
     }
-
-    #endregion
   }
 }

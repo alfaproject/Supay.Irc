@@ -15,6 +15,8 @@ namespace Supay.Irc.Messages {
   /// </remarks>
   [Serializable]
   public class ChannelLimitReachedMessage : ErrorMessage {
+    private string channel;
+
     /// <summary>
     ///   Creates a new instances of the <see cref="ChannelLimitReachedMessage" /> class.
     /// </summary>
@@ -33,8 +35,6 @@ namespace Supay.Irc.Messages {
         channel = value;
       }
     }
-
-    private string channel;
 
     /// <exclude />
     protected override Collection<string> GetParameters() {

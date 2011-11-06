@@ -9,6 +9,8 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class NamesReplyMessage : NumericMessage, IChannelTargetedMessage {
+    #region ChannelVisibility enum
+
     /// <summary>
     ///   The list of channel visibility settings for the <see cref="NamesReplyMessage" />.
     /// </summary>
@@ -29,6 +31,11 @@ namespace Supay.Irc.Messages {
       /// </summary>
       Public
     }
+
+    #endregion
+
+    private string channel = string.Empty;
+    private ChannelVisibility visibility = ChannelVisibility.Public;
 
     /// <summary>
     ///   Creates a new instance of the <see cref="NamesReplyMessage" /> class.
@@ -70,8 +77,13 @@ namespace Supay.Irc.Messages {
       private set;
     }
 
-    private ChannelVisibility visibility = ChannelVisibility.Public;
-    private string channel = string.Empty;
+    #region IChannelTargetedMessage Members
+
+    bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
+      return IsTargetedAtChannel(channelName);
+    }
+
+    #endregion
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.
@@ -143,19 +155,11 @@ namespace Supay.Irc.Messages {
       conduit.OnNamesReply(new IrcMessageEventArgs<NamesReplyMessage>(this));
     }
 
-    #region IChannelTargetedMessage Members
-
-    bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
-      return IsTargetedAtChannel(channelName);
-    }
-
     /// <summary>
     ///   Determines if the the current message is targeted at the given channel.
     /// </summary>
     protected virtual bool IsTargetedAtChannel(string channelName) {
       return Channel.EqualsI(channelName);
     }
-
-    #endregion
   }
 }

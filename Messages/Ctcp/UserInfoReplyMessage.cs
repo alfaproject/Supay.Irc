@@ -6,6 +6,8 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class UserInfoReplyMessage : CtcpReplyMessage {
+    private string response = string.Empty;
+
     /// <summary>
     ///   Creates a new instance of the <see cref="UserInfoReplyMessage" /> class.
     /// </summary>
@@ -24,8 +26,6 @@ namespace Supay.Irc.Messages {
         response = value;
       }
     }
-
-    private string response = string.Empty;
 
     /// <summary>
     ///   Gets the data payload of the Ctcp request.

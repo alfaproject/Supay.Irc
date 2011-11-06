@@ -7,6 +7,8 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class StatsReplyMessage : NumericMessage {
+    private string stats = string.Empty;
+
     /// <summary>
     ///   Creates a new instance of the <see cref="StatsReplyMessage" /> class.
     /// </summary>
@@ -25,8 +27,6 @@ namespace Supay.Irc.Messages {
         stats = value;
       }
     }
-
-    private string stats = string.Empty;
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.

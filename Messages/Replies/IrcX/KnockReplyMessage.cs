@@ -7,6 +7,8 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class KnockReplyMessage : NumericMessage {
+    private string channel = string.Empty;
+
     /// <summary>
     ///   Creates a new instance of the <see cref="KnockReplyMessage" />.
     /// </summary>
@@ -25,8 +27,6 @@ namespace Supay.Irc.Messages {
         channel = value;
       }
     }
-
-    private string channel = string.Empty;
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.

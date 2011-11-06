@@ -8,6 +8,11 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class LocalUsersReplyMessage : NumericMessage {
+    private const string currentLocalUsers = "Current local users: ";
+    private const string max = " Max: ";
+    private int userCount = -1;
+    private int userLimit = -1;
+
     /// <summary>
     ///   Creates a new instance of the <see cref="LocalUsersReplyMessage" /> class.
     /// </summary>
@@ -27,8 +32,6 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private int userCount = -1;
-
     /// <summary>
     ///   Gets or sets the maximum number of users for the server.
     /// </summary>
@@ -40,11 +43,6 @@ namespace Supay.Irc.Messages {
         userLimit = value;
       }
     }
-
-    private int userLimit = -1;
-
-    private const string currentLocalUsers = "Current local users: ";
-    private const string max = " Max: ";
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.

@@ -10,6 +10,8 @@ namespace Supay.Irc {
   /// </summary>
   [Serializable]
   public class Journal : ObservableCollection<JournalEntry> {
+    private int _maxEntries = 1000;
+
     /// <summary>
     ///   Creates a new instance of the Journal class.
     /// </summary>
@@ -21,20 +23,6 @@ namespace Supay.Irc {
     /// </summary>
     public Journal(IEnumerable<JournalEntry> list)
       : base(list) {
-    }
-
-    /// <summary>
-    ///   Inserts the given entry into the collection at the given index.
-    /// </summary>
-    protected override void InsertItem(int index, JournalEntry item) {
-      CheckReentrancy();
-      Items.Insert(index, item);
-      if (Items.Count > MaxEntries) {
-        Items.RemoveAt(index != 0 ? 0 : Items.Count - 1);
-      }
-      base.OnPropertyChanged(new PropertyChangedEventArgs("Count"));
-      base.OnPropertyChanged(new PropertyChangedEventArgs("Item[]"));
-      base.OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, item, index));
     }
 
     /// <summary>
@@ -50,6 +38,18 @@ namespace Supay.Irc {
       }
     }
 
-    private int _maxEntries = 1000;
+    /// <summary>
+    ///   Inserts the given entry into the collection at the given index.
+    /// </summary>
+    protected override void InsertItem(int index, JournalEntry item) {
+      CheckReentrancy();
+      Items.Insert(index, item);
+      if (Items.Count > MaxEntries) {
+        Items.RemoveAt(index != 0 ? 0 : Items.Count - 1);
+      }
+      base.OnPropertyChanged(new PropertyChangedEventArgs("Count"));
+      base.OnPropertyChanged(new PropertyChangedEventArgs("Item[]"));
+      base.OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, item, index));
+    }
   }
 }

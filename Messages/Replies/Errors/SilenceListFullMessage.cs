@@ -8,6 +8,8 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class SilenceListFullMessage : ErrorMessage {
+    private Mask silenceMask;
+
     /// <summary>
     ///   Creates a new instances of the <see cref="SilenceListFullMessage" /> class.
     /// </summary>
@@ -26,8 +28,6 @@ namespace Supay.Irc.Messages {
         silenceMask = value;
       }
     }
-
-    private Mask silenceMask;
 
     /// <exclude />
     protected override Collection<string> GetParameters() {

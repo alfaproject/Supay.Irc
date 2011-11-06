@@ -8,6 +8,8 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class IsOnReplyMessage : NumericMessage {
+    private readonly List<string> nicks = new List<string>();
+
     /// <summary>
     ///   Creates a new instance of the <see cref="IsOnReplyMessage" /> class.
     /// </summary>
@@ -23,8 +25,6 @@ namespace Supay.Irc.Messages {
         return nicks;
       }
     }
-
-    private readonly List<string> nicks = new List<string>();
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.

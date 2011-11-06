@@ -13,6 +13,9 @@ namespace Supay.Irc.Messages {
   /// </remarks>
   [Serializable]
   public class JoinMessage : CommandMessage, IChannelTargetedMessage {
+    private readonly List<string> channels = new List<string>();
+    private readonly List<string> keys = new List<string>();
+
     /// <summary>
     ///   Creates a new instance of the <see cref="JoinMessage" /> class.
     /// </summary>
@@ -57,8 +60,13 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private readonly List<string> channels = new List<string>();
-    private readonly List<string> keys = new List<string>();
+    #region IChannelTargetedMessage Members
+
+    bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
+      return IsTargetedAtChannel(channelName);
+    }
+
+    #endregion
 
     /// <summary>
     ///   Validates this message against the given server support
@@ -104,19 +112,11 @@ namespace Supay.Irc.Messages {
       conduit.OnJoin(new IrcMessageEventArgs<JoinMessage>(this));
     }
 
-    #region IChannelTargetedMessage Members
-
-    bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
-      return IsTargetedAtChannel(channelName);
-    }
-
     /// <summary>
     ///   Determines if the the current message is targeted at the given channel.
     /// </summary>
     protected virtual bool IsTargetedAtChannel(string channelName) {
       return MessageUtil.ContainsIgnoreCaseMatch(Channels, channelName);
     }
-
-    #endregion
   }
 }

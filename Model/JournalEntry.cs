@@ -24,6 +24,9 @@ namespace Supay.Irc {
 
     #region Properties
 
+    private object _item;
+    private DateTime _time;
+
     /// <summary>
     ///   The time at which the entry was added to the journal.
     /// </summary>
@@ -38,8 +41,6 @@ namespace Supay.Irc {
       }
     }
 
-    private DateTime _time;
-
     /// <summary>
     ///   The entry data, usually an <see cref="IrcMessage" />, but can be any object.
     /// </summary>
@@ -53,8 +54,6 @@ namespace Supay.Irc {
         NotifyPropertyChanged("Item");
       }
     }
-
-    private object _item;
 
     #endregion
 

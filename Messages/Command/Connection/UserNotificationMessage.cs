@@ -8,6 +8,11 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class UserNotificationMessage : CommandMessage {
+    private bool initialInvisibility = true;
+    private bool initialWallops;
+    private string realName = string.Empty;
+    private string userName = string.Empty;
+
     /// <summary>
     ///   Gets the IRC command associated with this message.
     /// </summary>
@@ -29,8 +34,6 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private string userName = string.Empty;
-
     /// <summary>
     ///   Gets or sets if the client is initialized with a user mode of invisible.
     /// </summary>
@@ -42,8 +45,6 @@ namespace Supay.Irc.Messages {
         initialInvisibility = value;
       }
     }
-
-    private bool initialInvisibility = true;
 
     /// <summary>
     ///   Gets or sets if the client is initialized with a user mode of receiving wallops.
@@ -57,8 +58,6 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private bool initialWallops;
-
     /// <summary>
     ///   Gets or sets the real name of the client.
     /// </summary>
@@ -70,8 +69,6 @@ namespace Supay.Irc.Messages {
         realName = value;
       }
     }
-
-    private string realName = string.Empty;
 
     /// <exclude />
     public override bool CanParse(string unparsedMessage) {

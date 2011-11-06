@@ -7,6 +7,8 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class MonitorAddUsersMessage : MonitorMessage {
+    private Collection<string> nicks;
+
     /// <summary>
     ///   Gets the collection of nicks being added to the monitor list.
     /// </summary>
@@ -18,8 +20,6 @@ namespace Supay.Irc.Messages {
         return nicks;
       }
     }
-
-    private Collection<string> nicks;
 
     /// <summary>
     ///   Determines if the message can be parsed by this type.

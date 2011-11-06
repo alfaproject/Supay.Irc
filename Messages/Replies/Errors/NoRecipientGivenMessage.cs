@@ -11,6 +11,8 @@ namespace Supay.Irc.Messages {
   /// </remarks>
   [Serializable]
   public class NoRecipientGivenMessage : ErrorMessage {
+    private string command = string.Empty;
+
     /// <summary>
     ///   Creates a new instances of the <see cref="NoRecipientGivenMessage" /> class.
     /// </summary>
@@ -29,8 +31,6 @@ namespace Supay.Irc.Messages {
         command = value;
       }
     }
-
-    private string command = string.Empty;
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.

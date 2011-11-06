@@ -8,6 +8,9 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class NickChangeTooFastMessage : ErrorMessage {
+    private string nick;
+    private int seconds;
+
     /// <summary>
     ///   Creates a new instances of the <see cref="NickChangeTooFastMessage" /> class.
     /// </summary>
@@ -27,8 +30,6 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private string nick;
-
     /// <summary>
     ///   Gets or sets the number of seconds which must be waited before attempting again.
     /// </summary>
@@ -40,8 +41,6 @@ namespace Supay.Irc.Messages {
         seconds = value;
       }
     }
-
-    private int seconds;
 
     /// <exclude />
     protected override Collection<string> GetParameters() {

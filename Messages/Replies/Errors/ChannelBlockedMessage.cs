@@ -14,6 +14,9 @@ namespace Supay.Irc.Messages {
   /// </remarks>
   [Serializable]
   public class ChannelBlockedMessage : ErrorMessage, IChannelTargetedMessage {
+    private string channel;
+    private string reason;
+
     /// <summary>
     ///   Creates a new instances of the <see cref="ChannelBlockedMessage" /> class.
     /// </summary>
@@ -33,8 +36,6 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private string channel;
-
     /// <summary>
     ///   Gets or sets the reason the channel is blocked
     /// </summary>
@@ -47,7 +48,13 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private string reason;
+    #region IChannelTargetedMessage Members
+
+    bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
+      return IsTargetedAtChannel(channelName);
+    }
+
+    #endregion
 
     /// <exclude />
     protected override Collection<string> GetParameters() {
@@ -77,19 +84,11 @@ namespace Supay.Irc.Messages {
       conduit.OnChannelBlocked(new IrcMessageEventArgs<ChannelBlockedMessage>(this));
     }
 
-    #region IChannelTargetedMessage Members
-
-    bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
-      return IsTargetedAtChannel(channelName);
-    }
-
     /// <summary>
     ///   Determines if the the current message is targeted at the given channel.
     /// </summary>
     protected virtual bool IsTargetedAtChannel(string channelName) {
       return Channel.EqualsI(channelName);
     }
-
-    #endregion
   }
 }

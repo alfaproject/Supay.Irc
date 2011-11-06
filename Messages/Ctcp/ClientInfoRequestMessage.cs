@@ -8,6 +8,8 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class ClientInfoRequestMessage : CtcpRequestMessage {
+    private readonly List<string> parameters = new List<string>();
+
     /// <summary>
     ///   Creates a new instance of the <see cref="ClientInfoRequestMessage" /> class
     /// </summary>
@@ -26,8 +28,6 @@ namespace Supay.Irc.Messages {
         return parameters;
       }
     }
-
-    private readonly List<string> parameters = new List<string>();
 
     /// <summary>
     ///   Gets the data payload of the Ctcp request.

@@ -15,6 +15,17 @@ namespace Supay.Irc.Messages {
   /// </remarks>
   [Serializable]
   public class ListMessage : CommandMessage {
+    private readonly List<string> channels = new List<string>();
+    private string matchMask = string.Empty;
+    private int maxUsers = -1;
+    private int minUsers = -1;
+    private string notMatchMask = string.Empty;
+    private int olderThan = -1;
+    private string server = string.Empty;
+    private int topicOlderThan = -1;
+    private int topicYoungerThan = -1;
+    private int youngerThan = -1;
+
     /// <summary>
     ///   Creates a new instance of the <see cref="ListMessage" /> class.
     /// </summary>
@@ -41,8 +52,6 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private readonly List<string> channels = new List<string>();
-
     /// <summary>
     ///   Gets or sets the server that should return the info.
     /// </summary>
@@ -54,8 +63,6 @@ namespace Supay.Irc.Messages {
         server = value;
       }
     }
-
-    private string server = string.Empty;
 
     /// <summary>
     ///   Gets or sets the maximum number of users that channels can have to be returned.
@@ -69,8 +76,6 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private int maxUsers = -1;
-
     /// <summary>
     ///   Gets or sets the minimum number of users that channels can have to be returned.
     /// </summary>
@@ -82,8 +87,6 @@ namespace Supay.Irc.Messages {
         minUsers = value;
       }
     }
-
-    private int minUsers = -1;
 
     /// <summary>
     ///   Gets or sets, in minutes, the longest amount of time 
@@ -98,8 +101,6 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private int youngerThan = -1;
-
     /// <summary>
     ///   Gets or sets, in minutes, the shortest amount of time 
     ///   which may have passed since a channel was created in order to be returned.
@@ -113,8 +114,6 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private int olderThan = -1;
-
     /// <summary>
     ///   Gets or sets the a mask which a channel must match to be returned.
     /// </summary>
@@ -127,8 +126,6 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private string matchMask = string.Empty;
-
     /// <summary>
     ///   Gets or sets a mask which a channel cannot match to be returned.
     /// </summary>
@@ -140,8 +137,6 @@ namespace Supay.Irc.Messages {
         notMatchMask = value;
       }
     }
-
-    private string notMatchMask = string.Empty;
 
     /// <summary>
     ///   Gets or sets, in minutes, the shortest amount of time 
@@ -160,8 +155,6 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private int topicOlderThan = -1;
-
     /// <summary>
     ///   Gets or sets, in minutes, the longest amount of time 
     ///   which may have passed since a channel's topic was changed, to be returned.
@@ -178,8 +171,6 @@ namespace Supay.Irc.Messages {
         topicYoungerThan = value;
       }
     }
-
-    private int topicYoungerThan = -1;
 
     /// <summary>
     ///   Gets the IRC command associated with this message.

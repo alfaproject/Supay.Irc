@@ -205,6 +205,41 @@ namespace Supay.Irc {
       Connection.Write(message + Environment.NewLine);
     }
 
+    /// <summary>
+    ///   Determines if the given message originated from the currently connected server.
+    /// </summary>
+    public virtual bool IsMessageFromServer(IrcMessage msg) {
+      if (msg == null) {
+        return false;
+      }
+      return (msg.Sender.Nickname == ServerName);
+    }
+
+    private bool isMe(string nick) {
+      return User.Nickname.EqualsI(nick);
+    }
+
+    private void routeData(string messageData) {
+      IrcMessage msg;
+      try {
+        msg = IrcMessageFactory.Parse(messageData);
+      } catch (InvalidMessageException ex) {
+        // try one more time to parse it as a generic message
+        msg = new GenericMessage();
+        if (msg.CanParse(messageData)) {
+          msg.Parse(messageData);
+        } else {
+          msg = null;
+          Trace.WriteLine(ex.Message + " { " + ex.ReceivedMessage + " } ", "Invalid Message");
+        }
+      }
+
+      if (msg != null) {
+        OnMessageParsed(new IrcMessageEventArgs<IrcMessage>(msg));
+        msg.Notify(Messages);
+      }
+    }
+
     #region Send Helpers
 
     /// <summary>
@@ -273,41 +308,6 @@ namespace Supay.Irc {
     }
 
     #endregion
-
-    /// <summary>
-    ///   Determines if the given message originated from the currently connected server.
-    /// </summary>
-    public virtual bool IsMessageFromServer(IrcMessage msg) {
-      if (msg == null) {
-        return false;
-      }
-      return (msg.Sender.Nickname == ServerName);
-    }
-
-    private bool isMe(string nick) {
-      return User.Nickname.EqualsI(nick);
-    }
-
-    private void routeData(string messageData) {
-      IrcMessage msg;
-      try {
-        msg = IrcMessageFactory.Parse(messageData);
-      } catch (InvalidMessageException ex) {
-        // try one more time to parse it as a generic message
-        msg = new GenericMessage();
-        if (msg.CanParse(messageData)) {
-          msg.Parse(messageData);
-        } else {
-          msg = null;
-          Trace.WriteLine(ex.Message + " { " + ex.ReceivedMessage + " } ", "Invalid Message");
-        }
-      }
-
-      if (msg != null) {
-        OnMessageParsed(new IrcMessageEventArgs<IrcMessage>(msg));
-        msg.Notify(Messages);
-      }
-    }
 
     #endregion
 

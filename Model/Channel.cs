@@ -12,19 +12,23 @@ namespace Supay.Irc {
   /// </summary>
   [Serializable]
   public class Channel : INotifyPropertyChanged {
-    private bool _open;
-    private readonly NameValueCollection _properties;
-    private User _topicSetter;
-    private DateTime _topicSetTime;
-    private readonly UserCollection _users;
-    private readonly Dictionary<User, ChannelStatus> _userModes;
-    private readonly ChannelModeCollection _modes;
     private readonly Journal _journal;
+    private readonly ChannelModeCollection _modes;
+    private readonly NameValueCollection _properties;
+    private readonly Dictionary<User, ChannelStatus> _userModes;
+    private readonly UserCollection _users;
+    private bool _open;
+    private DateTime _topicSetTime;
+    private User _topicSetter;
+
+    #region INotifyPropertyChanged Members
 
     /// <summary>
     ///   The event raised when a property on the object changes.
     /// </summary>
     public event PropertyChangedEventHandler PropertyChanged;
+
+    #endregion
 
     #region Constructors
 

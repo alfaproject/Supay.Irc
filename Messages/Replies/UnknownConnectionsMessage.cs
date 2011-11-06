@@ -14,6 +14,8 @@ namespace Supay.Irc.Messages {
   /// </remarks>
   [Serializable]
   public class UnknownConnectionsMessage : NumericMessage {
+    private int userCount = -1;
+
     /// <summary>
     ///   Creates a new instance of the <see cref="UnknownConnectionsMessage" /> class.
     /// </summary>
@@ -32,8 +34,6 @@ namespace Supay.Irc.Messages {
         userCount = value;
       }
     }
-
-    private int userCount = -1;
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.

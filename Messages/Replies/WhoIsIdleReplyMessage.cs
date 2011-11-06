@@ -10,6 +10,11 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class WhoIsIdleReplyMessage : NumericMessage {
+    private int idleTime;
+    private string info = string.Empty;
+    private string nick = string.Empty;
+    private DateTime signOnTime = DateTime.Now;
+
     /// <summary>
     ///   Creates a new instance of the <see cref="WhoIsIdleReplyMessage" /> class.
     /// </summary>
@@ -65,11 +70,6 @@ namespace Supay.Irc.Messages {
         info = value;
       }
     }
-
-    private string nick = string.Empty;
-    private int idleTime;
-    private DateTime signOnTime = DateTime.Now;
-    private string info = string.Empty;
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.

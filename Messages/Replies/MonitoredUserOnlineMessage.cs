@@ -7,6 +7,8 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class MonitoredUserOnlineMessage : NumericMessage {
+    private UserCollection users;
+
     /// <summary>
     ///   Creates a new instance of the <see cref="MonitoredUserOnlineMessage" />.
     /// </summary>
@@ -25,8 +27,6 @@ namespace Supay.Irc.Messages {
         return users;
       }
     }
-
-    private UserCollection users;
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.

@@ -13,6 +13,10 @@ namespace Supay.Irc.Messages {
   /// </remarks>
   [Serializable]
   public class KickMessage : CommandMessage, IChannelTargetedMessage {
+    private readonly List<string> channels = new List<string>();
+    private readonly List<string> nicks = new List<string>();
+    private string reason = string.Empty;
+
     /// <summary>
     ///   Creates a new instance of the <see cref="KickMessage" /> class.
     /// </summary>
@@ -28,10 +32,6 @@ namespace Supay.Irc.Messages {
       channels.Add(channel);
       nicks.Add(nick);
     }
-
-    private readonly List<string> channels = new List<string>();
-    private readonly List<string> nicks = new List<string>();
-    private string reason = string.Empty;
 
     /// <summary>
     ///   Gets the IRC command associated with this message.
@@ -71,6 +71,14 @@ namespace Supay.Irc.Messages {
         reason = value;
       }
     }
+
+    #region IChannelTargetedMessage Members
+
+    bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
+      return IsTargetedAtChannel(channelName);
+    }
+
+    #endregion
 
     /// <summary>
     ///   Validates this message against the given server support
@@ -125,19 +133,11 @@ namespace Supay.Irc.Messages {
       conduit.OnKick(new IrcMessageEventArgs<KickMessage>(this));
     }
 
-    #region IChannelTargetedMessage Members
-
-    bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
-      return IsTargetedAtChannel(channelName);
-    }
-
     /// <summary>
     ///   Determines if the the current message is targeted at the given channel.
     /// </summary>
     protected virtual bool IsTargetedAtChannel(string channelName) {
       return MessageUtil.ContainsIgnoreCaseMatch(Channels, channelName);
     }
-
-    #endregion
   }
 }

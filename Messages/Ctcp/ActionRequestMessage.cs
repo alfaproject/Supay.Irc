@@ -7,6 +7,8 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class ActionRequestMessage : CtcpRequestMessage {
+    private string text = string.Empty;
+
     /// <summary>
     ///   Creates a new instance of the <see cref="ActionRequestMessage" /> class.
     /// </summary>
@@ -45,15 +47,6 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private string text = string.Empty;
-
-    /// <summary>
-    ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
-    /// </summary>
-    public override void Notify(MessageConduit conduit) {
-      conduit.OnActionRequest(new IrcMessageEventArgs<ActionRequestMessage>(this));
-    }
-
     /// <summary>
     ///   Gets the data payload of the Ctcp request.
     /// </summary>
@@ -61,6 +54,13 @@ namespace Supay.Irc.Messages {
       get {
         return Text;
       }
+    }
+
+    /// <summary>
+    ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
+    /// </summary>
+    public override void Notify(MessageConduit conduit) {
+      conduit.OnActionRequest(new IrcMessageEventArgs<ActionRequestMessage>(this));
     }
 
     /// <summary>

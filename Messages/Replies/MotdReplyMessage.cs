@@ -7,6 +7,8 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class MotdReplyMessage : NumericMessage {
+    private string text = string.Empty;
+
     /// <summary>
     ///   Creates a new instance of the <see cref="MotdReplyMessage" /> class.
     /// </summary>
@@ -25,8 +27,6 @@ namespace Supay.Irc.Messages {
         text = value;
       }
     }
-
-    private string text = string.Empty;
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.

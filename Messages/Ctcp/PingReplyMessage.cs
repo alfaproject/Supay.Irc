@@ -7,6 +7,8 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class PingReplyMessage : CtcpReplyMessage {
+    private string timeStamp = string.Empty;
+
     /// <summary>
     ///   Creates a new instance of the <see cref="PingReplyMessage" /> class.
     /// </summary>
@@ -31,8 +33,6 @@ namespace Supay.Irc.Messages {
         timeStamp = value;
       }
     }
-
-    private string timeStamp = string.Empty;
 
     /// <summary>
     ///   Gets the data payload of the Ctcp request.

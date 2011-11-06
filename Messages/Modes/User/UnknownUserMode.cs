@@ -3,6 +3,8 @@ namespace Supay.Irc.Messages.Modes {
   ///   A user mode sent in a <see cref="UserModeMessage" /> which is not known.
   /// </summary>
   public class UnknownUserMode : UserMode {
+    private readonly string symbol;
+
     /// <summary>
     ///   Creates a new instance of the <see cref="UnknownUserMode" /> class with the given <see cref="ModeAction" /> and value.
     /// </summary>
@@ -19,7 +21,5 @@ namespace Supay.Irc.Messages.Modes {
         return symbol;
       }
     }
-
-    private readonly string symbol;
   }
 }

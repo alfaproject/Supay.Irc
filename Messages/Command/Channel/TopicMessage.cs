@@ -7,6 +7,9 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class TopicMessage : CommandMessage, IChannelTargetedMessage {
+    private string channel = string.Empty;
+    private string topic = string.Empty;
+
     /// <summary>
     ///   Creates a new instance of the <see cref="TopicMessage" /> class.
     /// </summary>
@@ -60,6 +63,14 @@ namespace Supay.Irc.Messages {
       }
     }
 
+    #region IChannelTargetedMessage Members
+
+    bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
+      return IsTargetedAtChannel(channelName);
+    }
+
+    #endregion
+
     /// <summary>
     ///   Validates this message against the given server support
     /// </summary>
@@ -102,22 +113,11 @@ namespace Supay.Irc.Messages {
       conduit.OnTopic(new IrcMessageEventArgs<TopicMessage>(this));
     }
 
-    private string channel = string.Empty;
-    private string topic = string.Empty;
-
-    #region IChannelTargetedMessage Members
-
-    bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
-      return IsTargetedAtChannel(channelName);
-    }
-
     /// <summary>
     ///   Determines if the the current message is targeted at the given channel.
     /// </summary>
     protected virtual bool IsTargetedAtChannel(string channelName) {
       return Channel.EqualsI(channelName);
     }
-
-    #endregion
   }
 }

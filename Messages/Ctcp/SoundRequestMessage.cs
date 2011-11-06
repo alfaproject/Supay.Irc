@@ -7,6 +7,9 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class SoundRequestMessage : CtcpRequestMessage {
+    private string soundFile = string.Empty;
+    private string text = string.Empty;
+
     /// <summary>
     ///   Creates a new instance of the <see cref="SoundRequestMessage" /> class.
     /// </summary>
@@ -26,8 +29,6 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private string text = string.Empty;
-
     /// <summary>
     ///   Gets or sets the name of the requested sound file to be played.
     /// </summary>
@@ -40,15 +41,6 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private string soundFile = string.Empty;
-
-    /// <summary>
-    ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
-    /// </summary>
-    public override void Notify(MessageConduit conduit) {
-      conduit.OnSoundRequest(new IrcMessageEventArgs<SoundRequestMessage>(this));
-    }
-
     /// <summary>
     ///   Gets the data payload of the Ctcp request.
     /// </summary>
@@ -56,6 +48,13 @@ namespace Supay.Irc.Messages {
       get {
         return SoundFile + " " + Text;
       }
+    }
+
+    /// <summary>
+    ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
+    /// </summary>
+    public override void Notify(MessageConduit conduit) {
+      conduit.OnSoundRequest(new IrcMessageEventArgs<SoundRequestMessage>(this));
     }
 
     /// <summary>

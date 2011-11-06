@@ -8,6 +8,14 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class SlotsRequestMessage : CtcpRequestMessage {
+    private int availableSendSlots;
+    private int cpsRecord;
+    private string nextSend;
+    private int takenQueueSlots;
+    private int totalFiles;
+    private int totalQueueSlots;
+    private int totalSendSlots;
+
     /// <summary>
     ///   Creates a new instance of the <see cref="SlotsRequestMessage" /> class.
     /// </summary>
@@ -36,8 +44,6 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private int totalSendSlots;
-
     /// <summary>
     ///   AvailableSendSlots
     /// </summary>
@@ -49,8 +55,6 @@ namespace Supay.Irc.Messages {
         availableSendSlots = value;
       }
     }
-
-    private int availableSendSlots;
 
     /// <summary>
     ///   NextSend
@@ -64,8 +68,6 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private string nextSend;
-
     /// <summary>
     ///   TakenQueueSlots
     /// </summary>
@@ -77,8 +79,6 @@ namespace Supay.Irc.Messages {
         takenQueueSlots = value;
       }
     }
-
-    private int takenQueueSlots;
 
     /// <summary>
     ///   TotalQueueSlots
@@ -92,8 +92,6 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private int totalQueueSlots;
-
     /// <summary>
     ///   CpsRecord
     /// </summary>
@@ -105,8 +103,6 @@ namespace Supay.Irc.Messages {
         cpsRecord = value;
       }
     }
-
-    private int cpsRecord;
 
     /// <summary>
     ///   TotalFiles
@@ -120,15 +116,6 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private int totalFiles;
-
-    /// <summary>
-    ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
-    /// </summary>
-    public override void Notify(MessageConduit conduit) {
-      conduit.OnSlotsRequest(new IrcMessageEventArgs<SlotsRequestMessage>(this));
-    }
-
     /// <summary>
     ///   Gets the data payload of the Ctcp request.
     /// </summary>
@@ -136,6 +123,13 @@ namespace Supay.Irc.Messages {
       get {
         return string.Format(CultureInfo.InvariantCulture, "{0} {1} {2} {3} {4} {5} {6}", TotalSendSlots, AvailableSendSlots, NextSend, TakenQueueSlots, TotalQueueSlots, CpsRecord, TotalFiles);
       }
+    }
+
+    /// <summary>
+    ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
+    /// </summary>
+    public override void Notify(MessageConduit conduit) {
+      conduit.OnSlotsRequest(new IrcMessageEventArgs<SlotsRequestMessage>(this));
     }
 
     /// <summary>

@@ -14,6 +14,9 @@ namespace Supay.Irc.Messages {
   ///   Client code will probably not need to use most of these routines.
   /// </remarks>
   public static class MessageUtil {
+    private static string cachedRawMessage = string.Empty;
+    private static Collection<string> cachedParams;
+
     /// <summary>
     ///   Takes the given channel name, and returns a name that is valid according to the given server support.
     /// </summary>
@@ -68,120 +71,6 @@ namespace Supay.Irc.Messages {
 
       return false;
     }
-
-    #region Parameters To string
-
-    /// <summary>
-    ///   Creates a list of IRC parameters from the given collection of strings.
-    /// </summary>
-    public static string ParametersToString(bool useColon, Collection<string> parameters) {
-      if (parameters == null) {
-        return string.Empty;
-      }
-      var foo = new string[parameters.Count];
-      parameters.CopyTo(foo, 0);
-      return ParametersToString(useColon, foo);
-    }
-
-    /// <summary>
-    ///   Creates a list of IRC parameters from the given array of strings.
-    /// </summary>
-    public static string ParametersToString(bool useColon, params string[] parameters) {
-      var result = new StringBuilder();
-      if (parameters.Length > 1) {
-        for (int i = 0; i < parameters.Length - 1; i++) {
-          result.Append(parameters[i]);
-          result.Append(" ");
-        }
-      }
-      if (parameters.Length != 0) {
-        if (useColon) {
-          result.Append(":");
-        }
-        result.Append(parameters[parameters.Length - 1]);
-      }
-      return result.ToString();
-    }
-
-    /// <summary>
-    ///   Creates a list of IRC parameters from the given collection of strings.
-    /// </summary>
-    public static string ParametersToString(Collection<string> parameters) {
-      return ParametersToString(true, parameters);
-    }
-
-    /// <summary>
-    ///   Creates a list of IRC parameters from the given array of strings.
-    /// </summary>
-    public static string ParametersToString(params string[] parameters) {
-      return ParametersToString(true, parameters);
-    }
-
-    #endregion
-
-    #region Create Lists
-
-    /// <summary>
-    ///   Creates a space-delimited list from the given items, using delimiter.
-    /// </summary>
-    public static string CreateList(Collection<string> items, string delimiter) {
-      if (items == null) {
-        return string.Empty;
-      }
-      var itemsArray = new string[items.Count];
-      items.CopyTo(itemsArray, 0);
-      return CreateList(itemsArray, delimiter);
-    }
-
-    /// <summary>
-    ///   Creates a char-delimited list from the given string[], using delimiter.
-    /// </summary>
-    public static string CreateList(string[] items, string delimiter) {
-      return string.Join(delimiter, items);
-    }
-
-    /// <summary>
-    ///   Creates a char-delimited list from the given <see cref="IList" /> of objects, using
-    ///   delimiter.
-    /// </summary>
-    public static string CreateList(IList items, string delimiter) {
-      if (items == null || items.Count == 0) {
-        return string.Empty;
-      }
-
-      var result = new StringBuilder();
-      result.Append(items[0].ToString());
-      for (int i = 1; i < items.Count; i++) {
-        result.Append(delimiter);
-        result.Append(items[i].ToString());
-      }
-      return result.ToString();
-    }
-
-    /// <summary>
-    ///   Creates a char-delimited list from the given <see cref="IEnumerable" /> of objects, using
-    ///   delimiter.
-    /// </summary>
-    /// <param name="items">The items to join.</param>
-    /// <param name="delimiter">The separator between each joined item.</param>
-    /// <param name="customListItemRender">A delegate which provides custom format rendering for the items in a list.</param>
-    public static string CreateList<T>(IEnumerable<T> items, string delimiter, Func<T, string> customListItemRender) {
-      if (items == null) {
-        return string.Empty;
-      }
-      var result = new StringBuilder();
-      foreach (T item in items) {
-        string itemValue = customListItemRender(item);
-        result.Append(itemValue);
-        result.Append(delimiter);
-      }
-      if (result.Length > delimiter.Length) {
-        result.Remove(result.Length - delimiter.Length, delimiter.Length);
-      }
-      return result.ToString();
-    }
-
-    #endregion
 
     /// <summary>
     ///   Extracts the Prefix from a string message.
@@ -278,9 +167,6 @@ namespace Supay.Irc.Messages {
 
       return parameters;
     }
-
-    private static string cachedRawMessage = string.Empty;
-    private static Collection<string> cachedParams;
 
     /// <summary>
     ///   Gets the last parameter in the parameters collection of the given unparsed message.
@@ -421,5 +307,119 @@ namespace Supay.Irc.Messages {
     public static bool ContainsIgnoreCaseMatch(IEnumerable<string> strings, string match) {
       return strings.Any(item => item.EqualsI(match));
     }
+
+    #region Parameters To string
+
+    /// <summary>
+    ///   Creates a list of IRC parameters from the given collection of strings.
+    /// </summary>
+    public static string ParametersToString(bool useColon, Collection<string> parameters) {
+      if (parameters == null) {
+        return string.Empty;
+      }
+      var foo = new string[parameters.Count];
+      parameters.CopyTo(foo, 0);
+      return ParametersToString(useColon, foo);
+    }
+
+    /// <summary>
+    ///   Creates a list of IRC parameters from the given array of strings.
+    /// </summary>
+    public static string ParametersToString(bool useColon, params string[] parameters) {
+      var result = new StringBuilder();
+      if (parameters.Length > 1) {
+        for (int i = 0; i < parameters.Length - 1; i++) {
+          result.Append(parameters[i]);
+          result.Append(" ");
+        }
+      }
+      if (parameters.Length != 0) {
+        if (useColon) {
+          result.Append(":");
+        }
+        result.Append(parameters[parameters.Length - 1]);
+      }
+      return result.ToString();
+    }
+
+    /// <summary>
+    ///   Creates a list of IRC parameters from the given collection of strings.
+    /// </summary>
+    public static string ParametersToString(Collection<string> parameters) {
+      return ParametersToString(true, parameters);
+    }
+
+    /// <summary>
+    ///   Creates a list of IRC parameters from the given array of strings.
+    /// </summary>
+    public static string ParametersToString(params string[] parameters) {
+      return ParametersToString(true, parameters);
+    }
+
+    #endregion
+
+    #region Create Lists
+
+    /// <summary>
+    ///   Creates a space-delimited list from the given items, using delimiter.
+    /// </summary>
+    public static string CreateList(Collection<string> items, string delimiter) {
+      if (items == null) {
+        return string.Empty;
+      }
+      var itemsArray = new string[items.Count];
+      items.CopyTo(itemsArray, 0);
+      return CreateList(itemsArray, delimiter);
+    }
+
+    /// <summary>
+    ///   Creates a char-delimited list from the given string[], using delimiter.
+    /// </summary>
+    public static string CreateList(string[] items, string delimiter) {
+      return string.Join(delimiter, items);
+    }
+
+    /// <summary>
+    ///   Creates a char-delimited list from the given <see cref="IList" /> of objects, using
+    ///   delimiter.
+    /// </summary>
+    public static string CreateList(IList items, string delimiter) {
+      if (items == null || items.Count == 0) {
+        return string.Empty;
+      }
+
+      var result = new StringBuilder();
+      result.Append(items[0].ToString());
+      for (int i = 1; i < items.Count; i++) {
+        result.Append(delimiter);
+        result.Append(items[i].ToString());
+      }
+      return result.ToString();
+    }
+
+    /// <summary>
+    ///   Creates a char-delimited list from the given <see cref="IEnumerable" /> of objects, using
+    ///   delimiter.
+    /// </summary>
+    /// <param name="items">The items to join.</param>
+    /// <param name="delimiter">The separator between each joined item.</param>
+    /// <param name="customListItemRender">A delegate which provides custom format rendering for the items in a list.</param>
+    public static string CreateList<T>(IEnumerable<T> items, string delimiter, Func<T, string> customListItemRender) {
+      if (items == null) {
+        return string.Empty;
+      }
+      var result = new StringBuilder();
+      foreach (T item in items) {
+        string itemValue = customListItemRender(item);
+        result.Append(itemValue);
+        result.Append(delimiter);
+      }
+      if (result.Length > delimiter.Length) {
+        result.Remove(result.Length - delimiter.Length, delimiter.Length);
+      }
+      return result.ToString();
+    }
+
+    #endregion
   }
 }

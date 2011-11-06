@@ -11,6 +11,9 @@ namespace Supay.Irc.Messages {
   /// </remarks>
   [Serializable]
   public class UserModeMessage : CommandMessage {
+    private string modeChanges = string.Empty;
+    private string user = string.Empty;
+
     /// <summary>
     ///   Gets the IRC command associated with this message.
     /// </summary>
@@ -32,8 +35,6 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private string user = string.Empty;
-
     /// <summary>
     ///   Gets or sets the mode changes being applied.
     /// </summary>
@@ -49,8 +50,6 @@ namespace Supay.Irc.Messages {
         modeChanges = value;
       }
     }
-
-    private string modeChanges = string.Empty;
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.

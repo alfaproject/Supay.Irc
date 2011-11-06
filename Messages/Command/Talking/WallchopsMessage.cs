@@ -7,6 +7,9 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class WallchopsMessage : CommandMessage, IChannelTargetedMessage {
+    private string channel = string.Empty;
+    private string text = string.Empty;
+
     /// <summary>
     ///   Gets or sets the text of the <see cref="WallchopsMessage" />.
     /// </summary>
@@ -21,8 +24,6 @@ namespace Supay.Irc.Messages {
         text = value;
       }
     }
-
-    private string text = string.Empty;
 
     /// <summary>
     ///   Gets or sets the channel being targeted by the message.
@@ -39,8 +40,6 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private string channel = string.Empty;
-
     /// <summary>
     ///   Gets the IRC command associated with this message.
     /// </summary>
@@ -49,6 +48,14 @@ namespace Supay.Irc.Messages {
         return "WALLCHOPS";
       }
     }
+
+    #region IChannelTargetedMessage Members
+
+    bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
+      return IsTargetedAtChannel(channelName);
+    }
+
+    #endregion
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.
@@ -83,19 +90,11 @@ namespace Supay.Irc.Messages {
       conduit.OnWallchops(new IrcMessageEventArgs<WallchopsMessage>(this));
     }
 
-    #region IChannelTargetedMessage Members
-
-    bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
-      return IsTargetedAtChannel(channelName);
-    }
-
     /// <summary>
     ///   Determines if the the current message is targeted at the given channel.
     /// </summary>
     protected virtual bool IsTargetedAtChannel(string channelName) {
       return Channel.EqualsI(channelName);
     }
-
-    #endregion
   }
 }

@@ -11,6 +11,8 @@ namespace Supay.Irc.Messages {
   /// </remarks>
   [Serializable]
   public class AwayMessage : CommandMessage {
+    private string reason = string.Empty;
+
     /// <summary>
     ///   Creates a new instance of the AwayMessage class.
     /// </summary>
@@ -44,8 +46,6 @@ namespace Supay.Irc.Messages {
         reason = value;
       }
     }
-
-    private string reason = string.Empty;
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.

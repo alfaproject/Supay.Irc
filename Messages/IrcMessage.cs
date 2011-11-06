@@ -9,6 +9,19 @@ namespace Supay.Irc.Messages {
   [Serializable]
   public abstract class IrcMessage {
     /// <summary>
+    ///   The computer or user who sent the current message.
+    /// </summary>
+    /// <remarks>
+    ///   In the case of a server message, the Sender.Nick is the the name that the server calls
+    ///   itself, usually its address. In the case of a user message, the Sender is a User
+    ///   containing the Nick, UserName, and HostName...
+    /// </remarks>
+    public User Sender {
+      get;
+      set;
+    }
+
+    /// <summary>
     ///   Gets the parameters needed to rebuild this message.
     /// </summary>
     /// <remarks>
@@ -54,19 +67,6 @@ namespace Supay.Irc.Messages {
     ///   Determines if the message can be parsed by this type.
     /// </summary>
     public abstract bool CanParse(string unparsedMessage);
-
-    /// <summary>
-    ///   The computer or user who sent the current message.
-    /// </summary>
-    /// <remarks>
-    ///   In the case of a server message, the Sender.Nick is the the name that the server calls
-    ///   itself, usually its address. In the case of a user message, the Sender is a User
-    ///   containing the Nick, UserName, and HostName...
-    /// </remarks>
-    public User Sender {
-      get;
-      set;
-    }
 
     /// <summary>
     ///   Generates a string representation of the message.

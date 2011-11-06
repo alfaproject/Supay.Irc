@@ -9,6 +9,9 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class UserAwayMessage : NumericMessage {
+    private string nick = string.Empty;
+    private string text = string.Empty;
+
     /// <summary>
     ///   Creates a new instance of the <see cref="UserAwayMessage" />.
     /// </summary>
@@ -39,9 +42,6 @@ namespace Supay.Irc.Messages {
         nick = value;
       }
     }
-
-    private string text = string.Empty;
-    private string nick = string.Empty;
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.

@@ -11,6 +11,9 @@ namespace Supay.Irc.Messages {
   /// </remarks>
   [Serializable]
   public class TargetChangeTooFastMessage : ErrorMessage, IChannelTargetedMessage {
+    private int seconds;
+    private string target;
+
     /// <summary>
     ///   Creates a new instances of the <see cref="TargetChangeTooFastMessage" /> class.
     /// </summary>
@@ -30,8 +33,6 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private string target;
-
     /// <summary>
     ///   Gets or sets the number of seconds which must be waited before attempting again.
     /// </summary>
@@ -44,7 +45,13 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private int seconds;
+    #region IChannelTargetedMessage Members
+
+    bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
+      return IsTargetedAtChannel(channelName);
+    }
+
+    #endregion
 
     /// <exclude />
     protected override Collection<string> GetParameters() {
@@ -74,19 +81,11 @@ namespace Supay.Irc.Messages {
       conduit.OnTargetChangeTooFast(new IrcMessageEventArgs<TargetChangeTooFastMessage>(this));
     }
 
-    #region IChannelTargetedMessage Members
-
-    bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
-      return IsTargetedAtChannel(channelName);
-    }
-
     /// <summary>
     ///   Determines if the the current message is targeted at the given channel.
     /// </summary>
     protected virtual bool IsTargetedAtChannel(string channelName) {
       return TargetChanged.EqualsI(channelName);
     }
-
-    #endregion
   }
 }

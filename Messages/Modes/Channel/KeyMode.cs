@@ -3,6 +3,8 @@ namespace Supay.Irc.Messages.Modes {
   ///   This mode sets or unsets a password on a channel.
   /// </summary>
   public class KeyMode : FlagMode {
+    private string password = string.Empty;
+
     /// <summary>
     ///   Creates a new instance of the <see cref="KeyMode" /> class.
     /// </summary>
@@ -53,8 +55,6 @@ namespace Supay.Irc.Messages.Modes {
         password = value;
       }
     }
-
-    private string password = string.Empty;
 
     /// <summary>
     ///   Applies this mode to the ModeArguments property of the given <see cref="ChannelModeMessage" />.

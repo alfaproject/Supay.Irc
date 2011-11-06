@@ -11,6 +11,9 @@ namespace Supay.Irc.Messages {
   /// </remarks>
   [Serializable]
   public class PingMessage : CommandMessage {
+    private string forwardServer = string.Empty;
+    private string target = string.Empty;
+
     /// <summary>
     ///   Gets or sets the target of the ping.
     /// </summary>
@@ -23,8 +26,6 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private string target = string.Empty;
-
     /// <summary>
     ///   Gets or sets the server that the ping should be forwarded to.
     /// </summary>
@@ -36,8 +37,6 @@ namespace Supay.Irc.Messages {
         forwardServer = value;
       }
     }
-
-    private string forwardServer = string.Empty;
 
     /// <summary>
     ///   Gets the IRC command associated with this message.

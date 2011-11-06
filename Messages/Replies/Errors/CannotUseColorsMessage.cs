@@ -7,6 +7,9 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class CannotUseColorsMessage : ErrorMessage, IChannelTargetedMessage {
+    private string _text;
+    private string channel = string.Empty;
+
     /// <summary>
     ///   Creates a new instances of the <see cref="CannotUseColorsMessage" /> class.
     /// </summary>
@@ -26,8 +29,6 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private string channel = string.Empty;
-
     /// <summary>
     ///   Gets or sets the text which wasn't sent to the channel.
     /// </summary>
@@ -40,7 +41,13 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private string _text;
+    #region IChannelTargetedMessage Members
+
+    bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
+      return IsTargetedAtChannel(channelName);
+    }
+
+    #endregion
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.
@@ -77,19 +84,11 @@ namespace Supay.Irc.Messages {
       conduit.OnCannotUseColors(new IrcMessageEventArgs<CannotUseColorsMessage>(this));
     }
 
-    #region IChannelTargetedMessage Members
-
-    bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
-      return IsTargetedAtChannel(channelName);
-    }
-
     /// <summary>
     ///   Determines if the the current message is targeted at the given channel.
     /// </summary>
     protected virtual bool IsTargetedAtChannel(string channelName) {
       return Channel.EqualsI(channelName);
     }
-
-    #endregion
   }
 }

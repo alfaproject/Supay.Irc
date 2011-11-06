@@ -7,6 +7,9 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class SilenceMessage : CommandMessage {
+    private ModeAction _action = ModeAction.Add;
+    private User silencedUser = new User();
+
     /// <summary>
     ///   Creates a new instance of the SilenceMessage class.
     /// </summary>
@@ -48,8 +51,6 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private User silencedUser = new User();
-
     /// <summary>
     ///   Gets or sets the action being applied to the silenced user on the list.
     /// </summary>
@@ -61,8 +62,6 @@ namespace Supay.Irc.Messages {
         _action = value;
       }
     }
-
-    private ModeAction _action = ModeAction.Add;
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.

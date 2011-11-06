@@ -7,6 +7,9 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class CannotRemoveServiceBotMessage : ErrorMessage {
+    private string channel;
+    private string nick;
+
     /// <summary>
     ///   Creates a new instances of the <see cref="CannotRemoveServiceBotMessage" /> class.
     /// </summary>
@@ -26,8 +29,6 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private string nick;
-
     /// <summary>
     ///   Gets or sets the channel on which the bot resides
     /// </summary>
@@ -39,8 +40,6 @@ namespace Supay.Irc.Messages {
         channel = value;
       }
     }
-
-    private string channel;
 
     /// <exclude />
     protected override Collection<string> GetParameters() {

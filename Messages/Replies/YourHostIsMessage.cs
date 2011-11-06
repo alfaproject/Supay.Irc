@@ -8,6 +8,11 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class YourHostMessage : NumericMessage {
+    private const string yourHostIs = "Your host is ";
+    private const string runningVersion = ", running version ";
+    private string serverName = string.Empty;
+    private string version = string.Empty;
+
     /// <summary>
     ///   Creates a new instance of the <see cref="YourHostMessage" /> class.
     /// </summary>
@@ -27,8 +32,6 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private string serverName = string.Empty;
-
     /// <summary>
     ///   Gets or sets the version of the software the server is running.
     /// </summary>
@@ -40,11 +43,6 @@ namespace Supay.Irc.Messages {
         version = value;
       }
     }
-
-    private string version = string.Empty;
-
-    private const string yourHostIs = "Your host is ";
-    private const string runningVersion = ", running version ";
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.

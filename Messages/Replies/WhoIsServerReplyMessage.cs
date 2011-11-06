@@ -7,6 +7,10 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class WhoIsServerReplyMessage : NumericMessage {
+    private string info = string.Empty;
+    private string nick = string.Empty;
+    private string serverName = string.Empty;
+
     /// <summary>
     ///   Creates a new instance of the <see cref="WhoIsServerReplyMessage" /> class.
     /// </summary>
@@ -49,10 +53,6 @@ namespace Supay.Irc.Messages {
         info = value;
       }
     }
-
-    private string nick = string.Empty;
-    private string serverName = string.Empty;
-    private string info = string.Empty;
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.

@@ -12,14 +12,9 @@ namespace Supay.Irc.Messages {
   /// </remarks>
   [Serializable]
   public class ChannelModeMessage : CommandMessage, IChannelTargetedMessage {
-    /// <summary>
-    ///   Gets the IRC command associated with this message.
-    /// </summary>
-    protected override string Command {
-      get {
-        return "MODE";
-      }
-    }
+    private readonly List<string> modeArguments = new List<string>();
+    private string channel = string.Empty;
+    private string modeChanges = string.Empty;
 
     /// <summary>
     ///   Creates a new instance of the ChannelModeMessage class.
@@ -40,6 +35,15 @@ namespace Supay.Irc.Messages {
     }
 
     /// <summary>
+    ///   Gets the IRC command associated with this message.
+    /// </summary>
+    protected override string Command {
+      get {
+        return "MODE";
+      }
+    }
+
+    /// <summary>
     ///   Gets or sets the name of the channel being affected.
     /// </summary>
     public virtual string Channel {
@@ -50,8 +54,6 @@ namespace Supay.Irc.Messages {
         channel = value;
       }
     }
-
-    private string channel = string.Empty;
 
     /// <summary>
     ///   Gets or sets the mode changes being applied.
@@ -69,8 +71,6 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private string modeChanges = string.Empty;
-
     /// <summary>
     ///   Gets the collection of arguments ( parameters ) for the <see cref="ChannelModeMessage.ModeChanges" /> property.
     /// </summary>
@@ -83,7 +83,13 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private readonly List<string> modeArguments = new List<string>();
+    #region IChannelTargetedMessage Members
+
+    bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
+      return IsTargetedAtChannel(channelName);
+    }
+
+    #endregion
 
     /// <summary>
     ///   Determines if the message can be parsed by this type.
@@ -143,19 +149,11 @@ namespace Supay.Irc.Messages {
       conduit.OnChannelMode(new IrcMessageEventArgs<ChannelModeMessage>(this));
     }
 
-    #region IChannelTargetedMessage Members
-
-    bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
-      return IsTargetedAtChannel(channelName);
-    }
-
     /// <summary>
     ///   Determines if the the current message is targeted at the given channel.
     /// </summary>
     protected virtual bool IsTargetedAtChannel(string channelName) {
       return Channel.EqualsI(channelName);
     }
-
-    #endregion
   }
 }

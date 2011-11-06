@@ -7,6 +7,9 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class SilenceReplyMessage : NumericMessage {
+    private string silenceListOwner = string.Empty;
+    private User silencedUser = new User();
+
     /// <summary>
     ///   Creates a new instance of the <see cref="SilenceReplyMessage" />.
     /// </summary>
@@ -26,8 +29,6 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private User silencedUser = new User();
-
     /// <summary>
     ///   Gets or sets the nick of the owner of the silence list
     /// </summary>
@@ -39,8 +40,6 @@ namespace Supay.Irc.Messages {
         silenceListOwner = value;
       }
     }
-
-    private string silenceListOwner = string.Empty;
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.

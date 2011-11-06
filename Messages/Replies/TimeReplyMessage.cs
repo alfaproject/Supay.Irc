@@ -7,6 +7,9 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class ServerTimeReplyMessage : NumericMessage {
+    private string server = string.Empty;
+    private string time = string.Empty;
+
     /// <summary>
     ///   Creates a new instance of the <see cref="ServerTimeReplyMessage" /> class
     /// </summary>
@@ -37,9 +40,6 @@ namespace Supay.Irc.Messages {
         time = value;
       }
     }
-
-    private string server = string.Empty;
-    private string time = string.Empty;
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.

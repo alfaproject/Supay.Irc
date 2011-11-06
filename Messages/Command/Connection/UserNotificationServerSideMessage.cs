@@ -7,6 +7,11 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class UserNotificationServerSideMessage : CommandMessage {
+    private string hostName;
+    private string realName = string.Empty;
+    private string serverName;
+    private string userName = string.Empty;
+
     /// <summary>
     ///   Gets the IRC command associated with this message.
     /// </summary>
@@ -28,8 +33,6 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private string userName = string.Empty;
-
     /// <summary>
     ///   Gets or sets the name of the user's host.
     /// </summary>
@@ -41,8 +44,6 @@ namespace Supay.Irc.Messages {
         hostName = value;
       }
     }
-
-    private string hostName;
 
     /// <summary>
     ///   Gets or sets the name of the server which the user is on.
@@ -56,8 +57,6 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private string serverName;
-
     /// <summary>
     ///   Gets or sets the real name of the client.
     /// </summary>
@@ -69,8 +68,6 @@ namespace Supay.Irc.Messages {
         realName = value;
       }
     }
-
-    private string realName = string.Empty;
 
     /// <exclude />
     public override bool CanParse(string unparsedMessage) {

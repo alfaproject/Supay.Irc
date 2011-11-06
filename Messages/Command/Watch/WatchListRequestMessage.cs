@@ -9,6 +9,8 @@ namespace Supay.Irc.Messages {
   public class WatchListRequestMessage : WatchMessage {
     #region Properties
 
+    private bool onlineOnly;
+
     /// <summary>
     ///   Gets or sets if the message requests that only online contacts are in the list.
     /// </summary>
@@ -20,8 +22,6 @@ namespace Supay.Irc.Messages {
         onlineOnly = value;
       }
     }
-
-    private bool onlineOnly;
 
     #endregion
 

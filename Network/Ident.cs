@@ -14,10 +14,9 @@ namespace Supay.Irc.Network {
   /// </summary>
   [DesignerCategory("Code")]
   public sealed class Ident : Component {
-    private static readonly Ident _instance = new Ident();
-
     private const string REPLY = " : USERID : UNIX : ";
     private const int PORT = 113;
+    private static readonly Ident _instance = new Ident();
 
     private readonly object _syncLock = new object();
     private TcpListener _listener;

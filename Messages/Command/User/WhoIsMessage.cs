@@ -24,6 +24,9 @@ namespace Supay.Irc.Messages {
   /// </remarks>
   [Serializable]
   public class WhoIsMessage : CommandMessage {
+    private readonly UserCollection masks = new UserCollection();
+    private string server = string.Empty;
+
     /// <summary>
     ///   Gets the collection of users that information is requested for.
     /// </summary>
@@ -32,8 +35,6 @@ namespace Supay.Irc.Messages {
         return masks;
       }
     }
-
-    private readonly UserCollection masks = new UserCollection();
 
     /// <summary>
     ///   Gets or sets the server which should return the information.
@@ -55,8 +56,6 @@ namespace Supay.Irc.Messages {
         return "WHOIS";
       }
     }
-
-    private string server = string.Empty;
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.

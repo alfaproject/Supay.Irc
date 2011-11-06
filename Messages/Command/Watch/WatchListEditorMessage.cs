@@ -9,6 +9,10 @@ namespace Supay.Irc.Messages {
   public class WatchListEditorMessage : WatchMessage {
     #region Properties
 
+    private Collection<string> addedNicks;
+
+    private Collection<string> removedNicks;
+
     /// <summary>
     ///   Gets the collection of nicks being added to the watch list.
     /// </summary>
@@ -21,8 +25,6 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private Collection<string> addedNicks;
-
     /// <summary>
     ///   Gets the collection of nicks being removed from the watch list.
     /// </summary>
@@ -34,8 +36,6 @@ namespace Supay.Irc.Messages {
         return removedNicks;
       }
     }
-
-    private Collection<string> removedNicks;
 
     #endregion
 

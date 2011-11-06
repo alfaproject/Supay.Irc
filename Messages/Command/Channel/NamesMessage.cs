@@ -11,6 +11,8 @@ namespace Supay.Irc.Messages {
   /// </remarks>
   [Serializable]
   public class NamesMessage : CommandMessage {
+    private readonly List<string> channels = new List<string>();
+
     /// <summary>
     ///   Gets the channels that should be queried for their users.
     /// </summary>
@@ -19,8 +21,6 @@ namespace Supay.Irc.Messages {
         return channels;
       }
     }
-
-    private readonly List<string> channels = new List<string>();
 
     /// <summary>
     ///   Gets the IRC command associated with this message.

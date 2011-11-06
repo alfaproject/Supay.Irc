@@ -57,12 +57,6 @@ namespace Supay.Irc.Contacts {
 
     #region IDisposable
 
-    protected virtual void Dispose(bool disposing) {
-      if (disposing && _tracker != null && _tracker is ContactsAreOnTracker) {
-        ((IDisposable) _tracker).Dispose();
-      }
-    }
-
     /// <summary>
     ///   Performs application-defined tasks associated with freeing, releasing, or resetting
     ///   unmanaged resources.
@@ -70,6 +64,12 @@ namespace Supay.Irc.Contacts {
     public void Dispose() {
       Dispose(true);
       GC.SuppressFinalize(this);
+    }
+
+    protected virtual void Dispose(bool disposing) {
+      if (disposing && _tracker != null && _tracker is ContactsAreOnTracker) {
+        ((IDisposable) _tracker).Dispose();
+      }
     }
 
     #endregion

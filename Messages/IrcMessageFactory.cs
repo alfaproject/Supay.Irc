@@ -9,15 +9,14 @@ namespace Supay.Irc.Messages {
   ///   Provides clients with a correct <see cref="IrcMessage" /> for a given raw message string.
   /// </summary>
   public sealed class IrcMessageFactory {
-    private static readonly IrcMessageFactory _factory = new IrcMessageFactory();
-
     private const int MIN_MESSAGE_LENGTH = 1;
     private const int MAX_MESSAGE_LENGTH = 512;
+    private static readonly IrcMessageFactory _factory = new IrcMessageFactory();
 
-    private readonly LinkedList<IrcMessage> _numerics;
     private readonly LinkedList<IrcMessage> _commands;
     private readonly LinkedList<IrcMessage> _ctcps;
     private readonly LinkedList<IrcMessage> _customs;
+    private readonly LinkedList<IrcMessage> _numerics;
 
     /// <summary>
     ///   Initializes a new instance of the <see cref="IrcMessageFactory" /> class.

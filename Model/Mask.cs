@@ -8,14 +8,9 @@ namespace Supay.Irc {
   /// </summary>
   [Serializable]
   public class Mask : IEquatable<Mask>, INotifyPropertyChanged {
-    /// <summary>
-    ///   Raised when a property on the instance has changed.
-    /// </summary>
-    public event PropertyChangedEventHandler PropertyChanged;
-
+    private string _host;
     private string _nickname;
     private string _username;
-    private string _host;
 
     #region Constructors
 
@@ -134,13 +129,6 @@ namespace Supay.Irc {
     #region Public Methods
 
     /// <summary>
-    ///   Represents this mask using IRC format.
-    /// </summary>
-    public override string ToString() {
-      return IrcMask;
-    }
-
-    /// <summary>
     ///   Determines whether this instance and another specified <see cref="Mask" /> object have the same value.
     /// </summary>
     /// <param name="other">A <see cref="Mask" />.</param>
@@ -150,6 +138,13 @@ namespace Supay.Irc {
         return false;
       }
       return IrcMask.Equals(other.IrcMask, StringComparison.OrdinalIgnoreCase);
+    }
+
+    /// <summary>
+    ///   Represents this mask using IRC format.
+    /// </summary>
+    public override string ToString() {
+      return IrcMask;
     }
 
     /// <summary>
@@ -200,6 +195,15 @@ namespace Supay.Irc {
         handler(this, new PropertyChangedEventArgs(propertyName));
       }
     }
+
+    #endregion
+
+    #region INotifyPropertyChanged Members
+
+    /// <summary>
+    ///   Raised when a property on the instance has changed.
+    /// </summary>
+    public event PropertyChangedEventHandler PropertyChanged;
 
     #endregion
   }

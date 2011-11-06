@@ -9,6 +9,10 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class FingerReplyMessage : CtcpReplyMessage {
+    private Double idleSeconds;
+    private string loginName = string.Empty;
+    private string realName = string.Empty;
+
     /// <summary>
     ///   Creates a new instance of the <see cref="FingerReplyMessage" /> class.
     /// </summary>
@@ -76,10 +80,6 @@ namespace Supay.Irc.Messages {
     public override void Notify(MessageConduit conduit) {
       conduit.OnFingerReply(new IrcMessageEventArgs<FingerReplyMessage>(this));
     }
-
-    private string realName = string.Empty;
-    private string loginName = string.Empty;
-    private Double idleSeconds;
 
     /// <summary>
     ///   Parses the given string to populate this <see cref="IrcMessage" />.

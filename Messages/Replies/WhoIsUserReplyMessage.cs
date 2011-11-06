@@ -8,6 +8,8 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class WhoIsUserReplyMessage : NumericMessage {
+    private User user = new User();
+
     /// <summary>
     ///   Creates a new instance of the <see cref="WhoIsUserReplyMessage" /> class.
     /// </summary>
@@ -26,8 +28,6 @@ namespace Supay.Irc.Messages {
         user = value;
       }
     }
-
-    private User user = new User();
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.

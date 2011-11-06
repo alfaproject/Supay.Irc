@@ -8,6 +8,9 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class AlreadyOnChannelMessage : ErrorMessage, IChannelTargetedMessage {
+    private string channel;
+    private string nick;
+
     /// <summary>
     ///   Creates a new instances of the <see cref="AlreadyOnChannelMessage" /> class.
     /// </summary>
@@ -27,8 +30,6 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private string nick;
-
     /// <summary>
     ///   Gets or sets the channel being invited to
     /// </summary>
@@ -41,7 +42,13 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private string channel;
+    #region IChannelTargetedMessage Members
+
+    bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
+      return IsTargetedAtChannel(channelName);
+    }
+
+    #endregion
 
     /// <exclude />
     protected override Collection<string> GetParameters() {
@@ -70,19 +77,11 @@ namespace Supay.Irc.Messages {
       conduit.OnAlreadyOnChannel(new IrcMessageEventArgs<AlreadyOnChannelMessage>(this));
     }
 
-    #region IChannelTargetedMessage Members
-
-    bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
-      return IsTargetedAtChannel(channelName);
-    }
-
     /// <summary>
     ///   Determines if the the current message is targeted at the given channel.
     /// </summary>
     protected virtual bool IsTargetedAtChannel(string channelName) {
       return Channel.EqualsI(channelName);
     }
-
-    #endregion
   }
 }

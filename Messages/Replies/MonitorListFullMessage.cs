@@ -9,6 +9,9 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class MonitorListFullMessage : NumericMessage {
+    private int limit;
+    private Collection<string> nicks;
+
     /// <summary>
     ///   Creates a new instance of the <see cref="MonitorListFullMessage" />.
     /// </summary>
@@ -28,8 +31,6 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private int limit;
-
     /// <summary>
     ///   Gets the collection of nicks which couldn't be added to the monitor list.
     /// </summary>
@@ -41,8 +42,6 @@ namespace Supay.Irc.Messages {
         return nicks;
       }
     }
-
-    private Collection<string> nicks;
 
     /// <exclude />
     protected override Collection<string> GetParameters() {

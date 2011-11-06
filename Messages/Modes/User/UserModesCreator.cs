@@ -76,6 +76,17 @@ namespace Supay.Irc.Messages.Modes {
 
     #endregion
 
+    private readonly UserModeCollection modes = new UserModeCollection();
+
+    /// <summary>
+    ///   Gets the collection of modes parsed or to be applied.
+    /// </summary>
+    public virtual IEnumerable<UserMode> Modes {
+      get {
+        return modes;
+      }
+    }
+
     /// <summary>
     ///   Removes redundant or overridden modes from the modes collection.
     /// </summary>
@@ -106,16 +117,5 @@ namespace Supay.Irc.Messages.Modes {
         }
       }
     }
-
-    /// <summary>
-    ///   Gets the collection of modes parsed or to be applied.
-    /// </summary>
-    public virtual IEnumerable<UserMode> Modes {
-      get {
-        return modes;
-      }
-    }
-
-    private readonly UserModeCollection modes = new UserModeCollection();
   }
 }

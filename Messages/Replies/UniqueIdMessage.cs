@@ -8,6 +8,8 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class UniqueIdMessage : NumericMessage {
+    private const string yourUniqueID = "your unique ID";
+
     /// <summary>
     ///   Creates a new instance of the <see cref="UniqueIdMessage" /> class.
     /// </summary>
@@ -22,8 +24,6 @@ namespace Supay.Irc.Messages {
       get;
       set;
     }
-
-    private const string yourUniqueID = "your unique ID";
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.

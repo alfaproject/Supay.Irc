@@ -7,6 +7,9 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public abstract class CtcpMessage : IrcMessage, IChannelTargetedMessage, IQueryTargetedMessage {
+    private string internalCommand = string.Empty;
+    private string target = string.Empty;
+
     /// <summary>
     ///   Gets the targets of this <see cref="CtcpMessage" />.
     /// </summary>
@@ -19,8 +22,6 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private string target = string.Empty;
-
     /// <summary>
     ///   Gets the CTCP Command requested.
     /// </summary>
@@ -32,8 +33,6 @@ namespace Supay.Irc.Messages {
         internalCommand = value;
       }
     }
-
-    private string internalCommand = string.Empty;
 
     /// <summary>
     ///   Gets the data payload of the CTCP request.
@@ -48,6 +47,22 @@ namespace Supay.Irc.Messages {
     protected abstract string TransportCommand {
       get;
     }
+
+    #region IChannelTargetedMessage Members
+
+    bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
+      return IsTargetedAtChannel(channelName);
+    }
+
+    #endregion
+
+    #region IQueryTargetedMessage Members
+
+    bool IQueryTargetedMessage.IsQueryToUser(User user) {
+      return IsQueryToUser(user);
+    }
+
+    #endregion
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.
@@ -97,25 +112,11 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    #region IChannelTargetedMessage Members
-
-    bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
-      return IsTargetedAtChannel(channelName);
-    }
-
     /// <summary>
     ///   Determines if the the current message is targeted at the given channel.
     /// </summary>
     protected virtual bool IsTargetedAtChannel(string channelName) {
       return Target.EqualsI(channelName);
-    }
-
-    #endregion
-
-    #region IQueryTargetedMessage Members
-
-    bool IQueryTargetedMessage.IsQueryToUser(User user) {
-      return IsQueryToUser(user);
     }
 
     /// <summary>
@@ -124,7 +125,5 @@ namespace Supay.Irc.Messages {
     protected virtual bool IsQueryToUser(User user) {
       return user.Nickname.Equals(target);
     }
-
-    #endregion
   }
 }

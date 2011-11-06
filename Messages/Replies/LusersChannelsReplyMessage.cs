@@ -8,6 +8,9 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class LusersChannelsReplyMessage : NumericMessage {
+    private const string channelsFormed = "channels formed";
+    private int channelCount = -1;
+
     /// <summary>
     ///   Creates a new instance of the <see cref="LusersChannelsReplyMessage" /> class.
     /// </summary>
@@ -27,8 +30,6 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private int channelCount = -1;
-
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.
     /// </summary>
@@ -46,8 +47,6 @@ namespace Supay.Irc.Messages {
       base.ParseParameters(parameters);
       ChannelCount = Convert.ToInt32(parameters[1], CultureInfo.InvariantCulture);
     }
-
-    private const string channelsFormed = "channels formed";
 
     /// <summary>
     ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.

@@ -7,6 +7,9 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class WhoMessage : CommandMessage {
+    private User mask = new User();
+    private bool restrictToOps;
+
     /// <summary>
     ///   Gets or sets the mask which is matched for users to return information about.
     /// </summary>
@@ -18,8 +21,6 @@ namespace Supay.Irc.Messages {
         mask = value;
       }
     }
-
-    private User mask = new User();
 
     /// <summary>
     ///   Gets or sets if the results should only contain IRC operators.
@@ -41,8 +42,6 @@ namespace Supay.Irc.Messages {
         return "WHO";
       }
     }
-
-    private bool restrictToOps;
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.

@@ -7,6 +7,8 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class TooManyLinesMessage : ErrorMessage {
+    private string command;
+
     /// <summary>
     ///   Creates a new instances of the <see cref="TooManyLinesMessage" /> class.
     /// </summary>
@@ -25,8 +27,6 @@ namespace Supay.Irc.Messages {
         command = value;
       }
     }
-
-    private string command;
 
     /// <exclude />
     protected override Collection<string> GetParameters() {

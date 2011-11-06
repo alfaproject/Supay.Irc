@@ -9,9 +9,9 @@ namespace Supay.Irc.Messages {
   [Serializable]
   public class WhoReplyMessage : NumericMessage, IChannelTargetedMessage {
     private string _channel = string.Empty;
-    private User _user = new User();
     private int _hopCount = -1;
     private ChannelStatus _status = ChannelStatus.None;
+    private User _user = new User();
 
     /// <summary>
     ///   Creates a new instance of the <see cref="WhoReplyMessage" /> class.
@@ -71,6 +71,17 @@ namespace Supay.Irc.Messages {
         _hopCount = value;
       }
     }
+
+    #region IChannelTargetedMessage Members
+
+    /// <summary>
+    ///   Determines if the the current message is targeted at the given channel.
+    /// </summary>
+    public virtual bool IsTargetedAtChannel(string channelName) {
+      return Channel.EqualsI(channelName);
+    }
+
+    #endregion
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.
@@ -142,16 +153,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(MessageConduit conduit) {
       conduit.OnWhoReply(new IrcMessageEventArgs<WhoReplyMessage>(this));
     }
-
-    #region IChannelTargetedMessage Members
-
-    /// <summary>
-    ///   Determines if the the current message is targeted at the given channel.
-    /// </summary>
-    public virtual bool IsTargetedAtChannel(string channelName) {
-      return Channel.EqualsI(channelName);
-    }
-
-    #endregion
   }
 }

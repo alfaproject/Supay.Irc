@@ -8,6 +8,9 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class ServerCreatedMessage : NumericMessage {
+    private const string thisServerCreated = "This server was created ";
+    private string createdDate = string.Empty;
+
     /// <summary>
     ///   Creates a new instance of the <see cref="ServerCreatedMessage" /> class.
     /// </summary>
@@ -26,10 +29,6 @@ namespace Supay.Irc.Messages {
         createdDate = value;
       }
     }
-
-    private string createdDate = string.Empty;
-
-    private const string thisServerCreated = "This server was created ";
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.

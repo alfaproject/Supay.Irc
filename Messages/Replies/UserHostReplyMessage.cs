@@ -7,6 +7,8 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class UserHostReplyMessage : NumericMessage {
+    private readonly UserCollection replies = new UserCollection();
+
     /// <summary>
     ///   Creates a new instance of the <see cref="UserHostReplyMessage" /> class.
     /// </summary>
@@ -22,8 +24,6 @@ namespace Supay.Irc.Messages {
         return replies;
       }
     }
-
-    private readonly UserCollection replies = new UserCollection();
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.

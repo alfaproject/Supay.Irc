@@ -12,6 +12,9 @@ namespace Supay.Irc.Messages {
   /// </remarks>
   [Serializable]
   public class NotOnChannelMessage : ErrorMessage, IChannelTargetedMessage {
+    private string channel;
+    private string nick;
+
     /// <summary>
     ///   Creates a new instances of the <see cref="NotOnChannelMessage" /> class.
     /// </summary>
@@ -31,8 +34,6 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private string nick;
-
     /// <summary>
     ///   Gets or sets the channel being targeted
     /// </summary>
@@ -45,7 +46,13 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private string channel;
+    #region IChannelTargetedMessage Members
+
+    bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
+      return IsTargetedAtChannel(channelName);
+    }
+
+    #endregion
 
     /// <exclude />
     protected override Collection<string> GetParameters() {
@@ -74,19 +81,11 @@ namespace Supay.Irc.Messages {
       conduit.OnNotOnChannel(new IrcMessageEventArgs<NotOnChannelMessage>(this));
     }
 
-    #region IChannelTargetedMessage Members
-
-    bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
-      return IsTargetedAtChannel(channelName);
-    }
-
     /// <summary>
     ///   Determines if the the current message is targeted at the given channel.
     /// </summary>
     protected virtual bool IsTargetedAtChannel(string channelName) {
       return Channel.EqualsI(channelName);
     }
-
-    #endregion
   }
 }

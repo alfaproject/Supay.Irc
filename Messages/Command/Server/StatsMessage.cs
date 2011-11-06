@@ -7,6 +7,8 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class StatsMessage : ServerQueryBase {
+    private string query;
+
     /// <summary>
     ///   Gets the IRC command associated with this message.
     /// </summary>
@@ -28,7 +30,14 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private string query;
+    /// <summary>
+    ///   Gets the index of the parameter which holds the server which should respond to the query.
+    /// </summary>
+    protected override int TargetParsingPosition {
+      get {
+        return 1;
+      }
+    }
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.
@@ -51,15 +60,6 @@ namespace Supay.Irc.Messages {
         Query = parameters[0];
       } else {
         Query = string.Empty;
-      }
-    }
-
-    /// <summary>
-    ///   Gets the index of the parameter which holds the server which should respond to the query.
-    /// </summary>
-    protected override int TargetParsingPosition {
-      get {
-        return 1;
       }
     }
 

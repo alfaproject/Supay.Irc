@@ -9,6 +9,8 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class GenericNumericMessage : NumericMessage {
+    private Collection<string> data = new Collection<string>();
+
     /// <summary>
     ///   Gets the Numeric command of the Message
     /// </summary>
@@ -29,8 +31,6 @@ namespace Supay.Irc.Messages {
         return data;
       }
     }
-
-    private Collection<string> data = new Collection<string>();
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.

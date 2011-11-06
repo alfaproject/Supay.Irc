@@ -13,6 +13,9 @@ namespace Supay.Irc.Messages {
   /// </remarks>
   [Serializable]
   public class BanListFullMessage : ErrorMessage, IChannelTargetedMessage {
+    private Mask banMask;
+    private string channel;
+
     /// <summary>
     ///   Creates a new instances of the <see cref="BanListFullMessage" /> class.
     /// </summary>
@@ -32,8 +35,6 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private Mask banMask;
-
     /// <summary>
     ///   Gets or sets the channel being targeted
     /// </summary>
@@ -46,7 +47,13 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private string channel;
+    #region IChannelTargetedMessage Members
+
+    bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
+      return IsTargetedAtChannel(channelName);
+    }
+
+    #endregion
 
     /// <exclude />
     protected override Collection<string> GetParameters() {
@@ -76,19 +83,11 @@ namespace Supay.Irc.Messages {
       conduit.OnBanListFull(new IrcMessageEventArgs<BanListFullMessage>(this));
     }
 
-    #region IChannelTargetedMessage Members
-
-    bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
-      return IsTargetedAtChannel(channelName);
-    }
-
     /// <summary>
     ///   Determines if the the current message is targeted at the given channel.
     /// </summary>
     protected virtual bool IsTargetedAtChannel(string channelName) {
       return Channel.EqualsI(channelName);
     }
-
-    #endregion
   }
 }

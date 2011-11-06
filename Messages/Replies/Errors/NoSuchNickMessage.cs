@@ -7,6 +7,8 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class NoSuchNickMessage : ErrorMessage {
+    private string nick = string.Empty;
+
     /// <summary>
     ///   Creates a new instances of the <see cref="NoSuchNickMessage" /> class.
     /// </summary>
@@ -25,8 +27,6 @@ namespace Supay.Irc.Messages {
         nick = value;
       }
     }
-
-    private string nick = string.Empty;
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.

@@ -15,6 +15,8 @@ namespace Supay.Irc.Messages {
   /// </remarks>
   [Serializable]
   public class PasswordMessage : CommandMessage {
+    private string password = string.Empty;
+
     /// <summary>
     ///   Creates a new instance of the <see cref="PasswordMessage" /> class.
     /// </summary>
@@ -48,8 +50,6 @@ namespace Supay.Irc.Messages {
         password = value;
       }
     }
-
-    private string password = string.Empty;
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.

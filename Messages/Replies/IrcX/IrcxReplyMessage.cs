@@ -8,6 +8,12 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class IrcxReplyMessage : NumericMessage {
+    private readonly Collection<string> authenticationPackages = new Collection<string>();
+    private string ircxVersion = string.Empty;
+    private bool isIrcxClientMode;
+    private int maximumMessageLength = -1;
+    private string tokens = "*";
+
     /// <summary>
     ///   Creates a new instance of the <see cref="IrcxReplyMessage" />.
     /// </summary>
@@ -27,8 +33,6 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private bool isIrcxClientMode;
-
     /// <summary>
     ///   Gets or sets the version of IRCX the server implements.
     /// </summary>
@@ -41,8 +45,6 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private string ircxVersion = string.Empty;
-
     /// <summary>
     ///   Gets the collection of authentication packages
     /// </summary>
@@ -51,8 +53,6 @@ namespace Supay.Irc.Messages {
         return authenticationPackages;
       }
     }
-
-    private readonly Collection<string> authenticationPackages = new Collection<string>();
 
     /// <summary>
     ///   Gets or sets the maximum message length, in bytes.
@@ -65,8 +65,6 @@ namespace Supay.Irc.Messages {
         maximumMessageLength = value;
       }
     }
-
-    private int maximumMessageLength = -1;
 
     /// <summary>
     ///   Gets or sets the tokens
@@ -83,8 +81,6 @@ namespace Supay.Irc.Messages {
         tokens = value;
       }
     }
-
-    private string tokens = "*";
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.

@@ -7,6 +7,8 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class UserHostMessage : CommandMessage {
+    private readonly Collection<string> nicks = new Collection<string>();
+
     /// <summary>
     ///   Gets the IRC command associated with this message.
     /// </summary>
@@ -24,8 +26,6 @@ namespace Supay.Irc.Messages {
         return nicks;
       }
     }
-
-    private readonly Collection<string> nicks = new Collection<string>();
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.

@@ -21,6 +21,10 @@ namespace Supay.Irc {
 
     #region Properties
 
+    private readonly Client client;
+    private readonly Journal journal = new Journal();
+    private User user;
+
     /// <summary>
     ///   Gets the User in the private chat.
     /// </summary>
@@ -34,8 +38,6 @@ namespace Supay.Irc {
       }
     }
 
-    private User user;
-
     /// <summary>
     ///   Gets the journal of messages on the query
     /// </summary>
@@ -45,8 +47,6 @@ namespace Supay.Irc {
       }
     }
 
-    private readonly Journal journal = new Journal();
-
     /// <summary>
     ///   Gets the client which the query is on.
     /// </summary>
@@ -55,8 +55,6 @@ namespace Supay.Irc {
         return client;
       }
     }
-
-    private readonly Client client;
 
     #endregion
 
@@ -75,6 +73,8 @@ namespace Supay.Irc {
     /// </summary>
     public event PropertyChangedEventHandler PropertyChanged;
 
+    #endregion
+
     private void OnPropertyChanged(PropertyChangedEventArgs e) {
       if (PropertyChanged != null) {
         PropertyChanged(this, e);
@@ -84,7 +84,5 @@ namespace Supay.Irc {
     private void NotifyPropertyChanged(string propertyName) {
       OnPropertyChanged(new PropertyChangedEventArgs(propertyName));
     }
-
-    #endregion
   }
 }

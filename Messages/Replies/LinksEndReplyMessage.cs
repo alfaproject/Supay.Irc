@@ -7,6 +7,8 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class LinksEndReplyMessage : NumericMessage {
+    private string mask = string.Empty;
+
     /// <summary>
     ///   Creates a new instance of the <see cref="LinksEndReplyMessage" /> class.
     /// </summary>
@@ -25,8 +27,6 @@ namespace Supay.Irc.Messages {
         mask = value;
       }
     }
-
-    private string mask = string.Empty;
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.

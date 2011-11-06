@@ -18,6 +18,8 @@ namespace Supay.Irc {
   /// </remarks>
   [Serializable]
   public class ServerSupport {
+    #region ExtendedListParameters enum
+
     /// <summary>
     ///   The extended parameters which the server can support on a List message.
     /// </summary>
@@ -55,7 +57,11 @@ namespace Supay.Irc {
       Topic = 16
     }
 
+    #endregion
+
     #region Default Support
+
+    private static ServerSupport _defaultSupport;
 
     /// <summary>
     /// </summary>
@@ -72,11 +78,53 @@ namespace Supay.Irc {
       }
     }
 
-    private static ServerSupport _defaultSupport;
-
     #endregion
 
     #region Properties
+
+    private readonly Dictionary<string, int> _channelLimits = new Dictionary<string, int>();
+    private readonly Collection<string> _channelTypes = new Collection<string>();
+    private readonly Dictionary<string, int> _maxMessageTargets = new Dictionary<string, int>();
+    private readonly Collection<string> _modesWithParameters = new Collection<string>();
+    private readonly Collection<string> _modesWithParametersWhenSet = new Collection<string>();
+    private readonly Collection<string> _modesWithoutParameters = new Collection<string>();
+    private readonly Dictionary<string, int> _safeChannelPrefixLengths = new Dictionary<string, int>();
+    private bool _banExceptions;
+    private bool _callerId;
+    private string _caseMapping = "rfc1459";
+    private int _channelIdLength = -1;
+    private bool _channelMessages;
+    private bool _channelNotices;
+    private string _channelStatuses = "(ov)@+";
+    private string _characterSet = string.Empty;
+    private ExtendedListParameters _eList;
+    private bool _forcedNickChanges;
+    private bool _invitationExceptions;
+    private bool _knock;
+    private int _maxAwayMessageLength = -1;
+    private int _maxBans = -1;
+    private int _maxChannelNameLength = 200;
+    private int _maxChannels = -1;
+    private int _maxKickCommentLength = -1;
+    private int _maxModes = 3;
+    private int _maxMonitors;
+    private int _maxNickLength = 9;
+    private int _maxSilences;
+    private int _maxTopicLength = -1;
+    private int _maxWatches = -1;
+    private bool _messagesToOperators;
+    private string _networkName = string.Empty;
+    private bool _penalties;
+    private bool _rfc2812;
+    private bool _safeList;
+    private string _standard = "i-d";
+    private bool _userIp;
+    private bool _virtualChannels;
+    private bool _whoX;
+    private bool eTrace;
+    private int maxBanExceptions = -1;
+    private int maxInvitationsExceptions = -1;
+    private string statusMessages = string.Empty;
 
     /// <summary>
     ///   Gets or sets if the server supports the Deaf user mode
@@ -98,8 +146,6 @@ namespace Supay.Irc {
       }
     }
 
-    private string _standard = "i-d";
-
     /// <summary>
     ///   Gets or sets a list of channel modes a person can get and the respective prefix a channel or nickname will get in case the person has it.
     /// </summary>
@@ -116,8 +162,6 @@ namespace Supay.Irc {
       }
     }
 
-    private string _channelStatuses = "(ov)@+";
-
     /// <summary>
     ///   Gets or sets the channel status prefixes supported for matched-status-only messages
     /// </summary>
@@ -130,8 +174,6 @@ namespace Supay.Irc {
       }
     }
 
-    private string statusMessages = string.Empty;
-
     /// <summary>
     ///   Gets the supported channel prefixes.
     /// </summary>
@@ -140,8 +182,6 @@ namespace Supay.Irc {
         return (_channelTypes);
       }
     }
-
-    private readonly Collection<string> _channelTypes = new Collection<string>();
 
     /// <summary>
     ///   Gets the modes that require parameters
@@ -152,8 +192,6 @@ namespace Supay.Irc {
       }
     }
 
-    private readonly Collection<string> _modesWithParameters = new Collection<string>();
-
     /// <summary>
     ///   Gets the modes that require parameters only when set.
     /// </summary>
@@ -163,8 +201,6 @@ namespace Supay.Irc {
       }
     }
 
-    private readonly Collection<string> _modesWithParametersWhenSet = new Collection<string>();
-
     /// <summary>
     ///   Gets the modes that do not require parameters.
     /// </summary>
@@ -173,8 +209,6 @@ namespace Supay.Irc {
         return (_modesWithoutParameters);
       }
     }
-
-    private readonly Collection<string> _modesWithoutParameters = new Collection<string>();
 
     /// <summary>
     ///   Maximum number of channel modes with parameter allowed per <see cref="Supay.Irc.Messages.ChannelModeMessage" /> command.
@@ -187,8 +221,6 @@ namespace Supay.Irc {
         _maxModes = value;
       }
     }
-
-    private int _maxModes = 3;
 
     /// <summary>
     ///   Gets or sets the maximum number of channels a client can join.
@@ -205,8 +237,6 @@ namespace Supay.Irc {
       }
     }
 
-    private int _maxChannels = -1;
-
     /// <summary>
     ///   Gets the collection of channel limits, grouped by channel type (ex, #, +).
     /// </summary>
@@ -218,8 +248,6 @@ namespace Supay.Irc {
         return _channelLimits;
       }
     }
-
-    private readonly Dictionary<string, int> _channelLimits = new Dictionary<string, int>();
 
     /// <summary>
     ///   Gets or sets the maximum nickname length.
@@ -233,8 +261,6 @@ namespace Supay.Irc {
       }
     }
 
-    private int _maxNickLength = 9;
-
     /// <summary>
     ///   Gets or sets the maximum channel topic length.
     /// </summary>
@@ -246,8 +272,6 @@ namespace Supay.Irc {
         _maxTopicLength = value;
       }
     }
-
-    private int _maxTopicLength = -1;
 
     /// <summary>
     ///   Gets or sets the maximum length of the reason in a <see cref="Supay.Irc.Messages.KickMessage" />.
@@ -261,8 +285,6 @@ namespace Supay.Irc {
       }
     }
 
-    private int _maxKickCommentLength = -1;
-
     /// <summary>
     ///   Gets or sets the maximum length of a channel name.
     /// </summary>
@@ -274,8 +296,6 @@ namespace Supay.Irc {
         _maxChannelNameLength = value;
       }
     }
-
-    private int _maxChannelNameLength = 200;
 
     /// <summary>
     ///   Gets or sets the maximum number of bans that a channel can have.
@@ -289,8 +309,6 @@ namespace Supay.Irc {
       }
     }
 
-    private int _maxBans = -1;
-
     /// <summary>
     ///   Gets or sets the Maximum number of invitation exceptions a channel can have.
     /// </summary>
@@ -302,8 +320,6 @@ namespace Supay.Irc {
         maxInvitationsExceptions = value;
       }
     }
-
-    private int maxInvitationsExceptions = -1;
 
     /// <summary>
     ///   Gets or sets the maximum number of ban exceptions that a channel can have.
@@ -317,8 +333,6 @@ namespace Supay.Irc {
       }
     }
 
-    private int maxBanExceptions = -1;
-
     /// <summary>
     ///   Gets or sets the name of the network which the server is on.
     /// </summary>
@@ -330,8 +344,6 @@ namespace Supay.Irc {
         _networkName = value;
       }
     }
-
-    private string _networkName = string.Empty;
 
     /// <summary>
     ///   Gets or sets if the server supports channel ban exceptions.
@@ -345,8 +357,6 @@ namespace Supay.Irc {
       }
     }
 
-    private bool _banExceptions;
-
     /// <summary>
     ///   Gets or sets if the server supports channel invitation exceptions.
     /// </summary>
@@ -359,8 +369,6 @@ namespace Supay.Irc {
       }
     }
 
-    private bool _invitationExceptions;
-
     /// <summary>
     ///   Gets or sets the maximum number of silence ( serverside ignore ) listings a client can store.
     /// </summary>
@@ -372,8 +380,6 @@ namespace Supay.Irc {
         _maxSilences = value;
       }
     }
-
-    private int _maxSilences;
 
     /// <summary>
     ///   Gets or sets if the server supports messages to channel operators.
@@ -391,8 +397,6 @@ namespace Supay.Irc {
       }
     }
 
-    private bool _messagesToOperators;
-
     /// <summary>
     ///   Gets or sets the case mapping supported by the server.
     /// </summary>
@@ -408,8 +412,6 @@ namespace Supay.Irc {
       }
     }
 
-    private string _caseMapping = "rfc1459";
-
     /// <summary>
     ///   Gets or sets the text encoding used by the server.
     /// </summary>
@@ -421,8 +423,6 @@ namespace Supay.Irc {
         _characterSet = value;
       }
     }
-
-    private string _characterSet = string.Empty;
 
     /// <summary>
     ///   Gets or sets if the server supports the standards declared in rfc 2812.
@@ -436,8 +436,6 @@ namespace Supay.Irc {
       }
     }
 
-    private bool _rfc2812;
-
     /// <summary>
     ///   Gets or sets the length of channel ids.
     /// </summary>
@@ -449,8 +447,6 @@ namespace Supay.Irc {
         _channelIdLength = value;
       }
     }
-
-    private int _channelIdLength = -1;
 
     /// <summary>
     ///   Gets or sets if the server has a message penalty.
@@ -464,8 +460,6 @@ namespace Supay.Irc {
       }
     }
 
-    private bool _penalties;
-
     /// <summary>
     ///   Gets or sets if the server will change your nick automatticly when it needs to.
     /// </summary>
@@ -477,8 +471,6 @@ namespace Supay.Irc {
         _forcedNickChanges = value;
       }
     }
-
-    private bool _forcedNickChanges;
 
     /// <summary>
     ///   Gets or sets if the server supports the USERIP command.
@@ -492,8 +484,6 @@ namespace Supay.Irc {
       }
     }
 
-    private bool _userIp;
-
     /// <summary>
     ///   Gets or sets if the server supports the CPRIVMSG command.
     /// </summary>
@@ -505,8 +495,6 @@ namespace Supay.Irc {
         _channelMessages = value;
       }
     }
-
-    private bool _channelMessages;
 
     /// <summary>
     ///   Gets or sets if the server supports the CNOTICE command.
@@ -520,8 +508,6 @@ namespace Supay.Irc {
       }
     }
 
-    private bool _channelNotices;
-
     /// <summary>
     ///   Gets or sets the maximum number of targets allowed on targetted messages, grouped by message command
     /// </summary>
@@ -530,8 +516,6 @@ namespace Supay.Irc {
         return _maxMessageTargets;
       }
     }
-
-    private readonly Dictionary<string, int> _maxMessageTargets = new Dictionary<string, int>();
 
     /// <summary>
     ///   Gets or sets if the server supports the <see cref="Supay.Irc.Messages.KnockMessage" />.
@@ -545,8 +529,6 @@ namespace Supay.Irc {
       }
     }
 
-    private bool _knock;
-
     /// <summary>
     ///   Gets or sets if the server supports virtual channels.
     /// </summary>
@@ -558,8 +540,6 @@ namespace Supay.Irc {
         _virtualChannels = value;
       }
     }
-
-    private bool _virtualChannels;
 
     /// <summary>
     ///   Gets or sets if the <see cref="Supay.Irc.Messages.ListReplyMessage" /> is sent in multiple itterations.
@@ -573,8 +553,6 @@ namespace Supay.Irc {
       }
     }
 
-    private bool _safeList;
-
     /// <summary>
     ///   Gets or sets the extended parameters the server supports for a <see cref="T:Supay.Irc.Messages.ListMessage" />.
     /// </summary>
@@ -586,8 +564,6 @@ namespace Supay.Irc {
         _eList = value;
       }
     }
-
-    private ExtendedListParameters _eList;
 
     /// <summary>
     ///   Gets or sets the maximum number of watches a user is allowed to set.
@@ -601,8 +577,6 @@ namespace Supay.Irc {
       }
     }
 
-    private int _maxWatches = -1;
-
     /// <summary>
     ///   Gets or sets if the <see cref="Supay.Irc.Messages.WhoMessage" /> uses the WHOX protocol
     /// </summary>
@@ -614,8 +588,6 @@ namespace Supay.Irc {
         _whoX = value;
       }
     }
-
-    private bool _whoX;
 
     /// <summary>
     ///   Gets or sets if the server suports callerid-style ignore.
@@ -629,8 +601,6 @@ namespace Supay.Irc {
       }
     }
 
-    private bool _callerId;
-
     /// <summary>
     ///   Gets or sets if the server supports ETrace.
     /// </summary>
@@ -642,8 +612,6 @@ namespace Supay.Irc {
         eTrace = value;
       }
     }
-
-    private bool eTrace;
 
     /// <summary>
     ///   Gets or sets the maximum number of user monitors a user is allowed to set.
@@ -662,8 +630,6 @@ namespace Supay.Irc {
       }
     }
 
-    private int _maxMonitors;
-
     /// <summary>
     ///   Gets the collection of safe channel prefix lengths, grouped by the channel type they apply to.
     /// </summary>
@@ -672,8 +638,6 @@ namespace Supay.Irc {
         return _safeChannelPrefixLengths;
       }
     }
-
-    private readonly Dictionary<string, int> _safeChannelPrefixLengths = new Dictionary<string, int>();
 
     /// <summary>
     ///   Gets or sets the maximum length of away messages.
@@ -687,9 +651,9 @@ namespace Supay.Irc {
       }
     }
 
-    private int _maxAwayMessageLength = -1;
-
     #endregion
+
+    private readonly NameValueCollection unknownItems = new NameValueCollection();
 
     /// <summary>
     ///   Gets the list of unknown items supported by the server.
@@ -699,8 +663,6 @@ namespace Supay.Irc {
         return unknownItems;
       }
     }
-
-    private readonly NameValueCollection unknownItems = new NameValueCollection();
 
     /// <summary>
     ///   Loads support information from the given <see cref="Supay.Irc.Messages.SupportMessage" />.
@@ -935,14 +897,18 @@ namespace Supay.Irc {
       return list;
     }
 
+    #region Nested type: InfoPair
+
     private struct InfoPair {
+      public readonly string Key;
+      public readonly string Value;
+
       public InfoPair(string key, string value) {
         Key = key;
         Value = value;
       }
-
-      public readonly string Key;
-      public readonly string Value;
     }
+
+    #endregion
   }
 }

@@ -7,6 +7,8 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class WatchListEndReplyMessage : NumericMessage {
+    private string listType = string.Empty;
+
     /// <summary>
     ///   Creates a new instance of the <see cref="WatchListEndReplyMessage" />.
     /// </summary>
@@ -25,8 +27,6 @@ namespace Supay.Irc.Messages {
         listType = value;
       }
     }
-
-    private string listType = string.Empty;
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.

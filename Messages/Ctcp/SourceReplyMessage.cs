@@ -9,6 +9,10 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class SourceReplyMessage : CtcpReplyMessage {
+    private readonly Collection<string> files = new Collection<string>();
+    private string folder = string.Empty;
+    private string server = string.Empty;
+
     /// <summary>
     ///   Creates a new instance of the <see cref="SourceReplyMessage" /> class.
     /// </summary>
@@ -28,8 +32,6 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private string server = string.Empty;
-
     /// <summary>
     ///   Gets or sets the folder path to the client's distribution.
     /// </summary>
@@ -42,8 +44,6 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private string folder = string.Empty;
-
     /// <summary>
     ///   Gets the list of files that must be downloaded.
     /// </summary>
@@ -52,8 +52,6 @@ namespace Supay.Irc.Messages {
         return files;
       }
     }
-
-    private readonly Collection<string> files = new Collection<string>();
 
     /// <summary>
     ///   Gets the data payload of the Ctcp request.

@@ -39,28 +39,6 @@ namespace Supay.Irc.Messages {
       set;
     }
 
-    /// <summary>
-    ///   Overrides <see cref="IrcMessage.GetParameters" />.
-    /// </summary>
-    protected override Collection<string> GetParameters() {
-      Collection<string> parameters = base.GetParameters();
-      parameters.Add(MessageUtil.CreateList(Targets, ","));
-      parameters.Add(Text);
-      return parameters;
-    }
-
-    /// <summary>
-    ///   Parses the parameters portion of the message.
-    /// </summary>
-    protected override void ParseParameters(Collection<string> parameters) {
-      base.ParseParameters(parameters);
-      Targets.Clear();
-      if (parameters.Count >= 2) {
-        Targets.AddRange(parameters[0].Split(','));
-        Text = parameters[1];
-      }
-    }
-
     #region IChannelTargetedMessage Members
 
     /// <summary>
@@ -82,5 +60,27 @@ namespace Supay.Irc.Messages {
     }
 
     #endregion
+
+    /// <summary>
+    ///   Overrides <see cref="IrcMessage.GetParameters" />.
+    /// </summary>
+    protected override Collection<string> GetParameters() {
+      Collection<string> parameters = base.GetParameters();
+      parameters.Add(MessageUtil.CreateList(Targets, ","));
+      parameters.Add(Text);
+      return parameters;
+    }
+
+    /// <summary>
+    ///   Parses the parameters portion of the message.
+    /// </summary>
+    protected override void ParseParameters(Collection<string> parameters) {
+      base.ParseParameters(parameters);
+      Targets.Clear();
+      if (parameters.Count >= 2) {
+        Targets.AddRange(parameters[0].Split(','));
+        Text = parameters[1];
+      }
+    }
   }
 }

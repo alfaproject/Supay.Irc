@@ -8,6 +8,9 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class WhoIsChannelsReplyMessage : NumericMessage, IChannelTargetedMessage {
+    private readonly List<string> channels = new List<string>();
+    private string nick = string.Empty;
+
     /// <summary>
     ///   Creates a new instance of the <see cref="WhoIsChannelsReplyMessage" /> class.
     /// </summary>
@@ -36,8 +39,13 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private string nick = string.Empty;
-    private readonly List<string> channels = new List<string>();
+    #region IChannelTargetedMessage Members
+
+    bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
+      return IsTargetedAtChannel(channelName);
+    }
+
+    #endregion
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.
@@ -72,19 +80,11 @@ namespace Supay.Irc.Messages {
       conduit.OnWhoIsChannelsReply(new IrcMessageEventArgs<WhoIsChannelsReplyMessage>(this));
     }
 
-    #region IChannelTargetedMessage Members
-
-    bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
-      return IsTargetedAtChannel(channelName);
-    }
-
     /// <summary>
     ///   Determines if the the current message is targeted at the given channel.
     /// </summary>
     protected virtual bool IsTargetedAtChannel(string channelName) {
       return MessageUtil.ContainsIgnoreCaseMatch(Channels, channelName);
     }
-
-    #endregion
   }
 }

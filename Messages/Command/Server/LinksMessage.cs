@@ -7,6 +7,8 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class LinksMessage : ServerQueryBase {
+    private string mask = string.Empty;
+
     /// <summary>
     ///   Gets the IRC command associated with this message.
     /// </summary>
@@ -27,8 +29,6 @@ namespace Supay.Irc.Messages {
         mask = value;
       }
     }
-
-    private string mask = string.Empty;
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.

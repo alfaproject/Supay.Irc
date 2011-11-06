@@ -23,13 +23,17 @@ namespace Supay.Irc.Dcc {
   /// </remarks>
   [DesignerCategory("Code")]
   public class DccServerConnection : Component {
+    private readonly object _syncLock = new object();
     private TcpListener _chatListener;
     private Thread _connectionWorker;
     private int _port;
     private Timer _timeoutTimer;
-    private readonly object _syncLock = new object();
+
+    #region Nested type: SyncInvoke
 
     private delegate void SyncInvoke();
+
+    #endregion
 
     #region Constructors
 

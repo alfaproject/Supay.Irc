@@ -7,6 +7,8 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public abstract class ServerQueryBase : CommandMessage {
+    private string target = string.Empty;
+
     /// <summary>
     ///   Gets or sets the target server of the query.
     /// </summary>
@@ -19,7 +21,14 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private string target = string.Empty;
+    /// <summary>
+    ///   Gets the index of the parameter which holds the server which should respond to the query.
+    /// </summary>
+    protected virtual int TargetParsingPosition {
+      get {
+        return 0;
+      }
+    }
 
     /// <summary>
     ///   Parses the parameters portion of the message.
@@ -30,15 +39,6 @@ namespace Supay.Irc.Messages {
         Target = parameters[TargetParsingPosition];
       } else {
         Target = string.Empty;
-      }
-    }
-
-    /// <summary>
-    ///   Gets the index of the parameter which holds the server which should respond to the query.
-    /// </summary>
-    protected virtual int TargetParsingPosition {
-      get {
-        return 0;
       }
     }
   }

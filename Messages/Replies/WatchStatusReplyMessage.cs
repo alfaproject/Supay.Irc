@@ -8,6 +8,9 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class WatchStatusReplyMessage : NumericMessage {
+    private int watchesThatHaveYou;
+    private int watchesYouHave;
+
     /// <summary>
     ///   Creates a new instance of the <see cref="WatchStatusRequestMessage" />.
     /// </summary>
@@ -27,8 +30,6 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private int watchesYouHave;
-
     /// <summary>
     ///   Gets or sets the number of users which you on their watch list.
     /// </summary>
@@ -40,8 +41,6 @@ namespace Supay.Irc.Messages {
         watchesThatHaveYou = value;
       }
     }
-
-    private int watchesThatHaveYou;
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.

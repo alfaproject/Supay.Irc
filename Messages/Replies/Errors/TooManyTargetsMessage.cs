@@ -8,6 +8,10 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class TooManyTargetsMessage : ErrorMessage {
+    private string abortMessage = string.Empty;
+    private string errorCode = string.Empty;
+    private string invalidTarget = string.Empty;
+
     /// <summary>
     ///   Creates a new instances of the <see cref="TooManyTargetsMessage" /> class.
     /// </summary>
@@ -27,8 +31,6 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private string invalidTarget = string.Empty;
-
     /// <summary>
     ///   Gets or sets the error code
     /// </summary>
@@ -44,8 +46,6 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private string errorCode = string.Empty;
-
     /// <summary>
     ///   Gets or sets the message explaining what was done about the error.
     /// </summary>
@@ -57,8 +57,6 @@ namespace Supay.Irc.Messages {
         abortMessage = value;
       }
     }
-
-    private string abortMessage = string.Empty;
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.

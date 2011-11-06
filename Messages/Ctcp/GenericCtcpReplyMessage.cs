@@ -6,6 +6,8 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class GenericCtcpReplyMessage : CtcpReplyMessage {
+    private string dataPackage = string.Empty;
+
     /// <summary>
     ///   Gets or sets the information packaged with the ctcp command.
     /// </summary>
@@ -17,8 +19,6 @@ namespace Supay.Irc.Messages {
         dataPackage = value;
       }
     }
-
-    private string dataPackage = string.Empty;
 
     /// <summary>
     ///   Gets the data payload of the Ctcp request.

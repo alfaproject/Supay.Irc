@@ -10,6 +10,9 @@ namespace Supay.Irc.Messages {
   [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "Op")]
   [Serializable]
   public class LusersOpReplyMessage : NumericMessage {
+    private string info = string.Empty;
+    private int opCount = -1;
+
     /// <summary>
     ///   Creates a new instance of the <see cref="LusersOpReplyMessage" /> class
     /// </summary>
@@ -72,8 +75,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(MessageConduit conduit) {
       conduit.OnLusersOpReply(new IrcMessageEventArgs<LusersOpReplyMessage>(this));
     }
-
-    private int opCount = -1;
-    private string info = string.Empty;
   }
 }

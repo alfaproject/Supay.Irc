@@ -8,21 +8,7 @@ namespace Supay.Irc.Messages.Modes {
   ///   ChannelModesCreator parses, builds, and writes the modes used by the <see cref="ChannelModeMessage" /> class.
   /// </summary>
   public class ChannelModesCreator {
-    /// <summary>
-    ///   A <see cref="Supay.Irc.ServerSupport" /> instance is required in order to parse non-standard modes.
-    /// </summary>
-    public ServerSupport ServerSupport {
-      get {
-        return serverSupports;
-      }
-      set {
-        if (value == null) {
-          throw new ArgumentNullException("value");
-        }
-        serverSupports = value;
-      }
-    }
-
+    private readonly ChannelModeCollection modes = new ChannelModeCollection();
     private ServerSupport serverSupports = new ServerSupport();
 
     #region Parsing
@@ -173,6 +159,30 @@ namespace Supay.Irc.Messages.Modes {
     #endregion
 
     /// <summary>
+    ///   A <see cref="Supay.Irc.ServerSupport" /> instance is required in order to parse non-standard modes.
+    /// </summary>
+    public ServerSupport ServerSupport {
+      get {
+        return serverSupports;
+      }
+      set {
+        if (value == null) {
+          throw new ArgumentNullException("value");
+        }
+        serverSupports = value;
+      }
+    }
+
+    /// <summary>
+    ///   Gets the collection of modes parsed or to be applied.
+    /// </summary>
+    public virtual IEnumerable<ChannelMode> Modes {
+      get {
+        return modes;
+      }
+    }
+
+    /// <summary>
     ///   Removes redundant or overridden modes from the modes collection.
     /// </summary>
     private void CollapseModes() {
@@ -202,16 +212,5 @@ namespace Supay.Irc.Messages.Modes {
         }
       }
     }
-
-    /// <summary>
-    ///   Gets the collection of modes parsed or to be applied.
-    /// </summary>
-    public virtual IEnumerable<ChannelMode> Modes {
-      get {
-        return modes;
-      }
-    }
-
-    private readonly ChannelModeCollection modes = new ChannelModeCollection();
   }
 }

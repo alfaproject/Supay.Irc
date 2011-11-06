@@ -8,6 +8,10 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class WhisperMessage : CommandMessage, IChannelTargetedMessage {
+    private readonly List<string> targets = new List<string>();
+    private string channel = string.Empty;
+    private string text = string.Empty;
+
     /// <summary>
     ///   Gets the IRC command associated with this message.
     /// </summary>
@@ -29,8 +33,6 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private string channel = string.Empty;
-
     /// <summary>
     ///   Gets the target of this <see cref="TextMessage" />.
     /// </summary>
@@ -39,8 +41,6 @@ namespace Supay.Irc.Messages {
         return targets;
       }
     }
-
-    private readonly List<string> targets = new List<string>();
 
     /// <summary>
     ///   Gets or sets the actual text of this <see cref="TextMessage" />.
@@ -57,7 +57,13 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private string text = string.Empty;
+    #region IChannelTargetedMessage Members
+
+    bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
+      return IsTargetedAtChannel(channelName);
+    }
+
+    #endregion
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.
@@ -101,19 +107,11 @@ namespace Supay.Irc.Messages {
       conduit.OnWhisper(new IrcMessageEventArgs<WhisperMessage>(this));
     }
 
-    #region IChannelTargetedMessage Members
-
-    bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
-      return IsTargetedAtChannel(channelName);
-    }
-
     /// <summary>
     ///   Determines if the the current message is targeted at the given channel.
     /// </summary>
     protected virtual bool IsTargetedAtChannel(string channelName) {
       return Channel.EqualsI(channelName);
     }
-
-    #endregion
   }
 }

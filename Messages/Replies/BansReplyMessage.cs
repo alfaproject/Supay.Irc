@@ -7,6 +7,9 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class BansReplyMessage : NumericMessage, IChannelTargetedMessage {
+    private string banId = string.Empty;
+    private string channel = string.Empty;
+
     /// <summary>
     ///   Creates a new instances of the <see cref="BansReplyMessage" /> class.
     /// </summary>
@@ -38,8 +41,13 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private string channel = string.Empty;
-    private string banId = string.Empty;
+    #region IChannelTargetedMessage Members
+
+    bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
+      return IsTargetedAtChannel(channelName);
+    }
+
+    #endregion
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.
@@ -69,19 +77,11 @@ namespace Supay.Irc.Messages {
       conduit.OnBansReply(new IrcMessageEventArgs<BansReplyMessage>(this));
     }
 
-    #region IChannelTargetedMessage Members
-
-    bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
-      return IsTargetedAtChannel(channelName);
-    }
-
     /// <summary>
     ///   Determines if the the current message is targeted at the given channel.
     /// </summary>
     protected virtual bool IsTargetedAtChannel(string channelName) {
       return Channel.EqualsI(channelName);
     }
-
-    #endregion
   }
 }

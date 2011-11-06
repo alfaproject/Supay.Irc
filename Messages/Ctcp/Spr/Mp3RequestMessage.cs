@@ -8,6 +8,8 @@ namespace Supay.Irc.Messages {
   [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "Mp")]
   [Serializable]
   public class Mp3RequestMessage : CtcpRequestMessage {
+    private string filename;
+
     /// <summary>
     ///   Creates a new instance of the <see cref="Mp3RequestMessage" /> class.
     /// </summary>
@@ -36,15 +38,6 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private string filename;
-
-    /// <summary>
-    ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
-    /// </summary>
-    public override void Notify(MessageConduit conduit) {
-      conduit.OnMp3Request(new IrcMessageEventArgs<Mp3RequestMessage>(this));
-    }
-
     /// <summary>
     ///   Gets the data payload of the CTCP request.
     /// </summary>
@@ -52,6 +45,13 @@ namespace Supay.Irc.Messages {
       get {
         return FileName;
       }
+    }
+
+    /// <summary>
+    ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
+    /// </summary>
+    public override void Notify(MessageConduit conduit) {
+      conduit.OnMp3Request(new IrcMessageEventArgs<Mp3RequestMessage>(this));
     }
 
     /// <summary>

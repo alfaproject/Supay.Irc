@@ -8,14 +8,14 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class WasNoSuchNickMessage : ErrorMessage {
+    private string _nick;
+
     /// <summary>
     ///   Creates a new instances of the <see cref="WasNoSuchNickMessage" /> class.
     /// </summary>
     public WasNoSuchNickMessage()
       : base(406) {
     }
-
-    private string _nick;
 
     /// <summary>
     ///   The nick which had no information

@@ -6,6 +6,8 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class TimeReplyMessage : CtcpReplyMessage {
+    private string currentTime = string.Empty;
+
     /// <summary>
     ///   Creates a new instance of the <see cref="TimeReplyMessage" /> class.
     /// </summary>
@@ -24,8 +26,6 @@ namespace Supay.Irc.Messages {
         currentTime = value;
       }
     }
-
-    private string currentTime = string.Empty;
 
     /// <summary>
     ///   Gets the data payload of the Ctcp request.

@@ -9,6 +9,9 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class PartMessage : CommandMessage, IChannelTargetedMessage {
+    private readonly List<string> channels = new List<string>();
+    private string reason = string.Empty;
+
     /// <summary>
     ///   Creates a new instance of the <see cref="PartMessage" /> class.
     /// </summary>
@@ -55,6 +58,14 @@ namespace Supay.Irc.Messages {
       }
     }
 
+    #region IChannelTargetedMessage Members
+
+    bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
+      return IsTargetedAtChannel(channelName);
+    }
+
+    #endregion
+
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.
     /// </summary>
@@ -98,22 +109,11 @@ namespace Supay.Irc.Messages {
       conduit.OnPart(new IrcMessageEventArgs<PartMessage>(this));
     }
 
-    private readonly List<string> channels = new List<string>();
-    private string reason = string.Empty;
-
-    #region IChannelTargetedMessage Members
-
-    bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
-      return IsTargetedAtChannel(channelName);
-    }
-
     /// <summary>
     ///   Determines if the the current message is targeted at the given channel.
     /// </summary>
     protected virtual bool IsTargetedAtChannel(string channelName) {
       return MessageUtil.ContainsIgnoreCaseMatch(Channels, channelName);
     }
-
-    #endregion
   }
 }

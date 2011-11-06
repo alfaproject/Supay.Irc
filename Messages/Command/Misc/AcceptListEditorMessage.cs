@@ -29,6 +29,10 @@ namespace Supay.Irc.Messages {
 
     #region Properties
 
+    private Collection<string> addedNicks;
+
+    private Collection<string> removedNicks;
+
     /// <summary>
     ///   Gets the collection of nicks being added to the accept list.
     /// </summary>
@@ -41,8 +45,6 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private Collection<string> addedNicks;
-
     /// <summary>
     ///   Gets the collection of nicks being removed from the accept list.
     /// </summary>
@@ -54,8 +56,6 @@ namespace Supay.Irc.Messages {
         return removedNicks;
       }
     }
-
-    private Collection<string> removedNicks;
 
     #endregion
 

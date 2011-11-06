@@ -4,9 +4,17 @@ using System.Collections.Specialized;
 
 namespace Supay.Irc.Contacts {
   internal abstract class ContactsTracker {
+    private readonly ContactList contacts;
+
     protected ContactsTracker(ContactList contacts) {
       this.contacts = contacts;
       this.contacts.Users.CollectionChanged += Users_CollectionChanged;
+    }
+
+    protected ContactList Contacts {
+      get {
+        return contacts;
+      }
     }
 
     private void Users_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e) {
@@ -19,14 +27,6 @@ namespace Supay.Irc.Contacts {
         foreach (User oldUser in e.OldItems) {
           RemoveNick(oldUser.Nickname);
         }
-      }
-    }
-
-    private readonly ContactList contacts;
-
-    protected ContactList Contacts {
-      get {
-        return contacts;
       }
     }
 
