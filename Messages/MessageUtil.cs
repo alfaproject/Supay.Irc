@@ -39,9 +39,8 @@ namespace Supay.Irc.Messages {
 
       if (result.Length > support.MaxChannelNameLength) {
         return result.Substring(0, support.MaxChannelNameLength);
-      } else {
-        return result;
       }
+      return result;
     }
 
     /// <summary>
@@ -78,9 +77,8 @@ namespace Supay.Irc.Messages {
     public static string GetPrefix(string rawMessage) {
       if (!string.IsNullOrEmpty(rawMessage) && rawMessage.StartsWith(":", StringComparison.Ordinal)) {
         return rawMessage.Substring(1, rawMessage.IndexOf(' ')).Trim();
-      } else {
-        return string.Empty;
       }
+      return string.Empty;
     }
 
     /// <summary>
@@ -175,9 +173,8 @@ namespace Supay.Irc.Messages {
       Collection<string> p = GetParameters(rawMessage);
       if (p.Count > 0) {
         return p[p.Count - 1];
-      } else {
-        return string.Empty;
       }
+      return string.Empty;
     }
 
     /// <summary>
@@ -187,9 +184,8 @@ namespace Supay.Irc.Messages {
       Collection<string> p = GetParameters(rawMessage);
       if (p.Count > index) {
         return p[index];
-      } else {
-        return string.Empty;
       }
+      return string.Empty;
     }
 
     /// <summary>
@@ -219,14 +215,13 @@ namespace Supay.Irc.Messages {
 
       if (after.Length == 0) {
         return input.Substring(startOfBetween);
-      } else {
-        int startOfEnd = input.LastIndexOf(after, StringComparison.Ordinal);
-        if (startOfEnd == -1) {
-          return input.Substring(startOfBetween);
-        }
-        int lengthOfBetween = startOfEnd - startOfBetween;
-        return input.Substring(startOfBetween, lengthOfBetween);
       }
+      int startOfEnd = input.LastIndexOf(after, StringComparison.Ordinal);
+      if (startOfEnd == -1) {
+        return input.Substring(startOfBetween);
+      }
+      int lengthOfBetween = startOfEnd - startOfBetween;
+      return input.Substring(startOfBetween, lengthOfBetween);
     }
 
     /// <summary>
@@ -247,9 +242,8 @@ namespace Supay.Irc.Messages {
         result = text.IndexOf(searchValue, currentStartIndex, StringComparison.Ordinal);
         if (result == -1) {
           return result;
-        } else {
-          currentStartIndex = result + 1;
         }
+        currentStartIndex = result + 1;
       }
       return result;
     }

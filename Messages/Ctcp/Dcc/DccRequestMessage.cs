@@ -102,7 +102,7 @@ namespace Supay.Irc.Messages {
         Array.Reverse(octets);
 
         IPAddress backwards = IPAddress.Parse(string.Join(".", octets));
-        return backwards == null ? null : backwards.ToString();
+        return backwards.ToString();
       }
       return address.ToString();
     }

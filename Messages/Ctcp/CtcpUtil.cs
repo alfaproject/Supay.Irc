@@ -67,9 +67,8 @@ namespace Supay.Irc.Messages {
       string ctcpMessage = MessageUtil.GetLastParameter(rawMessage);
       if (ctcpMessage.IndexOf(" ", StringComparison.Ordinal) > 0) {
         return ctcpMessage.Substring(1, ctcpMessage.IndexOf(" ", StringComparison.Ordinal) - 1);
-      } else {
-        return ctcpMessage.Substring(1, ctcpMessage.Length - 2);
       }
+      return ctcpMessage.Substring(1, ctcpMessage.Length - 2);
     }
 
     /// <summary>

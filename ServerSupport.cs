@@ -682,7 +682,7 @@ namespace Supay.Irc {
             break;
           case "IDCHAN":
             foreach (InfoPair pair in CreateInfoPairs(value)) {
-              int prefixLength = -1;
+              int prefixLength;
               if (int.TryParse(pair.Value, out prefixLength)) {
                 SafeChannelPrefixLengths.Add(pair.Key, prefixLength);
               }
@@ -720,7 +720,7 @@ namespace Supay.Irc {
             break;
           case "CHANLIMIT":
             foreach (InfoPair chanLimitInfo in CreateInfoPairs(value)) {
-              int limit = -1;
+              int limit;
               if (int.TryParse(chanLimitInfo.Value, out limit)) {
                 foreach (Char c in chanLimitInfo.Key) {
                   ChannelLimits.Add(c.ToString(), limit);
@@ -788,14 +788,14 @@ namespace Supay.Irc {
             ChannelNotices = true;
             break;
           case "MAXTARGETS":
-            int maxTargets = -1;
-            if (value != null && int.TryParse(value, NumberStyles.Integer, CultureInfo.InvariantCulture, out maxTargets)) {
+            int maxTargets;
+            if (int.TryParse(value, NumberStyles.Integer, CultureInfo.InvariantCulture, out maxTargets)) {
               MaxMessageTargets.Add("", maxTargets);
             }
             break;
           case "TARGMAX":
             foreach (InfoPair targmaxInfo in CreateInfoPairs(value)) {
-              int targmax = -1;
+              int targmax;
               if (int.TryParse(targmaxInfo.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out targmax)) {
                 MaxMessageTargets.Add(targmaxInfo.Key, targmax);
               } else {
@@ -846,7 +846,7 @@ namespace Supay.Irc {
             break;
           case "MAXLIST":
             foreach (InfoPair maxListInfoPair in CreateInfoPairs(value)) {
-              int maxLength = -1;
+              int maxLength;
               if (int.TryParse(maxListInfoPair.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out maxLength)) {
                 if (maxListInfoPair.Key.IndexOf("b", StringComparison.Ordinal) != -1) {
                   MaxBans = maxLength;

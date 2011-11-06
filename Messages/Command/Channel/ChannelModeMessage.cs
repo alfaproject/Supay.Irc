@@ -101,9 +101,8 @@ namespace Supay.Irc.Messages {
       Collection<string> p = MessageUtil.GetParameters(unparsedMessage);
       if (p.Count >= 1) {
         return MessageUtil.HasValidChannelPrefix(p[0]);
-      } else {
-        return false;
       }
+      return false;
     }
 
     /// <summary>

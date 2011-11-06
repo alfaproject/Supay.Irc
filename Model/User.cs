@@ -178,9 +178,8 @@ namespace Supay.Irc {
         int indexOfPoint = Host.IndexOf('.');
         if (indexOfPoint > 0) {
           return Username.TrimStart('~') + "@*" + Host.Substring(indexOfPoint);
-        } else {
-          return Username.TrimStart('~') + "@" + Host;
         }
+        return Username.TrimStart('~') + "@" + Host;
       }
     }
 
