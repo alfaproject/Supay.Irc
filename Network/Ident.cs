@@ -107,20 +107,21 @@ namespace Supay.Irc.Network {
             //Read query
             var reader = new StreamReader(client.GetStream());
             string identRequest = reader.ReadLine();
-
-            //Send back reply
-            var writer = new StreamWriter(client.GetStream());
-            string identName = User.Username;
-            if (identName.Length == 0) {
-              if (User.Nickname.Length != 0) {
-                identName = User.Nickname;
-              } else {
-                identName = "supay";
+            if (identRequest != null) {
+              //Send back reply
+              var writer = new StreamWriter(client.GetStream());
+              string identName = User.Username;
+              if (identName.Length == 0) {
+                if (User.Nickname.Length != 0) {
+                  identName = User.Nickname;
+                } else {
+                  identName = "supay";
+                }
               }
+              string identReply = identRequest.Trim() + REPLY + identName.ToLower(CultureInfo.InvariantCulture);
+              writer.WriteLine(identReply);
+              writer.Flush();
             }
-            string identReply = identRequest.Trim() + REPLY + identName.ToLower(CultureInfo.InvariantCulture);
-            writer.WriteLine(identReply);
-            writer.Flush();
 
             //Close connection with client
             client.Close();
