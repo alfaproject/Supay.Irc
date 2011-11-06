@@ -25,7 +25,7 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private NameValueCollection supportedItems = new NameValueCollection();
+    private readonly NameValueCollection supportedItems = new NameValueCollection();
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.

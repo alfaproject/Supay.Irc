@@ -33,7 +33,7 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private UserCollection masks = new UserCollection();
+    private readonly UserCollection masks = new UserCollection();
 
     /// <summary>
     ///   Gets or sets the server which should return the information.

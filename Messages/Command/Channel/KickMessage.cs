@@ -29,8 +29,8 @@ namespace Supay.Irc.Messages {
       nicks.Add(nick);
     }
 
-    private List<string> channels = new List<string>();
-    private List<string> nicks = new List<string>();
+    private readonly List<string> channels = new List<string>();
+    private readonly List<string> nicks = new List<string>();
     private string reason = string.Empty;
 
     /// <summary>

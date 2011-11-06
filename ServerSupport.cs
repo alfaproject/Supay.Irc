@@ -141,7 +141,7 @@ namespace Supay.Irc {
       }
     }
 
-    private Collection<string> _channelTypes = new Collection<string>();
+    private readonly Collection<string> _channelTypes = new Collection<string>();
 
     /// <summary>
     ///   Gets the modes that require parameters
@@ -152,7 +152,7 @@ namespace Supay.Irc {
       }
     }
 
-    private Collection<string> _modesWithParameters = new Collection<string>();
+    private readonly Collection<string> _modesWithParameters = new Collection<string>();
 
     /// <summary>
     ///   Gets the modes that require parameters only when set.
@@ -163,7 +163,7 @@ namespace Supay.Irc {
       }
     }
 
-    private Collection<string> _modesWithParametersWhenSet = new Collection<string>();
+    private readonly Collection<string> _modesWithParametersWhenSet = new Collection<string>();
 
     /// <summary>
     ///   Gets the modes that do not require parameters.
@@ -174,7 +174,7 @@ namespace Supay.Irc {
       }
     }
 
-    private Collection<string> _modesWithoutParameters = new Collection<string>();
+    private readonly Collection<string> _modesWithoutParameters = new Collection<string>();
 
     /// <summary>
     ///   Maximum number of channel modes with parameter allowed per <see cref="Supay.Irc.Messages.ChannelModeMessage" /> command.
@@ -219,7 +219,7 @@ namespace Supay.Irc {
       }
     }
 
-    private Dictionary<string, int> _channelLimits = new Dictionary<string, int>();
+    private readonly Dictionary<string, int> _channelLimits = new Dictionary<string, int>();
 
     /// <summary>
     ///   Gets or sets the maximum nickname length.
@@ -531,7 +531,7 @@ namespace Supay.Irc {
       }
     }
 
-    private Dictionary<string, int> _maxMessageTargets = new Dictionary<string, int>();
+    private readonly Dictionary<string, int> _maxMessageTargets = new Dictionary<string, int>();
 
     /// <summary>
     ///   Gets or sets if the server supports the <see cref="Supay.Irc.Messages.KnockMessage" />.
@@ -673,7 +673,7 @@ namespace Supay.Irc {
       }
     }
 
-    private Dictionary<string, int> _safeChannelPrefixLengths = new Dictionary<string, int>();
+    private readonly Dictionary<string, int> _safeChannelPrefixLengths = new Dictionary<string, int>();
 
     /// <summary>
     ///   Gets or sets the maximum length of away messages.
@@ -700,7 +700,7 @@ namespace Supay.Irc {
       }
     }
 
-    private NameValueCollection unknownItems = new NameValueCollection();
+    private readonly NameValueCollection unknownItems = new NameValueCollection();
 
     /// <summary>
     ///   Loads support information from the given <see cref="Supay.Irc.Messages.SupportMessage" />.
@@ -941,8 +941,8 @@ namespace Supay.Irc {
         Value = value;
       }
 
-      public string Key;
-      public string Value;
+      public readonly string Key;
+      public readonly string Value;
     }
   }
 }

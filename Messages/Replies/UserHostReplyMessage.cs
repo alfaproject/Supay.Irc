@@ -23,7 +23,7 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private UserCollection replies = new UserCollection();
+    private readonly UserCollection replies = new UserCollection();
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.

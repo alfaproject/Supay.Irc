@@ -83,7 +83,7 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private List<string> modeArguments = new List<string>();
+    private readonly List<string> modeArguments = new List<string>();
 
     /// <summary>
     ///   Determines if the message can be parsed by this type.

@@ -37,7 +37,7 @@ namespace Supay.Irc.Messages {
     }
 
     private string nick = string.Empty;
-    private List<string> channels = new List<string>();
+    private readonly List<string> channels = new List<string>();
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.

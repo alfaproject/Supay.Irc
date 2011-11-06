@@ -22,7 +22,7 @@ namespace Supay.Irc.Contacts {
       }
     }
 
-    private ContactList contacts;
+    private readonly ContactList contacts;
 
     protected ContactList Contacts {
       get {

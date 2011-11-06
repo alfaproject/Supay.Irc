@@ -29,7 +29,7 @@ namespace Supay.Irc {
       }
     }
 
-    private Journal journal = new Journal();
+    private readonly Journal journal = new Journal();
 
     /// <summary>
     ///   Gets the client which the status is on.
@@ -40,7 +40,7 @@ namespace Supay.Irc {
       }
     }
 
-    private Client client;
+    private readonly Client client;
 
     #endregion
 

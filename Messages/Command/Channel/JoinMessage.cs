@@ -57,8 +57,8 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private List<string> channels = new List<string>();
-    private List<string> keys = new List<string>();
+    private readonly List<string> channels = new List<string>();
+    private readonly List<string> keys = new List<string>();
 
     /// <summary>
     ///   Validates this message against the given server support

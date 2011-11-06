@@ -27,7 +27,7 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private List<string> parameters = new List<string>();
+    private readonly List<string> parameters = new List<string>();
 
     /// <summary>
     ///   Gets the data payload of the Ctcp request.

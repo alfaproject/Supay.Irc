@@ -98,7 +98,7 @@ namespace Supay.Irc.Messages {
       conduit.OnPart(new IrcMessageEventArgs<PartMessage>(this));
     }
 
-    private List<string> channels = new List<string>();
+    private readonly List<string> channels = new List<string>();
     private string reason = string.Empty;
 
     #region IChannelTargetedMessage Members

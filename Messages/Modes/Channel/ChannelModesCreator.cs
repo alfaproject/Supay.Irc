@@ -212,6 +212,6 @@ namespace Supay.Irc.Messages.Modes {
       }
     }
 
-    private ChannelModeCollection modes = new ChannelModeCollection();
+    private readonly ChannelModeCollection modes = new ChannelModeCollection();
   }
 }

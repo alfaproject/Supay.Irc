@@ -40,7 +40,7 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private List<string> targets = new List<string>();
+    private readonly List<string> targets = new List<string>();
 
     /// <summary>
     ///   Gets or sets the actual text of this <see cref="TextMessage" />.

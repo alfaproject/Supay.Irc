@@ -116,6 +116,6 @@ namespace Supay.Irc.Messages.Modes {
       }
     }
 
-    private UserModeCollection modes = new UserModeCollection();
+    private readonly UserModeCollection modes = new UserModeCollection();
   }
 }

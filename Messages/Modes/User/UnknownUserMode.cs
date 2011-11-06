@@ -20,6 +20,6 @@ namespace Supay.Irc.Messages.Modes {
       }
     }
 
-    private string symbol;
+    private readonly string symbol;
   }
 }

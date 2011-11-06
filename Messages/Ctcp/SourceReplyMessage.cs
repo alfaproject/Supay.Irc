@@ -53,7 +53,7 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private Collection<string> files = new Collection<string>();
+    private readonly Collection<string> files = new Collection<string>();
 
     /// <summary>
     ///   Gets the data payload of the Ctcp request.

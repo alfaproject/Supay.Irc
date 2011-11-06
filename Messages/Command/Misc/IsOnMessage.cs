@@ -34,7 +34,7 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private List<string> nicks = new List<string>();
+    private readonly List<string> nicks = new List<string>();
 
     /// <summary>
     ///   Gets the IRC command associated with this message.

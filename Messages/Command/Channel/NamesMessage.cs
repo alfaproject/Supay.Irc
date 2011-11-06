@@ -20,7 +20,7 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private List<string> channels = new List<string>();
+    private readonly List<string> channels = new List<string>();
 
     /// <summary>
     ///   Gets the IRC command associated with this message.

@@ -52,7 +52,7 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private Collection<string> authenticationPackages = new Collection<string>();
+    private readonly Collection<string> authenticationPackages = new Collection<string>();
 
     /// <summary>
     ///   Gets or sets the maximum message length, in bytes.

@@ -24,7 +24,7 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private List<string> nicks = new List<string>();
+    private readonly List<string> nicks = new List<string>();
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.

@@ -56,7 +56,7 @@ namespace Supay.Irc.Messages {
 
     private string channel = string.Empty;
     private string modes = string.Empty;
-    private List<string> modeArguments = new List<string>();
+    private readonly List<string> modeArguments = new List<string>();
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.
