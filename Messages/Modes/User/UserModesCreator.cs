@@ -7,12 +7,6 @@ namespace Supay.Irc.Messages.Modes {
   ///   UserModesCreator parses, builds, and writes the modes used by the <see cref="UserModeMessage" /> class.
   /// </summary>
   public class UserModesCreator {
-    /// <summary>
-    ///   Creates a new instance of the <see cref="UserModesCreator" /> class.
-    /// </summary>
-    public UserModesCreator() {
-    }
-
     #region Parsing
 
     /// <summary>

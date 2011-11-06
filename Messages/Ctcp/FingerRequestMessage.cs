@@ -9,8 +9,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Creates a new instance of the <see cref="FingerRequestMessage" /> class.
     /// </summary>
-    public FingerRequestMessage()
-      : base() {
+    public FingerRequestMessage() {
       InternalCommand = "FINGER";
     }
 

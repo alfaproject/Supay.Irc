@@ -9,12 +9,6 @@ namespace Supay.Irc.Messages.Modes {
   /// </summary>
   public class ChannelModesCreator {
     /// <summary>
-    ///   Creates a new instance of the <see cref="ChannelModesCreator" /> class.
-    /// </summary>
-    public ChannelModesCreator() {
-    }
-
-    /// <summary>
     ///   A <see cref="Supay.Irc.ServerSupport" /> instance is required in order to parse non-standard modes.
     /// </summary>
     public ServerSupport ServerSupport {

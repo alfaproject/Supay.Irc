@@ -38,7 +38,7 @@ namespace Supay.Irc.Messages {
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
       string nicksParam = parameters[parameters.Count - 1];
-      string[] splitNicksParam = nicksParam.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
+      string[] splitNicksParam = nicksParam.Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries);
       foreach (string nick in splitNicksParam) {
         Nicks.Add(nick);
       }

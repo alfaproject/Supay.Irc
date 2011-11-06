@@ -16,16 +16,14 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Creates a new instance of the <see cref="JoinMessage" /> class.
     /// </summary>
-    public JoinMessage()
-      : base() {
+    public JoinMessage() {
     }
 
     /// <summary>
     ///   Creates a new instance of the <see cref="JoinMessage" /> class with the given channel.
     /// </summary>
     /// <param name="channel">The name of the channel to join.</param>
-    public JoinMessage(string channel)
-      : base() {
+    public JoinMessage(string channel) {
       channels.Add(channel);
     }
 

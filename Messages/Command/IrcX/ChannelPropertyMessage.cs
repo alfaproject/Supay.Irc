@@ -16,13 +16,6 @@ namespace Supay.Irc.Messages {
   [Serializable]
   public class ChannelPropertyMessage : CommandMessage {
     /// <summary>
-    ///   Creates a new instance of the ChannelPropertyMessage class.
-    /// </summary>
-    public ChannelPropertyMessage()
-      : base() {
-    }
-
-    /// <summary>
     ///   Gets the IRC command associated with this message.
     /// </summary>
     protected override string Command {

@@ -12,7 +12,7 @@ namespace Supay.Irc {
   /// </summary>
   [Serializable]
   public class Channel : INotifyPropertyChanged {
-    private bool _open = false;
+    private bool _open;
     private NameValueCollection _properties;
     private User _topicSetter;
     private DateTime _topicSetTime;
@@ -39,7 +39,7 @@ namespace Supay.Irc {
       _properties["TOPIC"] = string.Empty;
 
       _users = new UserCollection();
-      _users.CollectionChanged += new NotifyCollectionChangedEventHandler(_users_CollectionChanged);
+      _users.CollectionChanged += _users_CollectionChanged;
 
       _userModes = new Dictionary<User, ChannelStatus>();
 

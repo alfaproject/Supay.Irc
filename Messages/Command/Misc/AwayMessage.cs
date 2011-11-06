@@ -14,15 +14,13 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Creates a new instance of the AwayMessage class.
     /// </summary>
-    public AwayMessage()
-      : base() {
+    public AwayMessage() {
     }
 
     /// <summary>
     ///   Creates a new instance of the AwayMessage class with the given reason.
     /// </summary>
-    public AwayMessage(string reason)
-      : base() {
+    public AwayMessage(string reason) {
       this.reason = reason;
     }
 

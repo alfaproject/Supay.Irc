@@ -13,7 +13,7 @@ namespace Supay.Irc {
     /// </summary>
     public Query(Client client, User user) {
       this.client = client;
-      journal.CollectionChanged += new NotifyCollectionChangedEventHandler(journal_CollectionChanged);
+      journal.CollectionChanged += journal_CollectionChanged;
       User = user;
     }
 

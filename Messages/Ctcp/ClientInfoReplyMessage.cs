@@ -9,8 +9,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Creates a new instances of the <see cref="ClientInfoReplyMessage" /> class.
     /// </summary>
-    public ClientInfoReplyMessage()
-      : base() {
+    public ClientInfoReplyMessage() {
       InternalCommand = "CLIENTINFO";
     }
 

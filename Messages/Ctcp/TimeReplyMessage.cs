@@ -9,8 +9,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Creates a new instance of the <see cref="TimeReplyMessage" /> class.
     /// </summary>
-    public TimeReplyMessage()
-      : base() {
+    public TimeReplyMessage() {
       InternalCommand = "TIME";
     }
 

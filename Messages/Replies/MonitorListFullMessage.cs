@@ -63,7 +63,7 @@ namespace Supay.Irc.Messages {
         Limit = Convert.ToInt32(parameters[1], CultureInfo.InvariantCulture);
 
         string userListParam = parameters[2];
-        string[] userList = userListParam.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
+        string[] userList = userListParam.Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries);
         foreach (string nick in userList) {
           Nicks.Add(nick);
         }

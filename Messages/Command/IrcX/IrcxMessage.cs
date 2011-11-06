@@ -7,13 +7,6 @@ namespace Supay.Irc.Messages {
   [Serializable]
   public class IrcxMessage : CommandMessage {
     /// <summary>
-    ///   Creates a new instance of the IrcxMessage class.
-    /// </summary>
-    public IrcxMessage()
-      : base() {
-    }
-
-    /// <summary>
     ///   Gets the Irc command associated with this message.
     /// </summary>
     protected override string Command {

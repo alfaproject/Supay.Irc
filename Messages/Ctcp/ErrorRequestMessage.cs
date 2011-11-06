@@ -9,8 +9,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Creates a new instance of the <see cref="ErrorRequestMessage" /> class.
     /// </summary>
-    public ErrorRequestMessage()
-      : base() {
+    public ErrorRequestMessage() {
       InternalCommand = "ERRMSG";
     }
 

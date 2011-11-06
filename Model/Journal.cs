@@ -13,8 +13,7 @@ namespace Supay.Irc {
     /// <summary>
     ///   Creates a new instance of the Journal class.
     /// </summary>
-    public Journal()
-      : base() {
+    public Journal() {
     }
 
     /// <summary>

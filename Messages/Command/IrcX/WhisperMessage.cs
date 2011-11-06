@@ -9,13 +9,6 @@ namespace Supay.Irc.Messages {
   [Serializable]
   public class WhisperMessage : CommandMessage, IChannelTargetedMessage {
     /// <summary>
-    ///   Creates a new instance of the WhisperMessage class.
-    /// </summary>
-    public WhisperMessage()
-      : base() {
-    }
-
-    /// <summary>
     ///   Gets the IRC command associated with this message.
     /// </summary>
     protected override string Command {

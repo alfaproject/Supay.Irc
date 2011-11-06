@@ -125,7 +125,7 @@ namespace Supay.Irc {
     /// </summary>
     public bool HasWildcards {
       get {
-        return (IrcMask.IndexOfAny(new char[] { '?', '*' }) == -1);
+        return (IrcMask.IndexOfAny(new[] { '?', '*' }) == -1);
       }
     }
 

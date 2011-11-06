@@ -42,7 +42,7 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private bool restrictToOps = false;
+    private bool restrictToOps;
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.

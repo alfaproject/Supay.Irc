@@ -10,8 +10,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Creates a new instance of the <see cref="ActionRequestMessage" /> class.
     /// </summary>
-    public ActionRequestMessage()
-      : base() {
+    public ActionRequestMessage() {
       InternalCommand = "ACTION";
     }
 

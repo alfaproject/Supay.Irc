@@ -12,8 +12,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Creates a new instance of the <see cref="FingerReplyMessage" /> class.
     /// </summary>
-    public FingerReplyMessage()
-      : base() {
+    public FingerReplyMessage() {
       InternalCommand = "FINGER";
     }
 

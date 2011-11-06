@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Supay.Irc.Messages;
 
@@ -9,8 +8,8 @@ namespace Supay.Irc.Contacts {
     }
 
     public override void Initialize() {
-      Contacts.Client.Messages.WatchedUserOffline += new EventHandler<IrcMessageEventArgs<WatchedUserOfflineMessage>>(client_WatchedUserOffline);
-      Contacts.Client.Messages.WatchedUserOnline += new EventHandler<IrcMessageEventArgs<WatchedUserOnlineMessage>>(client_WatchedUserOnline);
+      Contacts.Client.Messages.WatchedUserOffline += client_WatchedUserOffline;
+      Contacts.Client.Messages.WatchedUserOnline += client_WatchedUserOnline;
       base.Initialize();
     }
 

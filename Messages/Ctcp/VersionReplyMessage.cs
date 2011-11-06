@@ -9,8 +9,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Creates a new instance of the <see cref="VersionReplyMessage" /> class.
     /// </summary>
-    public VersionReplyMessage()
-      : base() {
+    public VersionReplyMessage() {
       InternalCommand = "VERSION";
     }
 

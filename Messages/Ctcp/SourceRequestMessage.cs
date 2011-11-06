@@ -9,8 +9,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Creates a new instance of the <see cref="SourceRequestMessage" /> class.
     /// </summary>
-    public SourceRequestMessage()
-      : base() {
+    public SourceRequestMessage() {
       InternalCommand = "SOURCE";
     }
 

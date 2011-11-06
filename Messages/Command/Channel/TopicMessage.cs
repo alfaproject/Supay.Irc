@@ -10,8 +10,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Creates a new instance of the <see cref="TopicMessage" /> class.
     /// </summary>
-    public TopicMessage()
-      : base() {
+    public TopicMessage() {
     }
 
     /// <summary>
@@ -19,8 +18,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     /// <param name="channel">The channel to affect.</param>
     /// <param name="topic">The new topic to set.</param>
-    public TopicMessage(string channel, string topic)
-      : base() {
+    public TopicMessage(string channel, string topic) {
       this.channel = channel;
       this.topic = topic;
     }

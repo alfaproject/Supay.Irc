@@ -12,15 +12,13 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Creates a new instance of the <see cref="PartMessage" /> class.
     /// </summary>
-    public PartMessage()
-      : base() {
+    public PartMessage() {
     }
 
     /// <summary>
     ///   Creates a new instance of the <see cref="PartMessage" /> class with the given channel.
     /// </summary>
-    public PartMessage(string channel)
-      : base() {
+    public PartMessage(string channel) {
       channels.Add(channel);
     }
 

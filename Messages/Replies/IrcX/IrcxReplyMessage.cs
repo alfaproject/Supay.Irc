@@ -27,7 +27,7 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private bool isIrcxClientMode = false;
+    private bool isIrcxClientMode;
 
     /// <summary>
     ///   Gets or sets the version of IRCX the server implements.

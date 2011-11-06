@@ -311,7 +311,7 @@ namespace Supay.Irc.Messages {
       if (string.IsNullOrEmpty(p)) {
         return false;
       }
-      string[] exList = new string[] { "!*", "*", "<", ">", "T", "C" };
+      string[] exList = new[] { "!*", "*", "<", ">", "T", "C" };
       return exList.Any(extStart => p.StartsWith(extStart, StringComparison.Ordinal));
     }
 

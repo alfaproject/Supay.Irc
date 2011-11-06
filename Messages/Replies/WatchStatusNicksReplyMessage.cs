@@ -50,7 +50,7 @@ namespace Supay.Irc.Messages {
       Nicks.Clear();
       string lastParam = parameters[parameters.Count - 1];
       if (!string.IsNullOrEmpty(lastParam)) {
-        Nicks.AddRange(lastParam.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
+        Nicks.AddRange(lastParam.Split(new[] { " " }, StringSplitOptions.RemoveEmptyEntries));
       }
     }
 

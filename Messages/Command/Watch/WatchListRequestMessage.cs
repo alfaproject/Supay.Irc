@@ -21,7 +21,7 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private bool onlineOnly = false;
+    private bool onlineOnly;
 
     #endregion
 

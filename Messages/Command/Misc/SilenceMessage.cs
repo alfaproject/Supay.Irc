@@ -10,15 +10,13 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Creates a new instance of the SilenceMessage class.
     /// </summary>
-    public SilenceMessage()
-      : base() {
+    public SilenceMessage() {
     }
 
     /// <summary>
     ///   Creates a new instance of the SilenceMessage class with the <see cref="User" />.
     /// </summary>
-    public SilenceMessage(User silencedUser)
-      : base() {
+    public SilenceMessage(User silencedUser) {
       this.silencedUser = silencedUser;
     }
 

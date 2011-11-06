@@ -11,8 +11,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Creates a new instance of the <see cref="SlotsRequestMessage" /> class.
     /// </summary>
-    public SlotsRequestMessage()
-      : base() {
+    public SlotsRequestMessage() {
       InternalCommand = "SLOTS";
     }
 

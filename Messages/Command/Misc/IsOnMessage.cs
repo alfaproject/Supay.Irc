@@ -14,8 +14,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Creates a new instance of the IsOnMessage class.
     /// </summary>
-    public IsOnMessage()
-      : base() {
+    public IsOnMessage() {
     }
 
     /// <summary>

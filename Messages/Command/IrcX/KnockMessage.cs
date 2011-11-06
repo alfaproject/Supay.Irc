@@ -9,13 +9,6 @@ namespace Supay.Irc.Messages {
   [Serializable]
   public class KnockMessage : CommandMessage, IChannelTargetedMessage {
     /// <summary>
-    ///   Creates a new instance of the KnockMessage class.
-    /// </summary>
-    public KnockMessage()
-      : base() {
-    }
-
-    /// <summary>
     ///   Gets the IRC command associated with this message.
     /// </summary>
     protected override string Command {

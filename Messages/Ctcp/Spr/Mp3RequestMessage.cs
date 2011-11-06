@@ -11,8 +11,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Creates a new instance of the <see cref="Mp3RequestMessage" /> class.
     /// </summary>
-    public Mp3RequestMessage()
-      : base() {
+    public Mp3RequestMessage() {
       InternalCommand = "MP3";
     }
 

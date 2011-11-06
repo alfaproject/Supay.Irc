@@ -10,8 +10,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Creates a new instance of the <see cref="PingRequestMessage" /> class.
     /// </summary>
-    public PingRequestMessage()
-      : base() {
+    public PingRequestMessage() {
       InternalCommand = "PING";
     }
 

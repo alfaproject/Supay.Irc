@@ -10,8 +10,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Creates a new instance of the <see cref="SoundRequestMessage" /> class.
     /// </summary>
-    public SoundRequestMessage()
-      : base() {
+    public SoundRequestMessage() {
       InternalCommand = "SOUND";
     }
 

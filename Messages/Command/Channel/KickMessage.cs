@@ -16,8 +16,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Creates a new instance of the <see cref="KickMessage" /> class.
     /// </summary>
-    public KickMessage()
-      : base() {
+    public KickMessage() {
     }
 
     /// <summary>

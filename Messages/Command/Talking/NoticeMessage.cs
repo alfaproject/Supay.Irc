@@ -10,15 +10,13 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Creates a new instance of the <see cref="NoticeMessage" /> class.
     /// </summary>
-    public NoticeMessage()
-      : base() {
+    public NoticeMessage() {
     }
 
     /// <summary>
     ///   Creates a new instance of the <see cref="NoticeMessage" /> class with the given text string.
     /// </summary>
-    public NoticeMessage(string text)
-      : base() {
+    public NoticeMessage(string text) {
       Text = text;
     }
 

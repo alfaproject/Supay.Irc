@@ -9,8 +9,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Creates a new instance of the <see cref="PageRequestMessage" /> class.
     /// </summary>
-    public PageRequestMessage()
-      : base() {
+    public PageRequestMessage() {
       InternalCommand = "PAGE";
     }
 
