@@ -41,9 +41,9 @@ namespace Supay.Irc.Messages {
     /// <exclude />
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
-      this.UnknownMode = string.Empty;
+      UnknownMode = string.Empty;
       if (parameters.Count > 2) {
-        this.UnknownMode = parameters[1];
+        UnknownMode = parameters[1];
       }
     }
 

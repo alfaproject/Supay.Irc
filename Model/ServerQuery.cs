@@ -13,7 +13,7 @@ namespace Supay.Irc {
     /// </summary>
     public ServerQuery(Client client) {
       this.client = client;
-      this.journal.CollectionChanged += new NotifyCollectionChangedEventHandler(journal_CollectionChanged);
+      journal.CollectionChanged += new NotifyCollectionChangedEventHandler(journal_CollectionChanged);
     }
 
     #endregion
@@ -47,7 +47,7 @@ namespace Supay.Irc {
     #region Event Handlers
 
     private void journal_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e) {
-      this.OnPropertyChanged(new PropertyChangedEventArgs("Journal"));
+      OnPropertyChanged(new PropertyChangedEventArgs("Journal"));
     }
 
     #endregion
@@ -60,13 +60,13 @@ namespace Supay.Irc {
     public event PropertyChangedEventHandler PropertyChanged;
 
     private void OnPropertyChanged(PropertyChangedEventArgs e) {
-      if (this.PropertyChanged != null) {
-        this.PropertyChanged(this, e);
+      if (PropertyChanged != null) {
+        PropertyChanged(this, e);
       }
     }
 
     private void NotifyPropertyChanged(string propertyName) {
-      this.OnPropertyChanged(new PropertyChangedEventArgs(propertyName));
+      OnPropertyChanged(new PropertyChangedEventArgs(propertyName));
     }
 
     #endregion

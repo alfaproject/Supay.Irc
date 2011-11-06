@@ -13,7 +13,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public SlotsRequestMessage()
       : base() {
-      this.InternalCommand = "SLOTS";
+      InternalCommand = "SLOTS";
     }
 
     /// <summary>
@@ -22,7 +22,7 @@ namespace Supay.Irc.Messages {
     /// <param name="target">The target of the action.</param>
     public SlotsRequestMessage(string target)
       : this() {
-      this.Target = target;
+      Target = target;
     }
 
     /// <summary>
@@ -148,13 +148,13 @@ namespace Supay.Irc.Messages {
       string slotInfo = CtcpUtil.GetExtendedData(unparsedMessage);
       string[] slotInfoItems = slotInfo.Split(' ');
       if (slotInfoItems.Length >= 7) {
-        int.TryParse(slotInfoItems[0], NumberStyles.Integer, CultureInfo.InvariantCulture, out this.totalSendSlots);
-        int.TryParse(slotInfoItems[1], NumberStyles.Integer, CultureInfo.InvariantCulture, out this.availableSendSlots);
-        this.nextSend = slotInfoItems[2];
-        int.TryParse(slotInfoItems[3], NumberStyles.Integer, CultureInfo.InvariantCulture, out this.takenQueueSlots);
-        int.TryParse(slotInfoItems[4], NumberStyles.Integer, CultureInfo.InvariantCulture, out this.totalQueueSlots);
-        int.TryParse(slotInfoItems[5], NumberStyles.Integer, CultureInfo.InvariantCulture, out this.cpsRecord);
-        int.TryParse(slotInfoItems[6], NumberStyles.Integer, CultureInfo.InvariantCulture, out this.totalFiles);
+        int.TryParse(slotInfoItems[0], NumberStyles.Integer, CultureInfo.InvariantCulture, out totalSendSlots);
+        int.TryParse(slotInfoItems[1], NumberStyles.Integer, CultureInfo.InvariantCulture, out availableSendSlots);
+        nextSend = slotInfoItems[2];
+        int.TryParse(slotInfoItems[3], NumberStyles.Integer, CultureInfo.InvariantCulture, out takenQueueSlots);
+        int.TryParse(slotInfoItems[4], NumberStyles.Integer, CultureInfo.InvariantCulture, out totalQueueSlots);
+        int.TryParse(slotInfoItems[5], NumberStyles.Integer, CultureInfo.InvariantCulture, out cpsRecord);
+        int.TryParse(slotInfoItems[6], NumberStyles.Integer, CultureInfo.InvariantCulture, out totalFiles);
       }
     }
   }

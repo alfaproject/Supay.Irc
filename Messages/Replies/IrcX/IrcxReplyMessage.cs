@@ -20,10 +20,10 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public virtual bool IsIrcxClientMode {
       get {
-        return this.isIrcxClientMode;
+        return isIrcxClientMode;
       }
       set {
-        this.isIrcxClientMode = value;
+        isIrcxClientMode = value;
       }
     }
 
@@ -34,10 +34,10 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public virtual string Version {
       get {
-        return this.ircxVersion;
+        return ircxVersion;
       }
       set {
-        this.ircxVersion = value;
+        ircxVersion = value;
       }
     }
 
@@ -48,7 +48,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public virtual Collection<string> AuthenticationPackages {
       get {
-        return this.authenticationPackages;
+        return authenticationPackages;
       }
     }
 
@@ -59,10 +59,10 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public virtual int MaximumMessageLength {
       get {
-        return this.maximumMessageLength;
+        return maximumMessageLength;
       }
       set {
-        this.maximumMessageLength = value;
+        maximumMessageLength = value;
       }
     }
 
@@ -77,10 +77,10 @@ namespace Supay.Irc.Messages {
     /// </remarks>
     public virtual string Tokens {
       get {
-        return this.tokens;
+        return tokens;
       }
       set {
-        this.tokens = value;
+        tokens = value;
       }
     }
 
@@ -105,24 +105,24 @@ namespace Supay.Irc.Messages {
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
       if (parameters.Count >= 5) {
-        this.IsIrcxClientMode = (parameters[1] == "1");
-        this.Version = parameters[2];
-        this.AuthenticationPackages.Clear();
+        IsIrcxClientMode = (parameters[1] == "1");
+        Version = parameters[2];
+        AuthenticationPackages.Clear();
         foreach (string package in parameters[3].Split(',')) {
-          this.AuthenticationPackages.Add(package);
+          AuthenticationPackages.Add(package);
         }
-        this.MaximumMessageLength = int.Parse(parameters[4], CultureInfo.InvariantCulture);
+        MaximumMessageLength = int.Parse(parameters[4], CultureInfo.InvariantCulture);
         if (parameters.Count == 6) {
-          this.Tokens = parameters[5];
+          Tokens = parameters[5];
         } else {
-          this.Tokens = string.Empty;
+          Tokens = string.Empty;
         }
       } else {
-        this.IsIrcxClientMode = false;
-        this.Version = string.Empty;
-        this.AuthenticationPackages.Clear();
-        this.MaximumMessageLength = -1;
-        this.Tokens = string.Empty;
+        IsIrcxClientMode = false;
+        Version = string.Empty;
+        AuthenticationPackages.Clear();
+        MaximumMessageLength = -1;
+        Tokens = string.Empty;
       }
     }
 

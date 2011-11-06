@@ -15,7 +15,7 @@ namespace Supay.Irc.Messages.Modes {
     ///   Creates a new instance of the <see cref="InvitationExceptionMode" /> class with the given <see cref="ModeAction" />.
     /// </summary>
     public InvitationExceptionMode(ModeAction action) {
-      this.Action = action;
+      Action = action;
     }
 
     /// <summary>
@@ -23,8 +23,8 @@ namespace Supay.Irc.Messages.Modes {
     ///   with the given <see cref="ModeAction" /> and <see cref="User" />.
     /// </summary>
     public InvitationExceptionMode(ModeAction action, User mask) {
-      this.Action = action;
-      this.Mask = mask;
+      Action = action;
+      Mask = mask;
     }
 
     /// <summary>

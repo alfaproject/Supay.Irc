@@ -89,18 +89,18 @@ namespace Supay.Irc.Messages {
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
 
-      this.Nick = string.Empty;
-      this.IdleLength = 0;
-      this.SignOnTime = DateTime.Now;
-      this.Info = string.Empty;
+      Nick = string.Empty;
+      IdleLength = 0;
+      SignOnTime = DateTime.Now;
+      Info = string.Empty;
 
       if (parameters.Count > 2) {
-        this.Nick = parameters[1];
-        this.IdleLength = Convert.ToInt32(parameters[2], CultureInfo.InvariantCulture);
+        Nick = parameters[1];
+        IdleLength = Convert.ToInt32(parameters[2], CultureInfo.InvariantCulture);
 
         if (parameters.Count == 5) {
-          this.SignOnTime = MessageUtil.ConvertFromUnixTime(Convert.ToInt32(parameters[3], CultureInfo.InvariantCulture));
-          this.Info = parameters[4];
+          SignOnTime = MessageUtil.ConvertFromUnixTime(Convert.ToInt32(parameters[3], CultureInfo.InvariantCulture));
+          Info = parameters[4];
         }
       }
     }

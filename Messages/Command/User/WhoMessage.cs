@@ -12,10 +12,10 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public virtual User Mask {
       get {
-        return this.mask;
+        return mask;
       }
       set {
-        this.mask = value;
+        mask = value;
       }
     }
 
@@ -61,10 +61,10 @@ namespace Supay.Irc.Messages {
     /// </summary>
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
-      this.Mask = new User();
+      Mask = new User();
       if (parameters.Count >= 1) {
-        this.Mask.Nickname = parameters[0];
-        this.RestrictToOps = (parameters.Count > 1 && parameters[1] == "o");
+        Mask.Nickname = parameters[0];
+        RestrictToOps = (parameters.Count > 1 && parameters[1] == "o");
       }
     }
 

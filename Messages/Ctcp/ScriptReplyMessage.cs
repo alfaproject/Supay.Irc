@@ -11,7 +11,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public ScriptReplyMessage()
       : base() {
-      this.InternalCommand = "SCRIPT";
+      InternalCommand = "SCRIPT";
     }
 
     /// <summary>
@@ -19,10 +19,10 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public virtual string Response {
       get {
-        return this.response;
+        return response;
       }
       set {
-        this.response = value;
+        response = value;
       }
     }
 
@@ -33,7 +33,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     protected override string ExtendedData {
       get {
-        return this.response;
+        return response;
       }
     }
 
@@ -49,7 +49,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public override void Parse(string unparsedMessage) {
       base.Parse(unparsedMessage);
-      this.Response = CtcpUtil.GetExtendedData(unparsedMessage);
+      Response = CtcpUtil.GetExtendedData(unparsedMessage);
     }
   }
 }

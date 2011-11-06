@@ -12,7 +12,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public ActionRequestMessage()
       : base() {
-      this.InternalCommand = "ACTION";
+      InternalCommand = "ACTION";
     }
 
     /// <summary>
@@ -31,7 +31,7 @@ namespace Supay.Irc.Messages {
     /// <param name="target">The target of the action.</param>
     public ActionRequestMessage(string text, string target)
       : this(text) {
-      this.Target = target;
+      Target = target;
     }
 
     /// <summary>
@@ -39,10 +39,10 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public virtual string Text {
       get {
-        return this.text;
+        return text;
       }
       set {
-        this.text = value;
+        text = value;
       }
     }
 
@@ -60,7 +60,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     protected override string ExtendedData {
       get {
-        return this.Text;
+        return Text;
       }
     }
 
@@ -69,7 +69,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public override void Parse(string unparsedMessage) {
       base.Parse(unparsedMessage);
-      this.Text = CtcpUtil.GetExtendedData(unparsedMessage);
+      Text = CtcpUtil.GetExtendedData(unparsedMessage);
     }
   }
 }

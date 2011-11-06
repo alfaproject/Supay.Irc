@@ -13,7 +13,7 @@ namespace Supay.Irc.Messages.Modes {
     ///   Creates a new instance of the <see cref="KeyMode" /> class with the given <see cref="ModeAction" />.
     /// </summary>
     public KeyMode(ModeAction action) {
-      this.Action = action;
+      Action = action;
     }
 
     /// <summary>
@@ -21,7 +21,7 @@ namespace Supay.Irc.Messages.Modes {
     ///   with the given <see cref="ModeAction" /> and password.
     /// </summary>
     public KeyMode(ModeAction action, string password) {
-      this.Action = action;
+      Action = action;
       this.password = password;
     }
 
@@ -61,8 +61,8 @@ namespace Supay.Irc.Messages.Modes {
     /// </summary>
     /// <param name="msg">The message which will be modified to include this mode.</param>
     protected override void AddParameter(ChannelModeMessage msg) {
-      if (this.Password.Length != 0) {
-        msg.ModeArguments.Add(this.Password);
+      if (Password.Length != 0) {
+        msg.ModeArguments.Add(Password);
       }
     }
   }

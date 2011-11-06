@@ -66,8 +66,8 @@ namespace Supay.Irc.Messages {
         int startOfVersion = reply.IndexOf(runningVersion, StringComparison.Ordinal) + runningVersion.Length;
         int lengthOfServerName = reply.IndexOf(runningVersion, StringComparison.Ordinal) - startOfServerName;
 
-        this.ServerName = reply.Substring(startOfServerName, lengthOfServerName);
-        this.Version = reply.Substring(startOfVersion);
+        ServerName = reply.Substring(startOfServerName, lengthOfServerName);
+        Version = reply.Substring(startOfVersion);
       }
     }
 

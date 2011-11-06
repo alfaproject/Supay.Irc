@@ -44,7 +44,7 @@ namespace Supay.Irc.Messages {
       base.ParseParameters(parameters);
       string lastOne = parameters[parameters.Count - 1];
       if (lastOne.StartsWith("- ", StringComparison.Ordinal)) {
-        this.Text = lastOne.Substring(2);
+        Text = lastOne.Substring(2);
       }
     }
 

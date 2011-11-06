@@ -12,7 +12,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public ErrorReplyMessage()
       : base() {
-      this.InternalCommand = "ERRMSG";
+      InternalCommand = "ERRMSG";
     }
 
     /// <summary>
@@ -20,10 +20,10 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public virtual string Query {
       get {
-        return this.query;
+        return query;
       }
       set {
-        this.query = value;
+        query = value;
       }
     }
 
@@ -34,10 +34,10 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public virtual string Reason {
       get {
-        return this.reason;
+        return reason;
       }
       set {
-        this.reason = value;
+        reason = value;
       }
     }
 
@@ -48,7 +48,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     protected override string ExtendedData {
       get {
-        return this.query + " " + this.reason;
+        return query + " " + reason;
       }
     }
 
@@ -67,8 +67,8 @@ namespace Supay.Irc.Messages {
       string eData = CtcpUtil.GetExtendedData(unparsedMessage);
       Collection<string> p = MessageUtil.GetParameters(eData);
       if (p.Count == 2) {
-        this.Query = p[0];
-        this.Reason = p[1];
+        Query = p[0];
+        Reason = p[1];
       }
     }
   }

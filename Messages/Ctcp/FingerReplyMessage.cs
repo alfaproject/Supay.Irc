@@ -14,7 +14,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public FingerReplyMessage()
       : base() {
-      this.InternalCommand = "FINGER";
+      InternalCommand = "FINGER";
     }
 
     /// <summary>
@@ -22,10 +22,10 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public virtual string RealName {
       get {
-        return this.realName;
+        return realName;
       }
       set {
-        this.realName = value;
+        realName = value;
       }
     }
 
@@ -35,10 +35,10 @@ namespace Supay.Irc.Messages {
     [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms", MessageId = "Login")]
     public virtual string LoginName {
       get {
-        return this.loginName;
+        return loginName;
       }
       set {
-        this.loginName = value;
+        loginName = value;
       }
     }
 
@@ -47,10 +47,10 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public virtual Double IdleSeconds {
       get {
-        return this.idleSeconds;
+        return idleSeconds;
       }
       set {
-        this.idleSeconds = value;
+        idleSeconds = value;
       }
     }
 
@@ -61,11 +61,11 @@ namespace Supay.Irc.Messages {
       get {
         StringBuilder result = new StringBuilder();
         result.Append(":");
-        result.Append(this.RealName);
+        result.Append(RealName);
         result.Append(" (");
-        result.Append(this.LoginName);
+        result.Append(LoginName);
         result.Append(") - Idle ");
-        result.Append(this.IdleSeconds.ToString(CultureInfo.InvariantCulture));
+        result.Append(IdleSeconds.ToString(CultureInfo.InvariantCulture));
         result.Append(" seconds");
         return result.ToString();
       }
@@ -91,13 +91,13 @@ namespace Supay.Irc.Messages {
       if (payload.StartsWith(":", StringComparison.Ordinal)) {
         payload = payload.Substring(1);
       }
-      this.RealName = payload.Substring(0, payload.IndexOf(" ", StringComparison.Ordinal));
+      RealName = payload.Substring(0, payload.IndexOf(" ", StringComparison.Ordinal));
 
       int startOfLoginName = payload.IndexOf(" (", StringComparison.Ordinal);
       int endOfLoginName = payload.IndexOf(")", StringComparison.Ordinal);
       if (startOfLoginName > 0) {
         startOfLoginName += 2;
-        this.LoginName = payload.Substring(startOfLoginName, endOfLoginName - startOfLoginName);
+        LoginName = payload.Substring(startOfLoginName, endOfLoginName - startOfLoginName);
 
         int startOfIdle = payload.IndexOf("- Idle ", StringComparison.Ordinal);
         if (startOfIdle > 0) {
@@ -105,9 +105,9 @@ namespace Supay.Irc.Messages {
           string idleSecs = payload.Substring(startOfIdle, payload.Length - startOfIdle - 8);
           Double foo;
           if (Double.TryParse(idleSecs, NumberStyles.Any, null, out foo)) {
-            this.IdleSeconds = foo;
+            IdleSeconds = foo;
           } else {
-            this.IdleSeconds = -1;
+            IdleSeconds = -1;
           }
         }
       }

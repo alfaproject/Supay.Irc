@@ -22,14 +22,14 @@ namespace Supay.Irc.Messages.Modes {
       if (msg == null) {
         return;
       }
-      this.Parse(msg.ModeChanges);
+      Parse(msg.ModeChanges);
     }
 
     /// <summary>
     ///   Loads the given mode data into this <see cref="UserModesCreator" />
     /// </summary>
     public void Parse(string modeChanges) {
-      this.modes.Clear();
+      modes.Clear();
       if (string.IsNullOrEmpty(modeChanges)) {
         return;
       }
@@ -45,39 +45,39 @@ namespace Supay.Irc.Messages.Modes {
 
             // PONDER This probably won't correctly parse incorrect mode messages, should I?
           case 'a':
-            this.modes.Add(new AwayMode(currentAction));
+            modes.Add(new AwayMode(currentAction));
             break;
           case 'g':
-            this.modes.Add(new CallerIdMode(currentAction));
+            modes.Add(new CallerIdMode(currentAction));
             break;
           case 'i':
-            this.modes.Add(new InvisibleMode(currentAction));
+            modes.Add(new InvisibleMode(currentAction));
             break;
           case 'o':
-            this.modes.Add(new NetworkOperatorMode(currentAction));
+            modes.Add(new NetworkOperatorMode(currentAction));
             break;
           case 'O':
-            this.modes.Add(new ServerOperatorMode(currentAction));
+            modes.Add(new ServerOperatorMode(currentAction));
             break;
           case 'k':
-            this.modes.Add(new ReceiveServerKillsMode(currentAction));
+            modes.Add(new ReceiveServerKillsMode(currentAction));
             break;
           case 's':
-            this.modes.Add(new ReceiveServerKillsMode(currentAction));
+            modes.Add(new ReceiveServerKillsMode(currentAction));
             break;
           case 'w':
-            this.modes.Add(new ReceiveWallopsMode(currentAction));
+            modes.Add(new ReceiveWallopsMode(currentAction));
             break;
           case 'r':
-            this.modes.Add(new RestrictedMode(currentAction));
+            modes.Add(new RestrictedMode(currentAction));
             break;
           default:
-            this.modes.Add(new UnknownUserMode(currentAction, c.ToString()));
+            modes.Add(new UnknownUserMode(currentAction, c.ToString()));
             Trace.WriteLine("Unknown UserMode '" + c.ToString() + "'");
             break;
         }
       }
-      this.CollapseModes();
+      CollapseModes();
     }
 
     #endregion
@@ -99,14 +99,14 @@ namespace Supay.Irc.Messages.Modes {
       }
 
       msg.ModeChanges = string.Empty;
-      if (this.modes.Count > 0) {
+      if (modes.Count > 0) {
         // The first one always adds its mode
-        UserMode currentMode = this.modes[0];
+        UserMode currentMode = modes[0];
         ModeAction currentAction = currentMode.Action;
         currentMode.ApplyTo(msg, true);
         // The rest compare to the current
-        for (int i = 1; i < this.modes.Count; i++) {
-          currentMode = this.modes[i];
+        for (int i = 1; i < modes.Count; i++) {
+          currentMode = modes[i];
           currentMode.ApplyTo(msg, currentAction != currentMode.Action);
           currentAction = currentMode.Action;
         }

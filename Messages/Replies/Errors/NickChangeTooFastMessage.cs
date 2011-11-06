@@ -54,12 +54,12 @@ namespace Supay.Irc.Messages {
     /// <exclude />
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
-      this.Nick = string.Empty;
-      this.Seconds = -1;
+      Nick = string.Empty;
+      Seconds = -1;
       if (parameters.Count > 1) {
-        this.Nick = parameters[1];
+        Nick = parameters[1];
         if (parameters.Count > 2) {
-          this.Seconds = Convert.ToInt32(MessageUtil.StringBetweenStrings(parameters[2], "Please wait ", " seconds"), CultureInfo.InvariantCulture);
+          Seconds = Convert.ToInt32(MessageUtil.StringBetweenStrings(parameters[2], "Please wait ", " seconds"), CultureInfo.InvariantCulture);
         }
       }
     }

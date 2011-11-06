@@ -43,10 +43,10 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public virtual User SilencedUser {
       get {
-        return this.silencedUser;
+        return silencedUser;
       }
       set {
-        this.silencedUser = value;
+        silencedUser = value;
       }
     }
 
@@ -98,10 +98,10 @@ namespace Supay.Irc.Messages {
             Action = ModeAction.Add;
             break;
         }
-        this.SilencedUser = new User(target);
+        SilencedUser = new User(target);
       } else {
-        this.SilencedUser = new User();
-        this.Action = ModeAction.Add;
+        SilencedUser = new User();
+        Action = ModeAction.Add;
       }
     }
 

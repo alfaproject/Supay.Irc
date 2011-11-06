@@ -87,7 +87,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public override void Validate(ServerSupport serverSupport) {
       base.Validate(serverSupport);
-      this.Channel = MessageUtil.EnsureValidChannelName(this.Channel, serverSupport);
+      Channel = MessageUtil.EnsureValidChannelName(Channel, serverSupport);
     }
 
     /// <summary>
@@ -113,19 +113,19 @@ namespace Supay.Irc.Messages {
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
 
-      this.Channel = string.Empty;
-      this.Prop = string.Empty;
-      this.NewValue = string.Empty;
+      Channel = string.Empty;
+      Prop = string.Empty;
+      NewValue = string.Empty;
 
       if (parameters.Count > 0) {
-        this.Channel = parameters[0];
+        Channel = parameters[0];
         if (parameters.Count > 1) {
-          this.Prop = parameters[1];
-          if (this.Prop == "*") {
-            this.Prop = string.Empty;
+          Prop = parameters[1];
+          if (Prop == "*") {
+            Prop = string.Empty;
           }
           if (parameters.Count > 2) {
-            this.NewValue = parameters[2];
+            NewValue = parameters[2];
           }
         }
       }

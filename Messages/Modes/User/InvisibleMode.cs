@@ -13,7 +13,7 @@ namespace Supay.Irc.Messages.Modes {
     ///   Creates a new instance of the <see cref="InvisibleMode" /> class with the given <see cref="ModeAction" />.
     /// </summary>
     public InvisibleMode(ModeAction action) {
-      this.Action = action;
+      Action = action;
     }
 
     /// <summary>

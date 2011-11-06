@@ -50,7 +50,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
-      this.Users.Clear();
+      Users.Clear();
       string[] userInfo = parameters[parameters.Count - 1].Split(' ');
       foreach (string info in userInfo) {
         string nick = info.Substring(0, info.IndexOf("=", StringComparison.Ordinal));
@@ -68,7 +68,7 @@ namespace Supay.Irc.Messages {
           Away = (away == "+")
         };
 
-        this.Users.Add(user);
+        Users.Add(user);
       }
     }
 

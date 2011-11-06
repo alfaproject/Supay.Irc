@@ -26,10 +26,10 @@ namespace Supay.Irc.Messages {
     /// </summary>
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
-      if (parameters.Count >= this.TargetParsingPosition + 1) {
-        this.Target = parameters[this.TargetParsingPosition];
+      if (parameters.Count >= TargetParsingPosition + 1) {
+        Target = parameters[TargetParsingPosition];
       } else {
-        this.Target = string.Empty;
+        Target = string.Empty;
       }
     }
 

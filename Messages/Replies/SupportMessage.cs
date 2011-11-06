@@ -66,7 +66,7 @@ namespace Supay.Irc.Messages {
           name = nameValue;
           value = string.Empty;
         }
-        this.SupportedItems[name] = value;
+        SupportedItems[name] = value;
       }
     }
 

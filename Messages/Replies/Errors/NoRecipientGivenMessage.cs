@@ -46,9 +46,9 @@ namespace Supay.Irc.Messages {
     /// </summary>
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
-      this.Command = string.Empty;
+      Command = string.Empty;
       if (parameters.Count > 1) {
-        this.Command = MessageUtil.StringBetweenStrings(parameters[1], "No recipient given (", ")");
+        Command = MessageUtil.StringBetweenStrings(parameters[1], "No recipient given (", ")");
       }
     }
 

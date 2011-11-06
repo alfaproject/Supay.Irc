@@ -28,10 +28,10 @@ namespace Supay.Irc {
     ///   Inserts the given entry into the collection at the given index.
     /// </summary>
     protected override void InsertItem(int index, JournalEntry item) {
-      this.CheckReentrancy();
-      this.Items.Insert(index, item);
-      if (this.Items.Count > MaxEntries) {
-        this.Items.RemoveAt(index != 0 ? 0 : this.Items.Count - 1);
+      CheckReentrancy();
+      Items.Insert(index, item);
+      if (Items.Count > MaxEntries) {
+        Items.RemoveAt(index != 0 ? 0 : Items.Count - 1);
       }
       base.OnPropertyChanged(new PropertyChangedEventArgs("Count"));
       base.OnPropertyChanged(new PropertyChangedEventArgs("Item[]"));

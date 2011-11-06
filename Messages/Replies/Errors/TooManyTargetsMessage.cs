@@ -76,17 +76,17 @@ namespace Supay.Irc.Messages {
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
 
-      this.InvalidTarget = string.Empty;
-      this.ErrorCode = string.Empty;
-      this.AbortMessage = string.Empty;
+      InvalidTarget = string.Empty;
+      ErrorCode = string.Empty;
+      AbortMessage = string.Empty;
 
       if (parameters.Count > 1) {
-        this.InvalidTarget = parameters[1];
+        InvalidTarget = parameters[1];
         if (parameters.Count > 2) {
           string[] messagePieces = Regex.Split(parameters[2], " recipients.");
           if (messagePieces.Length == 2) {
-            this.ErrorCode = messagePieces[0];
-            this.AbortMessage = messagePieces[1];
+            ErrorCode = messagePieces[0];
+            AbortMessage = messagePieces[1];
           }
         }
       }

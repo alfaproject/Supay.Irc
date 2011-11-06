@@ -21,10 +21,10 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public virtual string UserName {
       get {
-        return this.userName;
+        return userName;
       }
       set {
-        this.userName = value;
+        userName = value;
       }
     }
 
@@ -63,10 +63,10 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public virtual string RealName {
       get {
-        return this.realName;
+        return realName;
       }
       set {
-        this.realName = value;
+        realName = value;
       }
     }
 
@@ -102,15 +102,15 @@ namespace Supay.Irc.Messages {
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
       if (parameters.Count >= 4) {
-        this.UserName = parameters[0];
-        this.HostName = parameters[1];
-        this.ServerName = parameters[2];
-        this.RealName = parameters[3];
+        UserName = parameters[0];
+        HostName = parameters[1];
+        ServerName = parameters[2];
+        RealName = parameters[3];
       } else {
-        this.UserName = string.Empty;
-        this.HostName = string.Empty;
-        this.ServerName = string.Empty;
-        this.RealName = string.Empty;
+        UserName = string.Empty;
+        HostName = string.Empty;
+        ServerName = string.Empty;
+        RealName = string.Empty;
       }
     }
 

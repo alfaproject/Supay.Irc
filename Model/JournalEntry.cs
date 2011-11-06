@@ -19,7 +19,7 @@ namespace Supay.Irc {
     ///   Creates a new instance of the <see href = "JournalEntry" /> class, populated with the given item.
     /// </summary>
     public JournalEntry(object item) {
-      this.Item = item;
+      Item = item;
     }
 
     #region Properties
@@ -66,8 +66,8 @@ namespace Supay.Irc {
     public event PropertyChangedEventHandler PropertyChanged;
 
     private void NotifyPropertyChanged(string propertyName) {
-      if (this.PropertyChanged != null) {
-        this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+      if (PropertyChanged != null) {
+        PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
       }
     }
 

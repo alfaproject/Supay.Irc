@@ -12,9 +12,9 @@ namespace Supay.Irc {
     /// </summary>
     /// <returns>True if a User was removed, false if no User was removed.</returns>
     public bool RemoveFirst(Predicate<User> match) {
-      for (int i = 0; i < this.Count; i++) {
+      for (int i = 0; i < Count; i++) {
         if (match(this[i])) {
-          this.RemoveAt(i);
+          RemoveAt(i);
           return true;
         }
       }
@@ -25,14 +25,14 @@ namespace Supay.Irc {
     ///   Removes the first User in the collection which has the given nick.
     /// </summary>
     public bool RemoveFirst(string nick) {
-      return this.RemoveFirst(u => u.Nickname.Equals(nick, StringComparison.OrdinalIgnoreCase));
+      return RemoveFirst(u => u.Nickname.Equals(nick, StringComparison.OrdinalIgnoreCase));
     }
 
     /// <summary>
     ///   Finds the first User in the collection which matches the given Predicate.
     /// </summary>
     public User Find(Predicate<User> match) {
-      for (int i = 0; i < this.Count; i++) {
+      for (int i = 0; i < Count; i++) {
         if (match(this[i])) {
           return this[i];
         }
@@ -44,7 +44,7 @@ namespace Supay.Irc {
     ///   Finds the first User in the collection which matches the given nick.
     /// </summary>
     public User Find(string nick) {
-      return this.Find(u => u.Nickname.Equals(nick, StringComparison.OrdinalIgnoreCase));
+      return Find(u => u.Nickname.Equals(nick, StringComparison.OrdinalIgnoreCase));
     }
 
     /// <summary>
@@ -56,10 +56,10 @@ namespace Supay.Irc {
     /// <param name="nick">The nick to ensure.</param>
     /// <returns>The User in the collection with the given nick.</returns>
     public User EnsureUser(string nick) {
-      User user = this.Find(nick);
+      User user = Find(nick);
       if (user == null) {
         user = new User(nick);
-        this.Add(user);
+        Add(user);
       }
       return user;
     }
@@ -73,10 +73,10 @@ namespace Supay.Irc {
     /// </remarks>
     /// <returns>The User in the collection which matches the given User.</returns>
     public User EnsureUser(User newUser) {
-      User user = this.Find(newUser.Nickname);
+      User user = Find(newUser.Nickname);
       if (user == null) {
         user = newUser;
-        this.Add(user);
+        Add(user);
       } else {
         user.CopyFrom(newUser);
       }

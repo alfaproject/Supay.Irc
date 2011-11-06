@@ -46,7 +46,7 @@ namespace Supay.Irc.Messages {
       if (serverSupport == null) {
         return;
       }
-      this.Channel = MessageUtil.EnsureValidChannelName(this.Channel, serverSupport);
+      Channel = MessageUtil.EnsureValidChannelName(Channel, serverSupport);
       if (!serverSupport.Knock) {
         Trace.WriteLine("Knock Is Not Supported On This Server");
       }
@@ -68,9 +68,9 @@ namespace Supay.Irc.Messages {
       base.ParseParameters(parameters);
 
       if (parameters.Count > 0) {
-        this.Channel = parameters[0];
+        Channel = parameters[0];
       } else {
-        this.Channel = string.Empty;
+        Channel = string.Empty;
       }
     }
 
@@ -91,7 +91,7 @@ namespace Supay.Irc.Messages {
     ///   Determines if the the current message is targeted at the given channel.
     /// </summary>
     protected virtual bool IsTargetedAtChannel(string channelName) {
-      return this.Channel.EqualsI(channelName);
+      return Channel.EqualsI(channelName);
     }
 
     #endregion

@@ -68,7 +68,7 @@ namespace Supay.Irc.Network {
 
         _stopAfter = stopAfterFirstAnswer;
         _socketThread = new Thread(Run) {
-          name = "Identd",
+          Name = "Identd",
           IsBackground = true
         };
         _socketThread.Start();
@@ -116,7 +116,7 @@ namespace Supay.Irc.Network {
               if (User.Nickname.Length != 0) {
                 identName = User.Nickname;
               } else {
-                identname = "supay";
+                identName = "supay";
               }
             }
             string identReply = identRequest.Trim() + REPLY + identName.ToLower(CultureInfo.InvariantCulture);

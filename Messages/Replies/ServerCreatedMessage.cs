@@ -49,7 +49,7 @@ namespace Supay.Irc.Messages {
       string reply = parameters[1];
       if (reply.IndexOf(thisServerCreated, StringComparison.Ordinal) != -1) {
         int startOfDate = thisServerCreated.Length;
-        this.CreatedDate = reply.Substring(startOfDate);
+        CreatedDate = reply.Substring(startOfDate);
       }
     }
 

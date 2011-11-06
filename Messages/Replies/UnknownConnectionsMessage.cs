@@ -50,7 +50,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
-      this.UnknownConnectionCount = Convert.ToInt32(parameters[1], CultureInfo.InvariantCulture);
+      UnknownConnectionCount = Convert.ToInt32(parameters[1], CultureInfo.InvariantCulture);
     }
 
     /// <summary>

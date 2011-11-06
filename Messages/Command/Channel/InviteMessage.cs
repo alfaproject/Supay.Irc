@@ -34,10 +34,10 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public virtual string Channel {
       get {
-        return this.channel;
+        return channel;
       }
       set {
-        this.channel = value;
+        channel = value;
       }
     }
 
@@ -46,10 +46,10 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public virtual string Nick {
       get {
-        return this.nick;
+        return nick;
       }
       set {
-        this.nick = value;
+        nick = value;
       }
     }
 
@@ -67,7 +67,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public override void Validate(ServerSupport serverSupport) {
       base.Validate(serverSupport);
-      this.Channel = MessageUtil.EnsureValidChannelName(this.Channel, serverSupport);
+      Channel = MessageUtil.EnsureValidChannelName(Channel, serverSupport);
     }
 
     /// <summary>
@@ -86,11 +86,11 @@ namespace Supay.Irc.Messages {
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
       if (parameters.Count >= 2) {
-        this.Channel = parameters[0];
-        this.Nick = parameters[1];
+        Channel = parameters[0];
+        Nick = parameters[1];
       } else {
-        this.Channel = string.Empty;
-        this.Nick = string.Empty;
+        Channel = string.Empty;
+        Nick = string.Empty;
       }
     }
 
@@ -111,7 +111,7 @@ namespace Supay.Irc.Messages {
     ///   Determines if the the current message is targeted at the given channel.
     /// </summary>
     protected virtual bool IsTargetedAtChannel(string channelName) {
-      return this.Channel.EqualsI(channelName);
+      return Channel.EqualsI(channelName);
     }
 
     #endregion

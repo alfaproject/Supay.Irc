@@ -11,7 +11,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public SourceRequestMessage()
       : base() {
-      this.InternalCommand = "SOURCE";
+      InternalCommand = "SOURCE";
     }
 
     /// <summary>

@@ -47,10 +47,10 @@ namespace Supay.Irc.Messages {
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
 
-      this.Nicks.Clear();
+      Nicks.Clear();
       string lastParam = parameters[parameters.Count - 1];
       if (!string.IsNullOrEmpty(lastParam)) {
-        this.Nicks.AddRange(lastParam.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
+        Nicks.AddRange(lastParam.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
       }
     }
 

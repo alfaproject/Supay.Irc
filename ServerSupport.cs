@@ -91,10 +91,10 @@ namespace Supay.Irc {
     /// </summary>
     public string Standard {
       get {
-        return (this._standard);
+        return (_standard);
       }
       set {
-        this._standard = value;
+        _standard = value;
       }
     }
 
@@ -109,10 +109,10 @@ namespace Supay.Irc {
     /// </remarks>
     public string ChannelStatuses {
       get {
-        return (this._channelStatuses);
+        return (_channelStatuses);
       }
       set {
-        this._channelStatuses = value;
+        _channelStatuses = value;
       }
     }
 
@@ -123,10 +123,10 @@ namespace Supay.Irc {
     /// </summary>
     public string StatusMessages {
       get {
-        return (this.statusMessages);
+        return (statusMessages);
       }
       set {
-        this.statusMessages = value;
+        statusMessages = value;
       }
     }
 
@@ -137,7 +137,7 @@ namespace Supay.Irc {
     /// </summary>
     public Collection<string> ChannelTypes {
       get {
-        return (this._channelTypes);
+        return (_channelTypes);
       }
     }
 
@@ -148,7 +148,7 @@ namespace Supay.Irc {
     /// </summary>
     public Collection<string> ModesWithParameters {
       get {
-        return (this._modesWithParameters);
+        return (_modesWithParameters);
       }
     }
 
@@ -159,7 +159,7 @@ namespace Supay.Irc {
     /// </summary>
     public Collection<string> ModesWithParametersWhenSet {
       get {
-        return (this._modesWithParametersWhenSet);
+        return (_modesWithParametersWhenSet);
       }
     }
 
@@ -170,7 +170,7 @@ namespace Supay.Irc {
     /// </summary>
     public Collection<string> ModesWithoutParameters {
       get {
-        return (this._modesWithoutParameters);
+        return (_modesWithoutParameters);
       }
     }
 
@@ -181,10 +181,10 @@ namespace Supay.Irc {
     /// </summary>
     public int MaxModes {
       get {
-        return (this._maxModes);
+        return (_maxModes);
       }
       set {
-        this._maxModes = value;
+        _maxModes = value;
       }
     }
 
@@ -198,10 +198,10 @@ namespace Supay.Irc {
     /// </remarks>
     public int MaxChannels {
       get {
-        return (this._maxChannels);
+        return (_maxChannels);
       }
       set {
-        this._maxChannels = value;
+        _maxChannels = value;
       }
     }
 
@@ -226,10 +226,10 @@ namespace Supay.Irc {
     /// </summary>
     public int MaxNickLength {
       get {
-        return (this._maxNickLength);
+        return (_maxNickLength);
       }
       set {
-        this._maxNickLength = value;
+        _maxNickLength = value;
       }
     }
 
@@ -240,10 +240,10 @@ namespace Supay.Irc {
     /// </summary>
     public int MaxTopicLength {
       get {
-        return (this._maxTopicLength);
+        return (_maxTopicLength);
       }
       set {
-        this._maxTopicLength = value;
+        _maxTopicLength = value;
       }
     }
 
@@ -254,10 +254,10 @@ namespace Supay.Irc {
     /// </summary>
     public int MaxKickCommentLength {
       get {
-        return (this._maxKickCommentLength);
+        return (_maxKickCommentLength);
       }
       set {
-        this._maxKickCommentLength = value;
+        _maxKickCommentLength = value;
       }
     }
 
@@ -268,10 +268,10 @@ namespace Supay.Irc {
     /// </summary>
     public int MaxChannelNameLength {
       get {
-        return (this._maxChannelNameLength);
+        return (_maxChannelNameLength);
       }
       set {
-        this._maxChannelNameLength = value;
+        _maxChannelNameLength = value;
       }
     }
 
@@ -282,10 +282,10 @@ namespace Supay.Irc {
     /// </summary>
     public int MaxBans {
       get {
-        return (this._maxBans);
+        return (_maxBans);
       }
       set {
-        this._maxBans = value;
+        _maxBans = value;
       }
     }
 
@@ -296,10 +296,10 @@ namespace Supay.Irc {
     /// </summary>
     public int MaxInvitationExceptions {
       get {
-        return (this.maxInvitationsExceptions);
+        return (maxInvitationsExceptions);
       }
       set {
-        this.maxInvitationsExceptions = value;
+        maxInvitationsExceptions = value;
       }
     }
 
@@ -310,10 +310,10 @@ namespace Supay.Irc {
     /// </summary>
     public int MaxBanExceptions {
       get {
-        return (this.maxBanExceptions);
+        return (maxBanExceptions);
       }
       set {
-        this.maxBanExceptions = value;
+        maxBanExceptions = value;
       }
     }
 
@@ -324,10 +324,10 @@ namespace Supay.Irc {
     /// </summary>
     public string NetworkName {
       get {
-        return (this._networkName);
+        return (_networkName);
       }
       set {
-        this._networkName = value;
+        _networkName = value;
       }
     }
 
@@ -338,10 +338,10 @@ namespace Supay.Irc {
     /// </summary>
     public bool BanExceptions {
       get {
-        return (this._banExceptions);
+        return (_banExceptions);
       }
       set {
-        this._banExceptions = value;
+        _banExceptions = value;
       }
     }
 
@@ -352,10 +352,10 @@ namespace Supay.Irc {
     /// </summary>
     public bool InvitationExceptions {
       get {
-        return (this._invitationExceptions);
+        return (_invitationExceptions);
       }
       set {
-        this._invitationExceptions = value;
+        _invitationExceptions = value;
       }
     }
 
@@ -366,10 +366,10 @@ namespace Supay.Irc {
     /// </summary>
     public int MaxSilences {
       get {
-        return (this._maxSilences);
+        return (_maxSilences);
       }
       set {
-        this._maxSilences = value;
+        _maxSilences = value;
       }
     }
 
@@ -384,10 +384,10 @@ namespace Supay.Irc {
     /// </remarks>
     public bool MessagesToOperators {
       get {
-        return (this._messagesToOperators);
+        return (_messagesToOperators);
       }
       set {
-        this._messagesToOperators = value;
+        _messagesToOperators = value;
       }
     }
 
@@ -401,10 +401,10 @@ namespace Supay.Irc {
     /// </remarks>
     public string CaseMapping {
       get {
-        return (this._caseMapping);
+        return (_caseMapping);
       }
       set {
-        this._caseMapping = value;
+        _caseMapping = value;
       }
     }
 
@@ -415,10 +415,10 @@ namespace Supay.Irc {
     /// </summary>
     public string CharacterSet {
       get {
-        return (this._characterSet);
+        return (_characterSet);
       }
       set {
-        this._characterSet = value;
+        _characterSet = value;
       }
     }
 
@@ -429,10 +429,10 @@ namespace Supay.Irc {
     /// </summary>
     public bool Rfc2812 {
       get {
-        return (this._rfc2812);
+        return (_rfc2812);
       }
       set {
-        this._rfc2812 = value;
+        _rfc2812 = value;
       }
     }
 
@@ -443,10 +443,10 @@ namespace Supay.Irc {
     /// </summary>
     public int ChannelIdLength {
       get {
-        return (this._channelIdLength);
+        return (_channelIdLength);
       }
       set {
-        this._channelIdLength = value;
+        _channelIdLength = value;
       }
     }
 
@@ -457,10 +457,10 @@ namespace Supay.Irc {
     /// </summary>
     public bool Penalties {
       get {
-        return (this._penalties);
+        return (_penalties);
       }
       set {
-        this._penalties = value;
+        _penalties = value;
       }
     }
 
@@ -471,10 +471,10 @@ namespace Supay.Irc {
     /// </summary>
     public bool ForcedNickChanges {
       get {
-        return (this._forcedNickChanges);
+        return (_forcedNickChanges);
       }
       set {
-        this._forcedNickChanges = value;
+        _forcedNickChanges = value;
       }
     }
 
@@ -485,10 +485,10 @@ namespace Supay.Irc {
     /// </summary>
     public bool UserIP {
       get {
-        return (this._userIp);
+        return (_userIp);
       }
       set {
-        this._userIp = value;
+        _userIp = value;
       }
     }
 
@@ -499,10 +499,10 @@ namespace Supay.Irc {
     /// </summary>
     public bool ChannelMessages {
       get {
-        return (this._channelMessages);
+        return (_channelMessages);
       }
       set {
-        this._channelMessages = value;
+        _channelMessages = value;
       }
     }
 
@@ -513,10 +513,10 @@ namespace Supay.Irc {
     /// </summary>
     public bool ChannelNotices {
       get {
-        return (this._channelNotices);
+        return (_channelNotices);
       }
       set {
-        this._channelNotices = value;
+        _channelNotices = value;
       }
     }
 
@@ -538,10 +538,10 @@ namespace Supay.Irc {
     /// </summary>
     public bool Knock {
       get {
-        return (this._knock);
+        return (_knock);
       }
       set {
-        this._knock = value;
+        _knock = value;
       }
     }
 
@@ -552,10 +552,10 @@ namespace Supay.Irc {
     /// </summary>
     public bool VirtualChannels {
       get {
-        return (this._virtualChannels);
+        return (_virtualChannels);
       }
       set {
-        this._virtualChannels = value;
+        _virtualChannels = value;
       }
     }
 
@@ -566,10 +566,10 @@ namespace Supay.Irc {
     /// </summary>
     public bool SafeList {
       get {
-        return (this._safeList);
+        return (_safeList);
       }
       set {
-        this._safeList = value;
+        _safeList = value;
       }
     }
 
@@ -594,10 +594,10 @@ namespace Supay.Irc {
     /// </summary>
     public int MaxWatches {
       get {
-        return (this._maxWatches);
+        return (_maxWatches);
       }
       set {
-        this._maxWatches = value;
+        _maxWatches = value;
       }
     }
 
@@ -608,10 +608,10 @@ namespace Supay.Irc {
     /// </summary>
     public bool WhoX {
       get {
-        return (this._whoX);
+        return (_whoX);
       }
       set {
-        this._whoX = value;
+        _whoX = value;
       }
     }
 
@@ -622,10 +622,10 @@ namespace Supay.Irc {
     /// </summary>
     public bool CallerId {
       get {
-        return (this._callerId);
+        return (_callerId);
       }
       set {
-        this._callerId = value;
+        _callerId = value;
       }
     }
 
@@ -636,10 +636,10 @@ namespace Supay.Irc {
     /// </summary>
     public bool ETrace {
       get {
-        return (this.eTrace);
+        return (eTrace);
       }
       set {
-        this.eTrace = value;
+        eTrace = value;
       }
     }
 
@@ -713,142 +713,142 @@ namespace Supay.Irc {
         string value = items[key] ?? "";
         switch (key) {
           case "DEAF":
-            this.DeafMode = true;
+            DeafMode = true;
             break;
           case "AWAYLEN":
-            SetIfNumeric(this.GetType().GetProperty("MaxAwayMessageLength"), value);
+            SetIfNumeric(GetType().GetProperty("MaxAwayMessageLength"), value);
             break;
           case "IDCHAN":
             foreach (InfoPair pair in CreateInfoPairs(value)) {
               int prefixLength = -1;
               if (int.TryParse(pair.Value, out prefixLength)) {
-                this.SafeChannelPrefixLengths.Add(pair.Key, prefixLength);
+                SafeChannelPrefixLengths.Add(pair.Key, prefixLength);
               }
             }
             break;
           case "STD":
-            this.Standard = value;
+            Standard = value;
             break;
           case "PREFIX":
-            this.ChannelStatuses = value;
+            ChannelStatuses = value;
             break;
           case "STATUSMSG":
           case "WALLVOICES":
-            this.StatusMessages = value;
+            StatusMessages = value;
             break;
           case "CHANTYPES":
-            AddChars(this.ChannelTypes, value);
+            AddChars(ChannelTypes, value);
             break;
           case "CHANMODES":
             string[] modeGroups = value.Split(',');
             if (modeGroups.Length >= 4) {
-              AddChars(this.ModesWithParameters, modeGroups[0]);
-              AddChars(this.ModesWithParameters, modeGroups[1]);
-              AddChars(this.ModesWithParametersWhenSet, modeGroups[2]);
-              AddChars(this.ModesWithoutParameters, modeGroups[3]);
+              AddChars(ModesWithParameters, modeGroups[0]);
+              AddChars(ModesWithParameters, modeGroups[1]);
+              AddChars(ModesWithParametersWhenSet, modeGroups[2]);
+              AddChars(ModesWithoutParameters, modeGroups[3]);
             } else {
               Trace.WriteLine("Unknown CHANMODES " + value);
             }
             break;
           case "MODES":
-            SetIfNumeric(this.GetType().GetProperty("MaxModes"), value);
+            SetIfNumeric(GetType().GetProperty("MaxModes"), value);
             break;
           case "MAXCHANNELS":
-            SetIfNumeric(this.GetType().GetProperty("MaxChannels"), value);
+            SetIfNumeric(GetType().GetProperty("MaxChannels"), value);
             break;
           case "CHANLIMIT":
             foreach (InfoPair chanLimitInfo in CreateInfoPairs(value)) {
               int limit = -1;
               if (int.TryParse(chanLimitInfo.Value, out limit)) {
                 foreach (Char c in chanLimitInfo.Key) {
-                  this.ChannelLimits.Add(c.ToString(), limit);
+                  ChannelLimits.Add(c.ToString(), limit);
                 }
               }
             }
             break;
           case "NICKLEN":
           case "MAXNICKLEN":
-            this.SetIfNumeric(this.GetType().GetProperty("MaxNickLength"), value);
+            SetIfNumeric(GetType().GetProperty("MaxNickLength"), value);
             break;
           case "TOPICLEN":
-            this.SetIfNumeric(this.GetType().GetProperty("MaxTopicLength"), value);
+            SetIfNumeric(GetType().GetProperty("MaxTopicLength"), value);
             break;
           case "KICKLEN":
-            this.SetIfNumeric(this.GetType().GetProperty("MaxKickCommentLength"), value);
+            SetIfNumeric(GetType().GetProperty("MaxKickCommentLength"), value);
             break;
           case "CHANNELLEN":
           case "MAXCHANNELLEN":
-            this.SetIfNumeric(this.GetType().GetProperty("MaxChannelNameLength"), value);
+            SetIfNumeric(GetType().GetProperty("MaxChannelNameLength"), value);
             break;
           case "MAXBANS":
-            this.SetIfNumeric(this.GetType().GetProperty("MaxBans"), value);
+            SetIfNumeric(GetType().GetProperty("MaxBans"), value);
             break;
           case "NETWORK":
             NetworkName = value;
             break;
           case "EXCEPTS":
-            this.BanExceptions = true;
+            BanExceptions = true;
             break;
           case "INVEX":
-            this.InvitationExceptions = true;
+            InvitationExceptions = true;
             break;
           case "SILENCE":
-            this.SetIfNumeric(this.GetType().GetProperty("MaxSilences"), value);
+            SetIfNumeric(GetType().GetProperty("MaxSilences"), value);
             break;
           case "WALLCHOPS":
-            this.MessagesToOperators = true;
+            MessagesToOperators = true;
             break;
           case "CASEMAPPING":
-            this.CaseMapping = value;
+            CaseMapping = value;
             break;
           case "CHARSET":
-            this.CharacterSet = value;
+            CharacterSet = value;
             break;
           case "RFC2812":
-            this.Rfc2812 = true;
+            Rfc2812 = true;
             break;
           case "CHIDLEN":
-            this.SetIfNumeric(this.GetType().GetProperty("ChannelIdLength"), value);
+            SetIfNumeric(GetType().GetProperty("ChannelIdLength"), value);
             break;
           case "PENALTY":
-            this.Penalties = true;
+            Penalties = true;
             break;
           case "FNC":
-            this.ForcedNickChanges = true;
+            ForcedNickChanges = true;
             break;
           case "USERIP":
-            this.UserIP = true;
+            UserIP = true;
             break;
           case "CPRIVMSG":
-            this.ChannelMessages = true;
+            ChannelMessages = true;
             break;
           case "CNOTICE":
-            this.ChannelNotices = true;
+            ChannelNotices = true;
             break;
           case "MAXTARGETS":
             int maxTargets = -1;
             if (value != null && int.TryParse(value, NumberStyles.Integer, CultureInfo.InvariantCulture, out maxTargets)) {
-              this.MaxMessageTargets.Add("", maxTargets);
+              MaxMessageTargets.Add("", maxTargets);
             }
             break;
           case "TARGMAX":
             foreach (InfoPair targmaxInfo in CreateInfoPairs(value)) {
               int targmax = -1;
               if (int.TryParse(targmaxInfo.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out targmax)) {
-                this.MaxMessageTargets.Add(targmaxInfo.Key, targmax);
+                MaxMessageTargets.Add(targmaxInfo.Key, targmax);
               } else {
-                this.MaxMessageTargets.Add(targmaxInfo.Key, -1);
+                MaxMessageTargets.Add(targmaxInfo.Key, -1);
               }
             }
             break;
           case "KNOCK":
-            this.Knock = true;
+            Knock = true;
             break;
           case "VCHANS":
-            this.VirtualChannels = true;
+            VirtualChannels = true;
             break;
           case "SAFELIST":
-            this.SafeList = true;
+            SafeList = true;
             break;
           case "ELIST":
             Dictionary<Char, ExtendedListParameters> elistMap = new Dictionary<char, ExtendedListParameters> {
@@ -859,47 +859,47 @@ namespace Supay.Irc {
               { 'T', ExtendedListParameters.Topic }
             };
 
-            this.ExtendedList = ExtendedListParameters.None;
+            ExtendedList = ExtendedListParameters.None;
             foreach (Char c in value.ToUpperInvariant()) {
-              this.ExtendedList = (this.ExtendedList | elistMap[c]);
+              ExtendedList = (ExtendedList | elistMap[c]);
             }
 
             break;
           case "WATCH":
-            this.SetIfNumeric(this.GetType().GetProperty("MaxWatches"), value);
+            SetIfNumeric(GetType().GetProperty("MaxWatches"), value);
             break;
           case "MONITOR":
-            this.MaxMonitors = -1;
-            this.SetIfNumeric(this.GetType().GetProperty("MaxMonitors"), value);
+            MaxMonitors = -1;
+            SetIfNumeric(GetType().GetProperty("MaxMonitors"), value);
             break;
           case "WHOX":
-            this.WhoX = true;
+            WhoX = true;
             break;
           case "CALLERID":
           case "ACCEPT":
-            this.CallerId = true;
+            CallerId = true;
             break;
           case "ETRACE":
-            this.ETrace = true;
+            ETrace = true;
             break;
           case "MAXLIST":
             foreach (InfoPair maxListInfoPair in CreateInfoPairs(value)) {
               int maxLength = -1;
               if (int.TryParse(maxListInfoPair.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out maxLength)) {
                 if (maxListInfoPair.Key.IndexOf("b", StringComparison.Ordinal) != -1) {
-                  this.MaxBans = maxLength;
+                  MaxBans = maxLength;
                 }
                 if (maxListInfoPair.Key.IndexOf("e", StringComparison.Ordinal) != -1) {
-                  this.MaxBanExceptions = maxLength;
+                  MaxBanExceptions = maxLength;
                 }
                 if (maxListInfoPair.Key.IndexOf("I", StringComparison.Ordinal) != -1) {
-                  this.MaxInvitationExceptions = maxLength;
+                  MaxInvitationExceptions = maxLength;
                 }
               }
             }
             break;
           default:
-            this.UnknownItems[key] = value;
+            UnknownItems[key] = value;
             Trace.WriteLine("Unknown ServerSupport key/value " + key + " " + value);
             break;
         }
@@ -937,8 +937,8 @@ namespace Supay.Irc {
 
     private struct InfoPair {
       public InfoPair(string key, string value) {
-        this.Key = key;
-        this.Value = value;
+        Key = key;
+        Value = value;
       }
 
       public string Key;

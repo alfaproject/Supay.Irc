@@ -12,10 +12,10 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public string Target {
       get {
-        return this.target;
+        return target;
       }
       set {
-        this.target = value;
+        target = value;
       }
     }
 
@@ -29,7 +29,7 @@ namespace Supay.Irc.Messages {
         return internalCommand;
       }
       set {
-        this.internalCommand = value;
+        internalCommand = value;
       }
     }
 
@@ -74,11 +74,11 @@ namespace Supay.Irc.Messages {
         return false;
       }
 
-      if (this.TransportCommand != CtcpUtil.GetTransportCommand(unparsedMessage)) {
+      if (TransportCommand != CtcpUtil.GetTransportCommand(unparsedMessage)) {
         return false;
       }
 
-      if (this.InternalCommand.Length != 0 && this.InternalCommand != CtcpUtil.GetInternalCommand(unparsedMessage)) {
+      if (InternalCommand.Length != 0 && InternalCommand != CtcpUtil.GetInternalCommand(unparsedMessage)) {
         return false;
       }
 
@@ -91,9 +91,9 @@ namespace Supay.Irc.Messages {
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
       if (parameters.Count > 0) {
-        this.Target = parameters[0];
+        Target = parameters[0];
       } else {
-        this.Target = string.Empty;
+        Target = string.Empty;
       }
     }
 
@@ -107,7 +107,7 @@ namespace Supay.Irc.Messages {
     ///   Determines if the the current message is targeted at the given channel.
     /// </summary>
     protected virtual bool IsTargetedAtChannel(string channelName) {
-      return this.Target.EqualsI(channelName);
+      return Target.EqualsI(channelName);
     }
 
     #endregion

@@ -12,7 +12,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public SoundRequestMessage()
       : base() {
-      this.InternalCommand = "SOUND";
+      InternalCommand = "SOUND";
     }
 
     /// <summary>
@@ -20,10 +20,10 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public virtual string Text {
       get {
-        return this.text;
+        return text;
       }
       set {
-        this.text = value;
+        text = value;
       }
     }
 
@@ -34,10 +34,10 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public virtual string SoundFile {
       get {
-        return this.soundFile;
+        return soundFile;
       }
       set {
-        this.soundFile = value;
+        soundFile = value;
       }
     }
 
@@ -55,7 +55,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     protected override string ExtendedData {
       get {
-        return this.SoundFile + " " + this.Text;
+        return SoundFile + " " + Text;
       }
     }
 
@@ -67,9 +67,9 @@ namespace Supay.Irc.Messages {
       string eData = CtcpUtil.GetExtendedData(unparsedMessage);
       if (eData.Length > 0) {
         Collection<string> p = MessageUtil.GetParameters(eData);
-        this.SoundFile = p[0];
+        SoundFile = p[0];
         if (p.Count > 1) {
-          this.Text = p[1];
+          Text = p[1];
         }
       }
     }

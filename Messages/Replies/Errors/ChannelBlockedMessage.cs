@@ -61,12 +61,12 @@ namespace Supay.Irc.Messages {
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
 
-      this.Channel = string.Empty;
-      this.Reason = string.Empty;
+      Channel = string.Empty;
+      Reason = string.Empty;
 
       if (parameters.Count > 2) {
-        this.Channel = parameters[1];
-        this.Reason = MessageUtil.StringBetweenStrings(parameters[2], "Cannot join channel (", ")");
+        Channel = parameters[1];
+        Reason = MessageUtil.StringBetweenStrings(parameters[2], "Cannot join channel (", ")");
       }
     }
 
@@ -87,7 +87,7 @@ namespace Supay.Irc.Messages {
     ///   Determines if the the current message is targeted at the given channel.
     /// </summary>
     protected virtual bool IsTargetedAtChannel(string channelName) {
-      return this.Channel.EqualsI(channelName);
+      return Channel.EqualsI(channelName);
     }
 
     #endregion

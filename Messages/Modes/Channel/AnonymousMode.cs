@@ -20,7 +20,7 @@ namespace Supay.Irc.Messages.Modes {
     ///   Creates a new instance of the <see cref="AnonymousMode" /> class with the given <see cref="ModeAction" />.
     /// </summary>
     public AnonymousMode(ModeAction action) {
-      this.Action = action;
+      Action = action;
     }
 
     /// <summary>

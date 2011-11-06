@@ -13,7 +13,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public ClientInfoRequestMessage()
       : base() {
-      this.InternalCommand = "CLIENTINFO";
+      InternalCommand = "CLIENTINFO";
     }
 
     /// <summary>
@@ -24,7 +24,7 @@ namespace Supay.Irc.Messages {
     /// </remarks>
     public virtual List<string> Parameters {
       get {
-        return this.parameters;
+        return parameters;
       }
     }
 
@@ -35,7 +35,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     protected override string ExtendedData {
       get {
-        return MessageUtil.CreateList(this.parameters, " ");
+        return MessageUtil.CreateList(parameters, " ");
       }
     }
 
@@ -51,9 +51,9 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public override void Parse(string unparsedMessage) {
       base.Parse(unparsedMessage);
-      this.Parameters.Clear();
+      Parameters.Clear();
       string paramsList = CtcpUtil.GetExtendedData(unparsedMessage);
-      this.Parameters.AddRange(paramsList.Split(' '));
+      Parameters.AddRange(paramsList.Split(' '));
     }
   }
 }

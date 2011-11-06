@@ -26,7 +26,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     /// <param name="channel"></param>
     public ListMessage(string channel) {
-      this.channels.Add(channel);
+      channels.Add(channel);
     }
 
     /// <summary>
@@ -37,7 +37,7 @@ namespace Supay.Irc.Messages {
     /// </remarks>
     public virtual List<string> Channels {
       get {
-        return this.channels;
+        return channels;
       }
     }
 
@@ -194,16 +194,16 @@ namespace Supay.Irc.Messages {
     public override void Validate(ServerSupport serverSupport) {
       base.Validate(serverSupport);
       if (serverSupport != null) {
-        if (this.MaxUsers >= 0 || this.MinUsers >= 0) {
+        if (MaxUsers >= 0 || MinUsers >= 0) {
           VerifySupport(serverSupport, ServerSupport.ExtendedListParameters.UserCount);
         }
-        if (this.YoungerThan >= 0 || this.OlderThan >= 0) {
+        if (YoungerThan >= 0 || OlderThan >= 0) {
           VerifySupport(serverSupport, ServerSupport.ExtendedListParameters.CreationTime);
         }
-        if (!string.IsNullOrEmpty(this.MatchMask)) {
+        if (!string.IsNullOrEmpty(MatchMask)) {
           VerifySupport(serverSupport, ServerSupport.ExtendedListParameters.Mask);
         }
-        if (!string.IsNullOrEmpty(this.NotMatchMask)) {
+        if (!string.IsNullOrEmpty(NotMatchMask)) {
           VerifySupport(serverSupport, ServerSupport.ExtendedListParameters.NotMask);
         }
         if (TopicOlderThan >= 0 || TopicYoungerThan >= 0) {
@@ -266,42 +266,42 @@ namespace Supay.Irc.Messages {
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
 
-      this.Channels.Clear();
-      this.Server = string.Empty;
-      this.MatchMask = string.Empty;
-      this.NotMatchMask = string.Empty;
-      this.MaxUsers = -1;
-      this.MinUsers = -1;
-      this.OlderThan = -1;
-      this.YoungerThan = -1;
-      this.TopicOlderThan = -1;
-      this.TopicYoungerThan = -1;
+      Channels.Clear();
+      Server = string.Empty;
+      MatchMask = string.Empty;
+      NotMatchMask = string.Empty;
+      MaxUsers = -1;
+      MinUsers = -1;
+      OlderThan = -1;
+      YoungerThan = -1;
+      TopicOlderThan = -1;
+      TopicYoungerThan = -1;
 
       if (parameters.Count >= 1) {
         if (IsExtendedParameter(parameters[0])) {
           foreach (string extOption in parameters[0].Split(',')) {
             if (extOption.StartsWith("!*", StringComparison.Ordinal)) {
-              this.NotMatchMask = MessageUtil.StringBetweenStrings(extOption, "!*", "*");
+              NotMatchMask = MessageUtil.StringBetweenStrings(extOption, "!*", "*");
             } else if (extOption.StartsWith("*", StringComparison.Ordinal)) {
-              this.MatchMask = MessageUtil.StringBetweenStrings(extOption, "*", "*");
+              MatchMask = MessageUtil.StringBetweenStrings(extOption, "*", "*");
             } else if (extOption.StartsWith("C>", StringComparison.Ordinal)) {
-              this.OlderThan = Convert.ToInt32(extOption.Substring(2), CultureInfo.InvariantCulture);
+              OlderThan = Convert.ToInt32(extOption.Substring(2), CultureInfo.InvariantCulture);
             } else if (extOption.StartsWith("C<", StringComparison.Ordinal)) {
-              this.YoungerThan = Convert.ToInt32(extOption.Substring(2), CultureInfo.InvariantCulture);
+              YoungerThan = Convert.ToInt32(extOption.Substring(2), CultureInfo.InvariantCulture);
             } else if (extOption.StartsWith("T>", StringComparison.Ordinal)) {
-              this.TopicOlderThan = Convert.ToInt32(extOption.Substring(2), CultureInfo.InvariantCulture);
+              TopicOlderThan = Convert.ToInt32(extOption.Substring(2), CultureInfo.InvariantCulture);
             } else if (extOption.StartsWith("T<", StringComparison.Ordinal)) {
-              this.TopicYoungerThan = Convert.ToInt32(extOption.Substring(2), CultureInfo.InvariantCulture);
+              TopicYoungerThan = Convert.ToInt32(extOption.Substring(2), CultureInfo.InvariantCulture);
             } else if (extOption.StartsWith(">", StringComparison.Ordinal)) {
-              this.MinUsers = Convert.ToInt32(extOption.Substring(1), CultureInfo.InvariantCulture);
+              MinUsers = Convert.ToInt32(extOption.Substring(1), CultureInfo.InvariantCulture);
             } else if (extOption.StartsWith("<", StringComparison.Ordinal)) {
-              this.MaxUsers = Convert.ToInt32(extOption.Substring(1), CultureInfo.InvariantCulture);
+              MaxUsers = Convert.ToInt32(extOption.Substring(1), CultureInfo.InvariantCulture);
             }
           }
         } else if (MessageUtil.HasValidChannelPrefix(parameters[0])) {
-          this.Channels.AddRange(parameters[0].Split(','));
+          Channels.AddRange(parameters[0].Split(','));
           if (parameters.Count >= 2) {
-            this.Server = parameters[1];
+            Server = parameters[1];
           }
         }
       }

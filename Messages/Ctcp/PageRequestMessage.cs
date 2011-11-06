@@ -11,7 +11,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public PageRequestMessage()
       : base() {
-      this.InternalCommand = "PAGE";
+      InternalCommand = "PAGE";
     }
 
     /// <summary>

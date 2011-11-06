@@ -43,7 +43,7 @@ namespace Supay.Irc.Messages {
     /// <param name="parameters"></param>
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
-      this.info = parameters[parameters.Count - 1];
+      info = parameters[parameters.Count - 1];
     }
 
     /// <summary>

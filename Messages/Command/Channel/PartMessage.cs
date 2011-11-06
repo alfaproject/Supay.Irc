@@ -21,7 +21,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public PartMessage(string channel)
       : base() {
-      this.channels.Add(channel);
+      channels.Add(channel);
     }
 
     /// <summary>
@@ -29,7 +29,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public virtual List<string> Channels {
       get {
-        return this.channels;
+        return channels;
       }
     }
 
@@ -38,13 +38,13 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public virtual string Reason {
       get {
-        return this.reason;
+        return reason;
       }
       set {
         if (value == null) {
           throw new ArgumentNullException("value");
         }
-        this.reason = value;
+        reason = value;
       }
     }
 
@@ -84,11 +84,11 @@ namespace Supay.Irc.Messages {
     /// </summary>
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
-      this.Channels.Clear();
+      Channels.Clear();
       if (parameters.Count >= 1) {
-        this.Channels.AddRange(parameters[0].Split(','));
+        Channels.AddRange(parameters[0].Split(','));
         if (parameters.Count >= 2) {
-          this.Reason = parameters[1];
+          Reason = parameters[1];
         }
       }
     }
@@ -113,7 +113,7 @@ namespace Supay.Irc.Messages {
     ///   Determines if the the current message is targeted at the given channel.
     /// </summary>
     protected virtual bool IsTargetedAtChannel(string channelName) {
-      return MessageUtil.ContainsIgnoreCaseMatch(this.Channels, channelName);
+      return MessageUtil.ContainsIgnoreCaseMatch(Channels, channelName);
     }
 
     #endregion

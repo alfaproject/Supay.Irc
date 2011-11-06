@@ -44,10 +44,10 @@ namespace Supay.Irc {
       _userModes = new Dictionary<User, ChannelStatus>();
 
       _modes = new ChannelModeCollection();
-      _modes.CollectionChanged += (s, e) => this.RaisePropertyChanged("Modes");
+      _modes.CollectionChanged += (s, e) => RaisePropertyChanged("Modes");
 
       _journal = new Journal();
-      _journal.CollectionChanged += (s, e) => this.RaisePropertyChanged("Journal");
+      _journal.CollectionChanged += (s, e) => RaisePropertyChanged("Journal");
     }
 
     /// <summary>
@@ -70,7 +70,7 @@ namespace Supay.Irc {
       }
       internal set {
         _open = value;
-        this.RaisePropertyChanged("Open");
+        RaisePropertyChanged("Open");
       }
     }
 
@@ -84,7 +84,7 @@ namespace Supay.Irc {
       set {
         if (_properties["NAME"] != value) {
           _properties["NAME"] = value;
-          this.RaisePropertyChanged("Name");
+          RaisePropertyChanged("Name");
         }
       }
     }
@@ -94,12 +94,12 @@ namespace Supay.Irc {
     /// </summary>
     public string Topic {
       get {
-        return this.Properties["TOPIC"];
+        return Properties["TOPIC"];
       }
       set {
         if (_properties["TOPIC"] != value) {
           _properties["TOPIC"] = value;
-          this.RaisePropertyChanged("Topic");
+          RaisePropertyChanged("Topic");
         }
       }
     }
@@ -114,7 +114,7 @@ namespace Supay.Irc {
       set {
         if (_topicSetter != value) {
           _topicSetter = value;
-          this.RaisePropertyChanged("TopicSetter");
+          RaisePropertyChanged("TopicSetter");
         }
       }
     }
@@ -129,7 +129,7 @@ namespace Supay.Irc {
       set {
         if (_topicSetTime != value) {
           _topicSetTime = value;
-          this.RaisePropertyChanged("TopicSetTime");
+          RaisePropertyChanged("TopicSetTime");
         }
       }
     }
@@ -206,7 +206,7 @@ namespace Supay.Irc {
         throw new ArgumentNullException("channelUser");
       }
       if (!_users.Contains(channelUser)) {
-        throw new ArgumentException(string.Format(CultureInfo.InvariantCulture, Resources.UserIsNotInChannel, channelUser.Nickname, this.Name), "channelUser");
+        throw new ArgumentException(string.Format(CultureInfo.InvariantCulture, Resources.UserIsNotInChannel, channelUser.Nickname, Name), "channelUser");
       }
     }
 
@@ -219,7 +219,7 @@ namespace Supay.Irc {
         }
       }
 
-      this.RaisePropertyChanged("Users");
+      RaisePropertyChanged("Users");
     }
 
     #endregion
@@ -230,7 +230,7 @@ namespace Supay.Irc {
     ///   Raises the PropertyChanged event.
     /// </summary>
     protected void RaisePropertyChanged(string propertyName) {
-      PropertyChangedEventHandler handler = this.PropertyChanged;
+      PropertyChangedEventHandler handler = PropertyChanged;
       if (handler != null) {
         handler(this, new PropertyChangedEventArgs(propertyName));
       }

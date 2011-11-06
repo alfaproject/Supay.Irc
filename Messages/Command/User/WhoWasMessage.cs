@@ -13,10 +13,10 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public virtual string Nick {
       get {
-        return this.nick;
+        return nick;
       }
       set {
-        this.nick = value;
+        nick = value;
       }
     }
 
@@ -78,16 +78,16 @@ namespace Supay.Irc.Messages {
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
 
-      this.Nick = string.Empty;
-      this.Server = string.Empty;
-      this.MaximumResults = 1;
+      Nick = string.Empty;
+      Server = string.Empty;
+      MaximumResults = 1;
 
       if (parameters.Count > 0) {
-        this.Nick = parameters[0];
+        Nick = parameters[0];
         if (parameters.Count > 1) {
-          this.Server = parameters[1];
+          Server = parameters[1];
           if (parameters.Count > 2) {
-            this.MaximumResults = Convert.ToInt32(parameters[2], CultureInfo.InvariantCulture);
+            MaximumResults = Convert.ToInt32(parameters[2], CultureInfo.InvariantCulture);
           }
         }
       }

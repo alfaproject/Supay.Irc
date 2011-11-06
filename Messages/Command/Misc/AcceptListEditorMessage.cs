@@ -80,9 +80,9 @@ namespace Supay.Irc.Messages {
 
       foreach (string nick in parameters[0].Split(',')) {
         if (nick.StartsWith("-", StringComparison.Ordinal)) {
-          this.RemovedNicks.Add(nick.Substring(1));
+          RemovedNicks.Add(nick.Substring(1));
         } else {
-          this.AddedNicks.Add(nick);
+          AddedNicks.Add(nick);
         }
       }
     }

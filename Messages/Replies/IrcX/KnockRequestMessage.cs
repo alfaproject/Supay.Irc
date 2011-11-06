@@ -19,10 +19,10 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public virtual string Channel {
       get {
-        return this.channel;
+        return channel;
       }
       set {
-        this.channel = value;
+        channel = value;
       }
     }
 
@@ -33,10 +33,10 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public virtual User Knocker {
       get {
-        return this.knocker;
+        return knocker;
       }
       set {
-        this.knocker = value;
+        knocker = value;
       }
     }
 
@@ -59,14 +59,14 @@ namespace Supay.Irc.Messages {
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
       if (parameters.Count > 1) {
-        this.Channel = parameters[1];
+        Channel = parameters[1];
       } else {
-        this.Channel = string.Empty;
+        Channel = string.Empty;
       }
       if (parameters.Count > 2) {
-        this.Knocker = new User(parameters[2]);
+        Knocker = new User(parameters[2]);
       } else {
-        this.Knocker = new User();
+        Knocker = new User();
       }
     }
 

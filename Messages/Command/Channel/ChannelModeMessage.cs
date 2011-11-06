@@ -44,10 +44,10 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public virtual string Channel {
       get {
-        return this.channel;
+        return channel;
       }
       set {
-        this.channel = value;
+        channel = value;
       }
     }
 
@@ -62,10 +62,10 @@ namespace Supay.Irc.Messages {
     /// </remarks>
     public virtual string ModeChanges {
       get {
-        return this.modeChanges;
+        return modeChanges;
       }
       set {
-        this.modeChanges = value;
+        modeChanges = value;
       }
     }
 
@@ -79,7 +79,7 @@ namespace Supay.Irc.Messages {
     /// </remarks>
     public virtual List<string> ModeArguments {
       get {
-        return this.modeArguments;
+        return modeArguments;
       }
     }
 
@@ -105,18 +105,18 @@ namespace Supay.Irc.Messages {
     /// </summary>
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
-      this.Channel = parameters[0];
+      Channel = parameters[0];
 
       if (parameters.Count > 1) {
-        this.ModeChanges = parameters[1];
+        ModeChanges = parameters[1];
       } else {
-        this.ModeChanges = string.Empty;
+        ModeChanges = string.Empty;
       }
 
-      this.ModeArguments.Clear();
+      ModeArguments.Clear();
       if (parameters.Count > 2) {
         for (int i = 2; i < parameters.Count; i++) {
-          this.ModeArguments.Add(parameters[i]);
+          ModeArguments.Add(parameters[i]);
         }
       }
     }
@@ -153,7 +153,7 @@ namespace Supay.Irc.Messages {
     ///   Determines if the the current message is targeted at the given channel.
     /// </summary>
     protected virtual bool IsTargetedAtChannel(string channelName) {
-      return this.Channel.EqualsI(channelName);
+      return Channel.EqualsI(channelName);
     }
 
     #endregion

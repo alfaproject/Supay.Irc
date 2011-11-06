@@ -14,7 +14,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public SourceReplyMessage()
       : base() {
-      this.InternalCommand = "SOURCE";
+      InternalCommand = "SOURCE";
     }
 
     /// <summary>
@@ -22,10 +22,10 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public virtual string Server {
       get {
-        return this.server;
+        return server;
       }
       set {
-        this.server = value;
+        server = value;
       }
     }
 
@@ -36,10 +36,10 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public virtual string Folder {
       get {
-        return this.folder;
+        return folder;
       }
       set {
-        this.folder = value;
+        folder = value;
       }
     }
 
@@ -50,7 +50,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public virtual Collection<string> Files {
       get {
-        return this.files;
+        return files;
       }
     }
 
@@ -65,7 +65,7 @@ namespace Supay.Irc.Messages {
         result.Append(Server);
         result.Append(":");
         result.Append(Folder);
-        if (this.Files.Count > 0) {
+        if (Files.Count > 0) {
           result.Append(":");
           result.Append(MessageUtil.CreateList(Files, " "));
         }
@@ -81,13 +81,13 @@ namespace Supay.Irc.Messages {
       string eData = CtcpUtil.GetExtendedData(unparsedMessage);
       string[] p = eData.Split(':');
       if (p.Length > 0) {
-        this.Server = p[0];
+        Server = p[0];
         if (p.Length > 1) {
-          this.Folder = p[1];
+          Folder = p[1];
           if (p.Length == 3) {
             Collection<string> fs = MessageUtil.GetParameters(p[2]);
             foreach (string f in fs) {
-              this.Files.Add(f);
+              Files.Add(f);
             }
           }
         }

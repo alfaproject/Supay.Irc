@@ -11,7 +11,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public FingerRequestMessage()
       : base() {
-      this.InternalCommand = "FINGER";
+      InternalCommand = "FINGER";
     }
 
     /// <summary>

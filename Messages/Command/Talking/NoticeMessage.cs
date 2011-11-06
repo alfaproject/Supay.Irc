@@ -19,7 +19,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public NoticeMessage(string text)
       : base() {
-      this.Text = text;
+      Text = text;
     }
 
     /// <summary>
@@ -27,7 +27,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public NoticeMessage(string text, string target)
       : this(text) {
-      this.Targets.Add(target);
+      Targets.Add(target);
     }
 
     /// <summary>
@@ -35,7 +35,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public NoticeMessage(string text, params string[] targets)
       : this(text) {
-      this.Targets.AddRange(targets);
+      Targets.AddRange(targets);
     }
 
     /// <summary>

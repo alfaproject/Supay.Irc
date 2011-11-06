@@ -63,8 +63,8 @@ namespace Supay.Irc.Messages {
       string watchesHave = MessageUtil.StringBetweenStrings(unparsedSentence, "You have ", " and are on ");
       string watchesOn = MessageUtil.StringBetweenStrings(unparsedSentence, " and are on ", " WATCH entries");
 
-      this.WatchListCount = int.Parse(watchesHave, CultureInfo.InvariantCulture);
-      this.UsersWatchingYou = int.Parse(watchesOn, CultureInfo.InvariantCulture);
+      WatchListCount = int.Parse(watchesHave, CultureInfo.InvariantCulture);
+      UsersWatchingYou = int.Parse(watchesOn, CultureInfo.InvariantCulture);
     }
 
     /// <summary>

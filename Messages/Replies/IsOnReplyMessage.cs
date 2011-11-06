@@ -20,7 +20,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public virtual List<string> Nicks {
       get {
-        return this.nicks;
+        return nicks;
       }
     }
 
@@ -40,8 +40,8 @@ namespace Supay.Irc.Messages {
     /// </summary>
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
-      this.Nicks.Clear();
-      this.Nicks.AddRange(parameters[parameters.Count - 1].Split(' '));
+      Nicks.Clear();
+      Nicks.AddRange(parameters[parameters.Count - 1].Split(' '));
     }
 
     /// <summary>

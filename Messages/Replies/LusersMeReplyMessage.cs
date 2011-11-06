@@ -60,8 +60,8 @@ namespace Supay.Irc.Messages {
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
       string payload = parameters[1];
-      this.ClientCount = Convert.ToInt32(MessageUtil.StringBetweenStrings(payload, iHave, clientsAnd), CultureInfo.InvariantCulture);
-      this.ServerCount = Convert.ToInt32(MessageUtil.StringBetweenStrings(payload, clientsAnd, servers), CultureInfo.InvariantCulture);
+      ClientCount = Convert.ToInt32(MessageUtil.StringBetweenStrings(payload, iHave, clientsAnd), CultureInfo.InvariantCulture);
+      ServerCount = Convert.ToInt32(MessageUtil.StringBetweenStrings(payload, clientsAnd, servers), CultureInfo.InvariantCulture);
     }
 
     /// <summary>

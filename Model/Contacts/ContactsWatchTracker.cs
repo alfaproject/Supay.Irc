@@ -9,8 +9,8 @@ namespace Supay.Irc.Contacts {
     }
 
     public override void Initialize() {
-      this.Contacts.Client.Messages.WatchedUserOffline += new EventHandler<IrcMessageEventArgs<WatchedUserOfflineMessage>>(client_WatchedUserOffline);
-      this.Contacts.Client.Messages.WatchedUserOnline += new EventHandler<IrcMessageEventArgs<WatchedUserOnlineMessage>>(client_WatchedUserOnline);
+      Contacts.Client.Messages.WatchedUserOffline += new EventHandler<IrcMessageEventArgs<WatchedUserOfflineMessage>>(client_WatchedUserOffline);
+      Contacts.Client.Messages.WatchedUserOnline += new EventHandler<IrcMessageEventArgs<WatchedUserOnlineMessage>>(client_WatchedUserOnline);
       base.Initialize();
     }
 
@@ -19,32 +19,32 @@ namespace Supay.Irc.Contacts {
       foreach (string nick in nicks) {
         addMsg.AddedNicks.Add(nick);
       }
-      this.Contacts.Client.Send(addMsg);
+      Contacts.Client.Send(addMsg);
     }
 
     protected override void AddNick(string nick) {
       WatchListEditorMessage addMsg = new WatchListEditorMessage();
       addMsg.AddedNicks.Add(nick);
-      this.Contacts.Client.Send(addMsg);
+      Contacts.Client.Send(addMsg);
     }
 
     protected override void RemoveNick(string nick) {
       WatchListEditorMessage remMsg = new WatchListEditorMessage();
       remMsg.RemovedNicks.Add(nick);
-      this.Contacts.Client.Send(remMsg);
+      Contacts.Client.Send(remMsg);
     }
 
     #region Reply Handlers
 
     private void client_WatchedUserOnline(object sender, IrcMessageEventArgs<WatchedUserOnlineMessage> e) {
-      User knownUser = this.Contacts.Users.Find(e.Message.WatchedUser.Nickname);
+      User knownUser = Contacts.Users.Find(e.Message.WatchedUser.Nickname);
       if (knownUser != null) {
         knownUser.Online = true;
       }
     }
 
     private void client_WatchedUserOffline(object sender, IrcMessageEventArgs<WatchedUserOfflineMessage> e) {
-      User knownUser = this.Contacts.Users.Find(e.Message.WatchedUser.Nickname);
+      User knownUser = Contacts.Users.Find(e.Message.WatchedUser.Nickname);
       if (knownUser != null) {
         knownUser.Online = false;
       }

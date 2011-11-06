@@ -16,7 +16,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public virtual List<string> Channels {
       get {
-        return this.channels;
+        return channels;
       }
     }
 
@@ -47,9 +47,9 @@ namespace Supay.Irc.Messages {
     /// </summary>
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
-      this.Channels.Clear();
+      Channels.Clear();
       if (parameters.Count >= 1) {
-        this.Channels.AddRange(parameters[0].Split(','));
+        Channels.AddRange(parameters[0].Split(','));
       }
     }
 

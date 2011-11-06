@@ -156,23 +156,23 @@ namespace Supay.Irc.Messages {
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
 
-      this.ServerName = parameters[1];
-      this.Version = parameters[2];
-      this.UserModes = parameters[3];
-      this.ChannelModes = parameters[4];
+      ServerName = parameters[1];
+      Version = parameters[2];
+      UserModes = parameters[3];
+      ChannelModes = parameters[4];
 
       int pCount = parameters.Count;
 
       if (pCount > 5) {
-        this.ChannelModesWithParams = parameters[5];
+        ChannelModesWithParams = parameters[5];
         if (pCount > 6) {
-          this.UserModesWithParams = parameters[6];
+          UserModesWithParams = parameters[6];
 
           if (pCount > 7) {
-            this.ServerModes = parameters[7];
+            ServerModes = parameters[7];
 
             if (pCount > 8) {
-              this.ServerModesWithParams = parameters[8];
+              ServerModesWithParams = parameters[8];
             }
           }
         }

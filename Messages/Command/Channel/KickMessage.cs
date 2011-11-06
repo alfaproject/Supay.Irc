@@ -26,8 +26,8 @@ namespace Supay.Irc.Messages {
     /// <param name="channel">The name of the channel affected.</param>
     /// <param name="nick">The nick of the user being kicked out.</param>
     public KickMessage(string channel, string nick) {
-      this.channels.Add(channel);
-      this.nicks.Add(nick);
+      channels.Add(channel);
+      nicks.Add(nick);
     }
 
     private List<string> channels = new List<string>();
@@ -48,7 +48,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public virtual List<string> Channels {
       get {
-        return this.channels;
+        return channels;
       }
     }
 
@@ -57,7 +57,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public virtual List<string> Nicks {
       get {
-        return this.nicks;
+        return nicks;
       }
     }
 
@@ -66,10 +66,10 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public virtual string Reason {
       get {
-        return this.reason;
+        return reason;
       }
       set {
-        this.reason = value;
+        reason = value;
       }
     }
 
@@ -81,11 +81,11 @@ namespace Supay.Irc.Messages {
       if (serverSupport == null) {
         return;
       }
-      if (this.Reason.Length > serverSupport.MaxKickCommentLength) {
-        this.Reason = this.Reason.Substring(0, serverSupport.MaxKickCommentLength);
+      if (Reason.Length > serverSupport.MaxKickCommentLength) {
+        Reason = Reason.Substring(0, serverSupport.MaxKickCommentLength);
       }
-      for (int i = 0; i < this.Channels.Count; i++) {
-        this.Channels[i] = MessageUtil.EnsureValidChannelName(this.Channels[i], serverSupport);
+      for (int i = 0; i < Channels.Count; i++) {
+        Channels[i] = MessageUtil.EnsureValidChannelName(Channels[i], serverSupport);
       }
     }
 
@@ -107,14 +107,14 @@ namespace Supay.Irc.Messages {
     /// </summary>
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
-      this.Channels.Clear();
-      this.Nicks.Clear();
-      this.Reason = string.Empty;
+      Channels.Clear();
+      Nicks.Clear();
+      Reason = string.Empty;
       if (parameters.Count >= 2) {
-        this.Channels.AddRange(parameters[0].Split(','));
-        this.Nicks.AddRange(parameters[1].Split(','));
+        Channels.AddRange(parameters[0].Split(','));
+        Nicks.AddRange(parameters[1].Split(','));
         if (parameters.Count >= 3) {
-          this.Reason = parameters[2];
+          Reason = parameters[2];
         }
       }
     }
@@ -136,7 +136,7 @@ namespace Supay.Irc.Messages {
     ///   Determines if the the current message is targeted at the given channel.
     /// </summary>
     protected virtual bool IsTargetedAtChannel(string channelName) {
-      return MessageUtil.ContainsIgnoreCaseMatch(this.Channels, channelName);
+      return MessageUtil.ContainsIgnoreCaseMatch(Channels, channelName);
     }
 
     #endregion

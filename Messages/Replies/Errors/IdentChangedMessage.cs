@@ -72,9 +72,9 @@ namespace Supay.Irc.Messages {
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
       string param = parameters[1];
-      this.Ident = MessageUtil.StringBetweenStrings(param, "Your username ", " contained the invalid ");
-      this.InvalidCharacters = MessageUtil.StringBetweenStrings(param, "invalid character(s) ", " and has ");
-      this.NewIdent = MessageUtil.StringBetweenStrings(param, "has been changed to ", ". Please");
+      Ident = MessageUtil.StringBetweenStrings(param, "Your username ", " contained the invalid ");
+      InvalidCharacters = MessageUtil.StringBetweenStrings(param, "invalid character(s) ", " and has ");
+      NewIdent = MessageUtil.StringBetweenStrings(param, "has been changed to ", ". Please");
     }
 
     /// <summary>

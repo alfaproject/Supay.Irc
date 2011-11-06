@@ -19,13 +19,13 @@ namespace Supay.Irc.Messages.Modes {
     /// </summary>
     public ServerSupport ServerSupport {
       get {
-        return this.serverSupports;
+        return serverSupports;
       }
       set {
         if (value == null) {
           throw new ArgumentNullException("value");
         }
-        this.serverSupports = value;
+        serverSupports = value;
       }
     }
 
@@ -45,7 +45,7 @@ namespace Supay.Irc.Messages.Modes {
         modeArguments = new List<string>();
       }
 
-      this.modes.Clear();
+      modes.Clear();
       ModeAction currentAction = ModeAction.Add;
       int argIndex = 0;
       foreach (Char c in modeChanges) {
@@ -59,31 +59,31 @@ namespace Supay.Irc.Messages.Modes {
 
             // PONDER This probably won't correctly parse incorrect mode messages, should I?
           case 'a':
-            this.modes.Add(new AnonymousMode(currentAction));
+            modes.Add(new AnonymousMode(currentAction));
             break;
           case 'b':
             BanMode banMode = new BanMode(currentAction, new User(modeArguments[argIndex]));
             argIndex++;
-            this.modes.Add(banMode);
+            modes.Add(banMode);
             break;
           case 'e':
             BanExceptionMode banExceptionMode = new BanExceptionMode(currentAction, new User(modeArguments[argIndex]));
             argIndex++;
-            this.modes.Add(banExceptionMode);
+            modes.Add(banExceptionMode);
             break;
           case 'h':
             HalfOpMode halfOpMode = new HalfOpMode(currentAction, modeArguments[argIndex]);
             argIndex++;
-            this.modes.Add(halfOpMode);
+            modes.Add(halfOpMode);
             break;
           case 'I':
             InvitationExceptionMode invitationExceptionMode = new InvitationExceptionMode(currentAction, new User(modeArguments[argIndex]));
             argIndex++;
-            this.modes.Add(invitationExceptionMode);
+            modes.Add(invitationExceptionMode);
             break;
           case 'i':
             InviteOnlyMode inviteOnlyMode = new InviteOnlyMode(currentAction);
-            this.modes.Add(inviteOnlyMode);
+            modes.Add(inviteOnlyMode);
             break;
           case 'k':
             KeyMode keyMode = new KeyMode(currentAction);
@@ -91,7 +91,7 @@ namespace Supay.Irc.Messages.Modes {
               keyMode.Password = modeArguments[argIndex];
               argIndex++;
             }
-            this.modes.Add(keyMode);
+            modes.Add(keyMode);
             break;
           case 'l':
             LimitMode limitMode = new LimitMode(currentAction);
@@ -99,61 +99,61 @@ namespace Supay.Irc.Messages.Modes {
               limitMode.UserLimit = Convert.ToInt32(modeArguments[argIndex], CultureInfo.InvariantCulture);
               argIndex++;
             }
-            this.modes.Add(limitMode);
+            modes.Add(limitMode);
             break;
           case 'm':
-            this.modes.Add(new ModeratedMode(currentAction));
+            modes.Add(new ModeratedMode(currentAction));
             break;
           case 'n':
-            this.modes.Add(new NoOutsideMessagesMode(currentAction));
+            modes.Add(new NoOutsideMessagesMode(currentAction));
             break;
           case 'O':
             CreatorMode creatorMode = new CreatorMode(currentAction, modeArguments[argIndex]);
             argIndex++;
-            this.modes.Add(creatorMode);
+            modes.Add(creatorMode);
             break;
           case 'o':
             OperatorMode operatorMode = new OperatorMode(currentAction, modeArguments[argIndex]);
             argIndex++;
-            this.modes.Add(operatorMode);
+            modes.Add(operatorMode);
             break;
           case 'p':
-            this.modes.Add(new PrivateMode(currentAction));
+            modes.Add(new PrivateMode(currentAction));
             break;
           case 'q':
-            this.modes.Add(new QuietMode(currentAction));
+            modes.Add(new QuietMode(currentAction));
             break;
           case 's':
-            this.modes.Add(new SecretMode(currentAction));
+            modes.Add(new SecretMode(currentAction));
             break;
           case 'r':
-            this.modes.Add(new ServerReopMode(currentAction));
+            modes.Add(new ServerReopMode(currentAction));
             break;
           case 'R':
-            this.modes.Add(new RegisteredNicksOnlyMode(currentAction));
+            modes.Add(new RegisteredNicksOnlyMode(currentAction));
             break;
           case 't':
-            this.modes.Add(new TopicGuardedMode(currentAction));
+            modes.Add(new TopicGuardedMode(currentAction));
             break;
           case 'v':
             VoiceMode voiceMode = new VoiceMode(currentAction, modeArguments[argIndex]);
             argIndex++;
-            this.modes.Add(voiceMode);
+            modes.Add(voiceMode);
             break;
           default:
             string unknownMode = c.ToString();
-            if (this.serverSupports.ModesWithParameters.Contains(unknownMode) || (this.serverSupports.ModesWithParametersWhenSet.Contains(unknownMode) && currentAction == ModeAction.Add)) {
+            if (serverSupports.ModesWithParameters.Contains(unknownMode) || (serverSupports.ModesWithParametersWhenSet.Contains(unknownMode) && currentAction == ModeAction.Add)) {
               // I want to yank a parameter	
-              this.modes.Add(new UnknownChannelMode(currentAction, unknownMode, modeArguments[argIndex]));
+              modes.Add(new UnknownChannelMode(currentAction, unknownMode, modeArguments[argIndex]));
               argIndex++;
             } else {
               // I don't
-              this.modes.Add(new UnknownChannelMode(currentAction, unknownMode));
+              modes.Add(new UnknownChannelMode(currentAction, unknownMode));
             }
             break;
         }
       }
-      this.CollapseModes();
+      CollapseModes();
     }
 
     /// <summary>
@@ -163,7 +163,7 @@ namespace Supay.Irc.Messages.Modes {
       if (msg == null) {
         return;
       }
-      this.Parse(msg.ModeChanges, msg.ModeArguments);
+      Parse(msg.ModeChanges, msg.ModeArguments);
     }
 
     /// <summary>
@@ -173,7 +173,7 @@ namespace Supay.Irc.Messages.Modes {
       if (string.IsNullOrEmpty(modeChanges)) {
         return;
       }
-      this.Parse(modeChanges, new List<string>());
+      Parse(modeChanges, new List<string>());
     }
 
     #endregion
@@ -195,14 +195,14 @@ namespace Supay.Irc.Messages.Modes {
       }
       msg.ModeChanges = string.Empty;
       msg.ModeArguments.Clear();
-      if (this.modes.Count > 0) {
+      if (modes.Count > 0) {
         // The first one always adds its mode
-        ChannelMode currentMode = this.modes[0];
+        ChannelMode currentMode = modes[0];
         ModeAction currentAction = currentMode.Action;
         currentMode.ApplyTo(msg, true);
         // The rest compare to the current
-        for (int i = 1; i < this.modes.Count; i++) {
-          currentMode = this.modes[i];
+        for (int i = 1; i < modes.Count; i++) {
+          currentMode = modes[i];
           currentMode.ApplyTo(msg, currentAction != currentMode.Action);
           currentAction = currentMode.Action;
         }

@@ -22,10 +22,10 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public virtual string UserName {
       get {
-        return this.userName;
+        return userName;
       }
       set {
-        this.userName = value;
+        userName = value;
       }
     }
 
@@ -64,10 +64,10 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public virtual string RealName {
       get {
-        return this.realName;
+        return realName;
       }
       set {
-        this.realName = value;
+        realName = value;
       }
     }
 
@@ -111,16 +111,16 @@ namespace Supay.Irc.Messages {
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
       if (parameters.Count >= 4) {
-        this.UserName = parameters[0];
-        this.RealName = parameters[3];
+        UserName = parameters[0];
+        RealName = parameters[3];
         int modeBitMask = Convert.ToInt32(parameters[1], CultureInfo.InvariantCulture);
-        this.InitialInvisibility = ((modeBitMask & 8) == 8);
-        this.InitialWallops = ((modeBitMask & 4) == 4);
+        InitialInvisibility = ((modeBitMask & 8) == 8);
+        InitialWallops = ((modeBitMask & 4) == 4);
       } else {
-        this.UserName = string.Empty;
-        this.RealName = string.Empty;
-        this.InitialInvisibility = true;
-        this.InitialWallops = false;
+        UserName = string.Empty;
+        RealName = string.Empty;
+        InitialInvisibility = true;
+        InitialWallops = false;
       }
     }
 

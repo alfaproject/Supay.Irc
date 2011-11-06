@@ -41,9 +41,9 @@ namespace Supay.Irc.Messages {
     /// </summary>
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
-      this.Nicks.Clear();
+      Nicks.Clear();
       foreach (string nick in parameters) {
-        this.Nicks.Add(nick);
+        Nicks.Add(nick);
       }
     }
 

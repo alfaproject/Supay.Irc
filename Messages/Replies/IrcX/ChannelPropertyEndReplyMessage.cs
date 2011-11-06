@@ -19,10 +19,10 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public virtual string Channel {
       get {
-        return this.channel;
+        return channel;
       }
       set {
-        this.channel = value;
+        channel = value;
       }
     }
 
@@ -44,7 +44,7 @@ namespace Supay.Irc.Messages {
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
       if (parameters.Count > 1) {
-        this.Channel = parameters[1];
+        Channel = parameters[1];
       }
     }
 

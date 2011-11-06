@@ -47,9 +47,9 @@ namespace Supay.Irc.Messages {
       base.ParseParameters(parameters);
 
       if (parameters.Count >= 1) {
-        this.Modes = parameters[1];
+        Modes = parameters[1];
       } else {
-        this.Modes = string.Empty;
+        Modes = string.Empty;
       }
     }
 

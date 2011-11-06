@@ -21,7 +21,7 @@ namespace Supay.Irc {
       Query q = FindQuery(user);
       if (q == null) {
         q = new Query(client, user);
-        this.Add(q);
+        Add(q);
       }
       return q;
     }

@@ -11,7 +11,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public TimeRequestMessage()
       : base() {
-      this.InternalCommand = "TIME";
+      InternalCommand = "TIME";
     }
 
     /// <summary>

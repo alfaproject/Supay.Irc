@@ -71,13 +71,13 @@ namespace Supay.Irc.Messages {
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
       if (parameters.Count > 3) {
-        this.Nick = parameters[1];
-        this.ServerName = parameters[2];
-        this.Info = parameters[3];
+        Nick = parameters[1];
+        ServerName = parameters[2];
+        Info = parameters[3];
       } else {
-        this.Nick = string.Empty;
-        this.ServerName = string.Empty;
-        this.Info = string.Empty;
+        Nick = string.Empty;
+        ServerName = string.Empty;
+        Info = string.Empty;
       }
     }
 

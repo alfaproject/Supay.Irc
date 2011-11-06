@@ -44,7 +44,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
-      this.ChannelCount = Convert.ToInt32(parameters[1], CultureInfo.InvariantCulture);
+      ChannelCount = Convert.ToInt32(parameters[1], CultureInfo.InvariantCulture);
     }
 
     private const string channelsFormed = "channels formed";

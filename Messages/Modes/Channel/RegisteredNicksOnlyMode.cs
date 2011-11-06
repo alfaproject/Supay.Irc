@@ -14,7 +14,7 @@ namespace Supay.Irc.Messages.Modes {
     ///   Creates a new instance of the <see cref="RegisteredNicksOnlyMode" /> class with the given <see cref="ModeAction" />.
     /// </summary>
     public RegisteredNicksOnlyMode(ModeAction action) {
-      this.Action = action;
+      Action = action;
     }
 
     /// <summary>

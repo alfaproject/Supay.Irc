@@ -21,10 +21,10 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public virtual string Target {
       get {
-        return this.target;
+        return target;
       }
       set {
-        this.target = value;
+        target = value;
       }
     }
 
@@ -35,10 +35,10 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public virtual string ForwardServer {
       get {
-        return this.forwardServer;
+        return forwardServer;
       }
       set {
-        this.forwardServer = value;
+        forwardServer = value;
       }
     }
 

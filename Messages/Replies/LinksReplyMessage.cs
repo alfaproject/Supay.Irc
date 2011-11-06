@@ -20,10 +20,10 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public virtual string Mask {
       get {
-        return this.mask;
+        return mask;
       }
       set {
-        this.mask = value;
+        mask = value;
       }
     }
 
@@ -88,17 +88,17 @@ namespace Supay.Irc.Messages {
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
       if (parameters.Count == 4) {
-        this.Mask = parameters[1];
-        this.Server = parameters[2];
+        Mask = parameters[1];
+        Server = parameters[2];
         string trailing = parameters[3];
         string first = trailing.Substring(0, trailing.IndexOf(" ", StringComparison.Ordinal));
-        this.HopCount = Convert.ToInt32(first, CultureInfo.InvariantCulture);
-        this.ServerInfo = trailing.Substring(first.Length);
+        HopCount = Convert.ToInt32(first, CultureInfo.InvariantCulture);
+        ServerInfo = trailing.Substring(first.Length);
       } else {
-        this.Mask = string.Empty;
-        this.Server = string.Empty;
-        this.HopCount = -1;
-        this.ServerInfo = string.Empty;
+        Mask = string.Empty;
+        Server = string.Empty;
+        HopCount = -1;
+        ServerInfo = string.Empty;
       }
     }
 

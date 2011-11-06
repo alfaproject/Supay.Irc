@@ -31,7 +31,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public virtual List<string> Nicks {
       get {
-        return this.nicks;
+        return nicks;
       }
     }
 
@@ -62,9 +62,9 @@ namespace Supay.Irc.Messages {
       base.ParseParameters(parameters);
       if (parameters.Count > 0) {
         string nickParam = parameters[0];
-        this.Nicks.AddRange(nickParam.Split(' '));
+        Nicks.AddRange(nickParam.Split(' '));
       } else {
-        this.Nicks.Clear();
+        Nicks.Clear();
       }
     }
 

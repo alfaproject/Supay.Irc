@@ -11,7 +11,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public ScriptRequestMessage()
       : base() {
-      this.InternalCommand = "SCRIPT";
+      InternalCommand = "SCRIPT";
     }
 
     /// <summary>

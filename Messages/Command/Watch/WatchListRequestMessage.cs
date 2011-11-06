@@ -43,7 +43,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
-      this.OnlineOnly = parameters.Count == 0 || parameters[0] == "l";
+      OnlineOnly = parameters.Count == 0 || parameters[0] == "l";
     }
 
     #endregion

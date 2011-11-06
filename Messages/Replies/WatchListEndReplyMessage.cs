@@ -44,7 +44,7 @@ namespace Supay.Irc.Messages {
       base.ParseParameters(parameters);
 
       string lastParam = parameters[parameters.Count - 1];
-      this.ListType = lastParam.Substring(lastParam.Length - 1);
+      ListType = lastParam.Substring(lastParam.Length - 1);
     }
 
     /// <summary>

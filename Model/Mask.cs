@@ -73,8 +73,8 @@ namespace Supay.Irc {
       set {
         if (_nickname != value) {
           _nickname = value;
-          this.RaisePropertyChanged("Nickname");
-          this.RaisePropertyChanged("IrcMask");
+          RaisePropertyChanged("Nickname");
+          RaisePropertyChanged("IrcMask");
         }
       }
     }
@@ -89,8 +89,8 @@ namespace Supay.Irc {
       set {
         if (_username != value) {
           _username = value;
-          this.RaisePropertyChanged("Username");
-          this.RaisePropertyChanged("IrcMask");
+          RaisePropertyChanged("Username");
+          RaisePropertyChanged("IrcMask");
         }
       }
     }
@@ -105,8 +105,8 @@ namespace Supay.Irc {
       set {
         if (_host != value) {
           _host = value;
-          this.RaisePropertyChanged("Host");
-          this.RaisePropertyChanged("IrcMask");
+          RaisePropertyChanged("Host");
+          RaisePropertyChanged("IrcMask");
         }
       }
     }
@@ -125,7 +125,7 @@ namespace Supay.Irc {
     /// </summary>
     public bool HasWildcards {
       get {
-        return (this.IrcMask.IndexOfAny(new char[] { '?', '*' }) == -1);
+        return (IrcMask.IndexOfAny(new char[] { '?', '*' }) == -1);
       }
     }
 
@@ -137,7 +137,7 @@ namespace Supay.Irc {
     ///   Represents this mask using IRC format.
     /// </summary>
     public override string ToString() {
-      return this.IrcMask;
+      return IrcMask;
     }
 
     /// <summary>
@@ -149,7 +149,7 @@ namespace Supay.Irc {
       if (ReferenceEquals(null, other)) {
         return false;
       }
-      return this.IrcMask.Equals(other.IrcMask, StringComparison.OrdinalIgnoreCase);
+      return IrcMask.Equals(other.IrcMask, StringComparison.OrdinalIgnoreCase);
     }
 
     /// <summary>
@@ -159,7 +159,7 @@ namespace Supay.Irc {
     /// <param name="obj">An <see cref="Object" />.</param>
     /// <returns>true if <paramref name="obj" /> is a <see cref="Mask" /> and its value is the same as this instance; otherwise, false.</returns>
     public override bool Equals(object obj) {
-      return this.Equals(obj as Mask);
+      return Equals(obj as Mask);
     }
 
     /// <summary>
@@ -167,7 +167,7 @@ namespace Supay.Irc {
     /// </summary>
     /// <returns>A hash code for the current <see cref="Mask" />.</returns>
     public override int GetHashCode() {
-      return this.IrcMask.GetHashCode();
+      return IrcMask.GetHashCode();
     }
 
     /// <summary>
@@ -195,7 +195,7 @@ namespace Supay.Irc {
     #region Protected Methods
 
     protected void RaisePropertyChanged(string propertyName) {
-      PropertyChangedEventHandler handler = this.PropertyChanged;
+      PropertyChangedEventHandler handler = PropertyChanged;
       if (handler != null) {
         handler(this, new PropertyChangedEventArgs(propertyName));
       }

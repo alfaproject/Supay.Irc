@@ -19,10 +19,10 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public virtual User SilencedUser {
       get {
-        return this.silencedUser;
+        return silencedUser;
       }
       set {
-        this.silencedUser = value;
+        silencedUser = value;
       }
     }
 
@@ -33,10 +33,10 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public virtual string SilenceListOwner {
       get {
-        return this.silenceListOwner;
+        return silenceListOwner;
       }
       set {
-        this.silenceListOwner = value;
+        silenceListOwner = value;
       }
     }
 
@@ -58,8 +58,8 @@ namespace Supay.Irc.Messages {
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
       if (parameters.Count > 2) {
-        this.SilenceListOwner = parameters[1];
-        this.SilencedUser = new User(parameters[2]);
+        SilenceListOwner = parameters[1];
+        SilencedUser = new User(parameters[2]);
       }
     }
 

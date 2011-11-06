@@ -13,7 +13,7 @@ namespace Supay.Irc.Messages.Modes {
     ///   Creates a new instance of the <see cref="SecretMode" /> class with the given <see cref="ModeAction" />.
     /// </summary>
     public SecretMode(ModeAction action) {
-      this.Action = action;
+      Action = action;
     }
 
     /// <summary>

@@ -35,7 +35,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public NamesReplyMessage()
       : base(353) {
-      this.Nicks = new Dictionary<string, ChannelStatus>();
+      Nicks = new Dictionary<string, ChannelStatus>();
     }
 
     /// <summary>
@@ -43,10 +43,10 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public virtual ChannelVisibility Visibility {
       get {
-        return this.visibility;
+        return visibility;
       }
       set {
-        this.visibility = value;
+        visibility = value;
       }
     }
 
@@ -100,23 +100,23 @@ namespace Supay.Irc.Messages {
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
 
-      this.Visibility = ChannelVisibility.Public;
-      this.Channel = string.Empty;
-      this.Nicks.Clear();
+      Visibility = ChannelVisibility.Public;
+      Channel = string.Empty;
+      Nicks.Clear();
 
       if (parameters.Count >= 3) {
         switch (parameters[1]) {
           case "=":
-            this.Visibility = ChannelVisibility.Public;
+            Visibility = ChannelVisibility.Public;
             break;
           case "*":
-            this.Visibility = ChannelVisibility.Private;
+            Visibility = ChannelVisibility.Private;
             break;
           case "@":
-            this.Visibility = ChannelVisibility.Secret;
+            Visibility = ChannelVisibility.Secret;
             break;
         }
-        this.Channel = parameters[2];
+        Channel = parameters[2];
         if (parameters.Count > 3) {
           string[] msgNicks = parameters[3].Split(' ');
           foreach (string nick in msgNicks) {
@@ -130,7 +130,7 @@ namespace Supay.Irc.Messages {
                 parsedNick = parsedNick.Substring(1);
               }
             }
-            this.Nicks.Add(parsedNick, status);
+            Nicks.Add(parsedNick, status);
           }
         }
       }
@@ -153,7 +153,7 @@ namespace Supay.Irc.Messages {
     ///   Determines if the the current message is targeted at the given channel.
     /// </summary>
     protected virtual bool IsTargetedAtChannel(string channelName) {
-      return this.Channel.EqualsI(channelName);
+      return Channel.EqualsI(channelName);
     }
 
     #endregion

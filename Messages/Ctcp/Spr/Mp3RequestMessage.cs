@@ -13,7 +13,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public Mp3RequestMessage()
       : base() {
-      this.InternalCommand = "MP3";
+      InternalCommand = "MP3";
     }
 
     /// <summary>
@@ -22,7 +22,7 @@ namespace Supay.Irc.Messages {
     /// <param name="target">The target of the action.</param>
     public Mp3RequestMessage(string target)
       : this() {
-      this.Target = target;
+      Target = target;
     }
 
     /// <summary>
@@ -51,7 +51,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     protected override string ExtendedData {
       get {
-        return this.FileName;
+        return FileName;
       }
     }
 
@@ -60,7 +60,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public override void Parse(string unparsedMessage) {
       base.Parse(unparsedMessage);
-      this.FileName = CtcpUtil.GetExtendedData(unparsedMessage);
+      FileName = CtcpUtil.GetExtendedData(unparsedMessage);
     }
   }
 }

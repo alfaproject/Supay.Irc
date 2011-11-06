@@ -58,11 +58,11 @@ namespace Supay.Irc.Messages {
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
       if (parameters.Count > 2) {
-        this.OpCount = Convert.ToInt32(parameters[1], CultureInfo.InvariantCulture);
-        this.Info = parameters[2];
+        OpCount = Convert.ToInt32(parameters[1], CultureInfo.InvariantCulture);
+        Info = parameters[2];
       } else {
-        this.OpCount = -1;
-        this.Info = string.Empty;
+        OpCount = -1;
+        Info = string.Empty;
       }
     }
 

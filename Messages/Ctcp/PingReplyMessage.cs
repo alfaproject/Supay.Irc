@@ -12,7 +12,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public PingReplyMessage()
       : base() {
-      this.InternalCommand = "PING";
+      InternalCommand = "PING";
     }
 
     /// <summary>
@@ -26,10 +26,10 @@ namespace Supay.Irc.Messages {
     [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", MessageId = "TimeStamp")]
     public virtual string TimeStamp {
       get {
-        return this.timeStamp;
+        return timeStamp;
       }
       set {
-        this.timeStamp = value;
+        timeStamp = value;
       }
     }
 
@@ -40,7 +40,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     protected override string ExtendedData {
       get {
-        return this.timeStamp;
+        return timeStamp;
       }
     }
 
@@ -56,7 +56,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public override void Parse(string unparsedMessage) {
       base.Parse(unparsedMessage);
-      this.TimeStamp = CtcpUtil.GetExtendedData(unparsedMessage);
+      TimeStamp = CtcpUtil.GetExtendedData(unparsedMessage);
     }
   }
 }

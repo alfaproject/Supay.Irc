@@ -11,7 +11,7 @@ namespace Supay.Irc.Messages {
 
     public GenericMessage() {
       _command = string.Empty;
-      this.Parameters = new Collection<string>();
+      Parameters = new Collection<string>();
     }
 
     #endregion
@@ -86,7 +86,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     protected override void ParseCommand(string command) {
       base.ParseCommand(command);
-      this.Command = command;
+      Command = command;
     }
 
     /// <summary>
@@ -94,7 +94,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
-      this.Parameters = parameters;
+      Parameters = parameters;
     }
 
     #endregion

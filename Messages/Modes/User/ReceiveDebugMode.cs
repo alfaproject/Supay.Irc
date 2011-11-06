@@ -13,7 +13,7 @@ namespace Supay.Irc.Messages.Modes {
     ///   Creates a new instance of the <see cref="ReceiveDebugMode" /> class with the given <see cref="ModeAction" />.
     /// </summary>
     public ReceiveDebugMode(ModeAction action) {
-      this.Action = action;
+      Action = action;
     }
 
     /// <summary>

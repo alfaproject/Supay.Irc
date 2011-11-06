@@ -56,16 +56,16 @@ namespace Supay.Irc.Messages {
     /// <exclude />
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
-      this.Limit = -1;
-      this.Nicks.Clear();
+      Limit = -1;
+      Nicks.Clear();
 
       if (parameters.Count > 2) {
-        this.Limit = Convert.ToInt32(parameters[1], CultureInfo.InvariantCulture);
+        Limit = Convert.ToInt32(parameters[1], CultureInfo.InvariantCulture);
 
         string userListParam = parameters[2];
         string[] userList = userListParam.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
         foreach (string nick in userList) {
-          this.Nicks.Add(nick);
+          Nicks.Add(nick);
         }
       }
     }

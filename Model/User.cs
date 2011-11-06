@@ -23,7 +23,7 @@ namespace Supay.Irc {
     /// </summary>
     public User()
       : base(string.Empty, string.Empty, string.Empty) {
-      this.Initialize();
+      Initialize();
     }
 
     /// <summary>
@@ -32,7 +32,7 @@ namespace Supay.Irc {
     /// <param name="mask">The mask string to parse.</param>
     public User(string mask)
       : base(mask) {
-      this.Initialize();
+      Initialize();
     }
 
     private void Initialize() {
@@ -45,7 +45,7 @@ namespace Supay.Irc {
       _awayMessage = string.Empty;
 
       _modes = new UserModeCollection();
-      _modes.CollectionChanged += (s, e) => this.RaisePropertyChanged("Modes");
+      _modes.CollectionChanged += (s, e) => RaisePropertyChanged("Modes");
     }
 
     #endregion
@@ -62,7 +62,7 @@ namespace Supay.Irc {
       set {
         if (_name != value) {
           _name = value;
-          this.RaisePropertyChanged("Name");
+          RaisePropertyChanged("Name");
         }
       }
     }
@@ -77,7 +77,7 @@ namespace Supay.Irc {
       set {
         if (_password != value) {
           _password = value;
-          this.RaisePropertyChanged("Password");
+          RaisePropertyChanged("Password");
         }
       }
     }
@@ -92,7 +92,7 @@ namespace Supay.Irc {
       set {
         if (_server != value) {
           _server = value;
-          this.RaisePropertyChanged("Server");
+          RaisePropertyChanged("Server");
         }
       }
     }
@@ -107,7 +107,7 @@ namespace Supay.Irc {
       set {
         if (_ircOperator != value) {
           _ircOperator = value;
-          this.RaisePropertyChanged("IrcOperator");
+          RaisePropertyChanged("IrcOperator");
         }
       }
     }
@@ -122,7 +122,7 @@ namespace Supay.Irc {
       set {
         if (_online != value) {
           _online = value;
-          this.RaisePropertyChanged("Online");
+          RaisePropertyChanged("Online");
         }
       }
     }
@@ -137,7 +137,7 @@ namespace Supay.Irc {
       set {
         if (_away != value) {
           _away = value;
-          this.RaisePropertyChanged("Away");
+          RaisePropertyChanged("Away");
         }
       }
     }
@@ -152,7 +152,7 @@ namespace Supay.Irc {
       set {
         if (_awayMessage != value) {
           _awayMessage = value;
-          this.RaisePropertyChanged("AwayMessage");
+          RaisePropertyChanged("AwayMessage");
         }
       }
     }
@@ -171,15 +171,15 @@ namespace Supay.Irc {
     /// </summary>
     public string FingerPrint {
       get {
-        if (string.IsNullOrEmpty(this.Host) || string.IsNullOrEmpty(this.Username)) {
+        if (string.IsNullOrEmpty(Host) || string.IsNullOrEmpty(Username)) {
           return string.Empty;
         }
 
-        int indexOfPoint = this.Host.IndexOf('.');
+        int indexOfPoint = Host.IndexOf('.');
         if (indexOfPoint > 0) {
-          return this.Username.TrimStart('~') + "@*" + this.Host.Substring(indexOfPoint);
+          return Username.TrimStart('~') + "@*" + Host.Substring(indexOfPoint);
         } else {
-          return this.Username.TrimStart('~') + "@" + this.Host;
+          return Username.TrimStart('~') + "@" + Host;
         }
       }
     }
@@ -192,23 +192,23 @@ namespace Supay.Irc {
     ///   Represents this User's information as an IRC mask.
     /// </summary>
     public override string ToString() {
-      return this.IrcMask;
+      return IrcMask;
     }
 
     /// <summary>
     ///   Copies the properties of the given User onto this User.
     /// </summary>
     public void CopyFrom(User user) {
-      this.Host = user.Host;
-      this.Nickname = user.Nickname;
-      this.Password = user.Password;
-      this.Name = user.Name;
-      this.Username = user.Username;
-      this.Server = user.Server;
-      this.IrcOperator = user.IrcOperator;
-      this.Online = user.Online;
-      this.Away = user.Away;
-      this.AwayMessage = user.AwayMessage;
+      Host = user.Host;
+      Nickname = user.Nickname;
+      Password = user.Password;
+      Name = user.Name;
+      Username = user.Username;
+      Server = user.Server;
+      IrcOperator = user.IrcOperator;
+      Online = user.Online;
+      Away = user.Away;
+      AwayMessage = user.AwayMessage;
     }
 
     #endregion

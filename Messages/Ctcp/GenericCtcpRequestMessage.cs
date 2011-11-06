@@ -11,10 +11,10 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public virtual string DataPackage {
       get {
-        return this.dataPackage;
+        return dataPackage;
       }
       set {
-        this.dataPackage = value;
+        dataPackage = value;
       }
     }
 
@@ -25,7 +25,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     protected override string ExtendedData {
       get {
-        return this.dataPackage;
+        return dataPackage;
       }
     }
 
@@ -41,10 +41,10 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public virtual string Command {
       get {
-        return this.InternalCommand;
+        return InternalCommand;
       }
       set {
-        this.InternalCommand = value;
+        InternalCommand = value;
       }
     }
 
@@ -53,8 +53,8 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public override void Parse(string unparsedMessage) {
       base.Parse(unparsedMessage);
-      this.Command = CtcpUtil.GetInternalCommand(unparsedMessage);
-      this.DataPackage = CtcpUtil.GetExtendedData(unparsedMessage);
+      Command = CtcpUtil.GetInternalCommand(unparsedMessage);
+      DataPackage = CtcpUtil.GetExtendedData(unparsedMessage);
     }
   }
 }

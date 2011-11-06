@@ -43,14 +43,14 @@ namespace Supay.Irc.Messages {
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
 
-      this.Users.Clear();
+      Users.Clear();
 
       if (parameters.Count > 1) {
         string userListParam = parameters[1];
         string[] userList = userListParam.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
         foreach (string userMask in userList) {
           User newUser = new User(userMask);
-          this.Users.Add(newUser);
+          Users.Add(newUser);
         }
       }
     }

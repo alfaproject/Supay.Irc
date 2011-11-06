@@ -7,7 +7,7 @@ namespace Supay.Irc.Messages.Modes {
     ///   Creates a new instance of the <see cref="UnknownChannelMode" /> class with the given <see cref="ModeAction" /> and value.
     /// </summary>
     public UnknownChannelMode(ModeAction action, string symbol) {
-      this.Action = action;
+      Action = action;
       this.symbol = symbol;
     }
 
@@ -15,7 +15,7 @@ namespace Supay.Irc.Messages.Modes {
     ///   Creates a new instance of the <see cref="UnknownChannelMode" /> class with the given <see cref="ModeAction" />, value, and parameter.
     /// </summary>
     public UnknownChannelMode(ModeAction action, string symbol, string parameter) {
-      this.Action = action;
+      Action = action;
       this.symbol = symbol;
       this.parameter = parameter;
     }
@@ -49,8 +49,8 @@ namespace Supay.Irc.Messages.Modes {
     /// </summary>
     /// <param name="msg">The message which will be modified to include this mode.</param>
     protected override void AddParameter(ChannelModeMessage msg) {
-      if (this.Parameter.Length != 0) {
-        msg.ModeArguments.Add(this.Parameter);
+      if (Parameter.Length != 0) {
+        msg.ModeArguments.Add(Parameter);
       }
     }
   }

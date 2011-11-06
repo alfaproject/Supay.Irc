@@ -57,14 +57,14 @@ namespace Supay.Irc.Messages {
     /// </summary>
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
-      this.Channel = string.Empty;
-      this.TimeCreated = DateTime.MinValue;
+      Channel = string.Empty;
+      TimeCreated = DateTime.MinValue;
 
       if (parameters.Count > 2) {
-        this.Channel = parameters[1];
+        Channel = parameters[1];
         DateTime? unixTime = MessageUtil.ConvertFromUnixTime(parameters[2]);
         if (unixTime.HasValue) {
-          this.TimeCreated = unixTime.Value;
+          TimeCreated = unixTime.Value;
         }
       }
     }
@@ -86,7 +86,7 @@ namespace Supay.Irc.Messages {
     ///   Determines if the the current message is targeted at the given channel.
     /// </summary>
     protected virtual bool IsTargetedAtChannel(string channelName) {
-      return this.Channel.EqualsI(channelName);
+      return Channel.EqualsI(channelName);
     }
 
     #endregion

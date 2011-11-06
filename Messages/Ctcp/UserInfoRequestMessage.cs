@@ -11,7 +11,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public UserInfoRequestMessage()
       : base() {
-      this.InternalCommand = "USERINFO";
+      InternalCommand = "USERINFO";
     }
 
     /// <summary>

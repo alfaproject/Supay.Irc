@@ -56,12 +56,12 @@ namespace Supay.Irc.Messages {
     /// </summary>
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
-      this.Nick = string.Empty;
-      this.Channels.Clear();
+      Nick = string.Empty;
+      Channels.Clear();
 
       if (parameters.Count == 3) {
-        this.Nick = parameters[1];
-        this.Channels.AddRange(parameters[2].Split(' '));
+        Nick = parameters[1];
+        Channels.AddRange(parameters[2].Split(' '));
       }
     }
 
@@ -82,7 +82,7 @@ namespace Supay.Irc.Messages {
     ///   Determines if the the current message is targeted at the given channel.
     /// </summary>
     protected virtual bool IsTargetedAtChannel(string channelName) {
-      return MessageUtil.ContainsIgnoreCaseMatch(this.Channels, channelName);
+      return MessageUtil.ContainsIgnoreCaseMatch(Channels, channelName);
     }
 
     #endregion

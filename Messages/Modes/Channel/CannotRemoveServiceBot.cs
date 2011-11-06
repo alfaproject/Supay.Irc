@@ -54,11 +54,11 @@ namespace Supay.Irc.Messages {
     /// <exclude />
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
-      this.Nick = string.Empty;
-      this.Channel = string.Empty;
+      Nick = string.Empty;
+      Channel = string.Empty;
       if (parameters.Count > 2) {
-        this.Nick = parameters[1];
-        this.Channel = parameters[2];
+        Nick = parameters[1];
+        Channel = parameters[2];
       }
     }
 

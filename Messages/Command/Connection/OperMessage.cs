@@ -37,10 +37,10 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public virtual string Password {
       get {
-        return this.password;
+        return password;
       }
       set {
-        this.password = value;
+        password = value;
       }
     }
 
@@ -51,10 +51,10 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public virtual string Name {
       get {
-        return this.name;
+        return name;
       }
       set {
-        this.name = value;
+        name = value;
       }
     }
 
@@ -76,11 +76,11 @@ namespace Supay.Irc.Messages {
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
       if (parameters.Count >= 2) {
-        this.Name = parameters[0];
-        this.Password = parameters[1];
+        Name = parameters[0];
+        Password = parameters[1];
       } else {
-        this.Name = string.Empty;
-        this.Password = string.Empty;
+        Name = string.Empty;
+        Password = string.Empty;
       }
     }
 

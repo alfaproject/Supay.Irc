@@ -19,10 +19,10 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public virtual string Channel {
       get {
-        return this.channel;
+        return channel;
       }
       set {
-        this.channel = value;
+        channel = value;
       }
     }
 
@@ -33,10 +33,10 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public virtual string Prop {
       get {
-        return this.property;
+        return property;
       }
       set {
-        this.property = value;
+        property = value;
       }
     }
 
@@ -47,10 +47,10 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public virtual string Value {
       get {
-        return this.propValue;
+        return propValue;
       }
       set {
-        this.propValue = value;
+        propValue = value;
       }
     }
 
@@ -73,16 +73,16 @@ namespace Supay.Irc.Messages {
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
 
-      this.Channel = string.Empty;
-      this.Prop = string.Empty;
-      this.Value = string.Empty;
+      Channel = string.Empty;
+      Prop = string.Empty;
+      Value = string.Empty;
 
       if (parameters.Count > 1) {
-        this.Channel = parameters[1];
+        Channel = parameters[1];
         if (parameters.Count > 2) {
-          this.Prop = parameters[2];
+          Prop = parameters[2];
           if (parameters.Count > 3) {
-            this.Value = parameters[3];
+            Value = parameters[3];
           }
         }
       }
@@ -105,7 +105,7 @@ namespace Supay.Irc.Messages {
     ///   Determines if the the current message is targeted at the given channel.
     /// </summary>
     protected virtual bool IsTargetedAtChannel(string channelName) {
-      return this.Channel.EqualsI(channelName);
+      return Channel.EqualsI(channelName);
     }
 
     #endregion

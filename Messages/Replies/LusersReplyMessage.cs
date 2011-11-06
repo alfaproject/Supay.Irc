@@ -74,9 +74,9 @@ namespace Supay.Irc.Messages {
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
       string payload = parameters[1];
-      this.UserCount = Convert.ToInt32(MessageUtil.StringBetweenStrings(payload, thereAre, usersAnd), CultureInfo.InvariantCulture);
-      this.InvisibleCount = Convert.ToInt32(MessageUtil.StringBetweenStrings(payload, usersAnd, invisibleOn), CultureInfo.InvariantCulture);
-      this.ServerCount = Convert.ToInt32(MessageUtil.StringBetweenStrings(payload, invisibleOn, servers), CultureInfo.InvariantCulture);
+      UserCount = Convert.ToInt32(MessageUtil.StringBetweenStrings(payload, thereAre, usersAnd), CultureInfo.InvariantCulture);
+      InvisibleCount = Convert.ToInt32(MessageUtil.StringBetweenStrings(payload, usersAnd, invisibleOn), CultureInfo.InvariantCulture);
+      ServerCount = Convert.ToInt32(MessageUtil.StringBetweenStrings(payload, invisibleOn, servers), CultureInfo.InvariantCulture);
     }
 
     /// <summary>

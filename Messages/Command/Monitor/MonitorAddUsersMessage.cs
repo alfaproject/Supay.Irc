@@ -40,7 +40,7 @@ namespace Supay.Irc.Messages {
       string nicksParam = parameters[parameters.Count - 1];
       string[] splitNicksParam = nicksParam.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
       foreach (string nick in splitNicksParam) {
-        this.Nicks.Add(nick);
+        Nicks.Add(nick);
       }
     }
 

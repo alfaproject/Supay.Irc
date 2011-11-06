@@ -9,8 +9,8 @@ namespace Supay.Irc.Contacts {
     }
 
     public override void Initialize() {
-      this.Contacts.Client.Messages.MonitoredUserOffline += new EventHandler<IrcMessageEventArgs<MonitoredUserOfflineMessage>>(client_MonitoredUserOffline);
-      this.Contacts.Client.Messages.MonitoredUserOnline += new EventHandler<IrcMessageEventArgs<MonitoredUserOnlineMessage>>(client_MonitoredUserOnline);
+      Contacts.Client.Messages.MonitoredUserOffline += new EventHandler<IrcMessageEventArgs<MonitoredUserOfflineMessage>>(client_MonitoredUserOffline);
+      Contacts.Client.Messages.MonitoredUserOnline += new EventHandler<IrcMessageEventArgs<MonitoredUserOnlineMessage>>(client_MonitoredUserOnline);
       base.Initialize();
     }
 
@@ -19,26 +19,26 @@ namespace Supay.Irc.Contacts {
       foreach (string nick in nicks) {
         add.Nicks.Add(nick);
       }
-      this.Contacts.Client.Send(add);
+      Contacts.Client.Send(add);
     }
 
     protected override void AddNick(string nick) {
       MonitorAddUsersMessage add = new MonitorAddUsersMessage();
       add.Nicks.Add(nick);
-      this.Contacts.Client.Send(add);
+      Contacts.Client.Send(add);
     }
 
     protected override void RemoveNick(string nick) {
       MonitorRemoveUsersMessage remove = new MonitorRemoveUsersMessage();
       remove.Nicks.Add(nick);
-      this.Contacts.Client.Send(remove);
+      Contacts.Client.Send(remove);
     }
 
     #region Reply Handlers
 
     private void client_MonitoredUserOnline(object sender, IrcMessageEventArgs<MonitoredUserOnlineMessage> e) {
       foreach (User onlineUser in e.Message.Users) {
-        User knownUser = this.Contacts.Users.Find(onlineUser.Nickname);
+        User knownUser = Contacts.Users.Find(onlineUser.Nickname);
         if (knownUser != null) {
           knownUser.CopyFrom(onlineUser);
           knownUser.Online = true;
@@ -48,7 +48,7 @@ namespace Supay.Irc.Contacts {
 
     private void client_MonitoredUserOffline(object sender, IrcMessageEventArgs<MonitoredUserOfflineMessage> e) {
       foreach (string offlineNick in e.Message.Nicks) {
-        User knownUser = this.Contacts.Users.Find(offlineNick);
+        User knownUser = Contacts.Users.Find(offlineNick);
         if (knownUser != null) {
           knownUser.Online = false;
         }

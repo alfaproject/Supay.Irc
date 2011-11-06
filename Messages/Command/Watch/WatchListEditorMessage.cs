@@ -59,10 +59,10 @@ namespace Supay.Irc.Messages {
       base.ParseParameters(parameters);
       foreach (string param in parameters) {
         if (param.StartsWith("+", StringComparison.Ordinal)) {
-          this.AddedNicks.Add(param.Substring(1));
+          AddedNicks.Add(param.Substring(1));
         }
         if (param.StartsWith("-", StringComparison.Ordinal)) {
-          this.RemovedNicks.Add(param.Substring(1));
+          RemovedNicks.Add(param.Substring(1));
         }
       }
     }

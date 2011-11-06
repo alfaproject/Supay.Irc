@@ -15,7 +15,7 @@ namespace Supay.Irc.Messages.Modes {
     ///   Creates a new instance of the <see cref="ModeratedMode" /> class with the given <see cref="ModeAction" />.
     /// </summary>
     public ModeratedMode(ModeAction action) {
-      this.Action = action;
+      Action = action;
     }
 
     /// <summary>

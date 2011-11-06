@@ -11,7 +11,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public VersionRequestMessage()
       : base() {
-      this.InternalCommand = "VERSION";
+      InternalCommand = "VERSION";
     }
 
     /// <summary>

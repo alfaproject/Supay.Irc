@@ -45,7 +45,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     protected override void ParseCommand(string command) {
       base.ParseCommand(command);
-      this.Command = Convert.ToInt32(command, CultureInfo.InvariantCulture);
+      Command = Convert.ToInt32(command, CultureInfo.InvariantCulture);
     }
 
     /// <summary>
@@ -53,7 +53,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
-      this.data = parameters;
+      data = parameters;
     }
 
     /// <summary>

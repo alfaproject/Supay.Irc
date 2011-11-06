@@ -19,10 +19,10 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public virtual string Nick {
       get {
-        return this.nick;
+        return nick;
       }
       set {
-        this.nick = value;
+        nick = value;
       }
     }
 
@@ -31,10 +31,10 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public virtual string Reason {
       get {
-        return this.reason;
+        return reason;
       }
       set {
-        this.reason = value;
+        reason = value;
       }
     }
 
@@ -63,11 +63,11 @@ namespace Supay.Irc.Messages {
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
       if (parameters.Count >= 2) {
-        this.Nick = parameters[0];
-        this.Reason = parameters[1];
+        Nick = parameters[0];
+        Reason = parameters[1];
       } else {
-        this.Nick = string.Empty;
-        this.Reason = string.Empty;
+        Nick = string.Empty;
+        Reason = string.Empty;
       }
     }
 

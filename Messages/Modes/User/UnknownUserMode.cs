@@ -7,7 +7,7 @@ namespace Supay.Irc.Messages.Modes {
     ///   Creates a new instance of the <see cref="UnknownUserMode" /> class with the given <see cref="ModeAction" /> and value.
     /// </summary>
     public UnknownUserMode(ModeAction action, string symbol) {
-      this.Action = action;
+      Action = action;
       this.symbol = symbol;
     }
 

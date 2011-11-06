@@ -23,7 +23,7 @@ namespace Supay.Irc.Messages {
         return watchedUser;
       }
       set {
-        this.watchedUser = value;
+        watchedUser = value;
       }
     }
 
@@ -67,14 +67,14 @@ namespace Supay.Irc.Messages {
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
 
-      this.WatchedUser = new User();
-      this.TimeOfChange = DateTime.MinValue;
+      WatchedUser = new User();
+      TimeOfChange = DateTime.MinValue;
 
       if (parameters.Count == 6) {
-        this.WatchedUser.Nickname = parameters[1];
-        this.WatchedUser.Username = parameters[2];
-        this.WatchedUser.Host = parameters[3];
-        this.TimeOfChange = MessageUtil.ConvertFromUnixTime(Convert.ToInt32(parameters[4], CultureInfo.InvariantCulture));
+        WatchedUser.Nickname = parameters[1];
+        WatchedUser.Username = parameters[2];
+        WatchedUser.Host = parameters[3];
+        TimeOfChange = MessageUtil.ConvertFromUnixTime(Convert.ToInt32(parameters[4], CultureInfo.InvariantCulture));
       }
     }
   }

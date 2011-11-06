@@ -29,7 +29,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public virtual UserCollection Masks {
       get {
-        return this.masks;
+        return masks;
       }
     }
 
@@ -73,14 +73,14 @@ namespace Supay.Irc.Messages {
     /// </summary>
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
-      this.Masks.Clear();
-      this.Server = string.Empty;
+      Masks.Clear();
+      Server = string.Empty;
       if (parameters.Count >= 1) {
         if (parameters.Count > 1) {
-          this.Server = parameters[0];
+          Server = parameters[0];
         }
         foreach (string maskString in parameters[parameters.Count - 1].Split(',')) {
-          this.Masks.Add(new User(maskString));
+          Masks.Add(new User(maskString));
         }
       }
     }

@@ -39,9 +39,9 @@ namespace Supay.Irc.Messages {
     /// <exclude />
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
-      this.Command = string.Empty;
+      Command = string.Empty;
       if (parameters.Count > 1) {
-        this.Command = parameters[1];
+        Command = parameters[1];
       }
     }
 

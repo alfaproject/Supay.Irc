@@ -13,10 +13,10 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public virtual string Text {
       get {
-        return this.text;
+        return text;
       }
       set {
-        this.text = value;
+        text = value;
       }
     }
 
@@ -46,9 +46,9 @@ namespace Supay.Irc.Messages {
     protected override void ParseParameters(Collection<string> parameters) {
       base.ParseParameters(parameters);
       if (parameters.Count >= 1) {
-        this.Text = parameters[0];
+        Text = parameters[0];
       } else {
-        this.Text = string.Empty;
+        Text = string.Empty;
       }
     }
 

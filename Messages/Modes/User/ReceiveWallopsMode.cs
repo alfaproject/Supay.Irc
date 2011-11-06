@@ -13,7 +13,7 @@ namespace Supay.Irc.Messages.Modes {
     ///   Creates a new instance of the <see cref="ReceiveWallopsMode" /> class with the given <see cref="ModeAction" />.
     /// </summary>
     public ReceiveWallopsMode(ModeAction action) {
-      this.Action = action;
+      Action = action;
     }
 
     /// <summary>

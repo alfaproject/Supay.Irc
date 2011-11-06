@@ -13,7 +13,7 @@ namespace Supay.Irc.Messages.Modes {
     ///   Creates a new instance of the <see cref="OperatorMode" /> class with the given <see cref="ModeAction" />.
     /// </summary>
     public OperatorMode(ModeAction action) {
-      this.Action = action;
+      Action = action;
     }
 
     /// <summary>
@@ -21,8 +21,8 @@ namespace Supay.Irc.Messages.Modes {
     ///   with the given <see cref="ModeAction" /> and member's nick.
     /// </summary>
     public OperatorMode(ModeAction action, string nick) {
-      this.Action = action;
-      this.Nick = nick;
+      Action = action;
+      Nick = nick;
     }
 
     /// <summary>

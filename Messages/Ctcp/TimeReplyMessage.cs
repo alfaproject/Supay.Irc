@@ -11,7 +11,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public TimeReplyMessage()
       : base() {
-      this.InternalCommand = "TIME";
+      InternalCommand = "TIME";
     }
 
     /// <summary>
@@ -19,10 +19,10 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public virtual string CurrentTime {
       get {
-        return this.currentTime;
+        return currentTime;
       }
       set {
-        this.currentTime = value;
+        currentTime = value;
       }
     }
 
@@ -33,7 +33,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     protected override string ExtendedData {
       get {
-        return this.currentTime;
+        return currentTime;
       }
     }
 
@@ -49,7 +49,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public override void Parse(string unparsedMessage) {
       base.Parse(unparsedMessage);
-      this.CurrentTime = CtcpUtil.GetExtendedData(unparsedMessage);
+      CurrentTime = CtcpUtil.GetExtendedData(unparsedMessage);
     }
   }
 }
