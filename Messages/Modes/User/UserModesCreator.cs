@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 
 namespace Supay.Irc.Messages.Modes {
   /// <summary>
@@ -66,8 +67,8 @@ namespace Supay.Irc.Messages.Modes {
             modes.Add(new RestrictedMode(currentAction));
             break;
           default:
-            modes.Add(new UnknownUserMode(currentAction, c.ToString()));
-            Trace.WriteLine("Unknown UserMode '" + c.ToString() + "'");
+            modes.Add(new UnknownUserMode(currentAction, c.ToString(CultureInfo.InvariantCulture)));
+            Trace.WriteLine("Unknown UserMode '" + c.ToString(CultureInfo.InvariantCulture) + "'");
             break;
         }
       }

@@ -723,7 +723,7 @@ namespace Supay.Irc {
               int limit;
               if (int.TryParse(chanLimitInfo.Value, out limit)) {
                 foreach (Char c in chanLimitInfo.Key) {
-                  ChannelLimits.Add(c.ToString(), limit);
+                  ChannelLimits.Add(c.ToString(CultureInfo.InvariantCulture), limit);
                 }
               }
             }
@@ -870,7 +870,7 @@ namespace Supay.Irc {
 
     private static void AddChars(ICollection<string> target, IEnumerable<char> source) {
       foreach (Char c in source) {
-        target.Add(c.ToString());
+        target.Add(c.ToString(CultureInfo.InvariantCulture));
       }
     }
 

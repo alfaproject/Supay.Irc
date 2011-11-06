@@ -133,8 +133,8 @@ namespace Supay.Irc.Messages {
             case '?': // can see ircop (?)
               break;
             default: // check for a channel mode
-              if (ChannelStatus.IsDefined(flag.ToString())) {
-                Status = ChannelStatus.GetInstance(flag.ToString());
+              if (ChannelStatus.IsDefined(flag.ToString(CultureInfo.InvariantCulture))) {
+                Status = ChannelStatus.GetInstance(flag.ToString(CultureInfo.InvariantCulture));
               }
               break;
           }

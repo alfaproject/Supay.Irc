@@ -1,6 +1,7 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 using System.Text.RegularExpressions;
 
 namespace Supay.Irc.Messages {
@@ -22,8 +23,8 @@ namespace Supay.Irc.Messages {
     ///   Escapes the given text for use in a ctcp message.
     /// </summary>
     public static string Escape(string text) {
-      string escaper = '\x0014'.ToString();
-      string NUL = '\x0000'.ToString();
+      string escaper = '\x0014'.ToString(CultureInfo.InvariantCulture);
+      string NUL = '\x0000'.ToString(CultureInfo.InvariantCulture);
       string result = text;
       result = Regex.Replace(result, escaper, escaper + escaper);
       result = Regex.Replace(result, NUL, escaper + "0");
@@ -36,8 +37,8 @@ namespace Supay.Irc.Messages {
     ///   Unescapes the given text for use outside a ctcp message.
     /// </summary>
     public static string Unescape(string text) {
-      string escaper = '\x0014'.ToString();
-      string NUL = '\x0000'.ToString();
+      string escaper = '\x0014'.ToString(CultureInfo.InvariantCulture);
+      string NUL = '\x0000'.ToString(CultureInfo.InvariantCulture);
       string result = text;
 
       result = Regex.Replace(result, escaper + "0", NUL);
@@ -93,7 +94,7 @@ namespace Supay.Irc.Messages {
         return false;
       }
       string payLoad = p[1];
-      if (!(payLoad.StartsWith(ExtendedDataMarker.ToString(), StringComparison.Ordinal) && payLoad.EndsWith(ExtendedDataMarker.ToString(), StringComparison.Ordinal))) {
+      if (!(payLoad.StartsWith(ExtendedDataMarker.ToString(CultureInfo.InvariantCulture), StringComparison.Ordinal) && payLoad.EndsWith(ExtendedDataMarker.ToString(CultureInfo.InvariantCulture), StringComparison.Ordinal))) {
         return false;
       }
       return true;

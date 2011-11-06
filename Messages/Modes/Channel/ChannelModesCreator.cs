@@ -121,7 +121,7 @@ namespace Supay.Irc.Messages.Modes {
             modes.Add(voiceMode);
             break;
           default:
-            string unknownMode = c.ToString();
+            string unknownMode = c.ToString(CultureInfo.InvariantCulture);
             if (serverSupports.ModesWithParameters.Contains(unknownMode) || (serverSupports.ModesWithParametersWhenSet.Contains(unknownMode) && currentAction == ModeAction.Add)) {
               // I want to yank a parameter	
               modes.Add(new UnknownChannelMode(currentAction, unknownMode, modeArguments[argIndex]));
