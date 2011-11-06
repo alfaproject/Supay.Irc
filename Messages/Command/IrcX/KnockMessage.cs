@@ -1,5 +1,6 @@
 using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 
 namespace Supay.Irc.Messages {
   /// <summary>
@@ -47,7 +48,7 @@ namespace Supay.Irc.Messages {
       }
       this.Channel = MessageUtil.EnsureValidChannelName(this.Channel, serverSupport);
       if (!serverSupport.Knock) {
-        System.Diagnostics.Trace.WriteLine("Knock Is Not Supported On This Server");
+        Trace.WriteLine("Knock Is Not Supported On This Server");
       }
     }
 
@@ -76,7 +77,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
-    public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
+    public override void Notify(MessageConduit conduit) {
       conduit.OnKnock(new IrcMessageEventArgs<KnockMessage>(this));
     }
 

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using Supay.Irc.Properties;
 
 namespace Supay.Irc.Messages {
   /// <summary>
@@ -65,7 +66,7 @@ namespace Supay.Irc.Messages {
         unparsedMessage = string.Empty;
       }
       if (unparsedMessage.Length < MIN_MESSAGE_LENGTH || MAX_MESSAGE_LENGTH < unparsedMessage.Length) {
-        string errorMessage = string.Format(CultureInfo.InvariantCulture, Properties.Resources.MessageEmptyOrTooLong, unparsedMessage.Length);
+        string errorMessage = string.Format(CultureInfo.InvariantCulture, Resources.MessageEmptyOrTooLong, unparsedMessage.Length);
         throw new InvalidMessageException(errorMessage, unparsedMessage);
       }
 
@@ -76,7 +77,7 @@ namespace Supay.Irc.Messages {
       } catch (InvalidMessageException) {
         throw;
       } catch (Exception ex) {
-        throw new InvalidMessageException(Properties.Resources.CouldNotParseMessage, unparsedMessage, ex);
+        throw new InvalidMessageException(Resources.CouldNotParseMessage, unparsedMessage, ex);
       }
       return msg;
     }

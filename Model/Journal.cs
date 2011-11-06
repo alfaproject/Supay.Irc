@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using System.ComponentModel;
 
 namespace Supay.Irc {
   /// <summary>
@@ -31,9 +33,9 @@ namespace Supay.Irc {
       if (this.Items.Count > MaxEntries) {
         this.Items.RemoveAt(index != 0 ? 0 : this.Items.Count - 1);
       }
-      base.OnPropertyChanged(new System.ComponentModel.PropertyChangedEventArgs("Count"));
-      base.OnPropertyChanged(new System.ComponentModel.PropertyChangedEventArgs("Item[]"));
-      base.OnCollectionChanged(new System.Collections.Specialized.NotifyCollectionChangedEventArgs(System.Collections.Specialized.NotifyCollectionChangedAction.Add, item, index));
+      base.OnPropertyChanged(new PropertyChangedEventArgs("Count"));
+      base.OnPropertyChanged(new PropertyChangedEventArgs("Item[]"));
+      base.OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, item, index));
     }
 
     /// <summary>
@@ -45,7 +47,7 @@ namespace Supay.Irc {
       }
       set {
         _maxEntries = value;
-        base.OnPropertyChanged(new System.ComponentModel.PropertyChangedEventArgs("MaxEntries"));
+        base.OnPropertyChanged(new PropertyChangedEventArgs("MaxEntries"));
       }
     }
 

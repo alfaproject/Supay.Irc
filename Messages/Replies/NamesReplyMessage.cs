@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Supay.Irc.Messages {
   /// <summary>
@@ -11,7 +12,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   The list of channel visibility settings for the <see cref="NamesReplyMessage" />.
     /// </summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1034:NestedTypesShouldNotBeVisible")]
+    [SuppressMessage("Microsoft.Design", "CA1034:NestedTypesShouldNotBeVisible")]
     public enum ChannelVisibility {
       /// <summary>
       ///   The channel is in <see cref="Supay.Irc.Messages.Modes.SecretMode" />
@@ -138,7 +139,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
-    public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
+    public override void Notify(MessageConduit conduit) {
       conduit.OnNamesReply(new IrcMessageEventArgs<NamesReplyMessage>(this));
     }
 

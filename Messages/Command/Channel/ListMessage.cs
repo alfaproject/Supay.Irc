@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
+using Supay.Irc.Properties;
 
 namespace Supay.Irc.Messages {
   /// <summary>
@@ -213,7 +214,7 @@ namespace Supay.Irc.Messages {
 
     private static void VerifySupport(ServerSupport serverSupport, ServerSupport.ExtendedListParameters parameter) {
       if ((serverSupport.ExtendedList & parameter) != parameter) {
-        throw new InvalidMessageException(string.Format(CultureInfo.InvariantCulture, Properties.Resources.ServerDoesNotSupportExtendedListParameter, parameter));
+        throw new InvalidMessageException(string.Format(CultureInfo.InvariantCulture, Resources.ServerDoesNotSupportExtendedListParameter, parameter));
       }
     }
 
@@ -317,7 +318,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
-    public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
+    public override void Notify(MessageConduit conduit) {
       conduit.OnList(new IrcMessageEventArgs<ListMessage>(this));
     }
   }

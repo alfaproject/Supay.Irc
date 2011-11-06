@@ -1,6 +1,10 @@
 using System;
 using System.ComponentModel;
+using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Threading;
+using Supay.Irc.Contacts;
 using Supay.Irc.Messages;
 using Supay.Irc.Messages.Modes;
 using Supay.Irc.Network;
@@ -13,7 +17,7 @@ namespace Supay.Irc {
   ///   A GUI front-end should use one instance of these per client / server
   ///   <see cref="ClientConnection" /> it wants to make.
   /// </remarks>
-  [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling")]
+  [SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling")]
   [DesignerCategory("Code")]
   public class Client : Component {
     #region Constructors
@@ -35,7 +39,7 @@ namespace Supay.Irc {
       Channels = new ChannelCollection();
       Queries = new QueryCollection();
       Peers = new UserCollection();
-      Contacts = new Contacts.ContactList();
+      Contacts = new ContactList();
 
       Peers.Add(User);
 
@@ -173,7 +177,7 @@ namespace Supay.Irc {
     /// <summary>
     ///   Gets the <see cref="Supay.Irc.Contacts.ContactList" /> for this client.
     /// </summary>
-    public Contacts.ContactList Contacts {
+    public ContactList Contacts {
       get;
       protected set;
     }
@@ -295,7 +299,7 @@ namespace Supay.Irc {
           msg.Parse(messageData);
         } else {
           msg = null;
-          System.Diagnostics.Trace.WriteLine(ex.Message + " { " + ex.ReceivedMessage + " } ", "Invalid Message");
+          Trace.WriteLine(ex.Message + " { " + ex.ReceivedMessage + " } ", "Invalid Message");
         }
       }
 
@@ -770,7 +774,7 @@ namespace Supay.Irc {
     }
 
     private static void logUnimplementedMessage(IrcMessage msg) {
-      System.Diagnostics.Trace.WriteLine(msg.ToString(), "Unimplemented Message");
+      Trace.WriteLine(msg.ToString(), "Unimplemented Message");
     }
 
     #endregion
@@ -784,10 +788,10 @@ namespace Supay.Irc {
         DateTime started = DateTime.Now;
         TimeSpan tooMuchTime = new TimeSpan(0, 0, 5);
         while (Ident.Service.Status != ConnectionStatus.Connected && DateTime.Now.Subtract(started) < tooMuchTime) {
-          System.Threading.Thread.Sleep(25);
+          Thread.Sleep(25);
         }
         if (Ident.Service.Status != ConnectionStatus.Connected) {
-          System.Diagnostics.Trace.WriteLine("Ident Failed To AutoStart", "Ident");
+          Trace.WriteLine("Ident Failed To AutoStart", "Ident");
         }
       }
     }

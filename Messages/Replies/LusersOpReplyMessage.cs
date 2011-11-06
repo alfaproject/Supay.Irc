@@ -1,12 +1,13 @@
 using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 
 namespace Supay.Irc.Messages {
   /// <summary>
   ///   One of the responses to the <see cref="LusersMessage" /> query.
   /// </summary>
-  [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "Op")]
+  [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "Op")]
   [Serializable]
   public class LusersOpReplyMessage : NumericMessage {
     /// <summary>
@@ -19,7 +20,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Gets or sets the number of IRC operators connected to the server.
     /// </summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "Op")]
+    [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "Op")]
     public virtual int OpCount {
       get {
         return opCount;
@@ -68,7 +69,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
-    public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
+    public override void Notify(MessageConduit conduit) {
       conduit.OnLusersOpReply(new IrcMessageEventArgs<LusersOpReplyMessage>(this));
     }
 

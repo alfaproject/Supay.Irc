@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Timers;
 using Supay.Irc.Messages;
+using Supay.Irc.Network;
 
 namespace Supay.Irc.Contacts {
   internal class ContactsAreOnTracker : ContactsTracker, IDisposable {
@@ -65,7 +66,7 @@ namespace Supay.Irc.Contacts {
     }
 
     private void timer_Elapsed(object sender, ElapsedEventArgs e) {
-      if (Contacts.Client.Connection.Status == Network.ConnectionStatus.Connected) {
+      if (Contacts.Client.Connection.Status == ConnectionStatus.Connected) {
         IsOnMessage ison = new IsOnMessage();
         foreach (string nick in _trackedNicks) {
           ison.Nicks.Add(nick);

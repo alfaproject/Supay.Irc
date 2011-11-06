@@ -1,5 +1,6 @@
 using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 
 namespace Supay.Irc.Messages {
@@ -43,7 +44,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Gets or sets the time the user signed on to their current server.
     /// </summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms", MessageId = "SignOn")]
+    [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms", MessageId = "SignOn")]
     public virtual DateTime SignOnTime {
       get {
         return signOnTime;
@@ -107,7 +108,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
-    public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
+    public override void Notify(MessageConduit conduit) {
       conduit.OnWhoIsIdleReply(new IrcMessageEventArgs<WhoIsIdleReplyMessage>(this));
     }
   }

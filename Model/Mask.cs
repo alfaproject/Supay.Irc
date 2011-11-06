@@ -146,7 +146,7 @@ namespace Supay.Irc {
     /// <param name="other">A <see cref="Mask" />.</param>
     /// <returns>true if the value of the <paramref name="other" /> parameter is the same as this instance; otherwise, false.</returns>
     public bool Equals(Mask other) {
-      if (object.ReferenceEquals(null, other)) {
+      if (ReferenceEquals(null, other)) {
         return false;
       }
       return this.IrcMask.Equals(other.IrcMask, StringComparison.OrdinalIgnoreCase);
@@ -176,7 +176,7 @@ namespace Supay.Irc {
     /// <param name="pattern">The <see cref="Mask" /> pattern to match.</param>
     /// <returns>true if there is a match; otherwise, false.</returns>
     public bool IsMatch(Mask pattern) {
-      return Mask.IsMatch(this, pattern);
+      return IsMatch(this, pattern);
     }
 
     /// <summary>

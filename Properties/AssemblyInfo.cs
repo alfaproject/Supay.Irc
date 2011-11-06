@@ -1,4 +1,6 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Reflection;
+using System.Resources;
 using System.Runtime.InteropServices;
 
 [assembly: AssemblyTitle("_aLfa_ Supay IRC")]
@@ -10,5 +12,5 @@ using System.Runtime.InteropServices;
 [assembly: Guid("ab94c7a6-82fb-4da4-bce7-3bfba4d6435e")]
 [assembly: AssemblyVersion("2.1.0.0")]
 [assembly: AssemblyFileVersion("2.1.0.0")]
-[assembly: System.CLSCompliant(true)]
-[assembly: System.Resources.NeutralResourcesLanguage("en")]
+[assembly: CLSCompliant(true)]
+[assembly: NeutralResourcesLanguage("en")]

@@ -9,8 +9,8 @@ namespace Supay.Irc.Contacts {
     }
 
     public override void Initialize() {
-      this.Contacts.Client.Messages.MonitoredUserOffline += new EventHandler<Supay.Irc.Messages.IrcMessageEventArgs<Supay.Irc.Messages.MonitoredUserOfflineMessage>>(client_MonitoredUserOffline);
-      this.Contacts.Client.Messages.MonitoredUserOnline += new EventHandler<Supay.Irc.Messages.IrcMessageEventArgs<Supay.Irc.Messages.MonitoredUserOnlineMessage>>(client_MonitoredUserOnline);
+      this.Contacts.Client.Messages.MonitoredUserOffline += new EventHandler<IrcMessageEventArgs<MonitoredUserOfflineMessage>>(client_MonitoredUserOffline);
+      this.Contacts.Client.Messages.MonitoredUserOnline += new EventHandler<IrcMessageEventArgs<MonitoredUserOnlineMessage>>(client_MonitoredUserOnline);
       base.Initialize();
     }
 
@@ -36,7 +36,7 @@ namespace Supay.Irc.Contacts {
 
     #region Reply Handlers
 
-    private void client_MonitoredUserOnline(object sender, Supay.Irc.Messages.IrcMessageEventArgs<Supay.Irc.Messages.MonitoredUserOnlineMessage> e) {
+    private void client_MonitoredUserOnline(object sender, IrcMessageEventArgs<MonitoredUserOnlineMessage> e) {
       foreach (User onlineUser in e.Message.Users) {
         User knownUser = this.Contacts.Users.Find(onlineUser.Nickname);
         if (knownUser != null) {
@@ -46,7 +46,7 @@ namespace Supay.Irc.Contacts {
       }
     }
 
-    private void client_MonitoredUserOffline(object sender, Supay.Irc.Messages.IrcMessageEventArgs<Supay.Irc.Messages.MonitoredUserOfflineMessage> e) {
+    private void client_MonitoredUserOffline(object sender, IrcMessageEventArgs<MonitoredUserOfflineMessage> e) {
       foreach (string offlineNick in e.Message.Nicks) {
         User knownUser = this.Contacts.Users.Find(offlineNick);
         if (knownUser != null) {

@@ -1,4 +1,5 @@
 using System;
+using Supay.Irc.Properties;
 
 namespace Supay.Irc.Messages {
   /// <summary>
@@ -21,7 +22,7 @@ namespace Supay.Irc.Messages {
     public override void Validate(ServerSupport serverSupport) {
       base.Validate(serverSupport);
       if (serverSupport != null && serverSupport.MaxWatches <= 0) {
-        throw new InvalidMessageException(Properties.Resources.ServerDoesNotSupportWatch);
+        throw new InvalidMessageException(Resources.ServerDoesNotSupportWatch);
       }
     }
   }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.ObjectModel;
+using Supay.Irc.Properties;
 
 namespace Supay.Irc.Messages {
   /// <summary>
@@ -22,7 +23,7 @@ namespace Supay.Irc.Messages {
     public override void Validate(ServerSupport serverSupport) {
       base.Validate(serverSupport);
       if (serverSupport != null && !serverSupport.CallerId) {
-        throw new InvalidMessageException(Properties.Resources.ServerDoesNotSupportAccept);
+        throw new InvalidMessageException(Resources.ServerDoesNotSupportAccept);
       }
     }
 

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.ObjectModel;
+using Supay.Irc.Properties;
 
 namespace Supay.Irc.Messages {
   /// <summary>
@@ -134,10 +135,10 @@ namespace Supay.Irc.Messages {
       base.Validate(serverSupport);
       MessageUtil.EnsureValidChannelName(Channel, serverSupport);
       if (string.IsNullOrEmpty(Target)) {
-        throw new InvalidMessageException(Properties.Resources.TargetcannotBeEmpty);
+        throw new InvalidMessageException(Resources.TargetcannotBeEmpty);
       }
       if (string.IsNullOrEmpty(Channel)) {
-        throw new InvalidMessageException(Properties.Resources.ChannelCannotBeEmpty);
+        throw new InvalidMessageException(Resources.ChannelCannotBeEmpty);
       }
     }
 

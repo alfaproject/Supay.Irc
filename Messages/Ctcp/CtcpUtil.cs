@@ -1,5 +1,7 @@
 using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.RegularExpressions;
 
 namespace Supay.Irc.Messages {
   /// <summary>
@@ -8,8 +10,8 @@ namespace Supay.Irc.Messages {
   /// <remarks>
   ///   This most likely doesn't need to be used from lib-user code.
   /// </remarks>
-  [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Util")]
-  [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Ctcp")]
+  [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Util")]
+  [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Ctcp")]
   public static class CtcpUtil {
     /// <summary>
     ///   The character used to indicate the start and end of an extended data section in a CTCP message.
@@ -23,10 +25,10 @@ namespace Supay.Irc.Messages {
       string escaper = '\x0014'.ToString();
       string NUL = '\x0000'.ToString();
       string result = text;
-      result = System.Text.RegularExpressions.Regex.Replace(result, escaper, escaper + escaper);
-      result = System.Text.RegularExpressions.Regex.Replace(result, NUL, escaper + "0");
-      result = System.Text.RegularExpressions.Regex.Replace(result, "\r", escaper + "r");
-      result = System.Text.RegularExpressions.Regex.Replace(result, "\n", escaper + "n");
+      result = Regex.Replace(result, escaper, escaper + escaper);
+      result = Regex.Replace(result, NUL, escaper + "0");
+      result = Regex.Replace(result, "\r", escaper + "r");
+      result = Regex.Replace(result, "\n", escaper + "n");
       return result;
     }
 
@@ -38,10 +40,10 @@ namespace Supay.Irc.Messages {
       string NUL = '\x0000'.ToString();
       string result = text;
 
-      result = System.Text.RegularExpressions.Regex.Replace(result, escaper + "0", NUL);
-      result = System.Text.RegularExpressions.Regex.Replace(result, escaper + "r", "\r");
-      result = System.Text.RegularExpressions.Regex.Replace(result, escaper + "n", "\n");
-      result = System.Text.RegularExpressions.Regex.Replace(result, escaper + escaper, escaper);
+      result = Regex.Replace(result, escaper + "0", NUL);
+      result = Regex.Replace(result, escaper + "r", "\r");
+      result = Regex.Replace(result, escaper + "n", "\n");
+      result = Regex.Replace(result, escaper + escaper, escaper);
 
       return result;
     }
@@ -80,7 +82,7 @@ namespace Supay.Irc.Messages {
         extendedData = ctcpMessage.Substring(ctcpMessage.IndexOf(" ", StringComparison.Ordinal) + 1);
         extendedData = extendedData.Substring(0, extendedData.Length - 1);
       }
-      return CtcpUtil.Unescape(extendedData);
+      return Unescape(extendedData);
     }
 
     /// <summary>
@@ -92,7 +94,7 @@ namespace Supay.Irc.Messages {
         return false;
       }
       string payLoad = p[1];
-      if (!(payLoad.StartsWith(CtcpUtil.ExtendedDataMarker.ToString(), StringComparison.Ordinal) && payLoad.EndsWith(CtcpUtil.ExtendedDataMarker.ToString(), StringComparison.Ordinal))) {
+      if (!(payLoad.StartsWith(ExtendedDataMarker.ToString(), StringComparison.Ordinal) && payLoad.EndsWith(ExtendedDataMarker.ToString(), StringComparison.Ordinal))) {
         return false;
       }
       return true;
@@ -102,14 +104,14 @@ namespace Supay.Irc.Messages {
     ///   Determines if the given ctcp message is a request message.
     /// </summary>
     public static bool IsRequestMessage(string rawMessage) {
-      return CtcpUtil.GetTransportCommand(rawMessage) == "PRIVMSG";
+      return GetTransportCommand(rawMessage) == "PRIVMSG";
     }
 
     /// <summary>
     ///   Determines if the given ctcp message is a reply message.
     /// </summary>
     public static bool IsReplyMessage(string rawMessage) {
-      return CtcpUtil.GetTransportCommand(rawMessage) == "NOTICE";
+      return GetTransportCommand(rawMessage) == "NOTICE";
     }
   }
 }

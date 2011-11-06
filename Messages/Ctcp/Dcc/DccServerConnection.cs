@@ -1,10 +1,13 @@
 using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Globalization;
+using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 using Supay.Irc.Messages;
 using Supay.Irc.Network;
+using Supay.Irc.Properties;
 
 namespace Supay.Irc.Dcc {
   /// <summary>
@@ -131,7 +134,7 @@ namespace Supay.Irc.Dcc {
         if (Status == ConnectionStatus.Disconnected) {
           _port = value;
         } else {
-          throw new NotSupportedException(Properties.Resources.PortCannotBeChanged);
+          throw new NotSupportedException(Resources.PortCannotBeChanged);
         }
       }
     }
@@ -184,7 +187,7 @@ namespace Supay.Irc.Dcc {
     public void Send() {
       lock (_syncLock) {
         if (Status != ConnectionStatus.Disconnected) {
-          throw new InvalidOperationException(Properties.Resources.AlreadyConnectToAnotherClient);
+          throw new InvalidOperationException(Resources.AlreadyConnectToAnotherClient);
         }
 
         Status = ConnectionStatus.Connecting;
@@ -235,7 +238,7 @@ namespace Supay.Irc.Dcc {
       string disconnectReason = string.Empty;
 
       try {
-        _chatListener = new TcpListener(System.Net.IPAddress.Any, Port);
+        _chatListener = new TcpListener(IPAddress.Any, Port);
         _chatListener.Start();
         Socket socket = _chatListener.AcceptSocket();
 
@@ -245,7 +248,7 @@ namespace Supay.Irc.Dcc {
         Transfer.TransferSocket = socket;
         Transfer.Send();
       } catch (Exception ex) {
-        System.Diagnostics.Trace.WriteLine("Error Opening DccServerConnection On Port " + _port.ToString(CultureInfo.InvariantCulture) + ", " + ex.ToString(), "DccServerConnection");
+        Trace.WriteLine("Error Opening DccServerConnection On Port " + _port.ToString(CultureInfo.InvariantCulture) + ", " + ex.ToString(), "DccServerConnection");
         throw;
       } finally {
         Status = ConnectionStatus.Disconnected;

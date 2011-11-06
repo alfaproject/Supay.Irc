@@ -1,10 +1,11 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Supay.Irc.Messages {
   /// <summary>
   ///   An SPR Jukebox message that notifies the recipient of the senders available mp3 file.
   /// </summary>
-  [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "Mp")]
+  [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "Mp")]
   [Serializable]
   public class Mp3RequestMessage : CtcpRequestMessage {
     /// <summary>

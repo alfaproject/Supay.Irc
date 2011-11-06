@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
+using System.Reflection;
+using Supay.Irc.Messages;
 
 namespace Supay.Irc {
   /// <summary>
@@ -18,7 +21,7 @@ namespace Supay.Irc {
     /// <summary>
     ///   The extended parameters which the server can support on a List message.
     /// </summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1034:NestedTypesShouldNotBeVisible")]
+    [SuppressMessage("Microsoft.Design", "CA1034:NestedTypesShouldNotBeVisible")]
     [Flags]
     public enum ExtendedListParameters {
       /// <summary>
@@ -702,9 +705,9 @@ namespace Supay.Irc {
     /// <summary>
     ///   Loads support information from the given <see cref="Supay.Irc.Messages.SupportMessage" />.
     /// </summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity")]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1505:AvoidUnmaintainableCode")]
-    public void LoadInfo(Supay.Irc.Messages.SupportMessage msg) {
+    [SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity")]
+    [SuppressMessage("Microsoft.Maintainability", "CA1505:AvoidUnmaintainableCode")]
+    public void LoadInfo(SupportMessage msg) {
       NameValueCollection items = msg.SupportedItems;
       foreach (string key in items.Keys) {
         string value = items[key] ?? "";
@@ -909,7 +912,7 @@ namespace Supay.Irc {
       }
     }
 
-    private void SetIfNumeric(System.Reflection.PropertyInfo property, string value) {
+    private void SetIfNumeric(PropertyInfo property, string value) {
       int intValue;
       if (value != null && int.TryParse(value, NumberStyles.Integer, CultureInfo.InvariantCulture, out intValue)) {
         property.SetValue(this, intValue, null);

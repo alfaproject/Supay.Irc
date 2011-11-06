@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Net.Security;
 using System.Net.Sockets;
@@ -7,6 +8,7 @@ using System.Security.Authentication;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading;
+using Supay.Irc.Properties;
 
 namespace Supay.Irc.Network {
   /// <summary>
@@ -107,7 +109,7 @@ namespace Supay.Irc.Network {
         if (Status == ConnectionStatus.Disconnected) {
           _address = value;
         } else {
-          throw new NotSupportedException(Properties.Resources.AddressCannotBeChanged);
+          throw new NotSupportedException(Resources.AddressCannotBeChanged);
         }
       }
     }
@@ -129,7 +131,7 @@ namespace Supay.Irc.Network {
         if (Status == ConnectionStatus.Disconnected) {
           _port = value;
         } else {
-          throw new NotSupportedException(Properties.Resources.PortCannotBeChanged);
+          throw new NotSupportedException(Resources.PortCannotBeChanged);
         }
       }
     }
@@ -168,7 +170,7 @@ namespace Supay.Irc.Network {
         if (Status == ConnectionStatus.Disconnected) {
           _encoding = value;
         } else {
-          throw new NotSupportedException(Properties.Resources.EncodingCannotBeChanged);
+          throw new NotSupportedException(Resources.EncodingCannotBeChanged);
         }
       }
     }
@@ -184,7 +186,7 @@ namespace Supay.Irc.Network {
         if (Status == ConnectionStatus.Disconnected) {
           _ssl = value;
         } else {
-          throw new NotSupportedException(Properties.Resources.SslCannotBeChanged);
+          throw new NotSupportedException(Resources.SslCannotBeChanged);
         }
       }
     }
@@ -204,7 +206,7 @@ namespace Supay.Irc.Network {
     public void Connect() {
       lock (_syncLock) {
         if (Status != ConnectionStatus.Disconnected) {
-          throw new InvalidOperationException(Properties.Resources.AlreadyConnected);
+          throw new InvalidOperationException(Resources.AlreadyConnected);
         }
 
         Status = ConnectionStatus.Connecting;
@@ -258,7 +260,7 @@ namespace Supay.Irc.Network {
       }
 
       if (_writer == null || _writer.BaseStream == null || !_writer.BaseStream.CanWrite) {
-        throw new InvalidOperationException(Properties.Resources.ConnectionCanNotBeWrittenToYet);
+        throw new InvalidOperationException(Resources.ConnectionCanNotBeWrittenToYet);
       }
 
       data = data.Replace("\\c", "\x0003").Replace("\\b", "\x0002").Replace("\\u", "\x001F");
@@ -274,7 +276,7 @@ namespace Supay.Irc.Network {
         _writer.Flush();
         OnDataSent(new ConnectionDataEventArgs(data));
       } catch (Exception ex) {
-        System.Diagnostics.Trace.WriteLine("Couldn't Send '" + data + "'. " + ex.ToString());
+        Trace.WriteLine("Couldn't Send '" + data + "'. " + ex.ToString());
         throw;
       }
     }
@@ -408,14 +410,14 @@ namespace Supay.Irc.Network {
             incomingMessageLine = incomingMessageLine.Trim();
             OnDataReceived(new ConnectionDataEventArgs(incomingMessageLine));
           } catch (ThreadAbortException ex) {
-            System.Diagnostics.Trace.WriteLine(ex.Message);
+            Trace.WriteLine(ex.Message);
             Thread.ResetAbort();
             disconnectReason = "Thread Aborted";
             break;
           }
         }
       } catch (Exception ex) {
-        System.Diagnostics.Trace.WriteLine(ex.ToString());
+        Trace.WriteLine(ex.ToString());
         disconnectReason = ex.Message + Environment.NewLine + ex.StackTrace;
       }
       Status = ConnectionStatus.Disconnected;

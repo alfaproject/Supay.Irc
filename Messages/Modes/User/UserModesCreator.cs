@@ -18,7 +18,7 @@ namespace Supay.Irc.Messages.Modes {
     /// <summary>
     ///   Loads the given mode data into this <see cref="UserModesCreator" />
     /// </summary>
-    public void Parse(Supay.Irc.Messages.UserModeMessage msg) {
+    public void Parse(UserModeMessage msg) {
       if (msg == null) {
         return;
       }
@@ -122,6 +122,6 @@ namespace Supay.Irc.Messages.Modes {
       }
     }
 
-    private Supay.Irc.Messages.Modes.UserModeCollection modes = new UserModeCollection();
+    private UserModeCollection modes = new UserModeCollection();
   }
 }

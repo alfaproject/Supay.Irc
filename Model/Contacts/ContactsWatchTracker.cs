@@ -9,8 +9,8 @@ namespace Supay.Irc.Contacts {
     }
 
     public override void Initialize() {
-      this.Contacts.Client.Messages.WatchedUserOffline += new EventHandler<Supay.Irc.Messages.IrcMessageEventArgs<Supay.Irc.Messages.WatchedUserOfflineMessage>>(client_WatchedUserOffline);
-      this.Contacts.Client.Messages.WatchedUserOnline += new EventHandler<Supay.Irc.Messages.IrcMessageEventArgs<Supay.Irc.Messages.WatchedUserOnlineMessage>>(client_WatchedUserOnline);
+      this.Contacts.Client.Messages.WatchedUserOffline += new EventHandler<IrcMessageEventArgs<WatchedUserOfflineMessage>>(client_WatchedUserOffline);
+      this.Contacts.Client.Messages.WatchedUserOnline += new EventHandler<IrcMessageEventArgs<WatchedUserOnlineMessage>>(client_WatchedUserOnline);
       base.Initialize();
     }
 
@@ -36,14 +36,14 @@ namespace Supay.Irc.Contacts {
 
     #region Reply Handlers
 
-    private void client_WatchedUserOnline(object sender, Supay.Irc.Messages.IrcMessageEventArgs<Supay.Irc.Messages.WatchedUserOnlineMessage> e) {
+    private void client_WatchedUserOnline(object sender, IrcMessageEventArgs<WatchedUserOnlineMessage> e) {
       User knownUser = this.Contacts.Users.Find(e.Message.WatchedUser.Nickname);
       if (knownUser != null) {
         knownUser.Online = true;
       }
     }
 
-    private void client_WatchedUserOffline(object sender, Supay.Irc.Messages.IrcMessageEventArgs<Supay.Irc.Messages.WatchedUserOfflineMessage> e) {
+    private void client_WatchedUserOffline(object sender, IrcMessageEventArgs<WatchedUserOfflineMessage> e) {
       User knownUser = this.Contacts.Users.Find(e.Message.WatchedUser.Nickname);
       if (knownUser != null) {
         knownUser.Online = false;

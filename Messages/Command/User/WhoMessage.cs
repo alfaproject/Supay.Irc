@@ -10,7 +10,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Gets or sets the mask which is matched for users to return information about.
     /// </summary>
-    public virtual Supay.Irc.User Mask {
+    public virtual User Mask {
       get {
         return this.mask;
       }
@@ -19,7 +19,7 @@ namespace Supay.Irc.Messages {
       }
     }
 
-    private User mask = new Supay.Irc.User();
+    private User mask = new User();
 
     /// <summary>
     ///   Gets or sets if the results should only contain IRC operators.
@@ -71,7 +71,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
-    public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
+    public override void Notify(MessageConduit conduit) {
       conduit.OnWho(new IrcMessageEventArgs<WhoMessage>(this));
     }
   }

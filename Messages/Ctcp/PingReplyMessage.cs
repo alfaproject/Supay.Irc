@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Supay.Irc.Messages {
   /// <summary>
@@ -22,7 +23,7 @@ namespace Supay.Irc.Messages {
     ///   This allows the requestor to substract the two to calculate the timespan to whatever degree
     ///   of exactness that they want.
     /// </remarks>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", MessageId = "TimeStamp")]
+    [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", MessageId = "TimeStamp")]
     public virtual string TimeStamp {
       get {
         return this.timeStamp;
@@ -46,7 +47,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
-    public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
+    public override void Notify(MessageConduit conduit) {
       conduit.OnPingReply(new IrcMessageEventArgs<PingReplyMessage>(this));
     }
 

@@ -15,7 +15,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     protected DccRequestMessage() {
       Port = -1;
-      Address = System.Net.IPAddress.None;
+      Address = IPAddress.None;
       InternalCommand = "DCC";
     }
 

@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
+using Supay.Irc.Properties;
 
 namespace Supay.Irc.Dcc {
   /// <summary>
@@ -62,7 +63,7 @@ namespace Supay.Irc.Dcc {
       }
       set {
         if (value > 8192) {
-          throw new ArgumentException(Properties.Resources.BufferSizeIsLimited, "value");
+          throw new ArgumentException(Resources.BufferSizeIsLimited, "value");
         }
         _bufferSize = value;
       }
@@ -150,7 +151,7 @@ namespace Supay.Irc.Dcc {
     /// </summary>
     internal void Send() {
       if (!File.CanRead) {
-        throw new InvalidOperationException(Properties.Resources.CannotReadFromFile);
+        throw new InvalidOperationException(Resources.CannotReadFromFile);
       }
 
       BytesTransferred = 0;

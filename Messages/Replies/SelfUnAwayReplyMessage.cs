@@ -1,12 +1,13 @@
 using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Supay.Irc.Messages {
   /// <summary>
   ///   This message is received from the server when it acknowledges a client's
   ///   <see cref="BackMessage" />.
   /// </summary>
-  [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "Un")]
+  [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "Un")]
   [Serializable]
   public class SelfUnAwayMessage : NumericMessage {
     /// <summary>
@@ -28,7 +29,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
-    public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
+    public override void Notify(MessageConduit conduit) {
       conduit.OnSelfUnAway(new IrcMessageEventArgs<SelfUnAwayMessage>(this));
     }
   }

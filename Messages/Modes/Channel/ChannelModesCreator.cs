@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 
 namespace Supay.Irc.Messages.Modes {
@@ -16,7 +17,7 @@ namespace Supay.Irc.Messages.Modes {
     /// <summary>
     ///   A <see cref="Supay.Irc.ServerSupport" /> instance is required in order to parse non-standard modes.
     /// </summary>
-    public Supay.Irc.ServerSupport ServerSupport {
+    public ServerSupport ServerSupport {
       get {
         return this.serverSupports;
       }
@@ -28,14 +29,14 @@ namespace Supay.Irc.Messages.Modes {
       }
     }
 
-    private Supay.Irc.ServerSupport serverSupports = new Supay.Irc.ServerSupport();
+    private ServerSupport serverSupports = new ServerSupport();
 
     #region Parsing
 
     /// <summary>
     ///   Loads the given mode data into this <see cref="ChannelModesCreator" />
     /// </summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity")]
+    [SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity")]
     public void Parse(string modeChanges, List<string> modeArguments) {
       if (string.IsNullOrEmpty(modeChanges)) {
         return;
@@ -217,6 +218,6 @@ namespace Supay.Irc.Messages.Modes {
       }
     }
 
-    private Supay.Irc.Messages.Modes.ChannelModeCollection modes = new ChannelModeCollection();
+    private ChannelModeCollection modes = new ChannelModeCollection();
   }
 }

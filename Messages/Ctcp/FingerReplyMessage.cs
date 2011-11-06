@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Text;
 
@@ -31,7 +32,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Gets or sets the login name of the user.
     /// </summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms", MessageId = "Login")]
+    [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms", MessageId = "Login")]
     public virtual string LoginName {
       get {
         return this.loginName;
@@ -73,7 +74,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
-    public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
+    public override void Notify(MessageConduit conduit) {
       conduit.OnFingerReply(new IrcMessageEventArgs<FingerReplyMessage>(this));
     }
 
@@ -103,7 +104,7 @@ namespace Supay.Irc.Messages {
           startOfIdle += 6;
           string idleSecs = payload.Substring(startOfIdle, payload.Length - startOfIdle - 8);
           Double foo;
-          if (Double.TryParse(idleSecs, System.Globalization.NumberStyles.Any, null, out foo)) {
+          if (Double.TryParse(idleSecs, NumberStyles.Any, null, out foo)) {
             this.IdleSeconds = foo;
           } else {
             this.IdleSeconds = -1;

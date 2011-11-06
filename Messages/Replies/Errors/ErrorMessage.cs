@@ -1,4 +1,5 @@
 using System;
+using Supay.Irc.Properties;
 
 namespace Supay.Irc.Messages {
   /// <summary>
@@ -29,7 +30,7 @@ namespace Supay.Irc.Messages {
       if (IsError(number)) {
         base.InternalNumeric = number;
       } else {
-        throw new ArgumentOutOfRangeException("number", number, Properties.Resources.ErrorMessageNumericsMustBeBetween);
+        throw new ArgumentOutOfRangeException("number", number, Resources.ErrorMessageNumericsMustBeBetween);
       }
     }
   }

@@ -286,7 +286,7 @@ namespace Supay.Irc.Messages {
     ///   Gets the last parameter in the parameters collection of the given unparsed message.
     /// </summary>
     public static string GetLastParameter(string rawMessage) {
-      Collection<string> p = MessageUtil.GetParameters(rawMessage);
+      Collection<string> p = GetParameters(rawMessage);
       if (p.Count > 0) {
         return p[p.Count - 1];
       } else {
@@ -298,7 +298,7 @@ namespace Supay.Irc.Messages {
     ///   Gets the nth parameter in the parameters collection of the given unparsed message.
     /// </summary>
     public static string GetParameter(string rawMessage, int index) {
-      Collection<string> p = MessageUtil.GetParameters(rawMessage);
+      Collection<string> p = GetParameters(rawMessage);
       if (p.Count > index) {
         return p[index];
       } else {
@@ -398,7 +398,7 @@ namespace Supay.Irc.Messages {
       }
 
       int unixTime;
-      if (int.TryParse(unixTimeString, System.Globalization.NumberStyles.Integer, CultureInfo.InvariantCulture, out unixTime)) {
+      if (int.TryParse(unixTimeString, NumberStyles.Integer, CultureInfo.InvariantCulture, out unixTime)) {
         return ConvertFromUnixTime(unixTime);
       }
       return null;

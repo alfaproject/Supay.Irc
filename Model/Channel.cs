@@ -4,6 +4,7 @@ using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Globalization;
 using Supay.Irc.Messages.Modes;
+using Supay.Irc.Properties;
 
 namespace Supay.Irc {
   /// <summary>
@@ -205,7 +206,7 @@ namespace Supay.Irc {
         throw new ArgumentNullException("channelUser");
       }
       if (!_users.Contains(channelUser)) {
-        throw new ArgumentException(string.Format(CultureInfo.InvariantCulture, Supay.Irc.Properties.Resources.UserIsNotInChannel, channelUser.Nickname, this.Name), "channelUser");
+        throw new ArgumentException(string.Format(CultureInfo.InvariantCulture, Resources.UserIsNotInChannel, channelUser.Nickname, this.Name), "channelUser");
       }
     }
 

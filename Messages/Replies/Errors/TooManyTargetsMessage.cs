@@ -1,5 +1,6 @@
 using System;
 using System.Collections.ObjectModel;
+using System.Text.RegularExpressions;
 
 namespace Supay.Irc.Messages {
   /// <summary>
@@ -82,7 +83,7 @@ namespace Supay.Irc.Messages {
       if (parameters.Count > 1) {
         this.InvalidTarget = parameters[1];
         if (parameters.Count > 2) {
-          string[] messagePieces = System.Text.RegularExpressions.Regex.Split(parameters[2], " recipients.");
+          string[] messagePieces = Regex.Split(parameters[2], " recipients.");
           if (messagePieces.Length == 2) {
             this.ErrorCode = messagePieces[0];
             this.AbortMessage = messagePieces[1];
@@ -96,7 +97,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
-    public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
+    public override void Notify(MessageConduit conduit) {
       conduit.OnTooManyTargets(new IrcMessageEventArgs<TooManyTargetsMessage>(this));
     }
   }

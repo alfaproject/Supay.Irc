@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 
 namespace Supay.Irc.Messages {
@@ -141,7 +142,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Parses the given string to populate this <see cref="IrcMessage" />.
     /// </summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1806:DoNotIgnoreMethodResults", MessageId = "System.int.TryParse(System.string,System.Globalization.NumberStyles,System.IFormatProvider,System.int@)")]
+    [SuppressMessage("Microsoft.Usage", "CA1806:DoNotIgnoreMethodResults", MessageId = "System.int.TryParse(System.string,System.Globalization.NumberStyles,System.IFormatProvider,System.int@)")]
     public override void Parse(string unparsedMessage) {
       base.Parse(unparsedMessage);
       string slotInfo = CtcpUtil.GetExtendedData(unparsedMessage);

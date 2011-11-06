@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Net;
@@ -61,13 +62,13 @@ namespace Supay.Irc.Network {
     public void Start(bool stopAfterFirstAnswer = false) {
       lock (_syncLock) {
         if (Status != ConnectionStatus.Disconnected) {
-          System.Diagnostics.Trace.WriteLine("Ident Already Started");
+          Trace.WriteLine("Ident Already Started");
           return;
         }
 
         _stopAfter = stopAfterFirstAnswer;
         _socketThread = new Thread(Run) {
-          name="Identd",
+          name = "Identd",
           IsBackground = true
         };
         _socketThread.Start();
@@ -93,7 +94,7 @@ namespace Supay.Irc.Network {
         _listener = new TcpListener(IPAddress.Any, PORT);
         _listener.Start();
       } catch (Exception ex) {
-        System.Diagnostics.Trace.WriteLine("Error Opening Ident Listener On Port " + PORT.ToString(CultureInfo.InvariantCulture) + ", " + ex.ToString(), "Ident");
+        Trace.WriteLine("Error Opening Ident Listener On Port " + PORT.ToString(CultureInfo.InvariantCulture) + ", " + ex.ToString(), "Ident");
         Status = ConnectionStatus.Disconnected;
         throw;
       }
@@ -115,7 +116,7 @@ namespace Supay.Irc.Network {
               if (User.Nickname.Length != 0) {
                 identName = User.Nickname;
               } else {
-                identname="supay";
+                identname = "supay";
               }
             }
             string identReply = identRequest.Trim() + REPLY + identName.ToLower(CultureInfo.InvariantCulture);
@@ -129,16 +130,16 @@ namespace Supay.Irc.Network {
               Status = ConnectionStatus.Disconnected;
             }
           } catch (IOException ex) {
-            System.Diagnostics.Trace.WriteLine("Error Processing Ident Request: " + ex.Message, "Ident");
+            Trace.WriteLine("Error Processing Ident Request: " + ex.Message, "Ident");
           }
         }
       } catch (SocketException ex) {
         switch ((SocketError) ex.ErrorCode) {
           case SocketError.InterruptedFunctionCall:
-            System.Diagnostics.Trace.WriteLine("Ident Stopped By Thread Abort", "Ident");
+            Trace.WriteLine("Ident Stopped By Thread Abort", "Ident");
             break;
           default:
-            System.Diagnostics.Trace.WriteLine("Ident Abnormally Stopped: " + ex.ToString(), "Ident");
+            Trace.WriteLine("Ident Abnormally Stopped: " + ex.ToString(), "Ident");
             break;
         }
         //throw( ex );
