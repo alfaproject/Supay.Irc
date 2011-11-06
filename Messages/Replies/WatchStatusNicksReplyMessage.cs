@@ -25,10 +25,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public List<string> Nicks {
       get {
-        if (nicks == null) {
-          nicks = new List<string>();
-        }
-        return nicks;
+        return nicks ?? (nicks = new List<string>());
       }
     }
 

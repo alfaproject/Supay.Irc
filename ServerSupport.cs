@@ -67,11 +67,8 @@ namespace Supay.Irc {
     /// </summary>
     public static ServerSupport DefaultSupport {
       get {
-        if (_defaultSupport == null) {
-          _defaultSupport = new ServerSupport();
-          //TODO Create A Good Default ServerSupport
-        }
-        return _defaultSupport;
+        //TODO Create A Good Default ServerSupport
+        return _defaultSupport ?? (_defaultSupport = new ServerSupport());
       }
       set {
         _defaultSupport = value;

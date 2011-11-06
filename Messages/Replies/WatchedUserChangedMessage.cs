@@ -20,10 +20,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public User WatchedUser {
       get {
-        if (watchedUser == null) {
-          watchedUser = new User();
-        }
-        return watchedUser;
+        return watchedUser ?? (watchedUser = new User());
       }
       set {
         watchedUser = value;

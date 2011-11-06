@@ -21,10 +21,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public UserCollection Users {
       get {
-        if (users == null) {
-          users = new UserCollection();
-        }
-        return users;
+        return users ?? (users = new UserCollection());
       }
     }
 

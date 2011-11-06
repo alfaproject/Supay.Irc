@@ -36,10 +36,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public Collection<string> Nicks {
       get {
-        if (nicks == null) {
-          nicks = new Collection<string>();
-        }
-        return nicks;
+        return nicks ?? (nicks = new Collection<string>());
       }
     }
 

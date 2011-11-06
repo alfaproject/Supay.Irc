@@ -18,10 +18,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public Collection<string> AddedNicks {
       get {
-        if (addedNicks == null) {
-          addedNicks = new Collection<string>();
-        }
-        return addedNicks;
+        return addedNicks ?? (addedNicks = new Collection<string>());
       }
     }
 
@@ -30,10 +27,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public Collection<string> RemovedNicks {
       get {
-        if (removedNicks == null) {
-          removedNicks = new Collection<string>();
-        }
-        return removedNicks;
+        return removedNicks ?? (removedNicks = new Collection<string>());
       }
     }
 

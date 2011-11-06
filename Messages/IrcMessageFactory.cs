@@ -117,10 +117,7 @@ namespace Supay.Irc.Messages {
             }
           }
         } else {
-          msg = getMessage(unparsedMessage, _commands);
-          if (msg == null) {
-            msg = new GenericMessage();
-          }
+          msg = getMessage(unparsedMessage, _commands) ?? new GenericMessage();
         }
       }
 
