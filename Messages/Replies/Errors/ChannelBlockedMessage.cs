@@ -4,7 +4,6 @@ using System.Globalization;
 using Supay.Irc.Messages.Modes;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   ///   The <see cref="ErrorMessage"/> received when attempting to join a channel which is invite
   ///   only. </summary>
@@ -13,7 +12,6 @@ namespace Supay.Irc.Messages {
   ///   <see cref="InviteOnlyMode"/>. </remarks>
   [Serializable]
   public class ChannelBlockedMessage : ErrorMessage, IChannelTargetedMessage {
-
     /// <summary>
     /// Creates a new instances of the <see cref="ChannelBlockedMessage"/> class.
     /// </summary>
@@ -32,6 +30,7 @@ namespace Supay.Irc.Messages {
         channel = value;
       }
     }
+
     private string channel;
 
     /// <summary>
@@ -45,8 +44,8 @@ namespace Supay.Irc.Messages {
         reason = value;
       }
     }
-    private string reason;
 
+    private string reason;
 
     /// <exclude />
     protected override Collection<string> GetParameters() {
@@ -76,7 +75,6 @@ namespace Supay.Irc.Messages {
       conduit.OnChannelBlocked(new IrcMessageEventArgs<ChannelBlockedMessage>(this));
     }
 
-
     #region IChannelTargetedMessage Members
 
     bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
@@ -91,5 +89,4 @@ namespace Supay.Irc.Messages {
 
     #endregion
   }
-
 }

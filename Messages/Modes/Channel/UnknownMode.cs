@@ -1,10 +1,8 @@
 namespace Supay.Irc.Messages.Modes {
-
   /// <summary>
   /// A channel mode sent in a <see cref="ChannelModeMessage"/> which is not known.
   /// </summary>
   public class UnknownChannelMode : ChannelMode {
-
     /// <summary>
     /// Creates a new instance of the <see cref="UnknownChannelMode"/> class with the given <see cref="ModeAction"/> and value.
     /// </summary>
@@ -21,7 +19,6 @@ namespace Supay.Irc.Messages.Modes {
       this.symbol = symbol;
       this.parameter = parameter;
     }
-
 
     /// <summary>
     /// Gets or sets the parameter passed with this mode.
@@ -44,7 +41,6 @@ namespace Supay.Irc.Messages.Modes {
       }
     }
 
-
     private string symbol;
     private string parameter = string.Empty;
 
@@ -57,8 +53,5 @@ namespace Supay.Irc.Messages.Modes {
         msg.ModeArguments.Add(this.Parameter);
       }
     }
-
-
   }
-
 }

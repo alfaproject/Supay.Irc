@@ -2,13 +2,11 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   ///   An Accept/CallerId system message marking the end of the responses to an
   ///   <see chref="AcceptListRequestMessage"/>. </summary>
   [Serializable]
   public class AcceptListEndReplyMessage : NumericMessage {
-
     /// <summary>
     ///   Creates a new instance of the <see cref="AcceptListEndReplyMessage"/>. </summary>
     public AcceptListEndReplyMessage()
@@ -29,6 +27,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(MessageConduit conduit) {
       conduit.OnAcceptListEndReply(new IrcMessageEventArgs<AcceptListEndReplyMessage>(this));
     }
-
-  } //class AcceptListEndReplyMessage
-} //namespace Supay.Irc.Messages
+  }
+}

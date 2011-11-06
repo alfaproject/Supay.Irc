@@ -3,14 +3,12 @@ using System.Collections.ObjectModel;
 using System.Text;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// The reply to a <see cref="SourceRequestMessage"/>, 
   /// telling the requestor where to download this client.
   /// </summary>
   [Serializable]
   public class SourceReplyMessage : CtcpReplyMessage {
-
     /// <summary>
     /// Creates a new instance of the <see cref="SourceReplyMessage"/> class.
     /// </summary>
@@ -30,6 +28,7 @@ namespace Supay.Irc.Messages {
         this.server = value;
       }
     }
+
     private string server = string.Empty;
 
     /// <summary>
@@ -43,6 +42,7 @@ namespace Supay.Irc.Messages {
         this.folder = value;
       }
     }
+
     private string folder = string.Empty;
 
     /// <summary>
@@ -53,6 +53,7 @@ namespace Supay.Irc.Messages {
         return this.files;
       }
     }
+
     private Collection<string> files = new Collection<string>();
 
     /// <summary>
@@ -91,7 +92,6 @@ namespace Supay.Irc.Messages {
           }
         }
       }
-
     }
 
     /// <summary>
@@ -100,7 +100,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnSourceReply(new IrcMessageEventArgs<SourceReplyMessage>(this));
     }
-
   }
-
 }

@@ -2,13 +2,11 @@ using System;
 using System.Globalization;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// An SPR Jukebox message that notifies the recipient of the senders available mp3 serving capabilities.
   /// </summary>
   [Serializable]
   public class SlotsRequestMessage : CtcpRequestMessage {
-
     /// <summary>
     /// Creates a new instance of the <see cref="SlotsRequestMessage"/> class.
     /// </summary>
@@ -37,6 +35,7 @@ namespace Supay.Irc.Messages {
         totalSendSlots = value;
       }
     }
+
     private int totalSendSlots;
 
     /// <summary>
@@ -50,6 +49,7 @@ namespace Supay.Irc.Messages {
         availableSendSlots = value;
       }
     }
+
     private int availableSendSlots;
 
     /// <summary>
@@ -63,6 +63,7 @@ namespace Supay.Irc.Messages {
         nextSend = value;
       }
     }
+
     private string nextSend;
 
     /// <summary>
@@ -76,6 +77,7 @@ namespace Supay.Irc.Messages {
         takenQueueSlots = value;
       }
     }
+
     private int takenQueueSlots;
 
     /// <summary>
@@ -89,6 +91,7 @@ namespace Supay.Irc.Messages {
         totalQueueSlots = value;
       }
     }
+
     private int totalQueueSlots;
 
     /// <summary>
@@ -102,6 +105,7 @@ namespace Supay.Irc.Messages {
         cpsRecord = value;
       }
     }
+
     private int cpsRecord;
 
     /// <summary>
@@ -115,8 +119,8 @@ namespace Supay.Irc.Messages {
         totalFiles = value;
       }
     }
-    private int totalFiles;
 
+    private int totalFiles;
 
     /// <summary>
     /// Notifies the given <see cref="MessageConduit"/> by raising the appropriate event for the current <see cref="IrcMessage"/> subclass.
@@ -152,7 +156,5 @@ namespace Supay.Irc.Messages {
         int.TryParse(slotInfoItems[6], NumberStyles.Integer, CultureInfo.InvariantCulture, out this.totalFiles);
       }
     }
-
   }
-
 }

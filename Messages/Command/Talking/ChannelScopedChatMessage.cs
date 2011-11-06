@@ -2,7 +2,6 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   ///   This message is a chat message which is scoped to the current channel. </summary>
   /// <remarks>
@@ -11,7 +10,6 @@ namespace Supay.Irc.Messages {
   ///   operators send this chat message as often as they want to people who are in that channel. </remarks>
   [Serializable]
   public class ChannelScopedChatMessage : CommandMessage, IChannelTargetedMessage {
-
     private string _text;
     private string _target;
     private string _channel;
@@ -149,6 +147,5 @@ namespace Supay.Irc.Messages {
     }
 
     #endregion
-
-  } //class ChannelScopedChatMessage
-} //namespace Supay.Irc.Messages
+  }
+}

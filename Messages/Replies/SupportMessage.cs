@@ -3,14 +3,12 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// This is a message sent from a server to a client upon connection 
   /// to tell the client what IRC features the server supports.
   /// </summary>
   [Serializable]
   public class SupportMessage : NumericMessage {
-
     /// <summary>
     /// Creates a new instance of the <see cref="SupportMessage"/> class.
     /// </summary>
@@ -26,6 +24,7 @@ namespace Supay.Irc.Messages {
         return supportedItems;
       }
     }
+
     private NameValueCollection supportedItems = new NameValueCollection();
 
     /// <summary>
@@ -86,7 +85,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnSupport(new IrcMessageEventArgs<SupportMessage>(this));
     }
-
   }
-
 }

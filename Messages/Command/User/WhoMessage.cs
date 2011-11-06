@@ -2,13 +2,11 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// Requests information about the given user or users.
   /// </summary>
   [Serializable]
   public class WhoMessage : CommandMessage {
-
     /// <summary>
     /// Gets or sets the mask which is matched for users to return information about.
     /// </summary>
@@ -20,6 +18,7 @@ namespace Supay.Irc.Messages {
         this.mask = value;
       }
     }
+
     private User mask = new Supay.Irc.User();
 
     /// <summary>
@@ -74,7 +73,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnWho(new IrcMessageEventArgs<WhoMessage>(this));
     }
-
   }
-
 }

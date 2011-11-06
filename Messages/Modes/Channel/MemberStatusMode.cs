@@ -1,10 +1,8 @@
 namespace Supay.Irc.Messages.Modes {
-
   /// <summary>
   ///   The modes in this category have a channel member nickname property,
   ///   <see cref="MemberStatusMode.Nick"/> and affect the privileges given to this user. </summary>
   public abstract class MemberStatusMode : ChannelMode {
-
     protected MemberStatusMode()
       : this(string.Empty) {
     }
@@ -28,6 +26,5 @@ namespace Supay.Irc.Messages.Modes {
     protected override void AddParameter(ChannelModeMessage msg) {
       msg.ModeArguments.Add(Nick);
     }
-
-  } //class MemberStatusMode
-} //namespace Supay.Irc.Messages.Modes
+  }
+}

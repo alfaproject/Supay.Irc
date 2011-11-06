@@ -2,14 +2,12 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// The <see cref="ErrorMessage"/> received when the client attempts to add a nick to his accept list
   /// when that nick is already on the list.
   /// </summary>
   [Serializable]
   public class AcceptAlreadyExistsMessage : ErrorMessage {
-
     /// <summary>
     /// Creates a new instances of the <see cref="AcceptAlreadyExistsMessage"/> class.
     /// </summary>
@@ -57,7 +55,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnAcceptAlreadyExists(new IrcMessageEventArgs<AcceptAlreadyExistsMessage>(this));
     }
-
   }
-
 }

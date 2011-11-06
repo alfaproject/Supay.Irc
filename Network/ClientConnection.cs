@@ -5,11 +5,10 @@ using System.Net.Security;
 using System.Net.Sockets;
 using System.Security.Authentication;
 using System.Security.Cryptography.X509Certificates;
-using System.Threading;
 using System.Text;
+using System.Threading;
 
 namespace Supay.Irc.Network {
-
   /// <summary>
   ///   Represents a network connection to an IRC server. </summary>
   /// <remarks>
@@ -17,7 +16,6 @@ namespace Supay.Irc.Network {
   ///   to an IRC server, and to be notified when it returns a <see cref="Supay.Irc.Messages.IrcMessage"/>. </remarks>
   [DesignerCategory("Code")]
   public class ClientConnection : Component {
-
     private readonly object _syncLock = new object();
 
     private string _address;
@@ -193,7 +191,9 @@ namespace Supay.Irc.Network {
         OnConnecting(EventArgs.Empty);
       }
 
-      _worker = new Thread(ReceiveData) { IsBackground = true };
+      _worker = new Thread(ReceiveData) {
+        IsBackground = true
+      };
       _worker.Start();
     }
 
@@ -345,13 +345,15 @@ namespace Supay.Irc.Network {
         Stream dataStream;
         if (Ssl) {
           dataStream = new SslStream(_client.GetStream(), false, ValidateServerCertificate, null);
-          ((SslStream)dataStream).AuthenticateAsClient(Address);
+          ((SslStream) dataStream).AuthenticateAsClient(Address);
         } else {
           dataStream = _client.GetStream();
         }
 
         _reader = new StreamReader(dataStream, Encoding);
-        _writer = new StreamWriter(dataStream, Encoding) { AutoFlush = true };
+        _writer = new StreamWriter(dataStream, Encoding) {
+          AutoFlush = true
+        };
       } catch (AuthenticationException e) {
         if (_client != null) {
           _client.Close();
@@ -398,6 +400,5 @@ namespace Supay.Irc.Network {
     }
 
     #endregion
-
-  } //class ClientConnection
-} //namespace Supay.Irc.Network
+  }
+}

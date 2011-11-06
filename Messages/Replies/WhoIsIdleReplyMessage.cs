@@ -3,14 +3,12 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// As a reply to the <see cref="WhoIsMessage"/> message,
   /// carries information about idle time and such.
   /// </summary>
   [Serializable]
   public class WhoIsIdleReplyMessage : NumericMessage {
-
     /// <summary>
     /// Creates a new instance of the <see cref="WhoIsIdleReplyMessage"/> class.
     /// </summary>
@@ -72,7 +70,6 @@ namespace Supay.Irc.Messages {
     private DateTime signOnTime = DateTime.Now;
     private string info = string.Empty;
 
-
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
     protected override Collection<string> GetParameters() {
@@ -112,7 +109,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnWhoIsIdleReply(new IrcMessageEventArgs<WhoIsIdleReplyMessage>(this));
     }
-
   }
-
 }

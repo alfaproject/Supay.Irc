@@ -3,19 +3,16 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc {
-
   /// <summary>
   /// The journal of messages and related information related to an irc channel or query.
   /// </summary>
   [Serializable]
   public class Journal : ObservableCollection<JournalEntry> {
-
     /// <summary>
     /// Creates a new instance of the Journal class.
     /// </summary>
     public Journal()
       : base() {
-
     }
 
     /// <summary>
@@ -38,7 +35,6 @@ namespace Supay.Irc {
       base.OnCollectionChanged(new System.Collections.Specialized.NotifyCollectionChangedEventArgs(System.Collections.Specialized.NotifyCollectionChangedAction.Add, item, index));
     }
 
-
     /// <summary>
     /// The maximum number of entries kept in the journal at once.
     /// </summary>
@@ -51,8 +47,7 @@ namespace Supay.Irc {
         base.OnPropertyChanged(new System.ComponentModel.PropertyChangedEventArgs("MaxEntries"));
       }
     }
+
     private int _maxEntries = 1000;
-
   }
-
 }

@@ -2,7 +2,6 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// The message is received by a client from a server 
   /// when they attempt to send a message to a user who
@@ -10,7 +9,6 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class UserAwayMessage : NumericMessage {
-
     /// <summary>
     /// Creates a new instance of the <see cref="UserAwayMessage"/>.
     /// </summary>
@@ -74,7 +72,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnUserAway(new IrcMessageEventArgs<UserAwayMessage>(this));
     }
-
   }
-
 }

@@ -2,13 +2,11 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   ///   Returned from the server in response to a <see cref="WhoWasMessage"/> to indicate that
   ///   there is no history information for that nick. </summary>
   [Serializable]
   public class WasNoSuchNickMessage : ErrorMessage {
-
     /// <summary>
     /// Creates a new instances of the <see cref="WasNoSuchNickMessage"/> class.
     /// </summary>
@@ -29,7 +27,6 @@ namespace Supay.Irc.Messages {
         _nick = value;
       }
     }
-
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
@@ -58,7 +55,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnWasNoSuchNick(new IrcMessageEventArgs<WasNoSuchNickMessage>(this));
     }
-
   }
-
 }

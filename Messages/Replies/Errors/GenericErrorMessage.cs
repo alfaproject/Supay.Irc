@@ -3,14 +3,11 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// Represents an error message with a numeric command that is either unparsable or unimplemented.
   /// </summary>
   [Serializable]
   public class GenericErrorMessage : ErrorMessage {
-
-
     /// <summary>
     /// Gets or sets the Numeric command of the Message
     /// </summary>
@@ -31,8 +28,8 @@ namespace Supay.Irc.Messages {
         return data;
       }
     }
-    private Collection<string> data = new Collection<string>();
 
+    private Collection<string> data = new Collection<string>();
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
@@ -64,7 +61,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnGenericErrorMessage(new IrcMessageEventArgs<GenericErrorMessage>(this));
     }
-
   }
-
 }

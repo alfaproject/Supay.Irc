@@ -3,13 +3,11 @@ using System.Collections.ObjectModel;
 using Supay.Irc.Messages.Modes;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   ///   The <see cref="ErrorMessage"/> received when a <see cref="UserModeMessage"/> was sent with
   ///   a <see cref="UserMode"/> which the server didn't recognize. </summary>
   [Serializable]
   public class UnknownUserModeMessage : ErrorMessage {
-
     /// <summary>
     /// Creates a new instances of the <see cref="UnknownUserModeMessage"/> class.
     /// </summary>
@@ -30,7 +28,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnUnknownUserMode(new IrcMessageEventArgs<UnknownUserModeMessage>(this));
     }
-
   }
-
 }

@@ -2,13 +2,11 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// Returned after an attempt to connect and register yourself with a server which has been set up to explicitly deny connections to you.
   /// </summary>
   [Serializable]
   public class YouAreBannedMessage : ErrorMessage {
-
     /// <summary>
     /// Creates a new instances of the <see cref="YouAreBannedMessage"/> class.
     /// </summary>
@@ -30,7 +28,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnYouAreBanned(new IrcMessageEventArgs<YouAreBannedMessage>(this));
     }
-
   }
-
 }

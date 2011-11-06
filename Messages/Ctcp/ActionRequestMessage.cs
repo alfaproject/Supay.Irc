@@ -1,14 +1,12 @@
 using System;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// This is much like the <see cref="ChatMessage"/> message, 
   /// except the intent is to describe an "action" that the sender is doing.
   /// </summary>
   [Serializable]
   public class ActionRequestMessage : CtcpRequestMessage {
-
     /// <summary>
     /// Creates a new instance of the <see cref="ActionRequestMessage"/> class.
     /// </summary>
@@ -47,6 +45,7 @@ namespace Supay.Irc.Messages {
         this.text = value;
       }
     }
+
     private string text = string.Empty;
 
     /// <summary>
@@ -72,7 +71,5 @@ namespace Supay.Irc.Messages {
       base.Parse(unparsedMessage);
       this.Text = CtcpUtil.GetExtendedData(unparsedMessage);
     }
-
   }
-
 }

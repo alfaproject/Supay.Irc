@@ -4,13 +4,11 @@ using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   ///   A <see cref="IrcMessage"/> which carries communication from a person to another person or
   ///   channel. </summary>
   [Serializable]
   public abstract class TextMessage : CommandMessage, IChannelTargetedMessage, IQueryTargetedMessage {
-
     protected TextMessage()
       : this(string.Empty) {
     }
@@ -76,6 +74,5 @@ namespace Supay.Irc.Messages {
     }
 
     #endregion
-
-  } //class TextMessage
-} //namespace Supay.Irc.Messages
+  }
+}

@@ -3,13 +3,11 @@ using System.Globalization;
 using System.Text;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// The reply to the <see cref="FingerRequestMessage"/>, containing the user's name and idle time.
   /// </summary>
   [Serializable]
   public class FingerReplyMessage : CtcpReplyMessage {
-
     /// <summary>
     /// Creates a new instance of the <see cref="FingerReplyMessage"/> class.
     /// </summary>
@@ -17,7 +15,6 @@ namespace Supay.Irc.Messages {
       : base() {
       this.InternalCommand = "FINGER";
     }
-
 
     /// <summary>
     /// Gets or sets the real name of the user.
@@ -55,7 +52,6 @@ namespace Supay.Irc.Messages {
         this.idleSeconds = value;
       }
     }
-
 
     /// <summary>
     /// Gets the data payload of the Ctcp request.
@@ -112,11 +108,8 @@ namespace Supay.Irc.Messages {
           } else {
             this.IdleSeconds = -1;
           }
-
         }
       }
     }
-
   }
-
 }

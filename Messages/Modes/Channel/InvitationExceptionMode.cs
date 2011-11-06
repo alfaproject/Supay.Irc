@@ -1,12 +1,10 @@
 namespace Supay.Irc.Messages.Modes {
-
   /// <summary>
   /// For channels which have the invite-only flag set (<see cref="InviteOnlyMode"/>), 
   /// users whose address matches an invitation mask set for the channel are allowed 
   /// to join the channel without any invitation.
   /// </summary>
   public class InvitationExceptionMode : AccessControlMode {
-
     /// <summary>
     /// Creates a new instance of the <see cref="InvitationExceptionMode"/> class.
     /// </summary>
@@ -37,7 +35,5 @@ namespace Supay.Irc.Messages.Modes {
         return "I";
       }
     }
-
   }
-
 }

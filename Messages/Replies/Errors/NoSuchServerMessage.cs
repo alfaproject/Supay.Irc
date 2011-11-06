@@ -2,13 +2,11 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// Used to indicate the server name given currently doesn't exist.
   /// </summary>
   [Serializable]
   public class NoSuchServerMessage : ErrorMessage {
-
     /// <summary>
     /// Creates a new instances of the <see cref="NoSuchServerMessage"/> class.
     /// </summary>
@@ -29,7 +27,6 @@ namespace Supay.Irc.Messages {
     }
 
     private string nick = string.Empty;
-
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
@@ -58,7 +55,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnNoSuchServer(new IrcMessageEventArgs<NoSuchServerMessage>(this));
     }
-
   }
-
 }

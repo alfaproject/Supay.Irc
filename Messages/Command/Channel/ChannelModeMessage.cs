@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// The ChannelModeMessage allows channels to have their mode changed. 
   /// </summary>
@@ -13,7 +12,6 @@ namespace Supay.Irc.Messages {
   /// </remarks>
   [Serializable]
   public class ChannelModeMessage : CommandMessage, IChannelTargetedMessage {
-
     /// <summary>
     /// Gets the IRC command associated with this message.
     /// </summary>
@@ -52,6 +50,7 @@ namespace Supay.Irc.Messages {
         this.channel = value;
       }
     }
+
     private string channel = string.Empty;
 
     /// <summary>
@@ -69,6 +68,7 @@ namespace Supay.Irc.Messages {
         this.modeChanges = value;
       }
     }
+
     private string modeChanges = string.Empty;
 
     /// <summary>
@@ -82,6 +82,7 @@ namespace Supay.Irc.Messages {
         return this.modeArguments;
       }
     }
+
     private List<string> modeArguments = new List<string>();
 
     /// <summary>
@@ -141,7 +142,6 @@ namespace Supay.Irc.Messages {
       conduit.OnChannelMode(new IrcMessageEventArgs<ChannelModeMessage>(this));
     }
 
-
     #region IChannelTargetedMessage Members
 
     bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
@@ -156,5 +156,4 @@ namespace Supay.Irc.Messages {
 
     #endregion
   }
-
 }

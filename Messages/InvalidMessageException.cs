@@ -3,12 +3,10 @@ using System.Runtime.Serialization;
 using System.Security.Permissions;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   ///   Exception thrown when a message parsed from a string is invalid. </summary>
   [Serializable]
   public class InvalidMessageException : Exception {
-
     #region Constructors
 
     /// <summary>
@@ -95,6 +93,5 @@ namespace Supay.Irc.Messages {
     }
 
     #endregion
-
-  } //class InvalidMessageException
-} //namespace Supay.Irc.Messages
+  }
+}

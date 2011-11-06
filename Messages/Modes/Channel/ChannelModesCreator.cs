@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using System.Globalization;
 
 namespace Supay.Irc.Messages.Modes {
-
   /// <summary>
   /// ChannelModesCreator parses, builds, and writes the modes used by the <see cref="ChannelModeMessage"/> class.
   /// </summary>
   public class ChannelModesCreator {
-
     /// <summary>
     /// Creates a new instance of the <see cref="ChannelModesCreator"/> class.
     /// </summary>
@@ -29,6 +27,7 @@ namespace Supay.Irc.Messages.Modes {
         this.serverSupports = value;
       }
     }
+
     private Supay.Irc.ServerSupport serverSupports = new Supay.Irc.ServerSupport();
 
     #region Parsing
@@ -57,7 +56,7 @@ namespace Supay.Irc.Messages.Modes {
             currentAction = ModeAction.Remove;
             break;
 
-          // PONDER This probably won't correctly parse incorrect mode messages, should I?
+            // PONDER This probably won't correctly parse incorrect mode messages, should I?
           case 'a':
             this.modes.Add(new AnonymousMode(currentAction));
             break;
@@ -185,7 +184,6 @@ namespace Supay.Irc.Messages.Modes {
       //TODO Implement CollapseModes
     }
 
-
     /// <summary>
     /// Applies the current modes to the given <see cref="ChannelModeMessage"/>.
     /// </summary>
@@ -210,7 +208,6 @@ namespace Supay.Irc.Messages.Modes {
       }
     }
 
-
     /// <summary>
     /// Gets the collection of modes parsed or to be applied.
     /// </summary>
@@ -221,7 +218,5 @@ namespace Supay.Irc.Messages.Modes {
     }
 
     private Supay.Irc.Messages.Modes.ChannelModeCollection modes = new ChannelModeCollection();
-
   }
-
 }

@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// A single reply to the <see cref="NamesMessage"/> query.
   /// </summary>
   [Serializable]
   public class NamesReplyMessage : NumericMessage, IChannelTargetedMessage {
-
     /// <summary>
     /// The list of channel visibility settings for the <see cref="NamesReplyMessage"/>.
     /// </summary>
@@ -19,10 +17,12 @@ namespace Supay.Irc.Messages {
       /// The channel is in <see cref="Supay.Irc.Messages.Modes.SecretMode"/>
       /// </summary>
       Secret,
+
       /// <summary>
       /// The channel is in <see cref="Supay.Irc.Messages.Modes.PrivateMode"/>
       /// </summary>
       Private,
+
       /// <summary>
       /// The channel has no hidden modes applied.
       /// </summary>
@@ -139,7 +139,6 @@ namespace Supay.Irc.Messages {
       conduit.OnNamesReply(new IrcMessageEventArgs<NamesReplyMessage>(this));
     }
 
-
     #region IChannelTargetedMessage Members
 
     bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
@@ -154,5 +153,4 @@ namespace Supay.Irc.Messages {
 
     #endregion
   }
-
 }

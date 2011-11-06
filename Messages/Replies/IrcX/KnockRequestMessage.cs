@@ -2,13 +2,11 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// The notification to the channel that a user has knocked on their channel.
   /// </summary>
   [Serializable]
   public class KnockRequestMessage : NumericMessage {
-
     /// <summary>
     /// Creates a new instance of the <see cref="KnockRequestMessage"/>.
     /// </summary>
@@ -27,6 +25,7 @@ namespace Supay.Irc.Messages {
         this.channel = value;
       }
     }
+
     private string channel = string.Empty;
 
     /// <summary>
@@ -40,6 +39,7 @@ namespace Supay.Irc.Messages {
         this.knocker = value;
       }
     }
+
     private User knocker = new User();
 
     /// <summary>
@@ -75,7 +75,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnKnockRequest(new IrcMessageEventArgs<KnockRequestMessage>(this));
     }
-
   }
-
 }

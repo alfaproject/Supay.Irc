@@ -3,12 +3,10 @@ using System.ComponentModel;
 using System.Text.RegularExpressions;
 
 namespace Supay.Irc {
-
   /// <summary>
   ///   Represents a Mask on an IRC server. (nickname!userName@host) </summary>
   [Serializable]
   public class Mask : IEquatable<Mask>, INotifyPropertyChanged {
-
     /// <summary>
     ///   Raised when a property on the instance has changed. </summary>
     public event PropertyChangedEventHandler PropertyChanged;
@@ -113,9 +111,7 @@ namespace Supay.Irc {
     ///   Gets this Mask information with a guaranteed nickname!username@host format. </summary>
     public string IrcMask {
       get {
-        return (string.IsNullOrEmpty(_nickname) ? "*" : _nickname) +
-          "!" + (string.IsNullOrEmpty(_username) ? "*" : _username) +
-          "@" + (string.IsNullOrEmpty(_host) ? "*" : _host);
+        return (string.IsNullOrEmpty(_nickname) ? "*" : _nickname) + "!" + (string.IsNullOrEmpty(_username) ? "*" : _username) + "@" + (string.IsNullOrEmpty(_host) ? "*" : _host);
       }
     }
 
@@ -206,6 +202,5 @@ namespace Supay.Irc {
     }
 
     #endregion
-
-  } //class Mask
-} //namespace Supay.Irc
+  }
+}

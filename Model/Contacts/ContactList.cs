@@ -1,7 +1,6 @@
 using System;
 
 namespace Supay.Irc.Contacts {
-
   /// <summary>
   ///   A contact list which tracks the online and offline status of the users within the Users
   ///   collection property. </summary>
@@ -9,7 +8,6 @@ namespace Supay.Irc.Contacts {
   ///   The ContactList will use Watch, Monitor, or IsOn, depending on server support. User status
   ///   changes will be updated via the User.OnlineStatus property. </remarks>
   public class ContactList : IDisposable {
-
     private ContactsTracker _tracker;
 
     /// <summary>
@@ -55,7 +53,7 @@ namespace Supay.Irc.Contacts {
 
     protected virtual void Dispose(bool disposing) {
       if (disposing && _tracker != null && _tracker is ContactsAreOnTracker) {
-        ((IDisposable)_tracker).Dispose();
+        ((IDisposable) _tracker).Dispose();
       }
     }
 
@@ -68,6 +66,5 @@ namespace Supay.Irc.Contacts {
     }
 
     #endregion
-
-  } //class ContactList
-} //namespace Supay.Irc.Contacts
+  }
+}

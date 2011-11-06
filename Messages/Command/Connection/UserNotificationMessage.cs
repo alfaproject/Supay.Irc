@@ -3,13 +3,11 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// The UserNotificationMessage is used at the beginning of connection to specify the username, hostname and real name of a new user.
   /// </summary>
   [Serializable]
   public class UserNotificationMessage : CommandMessage {
-
     /// <summary>
     /// Gets the IRC command associated with this message.
     /// </summary>
@@ -30,6 +28,7 @@ namespace Supay.Irc.Messages {
         this.userName = value;
       }
     }
+
     private string userName = string.Empty;
 
     /// <summary>
@@ -43,6 +42,7 @@ namespace Supay.Irc.Messages {
         initialInvisibility = value;
       }
     }
+
     private bool initialInvisibility = true;
 
     /// <summary>
@@ -56,6 +56,7 @@ namespace Supay.Irc.Messages {
         initialWallops = value;
       }
     }
+
     private bool initialWallops = false;
 
     /// <summary>
@@ -69,6 +70,7 @@ namespace Supay.Irc.Messages {
         this.realName = value;
       }
     }
+
     private string realName = string.Empty;
 
     /// <exclude />
@@ -127,7 +129,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnUserNotification(new IrcMessageEventArgs<UserNotificationMessage>(this));
     }
-
   }
-
 }

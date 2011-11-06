@@ -2,7 +2,6 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// The <see cref="ErrorMessage"/> sent when a user tries to change his nick while on a channel in which he is banned.
   /// </summary>
@@ -11,7 +10,6 @@ namespace Supay.Irc.Messages {
   /// </remarks>
   [Serializable]
   public class CannotChangeNickWhileBannedMessage : ErrorMessage, IChannelTargetedMessage {
-
     /// <summary>
     /// Creates a new instances of the <see cref="TooManyLinesMessage"/> class.
     /// </summary>
@@ -30,6 +28,7 @@ namespace Supay.Irc.Messages {
         channel = value;
       }
     }
+
     private string channel;
 
     /// <exclude />
@@ -56,7 +55,6 @@ namespace Supay.Irc.Messages {
       conduit.OnCannotChangeNickWhileBanned(new IrcMessageEventArgs<CannotChangeNickWhileBannedMessage>(this));
     }
 
-
     #region IChannelTargetedMessage Members
 
     bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
@@ -71,5 +69,4 @@ namespace Supay.Irc.Messages {
 
     #endregion
   }
-
 }

@@ -2,13 +2,11 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// The <see cref="ErrorMessage"/> sent when a command is sent to a server which didn't recognize it.
   /// </summary>
   [Serializable]
   public class UnknownCommandMessage : ErrorMessage {
-
     /// <summary>
     /// Creates a new instances of the <see cref="TooManyLinesMessage"/> class.
     /// </summary>
@@ -27,6 +25,7 @@ namespace Supay.Irc.Messages {
         command = value;
       }
     }
+
     private string command;
 
     /// <exclude />
@@ -52,7 +51,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnUnknownCommand(new IrcMessageEventArgs<UnknownCommandMessage>(this));
     }
-
   }
-
 }

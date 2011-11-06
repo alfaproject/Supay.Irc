@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// The server reply to an <see cref="IsOnMessage"/>.
   /// </summary>
   [Serializable]
   public class IsOnReplyMessage : NumericMessage {
-
     /// <summary>
     /// Creates a new instance of the <see cref="IsOnReplyMessage"/> class.
     /// </summary>
@@ -25,6 +23,7 @@ namespace Supay.Irc.Messages {
         return this.nicks;
       }
     }
+
     private List<string> nicks = new List<string>();
 
     /// <summary>
@@ -50,7 +49,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnIsOnReply(new IrcMessageEventArgs<IsOnReplyMessage>(this));
     }
-
   }
-
 }

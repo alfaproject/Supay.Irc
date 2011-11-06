@@ -1,9 +1,7 @@
 namespace Supay.Irc.Network {
-
   /// <summary>
   ///   A partial list of the codes that can exist in the <see cref="System.Net.Sockets.SocketException.ErrorCode"/> property. </summary>
   public enum SocketError {
-
     /// <summary>
     ///   A blocking operation was interrupted by a call to WSACancelBlockingCall. </summary>
     InterruptedFunctionCall = 10004,
@@ -191,6 +189,5 @@ namespace Supay.Irc.Network {
     ///   The requested name is valid and was found in the database, but it does not have the
     ///   correct associated data being resolved for. </summary>
     NoDataRecordOfRequestedType = 11004,
-
-  } //enum SocketError
-} //namespace Supay.Irc.Network
+  }
+}

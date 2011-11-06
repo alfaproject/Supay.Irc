@@ -2,7 +2,6 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   ///   This is sent at the end of a channel ban list, when requested. (with MODE #chan +b.) </summary>
   /// <remarks>
@@ -13,7 +12,6 @@ namespace Supay.Irc.Messages {
   /// <seealso cref="BansReplyMessage"/>
   [Serializable]
   public class BansEndReplyMessage : NumericMessage, IChannelTargetedMessage {
-
     private const string DEFAULT_INFO = "End of Channel Ban List";
 
     private string _channel;
@@ -30,15 +28,23 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Gets or sets the channel the ban list refers to. </summary>
     public virtual string Channel {
-      get { return _channel; }
-      set { _channel = value; }
+      get {
+        return _channel;
+      }
+      set {
+        _channel = value;
+      }
     }
 
     /// <summary>
     ///   Gets or sets the info message of this reply. </summary>
     public virtual string Info {
-      get { return _info; }
-      set { _info = value; }
+      get {
+        return _info;
+      }
+      set {
+        _info = value;
+      }
     }
 
     /// <summary>
@@ -76,6 +82,5 @@ namespace Supay.Irc.Messages {
     }
 
     #endregion
-
-  } //class BansEndReplyMessage
-} //namespace Supay.Irc.Messages
+  }
+}

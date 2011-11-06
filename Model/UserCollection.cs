@@ -2,12 +2,10 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc {
-
   /// <summary>
   ///   A collection that stores <see cref="User"/> objects. </summary>
   [Serializable]
   public class UserCollection : ObservableCollection<User> {
-
     /// <summary>
     ///   Removes the first User in the collection which is matched by the Predicate. </summary>
     /// <returns>
@@ -79,6 +77,5 @@ namespace Supay.Irc {
       }
       return user;
     }
-
-  } //class UserCollection
-} //namespace Supay.Irc
+  }
+}

@@ -2,14 +2,12 @@ using System;
 using System.Collections.Generic;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// This message is a request that the target of the message reply with a human-readable
   /// list stating what Ctcp commands they support.
   /// </summary>
   [Serializable]
   public class ClientInfoRequestMessage : CtcpRequestMessage {
-
     /// <summary>
     /// Creates a new instance of the <see cref="ClientInfoRequestMessage"/> class
     /// </summary>
@@ -29,6 +27,7 @@ namespace Supay.Irc.Messages {
         return this.parameters;
       }
     }
+
     private List<string> parameters = new List<string>();
 
     /// <summary>
@@ -57,5 +56,4 @@ namespace Supay.Irc.Messages {
       this.Parameters.AddRange(paramsList.Split(' '));
     }
   }
-
 }

@@ -2,13 +2,11 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// With the SilenceMessage, clients can tell a server to never send messages to them from a given user. This, effectively, is a server-side ignore command.
   /// </summary>
   [Serializable]
   public class SilenceMessage : CommandMessage {
-
     /// <summary>
     /// Creates a new instance of the SilenceMessage class.
     /// </summary>
@@ -51,6 +49,7 @@ namespace Supay.Irc.Messages {
         this.silencedUser = value;
       }
     }
+
     private User silencedUser = new User();
 
     /// <summary>
@@ -64,6 +63,7 @@ namespace Supay.Irc.Messages {
         _action = value;
       }
     }
+
     private ModeAction _action = ModeAction.Add;
 
     /// <summary>
@@ -110,7 +110,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnSilence(new IrcMessageEventArgs<SilenceMessage>(this));
     }
-
   }
-
 }

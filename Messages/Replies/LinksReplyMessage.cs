@@ -3,13 +3,11 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// The reply to the <see cref="LinksMessage"/> query.
   /// </summary>
   [Serializable]
   public class LinksReplyMessage : NumericMessage {
-
     /// <summary>
     /// Creates a new instance of the <see cref="LinksReplyMessage"/>.
     /// </summary>
@@ -109,7 +107,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnLinksReply(new IrcMessageEventArgs<LinksReplyMessage>(this));
     }
-
   }
-
 }

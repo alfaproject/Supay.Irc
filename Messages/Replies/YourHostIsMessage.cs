@@ -2,14 +2,12 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// This message is sent directly after connecting, 
   /// giving the client information about the server software in use.
   /// </summary>
   [Serializable]
   public class YourHostMessage : NumericMessage {
-
     /// <summary>
     /// Creates a new instance of the <see cref="YourHostMessage"/> class.
     /// </summary>
@@ -28,6 +26,7 @@ namespace Supay.Irc.Messages {
         serverName = value;
       }
     }
+
     private string serverName = string.Empty;
 
     /// <summary>
@@ -41,6 +40,7 @@ namespace Supay.Irc.Messages {
         version = value;
       }
     }
+
     private string version = string.Empty;
 
     private const string yourHostIs = "Your host is ";
@@ -76,7 +76,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnYourHost(new IrcMessageEventArgs<YourHostMessage>(this));
     }
-
   }
-
 }

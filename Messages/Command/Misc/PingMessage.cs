@@ -2,7 +2,6 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// The PingMessage is used to test the presence of an active client at the other end of the connection.
   /// </summary>
@@ -12,7 +11,6 @@ namespace Supay.Irc.Messages {
   /// </remarks>
   [Serializable]
   public class PingMessage : CommandMessage {
-
     /// <summary>
     /// Gets or sets the target of the ping.
     /// </summary>
@@ -24,6 +22,7 @@ namespace Supay.Irc.Messages {
         this.target = value;
       }
     }
+
     private string target = string.Empty;
 
     /// <summary>
@@ -37,6 +36,7 @@ namespace Supay.Irc.Messages {
         this.forwardServer = value;
       }
     }
+
     private string forwardServer = string.Empty;
 
     /// <summary>
@@ -80,7 +80,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnPing(new IrcMessageEventArgs<PingMessage>(this));
     }
-
   }
-
 }

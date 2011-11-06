@@ -2,13 +2,11 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// A Message which carries a CTCP command.
   /// </summary>
   [Serializable]
   public abstract class CtcpMessage : IrcMessage, IChannelTargetedMessage, IQueryTargetedMessage {
-
     /// <summary>
     /// Gets the targets of this <see cref="CtcpMessage"/>.
     /// </summary>
@@ -20,6 +18,7 @@ namespace Supay.Irc.Messages {
         this.target = value;
       }
     }
+
     private string target = string.Empty;
 
     /// <summary>
@@ -33,6 +32,7 @@ namespace Supay.Irc.Messages {
         this.internalCommand = value;
       }
     }
+
     private string internalCommand = string.Empty;
 
     /// <summary>
@@ -96,7 +96,6 @@ namespace Supay.Irc.Messages {
       }
     }
 
-
     #region IChannelTargetedMessage Members
 
     bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
@@ -125,5 +124,4 @@ namespace Supay.Irc.Messages {
 
     #endregion
   }
-
 }

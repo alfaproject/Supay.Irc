@@ -2,13 +2,11 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// A reply to a <see cref="WhoIsMessage"/> when the user is an IRC operator.
   /// </summary>
   [Serializable]
   public class WhoIsOperReplyMessage : NumericMessage {
-
     /// <summary>
     /// Creates a new instance of the <see cref="WhoIsOperReplyMessage"/> class.
     /// </summary>
@@ -55,7 +53,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnWhoIsOperReply(new IrcMessageEventArgs<WhoIsOperReplyMessage>(this));
     }
-
   }
-
 }

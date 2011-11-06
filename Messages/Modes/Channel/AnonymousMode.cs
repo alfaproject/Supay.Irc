@@ -1,5 +1,4 @@
 namespace Supay.Irc.Messages.Modes {
-
   /// <summary>
   /// This mode defines an anonymous channel.
   /// </summary>
@@ -11,7 +10,6 @@ namespace Supay.Irc.Messages.Modes {
   /// </p>
   /// </remarks>
   public class AnonymousMode : FlagMode {
-
     /// <summary>
     /// Creates a new instance of the <see cref="AnonymousMode"/> class.
     /// </summary>
@@ -34,5 +32,4 @@ namespace Supay.Irc.Messages.Modes {
       }
     }
   }
-
 }

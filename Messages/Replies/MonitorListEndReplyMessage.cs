@@ -2,13 +2,11 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// A Monitor system message signalling the end of a monitor list request.
   /// </summary>
   [Serializable]
   public class MonitorListEndReplyMessage : NumericMessage {
-
     /// <summary>
     /// Creates a new instance of the <see cref="MonitorListReplyMessage"/>.
     /// </summary>
@@ -30,7 +28,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnMonitorListEndReply(new IrcMessageEventArgs<MonitorListEndReplyMessage>(this));
     }
-
   }
-
 }

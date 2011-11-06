@@ -2,7 +2,6 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// The InviteMessage is used to invite users to a channel.
   /// </summary>
@@ -11,7 +10,6 @@ namespace Supay.Irc.Messages {
   /// </remarks>
   [Serializable]
   public class InviteMessage : CommandMessage, IChannelTargetedMessage {
-
     private string channel = string.Empty;
     private string nick = string.Empty;
 
@@ -95,14 +93,12 @@ namespace Supay.Irc.Messages {
       }
     }
 
-
     /// <summary>
     /// Notifies the given <see cref="MessageConduit"/> by raising the appropriate event for the current <see cref="IrcMessage"/> subclass.
     /// </summary>
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnInvite(new IrcMessageEventArgs<InviteMessage>(this));
     }
-
 
     #region IChannelTargetedMessage Members
 
@@ -118,5 +114,4 @@ namespace Supay.Irc.Messages {
 
     #endregion
   }
-
 }

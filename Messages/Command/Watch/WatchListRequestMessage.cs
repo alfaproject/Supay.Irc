@@ -2,13 +2,11 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// A Watch system message that requests the list of nicks currently being watched.
   /// </summary>
   [Serializable]
   public class WatchListRequestMessage : WatchMessage {
-
     #region Properties
 
     /// <summary>
@@ -22,6 +20,7 @@ namespace Supay.Irc.Messages {
         onlineOnly = value;
       }
     }
+
     private bool onlineOnly = false;
 
     #endregion
@@ -45,7 +44,6 @@ namespace Supay.Irc.Messages {
       base.ParseParameters(parameters);
       this.OnlineOnly = parameters.Count == 0 || parameters[0] == "l";
     }
-
 
     #endregion
 
@@ -71,7 +69,5 @@ namespace Supay.Irc.Messages {
     }
 
     #endregion
-
   }
-
 }

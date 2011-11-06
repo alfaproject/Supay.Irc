@@ -3,13 +3,11 @@ using System.Globalization;
 using Supay.Irc.Dcc;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   ///   This message is a request to send a file directly from the sender of the request to the
   ///   receiver. </summary>
   [Serializable]
   public class DccSendRequestMessage : DccRequestMessage {
-
     /// <summary>
     ///   Creates a new instance of the <see cref="DccSendRequestMessage"/> class. </summary>
     public DccSendRequestMessage() {
@@ -102,6 +100,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(MessageConduit conduit) {
       conduit.OnDccSendRequest(new IrcMessageEventArgs<DccSendRequestMessage>(this));
     }
-
-  } //class DccSendRequestMessage
-} //namespace Supay.Irc.Messages
+  }
+}

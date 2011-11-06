@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// With the WhisperMessage, clients can send messages to people within the context of a channel.
   /// </summary>
   [Serializable]
   public class WhisperMessage : CommandMessage, IChannelTargetedMessage {
-
     /// <summary>
     /// Creates a new instance of the WhisperMessage class.
     /// </summary>
@@ -37,6 +35,7 @@ namespace Supay.Irc.Messages {
         channel = value;
       }
     }
+
     private string channel = string.Empty;
 
     /// <summary>
@@ -47,6 +46,7 @@ namespace Supay.Irc.Messages {
         return this.targets;
       }
     }
+
     private List<string> targets = new List<string>();
 
     /// <summary>
@@ -63,6 +63,7 @@ namespace Supay.Irc.Messages {
         this.text = value;
       }
     }
+
     private string text = string.Empty;
 
     /// <summary>
@@ -106,7 +107,6 @@ namespace Supay.Irc.Messages {
       conduit.OnWhisper(new IrcMessageEventArgs<WhisperMessage>(this));
     }
 
-
     #region IChannelTargetedMessage Members
 
     bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
@@ -121,5 +121,4 @@ namespace Supay.Irc.Messages {
 
     #endregion
   }
-
 }

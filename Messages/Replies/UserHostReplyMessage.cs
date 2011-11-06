@@ -2,13 +2,11 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// Reply for the <see cref="UserHostMessage"/> to list replies to the query list.
   /// </summary>
   [Serializable]
   public class UserHostReplyMessage : NumericMessage {
-
     /// <summary>
     /// Creates a new instance of the <see cref="UserHostReplyMessage"/> class.
     /// </summary>
@@ -71,7 +69,6 @@ namespace Supay.Irc.Messages {
 
         this.Users.Add(user);
       }
-
     }
 
     /// <summary>
@@ -80,7 +77,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnUserHostReply(new IrcMessageEventArgs<UserHostReplyMessage>(this));
     }
-
   }
-
 }

@@ -3,13 +3,11 @@ using System.Collections.ObjectModel;
 using Supay.Irc.Messages.Modes;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   ///   The <see cref="ErrorMessage"/> received when a <see cref="ChannelModeMessage"/> was sent
   ///   with a <see cref="ChannelMode"/> which the server didn't recognize. </summary>
   [Serializable]
   public class UnknownChannelModeMessage : ErrorMessage {
-
     /// <summary>
     /// Creates a new instances of the <see cref="UnknownChannelModeMessage"/> class.
     /// </summary>
@@ -28,6 +26,7 @@ namespace Supay.Irc.Messages {
         unknownMode = value;
       }
     }
+
     private string unknownMode;
 
     /// <exclude />
@@ -53,7 +52,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnUnknownChannelMode(new IrcMessageEventArgs<UnknownChannelModeMessage>(this));
     }
-
   }
-
 }

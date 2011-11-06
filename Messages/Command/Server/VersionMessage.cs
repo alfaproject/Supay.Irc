@@ -2,13 +2,11 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// The <see cref="VersionMessage"/> is used to query the version of the server program.
   /// </summary>
   [Serializable]
   public class VersionMessage : ServerQueryBase {
-
     /// <summary>
     /// Gets the IRC command associated with this message.
     /// </summary>
@@ -32,7 +30,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnVersion(new IrcMessageEventArgs<VersionMessage>(this));
     }
-
   }
-
 }

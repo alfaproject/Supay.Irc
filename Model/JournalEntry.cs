@@ -4,13 +4,11 @@ using System.Runtime.Serialization;
 using Supay.Irc.Messages;
 
 namespace Supay.Irc {
-
   /// <summary>
   /// A single entry in the journal of messages and related information related to an IRC channel or query.
   /// </summary>
-  [DataContractAttribute]
+  [DataContract]
   public class JournalEntry : INotifyPropertyChanged {
-
     /// <summary>
     /// Creates a new instance of the <see href="JournalEntry"/> class.
     /// </summary>
@@ -26,7 +24,6 @@ namespace Supay.Irc {
 
     #region Properties
 
-
     /// <summary>
     /// The time at which the entry was added to the journal.
     /// </summary>
@@ -40,8 +37,8 @@ namespace Supay.Irc {
         NotifyPropertyChanged("Time");
       }
     }
-    private DateTime _time;
 
+    private DateTime _time;
 
     /// <summary>
     /// The entry data, usually an <see cref="IrcMessage"/>, but can be any object.
@@ -56,9 +53,8 @@ namespace Supay.Irc {
         NotifyPropertyChanged("Item");
       }
     }
+
     private object _item;
-
-
 
     #endregion
 
@@ -76,7 +72,5 @@ namespace Supay.Irc {
     }
 
     #endregion
-
   }
-
 }

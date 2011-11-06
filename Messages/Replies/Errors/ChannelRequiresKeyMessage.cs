@@ -3,7 +3,6 @@ using System.Collections.ObjectModel;
 using Supay.Irc.Messages.Modes;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   ///   The <see cref="ErrorMessage"/> received when attempting to join a channel which has a key
   ///   set, and the user has not provided it. </summary>
@@ -13,7 +12,6 @@ namespace Supay.Irc.Messages {
   ///   channels. </remarks>
   [Serializable]
   public class ChannelRequiresKeyMessage : ErrorMessage, IChannelTargetedMessage {
-
     /// <summary>
     /// Creates a new instances of the <see cref="ChannelRequiresKeyMessage"/> class.
     /// </summary>
@@ -32,6 +30,7 @@ namespace Supay.Irc.Messages {
         channel = value;
       }
     }
+
     private string channel;
 
     /// <exclude />
@@ -58,7 +57,6 @@ namespace Supay.Irc.Messages {
       conduit.OnChannelRequiresKey(new IrcMessageEventArgs<ChannelRequiresKeyMessage>(this));
     }
 
-
     #region IChannelTargetedMessage Members
 
     bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
@@ -73,5 +71,4 @@ namespace Supay.Irc.Messages {
 
     #endregion
   }
-
 }

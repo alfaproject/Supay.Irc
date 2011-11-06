@@ -4,13 +4,11 @@ using System.Globalization;
 using Supay.Irc.Dcc;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   ///   This message is an acknowledgement to resume sending a file previously, but not completely
   ///   sent to the requester. </summary>
   [Serializable]
   public class DccAcceptRequestMessage : CtcpRequestMessage {
-
     /// <summary>
     ///   Creates a new instance of the <see cref="DccAcceptRequestMessage"/> class. </summary>
     public DccAcceptRequestMessage() {
@@ -95,6 +93,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(MessageConduit conduit) {
       conduit.OnDccAcceptRequest(new IrcMessageEventArgs<DccAcceptRequestMessage>(this));
     }
-
-  } //class DccAcceptRequestMessage
-} //namespace Supay.Irc.Messages
+  }
+}

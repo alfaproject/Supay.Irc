@@ -2,13 +2,11 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// The <see cref="ErrorMessage"/> received when attempting to join a channel on which the user is banned.
   /// </summary>
   [Serializable]
   public class YouAreBannedFromChannelMessage : ErrorMessage, IChannelTargetedMessage {
-
     /// <summary>
     /// Creates a new instances of the <see cref="YouAreBannedFromChannelMessage"/> class.
     /// </summary>
@@ -27,6 +25,7 @@ namespace Supay.Irc.Messages {
         channel = value;
       }
     }
+
     private string channel;
 
     /// <exclude />
@@ -53,7 +52,6 @@ namespace Supay.Irc.Messages {
       conduit.OnYouAreBannedFromChannel(new IrcMessageEventArgs<YouAreBannedFromChannelMessage>(this));
     }
 
-
     #region IChannelTargetedMessage Members
 
     bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
@@ -68,5 +66,4 @@ namespace Supay.Irc.Messages {
 
     #endregion
   }
-
 }

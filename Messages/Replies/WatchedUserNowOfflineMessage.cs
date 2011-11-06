@@ -1,13 +1,11 @@
 using System;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// A Watch system notification that a user is now offline.
   /// </summary>
   [Serializable]
   public class WatchedUserNowOfflineMessage : WatchedUserOfflineMessage {
-
     /// <summary>
     /// Creates a new instance of the <see cref="WatchedUserNowOfflineMessage"/>.
     /// </summary>
@@ -21,7 +19,5 @@ namespace Supay.Irc.Messages {
         return "logged offline";
       }
     }
-
   }
-
 }

@@ -2,13 +2,11 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// Marks the end of the replies to a <see cref="ChannelPropertyMessage"/> designed to read one or all channel properties.
   /// </summary>
   [Serializable]
   public class ChannelPropertyEndReplyMessage : NumericMessage {
-
     /// <summary>
     /// Creates a new instance of the <see cref="ChannelPropertyEndReplyMessage"/> class.
     /// </summary>
@@ -27,8 +25,8 @@ namespace Supay.Irc.Messages {
         this.channel = value;
       }
     }
-    private string channel = string.Empty;
 
+    private string channel = string.Empty;
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
@@ -55,7 +53,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnChannelPropertyEndReply(new IrcMessageEventArgs<ChannelPropertyEndReplyMessage>(this));
     }
-
   }
-
 }

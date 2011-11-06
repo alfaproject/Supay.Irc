@@ -3,14 +3,12 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// The PartMessage causes the client sending the message to be removed 
   /// from the list of active users for all given channels listed in the <see cref="PartMessage.Channels"/> property.
   /// </summary>
   [Serializable]
   public class PartMessage : CommandMessage, IChannelTargetedMessage {
-
     /// <summary>
     /// Creates a new instance of the <see cref="PartMessage"/> class.
     /// </summary>
@@ -104,8 +102,6 @@ namespace Supay.Irc.Messages {
     private List<string> channels = new List<string>();
     private string reason = string.Empty;
 
-
-
     #region IChannelTargetedMessage Members
 
     bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
@@ -121,5 +117,4 @@ namespace Supay.Irc.Messages {
 
     #endregion
   }
-
 }

@@ -2,7 +2,6 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// The <see cref="InfoMessage"/> requests information which describes the server;
   /// its version, when it was compiled, the patch-level, when it was started, 
@@ -10,7 +9,6 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class InfoMessage : ServerQueryBase {
-
     /// <summary>
     /// Gets the IRC command associated with this message.
     /// </summary>
@@ -35,5 +33,4 @@ namespace Supay.Irc.Messages {
       conduit.OnInfo(new IrcMessageEventArgs<InfoMessage>(this));
     }
   }
-
 }

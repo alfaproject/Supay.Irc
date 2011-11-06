@@ -2,12 +2,10 @@ using System;
 using Supay.Irc.Messages.Modes;
 
 namespace Supay.Irc {
-
   /// <summary>
   ///   Represents a User on an IRC server. </summary>
   [Serializable]
   public class User : Mask {
-
     private string _name;
     private string _password;
     private string _server;
@@ -201,6 +199,5 @@ namespace Supay.Irc {
     }
 
     #endregion
-
-  } //class User
-} //namespace Supay.Irc
+  }
+}

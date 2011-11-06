@@ -2,14 +2,12 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// The <see cref="ErrorMessage"/> received when the client attempts to remove a nick from his accept list
   /// when that nick does not exist on the list.
   /// </summary>
   [Serializable]
   public class AcceptDoesNotExistMessage : ErrorMessage {
-
     /// <summary>
     /// Creates a new instances of the <see cref="AcceptDoesNotExistMessage"/> class.
     /// </summary>
@@ -28,6 +26,7 @@ namespace Supay.Irc.Messages {
         nick = value;
       }
     }
+
     private string nick = string.Empty;
 
     /// <summary>
@@ -57,7 +56,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnAcceptDoesNotExist(new IrcMessageEventArgs<AcceptDoesNotExistMessage>(this));
     }
-
   }
-
 }

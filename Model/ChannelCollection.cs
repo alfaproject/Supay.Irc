@@ -3,12 +3,10 @@ using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace Supay.Irc {
-
   /// <summary>
   ///   A collection that stores <see cref="Channel"/> objects. </summary>
   [Serializable]
   public class ChannelCollection : ObservableCollection<Channel> {
-
     /// <summary>
     ///   Finds the <see href="Channel"/> in the collection with the given name. </summary>
     /// <returns>
@@ -27,6 +25,5 @@ namespace Supay.Irc {
       }
       return channel;
     }
-
-  } //class ChannelCollection
-} //namespace Supay.Irc
+  }
+}

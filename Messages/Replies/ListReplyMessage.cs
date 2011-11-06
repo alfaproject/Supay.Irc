@@ -3,13 +3,11 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// A single reply to the <see cref="ListMessage"/> query.
   /// </summary>
   [Serializable]
   public class ListReplyMessage : NumericMessage, IChannelTargetedMessage {
-
     /// <summary>
     /// Creates a new instance of the <see cref="ListReplyMessage"/> class.
     /// </summary>
@@ -90,7 +88,6 @@ namespace Supay.Irc.Messages {
       conduit.OnListReply(new IrcMessageEventArgs<ListReplyMessage>(this));
     }
 
-
     #region IChannelTargetedMessage Members
 
     bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
@@ -105,5 +102,4 @@ namespace Supay.Irc.Messages {
 
     #endregion
   }
-
 }

@@ -3,12 +3,10 @@ using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace Supay.Irc {
-
   /// <summary>
   ///   The nick prefixes that represent user level status in a channel. </summary>
   [Serializable]
   public sealed class ChannelStatus : IEquatable<ChannelStatus> {
-
     #region Enumeration values
 
     /// <summary>
@@ -22,7 +20,7 @@ namespace Supay.Irc {
     /// <summary>
     ///   Gets the <see cref="ChannelStatus"/> representing the voiced status level. </summary>
     public static readonly ChannelStatus Voice = new ChannelStatus("+");
-    
+
     /// <summary>
     ///   Gets the <see cref="ChannelStatus"/> representing the no special status level. </summary>
     public static readonly ChannelStatus None = new ChannelStatus(string.Empty);
@@ -30,7 +28,12 @@ namespace Supay.Irc {
     /// <summary>
     ///   Gets a collection of <see cref="ChannelStatus"/> instances representing all built
     ///   statuses. </summary>
-    public static readonly Collection<ChannelStatus> Values = new Collection<ChannelStatus> { None, Voice, HalfOperator, Operator };
+    public static readonly Collection<ChannelStatus> Values = new Collection<ChannelStatus> {
+      None,
+      Voice,
+      HalfOperator,
+      Operator
+    };
 
     #endregion
 
@@ -141,6 +144,5 @@ namespace Supay.Irc {
     }
 
     #endregion
-
-  } //class ChannelStatus
-} //namespace Supay.Irc
+  }
+}

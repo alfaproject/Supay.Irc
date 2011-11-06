@@ -2,13 +2,11 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// Signals the end of replies to a Watch system query.
   /// </summary>
   [Serializable]
   public class WatchListEndReplyMessage : NumericMessage {
-
     /// <summary>
     /// Creates a new instance of the <see cref="WatchListEndReplyMessage"/>.
     /// </summary>
@@ -27,8 +25,8 @@ namespace Supay.Irc.Messages {
         listType = value;
       }
     }
-    private string listType = string.Empty;
 
+    private string listType = string.Empty;
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
@@ -54,7 +52,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnWatchListEndReply(new IrcMessageEventArgs<WatchListEndReplyMessage>(this));
     }
-
   }
-
 }

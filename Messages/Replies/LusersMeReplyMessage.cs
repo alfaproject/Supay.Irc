@@ -3,13 +3,11 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// One of the responses to the <see cref="LusersMessage"/> query.
   /// </summary>
   [Serializable]
   public class LusersMeReplyMessage : NumericMessage {
-
     /// <summary>
     /// Creates a new instance of the <see cref="LusersMeReplyMessage"/> class.
     /// </summary>
@@ -63,7 +61,6 @@ namespace Supay.Irc.Messages {
       string payload = parameters[1];
       this.ClientCount = Convert.ToInt32(MessageUtil.StringBetweenStrings(payload, iHave, clientsAnd), CultureInfo.InvariantCulture);
       this.ServerCount = Convert.ToInt32(MessageUtil.StringBetweenStrings(payload, clientsAnd, servers), CultureInfo.InvariantCulture);
-
     }
 
     /// <summary>
@@ -72,7 +69,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnLusersMeReply(new IrcMessageEventArgs<LusersMeReplyMessage>(this));
     }
-
   }
-
 }

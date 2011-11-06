@@ -3,7 +3,6 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// The <see cref="ErrorMessage"/> sent when a user tries to send commands to too many targets in a short amount of time.
   /// </summary>
@@ -12,7 +11,6 @@ namespace Supay.Irc.Messages {
   /// </remarks>
   [Serializable]
   public class TargetChangeTooFastMessage : ErrorMessage, IChannelTargetedMessage {
-
     /// <summary>
     /// Creates a new instances of the <see cref="TargetChangeTooFastMessage"/> class.
     /// </summary>
@@ -31,6 +29,7 @@ namespace Supay.Irc.Messages {
         target = value;
       }
     }
+
     private string target;
 
     /// <summary>
@@ -44,8 +43,8 @@ namespace Supay.Irc.Messages {
         seconds = value;
       }
     }
-    private int seconds;
 
+    private int seconds;
 
     /// <exclude />
     protected override Collection<string> GetParameters() {
@@ -75,7 +74,6 @@ namespace Supay.Irc.Messages {
       conduit.OnTargetChangeTooFast(new IrcMessageEventArgs<TargetChangeTooFastMessage>(this));
     }
 
-
     #region IChannelTargetedMessage Members
 
     bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
@@ -90,5 +88,4 @@ namespace Supay.Irc.Messages {
 
     #endregion
   }
-
 }

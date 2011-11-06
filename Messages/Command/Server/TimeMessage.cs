@@ -2,13 +2,11 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// A request for the current server time.
   /// </summary>
   [Serializable]
   public class TimeMessage : ServerQueryBase {
-
     /// <summary>
     /// Gets the IRC command associated with this message.
     /// </summary>
@@ -32,7 +30,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnTime(new IrcMessageEventArgs<TimeMessage>(this));
     }
-
   }
-
 }

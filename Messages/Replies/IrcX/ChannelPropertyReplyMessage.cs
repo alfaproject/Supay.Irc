@@ -2,13 +2,11 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// A reply to a <see cref="ChannelPropertyMessage"/> designed to read one or all channel properties.
   /// </summary>
   [Serializable]
   public class ChannelPropertyReplyMessage : NumericMessage, IChannelTargetedMessage {
-
     /// <summary>
     /// Creates a new instance of the <see cref="ChannelPropertyReplyMessage"/>.
     /// </summary>
@@ -27,6 +25,7 @@ namespace Supay.Irc.Messages {
         this.channel = value;
       }
     }
+
     private string channel = string.Empty;
 
     /// <summary>
@@ -40,6 +39,7 @@ namespace Supay.Irc.Messages {
         this.property = value;
       }
     }
+
     private string property = string.Empty;
 
     /// <summary>
@@ -53,6 +53,7 @@ namespace Supay.Irc.Messages {
         this.propValue = value;
       }
     }
+
     private string propValue = string.Empty;
 
     /// <summary>
@@ -93,7 +94,6 @@ namespace Supay.Irc.Messages {
       conduit.OnChannelPropertyReply(new IrcMessageEventArgs<ChannelPropertyReplyMessage>(this));
     }
 
-
     #region IChannelTargetedMessage Members
 
     bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
@@ -108,5 +108,4 @@ namespace Supay.Irc.Messages {
 
     #endregion
   }
-
 }

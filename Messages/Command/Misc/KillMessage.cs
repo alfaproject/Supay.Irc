@@ -2,7 +2,6 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// The KillMessage is used to cause a client-server connection to be closed by the server which has the actual connection.
   /// </summary>
@@ -77,7 +76,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnKill(new IrcMessageEventArgs<KillMessage>(this));
     }
-
   }
-
 }

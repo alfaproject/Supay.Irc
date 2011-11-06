@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// Reply to a <see cref="WhoIsMessage"/>, stating the channels a user is in.
   /// </summary>
   [Serializable]
   public class WhoIsChannelsReplyMessage : NumericMessage, IChannelTargetedMessage {
-
     /// <summary>
     /// Creates a new instance of the <see cref="WhoIsChannelsReplyMessage"/> class.
     /// </summary>
@@ -73,7 +71,6 @@ namespace Supay.Irc.Messages {
       conduit.OnWhoIsChannelsReply(new IrcMessageEventArgs<WhoIsChannelsReplyMessage>(this));
     }
 
-
     #region IChannelTargetedMessage Members
 
     bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
@@ -89,5 +86,4 @@ namespace Supay.Irc.Messages {
 
     #endregion
   }
-
 }

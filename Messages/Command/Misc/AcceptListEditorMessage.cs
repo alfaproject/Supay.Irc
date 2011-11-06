@@ -2,13 +2,11 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// A Message that edits the list of users on your accept list.
   /// </summary>
   [Serializable]
   public class AcceptListEditorMessage : CommandMessage {
-
     /// <summary>
     /// Gets the IRC command associated with this message.
     /// </summary>
@@ -26,9 +24,7 @@ namespace Supay.Irc.Messages {
       if (serverSupport != null && !serverSupport.CallerId) {
         throw new InvalidMessageException(Properties.Resources.ServerDoesNotSupportAccept);
       }
-
     }
-
 
     #region Properties
 
@@ -43,6 +39,7 @@ namespace Supay.Irc.Messages {
         return addedNicks;
       }
     }
+
     private Collection<string> addedNicks;
 
     /// <summary>
@@ -56,6 +53,7 @@ namespace Supay.Irc.Messages {
         return removedNicks;
       }
     }
+
     private Collection<string> removedNicks;
 
     #endregion
@@ -119,7 +117,5 @@ namespace Supay.Irc.Messages {
     }
 
     #endregion
-
   }
-
 }

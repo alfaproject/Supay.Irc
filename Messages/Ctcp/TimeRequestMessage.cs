@@ -1,13 +1,11 @@
 using System;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// Sends a request for the current time on the target's machine.
   /// </summary>
   [Serializable]
   public class TimeRequestMessage : CtcpRequestMessage {
-
     /// <summary>
     /// Creates a new instance of the <see cref="TimeRequestMessage"/> class.
     /// </summary>
@@ -22,7 +20,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnTimeRequest(new IrcMessageEventArgs<TimeRequestMessage>(this));
     }
-
   }
-
 }

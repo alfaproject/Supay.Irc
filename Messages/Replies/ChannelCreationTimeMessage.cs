@@ -3,13 +3,11 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// The message received informing the user of a channel's creation time.
   /// </summary>
   [Serializable]
   public class ChannelCreationTimeMessage : NumericMessage, IChannelTargetedMessage {
-
     /// <summary>
     /// Creates a new instance of the <see cref="ChannelCreationTimeMessage"/> class.
     /// </summary>
@@ -44,7 +42,6 @@ namespace Supay.Irc.Messages {
     private string channel = string.Empty;
     private DateTime timeCreated = DateTime.MinValue;
 
-
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
     protected override Collection<string> GetParameters() {
@@ -78,7 +75,6 @@ namespace Supay.Irc.Messages {
       conduit.OnChannelCreationTime(new IrcMessageEventArgs<ChannelCreationTimeMessage>(this));
     }
 
-
     #region IChannelTargetedMessage Members
 
     bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
@@ -93,5 +89,4 @@ namespace Supay.Irc.Messages {
 
     #endregion
   }
-
 }

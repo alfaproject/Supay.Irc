@@ -2,13 +2,11 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// Returned after receiving a <see cref="NickMessage"/> which contains characters which do not fall in the defined set.
   /// </summary>
   [Serializable]
   public class ErroneousNickMessage : ErrorMessage {
-
     /// <summary>
     /// Creates a new instances of the <see cref="ErroneousNickMessage"/> class.
     /// </summary>
@@ -57,7 +55,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnErroneousNick(new IrcMessageEventArgs<ErroneousNickMessage>(this));
     }
-
   }
-
 }

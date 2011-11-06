@@ -1,10 +1,8 @@
 namespace Supay.Irc.Messages.Modes {
-
   /// <summary>
   /// This mode is used to restrict the usage of the <see cref="Supay.Irc.Messages.TopicMessage"/> to channel operators.
   /// </summary>
   public class TopicGuardedMode : FlagMode {
-
     /// <summary>
     /// Creates a new instance of the <see cref="TopicGuardedMode"/> class.
     /// </summary>
@@ -27,5 +25,4 @@ namespace Supay.Irc.Messages.Modes {
       }
     }
   }
-
 }

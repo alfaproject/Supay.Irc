@@ -1,12 +1,10 @@
 using System;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   ///   This message is the standard communication message for IRC. </summary>
   [Serializable]
   public class ChatMessage : TextMessage {
-
     /// <summary>
     ///   Creates a new instance of the <see cref="ChatMessage"/> class. </summary>
     public ChatMessage() {
@@ -48,6 +46,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(MessageConduit conduit) {
       conduit.OnChat(new IrcMessageEventArgs<TextMessage>(this));
     }
-
-  } //class ChatMessage
-} //namespace Supay.Irc.Messages
+  }
+}

@@ -1,13 +1,11 @@
 using System;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// A Monitor system notification that a monitored user is online
   /// </summary>
   [Serializable]
   public class MonitoredUserOfflineMessage : MonitoredNicksListMessage {
-
     /// <summary>
     /// Creates a new instance of the <see cref="MonitoredUserOfflineMessage"/>.
     /// </summary>
@@ -21,7 +19,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnMonitoredUserOffline(new IrcMessageEventArgs<MonitoredUserOfflineMessage>(this));
     }
-
   }
-
 }

@@ -2,13 +2,11 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// A CallerId/Accept system message that requests the nicks of the users on your accept list.
   /// </summary>
   [Serializable]
   public class AcceptListRequestMessage : CommandMessage {
-
     /// <summary>
     /// Gets the IRC command associated with this message.
     /// </summary>
@@ -26,7 +24,6 @@ namespace Supay.Irc.Messages {
       if (serverSupport != null && !serverSupport.CallerId) {
         throw new InvalidMessageException(Properties.Resources.ServerDoesNotSupportAccept);
       }
-
     }
 
     /// <summary>
@@ -54,7 +51,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(MessageConduit conduit) {
       conduit.OnAcceptListRequest(new IrcMessageEventArgs<AcceptListRequestMessage>(this));
     }
-
   }
-
 }

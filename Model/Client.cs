@@ -6,7 +6,6 @@ using Supay.Irc.Messages.Modes;
 using Supay.Irc.Network;
 
 namespace Supay.Irc {
-
   /// <summary>
   ///   Represents an IRC client. It has a connection, a user, etc. </summary>
   /// <remarks>
@@ -15,7 +14,6 @@ namespace Supay.Irc {
   [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling")]
   [DesignerCategory("Code")]
   public class Client : Component {
-
     #region Constructors
 
     /// <summary>
@@ -308,6 +306,7 @@ namespace Supay.Irc {
     /// <summary>
     ///   Occurs when any message is received and parsed. </summary>
     public event EventHandler<IrcMessageEventArgs<IrcMessage>> MessageParsed;
+
     /// <summary>
     ///   Raises the <see cref="MessageParsed"/> event. </summary>
     protected void OnMessageParsed(IrcMessageEventArgs<IrcMessage> e) {
@@ -325,6 +324,7 @@ namespace Supay.Irc {
     /// <summary>
     ///   Occurs when any message is about to be sent. </summary>
     public event EventHandler<CancelIrcMessageEventArgs<IrcMessage>> MessageSending;
+
     /// <summary>
     ///   Raises the <see cref="MessageSending"/> event. </summary>
     protected void OnMessageSending(CancelIrcMessageEventArgs<IrcMessage> e) {
@@ -414,7 +414,9 @@ namespace Supay.Irc {
     /// <param name="e">
     ///   The message sent. </param>
     private void handlePing(object sender, IrcMessageEventArgs<PingMessage> e) {
-      Send(new PongMessage { Target = e.Message.Target });
+      Send(new PongMessage {
+        Target = e.Message.Target
+      });
     }
 
     private void handleConnectionConnected(object sender, EventArgs e) {
@@ -626,7 +628,9 @@ namespace Supay.Irc {
     private void handleChannelModeIs(object sender, IrcMessageEventArgs<ChannelModeIsReplyMessage> e) {
       Channel channel = Channels.Find(e.Message.Channel);
       if (channel != null) {
-        ChannelModesCreator modes = new ChannelModesCreator { ServerSupport = ServerSupports };
+        ChannelModesCreator modes = new ChannelModesCreator {
+          ServerSupport = ServerSupports
+        };
         modes.Parse(e.Message.Modes, e.Message.ModeArguments);
         channel.Modes.ResetWith(modes.Modes);
       }
@@ -729,12 +733,15 @@ namespace Supay.Irc {
     private static void logGenericCtcp(object sender, IrcMessageEventArgs<GenericCtcpRequestMessage> e) {
       logUnimplementedMessage(e.Message);
     }
+
     private static void logGenericMessage(object sender, IrcMessageEventArgs<GenericMessage> e) {
       logUnimplementedMessage(e.Message);
     }
+
     private static void logGenericNumeric(object sender, IrcMessageEventArgs<GenericNumericMessage> e) {
       logUnimplementedMessage(e.Message);
     }
+
     private static void logGenericError(object sender, IrcMessageEventArgs<GenericErrorMessage> e) {
       logUnimplementedMessage(e.Message);
     }
@@ -763,6 +770,5 @@ namespace Supay.Irc {
     }
 
     #endregion
-
-  } //class Client
-} //namespace Supay.Irc
+  }
+}

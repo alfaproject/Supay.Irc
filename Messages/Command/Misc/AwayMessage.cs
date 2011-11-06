@@ -2,7 +2,6 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// With the AwayMessage, clients can set an automatic reply string for any <see cref="ChatMessage"/>s directed at them (not to a channel they are on).
   /// </summary>
@@ -12,7 +11,6 @@ namespace Supay.Irc.Messages {
   /// </remarks>
   [Serializable]
   public class AwayMessage : CommandMessage {
-
     /// <summary>
     /// Creates a new instance of the AwayMessage class.
     /// </summary>
@@ -48,6 +46,7 @@ namespace Supay.Irc.Messages {
         this.reason = value;
       }
     }
+
     private string reason = string.Empty;
 
     /// <summary>
@@ -83,7 +82,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnAway(new IrcMessageEventArgs<AwayMessage>(this));
     }
-
   }
-
 }

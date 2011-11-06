@@ -1,13 +1,11 @@
 using System;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// Sends a page request to the target.
   /// </summary>
   [Serializable]
   public class PageRequestMessage : CtcpRequestMessage {
-
     /// <summary>
     /// Creates a new instance of the <see cref="PageRequestMessage"/> class.
     /// </summary>
@@ -22,7 +20,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnPageRequest(new IrcMessageEventArgs<PageRequestMessage>(this));
     }
-
   }
-
 }

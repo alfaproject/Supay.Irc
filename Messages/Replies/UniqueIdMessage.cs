@@ -3,13 +3,11 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// This message is sent by the server early during connection, and tells the user the alpha-numeric id the server uses to identify the user.
   /// </summary>
   [Serializable]
   public class UniqueIdMessage : NumericMessage {
-
     /// <summary>
     /// Creates a new instance of the <see cref="UniqueIdMessage"/> class.
     /// </summary>
@@ -56,7 +54,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnUniqueId(new IrcMessageEventArgs<UniqueIdMessage>(this));
     }
-
   }
-
 }

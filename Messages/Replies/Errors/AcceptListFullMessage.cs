@@ -2,12 +2,10 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   ///   The <see cref="ErrorMessage"/> received when a user adds too many users to his accept list. </summary>
   [Serializable]
   public class AcceptListFullMessage : ErrorMessage {
-
     /// <summary>
     /// Creates a new instances of the <see cref="BanListFullMessage"/> class.
     /// </summary>
@@ -28,7 +26,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnAcceptListFull(new IrcMessageEventArgs<AcceptListFullMessage>(this));
     }
-
   }
-
 }

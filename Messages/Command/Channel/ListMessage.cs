@@ -5,7 +5,6 @@ using System.Globalization;
 using System.Linq;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// The <see cref="ListMessage"/> is used to list channels and their topics.
   /// </summary>
@@ -15,7 +14,6 @@ namespace Supay.Irc.Messages {
   /// </remarks>
   [Serializable]
   public class ListMessage : CommandMessage {
-
     /// <summary>
     /// Creates a new instance of the <see cref="ListMessage"/> class.
     /// </summary>
@@ -41,6 +39,7 @@ namespace Supay.Irc.Messages {
         return this.channels;
       }
     }
+
     private List<string> channels = new List<string>();
 
     /// <summary>
@@ -54,6 +53,7 @@ namespace Supay.Irc.Messages {
         server = value;
       }
     }
+
     private string server = string.Empty;
 
     /// <summary>
@@ -67,6 +67,7 @@ namespace Supay.Irc.Messages {
         maxUsers = value;
       }
     }
+
     private int maxUsers = -1;
 
     /// <summary>
@@ -80,6 +81,7 @@ namespace Supay.Irc.Messages {
         minUsers = value;
       }
     }
+
     private int minUsers = -1;
 
     /// <summary>
@@ -94,6 +96,7 @@ namespace Supay.Irc.Messages {
         youngerThan = value;
       }
     }
+
     private int youngerThan = -1;
 
     /// <summary>
@@ -108,6 +111,7 @@ namespace Supay.Irc.Messages {
         olderThan = value;
       }
     }
+
     private int olderThan = -1;
 
     /// <summary>
@@ -121,6 +125,7 @@ namespace Supay.Irc.Messages {
         matchMask = value;
       }
     }
+
     private string matchMask = string.Empty;
 
     /// <summary>
@@ -134,6 +139,7 @@ namespace Supay.Irc.Messages {
         notMatchMask = value;
       }
     }
+
     private string notMatchMask = string.Empty;
 
     /// <summary>
@@ -152,6 +158,7 @@ namespace Supay.Irc.Messages {
         topicOlderThan = value;
       }
     }
+
     private int topicOlderThan = -1;
 
     /// <summary>
@@ -170,6 +177,7 @@ namespace Supay.Irc.Messages {
         topicYoungerThan = value;
       }
     }
+
     private int topicYoungerThan = -1;
 
     /// <summary>
@@ -268,7 +276,6 @@ namespace Supay.Irc.Messages {
       this.TopicYoungerThan = -1;
 
       if (parameters.Count >= 1) {
-
         if (IsExtendedParameter(parameters[0])) {
           foreach (string extOption in parameters[0].Split(',')) {
             if (extOption.StartsWith("!*", StringComparison.Ordinal)) {
@@ -295,7 +302,6 @@ namespace Supay.Irc.Messages {
             this.Server = parameters[1];
           }
         }
-
       }
     }
 
@@ -313,7 +319,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnList(new IrcMessageEventArgs<ListMessage>(this));
     }
-
   }
-
 }

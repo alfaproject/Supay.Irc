@@ -1,13 +1,11 @@
 using System;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// A Message that participates in the Watch framework.
   /// </summary>
   [Serializable]
   public abstract class WatchMessage : CommandMessage {
-
     /// <summary>
     /// Gets the Irc command associated with this message.
     /// </summary>
@@ -25,9 +23,6 @@ namespace Supay.Irc.Messages {
       if (serverSupport != null && serverSupport.MaxWatches <= 0) {
         throw new InvalidMessageException(Properties.Resources.ServerDoesNotSupportWatch);
       }
-
     }
-
   }
-
 }

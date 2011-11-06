@@ -3,7 +3,6 @@ using System.Collections.ObjectModel;
 using Supay.Irc.Messages.Modes;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   ///   The <see cref="ErrorMessage"/> received when a user tries to perform a command which
   ///   requires channel-operator status. </summary>
@@ -12,7 +11,6 @@ namespace Supay.Irc.Messages {
   ///   <see cref="ChannelModeMessage"/>. </remarks>
   [Serializable]
   public class ChannelOperatorStatusRequiredMessage : ErrorMessage, IChannelTargetedMessage {
-
     /// <summary>
     /// Creates a new instances of the <see cref="ChannelOperatorStatusRequiredMessage"/> class.
     /// </summary>
@@ -30,8 +28,8 @@ namespace Supay.Irc.Messages {
         channel = value;
       }
     }
-    private string channel;
 
+    private string channel;
 
     /// <exclude />
     protected override Collection<string> GetParameters() {
@@ -57,7 +55,6 @@ namespace Supay.Irc.Messages {
       conduit.OnChannelOperatorStatusRequired(new IrcMessageEventArgs<ChannelOperatorStatusRequiredMessage>(this));
     }
 
-
     #region IChannelTargetedMessage Members
 
     bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
@@ -72,5 +69,4 @@ namespace Supay.Irc.Messages {
 
     #endregion
   }
-
 }

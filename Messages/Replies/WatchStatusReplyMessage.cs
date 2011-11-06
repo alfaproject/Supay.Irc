@@ -3,13 +3,11 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// A reply for the <see cref="WatchStatusRequestMessage"/> query.
   /// </summary>
   [Serializable]
   public class WatchStatusReplyMessage : NumericMessage {
-
     /// <summary>
     /// Creates a new instance of the <see cref="WatchStatusRequestMessage"/>.
     /// </summary>
@@ -28,6 +26,7 @@ namespace Supay.Irc.Messages {
         watchesYouHave = value;
       }
     }
+
     private int watchesYouHave = 0;
 
     /// <summary>
@@ -41,6 +40,7 @@ namespace Supay.Irc.Messages {
         watchesThatHaveYou = value;
       }
     }
+
     private int watchesThatHaveYou = 0;
 
     /// <summary>
@@ -72,7 +72,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnWatchStatusReply(new IrcMessageEventArgs<WatchStatusReplyMessage>(this));
     }
-
   }
-
 }

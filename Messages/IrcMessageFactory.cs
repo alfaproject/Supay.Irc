@@ -4,11 +4,9 @@ using System.Globalization;
 using System.Linq;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   ///   Provides clients with a correct <see cref="IrcMessage"/> for a given raw message string. </summary>
   public sealed class IrcMessageFactory {
-
     private static readonly IrcMessageFactory _factory = new IrcMessageFactory();
 
     private const int MIN_MESSAGE_LENGTH = 1;
@@ -33,15 +31,15 @@ namespace Supay.Irc.Messages {
       foreach (Type type in ircMessageType.Assembly.GetTypes().Where(t => t.IsSubclassOf(ircMessageType))) {
         if (type.IsSubclassOf(typeof(CommandMessage))) {
           if (!type.IsAbstract) {
-            _commands.AddLast((IrcMessage)Activator.CreateInstance(type));
+            _commands.AddLast((IrcMessage) Activator.CreateInstance(type));
           }
         } else if (type.IsSubclassOf(typeof(NumericMessage))) {
           if (!type.IsAbstract && type != typeof(GenericNumericMessage) && type != typeof(GenericErrorMessage)) {
-            _numerics.AddLast((IrcMessage)Activator.CreateInstance(type));
+            _numerics.AddLast((IrcMessage) Activator.CreateInstance(type));
           }
         } else if (type.IsSubclassOf(typeof(CtcpMessage))) {
           if (!type.IsAbstract && type != typeof(GenericCtcpRequestMessage) && type != typeof(GenericCtcpReplyMessage)) {
-            _ctcps.AddLast((IrcMessage)Activator.CreateInstance(type));
+            _ctcps.AddLast((IrcMessage) Activator.CreateInstance(type));
           }
         }
       }
@@ -135,11 +133,10 @@ namespace Supay.Irc.Messages {
         }
 
         // return a new instance of this message
-        return (IrcMessage)Activator.CreateInstance(msg.GetType());
+        return (IrcMessage) Activator.CreateInstance(msg.GetType());
       }
 
       return null;
     }
-
-  } //class IrcMessageFactory
-} //namespace Supay.Irc.Messages
+  }
+}

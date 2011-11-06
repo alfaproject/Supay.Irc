@@ -1,13 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using Supay.Irc.Messages;
 using System.Timers;
+using Supay.Irc.Messages;
 
 namespace Supay.Irc.Contacts {
-
   internal class ContactsAreOnTracker : ContactsTracker, IDisposable {
-
     private readonly Collection<string> _trackedNicks = new Collection<string>();
     private readonly Collection<string> _waitingOnNicks = new Collection<string>();
     private Timer _timer;
@@ -98,6 +96,5 @@ namespace Supay.Irc.Contacts {
     }
 
     #endregion
-
-  } //class ContactsAreOnTracker
-} //namespace Supay.Irc.Contacts
+  }
+}

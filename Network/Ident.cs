@@ -7,13 +7,11 @@ using System.Net.Sockets;
 using System.Threading;
 
 namespace Supay.Irc.Network {
-
   /// <summary>
   ///   An Ident daemon which is still used by some
   ///   IRC networks for authentication. </summary>
   [DesignerCategory("Code")]
   public sealed class Ident : Component {
-
     private static readonly Ident _instance = new Ident();
 
     private const string REPLY = " : USERID : UNIX : ";
@@ -131,7 +129,7 @@ namespace Supay.Irc.Network {
           }
         }
       } catch (SocketException ex) {
-        switch ((SocketError)ex.ErrorCode) {
+        switch ((SocketError) ex.ErrorCode) {
           case SocketError.InterruptedFunctionCall:
             System.Diagnostics.Trace.WriteLine("Ident Stopped By Thread Abort", "Ident");
             break;
@@ -144,6 +142,5 @@ namespace Supay.Irc.Network {
 
       _listener.Stop();
     }
-
-  } //class Ident
-} //namespace Supay.Irc.Network
+  }
+}

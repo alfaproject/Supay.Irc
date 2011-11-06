@@ -2,13 +2,11 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// Sent to a user who is either (a) not on a channel which is mode +n or (b) not a channel op (or mode +v) on a channel which has mode +m set or where the user is	banned and is trying to send a PRIVMSG message to	that channel.
   /// </summary>
   [Serializable]
   public class CannotSendToChannelMessage : ErrorMessage, IChannelTargetedMessage {
-
     /// <summary>
     /// Creates a new instances of the <see cref="CannotSendToChannelMessage"/> class.
     /// </summary>
@@ -27,6 +25,7 @@ namespace Supay.Irc.Messages {
         channel = value;
       }
     }
+
     private string channel = string.Empty;
 
     /// <summary>
@@ -57,7 +56,6 @@ namespace Supay.Irc.Messages {
       conduit.OnCannotSendToChannel(new IrcMessageEventArgs<CannotSendToChannelMessage>(this));
     }
 
-
     #region IChannelTargetedMessage Members
 
     bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
@@ -72,5 +70,4 @@ namespace Supay.Irc.Messages {
 
     #endregion
   }
-
 }

@@ -2,13 +2,11 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// One line of data in a reply to the <see cref="MotdMessage"/> query.
   /// </summary>
   [Serializable]
   public class MotdReplyMessage : NumericMessage {
-
     /// <summary>
     /// Creates a new instance of the <see cref="MotdReplyMessage"/> class.
     /// </summary>
@@ -27,6 +25,7 @@ namespace Supay.Irc.Messages {
         text = value;
       }
     }
+
     private string text = string.Empty;
 
     /// <summary>
@@ -54,7 +53,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnMotdReply(new IrcMessageEventArgs<MotdReplyMessage>(this));
     }
-
   }
-
 }

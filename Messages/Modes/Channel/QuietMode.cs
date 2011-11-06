@@ -1,11 +1,9 @@
 namespace Supay.Irc.Messages.Modes {
-
   /// <summary>
   /// This mode restricts the type of data sent to users about the channel operations: 
   /// other user joins, parts and nick changes are not sent. 
   /// </summary>
   public class QuietMode : FlagMode {
-
     /// <summary>
     /// Creates a new instance of the <see cref="QuietMode"/> class.
     /// </summary>
@@ -28,5 +26,4 @@ namespace Supay.Irc.Messages.Modes {
       }
     }
   }
-
 }

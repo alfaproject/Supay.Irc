@@ -2,14 +2,12 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// This message is sent to all users with <see cref="Supay.Irc.Messages.Modes.ReceiveWallopsMode"/>,
   /// <see cref="Supay.Irc.Messages.Modes.NetworkOperatorMode"/>, or <see cref="Supay.Irc.Messages.Modes.ServerOperatorMode"/> user modes.
   /// </summary>
   [Serializable]
   public class WallopsMessage : CommandMessage {
-
     /// <summary>
     /// Gets or sets the text of the <see cref="WallopsMessage"/>.
     /// </summary>
@@ -21,6 +19,7 @@ namespace Supay.Irc.Messages {
         this.text = value;
       }
     }
+
     private string text = string.Empty;
 
     /// <summary>
@@ -58,7 +57,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnWallops(new IrcMessageEventArgs<WallopsMessage>(this));
     }
-
   }
-
 }

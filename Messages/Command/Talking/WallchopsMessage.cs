@@ -2,13 +2,11 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// This message is sent to all channel operators.
   /// </summary>
   [Serializable]
   public class WallchopsMessage : CommandMessage, IChannelTargetedMessage {
-
     /// <summary>
     /// Gets or sets the text of the <see cref="WallchopsMessage"/>.
     /// </summary>
@@ -23,6 +21,7 @@ namespace Supay.Irc.Messages {
         this.text = value;
       }
     }
+
     private string text = string.Empty;
 
     /// <summary>
@@ -39,6 +38,7 @@ namespace Supay.Irc.Messages {
         this.channel = value;
       }
     }
+
     private string channel = string.Empty;
 
     /// <summary>
@@ -82,7 +82,6 @@ namespace Supay.Irc.Messages {
       conduit.OnWallchops(new IrcMessageEventArgs<WallchopsMessage>(this));
     }
 
-
     #region IChannelTargetedMessage Members
 
     bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
@@ -97,5 +96,4 @@ namespace Supay.Irc.Messages {
 
     #endregion
   }
-
 }

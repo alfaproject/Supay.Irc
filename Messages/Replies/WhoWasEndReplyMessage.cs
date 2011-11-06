@@ -2,13 +2,11 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// Signals the end of a reply to a <see cref="WhoWasMessage"/>.
   /// </summary>
   [Serializable]
   public class WhoWasEndReplyMessage : NumericMessage {
-
     /// <summary>
     /// Creates a new instance of the <see cref="WhoWasEndReplyMessage"/> class.
     /// </summary>
@@ -29,7 +27,6 @@ namespace Supay.Irc.Messages {
     }
 
     private string nick = string.Empty;
-
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
@@ -58,7 +55,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnWhoWasEndReply(new IrcMessageEventArgs<WhoWasEndReplyMessage>(this));
     }
-
   }
-
 }

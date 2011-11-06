@@ -1,10 +1,8 @@
 namespace Supay.Irc.Messages.Modes {
-
   /// <summary>
   /// This mode signifies that the user using CallerId.
   /// </summary>
   public class CallerIdMode : UserMode {
-
     /// <summary>
     /// Creates a new instance of the <see cref="CallerIdMode"/> class.
     /// </summary>
@@ -26,7 +24,5 @@ namespace Supay.Irc.Messages.Modes {
         return "g";
       }
     }
-
   }
-
 }

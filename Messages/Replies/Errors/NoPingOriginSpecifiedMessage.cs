@@ -2,12 +2,10 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   ///   Sent to a user who sends a <see cref="PingMessage"/> which doesn't have a valid origin. </summary>
   [Serializable]
   public class NoPingOriginSpecifiedMessage : ErrorMessage {
-
     /// <summary>
     /// Creates a new instances of the <see cref="NoPingOriginSpecifiedMessage"/> class.
     /// </summary>
@@ -29,7 +27,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnNoPingOriginSpecified(new IrcMessageEventArgs<NoPingOriginSpecifiedMessage>(this));
     }
-
   }
-
 }

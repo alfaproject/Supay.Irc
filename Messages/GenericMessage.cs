@@ -2,12 +2,10 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   ///   Represents a single generic RFC1459 IRC message to or from an IRC server. </summary>
   [Serializable]
   public class GenericMessage : IrcMessage {
-
     #region Constructor
 
     public GenericMessage() {
@@ -32,6 +30,7 @@ namespace Supay.Irc.Messages {
         _command = value;
       }
     }
+
     private string _command;
 
     /// <summary>
@@ -89,6 +88,5 @@ namespace Supay.Irc.Messages {
     }
 
     #endregion
-
-  } //class GenericMessage
-} //namespace Supay.Irc.Messages
+  }
+}

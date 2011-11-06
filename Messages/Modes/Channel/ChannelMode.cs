@@ -1,10 +1,8 @@
 namespace Supay.Irc.Messages.Modes {
-
   /// <summary>
   ///   A channel mode sent in a <see cref="ChannelModeMessage"/> in its
   ///   <see cref="ChannelModeMessage.ModeChanges"/> property. </summary>
   public abstract class ChannelMode {
-
     protected ChannelMode()
       : this(ModeAction.Add) {
     }
@@ -64,6 +62,5 @@ namespace Supay.Irc.Messages.Modes {
     ///   The message which will be modified to include this mode. </param>
     protected virtual void AddParameter(ChannelModeMessage msg) {
     }
-
-  } //class ChannelMode
-} //namespace Supay.Irc.Messages.Modes
+  }
+}

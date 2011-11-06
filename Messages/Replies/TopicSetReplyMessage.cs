@@ -3,13 +3,11 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// The reply sent when the server acknowledges that a channel's topic has been changed.
   /// </summary>
   [Serializable]
   public class TopicSetReplyMessage : NumericMessage, IChannelTargetedMessage {
-
     /// <summary>
     /// Creates a new instance of the <see cref="TopicSetReplyMessage"/> class.
     /// </summary>
@@ -28,6 +26,7 @@ namespace Supay.Irc.Messages {
         channel = value;
       }
     }
+
     private string channel = string.Empty;
 
     /// <summary>
@@ -41,6 +40,7 @@ namespace Supay.Irc.Messages {
         user = value;
       }
     }
+
     private Supay.Irc.User user = new User();
 
     /// <summary>
@@ -54,6 +54,7 @@ namespace Supay.Irc.Messages {
         timeSet = value;
       }
     }
+
     private DateTime timeSet = DateTime.Now;
 
     /// <summary>
@@ -83,7 +84,6 @@ namespace Supay.Irc.Messages {
       conduit.OnTopicSetReply(new IrcMessageEventArgs<TopicSetReplyMessage>(this));
     }
 
-
     #region IChannelTargetedMessage Members
 
     bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
@@ -98,5 +98,4 @@ namespace Supay.Irc.Messages {
 
     #endregion
   }
-
 }

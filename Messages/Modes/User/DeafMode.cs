@@ -1,10 +1,8 @@
 namespace Supay.Irc.Messages.Modes {
-
   /// <summary>
   /// This mode signifies that the user does not receive channel chat messages
   /// </summary>
   public class DeafMode : UserMode {
-
     /// <summary>
     /// Creates a new instance of the <see cref="DeafMode"/> class.
     /// </summary>
@@ -26,7 +24,5 @@ namespace Supay.Irc.Messages.Modes {
         return "d";
       }
     }
-
   }
-
 }

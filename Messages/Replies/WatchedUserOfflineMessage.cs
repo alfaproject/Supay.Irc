@@ -1,7 +1,6 @@
 using System;
 
 namespace Supay.Irc.Messages {
-  
   /// <summary>
   /// A Watch system notification that a watched user is offline
   /// </summary>
@@ -12,18 +11,15 @@ namespace Supay.Irc.Messages {
   /// </remarks>
   [Serializable]
   public abstract class WatchedUserOfflineMessage : WatchedUserChangedMessage {
-
     protected WatchedUserOfflineMessage(int number)
       : base(number) {
     }
-    
+
     /// <summary>
     /// Notifies the given <see cref="MessageConduit"/> by raising the appropriate event for the current <see cref="IrcMessage"/> subclass.
     /// </summary>
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnWatchedUserOffline(new IrcMessageEventArgs<WatchedUserOfflineMessage>(this));
     }
-
   }
-
 }

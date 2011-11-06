@@ -1,9 +1,7 @@
 namespace Supay.Irc.Messages.Modes {
-
   /// <summary>
   ///   This mode signifies that the user is away. </summary>
   public class AwayMode : UserMode {
-
     /// <summary>
     ///   Creates a new instance of the <see cref="AwayMode"/> class. </summary>
     public AwayMode() {
@@ -22,6 +20,5 @@ namespace Supay.Irc.Messages.Modes {
         return "a";
       }
     }
-
-  } //class AwayMode
-} //namespace Supay.Irc.Messages.Modes
+  }
+}

@@ -1,10 +1,8 @@
 namespace Supay.Irc.Messages.Modes {
-
   /// <summary>
   /// This mode signifies that the user will receive wallop messages.
   /// </summary>
   public class ReceiveServerKillsMode : UserMode {
-
     /// <summary>
     /// Creates a new instance of the <see cref="ReceiveServerKillsMode"/> class.
     /// </summary>
@@ -26,7 +24,5 @@ namespace Supay.Irc.Messages.Modes {
         return "k";
       }
     }
-
   }
-
 }

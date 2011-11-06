@@ -2,13 +2,11 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// With the KnockMessage, clients can request an invite to a invitation-only channel.
   /// </summary>
   [Serializable]
   public class KnockMessage : CommandMessage, IChannelTargetedMessage {
-
     /// <summary>
     /// Creates a new instance of the KnockMessage class.
     /// </summary>
@@ -36,6 +34,7 @@ namespace Supay.Irc.Messages {
         channel = value;
       }
     }
+
     private string channel = string.Empty;
 
     /// <summary>
@@ -80,7 +79,6 @@ namespace Supay.Irc.Messages {
       conduit.OnKnock(new IrcMessageEventArgs<KnockMessage>(this));
     }
 
-
     #region IChannelTargetedMessage Members
 
     bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
@@ -95,5 +93,4 @@ namespace Supay.Irc.Messages {
 
     #endregion
   }
-
 }

@@ -6,7 +6,6 @@ using System.Diagnostics;
 using System.Globalization;
 
 namespace Supay.Irc {
-
   /// <summary>
   /// Contains information about what irc extensions and such the server supports.
   /// </summary>
@@ -16,32 +15,37 @@ namespace Supay.Irc {
   /// </remarks>
   [Serializable]
   public class ServerSupport {
-
     /// <summary>
     /// The extended parameters which the server can support on a List message.
     /// </summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1034:NestedTypesShouldNotBeVisible"), Flags]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1034:NestedTypesShouldNotBeVisible")]
+    [Flags]
     public enum ExtendedListParameters {
       /// <summary>
       /// No extended parameters are supported
       /// </summary>
       None = 0,
+
       /// <summary>
       /// Searching by matching only the given mask is supported
       /// </summary>
       Mask = 1,
+
       /// <summary>
       /// Searching by not matching the given mask is supported
       /// </summary>
       NotMask = 2,
+
       /// <summary>
       /// Searching by number of users in the channel is supported
       /// </summary>
       UserCount = 4,
+
       /// <summary>
       /// Searching by the channel creation time is supported
       /// </summary>
       CreationTime = 8,
+
       /// <summary>
       /// Searching by the most recent change in a channel's topic is supported
       /// </summary>
@@ -65,6 +69,7 @@ namespace Supay.Irc {
         _defaultSupport = value;
       }
     }
+
     private static ServerSupport _defaultSupport;
 
     #endregion
@@ -90,6 +95,7 @@ namespace Supay.Irc {
         this._standard = value;
       }
     }
+
     private string _standard = "i-d";
 
     /// <summary>
@@ -107,6 +113,7 @@ namespace Supay.Irc {
         this._channelStatuses = value;
       }
     }
+
     private string _channelStatuses = "(ov)@+";
 
     /// <summary>
@@ -120,6 +127,7 @@ namespace Supay.Irc {
         this.statusMessages = value;
       }
     }
+
     private string statusMessages = string.Empty;
 
     /// <summary>
@@ -130,6 +138,7 @@ namespace Supay.Irc {
         return (this._channelTypes);
       }
     }
+
     private Collection<string> _channelTypes = new Collection<string>();
 
     /// <summary>
@@ -140,6 +149,7 @@ namespace Supay.Irc {
         return (this._modesWithParameters);
       }
     }
+
     private Collection<string> _modesWithParameters = new Collection<string>();
 
     /// <summary>
@@ -150,6 +160,7 @@ namespace Supay.Irc {
         return (this._modesWithParametersWhenSet);
       }
     }
+
     private Collection<string> _modesWithParametersWhenSet = new Collection<string>();
 
     /// <summary>
@@ -160,6 +171,7 @@ namespace Supay.Irc {
         return (this._modesWithoutParameters);
       }
     }
+
     private Collection<string> _modesWithoutParameters = new Collection<string>();
 
     /// <summary>
@@ -173,6 +185,7 @@ namespace Supay.Irc {
         this._maxModes = value;
       }
     }
+
     private int _maxModes = 3;
 
     /// <summary>
@@ -189,6 +202,7 @@ namespace Supay.Irc {
         this._maxChannels = value;
       }
     }
+
     private int _maxChannels = -1;
 
     /// <summary>
@@ -200,6 +214,7 @@ namespace Supay.Irc {
         return _channelLimits;
       }
     }
+
     private Dictionary<string, int> _channelLimits = new Dictionary<string, int>();
 
     /// <summary>
@@ -213,6 +228,7 @@ namespace Supay.Irc {
         this._maxNickLength = value;
       }
     }
+
     private int _maxNickLength = 9;
 
     /// <summary>
@@ -226,6 +242,7 @@ namespace Supay.Irc {
         this._maxTopicLength = value;
       }
     }
+
     private int _maxTopicLength = -1;
 
     /// <summary>
@@ -239,6 +256,7 @@ namespace Supay.Irc {
         this._maxKickCommentLength = value;
       }
     }
+
     private int _maxKickCommentLength = -1;
 
     /// <summary>
@@ -252,6 +270,7 @@ namespace Supay.Irc {
         this._maxChannelNameLength = value;
       }
     }
+
     private int _maxChannelNameLength = 200;
 
     /// <summary>
@@ -265,6 +284,7 @@ namespace Supay.Irc {
         this._maxBans = value;
       }
     }
+
     private int _maxBans = -1;
 
     /// <summary>
@@ -278,6 +298,7 @@ namespace Supay.Irc {
         this.maxInvitationsExceptions = value;
       }
     }
+
     private int maxInvitationsExceptions = -1;
 
     /// <summary>
@@ -291,6 +312,7 @@ namespace Supay.Irc {
         this.maxBanExceptions = value;
       }
     }
+
     private int maxBanExceptions = -1;
 
     /// <summary>
@@ -304,6 +326,7 @@ namespace Supay.Irc {
         this._networkName = value;
       }
     }
+
     private string _networkName = string.Empty;
 
     /// <summary>
@@ -317,6 +340,7 @@ namespace Supay.Irc {
         this._banExceptions = value;
       }
     }
+
     private bool _banExceptions = false;
 
     /// <summary>
@@ -330,6 +354,7 @@ namespace Supay.Irc {
         this._invitationExceptions = value;
       }
     }
+
     private bool _invitationExceptions = false;
 
     /// <summary>
@@ -343,6 +368,7 @@ namespace Supay.Irc {
         this._maxSilences = value;
       }
     }
+
     private int _maxSilences = 0;
 
     /// <summary>
@@ -360,6 +386,7 @@ namespace Supay.Irc {
         this._messagesToOperators = value;
       }
     }
+
     private bool _messagesToOperators = false;
 
     /// <summary>
@@ -374,6 +401,7 @@ namespace Supay.Irc {
         this._caseMapping = value;
       }
     }
+
     private string _caseMapping = "rfc1459";
 
     /// <summary>
@@ -387,6 +415,7 @@ namespace Supay.Irc {
         this._characterSet = value;
       }
     }
+
     private string _characterSet = string.Empty;
 
     /// <summary>
@@ -400,6 +429,7 @@ namespace Supay.Irc {
         this._rfc2812 = value;
       }
     }
+
     private bool _rfc2812 = false;
 
     /// <summary>
@@ -413,6 +443,7 @@ namespace Supay.Irc {
         this._channelIdLength = value;
       }
     }
+
     private int _channelIdLength = -1;
 
     /// <summary>
@@ -426,6 +457,7 @@ namespace Supay.Irc {
         this._penalties = value;
       }
     }
+
     private bool _penalties = false;
 
     /// <summary>
@@ -439,6 +471,7 @@ namespace Supay.Irc {
         this._forcedNickChanges = value;
       }
     }
+
     private bool _forcedNickChanges = false;
 
     /// <summary>
@@ -452,6 +485,7 @@ namespace Supay.Irc {
         this._userIp = value;
       }
     }
+
     private bool _userIp = false;
 
     /// <summary>
@@ -465,6 +499,7 @@ namespace Supay.Irc {
         this._channelMessages = value;
       }
     }
+
     private bool _channelMessages = false;
 
     /// <summary>
@@ -478,6 +513,7 @@ namespace Supay.Irc {
         this._channelNotices = value;
       }
     }
+
     private bool _channelNotices = false;
 
     /// <summary>
@@ -488,6 +524,7 @@ namespace Supay.Irc {
         return _maxMessageTargets;
       }
     }
+
     private Dictionary<string, int> _maxMessageTargets = new Dictionary<string, int>();
 
     /// <summary>
@@ -501,6 +538,7 @@ namespace Supay.Irc {
         this._knock = value;
       }
     }
+
     private bool _knock = false;
 
     /// <summary>
@@ -514,6 +552,7 @@ namespace Supay.Irc {
         this._virtualChannels = value;
       }
     }
+
     private bool _virtualChannels = false;
 
     /// <summary>
@@ -527,6 +566,7 @@ namespace Supay.Irc {
         this._safeList = value;
       }
     }
+
     private bool _safeList = false;
 
     /// <summary>
@@ -540,6 +580,7 @@ namespace Supay.Irc {
         _eList = value;
       }
     }
+
     private ExtendedListParameters _eList;
 
     /// <summary>
@@ -553,6 +594,7 @@ namespace Supay.Irc {
         this._maxWatches = value;
       }
     }
+
     private int _maxWatches = -1;
 
     /// <summary>
@@ -566,6 +608,7 @@ namespace Supay.Irc {
         this._whoX = value;
       }
     }
+
     private bool _whoX = false;
 
     /// <summary>
@@ -579,6 +622,7 @@ namespace Supay.Irc {
         this._callerId = value;
       }
     }
+
     private bool _callerId = false;
 
     /// <summary>
@@ -592,6 +636,7 @@ namespace Supay.Irc {
         this.eTrace = value;
       }
     }
+
     private bool eTrace = false;
 
     /// <summary>
@@ -610,6 +655,7 @@ namespace Supay.Irc {
         _maxMonitors = value;
       }
     }
+
     private int _maxMonitors = 0;
 
     /// <summary>
@@ -620,6 +666,7 @@ namespace Supay.Irc {
         return _safeChannelPrefixLengths;
       }
     }
+
     private Dictionary<string, int> _safeChannelPrefixLengths = new Dictionary<string, int>();
 
     /// <summary>
@@ -633,6 +680,7 @@ namespace Supay.Irc {
         _maxAwayMessageLength = value;
       }
     }
+
     private int _maxAwayMessageLength = -1;
 
     #endregion
@@ -645,12 +693,13 @@ namespace Supay.Irc {
         return unknownItems;
       }
     }
+
     private NameValueCollection unknownItems = new NameValueCollection();
 
     /// <summary>
     ///   Loads support information from the given <see cref="Supay.Irc.Messages.SupportMessage"/>. </summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity"),
-     System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1505:AvoidUnmaintainableCode")]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity")]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1505:AvoidUnmaintainableCode")]
     public void LoadInfo(Supay.Irc.Messages.SupportMessage msg) {
       NameValueCollection items = msg.SupportedItems;
       foreach (string key in items.Keys) {
@@ -889,5 +938,4 @@ namespace Supay.Irc {
       public string Value;
     }
   }
-
 }

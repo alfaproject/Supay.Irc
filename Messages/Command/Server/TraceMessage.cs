@@ -2,13 +2,11 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// Request a network path from the local server to the specified server.
   /// </summary>
   [Serializable]
   public class TraceMessage : ServerQueryBase {
-
     /// <summary>
     /// Gets the IRC command associated with this message.
     /// </summary>
@@ -32,7 +30,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnTrace(new IrcMessageEventArgs<TraceMessage>(this));
     }
-
   }
-
 }

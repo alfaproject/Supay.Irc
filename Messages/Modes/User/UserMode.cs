@@ -1,12 +1,10 @@
 using System;
 
 namespace Supay.Irc.Messages.Modes {
-
   /// <summary>
   ///   The list of known user modes sent in a <see cref="UserModeMessage"/> in its
   ///   <see cref="UserModeMessage.ModeChanges"/> property. </summary>
   public abstract class UserMode {
-
     protected UserMode()
       : this(ModeAction.Add) {
     }
@@ -46,10 +44,9 @@ namespace Supay.Irc.Messages.Modes {
       }
 
       if (includeAction) {
-        msg.ModeChanges += (Action == ModeAction.Add ? "+" :  "-");
+        msg.ModeChanges += (Action == ModeAction.Add ? "+" : "-");
       }
       msg.ModeChanges += Symbol;
     }
-
-  } //class UserMode
-} //namespace Supay.Irc.Messages.Modes
+  }
+}

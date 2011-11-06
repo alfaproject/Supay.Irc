@@ -3,13 +3,12 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// One of the responses to the <see cref="LusersMessage"/> query.
   /// </summary>
-  [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "Op"), Serializable]
+  [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "Op")]
+  [Serializable]
   public class LusersOpReplyMessage : NumericMessage {
-
     /// <summary>
     /// Creates a new instance of the <see cref="LusersOpReplyMessage"/> class
     /// </summary>
@@ -75,5 +74,4 @@ namespace Supay.Irc.Messages {
     private int opCount = -1;
     private string info = string.Empty;
   }
-
 }

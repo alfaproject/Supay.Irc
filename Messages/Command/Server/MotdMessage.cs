@@ -2,13 +2,11 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// Requests that the server send its Message Of The Day to the client.
   /// </summary>
   [Serializable]
   public class MotdMessage : ServerQueryBase {
-
     /// <summary>
     /// Gets the IRC command associated with this message.
     /// </summary>
@@ -32,7 +30,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnMotd(new IrcMessageEventArgs<MotdMessage>(this));
     }
-
   }
-
 }

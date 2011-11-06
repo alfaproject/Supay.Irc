@@ -2,7 +2,6 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// With the ChannelPropertyMessage, clients can read and write property values for IRCX enabled channels.
   /// </summary>
@@ -16,7 +15,6 @@ namespace Supay.Irc.Messages {
   /// </remarks>
   [Serializable]
   public class ChannelPropertyMessage : CommandMessage {
-
     /// <summary>
     /// Creates a new instance of the ChannelPropertyMessage class.
     /// </summary>
@@ -47,6 +45,7 @@ namespace Supay.Irc.Messages {
         channel = value;
       }
     }
+
     private string channel = string.Empty;
 
     /// <summary>
@@ -63,6 +62,7 @@ namespace Supay.Irc.Messages {
         property = value;
       }
     }
+
     private string property = string.Empty;
 
     /// <summary>
@@ -79,6 +79,7 @@ namespace Supay.Irc.Messages {
         newValue = value;
       }
     }
+
     private string newValue = string.Empty;
 
     /// <summary>
@@ -135,7 +136,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnChannelProperty(new IrcMessageEventArgs<ChannelPropertyMessage>(this));
     }
-
   }
-
 }

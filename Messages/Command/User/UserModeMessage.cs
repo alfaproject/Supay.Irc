@@ -2,7 +2,6 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// The UserModeMessage allows users to have their mode changed.
   /// </summary>
@@ -32,6 +31,7 @@ namespace Supay.Irc.Messages {
         this.user = value;
       }
     }
+
     private string user = string.Empty;
 
     /// <summary>
@@ -49,6 +49,7 @@ namespace Supay.Irc.Messages {
         this.modeChanges = value;
       }
     }
+
     private string modeChanges = string.Empty;
 
     /// <summary>
@@ -97,7 +98,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnUserMode(new IrcMessageEventArgs<UserModeMessage>(this));
     }
-
   }
-
 }

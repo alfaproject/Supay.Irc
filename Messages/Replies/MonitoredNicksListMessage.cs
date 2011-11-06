@@ -2,12 +2,10 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   ///   A Monitor system notification that contains a list of nicks. </summary>
   [Serializable]
   public abstract class MonitoredNicksListMessage : NumericMessage {
-
     protected MonitoredNicksListMessage(int number)
       : base(number) {
       Nicks = new Collection<string>();
@@ -42,6 +40,5 @@ namespace Supay.Irc.Messages {
         }
       }
     }
-
-  } //class MonitoredNicksListMessage
-} //namespace Supay.Irc.Messages
+  }
+}

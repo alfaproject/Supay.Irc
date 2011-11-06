@@ -1,10 +1,8 @@
 namespace Supay.Irc.Messages.Modes {
-
   /// <summary>
   /// This mode is used to toggle the operator status of a channel member.
   /// </summary>
   public class OperatorMode : MemberStatusMode {
-
     /// <summary>
     /// Creates a new instance of the <see cref="OperatorMode"/> class.
     /// </summary>
@@ -35,7 +33,5 @@ namespace Supay.Irc.Messages.Modes {
         return "o";
       }
     }
-
   }
-
 }

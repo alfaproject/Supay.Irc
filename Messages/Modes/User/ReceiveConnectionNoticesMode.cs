@@ -1,10 +1,8 @@
 namespace Supay.Irc.Messages.Modes {
-
   /// <summary>
   /// This mode signifies that the user will receive client connection notices.
   /// </summary>
   public class ReceiveConnectionNoticesMode : UserMode {
-
     /// <summary>
     /// Creates a new instance of the <see cref="ReceiveConnectionNoticesMode"/> class.
     /// </summary>
@@ -26,7 +24,5 @@ namespace Supay.Irc.Messages.Modes {
         return "c";
       }
     }
-
   }
-
 }

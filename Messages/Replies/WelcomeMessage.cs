@@ -2,14 +2,12 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// The WelcomeMessage is sent from a server to a client as the first message 
   /// once the client is registered.
   /// </summary>
   [Serializable]
   public class WelcomeMessage : NumericMessage {
-
     /// <summary>
     /// Creates a new instance of the <see cref="WelcomeMessage"/> class.
     /// </summary>
@@ -28,6 +26,7 @@ namespace Supay.Irc.Messages {
         text = value;
       }
     }
+
     private string text = string.Empty;
 
     /// <summary>
@@ -56,7 +55,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnWelcome(new IrcMessageEventArgs<WelcomeMessage>(this));
     }
-
   }
-
 }

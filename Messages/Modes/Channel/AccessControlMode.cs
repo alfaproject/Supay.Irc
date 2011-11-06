@@ -1,9 +1,7 @@
 namespace Supay.Irc.Messages.Modes {
-
   /// <summary>
   ///   This category of modes is used to control access to a channel. </summary>
   public abstract class AccessControlMode : ChannelMode {
-
     protected AccessControlMode()
       : this(new Mask()) {
     }
@@ -42,6 +40,5 @@ namespace Supay.Irc.Messages.Modes {
     public override string ToString() {
       return base.ToString() + " " + Mask;
     }
-
-  } //class AccessControlMode
-} //namespace Supay.Irc.Messages.Modes
+  }
+}

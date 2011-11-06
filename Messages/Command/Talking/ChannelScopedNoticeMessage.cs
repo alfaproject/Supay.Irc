@@ -2,7 +2,6 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   ///   This message is a notice message which is scoped to the current channel. </summary>
   /// <remarks>
@@ -11,7 +10,6 @@ namespace Supay.Irc.Messages {
   ///   operators send this notice message as often as they want to people who are in that channel. </remarks>
   [Serializable]
   public class ChannelScopedNoticeMessage : CommandMessage, IChannelTargetedMessage {
-
     private string _text;
     private string _target;
     private string _channel;
@@ -151,6 +149,5 @@ namespace Supay.Irc.Messages {
     }
 
     #endregion
-
-  } //class ChannelScopedNoticeMessage
-} //namespace Supay.Irc.Messages
+  }
+}

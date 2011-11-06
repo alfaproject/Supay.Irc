@@ -1,13 +1,11 @@
 using System;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// A client-to-client ping request message.
   /// </summary>
   [Serializable]
   public class PingRequestMessage : CtcpRequestMessage {
-
     /// <summary>
     /// Creates a new instance of the <see cref="PingRequestMessage"/> class.
     /// </summary>
@@ -33,6 +31,7 @@ namespace Supay.Irc.Messages {
         this.timeStamp = value;
       }
     }
+
     private string timeStamp = string.Empty;
 
     /// <summary>
@@ -58,7 +57,5 @@ namespace Supay.Irc.Messages {
       base.Parse(unparsedMessage);
       this.TimeStamp = CtcpUtil.GetExtendedData(unparsedMessage);
     }
-
   }
-
 }

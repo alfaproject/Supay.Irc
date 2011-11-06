@@ -2,13 +2,11 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// This is the reply to an empty <see cref="UserModeMessage"/>.
   /// </summary>
   [Serializable]
   public class UserModeIsReplyMessage : NumericMessage {
-
     /// <summary>
     /// Creates a new instance of the <see cref="UserModeIsReplyMessage"/> class.
     /// </summary>
@@ -60,7 +58,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnUserModeIsReply(new IrcMessageEventArgs<UserModeIsReplyMessage>(this));
     }
-
   }
-
 }

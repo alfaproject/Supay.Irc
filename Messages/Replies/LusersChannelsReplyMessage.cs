@@ -3,13 +3,11 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// One of the responses to the <see cref="LusersMessage"/> query.
   /// </summary>
   [Serializable]
   public class LusersChannelsReplyMessage : NumericMessage {
-
     /// <summary>
     /// Creates a new instance of the <see cref="LusersChannelsReplyMessage"/> class.
     /// </summary>
@@ -28,6 +26,7 @@ namespace Supay.Irc.Messages {
         channelCount = value;
       }
     }
+
     private int channelCount = -1;
 
     /// <summary>
@@ -56,5 +55,4 @@ namespace Supay.Irc.Messages {
       conduit.OnLusersChannelsReply(new IrcMessageEventArgs<LusersChannelsReplyMessage>(this));
     }
   }
-
 }

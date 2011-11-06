@@ -2,13 +2,11 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// Marks the end of the replies to a <see cref="NamesMessage"/> query.
   /// </summary>
   [Serializable]
   public class NamesEndReplyMessage : NumericMessage, IChannelTargetedMessage {
-
     /// <summary>
     /// Creates a new instance of the <see cref="NamesEndReplyMessage"/> class.
     /// </summary>
@@ -27,6 +25,7 @@ namespace Supay.Irc.Messages {
         channel = value;
       }
     }
+
     private string channel = string.Empty;
 
     /// <summary>
@@ -57,7 +56,6 @@ namespace Supay.Irc.Messages {
       conduit.OnNamesEndReply(new IrcMessageEventArgs<NamesEndReplyMessage>(this));
     }
 
-
     #region IChannelTargetedMessage Members
 
     bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
@@ -72,5 +70,4 @@ namespace Supay.Irc.Messages {
 
     #endregion
   }
-
 }

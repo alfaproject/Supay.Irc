@@ -1,7 +1,6 @@
 using System;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// The base class for all ctcp request messages.
   /// </summary>
@@ -27,7 +26,5 @@ namespace Supay.Irc.Messages {
         return "";
       }
     }
-
   }
-
 }

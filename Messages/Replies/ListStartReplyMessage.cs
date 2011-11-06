@@ -2,13 +2,11 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// Marks the start of the replies to the <see cref="ListMessage"/> query.
   /// </summary>
   [Serializable]
   public class ListStartReplyMessage : NumericMessage {
-
     /// <summary>
     /// Creates a new instance of the <see cref="ListStartReplyMessage"/> class.
     /// </summary>
@@ -31,7 +29,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnListStartReply(new IrcMessageEventArgs<ListStartReplyMessage>(this));
     }
-
   }
-
 }

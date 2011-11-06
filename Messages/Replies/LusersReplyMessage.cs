@@ -3,20 +3,17 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// One of the responses to the <see cref="LusersMessage"/> query.
   /// </summary>
   [Serializable]
   public class LusersReplyMessage : NumericMessage {
-
     /// <summary>
     /// Creates a new instance of the <see cref="LusersReplyMessage"/> class.
     /// </summary>
     public LusersReplyMessage()
       : base(251) {
     }
-
 
     /// <summary>
     /// Gets or sets the number of users connected to IRC.
@@ -79,7 +76,6 @@ namespace Supay.Irc.Messages {
       this.UserCount = Convert.ToInt32(MessageUtil.StringBetweenStrings(payload, thereAre, usersAnd), CultureInfo.InvariantCulture);
       this.InvisibleCount = Convert.ToInt32(MessageUtil.StringBetweenStrings(payload, usersAnd, invisibleOn), CultureInfo.InvariantCulture);
       this.ServerCount = Convert.ToInt32(MessageUtil.StringBetweenStrings(payload, invisibleOn, servers), CultureInfo.InvariantCulture);
-
     }
 
     /// <summary>
@@ -88,7 +84,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnLusersReply(new IrcMessageEventArgs<LusersReplyMessage>(this));
     }
-
   }
-
 }

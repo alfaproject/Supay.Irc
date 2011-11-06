@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// This is the reply to an empty <see cref="ChannelModeMessage"/>.
   /// </summary>
   [Serializable]
   public class ChannelModeIsReplyMessage : NumericMessage, IChannelTargetedMessage {
-
     /// <summary>
     /// Creates a new instance of the <see cref="ChannelModeIsReplyMessage"/> class.
     /// </summary>
@@ -98,7 +96,6 @@ namespace Supay.Irc.Messages {
       conduit.OnChannelModeIsReply(new IrcMessageEventArgs<ChannelModeIsReplyMessage>(this));
     }
 
-
     #region IChannelTargetedMessage Members
 
     bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
@@ -113,5 +110,4 @@ namespace Supay.Irc.Messages {
 
     #endregion
   }
-
 }

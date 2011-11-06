@@ -7,7 +7,6 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class UserNotificationServerSideMessage : CommandMessage {
-
     /// <summary>
     /// Gets the IRC command associated with this message.
     /// </summary>
@@ -28,6 +27,7 @@ namespace Supay.Irc.Messages {
         this.userName = value;
       }
     }
+
     private string userName = string.Empty;
 
     /// <summary>
@@ -41,6 +41,7 @@ namespace Supay.Irc.Messages {
         hostName = value;
       }
     }
+
     private string hostName;
 
     /// <summary>
@@ -54,6 +55,7 @@ namespace Supay.Irc.Messages {
         serverName = value;
       }
     }
+
     private string serverName;
 
     /// <summary>
@@ -67,6 +69,7 @@ namespace Supay.Irc.Messages {
         this.realName = value;
       }
     }
+
     private string realName = string.Empty;
 
     /// <exclude />
@@ -116,7 +119,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnUserNotificationServerSide(new IrcMessageEventArgs<UserNotificationServerSideMessage>(this));
     }
-
   }
-
 }

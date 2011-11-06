@@ -1,13 +1,11 @@
 using System;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// The reply to a <see cref="ClientInfoRequestMessage"/>, giving the human-readable response to the request.
   /// </summary>
   [Serializable]
   public class ClientInfoReplyMessage : CtcpReplyMessage {
-
     /// <summary>
     /// Creates a new instances of the <see cref="ClientInfoReplyMessage"/> class.
     /// </summary>
@@ -17,6 +15,7 @@ namespace Supay.Irc.Messages {
     }
 
     private string response = string.Empty;
+
     /// <summary>
     /// Gets or sets the response to the request's query.
     /// </summary>
@@ -32,7 +31,6 @@ namespace Supay.Irc.Messages {
         this.response = value;
       }
     }
-
 
     /// <summary>
     /// Gets the data payload of the Ctcp request.
@@ -58,5 +56,4 @@ namespace Supay.Irc.Messages {
       this.Response = CtcpUtil.GetExtendedData(unparsedMessage);
     }
   }
-
 }

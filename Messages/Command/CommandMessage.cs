@@ -2,12 +2,10 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   ///   The base for all messages which send a text command. </summary>
   [Serializable]
   public abstract class CommandMessage : IrcMessage {
-
     /// <summary>
     ///   Gets the IRC command associated with this message. </summary>
     protected abstract string Command {
@@ -28,6 +26,5 @@ namespace Supay.Irc.Messages {
       string messageCommand = MessageUtil.GetCommand(unparsedMessage);
       return messageCommand.EqualsI(Command);
     }
-
-  } //class CommandMessage
-} //namespace Supay.Irc.Messages
+  }
+}

@@ -3,7 +3,6 @@ using System.Collections.ObjectModel;
 using Supay.Irc.Messages.Modes;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   ///   The <see cref="ErrorMessage"/> sent when attempting to set a key on a channel which already
   ///   has a key set. </summary>
@@ -12,7 +11,6 @@ namespace Supay.Irc.Messages {
   ///   <see cref="ChannelModeMessage"/> and the <see cref="KeyMode"/>. </remarks>
   [Serializable]
   public class ChannelKeyAlreadySetMessage : ErrorMessage, IChannelTargetedMessage {
-
     /// <summary>
     /// Creates a new instances of the <see cref="ChannelKeyAlreadySetMessage"/> class.
     /// </summary>
@@ -31,6 +29,7 @@ namespace Supay.Irc.Messages {
         channel = value;
       }
     }
+
     private string channel;
 
     /// <exclude />
@@ -57,7 +56,6 @@ namespace Supay.Irc.Messages {
       conduit.OnChannelKeyAlreadySet(new IrcMessageEventArgs<ChannelKeyAlreadySetMessage>(this));
     }
 
-
     #region IChannelTargetedMessage Members
 
     bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
@@ -72,5 +70,4 @@ namespace Supay.Irc.Messages {
 
     #endregion
   }
-
 }

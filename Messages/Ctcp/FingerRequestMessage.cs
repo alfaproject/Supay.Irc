@@ -1,13 +1,11 @@
 using System;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// Requests the target's name and idle time.
   /// </summary>
   [Serializable]
   public class FingerRequestMessage : CtcpRequestMessage {
-
     /// <summary>
     /// Creates a new instance of the <see cref="FingerRequestMessage"/> class.
     /// </summary>
@@ -22,7 +20,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnFingerRequest(new IrcMessageEventArgs<FingerRequestMessage>(this));
     }
-
   }
-
 }

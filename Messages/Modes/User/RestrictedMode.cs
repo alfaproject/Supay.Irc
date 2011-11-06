@@ -1,10 +1,8 @@
 namespace Supay.Irc.Messages.Modes {
-
   /// <summary>
   /// This mode signifies that the user has a restricted connection.
   /// </summary>
   public class RestrictedMode : UserMode {
-
     /// <summary>
     /// Creates a new instance of the <see cref="RestrictedMode"/> class.
     /// </summary>
@@ -26,7 +24,5 @@ namespace Supay.Irc.Messages.Modes {
         return "r";
       }
     }
-
   }
-
 }

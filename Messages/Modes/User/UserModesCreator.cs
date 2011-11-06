@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace Supay.Irc.Messages.Modes {
-
   /// <summary>
   /// UserModesCreator parses, builds, and writes the modes used by the <see cref="UserModeMessage"/> class.
   /// </summary>
   public class UserModesCreator {
-
     /// <summary>
     /// Creates a new instance of the <see cref="UserModesCreator"/> class.
     /// </summary>
@@ -45,7 +43,7 @@ namespace Supay.Irc.Messages.Modes {
             currentAction = ModeAction.Remove;
             break;
 
-          // PONDER This probably won't correctly parse incorrect mode messages, should I?
+            // PONDER This probably won't correctly parse incorrect mode messages, should I?
           case 'a':
             this.modes.Add(new AwayMode(currentAction));
             break;
@@ -81,6 +79,7 @@ namespace Supay.Irc.Messages.Modes {
       }
       this.CollapseModes();
     }
+
     #endregion
 
     /// <summary>
@@ -89,7 +88,6 @@ namespace Supay.Irc.Messages.Modes {
     private void CollapseModes() {
       //TODO Implement CollapseModes
     }
-
 
     /// <summary>
     /// Applies the current modes to the given <see cref="UserModeMessage"/>.
@@ -115,7 +113,6 @@ namespace Supay.Irc.Messages.Modes {
       }
     }
 
-
     /// <summary>
     /// Gets the collection of modes parsed or to be applied.
     /// </summary>
@@ -126,7 +123,5 @@ namespace Supay.Irc.Messages.Modes {
     }
 
     private Supay.Irc.Messages.Modes.UserModeCollection modes = new UserModeCollection();
-
   }
-
 }

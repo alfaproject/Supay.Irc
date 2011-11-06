@@ -2,13 +2,11 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// The error received when a message containing target parameters has too many targets specified.
   /// </summary>
   [Serializable]
   public class TooManyTargetsMessage : ErrorMessage {
-
     /// <summary>
     /// Creates a new instances of the <see cref="TooManyTargetsMessage"/> class.
     /// </summary>
@@ -27,6 +25,7 @@ namespace Supay.Irc.Messages {
         invalidTarget = value;
       }
     }
+
     private string invalidTarget = string.Empty;
 
     /// <summary>
@@ -41,6 +40,7 @@ namespace Supay.Irc.Messages {
         errorCode = value;
       }
     }
+
     private string errorCode = string.Empty;
 
     /// <summary>
@@ -54,6 +54,7 @@ namespace Supay.Irc.Messages {
         abortMessage = value;
       }
     }
+
     private string abortMessage = string.Empty;
 
     /// <summary>
@@ -95,7 +96,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnTooManyTargets(new IrcMessageEventArgs<TooManyTargetsMessage>(this));
     }
-
   }
-
 }

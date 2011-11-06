@@ -4,13 +4,11 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// Represents a message with a numeric command that is either unparsable or unimplemented.
   /// </summary>
   [Serializable]
   public class GenericNumericMessage : NumericMessage {
-
     /// <summary>
     /// Gets the Numeric command of the Message
     /// </summary>
@@ -31,6 +29,7 @@ namespace Supay.Irc.Messages {
         return data;
       }
     }
+
     private Collection<string> data = new Collection<string>();
 
     /// <summary>
@@ -65,7 +64,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnGenericNumericMessage(new IrcMessageEventArgs<GenericNumericMessage>(this));
     }
-
   }
-
 }

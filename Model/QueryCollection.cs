@@ -2,12 +2,10 @@
 using System.Linq;
 
 namespace Supay.Irc {
-
   /// <summary>
   /// A collection of <see href="Query"/> objects.
   /// </summary>
   public class QueryCollection : ObservableCollection<Query> {
-
     /// <summary>
     /// Finds the <see href="Query"/> instance within the collection which is with the given user.
     /// </summary>
@@ -27,7 +25,5 @@ namespace Supay.Irc {
       }
       return q;
     }
-
   }
-
 }

@@ -1,12 +1,10 @@
 namespace Supay.Irc.Messages.Modes {
-
   /// <summary>
   /// When this mode is set, 
   /// new members are only accepted if their mask matches Invite-list (See <see cref="InvitationExceptionMode"/>) 
   /// or they have been invited by a channel operator.
   /// </summary>
   public class InviteOnlyMode : ChannelMode {
-
     /// <summary>
     /// Creates a new instance of the <see cref="InviteOnlyMode"/> class.
     /// </summary>
@@ -29,5 +27,4 @@ namespace Supay.Irc.Messages.Modes {
       }
     }
   }
-
 }

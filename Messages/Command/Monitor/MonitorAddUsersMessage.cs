@@ -2,13 +2,11 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// A Monitor system message that adds users to your monitor list.
   /// </summary>
   [Serializable]
   public class MonitorAddUsersMessage : MonitorMessage {
-
     /// <summary>
     /// Gets the collection of nicks being added to the monitor list.
     /// </summary>
@@ -20,6 +18,7 @@ namespace Supay.Irc.Messages {
         return nicks;
       }
     }
+
     private Collection<string> nicks;
 
     /// <summary>
@@ -62,7 +61,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(MessageConduit conduit) {
       conduit.OnMonitorAddUsers(new IrcMessageEventArgs<MonitorAddUsersMessage>(this));
     }
-
   }
-
 }

@@ -2,13 +2,11 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// The <see cref="ErrorMessage"/> received when a user tries to kill, kick, or de-op a bot which provides channel services.
   /// </summary>
   [Serializable]
   public class CannotRemoveServiceBotMessage : ErrorMessage {
-
     /// <summary>
     /// Creates a new instances of the <see cref="CannotRemoveServiceBotMessage"/> class.
     /// </summary>
@@ -27,6 +25,7 @@ namespace Supay.Irc.Messages {
         nick = value;
       }
     }
+
     private string nick;
 
     /// <summary>
@@ -40,8 +39,8 @@ namespace Supay.Irc.Messages {
         channel = value;
       }
     }
-    private string channel;
 
+    private string channel;
 
     /// <exclude />
     protected override Collection<string> GetParameters() {
@@ -69,7 +68,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnCannotRemoveServiceBot(new IrcMessageEventArgs<CannotRemoveServiceBotMessage>(this));
     }
-
   }
-
 }

@@ -1,13 +1,11 @@
 using System;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// An unknown <see cref="CtcpRequestMessage"/>.
   /// </summary>
   [Serializable]
   public class GenericCtcpRequestMessage : CtcpRequestMessage {
-
     /// <summary>
     /// Gets or sets the information packaged with the ctcp command.
     /// </summary>
@@ -19,8 +17,8 @@ namespace Supay.Irc.Messages {
         this.dataPackage = value;
       }
     }
-    private string dataPackage = string.Empty;
 
+    private string dataPackage = string.Empty;
 
     /// <summary>
     /// Gets the data payload of the Ctcp request.
@@ -58,7 +56,5 @@ namespace Supay.Irc.Messages {
       this.Command = CtcpUtil.GetInternalCommand(unparsedMessage);
       this.DataPackage = CtcpUtil.GetExtendedData(unparsedMessage);
     }
-
   }
-
 }

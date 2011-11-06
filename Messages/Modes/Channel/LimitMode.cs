@@ -1,12 +1,10 @@
 using System.Globalization;
 
 namespace Supay.Irc.Messages.Modes {
-
   /// <summary>
   /// A user limit may be set on channels by using this mode.
   /// </summary>
   public class LimitMode : FlagMode {
-
     /// <summary>
     /// Creates a new instance of the <see cref="LimitMode"/> class.
     /// </summary>
@@ -37,7 +35,6 @@ namespace Supay.Irc.Messages.Modes {
       this.userLimit = userLimit;
     }
 
-
     /// <summary>
     /// Gets the IRC string representation of the mode being changed or applied.
     /// </summary>
@@ -58,6 +55,7 @@ namespace Supay.Irc.Messages.Modes {
         userLimit = value;
       }
     }
+
     private int userLimit = -1;
 
     /// <summary>
@@ -70,5 +68,4 @@ namespace Supay.Irc.Messages.Modes {
       }
     }
   }
-
 }

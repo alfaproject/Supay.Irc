@@ -2,13 +2,11 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// Returned when a <see cref="NickMessage"/> is processed that results in an attempt to change to a currently existing nickname. 
   /// </summary>
   [Serializable]
   public class NickInUseMessage : ErrorMessage {
-
     /// <summary>
     /// Creates a new instances of the <see cref="NickInUseMessage"/> class.
     /// </summary>
@@ -29,7 +27,6 @@ namespace Supay.Irc.Messages {
     }
 
     private string nick = string.Empty;
-
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
@@ -58,7 +55,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnNickInUse(new IrcMessageEventArgs<NickInUseMessage>(this));
     }
-
   }
-
 }

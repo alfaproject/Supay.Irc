@@ -2,13 +2,11 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// One of the possible replies to a <see cref="WhoIsMessage"/> message.
   /// </summary>
   [Serializable]
   public class WhoIsRegisteredNickReplyMessage : NumericMessage {
-
     /// <summary>
     /// Creates a new instance of the <see cref="WhoIsRegisteredNickReplyMessage"/> class.
     /// </summary>
@@ -55,7 +53,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnWhoIsRegisteredNickReply(new IrcMessageEventArgs<WhoIsRegisteredNickReplyMessage>(this));
     }
-
   }
-
 }

@@ -2,13 +2,11 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// The reply to the <see cref="SilenceMessage"/> query.
   /// </summary>
   [Serializable]
   public class SilenceReplyMessage : NumericMessage {
-
     /// <summary>
     /// Creates a new instance of the <see cref="SilenceReplyMessage"/>.
     /// </summary>
@@ -27,6 +25,7 @@ namespace Supay.Irc.Messages {
         this.silencedUser = value;
       }
     }
+
     private User silencedUser = new User();
 
     /// <summary>
@@ -40,8 +39,8 @@ namespace Supay.Irc.Messages {
         this.silenceListOwner = value;
       }
     }
-    private string silenceListOwner = string.Empty;
 
+    private string silenceListOwner = string.Empty;
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
@@ -69,7 +68,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnSilenceReply(new IrcMessageEventArgs<SilenceReplyMessage>(this));
     }
-
   }
-
 }

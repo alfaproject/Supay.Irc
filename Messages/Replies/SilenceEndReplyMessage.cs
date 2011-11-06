@@ -2,13 +2,11 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// Marks the end of the replies to the <see cref="SilenceMessage"/> query.
   /// </summary>
   [Serializable]
   public class SilenceEndReplyMessage : NumericMessage {
-
     /// <summary>
     /// Creates a new instance of the <see cref="SilenceEndReplyMessage"/> class.
     /// </summary>
@@ -30,7 +28,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnSilenceEndReply(new IrcMessageEventArgs<SilenceEndReplyMessage>(this));
     }
-
   }
-
 }

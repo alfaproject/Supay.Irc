@@ -2,13 +2,11 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// A request for some information about the server.
   /// </summary>
   [Serializable]
   public class StatsMessage : ServerQueryBase {
-
     /// <summary>
     /// Gets the IRC command associated with this message.
     /// </summary>
@@ -29,6 +27,7 @@ namespace Supay.Irc.Messages {
         query = value;
       }
     }
+
     private string query;
 
     /// <summary>
@@ -52,7 +51,6 @@ namespace Supay.Irc.Messages {
       } else {
         this.Query = string.Empty;
       }
-
     }
 
     /// <summary>
@@ -70,7 +68,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnStats(new IrcMessageEventArgs<StatsMessage>(this));
     }
-
   }
-
 }

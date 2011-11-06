@@ -3,7 +3,6 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// The <see cref="ErrorMessage"/> sent when a user tries to connect with an user name containing invalid characters
   /// </summary>
@@ -13,7 +12,6 @@ namespace Supay.Irc.Messages {
   /// </remarks>
   [Serializable]
   public class IdentChangedMessage : ErrorMessage {
-
     /// <summary>
     /// Creates a new instances of the <see cref="IdentChangedMessage"/> class.
     /// </summary>
@@ -32,6 +30,7 @@ namespace Supay.Irc.Messages {
         ident = value;
       }
     }
+
     private string ident;
 
     /// <summary>
@@ -45,6 +44,7 @@ namespace Supay.Irc.Messages {
         invalidCharacters = value;
       }
     }
+
     private string invalidCharacters;
 
     /// <summary>
@@ -58,6 +58,7 @@ namespace Supay.Irc.Messages {
         newIdent = value;
       }
     }
+
     private string newIdent;
 
     /// <exclude />
@@ -82,7 +83,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnIdentChanged(new IrcMessageEventArgs<IdentChangedMessage>(this));
     }
-
   }
-
 }

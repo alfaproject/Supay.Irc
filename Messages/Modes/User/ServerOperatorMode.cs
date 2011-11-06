@@ -1,10 +1,8 @@
 namespace Supay.Irc.Messages.Modes {
-
   /// <summary>
   /// This mode signifies that the user is an operator on the current server.
   /// </summary>
   public class ServerOperatorMode : UserMode {
-
     /// <summary>
     /// Creates a new instance of the <see cref="ServerOperatorMode"/> class.
     /// </summary>
@@ -26,7 +24,5 @@ namespace Supay.Irc.Messages.Modes {
         return "O";
       }
     }
-
   }
-
 }

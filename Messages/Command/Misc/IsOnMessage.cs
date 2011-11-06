@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// The IsOnMessage provides a quick and efficient means to get a response about whether a given nickname is currently on IRC.
   /// </summary>
@@ -12,7 +11,6 @@ namespace Supay.Irc.Messages {
   /// </remarks>
   [Serializable]
   public class IsOnMessage : CommandMessage {
-
     /// <summary>
     /// Creates a new instance of the IsOnMessage class.
     /// </summary>
@@ -36,6 +34,7 @@ namespace Supay.Irc.Messages {
         return this.nicks;
       }
     }
+
     private List<string> nicks = new List<string>();
 
     /// <summary>
@@ -74,7 +73,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnIsOn(new IrcMessageEventArgs<IsOnMessage>(this));
     }
-
   }
-
 }

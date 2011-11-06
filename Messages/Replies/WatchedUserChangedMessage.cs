@@ -3,13 +3,11 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// A Watch system notification that a watched user's status has changed
   /// </summary>
   [Serializable]
   public abstract class WatchedUserChangedMessage : NumericMessage {
-
     protected WatchedUserChangedMessage(int number)
       : base(number) {
     }
@@ -28,6 +26,7 @@ namespace Supay.Irc.Messages {
         this.watchedUser = value;
       }
     }
+
     private User watchedUser;
 
     /// <summary>
@@ -41,13 +40,13 @@ namespace Supay.Irc.Messages {
         changeTime = value;
       }
     }
+
     private DateTime changeTime;
 
     /// <exclude />
     protected abstract string ChangeMessage {
       get;
     }
-
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
@@ -77,7 +76,5 @@ namespace Supay.Irc.Messages {
         this.TimeOfChange = MessageUtil.ConvertFromUnixTime(Convert.ToInt32(parameters[4], CultureInfo.InvariantCulture));
       }
     }
-
   }
-
 }

@@ -3,14 +3,12 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// A Monitor system error message informing the user which nicks couldn't be added 
   /// to their monitor list because it is full.
   /// </summary>
   [Serializable]
   public class MonitorListFullMessage : NumericMessage {
-
     /// <summary>
     /// Creates a new instance of the <see cref="MonitorListFullMessage"/>.
     /// </summary>
@@ -29,6 +27,7 @@ namespace Supay.Irc.Messages {
         limit = value;
       }
     }
+
     private int limit;
 
     /// <summary>
@@ -42,6 +41,7 @@ namespace Supay.Irc.Messages {
         return nicks;
       }
     }
+
     private Collection<string> nicks;
 
     /// <exclude />
@@ -67,7 +67,6 @@ namespace Supay.Irc.Messages {
         foreach (string nick in userList) {
           this.Nicks.Add(nick);
         }
-
       }
     }
 
@@ -77,7 +76,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnMonitorListFull(new IrcMessageEventArgs<MonitorListFullMessage>(this));
     }
-
   }
-
 }

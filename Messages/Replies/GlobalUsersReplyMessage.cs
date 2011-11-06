@@ -3,13 +3,11 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// This message indicates the number of network-wide users.
   /// </summary>
   [Serializable]
   public class GlobalUsersReplyMessage : NumericMessage {
-
     /// <summary>
     /// Creates a new instance of the <see cref="GlobalUsersReplyMessage"/> class.
     /// </summary>
@@ -28,6 +26,7 @@ namespace Supay.Irc.Messages {
         userCount = value;
       }
     }
+
     private int userCount = -1;
 
     /// <summary>
@@ -41,6 +40,7 @@ namespace Supay.Irc.Messages {
         userLimit = value;
       }
     }
+
     private int userLimit = -1;
 
     private const string currentGlobalUsers = "Current global users: ";
@@ -83,7 +83,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnGlobalUsersReply(new IrcMessageEventArgs<GlobalUsersReplyMessage>(this));
     }
-
   }
-
 }

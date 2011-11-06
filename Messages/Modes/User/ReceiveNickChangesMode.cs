@@ -1,10 +1,8 @@
 namespace Supay.Irc.Messages.Modes {
-
   /// <summary>
   /// This mode signifies that the user will receive client nick changes messages.
   /// </summary>
   public class ReceiveNickChangesMode : UserMode {
-
     /// <summary>
     /// Creates a new instance of the <see cref="ReceiveNickChangesMode"/> class.
     /// </summary>
@@ -26,7 +24,5 @@ namespace Supay.Irc.Messages.Modes {
         return "n";
       }
     }
-
   }
-
 }

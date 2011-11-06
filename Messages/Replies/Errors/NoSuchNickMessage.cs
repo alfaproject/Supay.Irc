@@ -2,13 +2,11 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// Used to indicate the nickname parameter supplied to a command is currently unused.
   /// </summary>
   [Serializable]
   public class NoSuchNickMessage : ErrorMessage {
-
     /// <summary>
     /// Creates a new instances of the <see cref="NoSuchNickMessage"/> class.
     /// </summary>
@@ -57,7 +55,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnNoSuchNick(new IrcMessageEventArgs<NoSuchNickMessage>(this));
     }
-
   }
-
 }

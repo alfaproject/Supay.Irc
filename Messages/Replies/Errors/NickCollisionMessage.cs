@@ -2,13 +2,11 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// Returned by a server to a client when it detects a nickname collision.
   /// </summary>
   [Serializable]
   public class NickCollisionMessage : ErrorMessage {
-
     /// <summary>
     /// Creates a new instances of the <see cref="NickCollisionMessage"/> class.
     /// </summary>
@@ -29,7 +27,6 @@ namespace Supay.Irc.Messages {
     }
 
     private string nick = string.Empty;
-
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
@@ -58,7 +55,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnNickCollision(new IrcMessageEventArgs<NickCollisionMessage>(this));
     }
-
   }
-
 }

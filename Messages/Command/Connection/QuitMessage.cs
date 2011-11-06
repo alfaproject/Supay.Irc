@@ -2,7 +2,6 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   ///   A client session is ended with a QuitMessage. </summary>
   /// <remarks>
@@ -11,7 +10,6 @@ namespace Supay.Irc.Messages {
   ///   message, the nickname. </remarks>
   [Serializable]
   public class QuitMessage : CommandMessage {
-
     /// <summary>
     ///   Creates a new instance of the QuitMessage class. </summary>
     public QuitMessage() {
@@ -64,6 +62,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(MessageConduit conduit) {
       conduit.OnQuit(new IrcMessageEventArgs<QuitMessage>(this));
     }
-
-  } //class QuitMessage
-} //namespace Supay.Irc.Messages
+  }
+}

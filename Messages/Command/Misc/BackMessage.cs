@@ -1,13 +1,11 @@
 using System;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// With the BackMessage, clients can set disable the automatic reply string set by an <see cref="AwayMessage"/>.
   /// </summary>
   [Serializable]
   public class BackMessage : CommandMessage {
-
     /// <summary>
     /// Gets the Irc command associated with this message.
     /// </summary>
@@ -30,7 +28,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnBack(new IrcMessageEventArgs<BackMessage>(this));
     }
-
   }
-
 }

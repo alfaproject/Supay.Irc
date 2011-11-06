@@ -3,7 +3,6 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// This message indicates the number of unknown connections on the server.
   /// </summary>
@@ -15,7 +14,6 @@ namespace Supay.Irc.Messages {
   /// </remarks>
   [Serializable]
   public class UnknownConnectionsMessage : NumericMessage {
-
     /// <summary>
     /// Creates a new instance of the <see cref="UnknownConnectionsMessage"/> class.
     /// </summary>
@@ -34,6 +32,7 @@ namespace Supay.Irc.Messages {
         userCount = value;
       }
     }
+
     private int userCount = -1;
 
     /// <summary>
@@ -59,7 +58,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnUnknownConnections(new IrcMessageEventArgs<UnknownConnectionsMessage>(this));
     }
-
   }
-
 }

@@ -3,13 +3,11 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// Requests information about a user who is no longer connected to IRC.
   /// </summary>
   [Serializable]
   public class WhoWasMessage : CommandMessage {
-
     /// <summary>
     /// Gets or sets the nick of the user being examined.
     /// </summary>
@@ -101,5 +99,4 @@ namespace Supay.Irc.Messages {
       conduit.OnWhoWas(new IrcMessageEventArgs<WhoWasMessage>(this));
     }
   }
-
 }

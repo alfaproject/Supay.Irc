@@ -3,12 +3,10 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   ///   A reply to a <see cref="WhoMessage"/> query. </summary>
   [Serializable]
   public class WhoReplyMessage : NumericMessage, IChannelTargetedMessage {
-
     private string _channel = string.Empty;
     private User _user = new User();
     private int _hopCount = -1;
@@ -76,11 +74,7 @@ namespace Supay.Irc.Messages {
       parameters.Add(User.Host);
       parameters.Add(User.Server);
       parameters.Add(User.Nickname);
-      parameters.Add(
-        (User.Away ? "G" : "H") +
-        (User.IrcOperator ? "*" : string.Empty) +
-        Status.Symbol
-      );
+      parameters.Add((User.Away ? "G" : "H") + (User.IrcOperator ? "*" : string.Empty) + Status.Symbol);
       parameters.Add(HopCount.ToString(CultureInfo.InvariantCulture) + " " + User.Name);
       return parameters;
     }
@@ -118,7 +112,7 @@ namespace Supay.Irc.Messages {
               break;
             case '?': // can see ircop (?)
               break;
-            default:  // check for a channel mode
+            default: // check for a channel mode
               if (ChannelStatus.IsDefined(flag.ToString())) {
                 Status = ChannelStatus.GetInstance(flag.ToString());
               }
@@ -148,6 +142,5 @@ namespace Supay.Irc.Messages {
     }
 
     #endregion
-
-  } //class WhoReplyMessage
-} //namespace Supay.Irc.Messages
+  }
+}

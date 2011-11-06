@@ -2,11 +2,9 @@ using System.Collections.ObjectModel;
 using Supay.Irc.Messages;
 
 namespace Supay.Irc.Dcc {
-
   /// <summary>
   ///   Holds a few utilities for DCC message parsing. </summary>
   public static class DccUtil {
-
     /// <summary>
     ///   Gets the DCC Command of the message, such as CHAT or SEND. </summary>
     public static string GetCommand(string rawMessage) {
@@ -37,6 +35,5 @@ namespace Supay.Irc.Dcc {
       string extendedData = CtcpUtil.GetExtendedData(rawMessage);
       return MessageUtil.Tokenize(extendedData, 0);
     }
-
-  } //class DccUtil
-} //namespace Supay.Irc.Dcc
+  }
+}

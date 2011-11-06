@@ -4,11 +4,9 @@ using System.Net;
 using System.Net.Sockets;
 
 namespace Supay.Irc.Dcc {
-
   /// <summary>
   ///   Handles the networks level communication protocols for sending and receiving files over DCC. </summary>
   public class DccTransfer {
-
     private byte[] _buffer;
     private int _bufferSize = 4096;
 
@@ -143,7 +141,7 @@ namespace Supay.Irc.Dcc {
 
       _buffer = new byte[BufferSize];
       byte[] acknowledgment = new byte[4];
-      
+
       int bytesSent;
       while ((bytesSent = File.Read(_buffer, 0, _buffer.Length)) != 0) {
         try {
@@ -171,7 +169,7 @@ namespace Supay.Irc.Dcc {
       BytesTransferred = 0;
 
       _buffer = new byte[BufferSize];
-      
+
       while (!IsTransferComplete) {
         int bytesReceived = TransferSocket.Receive(_buffer);
         if (bytesReceived == 0) {
@@ -235,6 +233,5 @@ namespace Supay.Irc.Dcc {
     }
 
     #endregion
-
-  } //class DccTransfer
-} //namespace Supay.Irc.Dcc
+  }
+}

@@ -2,7 +2,6 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// OperMessage is used by a normal user to obtain IRC operator privileges.
   /// ( This does not refer to channel ops )
@@ -10,7 +9,6 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class OperMessage : CommandMessage {
-
     /// <summary>
     /// Creates a new instance of the OperMessage class.
     /// </summary>
@@ -45,6 +43,7 @@ namespace Supay.Irc.Messages {
         this.password = value;
       }
     }
+
     private string password = string.Empty;
 
     /// <summary>
@@ -58,6 +57,7 @@ namespace Supay.Irc.Messages {
         this.name = value;
       }
     }
+
     private string name = string.Empty;
 
     /// <summary>
@@ -89,7 +89,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnOper(new IrcMessageEventArgs<OperMessage>(this));
     }
-
   }
-
 }

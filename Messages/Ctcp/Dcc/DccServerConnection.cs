@@ -3,11 +3,10 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Net.Sockets;
 using System.Threading;
-using Supay.Irc.Network;
 using Supay.Irc.Messages;
+using Supay.Irc.Network;
 
 namespace Supay.Irc.Dcc {
-
   /// <summary>
   ///   The DccServerConnection is used after sending a <see cref="DccSendRequestMessage"/> to send
   ///   the file to the target. </summary>
@@ -19,12 +18,12 @@ namespace Supay.Irc.Dcc {
   ///   amount of time, in case the target ignores the initial message. </remarks>
   [DesignerCategory("Code")]
   public class DccServerConnection : Component {
-
     private TcpListener _chatListener;
     private Thread _connectionWorker;
     private int _port;
     private Timer _timeoutTimer;
     private readonly object _syncLock = new object();
+
     private delegate void SyncInvoke();
 
     #region Constructors
@@ -175,7 +174,9 @@ namespace Supay.Irc.Dcc {
         OnConnecting(EventArgs.Empty);
       }
 
-      _connectionWorker = new Thread(RunSend) { IsBackground = true };
+      _connectionWorker = new Thread(RunSend) {
+        IsBackground = true
+      };
       _connectionWorker.Start();
 
       if (TimeOut != TimeSpan.Zero) {
@@ -224,11 +225,9 @@ namespace Supay.Irc.Dcc {
 
         Transfer.TransferSocket = socket;
         Transfer.Send();
-
       } catch (Exception ex) {
         System.Diagnostics.Trace.WriteLine("Error Opening DccServerConnection On Port " + _port.ToString(CultureInfo.InvariantCulture) + ", " + ex.ToString(), "DccServerConnection");
         throw;
-      
       } finally {
         Status = ConnectionStatus.Disconnected;
         if (_chatListener != null) {
@@ -240,6 +239,5 @@ namespace Supay.Irc.Dcc {
     }
 
     #endregion
-
-  } //class DccServerConnection
-} //namespace Supay.Irc.Dcc
+  }
+}

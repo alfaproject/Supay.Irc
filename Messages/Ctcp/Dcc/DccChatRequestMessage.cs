@@ -2,11 +2,9 @@ using System;
 using Supay.Irc.Dcc;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   ///   This message is a request to start a DCC chat. </summary>
   public class DccChatRequestMessage : DccRequestMessage {
-
     /// <summary>
     ///   Creates a new instance of the <see cref="DccChatRequestMessage"/> class. </summary>
     public DccChatRequestMessage() {
@@ -58,6 +56,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(MessageConduit conduit) {
       conduit.OnDccChatRequest(new IrcMessageEventArgs<DccChatRequestMessage>(this));
     }
-
-  } //class DccChatRequestMessage
-} //namespace Supay.Irc.Messages
+  }
+}

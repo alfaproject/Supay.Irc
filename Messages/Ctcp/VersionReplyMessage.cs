@@ -1,13 +1,11 @@
 using System;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// The reply to a <see cref="VersionRequestMessage"/>.
   /// </summary>
   [Serializable]
   public class VersionReplyMessage : CtcpReplyMessage {
-
     /// <summary>
     /// Creates a new instance of the <see cref="VersionReplyMessage"/> class.
     /// </summary>
@@ -27,6 +25,7 @@ namespace Supay.Irc.Messages {
         this.response = value;
       }
     }
+
     private string response = string.Empty;
 
     /// <summary>
@@ -52,7 +51,5 @@ namespace Supay.Irc.Messages {
       base.Parse(unparsedMessage);
       this.Response = CtcpUtil.GetExtendedData(unparsedMessage);
     }
-
   }
-
 }

@@ -7,13 +7,11 @@ using System.Linq;
 using System.Text;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   ///   Provides simple utilities for parsing and generating messages. </summary>
   /// <remarks>
   ///   Client code will probably not need to use most of these routines. </remarks>
   public static class MessageUtil {
-
     /// <summary>
     ///   Takes the given channel name, and returns a name that is valid according to the given server support. </summary>
     /// <param name="channelName">
@@ -68,7 +66,6 @@ namespace Supay.Irc.Messages {
 
       return false;
     }
-
 
     #region Parameters To string
 
@@ -179,7 +176,6 @@ namespace Supay.Irc.Messages {
 
     #endregion
 
-
     /// <summary>
     ///   Extracts the Prefix from a string message. </summary>
     public static string GetPrefix(string rawMessage) {
@@ -276,7 +272,6 @@ namespace Supay.Irc.Messages {
     private static string cachedRawMessage = string.Empty;
     private static Collection<string> cachedParams;
 
-
     /// <summary>
     ///   Gets the last parameter in the parameters collection of the given unparsed message. </summary>
     public static string GetLastParameter(string rawMessage) {
@@ -357,10 +352,11 @@ namespace Supay.Irc.Messages {
       int currentStartIndex = startIndex;
       for (int i = 0; i < nthItem; i++) {
         result = text.IndexOf(searchValue, currentStartIndex, StringComparison.Ordinal);
-        if (result == -1)
+        if (result == -1) {
           return result;
-        else
+        } else {
           currentStartIndex = result + 1;
+        }
       }
       return result;
     }
@@ -416,6 +412,5 @@ namespace Supay.Irc.Messages {
     public static bool ContainsIgnoreCaseMatch(IEnumerable<string> strings, string match) {
       return strings.Any(item => item.EqualsI(match));
     }
-
-  } //class MessageUtil
-} //namespace Supay.Irc.Messages
+  }
+}

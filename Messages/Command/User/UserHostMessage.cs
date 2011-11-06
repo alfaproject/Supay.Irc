@@ -2,13 +2,11 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// Requests information about the nicks supplied in the Nick property.
   /// </summary>
   [Serializable]
   public class UserHostMessage : CommandMessage {
-
     /// <summary>
     /// Gets the IRC command associated with this message.
     /// </summary>
@@ -54,7 +52,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnUserHost(new IrcMessageEventArgs<UserHostMessage>(this));
     }
-
   }
-
 }

@@ -2,14 +2,12 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// This message is received from the server when it acknowledges a client's
   /// <see cref="AwayMessage"/>.
   /// </summary>
   [Serializable]
   public class SelfAwayMessage : NumericMessage {
-
     /// <summary>
     /// Creates a new instance of the <see cref="SelfAwayMessage"/> class.
     /// </summary>
@@ -31,7 +29,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnSelfAway(new IrcMessageEventArgs<SelfAwayMessage>(this));
     }
-
   }
-
 }

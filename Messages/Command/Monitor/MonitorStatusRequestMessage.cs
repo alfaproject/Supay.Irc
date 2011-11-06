@@ -2,13 +2,11 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// A Monitor system message that requests that status of the users on your monitor list.
   /// </summary>
   [Serializable]
   public class MonitorStatusRequestMessage : MonitorMessage {
-
     /// <summary>
     /// Determines if the message can be parsed by this type.
     /// </summary>
@@ -34,7 +32,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(MessageConduit conduit) {
       conduit.OnMonitorStatusRequest(new IrcMessageEventArgs<MonitorStatusRequestMessage>(this));
     }
-
   }
-
 }

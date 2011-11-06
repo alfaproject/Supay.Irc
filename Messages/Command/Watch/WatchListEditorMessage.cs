@@ -2,13 +2,11 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// A Message that edits the list of users on your watch list.
   /// </summary>
   [Serializable]
   public class WatchListEditorMessage : WatchMessage {
-
     #region Properties
 
     /// <summary>
@@ -22,6 +20,7 @@ namespace Supay.Irc.Messages {
         return addedNicks;
       }
     }
+
     private Collection<string> addedNicks;
 
     /// <summary>
@@ -35,6 +34,7 @@ namespace Supay.Irc.Messages {
         return removedNicks;
       }
     }
+
     private Collection<string> removedNicks;
 
     #endregion
@@ -100,7 +100,5 @@ namespace Supay.Irc.Messages {
     }
 
     #endregion
-
   }
-
 }

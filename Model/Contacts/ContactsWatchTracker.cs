@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using Supay.Irc.Messages;
 
 namespace Supay.Irc.Contacts {
-
   internal class ContactsWatchTracker : ContactsTracker {
-  
     public ContactsWatchTracker(ContactList contacts)
       : base(contacts) {
     }
@@ -38,14 +36,14 @@ namespace Supay.Irc.Contacts {
 
     #region Reply Handlers
 
-    void client_WatchedUserOnline(object sender, Supay.Irc.Messages.IrcMessageEventArgs<Supay.Irc.Messages.WatchedUserOnlineMessage> e) {
+    private void client_WatchedUserOnline(object sender, Supay.Irc.Messages.IrcMessageEventArgs<Supay.Irc.Messages.WatchedUserOnlineMessage> e) {
       User knownUser = this.Contacts.Users.Find(e.Message.WatchedUser.Nickname);
       if (knownUser != null) {
         knownUser.Online = true;
       }
     }
 
-    void client_WatchedUserOffline(object sender, Supay.Irc.Messages.IrcMessageEventArgs<Supay.Irc.Messages.WatchedUserOfflineMessage> e) {
+    private void client_WatchedUserOffline(object sender, Supay.Irc.Messages.IrcMessageEventArgs<Supay.Irc.Messages.WatchedUserOfflineMessage> e) {
       User knownUser = this.Contacts.Users.Find(e.Message.WatchedUser.Nickname);
       if (knownUser != null) {
         knownUser.Online = false;
@@ -53,7 +51,5 @@ namespace Supay.Irc.Contacts {
     }
 
     #endregion
-
   }
-
 }

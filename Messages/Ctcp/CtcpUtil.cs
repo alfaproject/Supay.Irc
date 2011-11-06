@@ -2,16 +2,15 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// Utility class for Ctcp messages.
   /// </summary>
   /// <remarks>
   /// This most likely doesn't need to be used from lib-user code.
   /// </remarks>
-  [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Util"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Ctcp")]
+  [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Util")]
+  [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Ctcp")]
   public static class CtcpUtil {
-
     /// <summary>
     /// The character used to indicate the start and end of an extended data section in a CTCP message.
     /// </summary>
@@ -113,5 +112,4 @@ namespace Supay.Irc.Messages {
       return CtcpUtil.GetTransportCommand(rawMessage) == "NOTICE";
     }
   }
-
 }

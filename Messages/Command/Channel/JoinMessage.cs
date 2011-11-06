@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// The JoinMessage is used by client to start listening a specific channel. 
   /// </summary>
@@ -14,7 +13,6 @@ namespace Supay.Irc.Messages {
   /// </remarks>
   [Serializable]
   public class JoinMessage : CommandMessage, IChannelTargetedMessage {
-
     /// <summary>
     /// Creates a new instance of the <see cref="JoinMessage"/> class.
     /// </summary>
@@ -72,7 +70,6 @@ namespace Supay.Irc.Messages {
       }
     }
 
-
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
     protected override Collection<string> GetParameters() {
@@ -83,7 +80,6 @@ namespace Supay.Irc.Messages {
       }
       return parameters;
     }
-
 
     /// <summary>
     /// Parses the parameters portion of the message
@@ -100,14 +96,12 @@ namespace Supay.Irc.Messages {
       }
     }
 
-
     /// <summary>
     /// Notifies the given <see cref="MessageConduit"/> by raising the appropriate event for the current <see cref="IrcMessage"/> subclass.
     /// </summary>
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnJoin(new IrcMessageEventArgs<JoinMessage>(this));
     }
-
 
     #region IChannelTargetedMessage Members
 
@@ -124,5 +118,4 @@ namespace Supay.Irc.Messages {
 
     #endregion
   }
-
 }

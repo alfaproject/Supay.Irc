@@ -2,13 +2,11 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// Contains a Channel and BanId as one of possible many replies to a ban list request.
   /// </summary>
   [Serializable]
   public class BansReplyMessage : NumericMessage, IChannelTargetedMessage {
-
     /// <summary>
     /// Creates a new instances of the <see cref="BansReplyMessage"/> class.
     /// </summary>
@@ -70,7 +68,6 @@ namespace Supay.Irc.Messages {
       conduit.OnBansReply(new IrcMessageEventArgs<BansReplyMessage>(this));
     }
 
-
     #region IChannelTargetedMessage Members
 
     bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
@@ -85,5 +82,4 @@ namespace Supay.Irc.Messages {
 
     #endregion
   }
-
 }

@@ -5,12 +5,10 @@ using System.Net.Sockets;
 using Supay.Irc.Dcc;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   ///   The base for DCC request messages. </summary>
   [Serializable]
   public abstract class DccRequestMessage : CtcpRequestMessage {
-
     /// <summary>
     ///   Creates a new instance of the <see cref="DccRequestMessage"/> class. </summary>
     protected DccRequestMessage() {
@@ -19,7 +17,6 @@ namespace Supay.Irc.Messages {
       InternalCommand = "DCC";
     }
 
-
     /// <summary>
     ///   Gets the data payload of the CTCP request. </summary>
     protected override string ExtendedData {
@@ -27,7 +24,6 @@ namespace Supay.Irc.Messages {
         return MessageUtil.ParametersToString(false, DccCommand, DccArgument, TransportAddressFromAddress(Address), Port.ToString(CultureInfo.InvariantCulture));
       }
     }
-
 
     /// <summary>
     ///   Gets the DCC sub-command. </summary>
@@ -90,17 +86,15 @@ namespace Supay.Irc.Messages {
       return IPAddress.Parse(transportAddress);
     }
 
-
     private static string TransportAddressFromAddress(IPAddress address) {
       if (address.AddressFamily == AddressFamily.InterNetwork) {
         string[] octets = address.ToString().Split('.');
         Array.Reverse(octets);
-        
+
         IPAddress backwards = IPAddress.Parse(string.Join(".", octets));
         return backwards == null ? null : backwards.ToString();
       }
       return address.ToString();
     }
-
-  } //class DccRequestMessage
-} //namespace Supay.Irc.Messages
+  }
+}

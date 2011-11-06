@@ -2,13 +2,11 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// A reply to a <see cref="KnockMessage"/>.
   /// </summary>
   [Serializable]
   public class KnockReplyMessage : NumericMessage {
-
     /// <summary>
     /// Creates a new instance of the <see cref="KnockReplyMessage"/>.
     /// </summary>
@@ -27,6 +25,7 @@ namespace Supay.Irc.Messages {
         this.channel = value;
       }
     }
+
     private string channel = string.Empty;
 
     /// <summary>
@@ -56,7 +55,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnKnockReply(new IrcMessageEventArgs<KnockReplyMessage>(this));
     }
-
   }
-
 }

@@ -2,13 +2,11 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// A reply to a <see cref="WhoIsMessage"/> that specifies what server they are on.
   /// </summary>
   [Serializable]
   public class WhoIsServerReplyMessage : NumericMessage {
-
     /// <summary>
     /// Creates a new instance of the <see cref="WhoIsServerReplyMessage"/> class.
     /// </summary>
@@ -88,7 +86,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnWhoIsServerReply(new IrcMessageEventArgs<WhoIsServerReplyMessage>(this));
     }
-
   }
-
 }

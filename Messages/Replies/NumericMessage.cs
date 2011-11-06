@@ -3,12 +3,10 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   ///   The base class for all numeric messages sent from the server to the client. </summary>
   [Serializable]
   public abstract class NumericMessage : IrcMessage {
-
     private int _internalNumeric;
 
     protected NumericMessage()
@@ -95,6 +93,5 @@ namespace Supay.Irc.Messages {
         Target = parameters[0];
       }
     }
-
-  } //class NumericMessage
-} //namespace Supay.Irc.Messages
+  }
+}

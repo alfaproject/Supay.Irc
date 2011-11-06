@@ -2,13 +2,11 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// Requests that the server send information about the size of the IRC network.
   /// </summary>
   [Serializable]
   public class LusersMessage : ServerQueryBase {
-
     /// <summary>
     /// Gets the IRC command associated with this message.
     /// </summary>
@@ -29,6 +27,7 @@ namespace Supay.Irc.Messages {
         mask = value;
       }
     }
+
     private string mask = string.Empty;
 
     /// <summary>
@@ -69,7 +68,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnLusers(new IrcMessageEventArgs<LusersMessage>(this));
     }
-
   }
-
 }

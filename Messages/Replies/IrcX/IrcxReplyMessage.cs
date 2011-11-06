@@ -3,13 +3,11 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// A reply to a <see cref="IrcxMessage"/> or a <see cref="IsIrcxMessage"/>.
   /// </summary>
   [Serializable]
   public class IrcxReplyMessage : NumericMessage {
-
     /// <summary>
     /// Creates a new instance of the <see cref="IrcxReplyMessage"/>.
     /// </summary>
@@ -28,6 +26,7 @@ namespace Supay.Irc.Messages {
         this.isIrcxClientMode = value;
       }
     }
+
     private bool isIrcxClientMode = false;
 
     /// <summary>
@@ -41,6 +40,7 @@ namespace Supay.Irc.Messages {
         this.ircxVersion = value;
       }
     }
+
     private string ircxVersion = string.Empty;
 
     /// <summary>
@@ -51,6 +51,7 @@ namespace Supay.Irc.Messages {
         return this.authenticationPackages;
       }
     }
+
     private Collection<string> authenticationPackages = new Collection<string>();
 
     /// <summary>
@@ -64,6 +65,7 @@ namespace Supay.Irc.Messages {
         this.maximumMessageLength = value;
       }
     }
+
     private int maximumMessageLength = -1;
 
     /// <summary>
@@ -81,6 +83,7 @@ namespace Supay.Irc.Messages {
         this.tokens = value;
       }
     }
+
     private string tokens = "*";
 
     /// <summary>
@@ -128,7 +131,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnIrcxReply(new IrcMessageEventArgs<IrcxReplyMessage>(this));
     }
-
   }
-
 }

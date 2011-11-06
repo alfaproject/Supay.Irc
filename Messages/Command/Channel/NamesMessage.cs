@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// By using the NamesMessage, a user can list all nicknames that are visible to them on any channel that they can see.
   /// </summary>
@@ -12,8 +11,6 @@ namespace Supay.Irc.Messages {
   /// </remarks>
   [Serializable]
   public class NamesMessage : CommandMessage {
-
-
     /// <summary>
     /// Gets the channels that should be queried for their users.
     /// </summary>
@@ -22,6 +19,7 @@ namespace Supay.Irc.Messages {
         return this.channels;
       }
     }
+
     private List<string> channels = new List<string>();
 
     /// <summary>
@@ -32,7 +30,6 @@ namespace Supay.Irc.Messages {
         return "NAMES";
       }
     }
-
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
@@ -55,14 +52,11 @@ namespace Supay.Irc.Messages {
       }
     }
 
-
     /// <summary>
     /// Notifies the given <see cref="MessageConduit"/> by raising the appropriate event for the current <see cref="IrcMessage"/> subclass.
     /// </summary>
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnNames(new IrcMessageEventArgs<NamesMessage>(this));
     }
-
   }
-
 }

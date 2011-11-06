@@ -2,13 +2,11 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// Returned when a nickname parameter expected for a command and isn't found.
   /// </summary>
   [Serializable]
   public class NoNickGivenMessage : ErrorMessage {
-
     /// <summary>
     /// Creates a new instances of the <see cref="NoNickGivenMessage"/> class.
     /// </summary>
@@ -30,7 +28,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnNoNickGiven(new IrcMessageEventArgs<NoNickGivenMessage>(this));
     }
-
   }
-
 }

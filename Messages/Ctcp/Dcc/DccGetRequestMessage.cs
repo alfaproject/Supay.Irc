@@ -2,11 +2,9 @@ using System;
 using Supay.Irc.Dcc;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   ///   Sends a request for the transfer of the given file. </summary>
   public class DccGetRequestMessage : CtcpRequestMessage {
-
     /// <summary>
     ///   Creates a new instance of the <see cref="DccGetRequestMessage"/> class. </summary>
     public DccGetRequestMessage() {
@@ -89,6 +87,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(MessageConduit conduit) {
       conduit.OnDccGetRequest(new IrcMessageEventArgs<DccGetRequestMessage>(this));
     }
-
-  } //class DccGetRequestMessage
-} //namespace Supay.Irc.Messages
+  }
+}

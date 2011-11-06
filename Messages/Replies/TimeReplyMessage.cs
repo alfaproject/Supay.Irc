@@ -2,13 +2,11 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// This is the reply to the <see cref="TimeMessage"/> server query.
   /// </summary>
   [Serializable]
   public class ServerTimeReplyMessage : NumericMessage {
-
     /// <summary>
     /// Creates a new instance of the <see cref="ServerTimeReplyMessage"/> class
     /// </summary>
@@ -43,7 +41,6 @@ namespace Supay.Irc.Messages {
     private string server = string.Empty;
     private string time = string.Empty;
 
-
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
     protected override Collection<string> GetParameters() {
@@ -73,7 +70,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnServerTimeReply(new IrcMessageEventArgs<ServerTimeReplyMessage>(this));
     }
-
   }
-
 }

@@ -2,13 +2,11 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// Sent to a user who is trying to send control codes to a channel that is set +c.
   /// </summary>
   [Serializable]
   public class CannotUseColorsMessage : ErrorMessage, IChannelTargetedMessage {
-
     /// <summary>
     /// Creates a new instances of the <see cref="CannotUseColorsMessage"/> class.
     /// </summary>
@@ -27,6 +25,7 @@ namespace Supay.Irc.Messages {
         channel = value;
       }
     }
+
     private string channel = string.Empty;
 
     /// <summary>
@@ -40,8 +39,8 @@ namespace Supay.Irc.Messages {
         _text = value;
       }
     }
-    private string _text;
 
+    private string _text;
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
@@ -77,7 +76,6 @@ namespace Supay.Irc.Messages {
       conduit.OnCannotUseColors(new IrcMessageEventArgs<CannotUseColorsMessage>(this));
     }
 
-
     #region IChannelTargetedMessage Members
 
     bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
@@ -92,5 +90,4 @@ namespace Supay.Irc.Messages {
 
     #endregion
   }
-
 }

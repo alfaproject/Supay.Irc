@@ -2,13 +2,11 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// PongMessage is a reply to ping message.
   /// </summary>
   [Serializable]
   public class PongMessage : CommandMessage {
-
     /// <summary>
     /// Gets the IRC command associated with this message.
     /// </summary>
@@ -29,6 +27,7 @@ namespace Supay.Irc.Messages {
         this.target = value;
       }
     }
+
     private string target = string.Empty;
 
     /// <summary>
@@ -42,6 +41,7 @@ namespace Supay.Irc.Messages {
         this.forwardServer = value;
       }
     }
+
     private string forwardServer = string.Empty;
 
     /// <summary>
@@ -75,7 +75,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnPong(new IrcMessageEventArgs<PongMessage>(this));
     }
-
   }
-
 }

@@ -2,12 +2,10 @@
 using System.ComponentModel;
 
 namespace Supay.Irc {
-
   /// <summary>
   /// Represents a status window for communication between the user and the server
   /// </summary>
   public class ServerQuery : INotifyPropertyChanged {
-
     #region CTor
 
     /// <summary>
@@ -30,6 +28,7 @@ namespace Supay.Irc {
         return journal;
       }
     }
+
     private Journal journal = new Journal();
 
     /// <summary>
@@ -40,13 +39,14 @@ namespace Supay.Irc {
         return client;
       }
     }
+
     private Client client;
 
     #endregion
 
     #region Event Handlers
 
-    void journal_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e) {
+    private void journal_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e) {
       this.OnPropertyChanged(new PropertyChangedEventArgs("Journal"));
     }
 
@@ -71,5 +71,4 @@ namespace Supay.Irc {
 
     #endregion
   }
-
 }

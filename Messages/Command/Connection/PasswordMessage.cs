@@ -2,7 +2,6 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// The PasswordMessage is used to set a 'connection password'.
   /// </summary>
@@ -16,7 +15,6 @@ namespace Supay.Irc.Messages {
   /// </remarks>
   [Serializable]
   public class PasswordMessage : CommandMessage {
-
     /// <summary>
     /// Creates a new instance of the <see cref="PasswordMessage"/> class.
     /// </summary>
@@ -50,8 +48,8 @@ namespace Supay.Irc.Messages {
         this.password = value;
       }
     }
-    private string password = string.Empty;
 
+    private string password = string.Empty;
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
@@ -60,7 +58,6 @@ namespace Supay.Irc.Messages {
       parameters.Add(Password);
       return parameters;
     }
-
 
     /// <summary>
     /// Parses the parameters portion of the message.
@@ -74,14 +71,11 @@ namespace Supay.Irc.Messages {
       }
     }
 
-
     /// <summary>
     /// Notifies the given <see cref="MessageConduit"/> by raising the appropriate event for the current <see cref="IrcMessage"/> subclass.
     /// </summary>
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnPassword(new IrcMessageEventArgs<PasswordMessage>(this));
     }
-
   }
-
 }

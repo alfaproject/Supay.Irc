@@ -2,7 +2,6 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// The <see cref="ErrorMessage"/> received when a user tries to perform a channel-specific operation on a user, 
   /// and the user isn't in the channel.
@@ -14,7 +13,6 @@ namespace Supay.Irc.Messages {
   /// </remarks>
   [Serializable]
   public class BanListFullMessage : ErrorMessage, IChannelTargetedMessage {
-
     /// <summary>
     /// Creates a new instances of the <see cref="BanListFullMessage"/> class.
     /// </summary>
@@ -32,6 +30,7 @@ namespace Supay.Irc.Messages {
         banMask = value;
       }
     }
+
     private Mask banMask;
 
     /// <summary>
@@ -45,8 +44,8 @@ namespace Supay.Irc.Messages {
         channel = value;
       }
     }
-    private string channel;
 
+    private string channel;
 
     /// <exclude />
     protected override Collection<string> GetParameters() {
@@ -76,7 +75,6 @@ namespace Supay.Irc.Messages {
       conduit.OnBanListFull(new IrcMessageEventArgs<BanListFullMessage>(this));
     }
 
-
     #region IChannelTargetedMessage Members
 
     bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
@@ -91,5 +89,4 @@ namespace Supay.Irc.Messages {
 
     #endregion
   }
-
 }

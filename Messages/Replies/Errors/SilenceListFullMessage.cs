@@ -2,13 +2,11 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   ///   The <see cref="ErrorMessage"/> received when an user's silence list is full, and a
   ///   <see cref="SilenceMessage"/> is sent adding an user to the list. </summary>
   [Serializable]
   public class SilenceListFullMessage : ErrorMessage {
-
     /// <summary>
     /// Creates a new instances of the <see cref="SilenceListFullMessage"/> class.
     /// </summary>
@@ -26,8 +24,8 @@ namespace Supay.Irc.Messages {
         silenceMask = value;
       }
     }
-    private Mask silenceMask;
 
+    private Mask silenceMask;
 
     /// <exclude />
     protected override Collection<string> GetParameters() {
@@ -53,7 +51,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnSilenceListFull(new IrcMessageEventArgs<SilenceListFullMessage>(this));
     }
-
   }
-
 }

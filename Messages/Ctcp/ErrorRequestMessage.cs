@@ -1,13 +1,11 @@
 using System;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// I see no real need for this message... but it should generate an <see cref="ErrorReplyMessage"/> from the target.
   /// </summary>
   [Serializable]
   public class ErrorRequestMessage : CtcpRequestMessage {
-
     /// <summary>
     /// Creates a new instance of the <see cref="ErrorRequestMessage"/> class.
     /// </summary>
@@ -27,6 +25,7 @@ namespace Supay.Irc.Messages {
         this.query = value;
       }
     }
+
     private string query = string.Empty;
 
     /// <summary>
@@ -52,7 +51,5 @@ namespace Supay.Irc.Messages {
       base.Parse(unparsedMessage);
       this.Query = CtcpUtil.GetExtendedData(unparsedMessage);
     }
-
   }
-
 }

@@ -2,13 +2,11 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// This reply should be sent whenever a client receives a <see cref="CtcpRequestMessage"/> that is not understood or is malformed.
   /// </summary>
   [Serializable]
   public class ErrorReplyMessage : CtcpReplyMessage {
-
     /// <summary>
     /// Creates a new instance of the <see cref="ErrorReplyMessage"/> class.
     /// </summary>
@@ -28,6 +26,7 @@ namespace Supay.Irc.Messages {
         this.query = value;
       }
     }
+
     private string query = string.Empty;
 
     /// <summary>
@@ -41,6 +40,7 @@ namespace Supay.Irc.Messages {
         this.reason = value;
       }
     }
+
     private string reason = string.Empty;
 
     /// <summary>
@@ -71,7 +71,5 @@ namespace Supay.Irc.Messages {
         this.Reason = p[1];
       }
     }
-
   }
-
 }

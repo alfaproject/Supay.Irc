@@ -1,13 +1,12 @@
 using System;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// An SPR Jukebox message that notifies the recipient of the senders available mp3 file.
   /// </summary>
-  [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "Mp"), Serializable]
+  [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "Mp")]
+  [Serializable]
   public class Mp3RequestMessage : CtcpRequestMessage {
-
     /// <summary>
     /// Creates a new instance of the <see cref="Mp3RequestMessage"/> class.
     /// </summary>
@@ -36,6 +35,7 @@ namespace Supay.Irc.Messages {
         filename = value;
       }
     }
+
     private string filename;
 
     /// <summary>
@@ -61,7 +61,5 @@ namespace Supay.Irc.Messages {
       base.Parse(unparsedMessage);
       this.FileName = CtcpUtil.GetExtendedData(unparsedMessage);
     }
-
   }
-
 }

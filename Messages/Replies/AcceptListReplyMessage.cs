@@ -2,7 +2,6 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   ///   An Accept/CallerId system message received in response to an
   ///   <see cref="AcceptListRequestMessage"/>. </summary>
@@ -10,7 +9,6 @@ namespace Supay.Irc.Messages {
   ///   You may receive more than 1 of these in response to the request. </remarks>
   [Serializable]
   public class AcceptListReplyMessage : NumericMessage {
-
     /// <summary>
     ///   Creates a new instance of the <see cref="AcceptListReplyMessage"/>. </summary>
     public AcceptListReplyMessage()
@@ -52,6 +50,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(MessageConduit conduit) {
       conduit.OnAcceptListReply(new IrcMessageEventArgs<AcceptListReplyMessage>(this));
     }
-
-  } //class AcceptListReplyMessage
-} //namespace Supay.Irc.Messages
+  }
+}

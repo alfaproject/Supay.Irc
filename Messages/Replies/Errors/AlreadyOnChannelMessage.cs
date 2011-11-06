@@ -2,14 +2,12 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// The <see cref="ErrorMessage"/> sent when a user tries to invite a person onto a channel which they
   /// are already on
   /// </summary>
   [Serializable]
   public class AlreadyOnChannelMessage : ErrorMessage, IChannelTargetedMessage {
-
     /// <summary>
     /// Creates a new instances of the <see cref="AlreadyOnChannelMessage"/> class.
     /// </summary>
@@ -28,6 +26,7 @@ namespace Supay.Irc.Messages {
         nick = value;
       }
     }
+
     private string nick;
 
     /// <summary>
@@ -41,8 +40,8 @@ namespace Supay.Irc.Messages {
         channel = value;
       }
     }
-    private string channel;
 
+    private string channel;
 
     /// <exclude />
     protected override Collection<string> GetParameters() {
@@ -71,7 +70,6 @@ namespace Supay.Irc.Messages {
       conduit.OnAlreadyOnChannel(new IrcMessageEventArgs<AlreadyOnChannelMessage>(this));
     }
 
-
     #region IChannelTargetedMessage Members
 
     bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
@@ -86,5 +84,4 @@ namespace Supay.Irc.Messages {
 
     #endregion
   }
-
 }

@@ -2,13 +2,11 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// The base class for server query messages.
   /// </summary>
   [Serializable]
   public abstract class ServerQueryBase : CommandMessage {
-
     /// <summary>
     /// Gets or sets the target server of the query.
     /// </summary>
@@ -20,6 +18,7 @@ namespace Supay.Irc.Messages {
         target = value;
       }
     }
+
     private string target = string.Empty;
 
     /// <summary>
@@ -42,7 +41,5 @@ namespace Supay.Irc.Messages {
         return 0;
       }
     }
-
   }
-
 }

@@ -2,13 +2,11 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   ///   The <see cref="ErrorMessage"/> received when a <see cref="TextMessage"/> is sent with an
   ///   empty Text property. </summary>
   [Serializable]
   public class NoTextToSendMessage : ErrorMessage {
-
     /// <summary>
     /// Creates a new instances of the <see cref="NoTextToSendMessage"/> class.
     /// </summary>
@@ -30,7 +28,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnNoTextToSend(new IrcMessageEventArgs<NoTextToSendMessage>(this));
     }
-
   }
-
 }

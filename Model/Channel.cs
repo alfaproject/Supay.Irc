@@ -6,12 +6,10 @@ using System.Globalization;
 using Supay.Irc.Messages.Modes;
 
 namespace Supay.Irc {
-
   /// <summary>
   ///   Represents a single irc channel, with it's users. </summary>
   [Serializable]
   public class Channel : INotifyPropertyChanged {
-
     private bool _open = false;
     private NameValueCollection _properties;
     private User _topicSetter;
@@ -35,7 +33,7 @@ namespace Supay.Irc {
       _properties = new NameValueCollection(2);
       _properties["NAME"] = name;
       _properties["TOPIC"] = string.Empty;
-      
+
       _users = new UserCollection();
       _users.CollectionChanged += new NotifyCollectionChangedEventHandler(_users_CollectionChanged);
 
@@ -222,6 +220,5 @@ namespace Supay.Irc {
     }
 
     #endregion
-
-  } //class Channel
-} //namespace Supay.Irc
+  }
+}

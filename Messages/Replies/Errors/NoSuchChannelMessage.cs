@@ -2,13 +2,11 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// Used to indicate the given channel name is invalid.
   /// </summary>
   [Serializable]
   public class NoSuchChannelMessage : ErrorMessage, IChannelTargetedMessage {
-
     /// <summary>
     /// Creates a new instances of the <see cref="NoSuchChannelMessage"/> class.
     /// </summary>
@@ -58,7 +56,6 @@ namespace Supay.Irc.Messages {
       conduit.OnNoSuchChannel(new IrcMessageEventArgs<NoSuchChannelMessage>(this));
     }
 
-
     #region IChannelTargetedMessage Members
 
     bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
@@ -73,5 +70,4 @@ namespace Supay.Irc.Messages {
 
     #endregion
   }
-
 }

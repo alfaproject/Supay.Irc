@@ -2,13 +2,11 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// A request that a client plays a local sound.
   /// </summary>
   [Serializable]
   public class SoundRequestMessage : CtcpRequestMessage {
-
     /// <summary>
     /// Creates a new instance of the <see cref="SoundRequestMessage"/> class.
     /// </summary>
@@ -28,6 +26,7 @@ namespace Supay.Irc.Messages {
         this.text = value;
       }
     }
+
     private string text = string.Empty;
 
     /// <summary>
@@ -41,6 +40,7 @@ namespace Supay.Irc.Messages {
         this.soundFile = value;
       }
     }
+
     private string soundFile = string.Empty;
 
     /// <summary>
@@ -73,7 +73,5 @@ namespace Supay.Irc.Messages {
         }
       }
     }
-
   }
-
 }

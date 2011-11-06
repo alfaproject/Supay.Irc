@@ -2,14 +2,12 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// The reply to a <see cref="TopicMessage"/> which requests the topic, 
   /// and there is none set.
   /// </summary>
   [Serializable]
   public class TopicNoneReplyMessage : NumericMessage, IChannelTargetedMessage {
-
     /// <summary>
     /// Creates a new instance of the <see cref="TopicNoneReplyMessage"/> class.
     /// </summary>
@@ -59,7 +57,6 @@ namespace Supay.Irc.Messages {
       conduit.OnTopicNoneReply(new IrcMessageEventArgs<TopicNoneReplyMessage>(this));
     }
 
-
     #region IChannelTargetedMessage Members
 
     bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
@@ -74,5 +71,4 @@ namespace Supay.Irc.Messages {
 
     #endregion
   }
-
 }

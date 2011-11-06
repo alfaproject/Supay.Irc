@@ -3,7 +3,6 @@ using System.Collections.ObjectModel;
 using Supay.Irc.Messages.Modes;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   ///   The <see cref="ErrorMessage"/> received when attempting to join a channel which has reached
   ///   its limit of users. </summary>
@@ -14,7 +13,6 @@ namespace Supay.Irc.Messages {
   ///   bypass the limit. </remarks>
   [Serializable]
   public class ChannelLimitReachedMessage : ErrorMessage {
-
     /// <summary>
     /// Creates a new instances of the <see cref="ChannelLimitReachedMessage"/> class.
     /// </summary>
@@ -33,6 +31,7 @@ namespace Supay.Irc.Messages {
         channel = value;
       }
     }
+
     private string channel;
 
     /// <exclude />
@@ -58,7 +57,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnChannelLimitReached(new IrcMessageEventArgs<ChannelLimitReachedMessage>(this));
     }
-
   }
-
 }

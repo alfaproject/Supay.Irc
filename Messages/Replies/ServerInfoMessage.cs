@@ -2,13 +2,11 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// Contains basic information about a server.
   /// </summary>
   [Serializable]
   public class ServerInfoMessage : NumericMessage {
-
     /// <summary>
     /// Creates a new instance of the <see cref="ServerInfoMessage"/> class.
     /// </summary>
@@ -27,6 +25,7 @@ namespace Supay.Irc.Messages {
         serverName = value;
       }
     }
+
     private string serverName = string.Empty;
 
     /// <summary>
@@ -40,6 +39,7 @@ namespace Supay.Irc.Messages {
         version = value;
       }
     }
+
     private string version = string.Empty;
 
     /// <summary>
@@ -53,6 +53,7 @@ namespace Supay.Irc.Messages {
         userModes = value;
       }
     }
+
     private string userModes = string.Empty;
 
     /// <summary>
@@ -66,6 +67,7 @@ namespace Supay.Irc.Messages {
         channelModes = value;
       }
     }
+
     private string channelModes = string.Empty;
 
     /// <summary>
@@ -79,6 +81,7 @@ namespace Supay.Irc.Messages {
         channelModesWithParams = value;
       }
     }
+
     private string channelModesWithParams = string.Empty;
 
     /// <summary>
@@ -92,6 +95,7 @@ namespace Supay.Irc.Messages {
         userModesWithParams = value;
       }
     }
+
     private string userModesWithParams = string.Empty;
 
     /// <summary>
@@ -105,6 +109,7 @@ namespace Supay.Irc.Messages {
         serverModes = value;
       }
     }
+
     private string serverModes = string.Empty;
 
     /// <summary>
@@ -118,6 +123,7 @@ namespace Supay.Irc.Messages {
         serverModesWithParams = value;
       }
     }
+
     private string serverModesWithParams = string.Empty;
 
     /// <summary>
@@ -169,8 +175,6 @@ namespace Supay.Irc.Messages {
             }
           }
         }
-
-
       }
     }
 
@@ -180,7 +184,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnServerInfo(new IrcMessageEventArgs<ServerInfoMessage>(this));
     }
-
   }
-
 }

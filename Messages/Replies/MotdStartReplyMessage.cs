@@ -2,13 +2,11 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-  
   /// <summary>
   /// Signifies the start of the MOTD sent by the server.
   /// </summary>
   [Serializable]
   public class MotdStartReplyMessage : NumericMessage {
-
     /// <summary>
     /// Creates a new instance of the <see cref="MotdStartReplyMessage"/> class.
     /// </summary>
@@ -29,7 +27,6 @@ namespace Supay.Irc.Messages {
         info = value;
       }
     }
-
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
@@ -54,7 +51,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnMotdStartReply(new IrcMessageEventArgs<MotdStartReplyMessage>(this));
     }
-
   }
-
 }

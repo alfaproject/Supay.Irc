@@ -1,13 +1,11 @@
 using System;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// An unknown <see cref="CtcpReplyMessage"/>.
   /// </summary>
   [Serializable]
   public class GenericCtcpReplyMessage : CtcpReplyMessage {
-
     /// <summary>
     /// Gets or sets the information packaged with the ctcp command.
     /// </summary>
@@ -19,6 +17,7 @@ namespace Supay.Irc.Messages {
         this.dataPackage = value;
       }
     }
+
     private string dataPackage = string.Empty;
 
     /// <summary>
@@ -42,14 +41,12 @@ namespace Supay.Irc.Messages {
       }
     }
 
-
     /// <summary>
     /// Notifies the given <see cref="MessageConduit"/> by raising the appropriate event for the current <see cref="IrcMessage"/> subclass.
     /// </summary>
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnGenericCtcpReply(new IrcMessageEventArgs<GenericCtcpReplyMessage>(this));
     }
-
 
     /// <summary>
     /// Parses the given string to populate this <see cref="IrcMessage"/>.
@@ -59,7 +56,5 @@ namespace Supay.Irc.Messages {
       this.Command = CtcpUtil.GetInternalCommand(unparsedMessage);
       this.DataPackage = CtcpUtil.GetExtendedData(unparsedMessage);
     }
-
   }
-
 }

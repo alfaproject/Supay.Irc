@@ -1,10 +1,8 @@
 namespace Supay.Irc.Messages.Modes {
-
   /// <summary>
   /// This mode signifies that the user is invisible to other users.
   /// </summary>
   public class InvisibleMode : UserMode {
-
     /// <summary>
     /// Creates a new instance of the <see cref="InvisibleMode"/> class.
     /// </summary>
@@ -26,7 +24,5 @@ namespace Supay.Irc.Messages.Modes {
         return "i";
       }
     }
-
   }
-
 }

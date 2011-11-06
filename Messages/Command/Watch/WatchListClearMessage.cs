@@ -2,13 +2,11 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// A Message that clears the list of users on your watch list.
   /// </summary>
   [Serializable]
   public class WatchListClearMessage : WatchMessage {
-
     #region Parsing
 
     /// <summary>
@@ -45,7 +43,5 @@ namespace Supay.Irc.Messages {
     }
 
     #endregion
-
   }
-
 }

@@ -2,14 +2,12 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// This message is sent from the server after connection,
   /// and contains information about the creation of the server.
   /// </summary>
   [Serializable]
   public class ServerCreatedMessage : NumericMessage {
-
     /// <summary>
     /// Creates a new instance of the <see cref="ServerCreatedMessage"/> class.
     /// </summary>
@@ -28,6 +26,7 @@ namespace Supay.Irc.Messages {
         createdDate = value;
       }
     }
+
     private string createdDate = string.Empty;
 
     private const string thisServerCreated = "This server was created ";
@@ -59,7 +58,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnServerCreated(new IrcMessageEventArgs<ServerCreatedMessage>(this));
     }
-
   }
-
 }

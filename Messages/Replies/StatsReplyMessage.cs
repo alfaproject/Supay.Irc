@@ -2,13 +2,11 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// The reply to a <see cref="StatsMessage"/> query.
   /// </summary>
   [Serializable]
   public class StatsReplyMessage : NumericMessage {
-
     /// <summary>
     /// Creates a new instance of the <see cref="StatsReplyMessage"/> class.
     /// </summary>
@@ -27,6 +25,7 @@ namespace Supay.Irc.Messages {
         stats = value;
       }
     }
+
     private string stats = string.Empty;
 
     /// <summary>
@@ -51,7 +50,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnStatsReply(new IrcMessageEventArgs<StatsReplyMessage>(this));
     }
-
   }
-
 }

@@ -2,13 +2,11 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// The <see cref="LinksMessage"/> asks the server to send a list all servers which are known by the server answering the message.
   /// </summary>
   [Serializable]
   public class LinksMessage : ServerQueryBase {
-
     /// <summary>
     /// Gets the IRC command associated with this message.
     /// </summary>
@@ -29,8 +27,8 @@ namespace Supay.Irc.Messages {
         mask = value;
       }
     }
-    private string mask = string.Empty;
 
+    private string mask = string.Empty;
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
@@ -42,7 +40,6 @@ namespace Supay.Irc.Messages {
       }
       return parameters;
     }
-
 
     /// <summary>
     /// Parses the parameters portion of the message.
@@ -62,7 +59,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnLinks(new IrcMessageEventArgs<LinksMessage>(this));
     }
-
   }
-
 }

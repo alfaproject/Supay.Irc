@@ -1,13 +1,11 @@
 using System;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// A Message that participates in the Monitor system.
   /// </summary>
   [Serializable]
   public abstract class MonitorMessage : CommandMessage {
-
     /// <summary>
     /// Gets the IRC command associated with this message.
     /// </summary>
@@ -26,7 +24,5 @@ namespace Supay.Irc.Messages {
         throw new InvalidMessageException(Properties.Resources.ServerDoesNotSupportMonitor);
       }
     }
-
   }
-
 }

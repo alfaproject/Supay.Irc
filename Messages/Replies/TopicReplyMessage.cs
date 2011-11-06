@@ -2,13 +2,11 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// The reply for the <see cref="TopicMessage"/>.
   /// </summary>
   [Serializable]
   public class TopicReplyMessage : NumericMessage, IChannelTargetedMessage {
-
     /// <summary>
     /// Creates a new instance of the <see cref="TopicReplyMessage"/> class.
     /// </summary>
@@ -43,7 +41,6 @@ namespace Supay.Irc.Messages {
     private string channel = string.Empty;
     private string topic = string.Empty;
 
-
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters"/>. </summary>
     protected override Collection<string> GetParameters() {
@@ -74,7 +71,6 @@ namespace Supay.Irc.Messages {
       conduit.OnTopicReply(new IrcMessageEventArgs<TopicReplyMessage>(this));
     }
 
-
     #region IChannelTargetedMessage Members
 
     bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
@@ -89,5 +85,4 @@ namespace Supay.Irc.Messages {
 
     #endregion
   }
-
 }

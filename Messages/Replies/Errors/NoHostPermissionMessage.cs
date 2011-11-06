@@ -2,13 +2,11 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// Returned to a client which attempts to register with a server which has not been set up to allow connections from which the host attempted connection.
   /// </summary>
   [Serializable]
   public class NoHostPermissionMessage : ErrorMessage {
-
     /// <summary>
     /// Creates a new instances of the <see cref="NoHostPermissionMessage"/> class.
     /// </summary>
@@ -30,7 +28,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnNoHostPermission(new IrcMessageEventArgs<NoHostPermissionMessage>(this));
     }
-
   }
-
 }

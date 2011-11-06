@@ -2,13 +2,11 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// Signifies the end of the MOTD sent by the server.
   /// </summary>
   [Serializable]
   public class MotdEndReplyMessage : NumericMessage {
-
     /// <summary>
     /// Creates a new instance of the <see cref="MotdEndReplyMessage"/> class.
     /// </summary>
@@ -30,7 +28,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnMotdEndReply(new IrcMessageEventArgs<MotdEndReplyMessage>(this));
     }
-
   }
-
 }

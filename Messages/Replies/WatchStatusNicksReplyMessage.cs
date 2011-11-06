@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// A reply for the <see cref="WatchListRequestMessage"/> query stating the users on your watch list.
   /// </summary>
@@ -12,7 +11,6 @@ namespace Supay.Irc.Messages {
   /// </remarks>
   [Serializable]
   public class WatchStatusNicksReplyMessage : NumericMessage {
-
     /// <summary>
     /// Creates a new instance of the <see cref="WatchStatusNicksReplyMessage"/>.
     /// </summary>
@@ -31,6 +29,7 @@ namespace Supay.Irc.Messages {
         return nicks;
       }
     }
+
     private List<string> nicks;
 
     /// <summary>
@@ -60,7 +59,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnWatchStatusNicksReply(new IrcMessageEventArgs<WatchStatusNicksReplyMessage>(this));
     }
-
   }
-
 }

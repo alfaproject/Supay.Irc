@@ -3,14 +3,12 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   ///   Error message received primarily when a <see cref="TextMessage"/> is sent without any Targets. </summary>
   /// <remarks>
   ///   Some other commands may also send this when no recipients are specified. </remarks>
   [Serializable]
   public class NoRecipientGivenMessage : ErrorMessage {
-
     /// <summary>
     /// Creates a new instances of the <see cref="NoRecipientGivenMessage"/> class.
     /// </summary>
@@ -29,6 +27,7 @@ namespace Supay.Irc.Messages {
         command = value;
       }
     }
+
     private string command = string.Empty;
 
     /// <summary>
@@ -56,7 +55,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnNoRecipientGiven(new IrcMessageEventArgs<NoRecipientGivenMessage>(this));
     }
-
   }
-
 }

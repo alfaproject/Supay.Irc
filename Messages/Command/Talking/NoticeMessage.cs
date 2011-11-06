@@ -1,14 +1,12 @@
 using System;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// This message is similar to a <see cref="ChatMessage"/>, 
   /// except that no auto-replies should ever be sent after receiving a <see cref="NoticeMessage"/>.
   /// </summary>
   [Serializable]
   public class NoticeMessage : TextMessage {
-
     /// <summary>
     /// Creates a new instance of the <see cref="NoticeMessage"/> class.
     /// </summary>
@@ -56,5 +54,4 @@ namespace Supay.Irc.Messages {
       conduit.OnNotice(new IrcMessageEventArgs<TextMessage>(this));
     }
   }
-
 }

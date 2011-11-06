@@ -3,12 +3,10 @@ using System.Collections.ObjectModel;
 using System.Text;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   ///   The abstract base class for all IRC messages. </summary>
   [Serializable]
   public abstract class IrcMessage {
-
     /// <summary>
     ///   Gets the parameters needed to rebuild this message. </summary>
     /// <remarks>
@@ -82,6 +80,5 @@ namespace Supay.Irc.Messages {
 
       return sb.ToString();
     }
-
-  } //class IrcMessage
-} //namespace Supay.Irc.Messages
+  }
+}

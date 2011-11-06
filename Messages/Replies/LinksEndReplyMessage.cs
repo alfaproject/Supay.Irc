@@ -2,13 +2,11 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// Marks the end of the replies to the <see cref="LinksMessage"/> query.
   /// </summary>
   [Serializable]
   public class LinksEndReplyMessage : NumericMessage {
-
     /// <summary>
     /// Creates a new instance of the <see cref="LinksEndReplyMessage"/> class.
     /// </summary>
@@ -57,7 +55,5 @@ namespace Supay.Irc.Messages {
     public override void Notify(Supay.Irc.Messages.MessageConduit conduit) {
       conduit.OnLinksEndReply(new IrcMessageEventArgs<LinksEndReplyMessage>(this));
     }
-
   }
-
 }

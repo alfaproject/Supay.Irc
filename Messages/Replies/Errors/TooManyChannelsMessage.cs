@@ -2,13 +2,11 @@ using System;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
-
   /// <summary>
   /// Sent to a user when they have joined the maximum number of allowed channels and they try to join another channel.
   /// </summary>
   [Serializable]
   public class TooManyChannelsMessage : ErrorMessage, IChannelTargetedMessage {
-
     /// <summary>
     /// Creates a new instances of the <see cref="TooManyChannelsMessage"/> class.
     /// </summary>
@@ -58,7 +56,6 @@ namespace Supay.Irc.Messages {
       conduit.OnTooManyChannels(new IrcMessageEventArgs<TooManyChannelsMessage>(this));
     }
 
-
     #region IChannelTargetedMessage Members
 
     bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
@@ -73,5 +70,4 @@ namespace Supay.Irc.Messages {
 
     #endregion
   }
-
 }
