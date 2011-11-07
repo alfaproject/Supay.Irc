@@ -377,7 +377,7 @@ namespace Supay.Irc.Messages {
     ///   Creates a char-delimited list from the given <see cref="IList" /> of objects, using
     ///   delimiter.
     /// </summary>
-    public static string CreateList(IList items, string delimiter) {
+    public static string CreateList<T>(IList<T> items, string delimiter) {
       if (items == null || items.Count == 0) {
         return string.Empty;
       }
