@@ -8,7 +8,7 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class ChannelModeIsReplyMessage : NumericMessage, IChannelTargetedMessage {
-    private readonly List<string> modeArguments = new List<string>();
+    private readonly IList<string> modeArguments = new List<string>();
     private string channel = string.Empty;
     private string modes = string.Empty;
 
@@ -52,7 +52,7 @@ namespace Supay.Irc.Messages {
     /// <remarks>
     ///   Some modes require a parameter, such as +l ( user limit ) requires the number being limited to.
     /// </remarks>
-    public virtual List<string> ModeArguments {
+    public virtual IList<string> ModeArguments {
       get {
         return modeArguments;
       }
