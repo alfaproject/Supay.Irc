@@ -357,7 +357,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Creates a space-delimited list from the given items, using delimiter.
     /// </summary>
-    public static string CreateList(Collection<string> items, string delimiter) {
+    public static string CreateList(ICollection<string> items, string delimiter) {
       if (items == null) {
         return string.Empty;
       }
