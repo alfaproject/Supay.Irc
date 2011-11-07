@@ -114,7 +114,7 @@ namespace Supay.Irc.Network {
               if (identName.Length == 0) {
                 identName = User.Nickname.Length != 0 ? User.Nickname : "supay";
               }
-              string identReply = identRequest.Trim() + REPLY + identName.ToLower(CultureInfo.InvariantCulture);
+              string identReply = identRequest.Trim() + REPLY + identName.ToLowerInvariant();
               writer.WriteLine(identReply);
               writer.Flush();
             }
