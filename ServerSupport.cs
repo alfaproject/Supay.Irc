@@ -678,7 +678,7 @@ namespace Supay.Irc {
             SetIfNumeric(GetType().GetProperty("MaxAwayMessageLength"), value);
             break;
           case "IDCHAN":
-            foreach (InfoPair pair in CreateInfoPairs(value)) {
+            foreach (var pair in CreateInfoPairs(value)) {
               int prefixLength;
               if (int.TryParse(pair.Value, out prefixLength)) {
                 SafeChannelPrefixLengths.Add(pair.Key, prefixLength);
@@ -716,7 +716,7 @@ namespace Supay.Irc {
             SetIfNumeric(GetType().GetProperty("MaxChannels"), value);
             break;
           case "CHANLIMIT":
-            foreach (InfoPair chanLimitInfo in CreateInfoPairs(value)) {
+            foreach (var chanLimitInfo in CreateInfoPairs(value)) {
               int limit;
               if (int.TryParse(chanLimitInfo.Value, out limit)) {
                 foreach (Char c in chanLimitInfo.Key) {
@@ -791,7 +791,7 @@ namespace Supay.Irc {
             }
             break;
           case "TARGMAX":
-            foreach (InfoPair targmaxInfo in CreateInfoPairs(value)) {
+            foreach (var targmaxInfo in CreateInfoPairs(value)) {
               int targmax;
               if (int.TryParse(targmaxInfo.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out targmax)) {
                 MaxMessageTargets.Add(targmaxInfo.Key, targmax);
@@ -842,7 +842,7 @@ namespace Supay.Irc {
             ETrace = true;
             break;
           case "MAXLIST":
-            foreach (InfoPair maxListInfoPair in CreateInfoPairs(value)) {
+            foreach (var maxListInfoPair in CreateInfoPairs(value)) {
               int maxLength;
               if (int.TryParse(maxListInfoPair.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out maxLength)) {
                 if (maxListInfoPair.Key.IndexOf("b", StringComparison.Ordinal) != -1) {
@@ -880,32 +880,17 @@ namespace Supay.Irc {
       }
     }
 
-    private IEnumerable<InfoPair> CreateInfoPairs(string value) {
-      var list = new Collection<InfoPair>();
+    private static IEnumerable<KeyValuePair<string, string>> CreateInfoPairs(string value) {
+      var list = new Collection<KeyValuePair<string, string>>();
       foreach (string chanLimitPair in value.Split(',')) {
         if (chanLimitPair.Contains(":")) {
           string[] chanLimitInfo = chanLimitPair.Split(':');
           if (chanLimitInfo.Length == 2 && chanLimitInfo[0].Length > 0) {
-            var pair = new InfoPair(chanLimitInfo[0], chanLimitInfo[1]);
-            list.Add(pair);
+            list.Add(new KeyValuePair<string, string>(chanLimitInfo[0], chanLimitInfo[1]));
           }
         }
       }
       return list;
     }
-
-    #region Nested type: InfoPair
-
-    private struct InfoPair {
-      public readonly string Key;
-      public readonly string Value;
-
-      public InfoPair(string key, string value) {
-        Key = key;
-        Value = value;
-      }
-    }
-
-    #endregion
   }
 }
