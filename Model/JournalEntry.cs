@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Runtime.Serialization;
 using Supay.Irc.Messages;
 
 namespace Supay.Irc {
