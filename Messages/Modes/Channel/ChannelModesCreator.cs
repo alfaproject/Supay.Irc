@@ -17,7 +17,7 @@ namespace Supay.Irc.Messages.Modes {
     ///   Loads the given mode data into this <see cref="ChannelModesCreator" />
     /// </summary>
     [SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity")]
-    public void Parse(string modeChanges, List<string> modeArguments) {
+    public void Parse(string modeChanges, IList<string> modeArguments) {
       if (string.IsNullOrEmpty(modeChanges)) {
         return;
       }
