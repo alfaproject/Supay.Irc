@@ -7,7 +7,6 @@ namespace Supay.Irc {
   /// <summary>
   ///   A single entry in the journal of messages and related information related to an IRC channel or query.
   /// </summary>
-  [DataContract]
   public class JournalEntry : INotifyPropertyChanged {
     /// <summary>
     ///   Creates a new instance of the <see href = "JournalEntry" /> class.
@@ -30,7 +29,6 @@ namespace Supay.Irc {
     /// <summary>
     ///   The time at which the entry was added to the journal.
     /// </summary>
-    [DataMember]
     public DateTime Time {
       get {
         return _time;
@@ -44,7 +42,6 @@ namespace Supay.Irc {
     /// <summary>
     ///   The entry data, usually an <see cref="IrcMessage" />, but can be any object.
     /// </summary>
-    [DataMember]
     public object Item {
       get {
         return _item;
