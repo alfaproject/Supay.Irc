@@ -40,7 +40,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     public NamesReplyMessage()
       : base(353) {
-      Nicks = new Dictionary<string, ChannelStatus>();
+      Nicks = new Dictionary<string, ChannelStatus>(StringComparer.OrdinalIgnoreCase);
     }
 
     /// <summary>
