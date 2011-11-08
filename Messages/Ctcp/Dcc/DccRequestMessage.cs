@@ -83,8 +83,8 @@ namespace Supay.Irc.Messages {
     }
 
     private static IPAddress AddressFromTransportAddress(string transportAddress) {
-      Double theAddress;
-      if (Double.TryParse(transportAddress, NumberStyles.Integer, null, out theAddress)) {
+      double theAddress;
+      if (double.TryParse(transportAddress, NumberStyles.Integer, null, out theAddress)) {
         var backwards = new IPAddress(Convert.ToInt64(theAddress));
         if (backwards.AddressFamily == AddressFamily.InterNetwork) {
           string[] addy = backwards.ToString().Split('.');

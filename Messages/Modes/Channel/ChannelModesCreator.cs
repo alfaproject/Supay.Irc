@@ -27,7 +27,7 @@ namespace Supay.Irc.Messages.Modes {
       modes.Clear();
       ModeAction currentAction = ModeAction.Add;
       int argIndex = 0;
-      foreach (Char c in modeChanges) {
+      foreach (char c in modeChanges) {
         switch (c) {
           case '+':
             currentAction = ModeAction.Add;

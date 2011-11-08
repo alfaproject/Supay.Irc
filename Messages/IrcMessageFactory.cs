@@ -96,7 +96,7 @@ namespace Supay.Irc.Messages {
       }
 
       string command = MessageUtil.GetCommand(unparsedMessage);
-      if (Char.IsDigit(command[0])) {
+      if (char.IsDigit(command[0])) {
         msg = getMessage(unparsedMessage, _numerics);
         if (msg == null) {
           int numeric = Convert.ToInt32(command, CultureInfo.InvariantCulture);

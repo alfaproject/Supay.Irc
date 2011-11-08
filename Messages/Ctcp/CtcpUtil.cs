@@ -15,7 +15,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   The character used to indicate the start and end of an extended data section in a CTCP message.
     /// </summary>
-    public const Char ExtendedDataMarker = '\x0001';
+    public const char ExtendedDataMarker = '\x0001';
 
     /// <summary>
     ///   Escapes the given text for use in a ctcp message.

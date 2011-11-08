@@ -29,7 +29,7 @@ namespace Supay.Irc.Messages.Modes {
         return;
       }
       ModeAction currentAction = ModeAction.Add;
-      foreach (Char c in modeChanges) {
+      foreach (char c in modeChanges) {
         switch (c) {
           case '+':
             currentAction = ModeAction.Add;

@@ -547,7 +547,7 @@ namespace Supay.Irc {
             foreach (var chanLimitInfo in CreateInfoPairs(value)) {
               int limit;
               if (int.TryParse(chanLimitInfo.Value, out limit)) {
-                foreach (Char c in chanLimitInfo.Key) {
+                foreach (char c in chanLimitInfo.Key) {
                   ChannelLimits.Add(c.ToString(CultureInfo.InvariantCulture), limit);
                 }
               }
@@ -647,7 +647,7 @@ namespace Supay.Irc {
             };
 
             ExtendedList = ExtendedListParameters.None;
-            foreach (Char c in value.ToUpperInvariant()) {
+            foreach (char c in value.ToUpperInvariant()) {
               ExtendedList = ExtendedList | elistMap[c];
             }
 
@@ -694,7 +694,7 @@ namespace Supay.Irc {
     }
 
     private static void AddChars(ICollection<string> target, IEnumerable<char> source) {
-      foreach (Char c in source) {
+      foreach (char c in source) {
         target.Add(c.ToString(CultureInfo.InvariantCulture));
       }
     }

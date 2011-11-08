@@ -9,7 +9,7 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class FingerReplyMessage : CtcpReplyMessage {
-    private Double idleSeconds;
+    private double idleSeconds;
     private string loginName = string.Empty;
     private string realName = string.Empty;
 
@@ -47,7 +47,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Gets or sets the number of seconds that the user has been idle.
     /// </summary>
-    public virtual Double IdleSeconds {
+    public virtual double IdleSeconds {
       get {
         return idleSeconds;
       }
@@ -101,8 +101,8 @@ namespace Supay.Irc.Messages {
         if (startOfIdle > 0) {
           startOfIdle += 6;
           string idleSecs = payload.Substring(startOfIdle, payload.Length - startOfIdle - 8);
-          Double foo;
-          if (Double.TryParse(idleSecs, NumberStyles.Any, null, out foo)) {
+          double foo;
+          if (double.TryParse(idleSecs, NumberStyles.Any, null, out foo)) {
             IdleSeconds = foo;
           } else {
             IdleSeconds = -1;
