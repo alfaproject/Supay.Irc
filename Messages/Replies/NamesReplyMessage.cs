@@ -13,7 +13,6 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   The list of channel visibility settings for the <see cref="NamesReplyMessage" />.
     /// </summary>
-    [SuppressMessage("Microsoft.Design", "CA1034:NestedTypesShouldNotBeVisible")]
     public enum ChannelVisibility {
       /// <summary>
       ///   The channel is in <see cref="Supay.Irc.Messages.Modes.SecretMode" />

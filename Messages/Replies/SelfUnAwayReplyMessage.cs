@@ -7,7 +7,6 @@ namespace Supay.Irc.Messages {
   ///   This message is received from the server when it acknowledges a client's
   ///   <see cref="BackMessage" />.
   /// </summary>
-  [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "Un")]
   [Serializable]
   public class SelfUnAwayMessage : NumericMessage {
     /// <summary>

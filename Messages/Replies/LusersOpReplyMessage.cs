@@ -7,7 +7,6 @@ namespace Supay.Irc.Messages {
   /// <summary>
   ///   One of the responses to the <see cref="LusersMessage" /> query.
   /// </summary>
-  [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "Op")]
   [Serializable]
   public class LusersOpReplyMessage : NumericMessage {
     private string info = string.Empty;
@@ -23,7 +22,6 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Gets or sets the number of IRC operators connected to the server.
     /// </summary>
-    [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "Op")]
     public virtual int OpCount {
       get {
         return opCount;

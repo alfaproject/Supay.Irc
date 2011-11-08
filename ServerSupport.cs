@@ -23,7 +23,6 @@ namespace Supay.Irc {
     /// <summary>
     ///   The extended parameters which the server can support on a List message.
     /// </summary>
-    [SuppressMessage("Microsoft.Design", "CA1034:NestedTypesShouldNotBeVisible")]
     [Flags]
     public enum ExtendedListParameters {
       /// <summary>
@@ -495,12 +494,10 @@ namespace Supay.Irc {
     /// <summary>
     ///   Loads support information from the given <see cref="Supay.Irc.Messages.SupportMessage" />.
     /// </summary>
-    [SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity")]
-    [SuppressMessage("Microsoft.Maintainability", "CA1505:AvoidUnmaintainableCode")]
     public void LoadInfo(SupportMessage msg) {
       NameValueCollection items = msg.SupportedItems;
       foreach (string key in items.Keys) {
-        string value = items[key] ?? "";
+        string value = items[key] ?? string.Empty;
         switch (key) {
           case "DEAF":
             DeafMode = true;
@@ -618,7 +615,7 @@ namespace Supay.Irc {
           case "MAXTARGETS":
             int maxTargets;
             if (int.TryParse(value, NumberStyles.Integer, CultureInfo.InvariantCulture, out maxTargets)) {
-              MaxMessageTargets.Add("", maxTargets);
+              MaxMessageTargets.Add(string.Empty, maxTargets);
             }
             break;
           case "TARGMAX":
@@ -707,7 +704,7 @@ namespace Supay.Irc {
       if (value != null && int.TryParse(value, NumberStyles.Integer, CultureInfo.InvariantCulture, out intValue)) {
         property.SetValue(this, intValue, null);
       } else {
-        Trace.WriteLine("Expected numeric for ServerSupport target " + property.Name + " but it was '" + (value ?? "") + "'");
+        Trace.WriteLine("Expected numeric for ServerSupport target " + property.Name + " but it was '" + (value ?? string.Empty) + "'");
       }
     }
 

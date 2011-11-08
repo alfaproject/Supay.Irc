@@ -11,8 +11,6 @@ namespace Supay.Irc.Messages {
   /// <remarks>
   ///   This most likely doesn't need to be used from lib-user code.
   /// </remarks>
-  [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Util")]
-  [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Ctcp")]
   public static class CtcpUtil {
     /// <summary>
     ///   The character used to indicate the start and end of an extended data section in a CTCP message.

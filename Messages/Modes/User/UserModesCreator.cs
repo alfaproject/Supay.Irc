@@ -110,6 +110,7 @@ namespace Supay.Irc.Messages.Modes {
         UserMode currentMode = modes[0];
         ModeAction currentAction = currentMode.Action;
         currentMode.ApplyTo(msg, true);
+
         // The rest compare to the current
         for (int i = 1; i < modes.Count; i++) {
           currentMode = modes[i];

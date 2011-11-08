@@ -5,7 +5,6 @@ namespace Supay.Irc.Messages {
   /// <summary>
   ///   An SPR Jukebox message that notifies the recipient of the senders available mp3 file.
   /// </summary>
-  [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "Mp")]
   [Serializable]
   public class Mp3RequestMessage : CtcpRequestMessage {
     private string filename;

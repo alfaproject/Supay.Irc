@@ -23,7 +23,7 @@ namespace Supay.Irc.Messages {
     /// </summary>
     protected override string ExtendedData {
       get {
-        return "";
+        return string.Empty;
       }
     }
   }

@@ -17,7 +17,6 @@ namespace Supay.Irc {
   ///   A GUI front-end should use one instance of these per client / server
   ///   <see cref="ClientConnection" /> it wants to make.
   /// </remarks>
-  [SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling")]
   [DesignerCategory("Code")]
   public class Client : Component {
     #region Constructors

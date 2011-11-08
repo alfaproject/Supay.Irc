@@ -35,7 +35,6 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Gets or sets the login name of the user.
     /// </summary>
-    [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms", MessageId = "Login")]
     public virtual string LoginName {
       get {
         return loginName;

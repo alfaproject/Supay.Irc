@@ -24,7 +24,6 @@ namespace Supay.Irc.Messages {
     ///   This allows the requestor to substract the two to calculate the timespan to whatever degree
     ///   of exactness that they want.
     /// </remarks>
-    [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", MessageId = "TimeStamp")]
     public virtual string TimeStamp {
       get {
         return timeStamp;

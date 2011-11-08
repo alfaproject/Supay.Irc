@@ -49,7 +49,6 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Gets or sets the time the user signed on to their current server.
     /// </summary>
-    [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms", MessageId = "SignOn")]
     public virtual DateTime SignOnTime {
       get {
         return signOnTime;

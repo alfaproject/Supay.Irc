@@ -138,7 +138,6 @@ namespace Supay.Irc.Network {
             Trace.WriteLine("Ident Abnormally Stopped: " + ex.ToString(), "Ident");
             break;
         }
-        //throw( ex );
       }
 
       _listener.Stop();

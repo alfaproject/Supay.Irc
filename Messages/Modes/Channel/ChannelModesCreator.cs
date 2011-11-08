@@ -16,7 +16,6 @@ namespace Supay.Irc.Messages.Modes {
     /// <summary>
     ///   Loads the given mode data into this <see cref="ChannelModesCreator" />
     /// </summary>
-    [SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity")]
     public void Parse(string modeChanges, IList<string> modeArguments) {
       if (string.IsNullOrEmpty(modeChanges)) {
         return;
@@ -123,7 +122,7 @@ namespace Supay.Irc.Messages.Modes {
           default:
             string unknownMode = c.ToString(CultureInfo.InvariantCulture);
             if (serverSupports.ModesWithParameters.Contains(unknownMode) || (serverSupports.ModesWithParametersWhenSet.Contains(unknownMode) && currentAction == ModeAction.Add)) {
-              // I want to yank a parameter	
+              // I want to yank a parameter
               modes.Add(new UnknownChannelMode(currentAction, unknownMode, modeArguments[argIndex]));
               argIndex++;
             } else {
@@ -204,6 +203,7 @@ namespace Supay.Irc.Messages.Modes {
         ChannelMode currentMode = modes[0];
         ModeAction currentAction = currentMode.Action;
         currentMode.ApplyTo(msg, true);
+
         // The rest compare to the current
         for (int i = 1; i < modes.Count; i++) {
           currentMode = modes[i];

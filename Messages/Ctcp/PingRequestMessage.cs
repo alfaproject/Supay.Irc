@@ -24,7 +24,6 @@ namespace Supay.Irc.Messages {
     ///   so you could subtract the original timestamp with the
     ///   current one to determine the lag time.
     /// </remarks>
-    [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", MessageId = "TimeStamp")]
     public virtual string TimeStamp {
       get {
         return timeStamp;

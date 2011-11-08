@@ -271,6 +271,7 @@ namespace Supay.Irc.Network {
       if (!data.EndsWith("\r\n", StringComparison.Ordinal)) {
         data += "\r\n";
       }
+
       //if (data.Length > 512) {
       //  throw new Supay.Irc.Messages.InvalidMessageException(Properties.Resources.MessagesAreLimitedInSize, data);
       //}
