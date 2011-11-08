@@ -79,50 +79,6 @@ namespace Supay.Irc {
 
     #region Properties
 
-    private readonly Dictionary<string, int> _channelLimits = new Dictionary<string, int>();
-    private readonly Collection<string> _channelTypes = new Collection<string>();
-    private readonly Dictionary<string, int> _maxMessageTargets = new Dictionary<string, int>();
-    private readonly Collection<string> _modesWithParameters = new Collection<string>();
-    private readonly Collection<string> _modesWithParametersWhenSet = new Collection<string>();
-    private readonly Collection<string> _modesWithoutParameters = new Collection<string>();
-    private readonly Dictionary<string, int> _safeChannelPrefixLengths = new Dictionary<string, int>();
-    private bool _banExceptions;
-    private bool _callerId;
-    private string _caseMapping = "rfc1459";
-    private int _channelIdLength = -1;
-    private bool _channelMessages;
-    private bool _channelNotices;
-    private string _channelStatuses = "(ov)@+";
-    private string _characterSet = string.Empty;
-    private ExtendedListParameters _eList;
-    private bool _forcedNickChanges;
-    private bool _invitationExceptions;
-    private bool _knock;
-    private int _maxAwayMessageLength = -1;
-    private int _maxBans = -1;
-    private int _maxChannelNameLength = 200;
-    private int _maxChannels = -1;
-    private int _maxKickCommentLength = -1;
-    private int _maxModes = 3;
-    private int _maxMonitors;
-    private int _maxNickLength = 9;
-    private int _maxSilences;
-    private int _maxTopicLength = -1;
-    private int _maxWatches = -1;
-    private bool _messagesToOperators;
-    private string _networkName = string.Empty;
-    private bool _penalties;
-    private bool _rfc2812;
-    private bool _safeList;
-    private string _standard = "i-d";
-    private bool _userIp;
-    private bool _virtualChannels;
-    private bool _whoX;
-    private bool eTrace;
-    private int maxBanExceptions = -1;
-    private int maxInvitationsExceptions = -1;
-    private string statusMessages = string.Empty;
-
     /// <summary>
     ///   Gets or sets if the server supports the Deaf user mode
     /// </summary>
@@ -135,12 +91,8 @@ namespace Supay.Irc {
     ///   Gets or sets the standard used by the server.
     /// </summary>
     public string Standard {
-      get {
-        return (_standard);
-      }
-      set {
-        _standard = value;
-      }
+      get;
+      set;
     }
 
     /// <summary>
@@ -151,72 +103,56 @@ namespace Supay.Irc {
     ///   Those prefixes are shown in the output of the WHOIS, WHO and NAMES command.
     /// </remarks>
     public string ChannelStatuses {
-      get {
-        return (_channelStatuses);
-      }
-      set {
-        _channelStatuses = value;
-      }
+      get;
+      set;
     }
 
     /// <summary>
     ///   Gets or sets the channel status prefixes supported for matched-status-only messages
     /// </summary>
     public string StatusMessages {
-      get {
-        return (statusMessages);
-      }
-      set {
-        statusMessages = value;
-      }
+      get;
+      set;
     }
 
     /// <summary>
     ///   Gets the supported channel prefixes.
     /// </summary>
     public Collection<string> ChannelTypes {
-      get {
-        return (_channelTypes);
-      }
+      get;
+      private set;
     }
 
     /// <summary>
     ///   Gets the modes that require parameters
     /// </summary>
     public Collection<string> ModesWithParameters {
-      get {
-        return (_modesWithParameters);
-      }
+      get;
+      private set;
     }
 
     /// <summary>
     ///   Gets the modes that require parameters only when set.
     /// </summary>
     public Collection<string> ModesWithParametersWhenSet {
-      get {
-        return (_modesWithParametersWhenSet);
-      }
+      get;
+      private set;
     }
 
     /// <summary>
     ///   Gets the modes that do not require parameters.
     /// </summary>
     public Collection<string> ModesWithoutParameters {
-      get {
-        return (_modesWithoutParameters);
-      }
+      get;
+      private set;
     }
 
     /// <summary>
     ///   Maximum number of channel modes with parameter allowed per <see cref="Supay.Irc.Messages.ChannelModeMessage" /> command.
     /// </summary>
     public int MaxModes {
-      get {
-        return (_maxModes);
-      }
-      set {
-        _maxModes = value;
-      }
+      get;
+      set;
     }
 
     /// <summary>
@@ -226,12 +162,8 @@ namespace Supay.Irc {
     ///   This property is considered obsolete, as most servers use the ChannelLimits property instead.
     /// </remarks>
     public int MaxChannels {
-      get {
-        return (_maxChannels);
-      }
-      set {
-        _maxChannels = value;
-      }
+      get;
+      set;
     }
 
     /// <summary>
@@ -241,141 +173,96 @@ namespace Supay.Irc {
     ///   This property has replaced MaxChannels becuase of the added flexibility.
     /// </remarks>
     public Dictionary<string, int> ChannelLimits {
-      get {
-        return _channelLimits;
-      }
+      get;
+      private set;
     }
 
     /// <summary>
     ///   Gets or sets the maximum nickname length.
     /// </summary>
     public int MaxNickLength {
-      get {
-        return (_maxNickLength);
-      }
-      set {
-        _maxNickLength = value;
-      }
+      get;
+      set;
     }
 
     /// <summary>
     ///   Gets or sets the maximum channel topic length.
     /// </summary>
     public int MaxTopicLength {
-      get {
-        return (_maxTopicLength);
-      }
-      set {
-        _maxTopicLength = value;
-      }
+      get;
+      set;
     }
 
     /// <summary>
     ///   Gets or sets the maximum length of the reason in a <see cref="Supay.Irc.Messages.KickMessage" />.
     /// </summary>
     public int MaxKickCommentLength {
-      get {
-        return (_maxKickCommentLength);
-      }
-      set {
-        _maxKickCommentLength = value;
-      }
+      get;
+      set;
     }
 
     /// <summary>
     ///   Gets or sets the maximum length of a channel name.
     /// </summary>
     public int MaxChannelNameLength {
-      get {
-        return (_maxChannelNameLength);
-      }
-      set {
-        _maxChannelNameLength = value;
-      }
+      get;
+      set;
     }
 
     /// <summary>
     ///   Gets or sets the maximum number of bans that a channel can have.
     /// </summary>
     public int MaxBans {
-      get {
-        return (_maxBans);
-      }
-      set {
-        _maxBans = value;
-      }
+      get;
+      set;
     }
 
     /// <summary>
     ///   Gets or sets the Maximum number of invitation exceptions a channel can have.
     /// </summary>
     public int MaxInvitationExceptions {
-      get {
-        return (maxInvitationsExceptions);
-      }
-      set {
-        maxInvitationsExceptions = value;
-      }
+      get;
+      set;
     }
 
     /// <summary>
     ///   Gets or sets the maximum number of ban exceptions that a channel can have.
     /// </summary>
     public int MaxBanExceptions {
-      get {
-        return (maxBanExceptions);
-      }
-      set {
-        maxBanExceptions = value;
-      }
+      get;
+      set;
     }
 
     /// <summary>
     ///   Gets or sets the name of the network which the server is on.
     /// </summary>
     public string NetworkName {
-      get {
-        return (_networkName);
-      }
-      set {
-        _networkName = value;
-      }
+      get;
+      set;
     }
 
     /// <summary>
     ///   Gets or sets if the server supports channel ban exceptions.
     /// </summary>
     public bool BanExceptions {
-      get {
-        return (_banExceptions);
-      }
-      set {
-        _banExceptions = value;
-      }
+      get;
+      set;
     }
 
     /// <summary>
     ///   Gets or sets if the server supports channel invitation exceptions.
     /// </summary>
     public bool InvitationExceptions {
-      get {
-        return (_invitationExceptions);
-      }
-      set {
-        _invitationExceptions = value;
-      }
+      get;
+      set;
     }
 
     /// <summary>
     ///   Gets or sets the maximum number of silence ( serverside ignore ) listings a client can store.
     /// </summary>
     public int MaxSilences {
-      get {
-        return (_maxSilences);
-      }
-      set {
-        _maxSilences = value;
-      }
+      get;
+      set;
     }
 
     /// <summary>
@@ -386,12 +273,8 @@ namespace Supay.Irc {
     ///   with a target in the format "@#channel".
     /// </remarks>
     public bool MessagesToOperators {
-      get {
-        return (_messagesToOperators);
-      }
-      set {
-        _messagesToOperators = value;
-      }
+      get;
+      set;
     }
 
     /// <summary>
@@ -401,213 +284,144 @@ namespace Supay.Irc {
     ///   "ascii", "rfc1459", and "strict-rfc1459" are the only known values.
     /// </remarks>
     public string CaseMapping {
-      get {
-        return (_caseMapping);
-      }
-      set {
-        _caseMapping = value;
-      }
+      get;
+      set;
     }
 
     /// <summary>
     ///   Gets or sets the text encoding used by the server.
     /// </summary>
     public string CharacterSet {
-      get {
-        return (_characterSet);
-      }
-      set {
-        _characterSet = value;
-      }
+      get;
+      set;
     }
 
     /// <summary>
     ///   Gets or sets if the server supports the standards declared in rfc 2812.
     /// </summary>
     public bool Rfc2812 {
-      get {
-        return (_rfc2812);
-      }
-      set {
-        _rfc2812 = value;
-      }
+      get;
+      set;
     }
 
     /// <summary>
     ///   Gets or sets the length of channel ids.
     /// </summary>
     public int ChannelIdLength {
-      get {
-        return (_channelIdLength);
-      }
-      set {
-        _channelIdLength = value;
-      }
+      get;
+      set;
     }
 
     /// <summary>
     ///   Gets or sets if the server has a message penalty.
     /// </summary>
     public bool Penalties {
-      get {
-        return (_penalties);
-      }
-      set {
-        _penalties = value;
-      }
+      get;
+      set;
     }
 
     /// <summary>
     ///   Gets or sets if the server will change your nick automatticly when it needs to.
     /// </summary>
     public bool ForcedNickChanges {
-      get {
-        return (_forcedNickChanges);
-      }
-      set {
-        _forcedNickChanges = value;
-      }
+      get;
+      set;
     }
 
     /// <summary>
     ///   Gets or sets if the server supports the USERIP command.
     /// </summary>
     public bool UserIP {
-      get {
-        return (_userIp);
-      }
-      set {
-        _userIp = value;
-      }
+      get;
+      set;
     }
 
     /// <summary>
     ///   Gets or sets if the server supports the CPRIVMSG command.
     /// </summary>
     public bool ChannelMessages {
-      get {
-        return (_channelMessages);
-      }
-      set {
-        _channelMessages = value;
-      }
+      get;
+      set;
     }
 
     /// <summary>
     ///   Gets or sets if the server supports the CNOTICE command.
     /// </summary>
     public bool ChannelNotices {
-      get {
-        return (_channelNotices);
-      }
-      set {
-        _channelNotices = value;
-      }
+      get;
+      set;
     }
 
     /// <summary>
     ///   Gets or sets the maximum number of targets allowed on targetted messages, grouped by message command
     /// </summary>
     public Dictionary<string, int> MaxMessageTargets {
-      get {
-        return _maxMessageTargets;
-      }
+      get;
+      private set;
     }
 
     /// <summary>
     ///   Gets or sets if the server supports the <see cref="Supay.Irc.Messages.KnockMessage" />.
     /// </summary>
     public bool Knock {
-      get {
-        return (_knock);
-      }
-      set {
-        _knock = value;
-      }
+      get;
+      set;
     }
 
     /// <summary>
     ///   Gets or sets if the server supports virtual channels.
     /// </summary>
     public bool VirtualChannels {
-      get {
-        return (_virtualChannels);
-      }
-      set {
-        _virtualChannels = value;
-      }
+      get;
+      set;
     }
 
     /// <summary>
     ///   Gets or sets if the <see cref="Supay.Irc.Messages.ListReplyMessage" /> is sent in multiple itterations.
     /// </summary>
     public bool SafeList {
-      get {
-        return (_safeList);
-      }
-      set {
-        _safeList = value;
-      }
+      get;
+      set;
     }
 
     /// <summary>
     ///   Gets or sets the extended parameters the server supports for a <see cref="T:Supay.Irc.Messages.ListMessage" />.
     /// </summary>
     public ExtendedListParameters ExtendedList {
-      get {
-        return _eList;
-      }
-      set {
-        _eList = value;
-      }
+      get;
+      set;
     }
 
     /// <summary>
     ///   Gets or sets the maximum number of watches a user is allowed to set.
     /// </summary>
     public int MaxWatches {
-      get {
-        return (_maxWatches);
-      }
-      set {
-        _maxWatches = value;
-      }
+      get;
+      set;
     }
 
     /// <summary>
     ///   Gets or sets if the <see cref="Supay.Irc.Messages.WhoMessage" /> uses the WHOX protocol
     /// </summary>
     public bool WhoX {
-      get {
-        return (_whoX);
-      }
-      set {
-        _whoX = value;
-      }
+      get;
+      set;
     }
 
     /// <summary>
     ///   Gets or sets if the server suports callerid-style ignore.
     /// </summary>
     public bool CallerId {
-      get {
-        return (_callerId);
-      }
-      set {
-        _callerId = value;
-      }
+      get;
+      set;
     }
 
     /// <summary>
     ///   Gets or sets if the server supports ETrace.
     /// </summary>
     public bool ETrace {
-      get {
-        return (eTrace);
-      }
-      set {
-        eTrace = value;
-      }
+      get;
+      set;
     }
 
     /// <summary>
@@ -619,46 +433,63 @@ namespace Supay.Irc {
     ///   A value greater than 0 indicates the maximum number of users which can be added to the monitor system list.
     /// </remarks>
     public int MaxMonitors {
-      get {
-        return _maxMonitors;
-      }
-      set {
-        _maxMonitors = value;
-      }
+      get;
+      set;
     }
 
     /// <summary>
     ///   Gets the collection of safe channel prefix lengths, grouped by the channel type they apply to.
     /// </summary>
     public Dictionary<string, int> SafeChannelPrefixLengths {
-      get {
-        return _safeChannelPrefixLengths;
-      }
+      get;
+      private set;
     }
 
     /// <summary>
     ///   Gets or sets the maximum length of away messages.
     /// </summary>
     public int MaxAwayMessageLength {
-      get {
-        return _maxAwayMessageLength;
-      }
-      set {
-        _maxAwayMessageLength = value;
-      }
+      get;
+      set;
     }
 
     #endregion
 
-    private readonly NameValueCollection unknownItems = new NameValueCollection();
+    public ServerSupport() {
+      UnknownItems = new NameValueCollection();
+      StatusMessages = string.Empty;
+      Standard = "i-d";
+      SafeChannelPrefixLengths = new Dictionary<string, int>();
+      NetworkName = string.Empty;
+      ModesWithParametersWhenSet = new Collection<string>();
+      ModesWithParameters = new Collection<string>();
+      ModesWithoutParameters = new Collection<string>();
+      MaxWatches = -1;
+      MaxTopicLength = -1;
+      MaxNickLength = 9;
+      MaxModes = 3;
+      MaxMessageTargets = new Dictionary<string, int>();
+      MaxKickCommentLength = -1;
+      MaxInvitationExceptions = -1;
+      MaxChannels = -1;
+      MaxChannelNameLength = 200;
+      MaxBans = -1;
+      MaxBanExceptions = -1;
+      MaxAwayMessageLength = -1;
+      CharacterSet = string.Empty;
+      ChannelTypes = new Collection<string>();
+      ChannelStatuses = "(ov)@+";
+      ChannelLimits = new Dictionary<string, int>();
+      ChannelIdLength = -1;
+      CaseMapping = "rfc1459";
+    }
 
     /// <summary>
     ///   Gets the list of unknown items supported by the server.
     /// </summary>
-    public virtual NameValueCollection UnknownItems {
-      get {
-        return unknownItems;
-      }
+    public NameValueCollection UnknownItems {
+      get;
+      private set;
     }
 
     /// <summary>
