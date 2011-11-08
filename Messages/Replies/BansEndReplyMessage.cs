@@ -80,7 +80,7 @@ namespace Supay.Irc.Messages {
       base.ParseParameters(parameters);
       if (parameters.Count > 1) {
         Channel = parameters[1];
-        Info = (parameters.Count > 2 ? parameters[2] : DEFAULT_INFO);
+        Info = parameters.Count > 2 ? parameters[2] : DEFAULT_INFO;
       }
     }
 

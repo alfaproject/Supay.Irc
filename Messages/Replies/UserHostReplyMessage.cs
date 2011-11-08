@@ -36,7 +36,7 @@ namespace Supay.Irc.Messages {
           result += "*";
         }
         result += "=";
-        result += (user.Away ? "+" : "-");
+        result += user.Away ? "+" : "-";
         result += user.Username;
         result += "@";
         result += user.Host;
@@ -65,7 +65,7 @@ namespace Supay.Irc.Messages {
         var user = new User(standardHost) {
           Nickname = nick,
           IrcOperator = oper,
-          Away = (away == "+")
+          Away = away == "+"
         };
 
         Users.Add(user);

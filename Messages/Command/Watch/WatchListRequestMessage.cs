@@ -35,7 +35,7 @@ namespace Supay.Irc.Messages {
         return false;
       }
       IList<string> param = MessageUtil.GetParameters(unparsedMessage);
-      return (param.Count == 0 || (param.Count == 1 && param[0].EqualsI("L")));
+      return param.Count == 0 || (param.Count == 1 && param[0].EqualsI("L"));
     }
 
     /// <summary>

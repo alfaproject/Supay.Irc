@@ -648,7 +648,7 @@ namespace Supay.Irc {
 
             ExtendedList = ExtendedListParameters.None;
             foreach (Char c in value.ToUpperInvariant()) {
-              ExtendedList = (ExtendedList | elistMap[c]);
+              ExtendedList = ExtendedList | elistMap[c];
             }
 
             break;

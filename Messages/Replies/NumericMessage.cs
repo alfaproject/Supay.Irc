@@ -61,21 +61,21 @@ namespace Supay.Irc.Messages {
       const int normalEnd = 599;
       const int ircxStart = 900;
       const int ircxEnd = 998;
-      return ((normalStart <= numeric && numeric <= normalEnd) || (ircxStart <= numeric && numeric <= ircxEnd));
+      return (normalStart <= numeric && numeric <= normalEnd) || (ircxStart <= numeric && numeric <= ircxEnd);
     }
 
     /// <summary>
     ///   Determines if the given numeric is a direct message.
     /// </summary>
     public static bool IsDirect(int numeric) {
-      return (0 < numeric && numeric < 100);
+      return 0 < numeric && numeric < 100;
     }
 
     /// <summary>
     ///   Determines if the given numeric is a command reply message.
     /// </summary>
     public static bool IsCommandReply(int numeric) {
-      return (!IsError(numeric) && !IsDirect(numeric));
+      return !IsError(numeric) && !IsDirect(numeric);
     }
 
     /// <summary>
@@ -88,7 +88,7 @@ namespace Supay.Irc.Messages {
           if (InternalNumeric == -1) {
             return true;
           }
-          return (InternalNumeric == parsedNumeric);
+          return InternalNumeric == parsedNumeric;
         }
       }
       return false;

@@ -52,7 +52,7 @@ namespace Supay.Irc.Messages.Modes {
     /// <param name="includeAction">Specifies if the action modifier should be applied.</param>
     protected void AddChanges(ChannelModeMessage msg, bool includeAction) {
       if (includeAction) {
-        msg.ModeChanges += (Action == ModeAction.Add ? "+" : "-");
+        msg.ModeChanges += Action == ModeAction.Add ? "+" : "-";
       }
       msg.ModeChanges += Symbol;
     }

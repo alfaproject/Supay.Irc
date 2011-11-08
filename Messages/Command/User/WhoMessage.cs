@@ -63,7 +63,7 @@ namespace Supay.Irc.Messages {
       Mask = new User();
       if (parameters.Count >= 1) {
         Mask.Nickname = parameters[0];
-        RestrictToOps = (parameters.Count > 1 && parameters[1] == "o");
+        RestrictToOps = parameters.Count > 1 && parameters[1] == "o";
       }
     }
 

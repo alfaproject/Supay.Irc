@@ -76,7 +76,7 @@ namespace Supay.Irc.Messages {
     ///   Determines if the message's DCC command is compatible with this message.
     /// </summary>
     public bool CanParseDccCommand(string command) {
-      return !string.IsNullOrEmpty(command) && (DccCommand.EndsWith(command, StringComparison.OrdinalIgnoreCase));
+      return !string.IsNullOrEmpty(command) && DccCommand.EndsWith(command, StringComparison.OrdinalIgnoreCase);
     }
 
     /// <summary>

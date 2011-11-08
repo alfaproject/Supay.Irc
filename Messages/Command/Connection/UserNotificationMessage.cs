@@ -111,8 +111,8 @@ namespace Supay.Irc.Messages {
         UserName = parameters[0];
         RealName = parameters[3];
         int modeBitMask = Convert.ToInt32(parameters[1], CultureInfo.InvariantCulture);
-        InitialInvisibility = ((modeBitMask & 8) == 8);
-        InitialWallops = ((modeBitMask & 4) == 4);
+        InitialInvisibility = (modeBitMask & 8) == 8;
+        InitialWallops = (modeBitMask & 4) == 4;
       } else {
         UserName = string.Empty;
         RealName = string.Empty;

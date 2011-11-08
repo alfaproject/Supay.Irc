@@ -102,7 +102,7 @@ namespace Supay.Irc.Messages {
     protected override void ParseParameters(IList<string> parameters) {
       base.ParseParameters(parameters);
       if (parameters.Count >= 5) {
-        IsIrcxClientMode = (parameters[1] == "1");
+        IsIrcxClientMode = parameters[1] == "1";
         Version = parameters[2];
         AuthenticationPackages.Clear();
         foreach (string package in parameters[3].Split(',')) {

@@ -47,7 +47,7 @@ namespace Supay.Irc.Messages.Modes {
       }
 
       if (includeAction) {
-        msg.ModeChanges += (Action == ModeAction.Add ? "+" : "-");
+        msg.ModeChanges += Action == ModeAction.Add ? "+" : "-";
       }
       msg.ModeChanges += Symbol;
     }

@@ -44,7 +44,7 @@ namespace Supay.Irc.Messages {
         return false;
       }
       string firstParam = MessageUtil.GetParameter(unparsedMessage, 0);
-      return (firstParam.StartsWith("+", StringComparison.Ordinal) || firstParam.StartsWith("-", StringComparison.Ordinal));
+      return firstParam.StartsWith("+", StringComparison.Ordinal) || firstParam.StartsWith("-", StringComparison.Ordinal);
     }
 
     /// <summary>

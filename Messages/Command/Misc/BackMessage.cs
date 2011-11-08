@@ -19,7 +19,7 @@ namespace Supay.Irc.Messages {
     ///   Determines if the message can be parsed by this type.
     /// </summary>
     public override bool CanParse(string unparsedMessage) {
-      return (base.CanParse(unparsedMessage) && MessageUtil.GetParameters(unparsedMessage).Count == 0);
+      return base.CanParse(unparsedMessage) && MessageUtil.GetParameters(unparsedMessage).Count == 0;
     }
 
     /// <summary>

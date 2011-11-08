@@ -77,7 +77,7 @@ namespace Supay.Irc.Messages {
       if (unparsedMessage == null) {
         return false;
       }
-      return (base.CanParse(unparsedMessage) && unparsedMessage.IndexOf(areSupported, StringComparison.Ordinal) > 0);
+      return base.CanParse(unparsedMessage) && unparsedMessage.IndexOf(areSupported, StringComparison.Ordinal) > 0;
     }
 
     /// <summary>

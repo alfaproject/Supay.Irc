@@ -211,7 +211,7 @@ namespace Supay.Irc {
       if (msg == null) {
         return false;
       }
-      return (msg.Sender.Nickname == ServerName);
+      return msg.Sender.Nickname == ServerName;
     }
 
     private bool isMe(string nick) {
@@ -520,7 +520,7 @@ namespace Supay.Irc {
 
     private void handleJoin(object sender, IrcMessageEventArgs<JoinMessage> e) {
       User msgUser = e.Message.Sender;
-      User joinedUser = (isMe(msgUser.Nickname)) ? User : Peers.EnsureUser(msgUser);
+      User joinedUser = isMe(msgUser.Nickname) ? User : Peers.EnsureUser(msgUser);
 
       foreach (Channel joinedChannel in e.Message.Channels.Select(channelname => Channels.EnsureChannel(channelname))) {
         joinedChannel.Open = true;
