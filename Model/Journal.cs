@@ -34,7 +34,7 @@ namespace Supay.Irc {
       }
       set {
         _maxEntries = value;
-        base.OnPropertyChanged(new PropertyChangedEventArgs("MaxEntries"));
+        OnPropertyChanged(new PropertyChangedEventArgs("MaxEntries"));
       }
     }
 
@@ -47,9 +47,9 @@ namespace Supay.Irc {
       if (Items.Count > MaxEntries) {
         Items.RemoveAt(index != 0 ? 0 : Items.Count - 1);
       }
-      base.OnPropertyChanged(new PropertyChangedEventArgs("Count"));
-      base.OnPropertyChanged(new PropertyChangedEventArgs("Item[]"));
-      base.OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, item, index));
+      OnPropertyChanged(new PropertyChangedEventArgs("Count"));
+      OnPropertyChanged(new PropertyChangedEventArgs("Item[]"));
+      OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, item, index));
     }
   }
 }
