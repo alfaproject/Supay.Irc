@@ -1,5 +1,5 @@
 using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 
 namespace Supay.Irc.Messages {
   /// <summary>
@@ -15,8 +15,8 @@ namespace Supay.Irc.Messages {
     }
 
     /// <exclude />
-    protected override Collection<string> GetParameters() {
-      Collection<string> parameters = base.GetParameters();
+    protected override IList<string> GetParameters() {
+      IList<string> parameters = base.GetParameters();
       parameters.Add("Accept list is full");
       return parameters;
     }

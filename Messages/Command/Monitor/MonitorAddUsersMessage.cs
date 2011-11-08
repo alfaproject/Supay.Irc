@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
@@ -7,12 +8,12 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class MonitorAddUsersMessage : MonitorMessage {
-    private Collection<string> nicks;
+    private IList<string> nicks;
 
     /// <summary>
     ///   Gets the collection of nicks being added to the monitor list.
     /// </summary>
-    public Collection<string> Nicks {
+    public IList<string> Nicks {
       get {
         return nicks ?? (nicks = new Collection<string>());
       }
@@ -32,7 +33,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Parses the parameters portion of the message.
     /// </summary>
-    protected override void ParseParameters(Collection<string> parameters) {
+    protected override void ParseParameters(IList<string> parameters) {
       base.ParseParameters(parameters);
       string nicksParam = parameters[parameters.Count - 1];
       string[] splitNicksParam = nicksParam.Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries);
@@ -44,8 +45,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.
     /// </summary>
-    protected override Collection<string> GetParameters() {
-      Collection<string> parameters = base.GetParameters();
+    protected override IList<string> GetParameters() {
+      IList<string> parameters = base.GetParameters();
       parameters.Add("+");
       if (Nicks != null && Nicks.Count != 0) {
         parameters.Add(MessageUtil.CreateList(Nicks, ","));

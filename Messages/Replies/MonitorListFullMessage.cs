@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
 
@@ -10,7 +11,7 @@ namespace Supay.Irc.Messages {
   [Serializable]
   public class MonitorListFullMessage : NumericMessage {
     private int limit;
-    private Collection<string> nicks;
+    private IList<string> nicks;
 
     /// <summary>
     ///   Creates a new instance of the <see cref="MonitorListFullMessage" />.
@@ -34,15 +35,15 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Gets the collection of nicks which couldn't be added to the monitor list.
     /// </summary>
-    public Collection<string> Nicks {
+    public IList<string> Nicks {
       get {
         return nicks ?? (nicks = new Collection<string>());
       }
     }
 
     /// <exclude />
-    protected override Collection<string> GetParameters() {
-      Collection<string> parameters = base.GetParameters();
+    protected override IList<string> GetParameters() {
+      IList<string> parameters = base.GetParameters();
       parameters.Add(Limit.ToString(CultureInfo.InvariantCulture));
       parameters.Add(MessageUtil.CreateList(Nicks, ","));
       parameters.Add("Monitor list is full.");
@@ -50,7 +51,7 @@ namespace Supay.Irc.Messages {
     }
 
     /// <exclude />
-    protected override void ParseParameters(Collection<string> parameters) {
+    protected override void ParseParameters(IList<string> parameters) {
       base.ParseParameters(parameters);
       Limit = -1;
       Nicks.Clear();

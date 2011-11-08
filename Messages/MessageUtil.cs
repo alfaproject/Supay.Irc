@@ -170,7 +170,7 @@ namespace Supay.Irc.Messages {
     ///   Gets the last parameter in the parameters collection of the given unparsed message.
     /// </summary>
     public static string GetLastParameter(string rawMessage) {
-      Collection<string> p = GetParameters(rawMessage);
+      IList<string> p = GetParameters(rawMessage);
       if (p.Count > 0) {
         return p[p.Count - 1];
       }
@@ -181,7 +181,7 @@ namespace Supay.Irc.Messages {
     ///   Gets the nth parameter in the parameters collection of the given unparsed message.
     /// </summary>
     public static string GetParameter(string rawMessage, int index) {
-      Collection<string> p = GetParameters(rawMessage);
+      IList<string> p = GetParameters(rawMessage);
       if (p.Count > index) {
         return p[index];
       }
@@ -307,7 +307,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Creates a list of IRC parameters from the given collection of strings.
     /// </summary>
-    public static string ParametersToString(bool useColon, Collection<string> parameters) {
+    public static string ParametersToString(bool useColon, IList<string> parameters) {
       if (parameters == null) {
         return string.Empty;
       }
@@ -339,7 +339,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Creates a list of IRC parameters from the given collection of strings.
     /// </summary>
-    public static string ParametersToString(Collection<string> parameters) {
+    public static string ParametersToString(IList<string> parameters) {
       return ParametersToString(true, parameters);
     }
 

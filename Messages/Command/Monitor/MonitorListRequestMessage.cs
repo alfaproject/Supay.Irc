@@ -1,5 +1,5 @@
 using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 
 namespace Supay.Irc.Messages {
   /// <summary>
@@ -14,15 +14,15 @@ namespace Supay.Irc.Messages {
       if (!base.CanParse(unparsedMessage)) {
         return false;
       }
-      Collection<string> param = MessageUtil.GetParameters(unparsedMessage);
+      IList<string> param = MessageUtil.GetParameters(unparsedMessage);
       return (param.Count == 1 && param[0].EqualsI("L"));
     }
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.
     /// </summary>
-    protected override Collection<string> GetParameters() {
-      Collection<string> parameters = base.GetParameters();
+    protected override IList<string> GetParameters() {
+      IList<string> parameters = base.GetParameters();
       parameters.Add("L");
       return parameters;
     }

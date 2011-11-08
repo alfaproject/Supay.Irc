@@ -7,8 +7,8 @@ using Supay.Irc.Network;
 
 namespace Supay.Irc.Contacts {
   internal class ContactsAreOnTracker : ContactsTracker, IDisposable {
-    private readonly Collection<string> _trackedNicks = new Collection<string>();
-    private readonly Collection<string> _waitingOnNicks = new Collection<string>();
+    private readonly IList<string> _trackedNicks = new Collection<string>();
+    private readonly IList<string> _waitingOnNicks = new Collection<string>();
     private Timer _timer;
 
     public ContactsAreOnTracker(ContactList contacts)

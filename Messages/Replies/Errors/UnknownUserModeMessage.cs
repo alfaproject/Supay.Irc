@@ -1,5 +1,5 @@
 using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using Supay.Irc.Messages.Modes;
 
 namespace Supay.Irc.Messages {
@@ -17,8 +17,8 @@ namespace Supay.Irc.Messages {
     }
 
     /// <exclude />
-    protected override Collection<string> GetParameters() {
-      Collection<string> parameters = base.GetParameters();
+    protected override IList<string> GetParameters() {
+      IList<string> parameters = base.GetParameters();
       parameters.Add("Unknown MODE flag");
       return parameters;
     }

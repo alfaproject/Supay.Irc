@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
@@ -17,7 +18,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.
     /// </summary>
-    protected override Collection<string> GetParameters() {
+    protected override IList<string> GetParameters() {
       return new Collection<string> {
         Command
       };

@@ -1,5 +1,5 @@
 using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Globalization;
 using Supay.Irc.Messages.Modes;
 
@@ -57,15 +57,15 @@ namespace Supay.Irc.Messages {
     #endregion
 
     /// <exclude />
-    protected override Collection<string> GetParameters() {
-      Collection<string> parameters = base.GetParameters();
+    protected override IList<string> GetParameters() {
+      IList<string> parameters = base.GetParameters();
       parameters.Add(Channel);
       parameters.Add(string.Format(CultureInfo.InvariantCulture, "Cannot join channel ({0})", Reason));
       return parameters;
     }
 
     /// <exclude />
-    protected override void ParseParameters(Collection<string> parameters) {
+    protected override void ParseParameters(IList<string> parameters) {
       base.ParseParameters(parameters);
 
       Channel = string.Empty;

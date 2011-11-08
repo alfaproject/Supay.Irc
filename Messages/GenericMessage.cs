@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
@@ -38,7 +39,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Gets the message's parameters after the command.
     /// </summary>
-    public Collection<string> Parameters {
+    public IList<string> Parameters {
       get;
       private set;
     }
@@ -61,7 +62,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Overrides <see cref="GetParameters" />.
     /// </summary>
-    protected override Collection<string> GetParameters() {
+    protected override IList<string> GetParameters() {
       var parameters = new Collection<string> {
         Command
       };
@@ -92,7 +93,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Parses the parameter portion of the message.
     /// </summary>
-    protected override void ParseParameters(Collection<string> parameters) {
+    protected override void ParseParameters(IList<string> parameters) {
       base.ParseParameters(parameters);
       Parameters = parameters;
     }

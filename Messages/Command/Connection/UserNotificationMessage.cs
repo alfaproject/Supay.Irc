@@ -1,5 +1,5 @@
 using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Globalization;
 
 namespace Supay.Irc.Messages {
@@ -75,7 +75,7 @@ namespace Supay.Irc.Messages {
       if (!base.CanParse(unparsedMessage)) {
         return false;
       }
-      Collection<string> p = MessageUtil.GetParameters(unparsedMessage);
+      IList<string> p = MessageUtil.GetParameters(unparsedMessage);
       int tempInt;
       if (p.Count != 4 || !int.TryParse(p[1], out tempInt) || p[2] != "*") {
         return false;
@@ -86,8 +86,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.
     /// </summary>
-    protected override Collection<string> GetParameters() {
-      Collection<string> parameters = base.GetParameters();
+    protected override IList<string> GetParameters() {
+      IList<string> parameters = base.GetParameters();
       parameters.Add(UserName);
       int modeBitMask = 0;
       if (InitialInvisibility) {
@@ -105,7 +105,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Parses the parameters portion of the message.
     /// </summary>
-    protected override void ParseParameters(Collection<string> parameters) {
+    protected override void ParseParameters(IList<string> parameters) {
       base.ParseParameters(parameters);
       if (parameters.Count >= 4) {
         UserName = parameters[0];

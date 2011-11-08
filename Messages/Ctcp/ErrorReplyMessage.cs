@@ -1,5 +1,5 @@
 using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 
 namespace Supay.Irc.Messages {
   /// <summary>
@@ -63,7 +63,7 @@ namespace Supay.Irc.Messages {
     public override void Parse(string unparsedMessage) {
       base.Parse(unparsedMessage);
       string eData = CtcpUtil.GetExtendedData(unparsedMessage);
-      Collection<string> p = MessageUtil.GetParameters(eData);
+      IList<string> p = MessageUtil.GetParameters(eData);
       if (p.Count == 2) {
         Query = p[0];
         Reason = p[1];

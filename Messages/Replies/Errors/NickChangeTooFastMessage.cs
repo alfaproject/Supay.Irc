@@ -1,5 +1,5 @@
 using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Globalization;
 
 namespace Supay.Irc.Messages {
@@ -43,15 +43,15 @@ namespace Supay.Irc.Messages {
     }
 
     /// <exclude />
-    protected override Collection<string> GetParameters() {
-      Collection<string> parameters = base.GetParameters();
+    protected override IList<string> GetParameters() {
+      IList<string> parameters = base.GetParameters();
       parameters.Add(Nick);
       parameters.Add(string.Format(CultureInfo.InvariantCulture, "Nick change too fast. Please wait {0} seconds.", Seconds));
       return parameters;
     }
 
     /// <exclude />
-    protected override void ParseParameters(Collection<string> parameters) {
+    protected override void ParseParameters(IList<string> parameters) {
       base.ParseParameters(parameters);
       Nick = string.Empty;
       Seconds = -1;

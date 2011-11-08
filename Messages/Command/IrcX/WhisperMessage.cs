@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
   /// <summary>
@@ -68,8 +67,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.
     /// </summary>
-    protected override Collection<string> GetParameters() {
-      Collection<string> parameters = base.GetParameters();
+    protected override IList<string> GetParameters() {
+      IList<string> parameters = base.GetParameters();
       parameters.Add(Channel);
       parameters.Add(MessageUtil.CreateList(Targets, ","));
       parameters.Add(Text);
@@ -79,7 +78,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Parses the parameters portion of the message.
     /// </summary>
-    protected override void ParseParameters(Collection<string> parameters) {
+    protected override void ParseParameters(IList<string> parameters) {
       base.ParseParameters(parameters);
       Targets.Clear();
       if (parameters.Count > 2) {

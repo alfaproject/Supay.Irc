@@ -1,5 +1,5 @@
 using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Globalization;
 
 namespace Supay.Irc.Messages {
@@ -60,14 +60,14 @@ namespace Supay.Irc.Messages {
     }
 
     /// <exclude />
-    protected override Collection<string> GetParameters() {
-      Collection<string> parameters = base.GetParameters();
+    protected override IList<string> GetParameters() {
+      IList<string> parameters = base.GetParameters();
       parameters.Add(string.Format(CultureInfo.InvariantCulture, "Your user name {0} contained the invalid character(s) {1} and has been changed to {2}. Please use only the characters 0-9 a-z A-z _ - or . in your user name. Your user name is the part before the @ in your email address.", Ident, InvalidCharacters, NewIdent));
       return parameters;
     }
 
     /// <exclude />
-    protected override void ParseParameters(Collection<string> parameters) {
+    protected override void ParseParameters(IList<string> parameters) {
       base.ParseParameters(parameters);
       string param = parameters[1];
       Ident = MessageUtil.StringBetweenStrings(param, "Your username ", " contained the invalid ");

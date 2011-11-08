@@ -9,7 +9,7 @@ namespace Supay.Irc.Messages {
   /// </summary>
   [Serializable]
   public class GenericNumericMessage : NumericMessage {
-    private Collection<string> data = new Collection<string>();
+    private IList<string> data = new Collection<string>();
 
     /// <summary>
     ///   Gets the Numeric command of the Message
@@ -35,8 +35,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.
     /// </summary>
-    protected override Collection<string> GetParameters() {
-      Collection<string> parameters = base.GetParameters();
+    protected override IList<string> GetParameters() {
+      IList<string> parameters = base.GetParameters();
       foreach (string datum in Data) {
         parameters.Add(datum);
       }
@@ -54,7 +54,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Parses the parameters portion of the message.
     /// </summary>
-    protected override void ParseParameters(Collection<string> parameters) {
+    protected override void ParseParameters(IList<string> parameters) {
       base.ParseParameters(parameters);
       data = parameters;
     }

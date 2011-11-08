@@ -1,4 +1,4 @@
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using Supay.Irc.Messages;
 
 namespace Supay.Irc.Dcc {
@@ -37,7 +37,7 @@ namespace Supay.Irc.Dcc {
     /// <summary>
     ///   Gets the inner parameters of a DCC data area.
     /// </summary>
-    public static Collection<string> GetParameters(string rawMessage) {
+    public static IList<string> GetParameters(string rawMessage) {
       string extendedData = CtcpUtil.GetExtendedData(rawMessage);
       return MessageUtil.Tokenize(extendedData, 0);
     }

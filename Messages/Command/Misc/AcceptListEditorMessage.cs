@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Supay.Irc.Properties;
 
@@ -29,14 +30,14 @@ namespace Supay.Irc.Messages {
 
     #region Properties
 
-    private Collection<string> addedNicks;
+    private IList<string> addedNicks;
 
-    private Collection<string> removedNicks;
+    private IList<string> removedNicks;
 
     /// <summary>
     ///   Gets the collection of nicks being added to the accept list.
     /// </summary>
-    public Collection<string> AddedNicks {
+    public IList<string> AddedNicks {
       get {
         return addedNicks ?? (addedNicks = new Collection<string>());
       }
@@ -45,7 +46,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Gets the collection of nicks being removed from the accept list.
     /// </summary>
-    public Collection<string> RemovedNicks {
+    public IList<string> RemovedNicks {
       get {
         return removedNicks ?? (removedNicks = new Collection<string>());
       }
@@ -69,7 +70,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Parses the parameters portion of the message.
     /// </summary>
-    protected override void ParseParameters(Collection<string> parameters) {
+    protected override void ParseParameters(IList<string> parameters) {
       base.ParseParameters(parameters);
 
       foreach (string nick in parameters[0].Split(',')) {
@@ -88,7 +89,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.
     /// </summary>
-    protected override Collection<string> GetParameters() {
+    protected override IList<string> GetParameters() {
       var allNicks = new Collection<string>();
       foreach (string removedNick in RemovedNicks) {
         allNicks.Add("-" + removedNick);
@@ -96,7 +97,7 @@ namespace Supay.Irc.Messages {
       foreach (string addedNick in AddedNicks) {
         allNicks.Add(addedNick);
       }
-      Collection<string> parameters = base.GetParameters();
+      IList<string> parameters = base.GetParameters();
       parameters.Add(MessageUtil.CreateList(allNicks, ","));
       return parameters;
     }

@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
   /// <summary>
@@ -77,7 +76,7 @@ namespace Supay.Irc.Messages {
     /// <remarks>
     ///   Some modes require a parameter, such as +o requires the mask of the person to be given ops.
     /// </remarks>
-    public virtual List<string> ModeArguments {
+    public virtual IList<string> ModeArguments {
       get {
         return modeArguments;
       }
@@ -98,7 +97,7 @@ namespace Supay.Irc.Messages {
       if (!base.CanParse(unparsedMessage)) {
         return false;
       }
-      Collection<string> p = MessageUtil.GetParameters(unparsedMessage);
+      IList<string> p = MessageUtil.GetParameters(unparsedMessage);
       if (p.Count >= 1) {
         return MessageUtil.HasValidChannelPrefix(p[0]);
       }
@@ -108,7 +107,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Parses the parameters portion of the message.
     /// </summary>
-    protected override void ParseParameters(Collection<string> parameters) {
+    protected override void ParseParameters(IList<string> parameters) {
       base.ParseParameters(parameters);
       Channel = parameters[0];
 
@@ -125,8 +124,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.
     /// </summary>
-    protected override Collection<string> GetParameters() {
-      Collection<string> parameters = base.GetParameters();
+    protected override IList<string> GetParameters() {
+      IList<string> parameters = base.GetParameters();
       parameters.Add(Channel);
       if (!string.IsNullOrEmpty(ModeChanges)) {
         parameters.Add(ModeChanges);

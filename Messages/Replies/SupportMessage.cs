@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 
@@ -31,7 +32,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.
     /// </summary>
-    protected override Collection<string> GetParameters() {
+    protected override IList<string> GetParameters() {
       var paramsToString = new Collection<string>();
       foreach (string name in SupportedItems.Keys) {
         string value = SupportedItems[name];
@@ -42,7 +43,7 @@ namespace Supay.Irc.Messages {
         }
       }
 
-      Collection<string> parameters = base.GetParameters();
+      IList<string> parameters = base.GetParameters();
       parameters.Add(MessageUtil.CreateList(paramsToString, " "));
       parameters.Add(areSupported);
       return parameters;
@@ -51,7 +52,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Parses the parameters portion of the message.
     /// </summary>
-    protected override void ParseParameters(Collection<string> parameters) {
+    protected override void ParseParameters(IList<string> parameters) {
       base.ParseParameters(parameters);
       for (int i = 1; i < parameters.Count - 1; i++) {
         string nameValue = parameters[i];

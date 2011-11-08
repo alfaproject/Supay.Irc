@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages {
@@ -9,14 +10,14 @@ namespace Supay.Irc.Messages {
   public class WatchListEditorMessage : WatchMessage {
     #region Properties
 
-    private Collection<string> addedNicks;
+    private IList<string> addedNicks;
 
-    private Collection<string> removedNicks;
+    private IList<string> removedNicks;
 
     /// <summary>
     ///   Gets the collection of nicks being added to the watch list.
     /// </summary>
-    public Collection<string> AddedNicks {
+    public IList<string> AddedNicks {
       get {
         return addedNicks ?? (addedNicks = new Collection<string>());
       }
@@ -25,7 +26,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Gets the collection of nicks being removed from the watch list.
     /// </summary>
-    public Collection<string> RemovedNicks {
+    public IList<string> RemovedNicks {
       get {
         return removedNicks ?? (removedNicks = new Collection<string>());
       }
@@ -49,7 +50,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Parses the parameters portion of the message.
     /// </summary>
-    protected override void ParseParameters(Collection<string> parameters) {
+    protected override void ParseParameters(IList<string> parameters) {
       base.ParseParameters(parameters);
       foreach (string param in parameters) {
         if (param.StartsWith("+", StringComparison.Ordinal)) {
@@ -68,8 +69,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.
     /// </summary>
-    protected override Collection<string> GetParameters() {
-      Collection<string> parameters = base.GetParameters();
+    protected override IList<string> GetParameters() {
+      IList<string> parameters = base.GetParameters();
       if (AddedNicks != null) {
         foreach (string addedNick in AddedNicks) {
           parameters.Add("+" + addedNick);

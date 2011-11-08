@@ -212,7 +212,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.
     /// </summary>
-    protected override Collection<string> GetParameters() {
+    protected override IList<string> GetParameters() {
       var options = new Collection<string>();
       if (MaxUsers >= 0) {
         options.Add("<" + MaxUsers.ToString(CultureInfo.InvariantCulture));
@@ -239,7 +239,7 @@ namespace Supay.Irc.Messages {
         options.Add("T<" + TopicYoungerThan.ToString(CultureInfo.InvariantCulture));
       }
 
-      Collection<string> parameters = base.GetParameters();
+      IList<string> parameters = base.GetParameters();
       if (options.Count != 0) {
         parameters.Add(MessageUtil.CreateList(options, ","));
       } else if (Channels.Count != 0) {
@@ -254,7 +254,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Parses the parameters portion of the message.
     /// </summary>
-    protected override void ParseParameters(Collection<string> parameters) {
+    protected override void ParseParameters(IList<string> parameters) {
       base.ParseParameters(parameters);
 
       Channels.Clear();

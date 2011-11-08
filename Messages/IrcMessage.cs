@@ -1,5 +1,5 @@
 using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Text;
 
 namespace Supay.Irc.Messages {
@@ -28,7 +28,7 @@ namespace Supay.Irc.Messages {
     ///   When deriving from <see cref="IrcMessage" />, override this method to add the needed
     ///   parameters for proper message rebuilding.
     /// </remarks>
-    protected abstract Collection<string> GetParameters();
+    protected abstract IList<string> GetParameters();
 
     /// <summary>
     ///   Validates this message against the given server support.
@@ -54,7 +54,7 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Parses the parameter portion of the message.
     /// </summary>
-    protected virtual void ParseParameters(Collection<string> parameters) {
+    protected virtual void ParseParameters(IList<string> parameters) {
     }
 
     /// <summary>
@@ -79,7 +79,7 @@ namespace Supay.Irc.Messages {
         sb.Append(' ');
       }
 
-      Collection<string> parameters = GetParameters();
+      IList<string> parameters = GetParameters();
       for (int i = 0; i < parameters.Count - 1; i++) {
         sb.Append(parameters[i]);
         sb.Append(' ');

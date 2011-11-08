@@ -1,5 +1,5 @@
 using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Globalization;
 using Supay.Irc.Dcc;
 
@@ -82,7 +82,7 @@ namespace Supay.Irc.Messages {
     public override void Parse(string unparsedMessage) {
       base.Parse(unparsedMessage);
       FileName = DccUtil.GetArgument(unparsedMessage);
-      Collection<string> p = DccUtil.GetParameters(unparsedMessage);
+      IList<string> p = DccUtil.GetParameters(unparsedMessage);
       Port = Convert.ToInt32(p[2], CultureInfo.InvariantCulture);
       Position = Convert.ToInt32(p[3], CultureInfo.InvariantCulture);
     }
