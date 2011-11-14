@@ -30,14 +30,14 @@ namespace Supay.Irc.Messages
     {
       get
       {
-        return MessageUtil.ParametersToString(false, this.DccCommand, this.FileName, this.Port.ToString(CultureInfo.InvariantCulture), this.Position.ToString(CultureInfo.InvariantCulture));
+        return MessageUtil.ParametersToString(false, DccCommand, this.FileName, this.Port.ToString(CultureInfo.InvariantCulture), this.Position.ToString(CultureInfo.InvariantCulture));
       }
     }
 
     /// <summary>
     ///   Gets the DCC sub-command.
     /// </summary>
-    protected string DccCommand
+    protected static string DccCommand
     {
       get
       {
@@ -85,7 +85,7 @@ namespace Supay.Irc.Messages
     /// </summary>
     public bool CanParseDccCommand(string command)
     {
-      return !string.IsNullOrEmpty(command) && this.DccCommand.EndsWith(command, StringComparison.OrdinalIgnoreCase);
+      return !string.IsNullOrEmpty(command) && DccCommand.EndsWith(command, StringComparison.OrdinalIgnoreCase);
     }
 
     /// <summary>
