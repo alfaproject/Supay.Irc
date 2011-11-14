@@ -45,7 +45,7 @@ namespace Supay.Irc {
       _awayMessage = string.Empty;
 
       _modes = new UserModeCollection();
-      _modes.CollectionChanged += (s, e) => RaisePropertyChanged("Modes");
+      _modes.CollectionChanged += (s, e) => this.OnPropertyChanged("Modes");
     }
 
     #endregion
@@ -62,7 +62,7 @@ namespace Supay.Irc {
       set {
         if (_name != value) {
           _name = value;
-          RaisePropertyChanged("Name");
+          this.OnPropertyChanged("Name");
         }
       }
     }
@@ -77,7 +77,7 @@ namespace Supay.Irc {
       set {
         if (_password != value) {
           _password = value;
-          RaisePropertyChanged("Password");
+          this.OnPropertyChanged("Password");
         }
       }
     }
@@ -92,7 +92,7 @@ namespace Supay.Irc {
       set {
         if (_server != value) {
           _server = value;
-          RaisePropertyChanged("Server");
+          this.OnPropertyChanged("Server");
         }
       }
     }
@@ -107,7 +107,7 @@ namespace Supay.Irc {
       set {
         if (_ircOperator != value) {
           _ircOperator = value;
-          RaisePropertyChanged("IrcOperator");
+          this.OnPropertyChanged("IrcOperator");
         }
       }
     }
@@ -122,7 +122,7 @@ namespace Supay.Irc {
       set {
         if (_online != value) {
           _online = value;
-          RaisePropertyChanged("Online");
+          this.OnPropertyChanged("Online");
         }
       }
     }
@@ -137,7 +137,7 @@ namespace Supay.Irc {
       set {
         if (_away != value) {
           _away = value;
-          RaisePropertyChanged("Away");
+          this.OnPropertyChanged("Away");
         }
       }
     }
@@ -152,7 +152,7 @@ namespace Supay.Irc {
       set {
         if (_awayMessage != value) {
           _awayMessage = value;
-          RaisePropertyChanged("AwayMessage");
+          this.OnPropertyChanged("AwayMessage");
         }
       }
     }

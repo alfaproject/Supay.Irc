@@ -48,10 +48,10 @@ namespace Supay.Irc {
       _userModes = new Dictionary<User, ChannelStatus>();
 
       _modes = new ChannelModeCollection();
-      _modes.CollectionChanged += (s, e) => RaisePropertyChanged("Modes");
+      _modes.CollectionChanged += (s, e) => this.OnPropertyChanged("Modes");
 
       _journal = new Journal();
-      _journal.CollectionChanged += (s, e) => RaisePropertyChanged("Journal");
+      _journal.CollectionChanged += (s, e) => this.OnPropertyChanged("Journal");
     }
 
     /// <summary>
@@ -74,7 +74,7 @@ namespace Supay.Irc {
       }
       internal set {
         _open = value;
-        RaisePropertyChanged("Open");
+        this.OnPropertyChanged("Open");
       }
     }
 
@@ -88,7 +88,7 @@ namespace Supay.Irc {
       set {
         if (_properties["NAME"] != value) {
           _properties["NAME"] = value;
-          RaisePropertyChanged("Name");
+          this.OnPropertyChanged("Name");
         }
       }
     }
@@ -103,7 +103,7 @@ namespace Supay.Irc {
       set {
         if (_properties["TOPIC"] != value) {
           _properties["TOPIC"] = value;
-          RaisePropertyChanged("Topic");
+          this.OnPropertyChanged("Topic");
         }
       }
     }
@@ -118,7 +118,7 @@ namespace Supay.Irc {
       set {
         if (_topicSetter != value) {
           _topicSetter = value;
-          RaisePropertyChanged("TopicSetter");
+          this.OnPropertyChanged("TopicSetter");
         }
       }
     }
@@ -133,7 +133,7 @@ namespace Supay.Irc {
       set {
         if (_topicSetTime != value) {
           _topicSetTime = value;
-          RaisePropertyChanged("TopicSetTime");
+          this.OnPropertyChanged("TopicSetTime");
         }
       }
     }
@@ -223,7 +223,7 @@ namespace Supay.Irc {
         }
       }
 
-      RaisePropertyChanged("Users");
+      this.OnPropertyChanged("Users");
     }
 
     #endregion
@@ -233,7 +233,7 @@ namespace Supay.Irc {
     /// <summary>
     ///   Raises the PropertyChanged event.
     /// </summary>
-    protected void RaisePropertyChanged(string propertyName) {
+    protected void OnPropertyChanged(string propertyName) {
       PropertyChangedEventHandler handler = PropertyChanged;
       if (handler != null) {
         handler(this, new PropertyChangedEventArgs(propertyName));

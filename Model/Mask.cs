@@ -68,8 +68,8 @@ namespace Supay.Irc {
       set {
         if (_nickname != value) {
           _nickname = value;
-          RaisePropertyChanged("Nickname");
-          RaisePropertyChanged("IrcMask");
+          this.OnPropertyChanged("Nickname");
+          this.OnPropertyChanged("IrcMask");
         }
       }
     }
@@ -84,8 +84,8 @@ namespace Supay.Irc {
       set {
         if (_username != value) {
           _username = value;
-          RaisePropertyChanged("Username");
-          RaisePropertyChanged("IrcMask");
+          this.OnPropertyChanged("Username");
+          this.OnPropertyChanged("IrcMask");
         }
       }
     }
@@ -100,8 +100,8 @@ namespace Supay.Irc {
       set {
         if (_host != value) {
           _host = value;
-          RaisePropertyChanged("Host");
-          RaisePropertyChanged("IrcMask");
+          this.OnPropertyChanged("Host");
+          this.OnPropertyChanged("IrcMask");
         }
       }
     }
@@ -192,7 +192,7 @@ namespace Supay.Irc {
 
     #region Protected Methods
 
-    protected void RaisePropertyChanged(string propertyName) {
+    protected void OnPropertyChanged(string propertyName) {
       PropertyChangedEventHandler handler = PropertyChanged;
       if (handler != null) {
         handler(this, new PropertyChangedEventArgs(propertyName));
