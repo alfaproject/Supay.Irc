@@ -55,10 +55,10 @@ namespace Supay.Irc.Network {
     }
 
     /// <summary>
-    ///   Starts the Ident server.
+    /// Starts the Ident server.
     /// </summary>
     /// <param name="stopAfterFirstAnswer">If true, Ident will stop immediately after answering. If false, will continue until <see cref="Ident.Stop" /> is called.</param>
-    public void Start(bool stopAfterFirstAnswer = false) {
+    public void Start(bool stopAfterFirstAnswer) {
       lock (_syncLock) {
         if (Status != ConnectionStatus.Disconnected) {
           Trace.WriteLine("Ident Already Started");
@@ -72,6 +72,14 @@ namespace Supay.Irc.Network {
         };
         _socketThread.Start();
       }
+    }
+
+    /// <summary>
+    /// Starts the Ident server.
+    /// </summary>
+    public void Start()
+    {
+      this.Start(false);
     }
 
     /// <summary>
