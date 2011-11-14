@@ -287,7 +287,7 @@ namespace Supay.Irc.Dcc
       }
       catch (Exception ex)
       {
-        Trace.WriteLine("Error Opening DccServerConnection On Port " + this._port.ToString(CultureInfo.InvariantCulture) + ", " + ex.ToString(), "DccServerConnection");
+        Trace.WriteLine("Error Opening DccServerConnection On Port " + this._port.ToString(CultureInfo.InvariantCulture) + ", " + ex, "DccServerConnection");
         throw;
       }
       finally

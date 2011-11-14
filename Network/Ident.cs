@@ -118,7 +118,7 @@ namespace Supay.Irc.Network
       }
       catch (Exception ex)
       {
-        Trace.WriteLine("Error Opening Ident Listener On Port " + PORT.ToString(CultureInfo.InvariantCulture) + ", " + ex.ToString(), "Ident");
+        Trace.WriteLine("Error Opening Ident Listener On Port " + PORT.ToString(CultureInfo.InvariantCulture) + ", " + ex, "Ident");
         this.Status = ConnectionStatus.Disconnected;
         throw;
       }
@@ -171,7 +171,7 @@ namespace Supay.Irc.Network
             Trace.WriteLine("Ident Stopped By Thread Abort", "Ident");
             break;
           default:
-            Trace.WriteLine("Ident Abnormally Stopped: " + ex.ToString(), "Ident");
+            Trace.WriteLine("Ident Abnormally Stopped: " + ex, "Ident");
             break;
         }
       }

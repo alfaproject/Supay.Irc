@@ -325,7 +325,7 @@ namespace Supay.Irc.Network
       }
       catch (Exception ex)
       {
-        Trace.WriteLine("Couldn't Send '" + data + "'. " + ex.ToString());
+        Trace.WriteLine("Couldn't Send '" + data + "'. " + ex);
         throw;
       }
     }
