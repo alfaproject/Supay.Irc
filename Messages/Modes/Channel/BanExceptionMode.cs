@@ -1,12 +1,15 @@
-namespace Supay.Irc.Messages.Modes {
+namespace Supay.Irc.Messages.Modes
+{
   /// <summary>
   ///   This mode defines an exception for any <see cref="BanMode" /> masks set for the channel.
   /// </summary>
-  public class BanExceptionMode : AccessControlMode {
+  public class BanExceptionMode : AccessControlMode
+  {
     /// <summary>
     ///   Creates a new instance of the <see cref="BanExceptionMode" /> class.
     /// </summary>
-    public BanExceptionMode() {
+    public BanExceptionMode()
+    {
     }
 
     /// <summary>
@@ -14,7 +17,8 @@ namespace Supay.Irc.Messages.Modes {
     ///   <see cref="ModeAction" />.
     /// </summary>
     public BanExceptionMode(ModeAction action)
-      : base(action) {
+      : base(action)
+    {
     }
 
     /// <summary>
@@ -22,14 +26,17 @@ namespace Supay.Irc.Messages.Modes {
     ///   <see cref="ModeAction" /> and <see cref="User" />.
     /// </summary>
     public BanExceptionMode(ModeAction action, Mask userMask)
-      : base(action, userMask) {
+      : base(action, userMask)
+    {
     }
 
     /// <summary>
     ///   Gets the IRC string representation of the mode being changed or applied.
     /// </summary>
-    protected override string Symbol {
-      get {
+    protected override string Symbol
+    {
+      get
+      {
         return "e";
       }
     }

@@ -9,7 +9,8 @@ using Supay.Irc.Messages;
 using Supay.Irc.Network;
 using Supay.Irc.Properties;
 
-namespace Supay.Irc.Dcc {
+namespace Supay.Irc.Dcc
+{
   /// <summary>
   ///   The DccServerConnection is used after sending a <see cref="DccSendRequestMessage" /> to send
   ///   the file to the target.
@@ -22,7 +23,8 @@ namespace Supay.Irc.Dcc {
   ///   amount of time, in case the target ignores the initial message.
   /// </remarks>
   [DesignerCategory("Code")]
-  public class DccServerConnection : Component {
+  public class DccServerConnection : Component
+  {
     private readonly object _syncLock = new object();
     private TcpListener _chatListener;
     private Thread _connectionWorker;
@@ -40,10 +42,11 @@ namespace Supay.Irc.Dcc {
     /// <summary>
     ///   Initializes a new instance of the <see cref="DccServerConnection" /> class.
     /// </summary>
-    public DccServerConnection() {
-      Status = ConnectionStatus.Disconnected;
-      TimeOut = TimeSpan.Zero;
-      Transfer = new DccTransfer();
+    public DccServerConnection()
+    {
+      this.Status = ConnectionStatus.Disconnected;
+      this.TimeOut = TimeSpan.Zero;
+      this.Transfer = new DccTransfer();
     }
 
     /// <summary>
@@ -52,8 +55,9 @@ namespace Supay.Irc.Dcc {
     /// </summary>
     /// <param name="port">The port to listen on.</param>
     public DccServerConnection(int port)
-      : this() {
-      Port = port;
+      : this()
+    {
+      this.Port = port;
     }
 
     #endregion
@@ -69,9 +73,11 @@ namespace Supay.Irc.Dcc {
     ///   Raises the <see cref="DccServerConnection.Connecting" /> event of the
     ///   <see cref="DccServerConnection" /> object.
     /// </summary>
-    protected void OnConnecting(EventArgs e) {
-      if (Connecting != null) {
-        Connecting(this, e);
+    protected void OnConnecting(EventArgs e)
+    {
+      if (this.Connecting != null)
+      {
+        this.Connecting(this, e);
       }
     }
 
@@ -84,15 +90,18 @@ namespace Supay.Irc.Dcc {
     ///   Raises the <see cref="DccServerConnection.Connected" /> event of the
     ///   <see cref="DccServerConnection" /> object.
     /// </summary>
-    protected void OnConnected(EventArgs e) {
-      if (SynchronizationObject != null && SynchronizationObject.InvokeRequired) {
-        SyncInvoke del = () => OnConnected(e);
-        SynchronizationObject.Invoke(del, null);
+    protected void OnConnected(EventArgs e)
+    {
+      if (this.SynchronizationObject != null && this.SynchronizationObject.InvokeRequired)
+      {
+        SyncInvoke del = () => this.OnConnected(e);
+        this.SynchronizationObject.Invoke(del, null);
         return;
       }
 
-      if (Connected != null) {
-        Connected(this, e);
+      if (this.Connected != null)
+      {
+        this.Connected(this, e);
       }
     }
 
@@ -105,15 +114,18 @@ namespace Supay.Irc.Dcc {
     ///   Raises the <see cref="DccServerConnection.Disconnected" /> event of the
     ///   <see cref="DccServerConnection" /> object.
     /// </summary>
-    protected virtual void OnDisconnected(ConnectionDataEventArgs e) {
-      if (SynchronizationObject != null && SynchronizationObject.InvokeRequired) {
-        SyncInvoke del = () => OnDisconnected(e);
-        SynchronizationObject.Invoke(del, null);
+    protected virtual void OnDisconnected(ConnectionDataEventArgs e)
+    {
+      if (this.SynchronizationObject != null && this.SynchronizationObject.InvokeRequired)
+      {
+        SyncInvoke del = () => this.OnDisconnected(e);
+        this.SynchronizationObject.Invoke(del, null);
         return;
       }
 
-      if (Disconnected != null) {
-        Disconnected(this, e);
+      if (this.Disconnected != null)
+      {
+        this.Disconnected(this, e);
       }
     }
 
@@ -130,14 +142,20 @@ namespace Supay.Irc.Dcc {
     ///   <see cref="DccServerConnection.Port" /> if the <see cref="DccServerConnection.Status" /> is
     ///   not <see cref="ConnectionStatus.Disconnected" />.
     /// </exception>
-    public int Port {
-      get {
-        return _port;
+    public int Port
+    {
+      get
+      {
+        return this._port;
       }
-      set {
-        if (Status == ConnectionStatus.Disconnected) {
-          _port = value;
-        } else {
+      set
+      {
+        if (this.Status == ConnectionStatus.Disconnected)
+        {
+          this._port = value;
+        }
+        else
+        {
           throw new NotSupportedException(Resources.PortCannotBeChanged);
         }
       }
@@ -147,7 +165,8 @@ namespace Supay.Irc.Dcc {
     ///   Gets or sets the length of time to wait after calling <see cref="Send" /> before the
     ///   thread will stop waiting for a connection.
     /// </summary>
-    public TimeSpan TimeOut {
+    public TimeSpan TimeOut
+    {
       get;
       set;
     }
@@ -155,7 +174,8 @@ namespace Supay.Irc.Dcc {
     /// <summary>
     ///   Gets the <see cref="ConnectionStatus" /> of the <see cref="DccServerConnection" />.
     /// </summary>
-    public ConnectionStatus Status {
+    public ConnectionStatus Status
+    {
       get;
       private set;
     }
@@ -167,7 +187,8 @@ namespace Supay.Irc.Dcc {
     /// <remarks>
     ///   This is usually the main form of the application.
     /// </remarks>
-    public ISynchronizeInvoke SynchronizationObject {
+    public ISynchronizeInvoke SynchronizationObject
+    {
       get;
       set;
     }
@@ -175,7 +196,8 @@ namespace Supay.Irc.Dcc {
     /// <summary>
     ///   Gets the transfer information for the connection.
     /// </summary>
-    public DccTransfer Transfer {
+    public DccTransfer Transfer
+    {
       get;
       private set;
     }
@@ -188,41 +210,48 @@ namespace Supay.Irc.Dcc {
     ///   Attempts to send the file specified in the current
     ///   <see cref="DccServerConnection.Transfer" /> information.
     /// </summary>
-    public void Send() {
-      lock (_syncLock) {
-        if (Status != ConnectionStatus.Disconnected) {
+    public void Send()
+    {
+      lock (this._syncLock)
+      {
+        if (this.Status != ConnectionStatus.Disconnected)
+        {
           throw new InvalidOperationException(Resources.AlreadyConnectToAnotherClient);
         }
 
-        Status = ConnectionStatus.Connecting;
-        OnConnecting(EventArgs.Empty);
+        this.Status = ConnectionStatus.Connecting;
+        this.OnConnecting(EventArgs.Empty);
       }
 
-      _connectionWorker = new Thread(RunSend) {
+      this._connectionWorker = new Thread(this.RunSend) {
         IsBackground = true
       };
-      _connectionWorker.Start();
+      this._connectionWorker.Start();
 
-      if (TimeOut != TimeSpan.Zero) {
-        _timeoutTimer = new Timer(CheckTimeOut, null, TimeOut, TimeSpan.Zero);
+      if (this.TimeOut != TimeSpan.Zero)
+      {
+        this._timeoutTimer = new Timer(this.CheckTimeOut, null, this.TimeOut, TimeSpan.Zero);
       }
     }
 
     /// <summary>
     ///   Closes the current network connection.
     /// </summary>
-    public void Disconnect() {
-      Status = ConnectionStatus.Disconnected;
-      OnDisconnected(new ConnectionDataEventArgs("Disconnect Called"));
+    public void Disconnect()
+    {
+      this.Status = ConnectionStatus.Disconnected;
+      this.OnDisconnected(new ConnectionDataEventArgs("Disconnect Called"));
     }
 
     /// <summary>
     ///   Forces closing the current network connection and kills the thread running it.
     /// </summary>
-    public void DisconnectForce() {
-      Disconnect();
-      if (_connectionWorker != null && _connectionWorker.IsAlive) {
-        _connectionWorker.Abort();
+    public void DisconnectForce()
+    {
+      this.Disconnect();
+      if (this._connectionWorker != null && this._connectionWorker.IsAlive)
+      {
+        this._connectionWorker.Abort();
       }
     }
 
@@ -230,37 +259,46 @@ namespace Supay.Irc.Dcc {
 
     #region Private Methods
 
-    private void CheckTimeOut(object state) {
-      if (Status == ConnectionStatus.Connecting) {
-        DisconnectForce();
+    private void CheckTimeOut(object state)
+    {
+      if (this.Status == ConnectionStatus.Connecting)
+      {
+        this.DisconnectForce();
       }
-      _timeoutTimer.Dispose();
-      _timeoutTimer = null;
+      this._timeoutTimer.Dispose();
+      this._timeoutTimer = null;
     }
 
-    private void RunSend() {
+    private void RunSend()
+    {
       string disconnectReason = string.Empty;
 
-      try {
-        _chatListener = new TcpListener(IPAddress.Any, Port);
-        _chatListener.Start();
-        Socket socket = _chatListener.AcceptSocket();
+      try
+      {
+        this._chatListener = new TcpListener(IPAddress.Any, this.Port);
+        this._chatListener.Start();
+        Socket socket = this._chatListener.AcceptSocket();
 
-        Status = ConnectionStatus.Connected;
-        OnConnected(EventArgs.Empty);
+        this.Status = ConnectionStatus.Connected;
+        this.OnConnected(EventArgs.Empty);
 
-        Transfer.TransferSocket = socket;
-        Transfer.Send();
-      } catch (Exception ex) {
-        Trace.WriteLine("Error Opening DccServerConnection On Port " + _port.ToString(CultureInfo.InvariantCulture) + ", " + ex.ToString(), "DccServerConnection");
+        this.Transfer.TransferSocket = socket;
+        this.Transfer.Send();
+      }
+      catch (Exception ex)
+      {
+        Trace.WriteLine("Error Opening DccServerConnection On Port " + this._port.ToString(CultureInfo.InvariantCulture) + ", " + ex.ToString(), "DccServerConnection");
         throw;
-      } finally {
-        Status = ConnectionStatus.Disconnected;
-        if (_chatListener != null) {
-          _chatListener.Stop();
-          _chatListener = null;
+      }
+      finally
+      {
+        this.Status = ConnectionStatus.Disconnected;
+        if (this._chatListener != null)
+        {
+          this._chatListener.Stop();
+          this._chatListener = null;
         }
-        OnDisconnected(new ConnectionDataEventArgs(disconnectReason));
+        this.OnDisconnected(new ConnectionDataEventArgs(disconnectReason));
       }
     }
 

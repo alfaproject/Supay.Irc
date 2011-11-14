@@ -1,26 +1,32 @@
-namespace Supay.Irc.Messages.Modes {
+namespace Supay.Irc.Messages.Modes
+{
   /// <summary>
   ///   This mode signifies that the user will receive 'I-line is full' messages.
   /// </summary>
-  public class ReceiveILineFullNoticesMode : UserMode {
+  public class ReceiveILineFullNoticesMode : UserMode
+  {
     /// <summary>
     ///   Creates a new instance of the <see cref="ReceiveILineFullNoticesMode" /> class.
     /// </summary>
-    public ReceiveILineFullNoticesMode() {
+    public ReceiveILineFullNoticesMode()
+    {
     }
 
     /// <summary>
     ///   Creates a new instance of the <see cref="ReceiveILineFullNoticesMode" /> class with the given <see cref="ModeAction" />.
     /// </summary>
-    public ReceiveILineFullNoticesMode(ModeAction action) {
-      Action = action;
+    public ReceiveILineFullNoticesMode(ModeAction action)
+    {
+      this.Action = action;
     }
 
     /// <summary>
     ///   Gets the IRC string representation of the mode being changed or applied.
     /// </summary>
-    protected override string Symbol {
-      get {
+    protected override string Symbol
+    {
+      get
+      {
         return "f";
       }
     }

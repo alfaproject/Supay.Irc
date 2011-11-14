@@ -2,7 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 
-namespace Supay.Irc.Messages {
+namespace Supay.Irc.Messages
+{
   /// <summary>
   ///   Error message received primarily when a <see cref="TextMessage" /> is sent without any Targets.
   /// </summary>
@@ -10,52 +11,61 @@ namespace Supay.Irc.Messages {
   ///   Some other commands may also send this when no recipients are specified.
   /// </remarks>
   [Serializable]
-  public class NoRecipientGivenMessage : ErrorMessage {
+  public class NoRecipientGivenMessage : ErrorMessage
+  {
     private string command = string.Empty;
 
     /// <summary>
     ///   Creates a new instances of the <see cref="NoRecipientGivenMessage" /> class.
     /// </summary>
     public NoRecipientGivenMessage()
-      : base(411) {
+      : base(411)
+    {
     }
 
     /// <summary>
     ///   Gets or sets the command of the message which was invalid.
     /// </summary>
-    public virtual string Command {
-      get {
-        return command;
+    public virtual string Command
+    {
+      get
+      {
+        return this.command;
       }
-      set {
-        command = value;
+      set
+      {
+        this.command = value;
       }
     }
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.
     /// </summary>
-    protected override IList<string> GetParameters() {
-      IList<string> parameters = base.GetParameters();
-      parameters.Add(string.Format(CultureInfo.InvariantCulture, "No recipient given ({0})", Command));
+    protected override IList<string> GetParameters()
+    {
+      var parameters = base.GetParameters();
+      parameters.Add(string.Format(CultureInfo.InvariantCulture, "No recipient given ({0})", this.Command));
       return parameters;
     }
 
     /// <summary>
     ///   Parses the parameters portion of the message.
     /// </summary>
-    protected override void ParseParameters(IList<string> parameters) {
+    protected override void ParseParameters(IList<string> parameters)
+    {
       base.ParseParameters(parameters);
-      Command = string.Empty;
-      if (parameters.Count > 1) {
-        Command = MessageUtil.StringBetweenStrings(parameters[1], "No recipient given (", ")");
+      this.Command = string.Empty;
+      if (parameters.Count > 1)
+      {
+        this.Command = MessageUtil.StringBetweenStrings(parameters[1], "No recipient given (", ")");
       }
     }
 
     /// <summary>
     ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
-    public override void Notify(MessageConduit conduit) {
+    public override void Notify(MessageConduit conduit)
+    {
       conduit.OnNoRecipientGiven(new IrcMessageEventArgs<NoRecipientGivenMessage>(this));
     }
   }

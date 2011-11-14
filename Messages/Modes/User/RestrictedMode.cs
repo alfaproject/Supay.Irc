@@ -1,26 +1,32 @@
-namespace Supay.Irc.Messages.Modes {
+namespace Supay.Irc.Messages.Modes
+{
   /// <summary>
   ///   This mode signifies that the user has a restricted connection.
   /// </summary>
-  public class RestrictedMode : UserMode {
+  public class RestrictedMode : UserMode
+  {
     /// <summary>
     ///   Creates a new instance of the <see cref="RestrictedMode" /> class.
     /// </summary>
-    public RestrictedMode() {
+    public RestrictedMode()
+    {
     }
 
     /// <summary>
     ///   Creates a new instance of the <see cref="RestrictedMode" /> class with the given <see cref="ModeAction" />.
     /// </summary>
-    public RestrictedMode(ModeAction action) {
-      Action = action;
+    public RestrictedMode(ModeAction action)
+    {
+      this.Action = action;
     }
 
     /// <summary>
     ///   Gets the IRC string representation of the mode being changed or applied.
     /// </summary>
-    protected override string Symbol {
-      get {
+    protected override string Symbol
+    {
+      get
+      {
         return "r";
       }
     }

@@ -6,12 +6,14 @@ using System.Globalization;
 using Supay.Irc.Messages.Modes;
 using Supay.Irc.Properties;
 
-namespace Supay.Irc {
+namespace Supay.Irc
+{
   /// <summary>
   ///   Represents a single irc channel, with it's users.
   /// </summary>
   [Serializable]
-  public class Channel : INotifyPropertyChanged {
+  public class Channel : INotifyPropertyChanged
+  {
     private readonly Journal _journal;
     private readonly ChannelModeCollection _modes;
     private readonly NameValueCollection _properties;
@@ -35,30 +37,32 @@ namespace Supay.Irc {
     /// <summary>
     ///   Creates a new instance of the <see cref="Channel" /> class on the given client with the given name.
     /// </summary>
-    public Channel(string name) {
-      _open = false;
+    public Channel(string name)
+    {
+      this._open = false;
 
-      _properties = new NameValueCollection(2);
-      _properties["NAME"] = name;
-      _properties["TOPIC"] = string.Empty;
+      this._properties = new NameValueCollection(2);
+      this._properties["NAME"] = name;
+      this._properties["TOPIC"] = string.Empty;
 
-      _users = new UserCollection();
-      _users.CollectionChanged += _users_CollectionChanged;
+      this._users = new UserCollection();
+      this._users.CollectionChanged += this._users_CollectionChanged;
 
-      _userModes = new Dictionary<User, ChannelStatus>();
+      this._userModes = new Dictionary<User, ChannelStatus>();
 
-      _modes = new ChannelModeCollection();
-      _modes.CollectionChanged += (s, e) => this.OnPropertyChanged("Modes");
+      this._modes = new ChannelModeCollection();
+      this._modes.CollectionChanged += (s, e) => this.OnPropertyChanged("Modes");
 
-      _journal = new Journal();
-      _journal.CollectionChanged += (s, e) => this.OnPropertyChanged("Journal");
+      this._journal = new Journal();
+      this._journal.CollectionChanged += (s, e) => this.OnPropertyChanged("Journal");
     }
 
     /// <summary>
     ///   Creates a new instance of the <see cref="Channel" /> class on the given client.
     /// </summary>
     public Channel()
-      : this(string.Empty) {
+      : this(string.Empty)
+    {
     }
 
     #endregion
@@ -68,12 +72,15 @@ namespace Supay.Irc {
     /// <summary>
     ///   Gets or sets whether the channel is currently open.
     /// </summary>
-    public bool Open {
-      get {
-        return _open;
+    public bool Open
+    {
+      get
+      {
+        return this._open;
       }
-      internal set {
-        _open = value;
+      internal set
+      {
+        this._open = value;
         this.OnPropertyChanged("Open");
       }
     }
@@ -81,13 +88,17 @@ namespace Supay.Irc {
     /// <summary>
     ///   Gets or sets the name of the channel.
     /// </summary>
-    public string Name {
-      get {
-        return _properties["NAME"];
+    public string Name
+    {
+      get
+      {
+        return this._properties["NAME"];
       }
-      set {
-        if (_properties["NAME"] != value) {
-          _properties["NAME"] = value;
+      set
+      {
+        if (this._properties["NAME"] != value)
+        {
+          this._properties["NAME"] = value;
           this.OnPropertyChanged("Name");
         }
       }
@@ -96,13 +107,17 @@ namespace Supay.Irc {
     /// <summary>
     ///   Gets or sets the topic of the channel.
     /// </summary>
-    public string Topic {
-      get {
-        return Properties["TOPIC"];
+    public string Topic
+    {
+      get
+      {
+        return this.Properties["TOPIC"];
       }
-      set {
-        if (_properties["TOPIC"] != value) {
-          _properties["TOPIC"] = value;
+      set
+      {
+        if (this._properties["TOPIC"] != value)
+        {
+          this._properties["TOPIC"] = value;
           this.OnPropertyChanged("Topic");
         }
       }
@@ -111,13 +126,17 @@ namespace Supay.Irc {
     /// <summary>
     ///   Gets or sets the user which set the current topic.
     /// </summary>
-    public User TopicSetter {
-      get {
-        return _topicSetter;
+    public User TopicSetter
+    {
+      get
+      {
+        return this._topicSetter;
       }
-      set {
-        if (_topicSetter != value) {
-          _topicSetter = value;
+      set
+      {
+        if (this._topicSetter != value)
+        {
+          this._topicSetter = value;
           this.OnPropertyChanged("TopicSetter");
         }
       }
@@ -126,13 +145,17 @@ namespace Supay.Irc {
     /// <summary>
     ///   Gets or sets the time which topic was set.
     /// </summary>
-    public DateTime TopicSetTime {
-      get {
-        return _topicSetTime;
+    public DateTime TopicSetTime
+    {
+      get
+      {
+        return this._topicSetTime;
       }
-      set {
-        if (_topicSetTime != value) {
-          _topicSetTime = value;
+      set
+      {
+        if (this._topicSetTime != value)
+        {
+          this._topicSetTime = value;
           this.OnPropertyChanged("TopicSetTime");
         }
       }
@@ -141,36 +164,44 @@ namespace Supay.Irc {
     /// <summary>
     ///   Gets the collection of general properties assigned to this channel.
     /// </summary>
-    public NameValueCollection Properties {
-      get {
-        return _properties;
+    public NameValueCollection Properties
+    {
+      get
+      {
+        return this._properties;
       }
     }
 
     /// <summary>
     ///   Gets the users in the channel.
     /// </summary>
-    public UserCollection Users {
-      get {
-        return _users;
+    public UserCollection Users
+    {
+      get
+      {
+        return this._users;
       }
     }
 
     /// <summary>
     ///   Gets the modes in the channel.
     /// </summary>
-    public ChannelModeCollection Modes {
-      get {
-        return _modes;
+    public ChannelModeCollection Modes
+    {
+      get
+      {
+        return this._modes;
       }
     }
 
     /// <summary>
     ///   Gets the journal of messages on the channel.
     /// </summary>
-    public Journal Journal {
-      get {
-        return _journal;
+    public Journal Journal
+    {
+      get
+      {
+        return this._journal;
       }
     }
 
@@ -181,10 +212,12 @@ namespace Supay.Irc {
     /// <summary>
     ///   Gets the status for the given <see cref="User" /> in the channel.
     /// </summary>
-    public ChannelStatus GetStatusForUser(User channelUser) {
-      VerifyUserInChannel(channelUser);
-      if (_userModes.ContainsKey(channelUser)) {
-        return _userModes[channelUser];
+    public ChannelStatus GetStatusForUser(User channelUser)
+    {
+      this.VerifyUserInChannel(channelUser);
+      if (this._userModes.ContainsKey(channelUser))
+      {
+        return this._userModes[channelUser];
       }
       return ChannelStatus.None;
     }
@@ -192,12 +225,16 @@ namespace Supay.Irc {
     /// <summary>
     ///   Applies the given <see cref="ChannelStatus" /> to the given <see cref="User" /> in the channel.
     /// </summary>
-    public void SetStatusForUser(User channelUser, ChannelStatus status) {
-      if (status == ChannelStatus.None && _userModes.ContainsKey(channelUser)) {
-        _userModes.Remove(channelUser);
-      } else {
-        VerifyUserInChannel(channelUser);
-        _userModes[channelUser] = status;
+    public void SetStatusForUser(User channelUser, ChannelStatus status)
+    {
+      if (status == ChannelStatus.None && this._userModes.ContainsKey(channelUser))
+      {
+        this._userModes.Remove(channelUser);
+      }
+      else
+      {
+        this.VerifyUserInChannel(channelUser);
+        this._userModes[channelUser] = status;
       }
     }
 
@@ -205,20 +242,27 @@ namespace Supay.Irc {
 
     #region Private Methods
 
-    private void VerifyUserInChannel(User channelUser) {
-      if (channelUser == null) {
+    private void VerifyUserInChannel(User channelUser)
+    {
+      if (channelUser == null)
+      {
         throw new ArgumentNullException("channelUser");
       }
-      if (!_users.Contains(channelUser)) {
-        throw new ArgumentException(string.Format(CultureInfo.InvariantCulture, Resources.UserIsNotInChannel, channelUser.Nickname, Name), "channelUser");
+      if (!this._users.Contains(channelUser))
+      {
+        throw new ArgumentException(string.Format(CultureInfo.InvariantCulture, Resources.UserIsNotInChannel, channelUser.Nickname, this.Name), "channelUser");
       }
     }
 
-    private void _users_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e) {
-      if (e.Action == NotifyCollectionChangedAction.Remove) {
-        foreach (User user in e.OldItems) {
-          if (_userModes.ContainsKey(user)) {
-            _userModes.Remove(user);
+    private void _users_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+    {
+      if (e.Action == NotifyCollectionChangedAction.Remove)
+      {
+        foreach (User user in e.OldItems)
+        {
+          if (this._userModes.ContainsKey(user))
+          {
+            this._userModes.Remove(user);
           }
         }
       }
@@ -233,9 +277,11 @@ namespace Supay.Irc {
     /// <summary>
     ///   Raises the PropertyChanged event.
     /// </summary>
-    protected void OnPropertyChanged(string propertyName) {
-      PropertyChangedEventHandler handler = PropertyChanged;
-      if (handler != null) {
+    protected void OnPropertyChanged(string propertyName)
+    {
+      PropertyChangedEventHandler handler = this.PropertyChanged;
+      if (handler != null)
+      {
         handler(this, new PropertyChangedEventArgs(propertyName));
       }
     }

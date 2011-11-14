@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Reflection;
 using Supay.Irc.Messages;
 
-namespace Supay.Irc {
+namespace Supay.Irc
+{
   /// <summary>
   ///   Contains information about what irc extensions and such the server supports.
   /// </summary>
@@ -17,14 +17,16 @@ namespace Supay.Irc {
   ///   This most likely makes it unneccesary to catch this message's received event.
   /// </remarks>
   [Serializable]
-  public class ServerSupport {
+  public class ServerSupport
+  {
     #region ExtendedListParameters enum
 
     /// <summary>
     ///   The extended parameters which the server can support on a List message.
     /// </summary>
     [Flags]
-    public enum ExtendedListParameters {
+    public enum ExtendedListParameters
+    {
       /// <summary>
       ///   No extended parameters are supported
       /// </summary>
@@ -64,12 +66,15 @@ namespace Supay.Irc {
 
     /// <summary>
     /// </summary>
-    public static ServerSupport DefaultSupport {
-      get {
+    public static ServerSupport DefaultSupport
+    {
+      get
+      {
         //TODO Create A Good Default ServerSupport
         return _defaultSupport ?? (_defaultSupport = new ServerSupport());
       }
-      set {
+      set
+      {
         _defaultSupport = value;
       }
     }
@@ -81,7 +86,8 @@ namespace Supay.Irc {
     /// <summary>
     ///   Gets or sets if the server supports the Deaf user mode
     /// </summary>
-    public bool DeafMode {
+    public bool DeafMode
+    {
       get;
       set;
     }
@@ -89,7 +95,8 @@ namespace Supay.Irc {
     /// <summary>
     ///   Gets or sets the standard used by the server.
     /// </summary>
-    public string Standard {
+    public string Standard
+    {
       get;
       set;
     }
@@ -101,7 +108,8 @@ namespace Supay.Irc {
     ///   The order of the modes goes from most powerful to least powerful. 
     ///   Those prefixes are shown in the output of the WHOIS, WHO and NAMES command.
     /// </remarks>
-    public string ChannelStatuses {
+    public string ChannelStatuses
+    {
       get;
       set;
     }
@@ -109,7 +117,8 @@ namespace Supay.Irc {
     /// <summary>
     ///   Gets or sets the channel status prefixes supported for matched-status-only messages
     /// </summary>
-    public string StatusMessages {
+    public string StatusMessages
+    {
       get;
       set;
     }
@@ -117,7 +126,8 @@ namespace Supay.Irc {
     /// <summary>
     ///   Gets the supported channel prefixes.
     /// </summary>
-    public Collection<string> ChannelTypes {
+    public Collection<string> ChannelTypes
+    {
       get;
       private set;
     }
@@ -125,7 +135,8 @@ namespace Supay.Irc {
     /// <summary>
     ///   Gets the modes that require parameters
     /// </summary>
-    public Collection<string> ModesWithParameters {
+    public Collection<string> ModesWithParameters
+    {
       get;
       private set;
     }
@@ -133,7 +144,8 @@ namespace Supay.Irc {
     /// <summary>
     ///   Gets the modes that require parameters only when set.
     /// </summary>
-    public Collection<string> ModesWithParametersWhenSet {
+    public Collection<string> ModesWithParametersWhenSet
+    {
       get;
       private set;
     }
@@ -141,7 +153,8 @@ namespace Supay.Irc {
     /// <summary>
     ///   Gets the modes that do not require parameters.
     /// </summary>
-    public Collection<string> ModesWithoutParameters {
+    public Collection<string> ModesWithoutParameters
+    {
       get;
       private set;
     }
@@ -149,7 +162,8 @@ namespace Supay.Irc {
     /// <summary>
     ///   Maximum number of channel modes with parameter allowed per <see cref="Supay.Irc.Messages.ChannelModeMessage" /> command.
     /// </summary>
-    public int MaxModes {
+    public int MaxModes
+    {
       get;
       set;
     }
@@ -160,7 +174,8 @@ namespace Supay.Irc {
     /// <remarks>
     ///   This property is considered obsolete, as most servers use the ChannelLimits property instead.
     /// </remarks>
-    public int MaxChannels {
+    public int MaxChannels
+    {
       get;
       set;
     }
@@ -171,7 +186,8 @@ namespace Supay.Irc {
     /// <remarks>
     ///   This property has replaced MaxChannels becuase of the added flexibility.
     /// </remarks>
-    public Dictionary<string, int> ChannelLimits {
+    public Dictionary<string, int> ChannelLimits
+    {
       get;
       private set;
     }
@@ -179,7 +195,8 @@ namespace Supay.Irc {
     /// <summary>
     ///   Gets or sets the maximum nickname length.
     /// </summary>
-    public int MaxNickLength {
+    public int MaxNickLength
+    {
       get;
       set;
     }
@@ -187,7 +204,8 @@ namespace Supay.Irc {
     /// <summary>
     ///   Gets or sets the maximum channel topic length.
     /// </summary>
-    public int MaxTopicLength {
+    public int MaxTopicLength
+    {
       get;
       set;
     }
@@ -195,7 +213,8 @@ namespace Supay.Irc {
     /// <summary>
     ///   Gets or sets the maximum length of the reason in a <see cref="Supay.Irc.Messages.KickMessage" />.
     /// </summary>
-    public int MaxKickCommentLength {
+    public int MaxKickCommentLength
+    {
       get;
       set;
     }
@@ -203,7 +222,8 @@ namespace Supay.Irc {
     /// <summary>
     ///   Gets or sets the maximum length of a channel name.
     /// </summary>
-    public int MaxChannelNameLength {
+    public int MaxChannelNameLength
+    {
       get;
       set;
     }
@@ -211,7 +231,8 @@ namespace Supay.Irc {
     /// <summary>
     ///   Gets or sets the maximum number of bans that a channel can have.
     /// </summary>
-    public int MaxBans {
+    public int MaxBans
+    {
       get;
       set;
     }
@@ -219,7 +240,8 @@ namespace Supay.Irc {
     /// <summary>
     ///   Gets or sets the Maximum number of invitation exceptions a channel can have.
     /// </summary>
-    public int MaxInvitationExceptions {
+    public int MaxInvitationExceptions
+    {
       get;
       set;
     }
@@ -227,7 +249,8 @@ namespace Supay.Irc {
     /// <summary>
     ///   Gets or sets the maximum number of ban exceptions that a channel can have.
     /// </summary>
-    public int MaxBanExceptions {
+    public int MaxBanExceptions
+    {
       get;
       set;
     }
@@ -235,7 +258,8 @@ namespace Supay.Irc {
     /// <summary>
     ///   Gets or sets the name of the network which the server is on.
     /// </summary>
-    public string NetworkName {
+    public string NetworkName
+    {
       get;
       set;
     }
@@ -243,7 +267,8 @@ namespace Supay.Irc {
     /// <summary>
     ///   Gets or sets if the server supports channel ban exceptions.
     /// </summary>
-    public bool BanExceptions {
+    public bool BanExceptions
+    {
       get;
       set;
     }
@@ -251,7 +276,8 @@ namespace Supay.Irc {
     /// <summary>
     ///   Gets or sets if the server supports channel invitation exceptions.
     /// </summary>
-    public bool InvitationExceptions {
+    public bool InvitationExceptions
+    {
       get;
       set;
     }
@@ -259,7 +285,8 @@ namespace Supay.Irc {
     /// <summary>
     ///   Gets or sets the maximum number of silence ( serverside ignore ) listings a client can store.
     /// </summary>
-    public int MaxSilences {
+    public int MaxSilences
+    {
       get;
       set;
     }
@@ -271,7 +298,8 @@ namespace Supay.Irc {
     ///   To send a message to channel operators, use a <see cref="Supay.Irc.Messages.NoticeMessage" />
     ///   with a target in the format "@#channel".
     /// </remarks>
-    public bool MessagesToOperators {
+    public bool MessagesToOperators
+    {
       get;
       set;
     }
@@ -282,7 +310,8 @@ namespace Supay.Irc {
     /// <remarks>
     ///   "ascii", "rfc1459", and "strict-rfc1459" are the only known values.
     /// </remarks>
-    public string CaseMapping {
+    public string CaseMapping
+    {
       get;
       set;
     }
@@ -290,7 +319,8 @@ namespace Supay.Irc {
     /// <summary>
     ///   Gets or sets the text encoding used by the server.
     /// </summary>
-    public string CharacterSet {
+    public string CharacterSet
+    {
       get;
       set;
     }
@@ -298,7 +328,8 @@ namespace Supay.Irc {
     /// <summary>
     ///   Gets or sets if the server supports the standards declared in rfc 2812.
     /// </summary>
-    public bool Rfc2812 {
+    public bool Rfc2812
+    {
       get;
       set;
     }
@@ -306,7 +337,8 @@ namespace Supay.Irc {
     /// <summary>
     ///   Gets or sets the length of channel ids.
     /// </summary>
-    public int ChannelIdLength {
+    public int ChannelIdLength
+    {
       get;
       set;
     }
@@ -314,7 +346,8 @@ namespace Supay.Irc {
     /// <summary>
     ///   Gets or sets if the server has a message penalty.
     /// </summary>
-    public bool Penalties {
+    public bool Penalties
+    {
       get;
       set;
     }
@@ -322,7 +355,8 @@ namespace Supay.Irc {
     /// <summary>
     ///   Gets or sets if the server will change your nick automatticly when it needs to.
     /// </summary>
-    public bool ForcedNickChanges {
+    public bool ForcedNickChanges
+    {
       get;
       set;
     }
@@ -330,7 +364,8 @@ namespace Supay.Irc {
     /// <summary>
     ///   Gets or sets if the server supports the USERIP command.
     /// </summary>
-    public bool UserIP {
+    public bool UserIP
+    {
       get;
       set;
     }
@@ -338,7 +373,8 @@ namespace Supay.Irc {
     /// <summary>
     ///   Gets or sets if the server supports the CPRIVMSG command.
     /// </summary>
-    public bool ChannelMessages {
+    public bool ChannelMessages
+    {
       get;
       set;
     }
@@ -346,7 +382,8 @@ namespace Supay.Irc {
     /// <summary>
     ///   Gets or sets if the server supports the CNOTICE command.
     /// </summary>
-    public bool ChannelNotices {
+    public bool ChannelNotices
+    {
       get;
       set;
     }
@@ -354,7 +391,8 @@ namespace Supay.Irc {
     /// <summary>
     ///   Gets or sets the maximum number of targets allowed on targetted messages, grouped by message command
     /// </summary>
-    public Dictionary<string, int> MaxMessageTargets {
+    public Dictionary<string, int> MaxMessageTargets
+    {
       get;
       private set;
     }
@@ -362,7 +400,8 @@ namespace Supay.Irc {
     /// <summary>
     ///   Gets or sets if the server supports the <see cref="Supay.Irc.Messages.KnockMessage" />.
     /// </summary>
-    public bool Knock {
+    public bool Knock
+    {
       get;
       set;
     }
@@ -370,7 +409,8 @@ namespace Supay.Irc {
     /// <summary>
     ///   Gets or sets if the server supports virtual channels.
     /// </summary>
-    public bool VirtualChannels {
+    public bool VirtualChannels
+    {
       get;
       set;
     }
@@ -378,7 +418,8 @@ namespace Supay.Irc {
     /// <summary>
     ///   Gets or sets if the <see cref="Supay.Irc.Messages.ListReplyMessage" /> is sent in multiple itterations.
     /// </summary>
-    public bool SafeList {
+    public bool SafeList
+    {
       get;
       set;
     }
@@ -386,7 +427,8 @@ namespace Supay.Irc {
     /// <summary>
     ///   Gets or sets the extended parameters the server supports for a <see cref="T:Supay.Irc.Messages.ListMessage" />.
     /// </summary>
-    public ExtendedListParameters ExtendedList {
+    public ExtendedListParameters ExtendedList
+    {
       get;
       set;
     }
@@ -394,7 +436,8 @@ namespace Supay.Irc {
     /// <summary>
     ///   Gets or sets the maximum number of watches a user is allowed to set.
     /// </summary>
-    public int MaxWatches {
+    public int MaxWatches
+    {
       get;
       set;
     }
@@ -402,7 +445,8 @@ namespace Supay.Irc {
     /// <summary>
     ///   Gets or sets if the <see cref="Supay.Irc.Messages.WhoMessage" /> uses the WHOX protocol
     /// </summary>
-    public bool WhoX {
+    public bool WhoX
+    {
       get;
       set;
     }
@@ -410,7 +454,8 @@ namespace Supay.Irc {
     /// <summary>
     ///   Gets or sets if the server suports callerid-style ignore.
     /// </summary>
-    public bool CallerId {
+    public bool CallerId
+    {
       get;
       set;
     }
@@ -418,7 +463,8 @@ namespace Supay.Irc {
     /// <summary>
     ///   Gets or sets if the server supports ETrace.
     /// </summary>
-    public bool ETrace {
+    public bool ETrace
+    {
       get;
       set;
     }
@@ -431,7 +477,8 @@ namespace Supay.Irc {
     ///   A value of -1 indicates that the server has no limit to the users on the monitor system list.
     ///   A value greater than 0 indicates the maximum number of users which can be added to the monitor system list.
     /// </remarks>
-    public int MaxMonitors {
+    public int MaxMonitors
+    {
       get;
       set;
     }
@@ -439,7 +486,8 @@ namespace Supay.Irc {
     /// <summary>
     ///   Gets the collection of safe channel prefix lengths, grouped by the channel type they apply to.
     /// </summary>
-    public Dictionary<string, int> SafeChannelPrefixLengths {
+    public Dictionary<string, int> SafeChannelPrefixLengths
+    {
       get;
       private set;
     }
@@ -447,46 +495,49 @@ namespace Supay.Irc {
     /// <summary>
     ///   Gets or sets the maximum length of away messages.
     /// </summary>
-    public int MaxAwayMessageLength {
+    public int MaxAwayMessageLength
+    {
       get;
       set;
     }
 
     #endregion
 
-    public ServerSupport() {
-      UnknownItems = new NameValueCollection();
-      StatusMessages = string.Empty;
-      Standard = "i-d";
-      SafeChannelPrefixLengths = new Dictionary<string, int>();
-      NetworkName = string.Empty;
-      ModesWithParametersWhenSet = new Collection<string>();
-      ModesWithParameters = new Collection<string>();
-      ModesWithoutParameters = new Collection<string>();
-      MaxWatches = -1;
-      MaxTopicLength = -1;
-      MaxNickLength = 9;
-      MaxModes = 3;
-      MaxMessageTargets = new Dictionary<string, int>();
-      MaxKickCommentLength = -1;
-      MaxInvitationExceptions = -1;
-      MaxChannels = -1;
-      MaxChannelNameLength = 200;
-      MaxBans = -1;
-      MaxBanExceptions = -1;
-      MaxAwayMessageLength = -1;
-      CharacterSet = string.Empty;
-      ChannelTypes = new Collection<string>();
-      ChannelStatuses = "(ov)@+";
-      ChannelLimits = new Dictionary<string, int>();
-      ChannelIdLength = -1;
-      CaseMapping = "rfc1459";
+    public ServerSupport()
+    {
+      this.UnknownItems = new NameValueCollection();
+      this.StatusMessages = string.Empty;
+      this.Standard = "i-d";
+      this.SafeChannelPrefixLengths = new Dictionary<string, int>();
+      this.NetworkName = string.Empty;
+      this.ModesWithParametersWhenSet = new Collection<string>();
+      this.ModesWithParameters = new Collection<string>();
+      this.ModesWithoutParameters = new Collection<string>();
+      this.MaxWatches = -1;
+      this.MaxTopicLength = -1;
+      this.MaxNickLength = 9;
+      this.MaxModes = 3;
+      this.MaxMessageTargets = new Dictionary<string, int>();
+      this.MaxKickCommentLength = -1;
+      this.MaxInvitationExceptions = -1;
+      this.MaxChannels = -1;
+      this.MaxChannelNameLength = 200;
+      this.MaxBans = -1;
+      this.MaxBanExceptions = -1;
+      this.MaxAwayMessageLength = -1;
+      this.CharacterSet = string.Empty;
+      this.ChannelTypes = new Collection<string>();
+      this.ChannelStatuses = "(ov)@+";
+      this.ChannelLimits = new Dictionary<string, int>();
+      this.ChannelIdLength = -1;
+      this.CaseMapping = "rfc1459";
     }
 
     /// <summary>
     ///   Gets the list of unknown items supported by the server.
     /// </summary>
-    public NameValueCollection UnknownItems {
+    public NameValueCollection UnknownItems
+    {
       get;
       private set;
     }
@@ -494,148 +545,164 @@ namespace Supay.Irc {
     /// <summary>
     ///   Loads support information from the given <see cref="Supay.Irc.Messages.SupportMessage" />.
     /// </summary>
-    public void LoadInfo(SupportMessage msg) {
+    public void LoadInfo(SupportMessage msg)
+    {
       NameValueCollection items = msg.SupportedItems;
-      foreach (string key in items.Keys) {
+      foreach (string key in items.Keys)
+      {
         string value = items[key] ?? string.Empty;
-        switch (key) {
+        switch (key)
+        {
           case "DEAF":
-            DeafMode = true;
+            this.DeafMode = true;
             break;
           case "AWAYLEN":
-            SetIfNumeric(GetType().GetProperty("MaxAwayMessageLength"), value);
+            this.SetIfNumeric(this.GetType().GetProperty("MaxAwayMessageLength"), value);
             break;
           case "IDCHAN":
-            foreach (var pair in CreateInfoPairs(value)) {
+            foreach (var pair in CreateInfoPairs(value))
+            {
               int prefixLength;
-              if (int.TryParse(pair.Value, out prefixLength)) {
-                SafeChannelPrefixLengths.Add(pair.Key, prefixLength);
+              if (int.TryParse(pair.Value, out prefixLength))
+              {
+                this.SafeChannelPrefixLengths.Add(pair.Key, prefixLength);
               }
             }
             break;
           case "STD":
-            Standard = value;
+            this.Standard = value;
             break;
           case "PREFIX":
-            ChannelStatuses = value;
+            this.ChannelStatuses = value;
             break;
           case "STATUSMSG":
           case "WALLVOICES":
-            StatusMessages = value;
+            this.StatusMessages = value;
             break;
           case "CHANTYPES":
-            AddChars(ChannelTypes, value);
+            AddChars(this.ChannelTypes, value);
             break;
           case "CHANMODES":
-            string[] modeGroups = value.Split(',');
-            if (modeGroups.Length >= 4) {
-              AddChars(ModesWithParameters, modeGroups[0]);
-              AddChars(ModesWithParameters, modeGroups[1]);
-              AddChars(ModesWithParametersWhenSet, modeGroups[2]);
-              AddChars(ModesWithoutParameters, modeGroups[3]);
-            } else {
+            var modeGroups = value.Split(',');
+            if (modeGroups.Length >= 4)
+            {
+              AddChars(this.ModesWithParameters, modeGroups[0]);
+              AddChars(this.ModesWithParameters, modeGroups[1]);
+              AddChars(this.ModesWithParametersWhenSet, modeGroups[2]);
+              AddChars(this.ModesWithoutParameters, modeGroups[3]);
+            }
+            else
+            {
               Trace.WriteLine("Unknown CHANMODES " + value);
             }
             break;
           case "MODES":
-            SetIfNumeric(GetType().GetProperty("MaxModes"), value);
+            this.SetIfNumeric(this.GetType().GetProperty("MaxModes"), value);
             break;
           case "MAXCHANNELS":
-            SetIfNumeric(GetType().GetProperty("MaxChannels"), value);
+            this.SetIfNumeric(this.GetType().GetProperty("MaxChannels"), value);
             break;
           case "CHANLIMIT":
-            foreach (var chanLimitInfo in CreateInfoPairs(value)) {
+            foreach (var chanLimitInfo in CreateInfoPairs(value))
+            {
               int limit;
-              if (int.TryParse(chanLimitInfo.Value, out limit)) {
-                foreach (char c in chanLimitInfo.Key) {
-                  ChannelLimits.Add(c.ToString(CultureInfo.InvariantCulture), limit);
+              if (int.TryParse(chanLimitInfo.Value, out limit))
+              {
+                foreach (char c in chanLimitInfo.Key)
+                {
+                  this.ChannelLimits.Add(c.ToString(CultureInfo.InvariantCulture), limit);
                 }
               }
             }
             break;
           case "NICKLEN":
           case "MAXNICKLEN":
-            SetIfNumeric(GetType().GetProperty("MaxNickLength"), value);
+            this.SetIfNumeric(this.GetType().GetProperty("MaxNickLength"), value);
             break;
           case "TOPICLEN":
-            SetIfNumeric(GetType().GetProperty("MaxTopicLength"), value);
+            this.SetIfNumeric(this.GetType().GetProperty("MaxTopicLength"), value);
             break;
           case "KICKLEN":
-            SetIfNumeric(GetType().GetProperty("MaxKickCommentLength"), value);
+            this.SetIfNumeric(this.GetType().GetProperty("MaxKickCommentLength"), value);
             break;
           case "CHANNELLEN":
           case "MAXCHANNELLEN":
-            SetIfNumeric(GetType().GetProperty("MaxChannelNameLength"), value);
+            this.SetIfNumeric(this.GetType().GetProperty("MaxChannelNameLength"), value);
             break;
           case "MAXBANS":
-            SetIfNumeric(GetType().GetProperty("MaxBans"), value);
+            this.SetIfNumeric(this.GetType().GetProperty("MaxBans"), value);
             break;
           case "NETWORK":
-            NetworkName = value;
+            this.NetworkName = value;
             break;
           case "EXCEPTS":
-            BanExceptions = true;
+            this.BanExceptions = true;
             break;
           case "INVEX":
-            InvitationExceptions = true;
+            this.InvitationExceptions = true;
             break;
           case "SILENCE":
-            SetIfNumeric(GetType().GetProperty("MaxSilences"), value);
+            this.SetIfNumeric(this.GetType().GetProperty("MaxSilences"), value);
             break;
           case "WALLCHOPS":
-            MessagesToOperators = true;
+            this.MessagesToOperators = true;
             break;
           case "CASEMAPPING":
-            CaseMapping = value;
+            this.CaseMapping = value;
             break;
           case "CHARSET":
-            CharacterSet = value;
+            this.CharacterSet = value;
             break;
           case "RFC2812":
-            Rfc2812 = true;
+            this.Rfc2812 = true;
             break;
           case "CHIDLEN":
-            SetIfNumeric(GetType().GetProperty("ChannelIdLength"), value);
+            this.SetIfNumeric(this.GetType().GetProperty("ChannelIdLength"), value);
             break;
           case "PENALTY":
-            Penalties = true;
+            this.Penalties = true;
             break;
           case "FNC":
-            ForcedNickChanges = true;
+            this.ForcedNickChanges = true;
             break;
           case "USERIP":
-            UserIP = true;
+            this.UserIP = true;
             break;
           case "CPRIVMSG":
-            ChannelMessages = true;
+            this.ChannelMessages = true;
             break;
           case "CNOTICE":
-            ChannelNotices = true;
+            this.ChannelNotices = true;
             break;
           case "MAXTARGETS":
             int maxTargets;
-            if (int.TryParse(value, NumberStyles.Integer, CultureInfo.InvariantCulture, out maxTargets)) {
-              MaxMessageTargets.Add(string.Empty, maxTargets);
+            if (int.TryParse(value, NumberStyles.Integer, CultureInfo.InvariantCulture, out maxTargets))
+            {
+              this.MaxMessageTargets.Add(string.Empty, maxTargets);
             }
             break;
           case "TARGMAX":
-            foreach (var targmaxInfo in CreateInfoPairs(value)) {
+            foreach (var targmaxInfo in CreateInfoPairs(value))
+            {
               int targmax;
-              if (int.TryParse(targmaxInfo.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out targmax)) {
-                MaxMessageTargets.Add(targmaxInfo.Key, targmax);
-              } else {
-                MaxMessageTargets.Add(targmaxInfo.Key, -1);
+              if (int.TryParse(targmaxInfo.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out targmax))
+              {
+                this.MaxMessageTargets.Add(targmaxInfo.Key, targmax);
+              }
+              else
+              {
+                this.MaxMessageTargets.Add(targmaxInfo.Key, -1);
               }
             }
             break;
           case "KNOCK":
-            Knock = true;
+            this.Knock = true;
             break;
           case "VCHANS":
-            VirtualChannels = true;
+            this.VirtualChannels = true;
             break;
           case "SAFELIST":
-            SafeList = true;
+            this.SafeList = true;
             break;
           case "ELIST":
             var elistMap = new Dictionary<char, ExtendedListParameters> {
@@ -646,74 +713,90 @@ namespace Supay.Irc {
               { 'T', ExtendedListParameters.Topic }
             };
 
-            ExtendedList = ExtendedListParameters.None;
-            foreach (char c in value.ToUpperInvariant()) {
-              ExtendedList = ExtendedList | elistMap[c];
+            this.ExtendedList = ExtendedListParameters.None;
+            foreach (char c in value.ToUpperInvariant())
+            {
+              this.ExtendedList = this.ExtendedList | elistMap[c];
             }
 
             break;
           case "WATCH":
-            SetIfNumeric(GetType().GetProperty("MaxWatches"), value);
+            this.SetIfNumeric(this.GetType().GetProperty("MaxWatches"), value);
             break;
           case "MONITOR":
-            MaxMonitors = -1;
-            SetIfNumeric(GetType().GetProperty("MaxMonitors"), value);
+            this.MaxMonitors = -1;
+            this.SetIfNumeric(this.GetType().GetProperty("MaxMonitors"), value);
             break;
           case "WHOX":
-            WhoX = true;
+            this.WhoX = true;
             break;
           case "CALLERID":
           case "ACCEPT":
-            CallerId = true;
+            this.CallerId = true;
             break;
           case "ETRACE":
-            ETrace = true;
+            this.ETrace = true;
             break;
           case "MAXLIST":
-            foreach (var maxListInfoPair in CreateInfoPairs(value)) {
+            foreach (var maxListInfoPair in CreateInfoPairs(value))
+            {
               int maxLength;
-              if (int.TryParse(maxListInfoPair.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out maxLength)) {
-                if (maxListInfoPair.Key.IndexOf("b", StringComparison.Ordinal) != -1) {
-                  MaxBans = maxLength;
+              if (int.TryParse(maxListInfoPair.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out maxLength))
+              {
+                if (maxListInfoPair.Key.IndexOf("b", StringComparison.Ordinal) != -1)
+                {
+                  this.MaxBans = maxLength;
                 }
-                if (maxListInfoPair.Key.IndexOf("e", StringComparison.Ordinal) != -1) {
-                  MaxBanExceptions = maxLength;
+                if (maxListInfoPair.Key.IndexOf("e", StringComparison.Ordinal) != -1)
+                {
+                  this.MaxBanExceptions = maxLength;
                 }
-                if (maxListInfoPair.Key.IndexOf("I", StringComparison.Ordinal) != -1) {
-                  MaxInvitationExceptions = maxLength;
+                if (maxListInfoPair.Key.IndexOf("I", StringComparison.Ordinal) != -1)
+                {
+                  this.MaxInvitationExceptions = maxLength;
                 }
               }
             }
             break;
           default:
-            UnknownItems[key] = value;
+            this.UnknownItems[key] = value;
             Trace.WriteLine("Unknown ServerSupport key/value " + key + " " + value);
             break;
         }
       }
     }
 
-    private static void AddChars(ICollection<string> target, IEnumerable<char> source) {
-      foreach (char c in source) {
+    private static void AddChars(ICollection<string> target, IEnumerable<char> source)
+    {
+      foreach (char c in source)
+      {
         target.Add(c.ToString(CultureInfo.InvariantCulture));
       }
     }
 
-    private void SetIfNumeric(PropertyInfo property, string value) {
+    private void SetIfNumeric(PropertyInfo property, string value)
+    {
       int intValue;
-      if (value != null && int.TryParse(value, NumberStyles.Integer, CultureInfo.InvariantCulture, out intValue)) {
+      if (value != null && int.TryParse(value, NumberStyles.Integer, CultureInfo.InvariantCulture, out intValue))
+      {
         property.SetValue(this, intValue, null);
-      } else {
+      }
+      else
+      {
         Trace.WriteLine("Expected numeric for ServerSupport target " + property.Name + " but it was '" + (value ?? string.Empty) + "'");
       }
     }
 
-    private static IEnumerable<KeyValuePair<string, string>> CreateInfoPairs(string value) {
+    private static IEnumerable<KeyValuePair<string, string>> CreateInfoPairs(string value)
+    {
       var list = new Collection<KeyValuePair<string, string>>();
-      foreach (string chanLimitPair in value.Split(',')) {
-        if (chanLimitPair.Contains(":")) {
-          string[] chanLimitInfo = chanLimitPair.Split(':');
-          if (chanLimitInfo.Length == 2 && chanLimitInfo[0].Length > 0) {
+      foreach (string chanLimitPair in value.Split(','))
+      {
+        if (chanLimitPair.Contains(":"))
+        {
+          var chanLimitInfo = chanLimitPair.Split(':');
+          if (chanLimitInfo.Length == 2 && chanLimitInfo[0].Length > 0)
+          {
             list.Add(new KeyValuePair<string, string>(chanLimitInfo[0], chanLimitInfo[1]));
           }
         }

@@ -2,12 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 
-namespace Supay.Irc.Messages {
+namespace Supay.Irc.Messages
+{
   /// <summary>
   ///   A single reply to the <see cref="ListMessage" /> query.
   /// </summary>
   [Serializable]
-  public class ListReplyMessage : NumericMessage, IChannelTargetedMessage {
+  public class ListReplyMessage : NumericMessage, IChannelTargetedMessage
+  {
     private string channel = string.Empty;
     private int memberCount = -1;
     private string topic = string.Empty;
@@ -16,49 +18,60 @@ namespace Supay.Irc.Messages {
     ///   Creates a new instance of the <see cref="ListReplyMessage" /> class.
     /// </summary>
     public ListReplyMessage()
-      : base(322) {
+      : base(322)
+    {
     }
 
     /// <summary>
     ///   Gets or sets the channel for this reply.
     /// </summary>
-    public virtual string Channel {
-      get {
-        return channel;
+    public virtual string Channel
+    {
+      get
+      {
+        return this.channel;
       }
-      set {
-        channel = value;
+      set
+      {
+        this.channel = value;
       }
     }
 
     /// <summary>
     ///   Gets or sets the number of people in the channel.
     /// </summary>
-    public virtual int MemberCount {
-      get {
-        return memberCount;
+    public virtual int MemberCount
+    {
+      get
+      {
+        return this.memberCount;
       }
-      set {
-        memberCount = value;
+      set
+      {
+        this.memberCount = value;
       }
     }
 
     /// <summary>
     ///   Gets or sets the topic of the channel.
     /// </summary>
-    public virtual string Topic {
-      get {
-        return topic;
+    public virtual string Topic
+    {
+      get
+      {
+        return this.topic;
       }
-      set {
-        topic = value;
+      set
+      {
+        this.topic = value;
       }
     }
 
     #region IChannelTargetedMessage Members
 
-    bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
-      return IsTargetedAtChannel(channelName);
+    bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName)
+    {
+      return this.IsTargetedAtChannel(channelName);
     }
 
     #endregion
@@ -66,42 +79,49 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.
     /// </summary>
-    protected override IList<string> GetParameters() {
-      IList<string> parameters = base.GetParameters();
-      parameters.Add(Channel);
-      parameters.Add(MemberCount.ToString(CultureInfo.InvariantCulture));
-      parameters.Add(Topic);
+    protected override IList<string> GetParameters()
+    {
+      var parameters = base.GetParameters();
+      parameters.Add(this.Channel);
+      parameters.Add(this.MemberCount.ToString(CultureInfo.InvariantCulture));
+      parameters.Add(this.Topic);
       return parameters;
     }
 
     /// <summary>
     ///   Parses the parameters portion of the message.
     /// </summary>
-    protected override void ParseParameters(IList<string> parameters) {
+    protected override void ParseParameters(IList<string> parameters)
+    {
       base.ParseParameters(parameters);
-      if (parameters.Count == 4) {
-        Channel = parameters[1];
-        MemberCount = Convert.ToInt32(parameters[2], CultureInfo.InvariantCulture);
-        Topic = parameters[3];
-      } else {
-        Channel = string.Empty;
-        MemberCount = -1;
-        Topic = string.Empty;
+      if (parameters.Count == 4)
+      {
+        this.Channel = parameters[1];
+        this.MemberCount = Convert.ToInt32(parameters[2], CultureInfo.InvariantCulture);
+        this.Topic = parameters[3];
+      }
+      else
+      {
+        this.Channel = string.Empty;
+        this.MemberCount = -1;
+        this.Topic = string.Empty;
       }
     }
 
     /// <summary>
     ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
-    public override void Notify(MessageConduit conduit) {
+    public override void Notify(MessageConduit conduit)
+    {
       conduit.OnListReply(new IrcMessageEventArgs<ListReplyMessage>(this));
     }
 
     /// <summary>
     ///   Determines if the the current message is targeted at the given channel.
     /// </summary>
-    protected virtual bool IsTargetedAtChannel(string channelName) {
-      return Channel.EqualsI(channelName);
+    protected virtual bool IsTargetedAtChannel(string channelName)
+    {
+      return this.Channel.EqualsI(channelName);
     }
   }
 }

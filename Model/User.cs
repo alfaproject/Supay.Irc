@@ -1,12 +1,14 @@
 using System;
 using Supay.Irc.Messages.Modes;
 
-namespace Supay.Irc {
+namespace Supay.Irc
+{
   /// <summary>
   ///   Represents a User on an IRC server.
   /// </summary>
   [Serializable]
-  public class User : Mask {
+  public class User : Mask
+  {
     private bool _away;
     private string _awayMessage;
     private bool _ircOperator;
@@ -22,8 +24,9 @@ namespace Supay.Irc {
     ///   Initializes a new instance of the <see cref="User" /> class.
     /// </summary>
     public User()
-      : base(string.Empty, string.Empty, string.Empty) {
-      Initialize();
+      : base(string.Empty, string.Empty, string.Empty)
+    {
+      this.Initialize();
     }
 
     /// <summary>
@@ -31,21 +34,23 @@ namespace Supay.Irc {
     /// </summary>
     /// <param name="mask">The mask string to parse.</param>
     public User(string mask)
-      : base(mask) {
-      Initialize();
+      : base(mask)
+    {
+      this.Initialize();
     }
 
-    private void Initialize() {
-      _name = string.Empty;
-      _password = string.Empty;
-      _server = string.Empty;
-      _ircOperator = false;
-      _online = true;
-      _away = false;
-      _awayMessage = string.Empty;
+    private void Initialize()
+    {
+      this._name = string.Empty;
+      this._password = string.Empty;
+      this._server = string.Empty;
+      this._ircOperator = false;
+      this._online = true;
+      this._away = false;
+      this._awayMessage = string.Empty;
 
-      _modes = new UserModeCollection();
-      _modes.CollectionChanged += (s, e) => this.OnPropertyChanged("Modes");
+      this._modes = new UserModeCollection();
+      this._modes.CollectionChanged += (s, e) => this.OnPropertyChanged("Modes");
     }
 
     #endregion
@@ -55,13 +60,17 @@ namespace Supay.Irc {
     /// <summary>
     ///   Gets or sets the supposed real name of the User.
     /// </summary>
-    public string Name {
-      get {
-        return _name;
+    public string Name
+    {
+      get
+      {
+        return this._name;
       }
-      set {
-        if (_name != value) {
-          _name = value;
+      set
+      {
+        if (this._name != value)
+        {
+          this._name = value;
           this.OnPropertyChanged("Name");
         }
       }
@@ -70,13 +79,17 @@ namespace Supay.Irc {
     /// <summary>
     ///   Gets or sets the Password the User will use on the server.
     /// </summary>
-    public string Password {
-      get {
-        return _password;
+    public string Password
+    {
+      get
+      {
+        return this._password;
       }
-      set {
-        if (_password != value) {
-          _password = value;
+      set
+      {
+        if (this._password != value)
+        {
+          this._password = value;
           this.OnPropertyChanged("Password");
         }
       }
@@ -85,13 +98,17 @@ namespace Supay.Irc {
     /// <summary>
     ///   Gets or sets the name of the server which the User is connected to.
     /// </summary>
-    public string Server {
-      get {
-        return _server;
+    public string Server
+    {
+      get
+      {
+        return this._server;
       }
-      set {
-        if (_server != value) {
-          _server = value;
+      set
+      {
+        if (this._server != value)
+        {
+          this._server = value;
           this.OnPropertyChanged("Server");
         }
       }
@@ -100,13 +117,17 @@ namespace Supay.Irc {
     /// <summary>
     ///   Gets or sets if the User is an IRC Operator.
     /// </summary>
-    public bool IrcOperator {
-      get {
-        return _ircOperator;
+    public bool IrcOperator
+    {
+      get
+      {
+        return this._ircOperator;
       }
-      set {
-        if (_ircOperator != value) {
-          _ircOperator = value;
+      set
+      {
+        if (this._ircOperator != value)
+        {
+          this._ircOperator = value;
           this.OnPropertyChanged("IrcOperator");
         }
       }
@@ -115,13 +136,17 @@ namespace Supay.Irc {
     /// <summary>
     ///   Gets or sets the online status of this User.
     /// </summary>
-    public bool Online {
-      get {
-        return _online;
+    public bool Online
+    {
+      get
+      {
+        return this._online;
       }
-      set {
-        if (_online != value) {
-          _online = value;
+      set
+      {
+        if (this._online != value)
+        {
+          this._online = value;
           this.OnPropertyChanged("Online");
         }
       }
@@ -130,13 +155,17 @@ namespace Supay.Irc {
     /// <summary>
     ///   Gets or sets the away status of this User.
     /// </summary>
-    public bool Away {
-      get {
-        return _away;
+    public bool Away
+    {
+      get
+      {
+        return this._away;
       }
-      set {
-        if (_away != value) {
-          _away = value;
+      set
+      {
+        if (this._away != value)
+        {
+          this._away = value;
           this.OnPropertyChanged("Away");
         }
       }
@@ -145,13 +174,17 @@ namespace Supay.Irc {
     /// <summary>
     ///   Gets or sets the away message of this User.
     /// </summary>
-    public string AwayMessage {
-      get {
-        return _awayMessage;
+    public string AwayMessage
+    {
+      get
+      {
+        return this._awayMessage;
       }
-      set {
-        if (_awayMessage != value) {
-          _awayMessage = value;
+      set
+      {
+        if (this._awayMessage != value)
+        {
+          this._awayMessage = value;
           this.OnPropertyChanged("AwayMessage");
         }
       }
@@ -160,26 +193,32 @@ namespace Supay.Irc {
     /// <summary>
     ///   Gets the modes which apply to the user.
     /// </summary>
-    public UserModeCollection Modes {
-      get {
-        return _modes;
+    public UserModeCollection Modes
+    {
+      get
+      {
+        return this._modes;
       }
     }
 
     /// <summary>
     ///   Gets a string that uniquely identifies this user.
     /// </summary>
-    public string FingerPrint {
-      get {
-        if (string.IsNullOrEmpty(Host) || string.IsNullOrEmpty(Username)) {
+    public string FingerPrint
+    {
+      get
+      {
+        if (string.IsNullOrEmpty(this.Host) || string.IsNullOrEmpty(this.Username))
+        {
           return string.Empty;
         }
 
-        int indexOfPoint = Host.IndexOf('.');
-        if (indexOfPoint > 0) {
-          return Username.TrimStart('~') + "@*" + Host.Substring(indexOfPoint);
+        int indexOfPoint = this.Host.IndexOf('.');
+        if (indexOfPoint > 0)
+        {
+          return this.Username.TrimStart('~') + "@*" + this.Host.Substring(indexOfPoint);
         }
-        return Username.TrimStart('~') + "@" + Host;
+        return this.Username.TrimStart('~') + "@" + this.Host;
       }
     }
 
@@ -190,24 +229,26 @@ namespace Supay.Irc {
     /// <summary>
     ///   Represents this User's information as an IRC mask.
     /// </summary>
-    public override string ToString() {
-      return IrcMask;
+    public override string ToString()
+    {
+      return this.IrcMask;
     }
 
     /// <summary>
     ///   Copies the properties of the given User onto this User.
     /// </summary>
-    public void CopyFrom(User user) {
-      Host = user.Host;
-      Nickname = user.Nickname;
-      Password = user.Password;
-      Name = user.Name;
-      Username = user.Username;
-      Server = user.Server;
-      IrcOperator = user.IrcOperator;
-      Online = user.Online;
-      Away = user.Away;
-      AwayMessage = user.AwayMessage;
+    public void CopyFrom(User user)
+    {
+      this.Host = user.Host;
+      this.Nickname = user.Nickname;
+      this.Password = user.Password;
+      this.Name = user.Name;
+      this.Username = user.Username;
+      this.Server = user.Server;
+      this.IrcOperator = user.IrcOperator;
+      this.Online = user.Online;
+      this.Away = user.Away;
+      this.AwayMessage = user.AwayMessage;
     }
 
     #endregion

@@ -10,7 +10,8 @@ using System.Text;
 using System.Threading;
 using Supay.Irc.Properties;
 
-namespace Supay.Irc.Network {
+namespace Supay.Irc.Network
+{
   /// <summary>
   ///   Represents a network connection to an IRC server.
   /// </summary>
@@ -19,7 +20,8 @@ namespace Supay.Irc.Network {
   ///   to an IRC server, and to be notified when it returns a <see cref="Supay.Irc.Messages.IrcMessage" />.
   /// </remarks>
   [DesignerCategory("Code")]
-  public class ClientConnection : Component {
+  public class ClientConnection : Component
+  {
     private readonly object _syncLock = new object();
 
     private string _address;
@@ -48,7 +50,8 @@ namespace Supay.Irc.Network {
     ///   and the <see cref="Port" /> defaults to 6667.
     /// </remarks>
     public ClientConnection()
-      : this("localhost", 6667) {
+      : this("localhost", 6667)
+    {
     }
 
     /// <summary>
@@ -56,12 +59,13 @@ namespace Supay.Irc.Network {
     /// </summary>
     /// <param name="address">The network address to connect to.</param>
     /// <param name="port">The port to connect on.</param>
-    public ClientConnection(string address, int port) {
-      Status = ConnectionStatus.Disconnected;
-      Encoding = Encoding.ASCII;
-      Ssl = false;
-      Address = address;
-      Port = port;
+    public ClientConnection(string address, int port)
+    {
+      this.Status = ConnectionStatus.Disconnected;
+      this.Encoding = Encoding.ASCII;
+      this.Ssl = false;
+      this.Address = address;
+      this.Port = port;
     }
 
     #endregion
@@ -105,14 +109,20 @@ namespace Supay.Irc.Network {
     ///   the <see cref="ClientConnection.Address" /> if the <see cref="ClientConnection.Status" />
     ///   is not <see cref="ConnectionStatus.Disconnected" />.
     /// </remarks>
-    public string Address {
-      get {
-        return _address;
+    public string Address
+    {
+      get
+      {
+        return this._address;
       }
-      set {
-        if (Status == ConnectionStatus.Disconnected) {
-          _address = value;
-        } else {
+      set
+      {
+        if (this.Status == ConnectionStatus.Disconnected)
+        {
+          this._address = value;
+        }
+        else
+        {
           throw new NotSupportedException(Resources.AddressCannotBeChanged);
         }
       }
@@ -127,14 +137,20 @@ namespace Supay.Irc.Network {
     ///     the <see cref="ClientConnection.Port" /> if the <see cref="ClientConnection.Status" />
     ///     is not <see cref="ConnectionStatus.Disconnected" />.</para>
     /// </remarks>
-    public int Port {
-      get {
-        return _port;
+    public int Port
+    {
+      get
+      {
+        return this._port;
       }
-      set {
-        if (Status == ConnectionStatus.Disconnected) {
-          _port = value;
-        } else {
+      set
+      {
+        if (this.Status == ConnectionStatus.Disconnected)
+        {
+          this._port = value;
+        }
+        else
+        {
           throw new NotSupportedException(Resources.PortCannotBeChanged);
         }
       }
@@ -143,7 +159,8 @@ namespace Supay.Irc.Network {
     /// <summary>
     ///   Gets the <see cref="ConnectionStatus" /> of the <see cref="ClientConnection" />.
     /// </summary>
-    public ConnectionStatus Status {
+    public ConnectionStatus Status
+    {
       get;
       private set;
     }
@@ -155,7 +172,8 @@ namespace Supay.Irc.Network {
     /// <remarks>
     ///   This is usually the main form of the application.
     /// </remarks>
-    public ISynchronizeInvoke SynchronizationObject {
+    public ISynchronizeInvoke SynchronizationObject
+    {
       get;
       set;
     }
@@ -166,14 +184,20 @@ namespace Supay.Irc.Network {
     /// <remarks>
     ///   Generally, only ASCII and UTF-8 are supported.
     /// </remarks>
-    public Encoding Encoding {
-      get {
-        return _encoding;
+    public Encoding Encoding
+    {
+      get
+      {
+        return this._encoding;
       }
-      set {
-        if (Status == ConnectionStatus.Disconnected) {
-          _encoding = value;
-        } else {
+      set
+      {
+        if (this.Status == ConnectionStatus.Disconnected)
+        {
+          this._encoding = value;
+        }
+        else
+        {
           throw new NotSupportedException(Resources.EncodingCannotBeChanged);
         }
       }
@@ -182,14 +206,20 @@ namespace Supay.Irc.Network {
     /// <summary>
     ///   Gets or sets if the connection will use SSL to connect to the server.
     /// </summary>
-    public bool Ssl {
-      get {
-        return _ssl;
+    public bool Ssl
+    {
+      get
+      {
+        return this._ssl;
       }
-      set {
-        if (Status == ConnectionStatus.Disconnected) {
-          _ssl = value;
-        } else {
+      set
+      {
+        if (this.Status == ConnectionStatus.Disconnected)
+        {
+          this._ssl = value;
+        }
+        else
+        {
           throw new NotSupportedException(Resources.SslCannotBeChanged);
         }
       }
@@ -207,20 +237,23 @@ namespace Supay.Irc.Network {
     ///   Only use this overload if your application is not a Windows.Forms application, you've set
     ///   the <see cref="SynchronizationObject" /> property, or you want to handle threading issues yourself.
     /// </remarks>
-    public void Connect() {
-      lock (_syncLock) {
-        if (Status != ConnectionStatus.Disconnected) {
+    public void Connect()
+    {
+      lock (this._syncLock)
+      {
+        if (this.Status != ConnectionStatus.Disconnected)
+        {
           throw new InvalidOperationException(Resources.AlreadyConnected);
         }
 
-        Status = ConnectionStatus.Connecting;
-        OnConnecting(EventArgs.Empty);
+        this.Status = ConnectionStatus.Connecting;
+        this.OnConnecting(EventArgs.Empty);
       }
 
-      _worker = new Thread(ReceiveData) {
+      this._worker = new Thread(this.ReceiveData) {
         IsBackground = true
       };
-      _worker.Start();
+      this._worker.Start();
     }
 
     /// <summary>
@@ -232,25 +265,29 @@ namespace Supay.Irc.Network {
     ///     data-receiving thread can sync with your application.</p>
     ///   <p>If calling this from a form or other control, just pass in the current instance.</p>
     /// </remarks>
-    public void Connect(ISynchronizeInvoke syncObject) {
-      SynchronizationObject = syncObject;
-      Connect();
+    public void Connect(ISynchronizeInvoke syncObject)
+    {
+      this.SynchronizationObject = syncObject;
+      this.Connect();
     }
 
     /// <summary>
     ///   Closes the current network connection.
     /// </summary>
-    public void Disconnect() {
-      Status = ConnectionStatus.Disconnected;
+    public void Disconnect()
+    {
+      this.Status = ConnectionStatus.Disconnected;
     }
 
     /// <summary>
     ///   Forces closing the current network connection and kills the thread running it.
     /// </summary>
-    public void DisconnectForce() {
-      Disconnect();
-      if (_worker != null && _worker.IsAlive) {
-        _worker.Abort();
+    public void DisconnectForce()
+    {
+      this.Disconnect();
+      if (this._worker != null && this._worker.IsAlive)
+      {
+        this._worker.Abort();
       }
     }
 
@@ -258,17 +295,21 @@ namespace Supay.Irc.Network {
     ///   Sends the given string over the network.
     /// </summary>
     /// <param name="data">The <see cref="System.string" /> to send.</param>
-    public void Write(string data) {
-      if (string.IsNullOrEmpty(data)) {
+    public void Write(string data)
+    {
+      if (string.IsNullOrEmpty(data))
+      {
         return;
       }
 
-      if (_writer == null || _writer.BaseStream == null || !_writer.BaseStream.CanWrite) {
+      if (this._writer == null || this._writer.BaseStream == null || !this._writer.BaseStream.CanWrite)
+      {
         throw new InvalidOperationException(Resources.ConnectionCanNotBeWrittenToYet);
       }
 
       data = data.Replace("\\c", "\x0003").Replace("\\b", "\x0002").Replace("\\u", "\x001F");
-      if (!data.EndsWith("\r\n", StringComparison.Ordinal)) {
+      if (!data.EndsWith("\r\n", StringComparison.Ordinal))
+      {
         data += "\r\n";
       }
 
@@ -276,11 +317,14 @@ namespace Supay.Irc.Network {
       //  throw new Supay.Irc.Messages.InvalidMessageException(Properties.Resources.MessagesAreLimitedInSize, data);
       //}
 
-      try {
-        _writer.WriteLine(data);
-        _writer.Flush();
-        OnDataSent(new ConnectionDataEventArgs(data));
-      } catch (Exception ex) {
+      try
+      {
+        this._writer.WriteLine(data);
+        this._writer.Flush();
+        this.OnDataSent(new ConnectionDataEventArgs(data));
+      }
+      catch (Exception ex)
+      {
         Trace.WriteLine("Couldn't Send '" + data + "'. " + ex.ToString());
         throw;
       }
@@ -293,24 +337,29 @@ namespace Supay.Irc.Network {
     /// <summary>
     ///   Raises the <see cref="ClientConnection.Connecting" /> event of the <see cref="ClientConnection" /> object.
     /// </summary>
-    protected void OnConnecting(EventArgs e) {
-      if (Connecting != null) {
-        Connecting(this, e);
+    protected void OnConnecting(EventArgs e)
+    {
+      if (this.Connecting != null)
+      {
+        this.Connecting(this, e);
       }
     }
 
     /// <summary>
     ///   Raises the <see cref="ClientConnection.Connected" /> event of the <see cref="ClientConnection" /> object.
     /// </summary>
-    protected void OnConnected(EventArgs e) {
-      if (SynchronizationObject != null && SynchronizationObject.InvokeRequired) {
-        SyncInvoke del = () => OnConnected(e);
-        SynchronizationObject.Invoke(del, null);
+    protected void OnConnected(EventArgs e)
+    {
+      if (this.SynchronizationObject != null && this.SynchronizationObject.InvokeRequired)
+      {
+        SyncInvoke del = () => this.OnConnected(e);
+        this.SynchronizationObject.Invoke(del, null);
         return;
       }
 
-      if (Connected != null) {
-        Connected(this, e);
+      if (this.Connected != null)
+      {
+        this.Connected(this, e);
       }
     }
 
@@ -318,15 +367,18 @@ namespace Supay.Irc.Network {
     ///   Raises the <see cref="ClientConnection.DataReceived" /> event of the <see cref="ClientConnection" /> object.
     /// </summary>
     /// <param name="e">A <see cref="ConnectionDataEventArgs" /> that contains the data.</param>
-    protected void OnDataReceived(ConnectionDataEventArgs e) {
-      if (SynchronizationObject != null && SynchronizationObject.InvokeRequired) {
-        SyncInvoke del = () => OnDataReceived(e);
-        SynchronizationObject.Invoke(del, null);
+    protected void OnDataReceived(ConnectionDataEventArgs e)
+    {
+      if (this.SynchronizationObject != null && this.SynchronizationObject.InvokeRequired)
+      {
+        SyncInvoke del = () => this.OnDataReceived(e);
+        this.SynchronizationObject.Invoke(del, null);
         return;
       }
 
-      if (DataReceived != null) {
-        DataReceived(this, e);
+      if (this.DataReceived != null)
+      {
+        this.DataReceived(this, e);
       }
     }
 
@@ -334,24 +386,29 @@ namespace Supay.Irc.Network {
     ///   Raises the <see cref="ClientConnection.DataSent" /> event of the <see cref="ClientConnection" /> object.
     /// </summary>
     /// <param name="data">A <see cref="ConnectionDataEventArgs" /> that contains the data.</param>
-    protected void OnDataSent(ConnectionDataEventArgs data) {
-      if (DataSent != null) {
-        DataSent(this, data);
+    protected void OnDataSent(ConnectionDataEventArgs data)
+    {
+      if (this.DataSent != null)
+      {
+        this.DataSent(this, data);
       }
     }
 
     /// <summary>
     ///   Raises the <see cref="ClientConnection.Disconnected" /> event of the <see cref="ClientConnection" /> object.
     /// </summary>
-    protected void OnDisconnected(ConnectionDataEventArgs e) {
-      if (SynchronizationObject != null && SynchronizationObject.InvokeRequired) {
-        SyncInvoke del = () => OnDisconnected(e);
-        SynchronizationObject.Invoke(del, null);
+    protected void OnDisconnected(ConnectionDataEventArgs e)
+    {
+      if (this.SynchronizationObject != null && this.SynchronizationObject.InvokeRequired)
+      {
+        SyncInvoke del = () => this.OnDisconnected(e);
+        this.SynchronizationObject.Invoke(del, null);
         return;
       }
 
-      if (Disconnected != null) {
-        Disconnected(this, e);
+      if (this.Disconnected != null)
+      {
+        this.Disconnected(this, e);
       }
     }
 
@@ -359,8 +416,10 @@ namespace Supay.Irc.Network {
 
     #region Private
 
-    private static bool ValidateServerCertificate(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors) {
-      if (sslPolicyErrors == SslPolicyErrors.None) {
+    private static bool ValidateServerCertificate(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
+    {
+      if (sslPolicyErrors == SslPolicyErrors.None)
+      {
         return true;
       }
 
@@ -374,64 +433,81 @@ namespace Supay.Irc.Network {
     /// <remarks>
     ///   ReceiveData runs in its own thread.
     /// </remarks>
-    private void ReceiveData() {
-      try {
-        _client = new TcpClient(Address, Port);
+    private void ReceiveData()
+    {
+      try
+      {
+        this._client = new TcpClient(this.Address, this.Port);
         Stream dataStream;
-        if (Ssl) {
-          dataStream = new SslStream(_client.GetStream(), false, ValidateServerCertificate, null);
-          ((SslStream) dataStream).AuthenticateAsClient(Address);
-        } else {
-          dataStream = _client.GetStream();
+        if (this.Ssl)
+        {
+          dataStream = new SslStream(this._client.GetStream(), false, ValidateServerCertificate, null);
+          ((SslStream) dataStream).AuthenticateAsClient(this.Address);
+        }
+        else
+        {
+          dataStream = this._client.GetStream();
         }
 
-        _reader = new StreamReader(dataStream, Encoding);
-        _writer = new StreamWriter(dataStream, Encoding) {
+        this._reader = new StreamReader(dataStream, this.Encoding);
+        this._writer = new StreamWriter(dataStream, this.Encoding) {
           AutoFlush = true
         };
-      } catch (AuthenticationException e) {
-        if (_client != null) {
-          _client.Close();
+      }
+      catch (AuthenticationException e)
+      {
+        if (this._client != null)
+        {
+          this._client.Close();
         }
-        Status = ConnectionStatus.Disconnected;
-        OnDisconnected(new ConnectionDataEventArgs(e.Message));
+        this.Status = ConnectionStatus.Disconnected;
+        this.OnDisconnected(new ConnectionDataEventArgs(e.Message));
         return;
-      } catch (Exception ex) {
-        Status = ConnectionStatus.Disconnected;
-        OnDisconnected(new ConnectionDataEventArgs(ex.Message));
+      }
+      catch (Exception ex)
+      {
+        this.Status = ConnectionStatus.Disconnected;
+        this.OnDisconnected(new ConnectionDataEventArgs(ex.Message));
         return;
       }
 
-      Status = ConnectionStatus.Connected;
-      OnConnected(EventArgs.Empty);
+      this.Status = ConnectionStatus.Connected;
+      this.OnConnected(EventArgs.Empty);
 
       string disconnectReason = string.Empty;
 
-      try {
+      try
+      {
         string incomingMessageLine;
 
-        while (Status == ConnectionStatus.Connected && ((incomingMessageLine = _reader.ReadLine()) != null)) {
-          try {
+        while (this.Status == ConnectionStatus.Connected && ((incomingMessageLine = this._reader.ReadLine()) != null))
+        {
+          try
+          {
             incomingMessageLine = incomingMessageLine.Trim();
-            OnDataReceived(new ConnectionDataEventArgs(incomingMessageLine));
-          } catch (ThreadAbortException ex) {
+            this.OnDataReceived(new ConnectionDataEventArgs(incomingMessageLine));
+          }
+          catch (ThreadAbortException ex)
+          {
             Trace.WriteLine(ex.Message);
             Thread.ResetAbort();
             disconnectReason = "Thread Aborted";
             break;
           }
         }
-      } catch (Exception ex) {
+      }
+      catch (Exception ex)
+      {
         Trace.WriteLine(ex.ToString());
         disconnectReason = ex.Message + Environment.NewLine + ex.StackTrace;
       }
-      Status = ConnectionStatus.Disconnected;
+      this.Status = ConnectionStatus.Disconnected;
 
-      _client.Close();
-      _client = null;
+      this._client.Close();
+      this._client = null;
 
-      var disconnectArgs = new ConnectionDataEventArgs(disconnectReason);
-      OnDisconnected(disconnectArgs);
+      ConnectionDataEventArgs disconnectArgs = new ConnectionDataEventArgs(disconnectReason);
+      this.OnDisconnected(disconnectArgs);
     }
 
     #endregion

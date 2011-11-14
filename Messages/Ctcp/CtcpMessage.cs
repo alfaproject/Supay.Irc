@@ -2,65 +2,77 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-namespace Supay.Irc.Messages {
+namespace Supay.Irc.Messages
+{
   /// <summary>
   ///   A Message which carries a CTCP command.
   /// </summary>
   [Serializable]
-  public abstract class CtcpMessage : IrcMessage, IChannelTargetedMessage, IQueryTargetedMessage {
+  public abstract class CtcpMessage : IrcMessage, IChannelTargetedMessage, IQueryTargetedMessage
+  {
     private string internalCommand = string.Empty;
     private string target = string.Empty;
 
     /// <summary>
     ///   Gets the targets of this <see cref="CtcpMessage" />.
     /// </summary>
-    public string Target {
-      get {
-        return target;
+    public string Target
+    {
+      get
+      {
+        return this.target;
       }
-      set {
-        target = value;
+      set
+      {
+        this.target = value;
       }
     }
 
     /// <summary>
     ///   Gets the CTCP Command requested.
     /// </summary>
-    protected string InternalCommand {
-      get {
-        return internalCommand;
+    protected string InternalCommand
+    {
+      get
+      {
+        return this.internalCommand;
       }
-      set {
-        internalCommand = value;
+      set
+      {
+        this.internalCommand = value;
       }
     }
 
     /// <summary>
     ///   Gets the data payload of the CTCP request.
     /// </summary>
-    protected abstract string ExtendedData {
+    protected abstract string ExtendedData
+    {
       get;
     }
 
     /// <summary>
     ///   Gets the IRC command used to send the CTCP command to another user.
     /// </summary>
-    protected abstract string TransportCommand {
+    protected abstract string TransportCommand
+    {
       get;
     }
 
     #region IChannelTargetedMessage Members
 
-    bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
-      return IsTargetedAtChannel(channelName);
+    bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName)
+    {
+      return this.IsTargetedAtChannel(channelName);
     }
 
     #endregion
 
     #region IQueryTargetedMessage Members
 
-    bool IQueryTargetedMessage.IsQueryToUser(User user) {
-      return IsQueryToUser(user);
+    bool IQueryTargetedMessage.IsQueryToUser(User user)
+    {
+      return this.IsQueryToUser(user);
     }
 
     #endregion
@@ -68,16 +80,18 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.
     /// </summary>
-    protected override IList<string> GetParameters() {
+    protected override IList<string> GetParameters()
+    {
       var parameters = new Collection<string> {
-        TransportCommand,
-        Target
+        this.TransportCommand,
+        this.Target
       };
-      string extendedData = CtcpUtil.Escape(ExtendedData);
-      if (extendedData.Length != 0) {
+      string extendedData = CtcpUtil.Escape(this.ExtendedData);
+      if (extendedData.Length != 0)
+      {
         extendedData = " " + extendedData;
       }
-      string payLoad = CtcpUtil.ExtendedDataMarker + InternalCommand + extendedData + CtcpUtil.ExtendedDataMarker;
+      string payLoad = CtcpUtil.ExtendedDataMarker + this.InternalCommand + extendedData + CtcpUtil.ExtendedDataMarker;
       parameters.Add(payLoad);
       return parameters;
     }
@@ -85,16 +99,20 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Determines if the message can be parsed by this type.
     /// </summary>
-    public override bool CanParse(string unparsedMessage) {
-      if (!CtcpUtil.IsCtcpMessage(unparsedMessage)) {
+    public override bool CanParse(string unparsedMessage)
+    {
+      if (!CtcpUtil.IsCtcpMessage(unparsedMessage))
+      {
         return false;
       }
 
-      if (TransportCommand != CtcpUtil.GetTransportCommand(unparsedMessage)) {
+      if (this.TransportCommand != CtcpUtil.GetTransportCommand(unparsedMessage))
+      {
         return false;
       }
 
-      if (InternalCommand.Length != 0 && InternalCommand != CtcpUtil.GetInternalCommand(unparsedMessage)) {
+      if (this.InternalCommand.Length != 0 && this.InternalCommand != CtcpUtil.GetInternalCommand(unparsedMessage))
+      {
         return false;
       }
 
@@ -104,23 +122,26 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Parses the parameters portion of the message.
     /// </summary>
-    protected override void ParseParameters(IList<string> parameters) {
+    protected override void ParseParameters(IList<string> parameters)
+    {
       base.ParseParameters(parameters);
-      Target = parameters.Count > 0 ? parameters[0] : string.Empty;
+      this.Target = parameters.Count > 0 ? parameters[0] : string.Empty;
     }
 
     /// <summary>
     ///   Determines if the the current message is targeted at the given channel.
     /// </summary>
-    protected virtual bool IsTargetedAtChannel(string channelName) {
-      return Target.EqualsI(channelName);
+    protected virtual bool IsTargetedAtChannel(string channelName)
+    {
+      return this.Target.EqualsI(channelName);
     }
 
     /// <summary>
     ///   Determines if the current message is targeted at a query to the given user.
     /// </summary>
-    protected virtual bool IsQueryToUser(User user) {
-      return user.Nickname.Equals(target);
+    protected virtual bool IsQueryToUser(User user)
+    {
+      return user.Nickname.Equals(this.target);
     }
   }
 }

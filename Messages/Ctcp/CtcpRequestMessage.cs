@@ -1,19 +1,23 @@
 using System;
 
-namespace Supay.Irc.Messages {
+namespace Supay.Irc.Messages
+{
   /// <summary>
   ///   The base class for all ctcp request messages.
   /// </summary>
   [Serializable]
-  public abstract class CtcpRequestMessage : CtcpMessage {
+  public abstract class CtcpRequestMessage : CtcpMessage
+  {
     /// <summary>
     ///   Gets the irc command used to send the ctcp command to another user.
     /// </summary>
     /// <remarks>
     ///   A request message uses the PRIVMSG command for transport.
     /// </remarks>
-    protected override string TransportCommand {
-      get {
+    protected override string TransportCommand
+    {
+      get
+      {
         return "PRIVMSG";
       }
     }
@@ -21,8 +25,10 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Gets the data payload of the Ctcp request.
     /// </summary>
-    protected override string ExtendedData {
-      get {
+    protected override string ExtendedData
+    {
+      get
+      {
         return string.Empty;
       }
     }

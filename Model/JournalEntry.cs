@@ -2,22 +2,26 @@
 using System.ComponentModel;
 using Supay.Irc.Messages;
 
-namespace Supay.Irc {
+namespace Supay.Irc
+{
   /// <summary>
   ///   A single entry in the journal of messages and related information related to an IRC channel or query.
   /// </summary>
-  public class JournalEntry : INotifyPropertyChanged {
+  public class JournalEntry : INotifyPropertyChanged
+  {
     /// <summary>
     ///   Creates a new instance of the <see href = "JournalEntry" /> class.
     /// </summary>
-    public JournalEntry() {
+    public JournalEntry()
+    {
     }
 
     /// <summary>
     ///   Creates a new instance of the <see href = "JournalEntry" /> class, populated with the given item.
     /// </summary>
-    public JournalEntry(object item) {
-      Item = item;
+    public JournalEntry(object item)
+    {
+      this.Item = item;
     }
 
     #region Properties
@@ -28,26 +32,32 @@ namespace Supay.Irc {
     /// <summary>
     ///   The time at which the entry was added to the journal.
     /// </summary>
-    public DateTime Time {
-      get {
-        return _time;
+    public DateTime Time
+    {
+      get
+      {
+        return this._time;
       }
-      set {
-        _time = value;
-        NotifyPropertyChanged("Time");
+      set
+      {
+        this._time = value;
+        this.NotifyPropertyChanged("Time");
       }
     }
 
     /// <summary>
     ///   The entry data, usually an <see cref="IrcMessage" />, but can be any object.
     /// </summary>
-    public object Item {
-      get {
-        return _item;
+    public object Item
+    {
+      get
+      {
+        return this._item;
       }
-      set {
-        _item = value;
-        NotifyPropertyChanged("Item");
+      set
+      {
+        this._item = value;
+        this.NotifyPropertyChanged("Item");
       }
     }
 
@@ -60,9 +70,11 @@ namespace Supay.Irc {
     /// </summary>
     public event PropertyChangedEventHandler PropertyChanged;
 
-    private void NotifyPropertyChanged(string propertyName) {
-      if (PropertyChanged != null) {
-        PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+    private void NotifyPropertyChanged(string propertyName)
+    {
+      if (this.PropertyChanged != null)
+      {
+        this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
       }
     }
 

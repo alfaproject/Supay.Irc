@@ -1,18 +1,21 @@
 using System;
 
-namespace Supay.Irc.Messages {
+namespace Supay.Irc.Messages
+{
   /// <summary>
   ///   The reply to a <see cref="ClientInfoRequestMessage" />, giving the human-readable response to the request.
   /// </summary>
   [Serializable]
-  public class ClientInfoReplyMessage : CtcpReplyMessage {
+  public class ClientInfoReplyMessage : CtcpReplyMessage
+  {
     private string response = string.Empty;
 
     /// <summary>
     ///   Creates a new instances of the <see cref="ClientInfoReplyMessage" /> class.
     /// </summary>
-    public ClientInfoReplyMessage() {
-      InternalCommand = "CLIENTINFO";
+    public ClientInfoReplyMessage()
+    {
+      this.InternalCommand = "CLIENTINFO";
     }
 
     /// <summary>
@@ -22,37 +25,44 @@ namespace Supay.Irc.Messages {
     ///   This is only intended to be read by humans.
     ///   It should be as complete and specific as the incoming request.
     /// </remarks>
-    public virtual string Response {
-      get {
-        return response;
+    public virtual string Response
+    {
+      get
+      {
+        return this.response;
       }
-      set {
-        response = value;
+      set
+      {
+        this.response = value;
       }
     }
 
     /// <summary>
     ///   Gets the data payload of the Ctcp request.
     /// </summary>
-    protected override string ExtendedData {
-      get {
-        return response;
+    protected override string ExtendedData
+    {
+      get
+      {
+        return this.response;
       }
     }
 
     /// <summary>
     ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
-    public override void Notify(MessageConduit conduit) {
+    public override void Notify(MessageConduit conduit)
+    {
       conduit.OnClientInfoReply(new IrcMessageEventArgs<ClientInfoReplyMessage>(this));
     }
 
     /// <summary>
     ///   Parses the given string to populate this <see cref="IrcMessage" />.
     /// </summary>
-    public override void Parse(string unparsedMessage) {
+    public override void Parse(string unparsedMessage)
+    {
       base.Parse(unparsedMessage);
-      Response = CtcpUtil.GetExtendedData(unparsedMessage);
+      this.Response = CtcpUtil.GetExtendedData(unparsedMessage);
     }
   }
 }

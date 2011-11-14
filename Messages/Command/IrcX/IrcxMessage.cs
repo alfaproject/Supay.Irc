@@ -1,16 +1,20 @@
 using System;
 
-namespace Supay.Irc.Messages {
+namespace Supay.Irc.Messages
+{
   /// <summary>
   ///   Queries the server to see if it supports the Ircx extension, and sets the client into ircx mode if it does.
   /// </summary>
   [Serializable]
-  public class IrcxMessage : CommandMessage {
+  public class IrcxMessage : CommandMessage
+  {
     /// <summary>
     ///   Gets the Irc command associated with this message.
     /// </summary>
-    protected override string Command {
-      get {
+    protected override string Command
+    {
+      get
+      {
         return "IRCX";
       }
     }
@@ -18,7 +22,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
-    public override void Notify(MessageConduit conduit) {
+    public override void Notify(MessageConduit conduit)
+    {
       conduit.OnIrcx(new IrcMessageEventArgs<IrcxMessage>(this));
     }
   }

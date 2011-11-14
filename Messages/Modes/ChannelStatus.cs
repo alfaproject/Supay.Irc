@@ -2,12 +2,14 @@ using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 
-namespace Supay.Irc {
+namespace Supay.Irc
+{
   /// <summary>
   ///   The nick prefixes that represent user level status in a channel.
   /// </summary>
   [Serializable]
-  public sealed class ChannelStatus : IEquatable<ChannelStatus> {
+  public sealed class ChannelStatus : IEquatable<ChannelStatus>
+  {
     #region Enumeration values
 
     /// <summary>
@@ -52,12 +54,14 @@ namespace Supay.Irc {
     ///   If the given status is not defined already, a new status is created. This same new status
     ///   is used for all future calls to GetInstance.
     /// </remarks>
-    public static ChannelStatus GetInstance(string symbol) {
-      foreach (ChannelStatus channelStatus in Values.Where(channelStatus => channelStatus.Symbol == symbol)) {
+    public static ChannelStatus GetInstance(string symbol)
+    {
+      foreach (ChannelStatus channelStatus in Values.Where(channelStatus => channelStatus.Symbol == symbol))
+      {
         return channelStatus;
       }
 
-      var newChannelStatus = new ChannelStatus(symbol);
+      ChannelStatus newChannelStatus = new ChannelStatus(symbol);
       Values.Add(newChannelStatus);
       return newChannelStatus;
     }
@@ -65,7 +69,8 @@ namespace Supay.Irc {
     /// <summary>
     ///   Determines if the given symbol is any of the known channel statuses.
     /// </summary>
-    public static bool IsDefined(string symbol) {
+    public static bool IsDefined(string symbol)
+    {
       return Values.Any(channelStatus => channelStatus.Symbol == symbol);
     }
 
@@ -76,8 +81,9 @@ namespace Supay.Irc {
     /// <summary>
     ///   Creates a new instance of the <see cref="ChannelStatus" /> class.
     /// </summary>
-    private ChannelStatus(string symbol) {
-      Symbol = symbol;
+    private ChannelStatus(string symbol)
+    {
+      this.Symbol = symbol;
     }
 
     #endregion
@@ -87,7 +93,8 @@ namespace Supay.Irc {
     /// <summary>
     ///   Gets the string representation of the status.
     /// </summary>
-    public string Symbol {
+    public string Symbol
+    {
       get;
       private set;
     }
@@ -99,8 +106,9 @@ namespace Supay.Irc {
     /// <summary>
     ///   Creates a representation of the message in IRC format.
     /// </summary>
-    public override string ToString() {
-      return Symbol;
+    public override string ToString()
+    {
+      return this.Symbol;
     }
 
     #endregion
@@ -112,14 +120,17 @@ namespace Supay.Irc {
     /// </summary>
     /// <param name="other">An object to compare with this object.</param>
     /// <returns>true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
-    public bool Equals(ChannelStatus other) {
-      if (ReferenceEquals(null, other)) {
+    public bool Equals(ChannelStatus other)
+    {
+      if (ReferenceEquals(null, other))
+      {
         return false;
       }
-      if (ReferenceEquals(this, other)) {
+      if (ReferenceEquals(this, other))
+      {
         return true;
       }
-      return Symbol == other.Symbol;
+      return this.Symbol == other.Symbol;
     }
 
     #endregion
@@ -130,26 +141,31 @@ namespace Supay.Irc {
     /// </summary>
     /// <param name="obj">The <see cref="Object" /> to compare with the current <see cref="ChannelStatus" />.</param>
     /// <returns>true if the specified <see cref="Object" /> is equal to the current <see cref="ChannelStatus" />; otherwise, false.</returns>
-    public override bool Equals(object obj) {
-      return Equals(obj as ChannelStatus);
+    public override bool Equals(object obj)
+    {
+      return this.Equals(obj as ChannelStatus);
     }
 
     /// <summary>
     ///   Serves as a hash function for a particular type.
     /// </summary>
     /// <returns>A hash code for the current <see cref="ChannelStatus" />.</returns>
-    public override int GetHashCode() {
-      return Symbol.GetHashCode();
+    public override int GetHashCode()
+    {
+      return this.Symbol.GetHashCode();
     }
 
-    public static bool operator ==(ChannelStatus leftOperand, ChannelStatus rightOperand) {
-      if (ReferenceEquals(null, leftOperand)) {
+    public static bool operator ==(ChannelStatus leftOperand, ChannelStatus rightOperand)
+    {
+      if (ReferenceEquals(null, leftOperand))
+      {
         return ReferenceEquals(null, rightOperand);
       }
       return leftOperand.Equals(rightOperand);
     }
 
-    public static bool operator !=(ChannelStatus leftOperand, ChannelStatus rightOperand) {
+    public static bool operator !=(ChannelStatus leftOperand, ChannelStatus rightOperand)
+    {
       return !(leftOperand == rightOperand);
     }
   }

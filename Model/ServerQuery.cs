@@ -1,19 +1,22 @@
 ﻿using System.Collections.Specialized;
 using System.ComponentModel;
 
-namespace Supay.Irc {
+namespace Supay.Irc
+{
   /// <summary>
   ///   Represents a status window for communication between the user and the server
   /// </summary>
-  public class ServerQuery : INotifyPropertyChanged {
+  public class ServerQuery : INotifyPropertyChanged
+  {
     #region CTor
 
     /// <summary>
     ///   Creates a new instance of the <see cref="Query" /> class on the given client with the given User.
     /// </summary>
-    public ServerQuery(Client client) {
+    public ServerQuery(Client client)
+    {
       this.client = client;
-      journal.CollectionChanged += journal_CollectionChanged;
+      this.journal.CollectionChanged += this.journal_CollectionChanged;
     }
 
     #endregion
@@ -26,18 +29,22 @@ namespace Supay.Irc {
     /// <summary>
     ///   Gets the journal of messages on the query
     /// </summary>
-    public virtual Journal Journal {
-      get {
-        return journal;
+    public virtual Journal Journal
+    {
+      get
+      {
+        return this.journal;
       }
     }
 
     /// <summary>
     ///   Gets the client which the status is on.
     /// </summary>
-    public virtual Client Client {
-      get {
-        return client;
+    public virtual Client Client
+    {
+      get
+      {
+        return this.client;
       }
     }
 
@@ -45,8 +52,9 @@ namespace Supay.Irc {
 
     #region Event Handlers
 
-    private void journal_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e) {
-      OnPropertyChanged(new PropertyChangedEventArgs("Journal"));
+    private void journal_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+    {
+      this.OnPropertyChanged(new PropertyChangedEventArgs("Journal"));
     }
 
     #endregion
@@ -60,9 +68,11 @@ namespace Supay.Irc {
 
     #endregion
 
-    private void OnPropertyChanged(PropertyChangedEventArgs e) {
-      if (PropertyChanged != null) {
-        PropertyChanged(this, e);
+    private void OnPropertyChanged(PropertyChangedEventArgs e)
+    {
+      if (this.PropertyChanged != null)
+      {
+        this.PropertyChanged(this, e);
       }
     }
   }

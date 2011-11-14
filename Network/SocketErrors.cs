@@ -1,8 +1,10 @@
-namespace Supay.Irc.Network {
+namespace Supay.Irc.Network
+{
   /// <summary>
   ///   A partial list of the codes that can exist in the <see cref="System.Net.Sockets.SocketException.ErrorCode" /> property.
   /// </summary>
-  public enum SocketError {
+  public enum SocketError
+  {
     /// <summary>
     ///   A blocking operation was interrupted by a call to WSACancelBlockingCall.
     /// </summary>

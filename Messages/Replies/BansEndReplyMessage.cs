@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
 
-namespace Supay.Irc.Messages {
+namespace Supay.Irc.Messages
+{
   /// <summary>
   ///   This is sent at the end of a channel ban list, when requested. (with MODE #chan +b.)
   /// </summary>
@@ -13,7 +14,8 @@ namespace Supay.Irc.Messages {
   /// </remarks>
   /// <seealso cref="BansReplyMessage" />
   [Serializable]
-  public class BansEndReplyMessage : NumericMessage, IChannelTargetedMessage {
+  public class BansEndReplyMessage : NumericMessage, IChannelTargetedMessage
+  {
     private const string DEFAULT_INFO = "End of Channel Ban List";
 
     private string _channel;
@@ -23,32 +25,39 @@ namespace Supay.Irc.Messages {
     ///   Creates a new instance of the <see cref="BansEndReplyMessage" /> class.
     /// </summary>
     public BansEndReplyMessage()
-      : base(368) {
-      _channel = null;
-      _info = DEFAULT_INFO;
+      : base(368)
+    {
+      this._channel = null;
+      this._info = DEFAULT_INFO;
     }
 
     /// <summary>
     ///   Gets or sets the channel the ban list refers to.
     /// </summary>
-    public virtual string Channel {
-      get {
-        return _channel;
+    public virtual string Channel
+    {
+      get
+      {
+        return this._channel;
       }
-      set {
-        _channel = value;
+      set
+      {
+        this._channel = value;
       }
     }
 
     /// <summary>
     ///   Gets or sets the info message of this reply.
     /// </summary>
-    public virtual string Info {
-      get {
-        return _info;
+    public virtual string Info
+    {
+      get
+      {
+        return this._info;
       }
-      set {
-        _info = value;
+      set
+      {
+        this._info = value;
       }
     }
 
@@ -57,8 +66,9 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Determines if the the current message is targeted at the given channel.
     /// </summary>
-    public virtual bool IsTargetedAtChannel(string channelName) {
-      return Channel.EqualsI(channelName);
+    public virtual bool IsTargetedAtChannel(string channelName)
+    {
+      return this.Channel.EqualsI(channelName);
     }
 
     #endregion
@@ -66,21 +76,24 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.
     /// </summary>
-    protected override IList<string> GetParameters() {
-      IList<string> parameters = base.GetParameters();
-      parameters.Add(Channel);
-      parameters.Add(string.IsNullOrEmpty(Info) ? DEFAULT_INFO : Info);
+    protected override IList<string> GetParameters()
+    {
+      var parameters = base.GetParameters();
+      parameters.Add(this.Channel);
+      parameters.Add(string.IsNullOrEmpty(this.Info) ? DEFAULT_INFO : this.Info);
       return parameters;
     }
 
     /// <summary>
     ///   Parses the parameters portion of the message.
     /// </summary>
-    protected override void ParseParameters(IList<string> parameters) {
+    protected override void ParseParameters(IList<string> parameters)
+    {
       base.ParseParameters(parameters);
-      if (parameters.Count > 1) {
-        Channel = parameters[1];
-        Info = parameters.Count > 2 ? parameters[2] : DEFAULT_INFO;
+      if (parameters.Count > 1)
+      {
+        this.Channel = parameters[1];
+        this.Info = parameters.Count > 2 ? parameters[2] : DEFAULT_INFO;
       }
     }
 
@@ -88,7 +101,8 @@ namespace Supay.Irc.Messages {
     ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the
     ///   current <see cref="IrcMessage" /> subclass.
     /// </summary>
-    public override void Notify(MessageConduit conduit) {
+    public override void Notify(MessageConduit conduit)
+    {
       conduit.OnBansEndReply(new IrcMessageEventArgs<BansEndReplyMessage>(this));
     }
   }

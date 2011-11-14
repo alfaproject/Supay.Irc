@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
 
-namespace Supay.Irc.Messages {
+namespace Supay.Irc.Messages
+{
   /// <summary>
   ///   A client session is ended with a QuitMessage.
   /// </summary>
@@ -11,26 +12,31 @@ namespace Supay.Irc.Messages {
   ///   message, the nickname.
   /// </remarks>
   [Serializable]
-  public class QuitMessage : CommandMessage {
+  public class QuitMessage : CommandMessage
+  {
     /// <summary>
     ///   Creates a new instance of the QuitMessage class.
     /// </summary>
-    public QuitMessage() {
+    public QuitMessage()
+    {
     }
 
     /// <summary>
     ///   Creates a new instance of the QuitMessage class with the given reason.
     /// </summary>
     public QuitMessage(string reason)
-      : this() {
-      Reason = reason;
+      : this()
+    {
+      this.Reason = reason;
     }
 
     /// <summary>
     ///   Gets the IRC command associated with this message.
     /// </summary>
-    protected override string Command {
-      get {
+    protected override string Command
+    {
+      get
+      {
         return "QUIT";
       }
     }
@@ -38,7 +44,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Gets or sets the reason for quitting.
     /// </summary>
-    public string Reason {
+    public string Reason
+    {
       get;
       set;
     }
@@ -46,10 +53,12 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.
     /// </summary>
-    protected override IList<string> GetParameters() {
-      IList<string> parameters = base.GetParameters();
-      if (!string.IsNullOrEmpty(Reason)) {
-        parameters.Add(Reason);
+    protected override IList<string> GetParameters()
+    {
+      var parameters = base.GetParameters();
+      if (!string.IsNullOrEmpty(this.Reason))
+      {
+        parameters.Add(this.Reason);
       }
       return parameters;
     }
@@ -57,10 +66,12 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Parses the parameters portion of the message.
     /// </summary>
-    protected override void ParseParameters(IList<string> parameters) {
+    protected override void ParseParameters(IList<string> parameters)
+    {
       base.ParseParameters(parameters);
-      if (parameters.Count >= 1) {
-        Reason = parameters[0];
+      if (parameters.Count >= 1)
+      {
+        this.Reason = parameters[0];
       }
     }
 
@@ -68,7 +79,8 @@ namespace Supay.Irc.Messages {
     ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the
     ///   current <see cref="IrcMessage" /> subclass.
     /// </summary>
-    public override void Notify(MessageConduit conduit) {
+    public override void Notify(MessageConduit conduit)
+    {
       conduit.OnQuit(new IrcMessageEventArgs<QuitMessage>(this));
     }
   }

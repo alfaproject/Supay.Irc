@@ -1,25 +1,29 @@
 using System;
 using System.Collections.Generic;
 
-namespace Supay.Irc.Messages {
+namespace Supay.Irc.Messages
+{
   /// <summary>
   ///   With the SilenceMessage, clients can tell a server to never send messages to them from a given user. This, effectively, is a server-side ignore command.
   /// </summary>
   [Serializable]
-  public class SilenceMessage : CommandMessage {
+  public class SilenceMessage : CommandMessage
+  {
     private ModeAction _action = ModeAction.Add;
     private User silencedUser = new User();
 
     /// <summary>
     ///   Creates a new instance of the SilenceMessage class.
     /// </summary>
-    public SilenceMessage() {
+    public SilenceMessage()
+    {
     }
 
     /// <summary>
     ///   Creates a new instance of the SilenceMessage class with the <see cref="User" />.
     /// </summary>
-    public SilenceMessage(User silencedUser) {
+    public SilenceMessage(User silencedUser)
+    {
       this.silencedUser = silencedUser;
     }
 
@@ -27,14 +31,17 @@ namespace Supay.Irc.Messages {
     ///   Creates a new instance of the SilenceMessage class with the given mask.
     /// </summary>
     public SilenceMessage(string userMask)
-      : this(new User(userMask)) {
+      : this(new User(userMask))
+    {
     }
 
     /// <summary>
     ///   Gets the IRC command associated with this message.
     /// </summary>
-    protected override string Command {
-      get {
+    protected override string Command
+    {
+      get
+      {
         return "SILENCE";
       }
     }
@@ -42,35 +49,43 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Gets or sets the user being silenced.
     /// </summary>
-    public virtual User SilencedUser {
-      get {
-        return silencedUser;
+    public virtual User SilencedUser
+    {
+      get
+      {
+        return this.silencedUser;
       }
-      set {
-        silencedUser = value;
+      set
+      {
+        this.silencedUser = value;
       }
     }
 
     /// <summary>
     ///   Gets or sets the action being applied to the silenced user on the list.
     /// </summary>
-    public virtual ModeAction Action {
-      get {
-        return _action;
+    public virtual ModeAction Action
+    {
+      get
+      {
+        return this._action;
       }
-      set {
-        _action = value;
+      set
+      {
+        this._action = value;
       }
     }
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.
     /// </summary>
-    protected override IList<string> GetParameters() {
+    protected override IList<string> GetParameters()
+    {
       // SILENCE [{{+|-}<user>@<host>}]
-      IList<string> parameters = base.GetParameters();
-      if (SilencedUser != null && !string.IsNullOrEmpty(SilencedUser.Host)) {
-        parameters.Add((Action == ModeAction.Add ? "+" : "-") + SilencedUser.IrcMask);
+      var parameters = base.GetParameters();
+      if (this.SilencedUser != null && !string.IsNullOrEmpty(this.SilencedUser.Host))
+      {
+        parameters.Add((this.Action == ModeAction.Add ? "+" : "-") + this.SilencedUser.IrcMask);
       }
       return parameters;
     }
@@ -78,34 +93,40 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Parses the parameters portion of the message.
     /// </summary>
-    protected override void ParseParameters(IList<string> parameters) {
+    protected override void ParseParameters(IList<string> parameters)
+    {
       base.ParseParameters(parameters);
-      if (parameters.Count > 0) {
+      if (parameters.Count > 0)
+      {
         string target = parameters[0];
-        switch (target[0]) {
+        switch (target[0])
+        {
           case '+':
-            Action = ModeAction.Add;
+            this.Action = ModeAction.Add;
             target = target.Substring(1);
             break;
           case '-':
-            Action = ModeAction.Remove;
+            this.Action = ModeAction.Remove;
             target = target.Substring(1);
             break;
           default:
-            Action = ModeAction.Add;
+            this.Action = ModeAction.Add;
             break;
         }
-        SilencedUser = new User(target);
-      } else {
-        SilencedUser = new User();
-        Action = ModeAction.Add;
+        this.SilencedUser = new User(target);
+      }
+      else
+      {
+        this.SilencedUser = new User();
+        this.Action = ModeAction.Add;
       }
     }
 
     /// <summary>
     ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
-    public override void Notify(MessageConduit conduit) {
+    public override void Notify(MessageConduit conduit)
+    {
       conduit.OnSilence(new IrcMessageEventArgs<SilenceMessage>(this));
     }
   }

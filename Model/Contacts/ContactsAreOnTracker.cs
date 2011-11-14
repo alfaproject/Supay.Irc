@@ -5,76 +5,98 @@ using System.Timers;
 using Supay.Irc.Messages;
 using Supay.Irc.Network;
 
-namespace Supay.Irc.Contacts {
-  internal class ContactsAreOnTracker : ContactsTracker, IDisposable {
+namespace Supay.Irc.Contacts
+{
+  internal class ContactsAreOnTracker : ContactsTracker, IDisposable
+  {
     private readonly IList<string> _trackedNicks = new Collection<string>();
     private readonly IList<string> _waitingOnNicks = new Collection<string>();
     private Timer _timer;
 
     public ContactsAreOnTracker(ContactList contacts)
-      : base(contacts) {
+      : base(contacts)
+    {
     }
 
-    public override void Initialize() {
-      Contacts.Client.Messages.IsOnReply += client_IsOnReply;
+    public override void Initialize()
+    {
+      this.Contacts.Client.Messages.IsOnReply += this.client_IsOnReply;
       base.Initialize();
-      if (_timer != null) {
-        _timer.Dispose();
+      if (this._timer != null)
+      {
+        this._timer.Dispose();
       }
-      _timer = new Timer();
-      _timer.Elapsed += timer_Elapsed;
-      _timer.Start();
+      this._timer = new Timer();
+      this._timer.Elapsed += this.timer_Elapsed;
+      this._timer.Start();
     }
 
-    protected override void AddNicks(IEnumerable<string> nicks) {
-      foreach (string nick in nicks) {
-        AddNick(nick);
-      }
-    }
-
-    protected override void AddNick(string nick) {
-      if (!_trackedNicks.Contains(nick)) {
-        _trackedNicks.Add(nick);
+    protected override void AddNicks(IEnumerable<string> nicks)
+    {
+      foreach (string nick in nicks)
+      {
+        this.AddNick(nick);
       }
     }
 
-    protected override void RemoveNick(string nick) {
-      if (_trackedNicks.Contains(nick)) {
-        _trackedNicks.Remove(nick);
+    protected override void AddNick(string nick)
+    {
+      if (!this._trackedNicks.Contains(nick))
+      {
+        this._trackedNicks.Add(nick);
+      }
+    }
+
+    protected override void RemoveNick(string nick)
+    {
+      if (this._trackedNicks.Contains(nick))
+      {
+        this._trackedNicks.Remove(nick);
       }
     }
 
     #region Event Handlers
 
-    private void client_IsOnReply(object sender, IrcMessageEventArgs<IsOnReplyMessage> e) {
-      foreach (string onlineNick in e.Message.Nicks) {
-        if (_waitingOnNicks.Contains(onlineNick)) {
-          _waitingOnNicks.Remove(onlineNick);
+    private void client_IsOnReply(object sender, IrcMessageEventArgs<IsOnReplyMessage> e)
+    {
+      foreach (string onlineNick in e.Message.Nicks)
+      {
+        if (this._waitingOnNicks.Contains(onlineNick))
+        {
+          this._waitingOnNicks.Remove(onlineNick);
         }
-        User knownUser = Contacts.Users.Find(onlineNick);
-        if (knownUser != null) {
+        User knownUser = this.Contacts.Users.Find(onlineNick);
+        if (knownUser != null)
+        {
           knownUser.Online = true;
-        } else if (_trackedNicks.Contains(onlineNick)) {
-          _trackedNicks.Remove(onlineNick);
+        }
+        else if (this._trackedNicks.Contains(onlineNick))
+        {
+          this._trackedNicks.Remove(onlineNick);
         }
       }
-      foreach (string nick in _waitingOnNicks) {
-        User offlineUser = Contacts.Users.Find(nick);
+      foreach (string nick in this._waitingOnNicks)
+      {
+        User offlineUser = this.Contacts.Users.Find(nick);
         offlineUser.Online = false;
-        _waitingOnNicks.Remove(nick);
+        this._waitingOnNicks.Remove(nick);
       }
     }
 
-    private void timer_Elapsed(object sender, ElapsedEventArgs e) {
-      if (Contacts.Client.Connection.Status == ConnectionStatus.Connected) {
-        var ison = new IsOnMessage();
-        foreach (string nick in _trackedNicks) {
+    private void timer_Elapsed(object sender, ElapsedEventArgs e)
+    {
+      if (this.Contacts.Client.Connection.Status == ConnectionStatus.Connected)
+      {
+        IsOnMessage ison = new IsOnMessage();
+        foreach (string nick in this._trackedNicks)
+        {
           ison.Nicks.Add(nick);
-          if (!_waitingOnNicks.Contains(nick)) {
-            _waitingOnNicks.Add(nick);
+          if (!this._waitingOnNicks.Contains(nick))
+          {
+            this._waitingOnNicks.Add(nick);
           }
         }
-        Contacts.Client.Send(ison);
+        this.Contacts.Client.Send(ison);
       }
     }
 
@@ -86,14 +108,17 @@ namespace Supay.Irc.Contacts {
     ///   Performs application-defined tasks associated with freeing, releasing, or resetting
     ///   unmanaged resources.
     /// </summary>
-    public void Dispose() {
-      Dispose(true);
+    public void Dispose()
+    {
+      this.Dispose(true);
       GC.SuppressFinalize(this);
     }
 
-    protected virtual void Dispose(bool disposing) {
-      if (disposing && _timer != null) {
-        _timer.Dispose();
+    protected virtual void Dispose(bool disposing)
+    {
+      if (disposing && this._timer != null)
+      {
+        this._timer.Dispose();
       }
     }
 

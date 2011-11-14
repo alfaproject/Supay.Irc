@@ -2,7 +2,8 @@ using System;
 using System.Collections.Generic;
 using Supay.Irc.Properties;
 
-namespace Supay.Irc.Messages {
+namespace Supay.Irc.Messages
+{
   /// <summary>
   ///   This message is a chat message which is scoped to the current channel.
   /// </summary>
@@ -12,7 +13,8 @@ namespace Supay.Irc.Messages {
   ///   operators send this chat message as often as they want to people who are in that channel.
   /// </remarks>
   [Serializable]
-  public class ChannelScopedChatMessage : CommandMessage, IChannelTargetedMessage {
+  public class ChannelScopedChatMessage : CommandMessage, IChannelTargetedMessage
+  {
     private string _channel;
     private string _target;
     private string _text;
@@ -23,7 +25,8 @@ namespace Supay.Irc.Messages {
     ///   Creates a new instance of the <see cref="ChannelScopedChatMessage" /> class.
     /// </summary>
     public ChannelScopedChatMessage()
-      : this(string.Empty) {
+      : this(string.Empty)
+    {
     }
 
     /// <summary>
@@ -31,17 +34,19 @@ namespace Supay.Irc.Messages {
     ///   text string.
     /// </summary>
     public ChannelScopedChatMessage(string text)
-      : this(text, string.Empty) {
+      : this(text, string.Empty)
+    {
     }
 
     /// <summary>
     ///   Creates a new instance of the <see cref="ChannelScopedChatMessage" /> class with the given
     ///   text string and target channel or user.
     /// </summary>
-    public ChannelScopedChatMessage(string text, string target) {
-      Text = text;
-      Target = target;
-      _channel = string.Empty;
+    public ChannelScopedChatMessage(string text, string target)
+    {
+      this.Text = text;
+      this.Target = target;
+      this._channel = string.Empty;
     }
 
     #endregion
@@ -51,8 +56,10 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Gets the IRC command associated with this message.
     /// </summary>
-    protected override string Command {
-      get {
+    protected override string Command
+    {
+      get
+      {
         return "CPRIVMSG";
       }
     }
@@ -60,45 +67,57 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Gets or sets the actual text of this message.
     /// </summary>
-    public string Text {
-      get {
-        return _text;
+    public string Text
+    {
+      get
+      {
+        return this._text;
       }
-      set {
-        if (value == null) {
+      set
+      {
+        if (value == null)
+        {
           throw new ArgumentNullException("value");
         }
-        _text = value;
+        this._text = value;
       }
     }
 
     /// <summary>
     ///   Gets or sets the target of this message.
     /// </summary>
-    public string Target {
-      get {
-        return _target;
+    public string Target
+    {
+      get
+      {
+        return this._target;
       }
-      set {
-        if (value == null) {
+      set
+      {
+        if (value == null)
+        {
           throw new ArgumentNullException("value");
         }
-        _target = value;
+        this._target = value;
       }
     }
 
     /// <summary>
     ///   Gets or sets the channel which this message is scoped to.
     /// </summary>
-    public virtual string Channel {
-      get {
-        return _channel;
+    public virtual string Channel
+    {
+      get
+      {
+        return this._channel;
       }
-      set {
-        if (value == null) {
+      set
+      {
+        if (value == null)
+        {
           throw new ArgumentNullException("value");
         }
-        _channel = value;
+        this._channel = value;
       }
     }
 
@@ -109,35 +128,40 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.
     /// </summary>
-    protected override IList<string> GetParameters() {
-      IList<string> parameters = base.GetParameters();
-      parameters.Add(Target);
-      parameters.Add(Channel);
-      parameters.Add(Text);
+    protected override IList<string> GetParameters()
+    {
+      var parameters = base.GetParameters();
+      parameters.Add(this.Target);
+      parameters.Add(this.Channel);
+      parameters.Add(this.Text);
       return parameters;
     }
 
     /// <summary>
     ///   Parses the parameters portion of the message.
     /// </summary>
-    protected override void ParseParameters(IList<string> parameters) {
+    protected override void ParseParameters(IList<string> parameters)
+    {
       base.ParseParameters(parameters);
 
-      Target = parameters[0];
-      Channel = parameters[1];
-      Text = parameters[2];
+      this.Target = parameters[0];
+      this.Channel = parameters[1];
+      this.Text = parameters[2];
     }
 
     /// <summary>
     ///   Validates this message against the given server support.
     /// </summary>
-    public override void Validate(ServerSupport serverSupport) {
+    public override void Validate(ServerSupport serverSupport)
+    {
       base.Validate(serverSupport);
-      MessageUtil.EnsureValidChannelName(Channel, serverSupport);
-      if (string.IsNullOrEmpty(Target)) {
+      MessageUtil.EnsureValidChannelName(this.Channel, serverSupport);
+      if (string.IsNullOrEmpty(this.Target))
+      {
         throw new InvalidMessageException(Resources.TargetcannotBeEmpty);
       }
-      if (string.IsNullOrEmpty(Channel)) {
+      if (string.IsNullOrEmpty(this.Channel))
+      {
         throw new InvalidMessageException(Resources.ChannelCannotBeEmpty);
       }
     }
@@ -146,7 +170,8 @@ namespace Supay.Irc.Messages {
     ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the
     ///   current <see cref="IrcMessage" /> subclass.
     /// </summary>
-    public override void Notify(MessageConduit conduit) {
+    public override void Notify(MessageConduit conduit)
+    {
       conduit.OnChannelScopedChat(new IrcMessageEventArgs<ChannelScopedChatMessage>(this));
     }
 
@@ -157,8 +182,9 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Determines if the the current message is targeted at the given channel.
     /// </summary>
-    public virtual bool IsTargetedAtChannel(string channelName) {
-      return Channel.EqualsI(channelName);
+    public virtual bool IsTargetedAtChannel(string channelName)
+    {
+      return this.Channel.EqualsI(channelName);
     }
 
     #endregion

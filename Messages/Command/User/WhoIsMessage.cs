@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
 
-namespace Supay.Irc.Messages {
+namespace Supay.Irc.Messages
+{
   /// <summary>
   ///   Requests information from the server about the users specified.
   /// </summary>
@@ -23,36 +24,44 @@ namespace Supay.Irc.Messages {
   ///   </para>
   /// </remarks>
   [Serializable]
-  public class WhoIsMessage : CommandMessage {
+  public class WhoIsMessage : CommandMessage
+  {
     private readonly UserCollection masks = new UserCollection();
     private string server = string.Empty;
 
     /// <summary>
     ///   Gets the collection of users that information is requested for.
     /// </summary>
-    public virtual UserCollection Masks {
-      get {
-        return masks;
+    public virtual UserCollection Masks
+    {
+      get
+      {
+        return this.masks;
       }
     }
 
     /// <summary>
     ///   Gets or sets the server which should return the information.
     /// </summary>
-    public virtual string Server {
-      get {
-        return server;
+    public virtual string Server
+    {
+      get
+      {
+        return this.server;
       }
-      set {
-        server = value;
+      set
+      {
+        this.server = value;
       }
     }
 
     /// <summary>
     ///   Gets the IRC command associated with this message.
     /// </summary>
-    protected override string Command {
-      get {
+    protected override string Command
+    {
+      get
+      {
         return "WHOIS";
       }
     }
@@ -60,26 +69,31 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.
     /// </summary>
-    protected override IList<string> GetParameters() {
-      IList<string> parameters = base.GetParameters();
-      parameters.Add(Server);
-      parameters.Add(MessageUtil.CreateList(Masks, ","));
+    protected override IList<string> GetParameters()
+    {
+      var parameters = base.GetParameters();
+      parameters.Add(this.Server);
+      parameters.Add(MessageUtil.CreateList(this.Masks, ","));
       return parameters;
     }
 
     /// <summary>
     ///   Parses the parameters portion of the message.
     /// </summary>
-    protected override void ParseParameters(IList<string> parameters) {
+    protected override void ParseParameters(IList<string> parameters)
+    {
       base.ParseParameters(parameters);
-      Masks.Clear();
-      Server = string.Empty;
-      if (parameters.Count >= 1) {
-        if (parameters.Count > 1) {
-          Server = parameters[0];
+      this.Masks.Clear();
+      this.Server = string.Empty;
+      if (parameters.Count >= 1)
+      {
+        if (parameters.Count > 1)
+        {
+          this.Server = parameters[0];
         }
-        foreach (string maskString in parameters[parameters.Count - 1].Split(',')) {
-          Masks.Add(new User(maskString));
+        foreach (string maskString in parameters[parameters.Count - 1].Split(','))
+        {
+          this.Masks.Add(new User(maskString));
         }
       }
     }
@@ -87,7 +101,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
-    public override void Notify(MessageConduit conduit) {
+    public override void Notify(MessageConduit conduit)
+    {
       conduit.OnWhoIs(new IrcMessageEventArgs<WhoIsMessage>(this));
     }
   }

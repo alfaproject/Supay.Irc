@@ -1,15 +1,16 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 
-namespace Supay.Irc.Messages {
+namespace Supay.Irc.Messages
+{
   /// <summary>
   ///   As a reply to the <see cref="WhoIsMessage" /> message,
   ///   carries information about idle time and such.
   /// </summary>
   [Serializable]
-  public class WhoIsIdleReplyMessage : NumericMessage {
+  public class WhoIsIdleReplyMessage : NumericMessage
+  {
     private int idleTime;
     private string info = string.Empty;
     private string nick = string.Empty;
@@ -19,87 +20,104 @@ namespace Supay.Irc.Messages {
     ///   Creates a new instance of the <see cref="WhoIsIdleReplyMessage" /> class.
     /// </summary>
     public WhoIsIdleReplyMessage()
-      : base(317) {
+      : base(317)
+    {
     }
 
     /// <summary>
     ///   Gets or sets the nick of the user who is being examined.
     /// </summary>
-    public virtual string Nick {
-      get {
-        return nick;
+    public virtual string Nick
+    {
+      get
+      {
+        return this.nick;
       }
-      set {
-        nick = value;
+      set
+      {
+        this.nick = value;
       }
     }
 
     /// <summary>
     ///   Gets or sets the number of seconds the user has been idle.
     /// </summary>
-    public virtual int IdleLength {
-      get {
-        return idleTime;
+    public virtual int IdleLength
+    {
+      get
+      {
+        return this.idleTime;
       }
-      set {
-        idleTime = value;
+      set
+      {
+        this.idleTime = value;
       }
     }
 
     /// <summary>
     ///   Gets or sets the time the user signed on to their current server.
     /// </summary>
-    public virtual DateTime SignOnTime {
-      get {
-        return signOnTime;
+    public virtual DateTime SignOnTime
+    {
+      get
+      {
+        return this.signOnTime;
       }
-      set {
-        signOnTime = value;
+      set
+      {
+        this.signOnTime = value;
       }
     }
 
     /// <summary>
     ///   Gets or sets some additional info about the user being examined.
     /// </summary>
-    public virtual string Info {
-      get {
-        return info;
+    public virtual string Info
+    {
+      get
+      {
+        return this.info;
       }
-      set {
-        info = value;
+      set
+      {
+        this.info = value;
       }
     }
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.
     /// </summary>
-    protected override IList<string> GetParameters() {
-      IList<string> parameters = base.GetParameters();
-      parameters.Add(Nick);
-      parameters.Add(IdleLength.ToString(CultureInfo.InvariantCulture));
-      parameters.Add(MessageUtil.ConvertToUnixTime(SignOnTime).ToString(CultureInfo.InvariantCulture));
-      parameters.Add(Info);
+    protected override IList<string> GetParameters()
+    {
+      var parameters = base.GetParameters();
+      parameters.Add(this.Nick);
+      parameters.Add(this.IdleLength.ToString(CultureInfo.InvariantCulture));
+      parameters.Add(MessageUtil.ConvertToUnixTime(this.SignOnTime).ToString(CultureInfo.InvariantCulture));
+      parameters.Add(this.Info);
       return parameters;
     }
 
     /// <summary>
     ///   Parses the parameters portion of the message.
     /// </summary>
-    protected override void ParseParameters(IList<string> parameters) {
+    protected override void ParseParameters(IList<string> parameters)
+    {
       base.ParseParameters(parameters);
 
-      Nick = string.Empty;
-      IdleLength = 0;
-      SignOnTime = DateTime.Now;
-      Info = string.Empty;
+      this.Nick = string.Empty;
+      this.IdleLength = 0;
+      this.SignOnTime = DateTime.Now;
+      this.Info = string.Empty;
 
-      if (parameters.Count > 2) {
-        Nick = parameters[1];
-        IdleLength = Convert.ToInt32(parameters[2], CultureInfo.InvariantCulture);
+      if (parameters.Count > 2)
+      {
+        this.Nick = parameters[1];
+        this.IdleLength = Convert.ToInt32(parameters[2], CultureInfo.InvariantCulture);
 
-        if (parameters.Count == 5) {
-          SignOnTime = MessageUtil.ConvertFromUnixTime(Convert.ToInt32(parameters[3], CultureInfo.InvariantCulture));
-          Info = parameters[4];
+        if (parameters.Count == 5)
+        {
+          this.SignOnTime = MessageUtil.ConvertFromUnixTime(Convert.ToInt32(parameters[3], CultureInfo.InvariantCulture));
+          this.Info = parameters[4];
         }
       }
     }
@@ -107,7 +125,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
-    public override void Notify(MessageConduit conduit) {
+    public override void Notify(MessageConduit conduit)
+    {
       conduit.OnWhoIsIdleReply(new IrcMessageEventArgs<WhoIsIdleReplyMessage>(this));
     }
   }

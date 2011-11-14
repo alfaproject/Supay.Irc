@@ -2,7 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-namespace Supay.Irc.Messages {
+namespace Supay.Irc.Messages
+{
   /// <summary>
   ///   An Accept/CallerId system message received in response to an
   ///   <see cref="AcceptListRequestMessage" />.
@@ -11,19 +12,22 @@ namespace Supay.Irc.Messages {
   ///   You may receive more than 1 of these in response to the request.
   /// </remarks>
   [Serializable]
-  public class AcceptListReplyMessage : NumericMessage {
+  public class AcceptListReplyMessage : NumericMessage
+  {
     /// <summary>
     ///   Creates a new instance of the <see cref="AcceptListReplyMessage" />.
     /// </summary>
     public AcceptListReplyMessage()
-      : base(281) {
-      Nicks = new Collection<string>();
+      : base(281)
+    {
+      this.Nicks = new Collection<string>();
     }
 
     /// <summary>
     ///   Gets the collection of nicks of the users on the watch list.
     /// </summary>
-    public IList<string> Nicks {
+    public IList<string> Nicks
+    {
       get;
       private set;
     }
@@ -31,9 +35,11 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.
     /// </summary>
-    protected override IList<string> GetParameters() {
-      IList<string> parameters = base.GetParameters();
-      foreach (string nick in Nicks) {
+    protected override IList<string> GetParameters()
+    {
+      var parameters = base.GetParameters();
+      foreach (string nick in this.Nicks)
+      {
         parameters.Add(nick);
       }
       return parameters;
@@ -42,12 +48,14 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Parses the parameters portion of the message.
     /// </summary>
-    protected override void ParseParameters(IList<string> parameters) {
+    protected override void ParseParameters(IList<string> parameters)
+    {
       base.ParseParameters(parameters);
 
-      Nicks.Clear();
-      for (int i = 1; i < parameters.Count; i++) {
-        Nicks.Add(parameters[i]);
+      this.Nicks.Clear();
+      for (int i = 1; i < parameters.Count; i++)
+      {
+        this.Nicks.Add(parameters[i]);
       }
     }
 
@@ -55,7 +63,8 @@ namespace Supay.Irc.Messages {
     ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the
     ///   current <see cref="IrcMessage" /> subclass.
     /// </summary>
-    public override void Notify(MessageConduit conduit) {
+    public override void Notify(MessageConduit conduit)
+    {
       conduit.OnAcceptListReply(new IrcMessageEventArgs<AcceptListReplyMessage>(this));
     }
   }

@@ -1,26 +1,32 @@
-namespace Supay.Irc.Messages.Modes {
+namespace Supay.Irc.Messages.Modes
+{
   /// <summary>
   ///   This mode signifies that the user using CallerId.
   /// </summary>
-  public class CallerIdMode : UserMode {
+  public class CallerIdMode : UserMode
+  {
     /// <summary>
     ///   Creates a new instance of the <see cref="CallerIdMode" /> class.
     /// </summary>
-    public CallerIdMode() {
+    public CallerIdMode()
+    {
     }
 
     /// <summary>
     ///   Creates a new instance of the <see cref="CallerIdMode" /> class with the given <see cref="ModeAction" />.
     /// </summary>
-    public CallerIdMode(ModeAction action) {
-      Action = action;
+    public CallerIdMode(ModeAction action)
+    {
+      this.Action = action;
     }
 
     /// <summary>
     ///   Gets the IRC string representation of the mode being changed or applied.
     /// </summary>
-    protected override string Symbol {
-      get {
+    protected override string Symbol
+    {
+      get
+      {
         return "g";
       }
     }

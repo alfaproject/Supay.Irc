@@ -1,12 +1,14 @@
 using System;
 using System.Collections.Generic;
 
-namespace Supay.Irc.Messages {
+namespace Supay.Irc.Messages
+{
   /// <summary>
   ///   Contains basic information about a server.
   /// </summary>
   [Serializable]
-  public class ServerInfoMessage : NumericMessage {
+  public class ServerInfoMessage : NumericMessage
+  {
     private string channelModes = string.Empty;
     private string channelModesWithParams = string.Empty;
     private string serverModes = string.Empty;
@@ -20,122 +22,152 @@ namespace Supay.Irc.Messages {
     ///   Creates a new instance of the <see cref="ServerInfoMessage" /> class.
     /// </summary>
     public ServerInfoMessage()
-      : base(004) {
+      : base(004)
+    {
     }
 
     /// <summary>
     ///   Gets or sets the name of the server being referenced.
     /// </summary>
-    public virtual string ServerName {
-      get {
-        return serverName;
+    public virtual string ServerName
+    {
+      get
+      {
+        return this.serverName;
       }
-      set {
-        serverName = value;
+      set
+      {
+        this.serverName = value;
       }
     }
 
     /// <summary>
     ///   Gets or sets the version of the server.
     /// </summary>
-    public virtual string Version {
-      get {
-        return version;
+    public virtual string Version
+    {
+      get
+      {
+        return this.version;
       }
-      set {
-        version = value;
+      set
+      {
+        this.version = value;
       }
     }
 
     /// <summary>
     ///   Gets or sets the user modes supported by this server.
     /// </summary>
-    public virtual string UserModes {
-      get {
-        return userModes;
+    public virtual string UserModes
+    {
+      get
+      {
+        return this.userModes;
       }
-      set {
-        userModes = value;
+      set
+      {
+        this.userModes = value;
       }
     }
 
     /// <summary>
     ///   Gets or sets the channel modes supported by this server.
     /// </summary>
-    public virtual string ChannelModes {
-      get {
-        return channelModes;
+    public virtual string ChannelModes
+    {
+      get
+      {
+        return this.channelModes;
       }
-      set {
-        channelModes = value;
+      set
+      {
+        this.channelModes = value;
       }
     }
 
     /// <summary>
     ///   Gets or sets the channel modes that require a parameter.
     /// </summary>
-    public virtual string ChannelModesWithParams {
-      get {
-        return channelModesWithParams;
+    public virtual string ChannelModesWithParams
+    {
+      get
+      {
+        return this.channelModesWithParams;
       }
-      set {
-        channelModesWithParams = value;
+      set
+      {
+        this.channelModesWithParams = value;
       }
     }
 
     /// <summary>
     ///   Gets or sets the user modes that require a parameter.
     /// </summary>
-    public virtual string UserModesWithParams {
-      get {
-        return userModesWithParams;
+    public virtual string UserModesWithParams
+    {
+      get
+      {
+        return this.userModesWithParams;
       }
-      set {
-        userModesWithParams = value;
+      set
+      {
+        this.userModesWithParams = value;
       }
     }
 
     /// <summary>
     ///   Gets or sets the server modes supported by this server.
     /// </summary>
-    public virtual string ServerModes {
-      get {
-        return serverModes;
+    public virtual string ServerModes
+    {
+      get
+      {
+        return this.serverModes;
       }
-      set {
-        serverModes = value;
+      set
+      {
+        this.serverModes = value;
       }
     }
 
     /// <summary>
     ///   Gets or sets the server modes which require parameters.
     /// </summary>
-    public virtual string ServerModesWithParams {
-      get {
-        return serverModesWithParams;
+    public virtual string ServerModesWithParams
+    {
+      get
+      {
+        return this.serverModesWithParams;
       }
-      set {
-        serverModesWithParams = value;
+      set
+      {
+        this.serverModesWithParams = value;
       }
     }
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.
     /// </summary>
-    protected override IList<string> GetParameters() {
-      IList<string> parameters = base.GetParameters();
-      parameters.Add(ServerName);
-      parameters.Add(Version);
-      parameters.Add(UserModes);
-      parameters.Add(ChannelModes);
-      if (!string.IsNullOrEmpty(ChannelModesWithParams)) {
-        parameters.Add(ChannelModesWithParams);
-        if (!string.IsNullOrEmpty(UserModesWithParams)) {
-          parameters.Add(UserModesWithParams);
-          if (!string.IsNullOrEmpty(ServerModes)) {
-            parameters.Add(ServerModes);
-            if (!string.IsNullOrEmpty(ServerModesWithParams)) {
-              parameters.Add(ServerModesWithParams);
+    protected override IList<string> GetParameters()
+    {
+      var parameters = base.GetParameters();
+      parameters.Add(this.ServerName);
+      parameters.Add(this.Version);
+      parameters.Add(this.UserModes);
+      parameters.Add(this.ChannelModes);
+      if (!string.IsNullOrEmpty(this.ChannelModesWithParams))
+      {
+        parameters.Add(this.ChannelModesWithParams);
+        if (!string.IsNullOrEmpty(this.UserModesWithParams))
+        {
+          parameters.Add(this.UserModesWithParams);
+          if (!string.IsNullOrEmpty(this.ServerModes))
+          {
+            parameters.Add(this.ServerModes);
+            if (!string.IsNullOrEmpty(this.ServerModesWithParams))
+            {
+              parameters.Add(this.ServerModesWithParams);
             }
           }
         }
@@ -146,26 +178,31 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Parses the parameters portion of the message.
     /// </summary>
-    protected override void ParseParameters(IList<string> parameters) {
+    protected override void ParseParameters(IList<string> parameters)
+    {
       base.ParseParameters(parameters);
 
-      ServerName = parameters[1];
-      Version = parameters[2];
-      UserModes = parameters[3];
-      ChannelModes = parameters[4];
+      this.ServerName = parameters[1];
+      this.Version = parameters[2];
+      this.UserModes = parameters[3];
+      this.ChannelModes = parameters[4];
 
       int pCount = parameters.Count;
 
-      if (pCount > 5) {
-        ChannelModesWithParams = parameters[5];
-        if (pCount > 6) {
-          UserModesWithParams = parameters[6];
+      if (pCount > 5)
+      {
+        this.ChannelModesWithParams = parameters[5];
+        if (pCount > 6)
+        {
+          this.UserModesWithParams = parameters[6];
 
-          if (pCount > 7) {
-            ServerModes = parameters[7];
+          if (pCount > 7)
+          {
+            this.ServerModes = parameters[7];
 
-            if (pCount > 8) {
-              ServerModesWithParams = parameters[8];
+            if (pCount > 8)
+            {
+              this.ServerModesWithParams = parameters[8];
             }
           }
         }
@@ -175,7 +212,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
-    public override void Notify(MessageConduit conduit) {
+    public override void Notify(MessageConduit conduit)
+    {
       conduit.OnServerInfo(new IrcMessageEventArgs<ServerInfoMessage>(this));
     }
   }

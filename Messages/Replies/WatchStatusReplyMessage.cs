@@ -2,12 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 
-namespace Supay.Irc.Messages {
+namespace Supay.Irc.Messages
+{
   /// <summary>
   ///   A reply for the <see cref="WatchStatusRequestMessage" /> query.
   /// </summary>
   [Serializable]
-  public class WatchStatusReplyMessage : NumericMessage {
+  public class WatchStatusReplyMessage : NumericMessage
+  {
     private int watchesThatHaveYou;
     private int watchesYouHave;
 
@@ -15,46 +17,55 @@ namespace Supay.Irc.Messages {
     ///   Creates a new instance of the <see cref="WatchStatusRequestMessage" />.
     /// </summary>
     public WatchStatusReplyMessage()
-      : base(603) {
+      : base(603)
+    {
     }
 
     /// <summary>
     ///   Gets or sets the number of watched users that you have on your watch list.
     /// </summary>
-    public int WatchListCount {
-      get {
-        return watchesYouHave;
+    public int WatchListCount
+    {
+      get
+      {
+        return this.watchesYouHave;
       }
-      set {
-        watchesYouHave = value;
+      set
+      {
+        this.watchesYouHave = value;
       }
     }
 
     /// <summary>
     ///   Gets or sets the number of users which you on their watch list.
     /// </summary>
-    public int UsersWatchingYou {
-      get {
-        return watchesThatHaveYou;
+    public int UsersWatchingYou
+    {
+      get
+      {
+        return this.watchesThatHaveYou;
       }
-      set {
-        watchesThatHaveYou = value;
+      set
+      {
+        this.watchesThatHaveYou = value;
       }
     }
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.
     /// </summary>
-    protected override IList<string> GetParameters() {
-      IList<string> parameters = base.GetParameters();
-      parameters.Add(string.Format(CultureInfo.InvariantCulture, "You have {0} and are on {1} WATCH entries", WatchListCount, UsersWatchingYou));
+    protected override IList<string> GetParameters()
+    {
+      var parameters = base.GetParameters();
+      parameters.Add(string.Format(CultureInfo.InvariantCulture, "You have {0} and are on {1} WATCH entries", this.WatchListCount, this.UsersWatchingYou));
       return parameters;
     }
 
     /// <summary>
     ///   Parses the parameters portion of the message.
     /// </summary>
-    protected override void ParseParameters(IList<string> parameters) {
+    protected override void ParseParameters(IList<string> parameters)
+    {
       base.ParseParameters(parameters);
 
       string unparsedSentence = parameters[parameters.Count - 1];
@@ -62,14 +73,15 @@ namespace Supay.Irc.Messages {
       string watchesHave = MessageUtil.StringBetweenStrings(unparsedSentence, "You have ", " and are on ");
       string watchesOn = MessageUtil.StringBetweenStrings(unparsedSentence, " and are on ", " WATCH entries");
 
-      WatchListCount = int.Parse(watchesHave, CultureInfo.InvariantCulture);
-      UsersWatchingYou = int.Parse(watchesOn, CultureInfo.InvariantCulture);
+      this.WatchListCount = int.Parse(watchesHave, CultureInfo.InvariantCulture);
+      this.UsersWatchingYou = int.Parse(watchesOn, CultureInfo.InvariantCulture);
     }
 
     /// <summary>
     ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
-    public override void Notify(MessageConduit conduit) {
+    public override void Notify(MessageConduit conduit)
+    {
       conduit.OnWatchStatusReply(new IrcMessageEventArgs<WatchStatusReplyMessage>(this));
     }
   }

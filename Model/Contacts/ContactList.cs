@@ -1,6 +1,7 @@
 using System;
 
-namespace Supay.Irc.Contacts {
+namespace Supay.Irc.Contacts
+{
   /// <summary>
   ///   A contact list which tracks the online and offline status of the users within the Users
   ///   collection property.
@@ -9,13 +10,15 @@ namespace Supay.Irc.Contacts {
   ///   The ContactList will use Watch, Monitor, or IsOn, depending on server support. User status
   ///   changes will be updated via the User.OnlineStatus property.
   /// </remarks>
-  public class ContactList : IDisposable {
+  public class ContactList : IDisposable
+  {
     private ContactsTracker _tracker;
 
     /// <summary>
     ///   Gets the collection of users being tracked as a contact list.
     /// </summary>
-    public UserCollection Users {
+    public UserCollection Users
+    {
       get;
       private set;
     }
@@ -23,7 +26,8 @@ namespace Supay.Irc.Contacts {
     /// <summary>
     ///   The client on which the list is tracked.
     /// </summary>
-    public Client Client {
+    public Client Client
+    {
       get;
       private set;
     }
@@ -36,23 +40,30 @@ namespace Supay.Irc.Contacts {
     ///   <see cref="ServerSupport" /> is populated. An easy way to make sure is to wait until the
     ///   Ready event of the Client.
     /// </remarks>
-    public void Initialize(Client client) {
-      if (client == null) {
+    public void Initialize(Client client)
+    {
+      if (client == null)
+      {
         throw new ArgumentNullException("client");
       }
       ServerSupport support = client.ServerSupports;
-      Client = client;
-      Users = new UserCollection();
+      this.Client = client;
+      this.Users = new UserCollection();
 
-      if (support.MaxWatches > 0) {
-        _tracker = new ContactsWatchTracker(this);
-      } else if (support.MaxMonitors > 0) {
-        _tracker = new ContactsMonitorTracker(this);
-      } else {
-        _tracker = new ContactsAreOnTracker(this);
+      if (support.MaxWatches > 0)
+      {
+        this._tracker = new ContactsWatchTracker(this);
+      }
+      else if (support.MaxMonitors > 0)
+      {
+        this._tracker = new ContactsMonitorTracker(this);
+      }
+      else
+      {
+        this._tracker = new ContactsAreOnTracker(this);
       }
 
-      _tracker.Initialize();
+      this._tracker.Initialize();
     }
 
     #region IDisposable
@@ -61,14 +72,17 @@ namespace Supay.Irc.Contacts {
     ///   Performs application-defined tasks associated with freeing, releasing, or resetting
     ///   unmanaged resources.
     /// </summary>
-    public void Dispose() {
-      Dispose(true);
+    public void Dispose()
+    {
+      this.Dispose(true);
       GC.SuppressFinalize(this);
     }
 
-    protected virtual void Dispose(bool disposing) {
-      if (disposing && _tracker != null && _tracker is ContactsAreOnTracker) {
-        ((IDisposable) _tracker).Dispose();
+    protected virtual void Dispose(bool disposing)
+    {
+      if (disposing && this._tracker != null && this._tracker is ContactsAreOnTracker)
+      {
+        ((IDisposable) this._tracker).Dispose();
       }
     }
 

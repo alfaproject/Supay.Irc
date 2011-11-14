@@ -1,19 +1,21 @@
 using System;
-using System.Diagnostics.CodeAnalysis;
 
-namespace Supay.Irc.Messages {
+namespace Supay.Irc.Messages
+{
   /// <summary>
   ///   The response to a <see cref="PingRequestMessage" />.
   /// </summary>
   [Serializable]
-  public class PingReplyMessage : CtcpReplyMessage {
+  public class PingReplyMessage : CtcpReplyMessage
+  {
     private string timeStamp = string.Empty;
 
     /// <summary>
     ///   Creates a new instance of the <see cref="PingReplyMessage" /> class.
     /// </summary>
-    public PingReplyMessage() {
-      InternalCommand = "PING";
+    public PingReplyMessage()
+    {
+      this.InternalCommand = "PING";
     }
 
     /// <summary>
@@ -24,37 +26,44 @@ namespace Supay.Irc.Messages {
     ///   This allows the requestor to substract the two to calculate the timespan to whatever degree
     ///   of exactness that they want.
     /// </remarks>
-    public virtual string TimeStamp {
-      get {
-        return timeStamp;
+    public virtual string TimeStamp
+    {
+      get
+      {
+        return this.timeStamp;
       }
-      set {
-        timeStamp = value;
+      set
+      {
+        this.timeStamp = value;
       }
     }
 
     /// <summary>
     ///   Gets the data payload of the Ctcp request.
     /// </summary>
-    protected override string ExtendedData {
-      get {
-        return timeStamp;
+    protected override string ExtendedData
+    {
+      get
+      {
+        return this.timeStamp;
       }
     }
 
     /// <summary>
     ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
-    public override void Notify(MessageConduit conduit) {
+    public override void Notify(MessageConduit conduit)
+    {
       conduit.OnPingReply(new IrcMessageEventArgs<PingReplyMessage>(this));
     }
 
     /// <summary>
     ///   Parses the given string to populate this <see cref="IrcMessage" />.
     /// </summary>
-    public override void Parse(string unparsedMessage) {
+    public override void Parse(string unparsedMessage)
+    {
       base.Parse(unparsedMessage);
-      TimeStamp = CtcpUtil.GetExtendedData(unparsedMessage);
+      this.TimeStamp = CtcpUtil.GetExtendedData(unparsedMessage);
     }
   }
 }

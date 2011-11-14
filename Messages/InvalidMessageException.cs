@@ -2,25 +2,29 @@ using System;
 using System.Runtime.Serialization;
 using System.Security.Permissions;
 
-namespace Supay.Irc.Messages {
+namespace Supay.Irc.Messages
+{
   /// <summary>
   ///   Exception thrown when a message parsed from a string is invalid.
   /// </summary>
   [Serializable]
-  public class InvalidMessageException : Exception {
+  public class InvalidMessageException : Exception
+  {
     #region Constructors
 
     /// <summary>
     ///   Initializes a new instance of the InvalidMessageException class.
     /// </summary>
-    public InvalidMessageException() {
+    public InvalidMessageException()
+    {
     }
 
     /// <summary>
     ///   Initializes a new instance of the InvalidMessageException class with the given message.
     /// </summary>
     public InvalidMessageException(string message)
-      : base(message) {
+      : base(message)
+    {
     }
 
     /// <summary>
@@ -28,7 +32,8 @@ namespace Supay.Irc.Messages {
     ///   and inner exception.
     /// </summary>
     public InvalidMessageException(string message, Exception innerException)
-      : base(message, innerException) {
+      : base(message, innerException)
+    {
     }
 
     /// <summary>
@@ -38,8 +43,9 @@ namespace Supay.Irc.Messages {
     /// <param name="message">Message explaining the exception.</param>
     /// <param name="receivedMessage">The Message received which was invalid.</param>
     public InvalidMessageException(string message, string receivedMessage)
-      : this(message) {
-      ReceivedMessage = receivedMessage;
+      : this(message)
+    {
+      this.ReceivedMessage = receivedMessage;
     }
 
     /// <summary>
@@ -50,8 +56,9 @@ namespace Supay.Irc.Messages {
     /// <param name="receivedMessage">The Message received which was invalid.</param>
     /// <param name="innerException">The exception that exists as the child exception to this one.</param>
     public InvalidMessageException(string message, string receivedMessage, Exception innerException)
-      : this(message, innerException) {
-      ReceivedMessage = receivedMessage;
+      : this(message, innerException)
+    {
+      this.ReceivedMessage = receivedMessage;
     }
 
     #endregion
@@ -61,7 +68,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Gets the message string that caused the exception.
     /// </summary>
-    public string ReceivedMessage {
+    public string ReceivedMessage
+    {
       get;
       private set;
     }
@@ -69,9 +77,11 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Gets the string content of the invalid message.
     /// </summary>
-    public override string Message {
-      get {
-        return base.Message + Environment.NewLine + "ReceivedMessage: " + ReceivedMessage;
+    public override string Message
+    {
+      get
+      {
+        return base.Message + Environment.NewLine + "ReceivedMessage: " + this.ReceivedMessage;
       }
     }
 
@@ -86,9 +96,10 @@ namespace Supay.Irc.Messages {
     /// <param name="context">The <see cref="StreamingContext" /> that contains contextual information about the source or destination.</param>
     /// <exception cref="ArgumentNullException">The <paramref name="info" /> parameter is a null reference (Nothing in Visual Basic).</exception>
     [SecurityPermission(SecurityAction.Demand, SerializationFormatter = true)]
-    public override void GetObjectData(SerializationInfo info, StreamingContext context) {
+    public override void GetObjectData(SerializationInfo info, StreamingContext context)
+    {
       base.GetObjectData(info, context);
-      info.AddValue("ReceivedMessage", ReceivedMessage);
+      info.AddValue("ReceivedMessage", this.ReceivedMessage);
     }
 
     #endregion

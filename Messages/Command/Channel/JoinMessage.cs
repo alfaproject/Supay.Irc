@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
 
-namespace Supay.Irc.Messages {
+namespace Supay.Irc.Messages
+{
   /// <summary>
   ///   The JoinMessage is used by client to start listening a specific channel.
   /// </summary>
@@ -11,29 +12,34 @@ namespace Supay.Irc.Messages {
   ///   This message wraps the JOIN command.
   /// </remarks>
   [Serializable]
-  public class JoinMessage : CommandMessage, IChannelTargetedMessage {
+  public class JoinMessage : CommandMessage, IChannelTargetedMessage
+  {
     private readonly List<string> channels = new List<string>();
     private readonly List<string> keys = new List<string>();
 
     /// <summary>
     ///   Creates a new instance of the <see cref="JoinMessage" /> class.
     /// </summary>
-    public JoinMessage() {
+    public JoinMessage()
+    {
     }
 
     /// <summary>
     ///   Creates a new instance of the <see cref="JoinMessage" /> class with the given channel.
     /// </summary>
     /// <param name="channel">The name of the channel to join.</param>
-    public JoinMessage(string channel) {
-      channels.Add(channel);
+    public JoinMessage(string channel)
+    {
+      this.channels.Add(channel);
     }
 
     /// <summary>
     ///   Gets the IRC command associated with this message.
     /// </summary>
-    protected override string Command {
-      get {
+    protected override string Command
+    {
+      get
+      {
         return "JOIN";
       }
     }
@@ -41,9 +47,11 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Gets the channel names joined
     /// </summary>
-    public virtual List<string> Channels {
-      get {
-        return channels;
+    public virtual List<string> Channels
+    {
+      get
+      {
+        return this.channels;
       }
     }
 
@@ -53,16 +61,19 @@ namespace Supay.Irc.Messages {
     /// <remarks>
     ///   Only relevant for channels that have a key
     /// </remarks>
-    public virtual List<string> Keys {
-      get {
-        return keys;
+    public virtual List<string> Keys
+    {
+      get
+      {
+        return this.keys;
       }
     }
 
     #region IChannelTargetedMessage Members
 
-    bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
-      return IsTargetedAtChannel(channelName);
+    bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName)
+    {
+      return this.IsTargetedAtChannel(channelName);
     }
 
     #endregion
@@ -70,21 +81,25 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Validates this message against the given server support
     /// </summary>
-    public override void Validate(ServerSupport serverSupport) {
+    public override void Validate(ServerSupport serverSupport)
+    {
       base.Validate(serverSupport);
-      for (int i = 0; i < Channels.Count; i++) {
-        Channels[i] = MessageUtil.EnsureValidChannelName(Channels[i], serverSupport);
+      for (int i = 0; i < this.Channels.Count; i++)
+      {
+        this.Channels[i] = MessageUtil.EnsureValidChannelName(this.Channels[i], serverSupport);
       }
     }
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.
     /// </summary>
-    protected override IList<string> GetParameters() {
-      IList<string> parameters = base.GetParameters();
-      parameters.Add(MessageUtil.CreateList(Channels, ","));
-      if (Keys.Count != 0) {
-        parameters.Add(MessageUtil.CreateList(Keys, ","));
+    protected override IList<string> GetParameters()
+    {
+      var parameters = base.GetParameters();
+      parameters.Add(MessageUtil.CreateList(this.Channels, ","));
+      if (this.Keys.Count != 0)
+      {
+        parameters.Add(MessageUtil.CreateList(this.Keys, ","));
       }
       return parameters;
     }
@@ -92,14 +107,17 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Parses the parameters portion of the message
     /// </summary>
-    protected override void ParseParameters(IList<string> parameters) {
+    protected override void ParseParameters(IList<string> parameters)
+    {
       base.ParseParameters(parameters);
-      Channels.Clear();
-      Keys.Clear();
-      if (parameters.Count > 0) {
-        Channels.AddRange(parameters[0].Split(','));
-        if (parameters.Count > 1) {
-          Keys.AddRange(parameters[1].Split(','));
+      this.Channels.Clear();
+      this.Keys.Clear();
+      if (parameters.Count > 0)
+      {
+        this.Channels.AddRange(parameters[0].Split(','));
+        if (parameters.Count > 1)
+        {
+          this.Keys.AddRange(parameters[1].Split(','));
         }
       }
     }
@@ -107,15 +125,17 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
-    public override void Notify(MessageConduit conduit) {
+    public override void Notify(MessageConduit conduit)
+    {
       conduit.OnJoin(new IrcMessageEventArgs<JoinMessage>(this));
     }
 
     /// <summary>
     ///   Determines if the the current message is targeted at the given channel.
     /// </summary>
-    protected virtual bool IsTargetedAtChannel(string channelName) {
-      return MessageUtil.ContainsIgnoreCaseMatch(Channels, channelName);
+    protected virtual bool IsTargetedAtChannel(string channelName)
+    {
+      return MessageUtil.ContainsIgnoreCaseMatch(this.Channels, channelName);
     }
   }
 }

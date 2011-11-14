@@ -2,28 +2,34 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-namespace Supay.Irc.Messages {
+namespace Supay.Irc.Messages
+{
   /// <summary>
   ///   A Monitor system message that adds users to your monitor list.
   /// </summary>
   [Serializable]
-  public class MonitorAddUsersMessage : MonitorMessage {
+  public class MonitorAddUsersMessage : MonitorMessage
+  {
     private IList<string> nicks;
 
     /// <summary>
     ///   Gets the collection of nicks being added to the monitor list.
     /// </summary>
-    public IList<string> Nicks {
-      get {
-        return nicks ?? (nicks = new Collection<string>());
+    public IList<string> Nicks
+    {
+      get
+      {
+        return this.nicks ?? (this.nicks = new Collection<string>());
       }
     }
 
     /// <summary>
     ///   Determines if the message can be parsed by this type.
     /// </summary>
-    public override bool CanParse(string unparsedMessage) {
-      if (!base.CanParse(unparsedMessage)) {
+    public override bool CanParse(string unparsedMessage)
+    {
+      if (!base.CanParse(unparsedMessage))
+      {
         return false;
       }
       string firstParam = MessageUtil.GetParameter(unparsedMessage, 0);
@@ -33,23 +39,27 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Parses the parameters portion of the message.
     /// </summary>
-    protected override void ParseParameters(IList<string> parameters) {
+    protected override void ParseParameters(IList<string> parameters)
+    {
       base.ParseParameters(parameters);
       string nicksParam = parameters[parameters.Count - 1];
-      string[] splitNicksParam = nicksParam.Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries);
-      foreach (string nick in splitNicksParam) {
-        Nicks.Add(nick);
+      var splitNicksParam = nicksParam.Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries);
+      foreach (string nick in splitNicksParam)
+      {
+        this.Nicks.Add(nick);
       }
     }
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.
     /// </summary>
-    protected override IList<string> GetParameters() {
-      IList<string> parameters = base.GetParameters();
+    protected override IList<string> GetParameters()
+    {
+      var parameters = base.GetParameters();
       parameters.Add("+");
-      if (Nicks != null && Nicks.Count != 0) {
-        parameters.Add(MessageUtil.CreateList(Nicks, ","));
+      if (this.Nicks != null && this.Nicks.Count != 0)
+      {
+        parameters.Add(MessageUtil.CreateList(this.Nicks, ","));
       }
       return parameters;
     }
@@ -57,7 +67,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
-    public override void Notify(MessageConduit conduit) {
+    public override void Notify(MessageConduit conduit)
+    {
       conduit.OnMonitorAddUsers(new IrcMessageEventArgs<MonitorAddUsersMessage>(this));
     }
   }

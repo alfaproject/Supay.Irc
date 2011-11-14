@@ -1,12 +1,14 @@
 using System;
 using System.Collections.Generic;
 
-namespace Supay.Irc.Messages {
+namespace Supay.Irc.Messages
+{
   /// <summary>
   ///   The reply to the <see cref="SilenceMessage" /> query.
   /// </summary>
   [Serializable]
-  public class SilenceReplyMessage : NumericMessage {
+  public class SilenceReplyMessage : NumericMessage
+  {
     private string silenceListOwner = string.Empty;
     private User silencedUser = new User();
 
@@ -14,58 +16,69 @@ namespace Supay.Irc.Messages {
     ///   Creates a new instance of the <see cref="SilenceReplyMessage" />.
     /// </summary>
     public SilenceReplyMessage()
-      : base(271) {
+      : base(271)
+    {
     }
 
     /// <summary>
     ///   Gets or sets the user being silenced.
     /// </summary>
-    public virtual User SilencedUser {
-      get {
-        return silencedUser;
+    public virtual User SilencedUser
+    {
+      get
+      {
+        return this.silencedUser;
       }
-      set {
-        silencedUser = value;
+      set
+      {
+        this.silencedUser = value;
       }
     }
 
     /// <summary>
     ///   Gets or sets the nick of the owner of the silence list
     /// </summary>
-    public virtual string SilenceListOwner {
-      get {
-        return silenceListOwner;
+    public virtual string SilenceListOwner
+    {
+      get
+      {
+        return this.silenceListOwner;
       }
-      set {
-        silenceListOwner = value;
+      set
+      {
+        this.silenceListOwner = value;
       }
     }
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.
     /// </summary>
-    protected override IList<string> GetParameters() {
-      IList<string> parameters = base.GetParameters();
-      parameters.Add(SilenceListOwner);
-      parameters.Add(SilencedUser.IrcMask);
+    protected override IList<string> GetParameters()
+    {
+      var parameters = base.GetParameters();
+      parameters.Add(this.SilenceListOwner);
+      parameters.Add(this.SilencedUser.IrcMask);
       return parameters;
     }
 
     /// <summary>
     ///   Parses the parameters portion of the message.
     /// </summary>
-    protected override void ParseParameters(IList<string> parameters) {
+    protected override void ParseParameters(IList<string> parameters)
+    {
       base.ParseParameters(parameters);
-      if (parameters.Count > 2) {
-        SilenceListOwner = parameters[1];
-        SilencedUser = new User(parameters[2]);
+      if (parameters.Count > 2)
+      {
+        this.SilenceListOwner = parameters[1];
+        this.SilencedUser = new User(parameters[2]);
       }
     }
 
     /// <summary>
     ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
-    public override void Notify(MessageConduit conduit) {
+    public override void Notify(MessageConduit conduit)
+    {
       conduit.OnSilenceReply(new IrcMessageEventArgs<SilenceReplyMessage>(this));
     }
   }

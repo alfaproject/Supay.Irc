@@ -1,4 +1,5 @@
-namespace Supay.Irc.Messages.Modes {
+namespace Supay.Irc.Messages.Modes
+{
   /// <summary>
   ///   This mode defines an anonymous channel.
   /// </summary>
@@ -9,25 +10,30 @@ namespace Supay.Irc.Messages.Modes {
   ///     To mask the message, the origin is changed to "anonymous!anonymous@anonymous."
   ///   </p>
   /// </remarks>
-  public class AnonymousMode : FlagMode {
+  public class AnonymousMode : FlagMode
+  {
     /// <summary>
     ///   Creates a new instance of the <see cref="AnonymousMode" /> class.
     /// </summary>
-    public AnonymousMode() {
+    public AnonymousMode()
+    {
     }
 
     /// <summary>
     ///   Creates a new instance of the <see cref="AnonymousMode" /> class with the given <see cref="ModeAction" />.
     /// </summary>
-    public AnonymousMode(ModeAction action) {
-      Action = action;
+    public AnonymousMode(ModeAction action)
+    {
+      this.Action = action;
     }
 
     /// <summary>
     ///   Gets the IRC string representation of the mode being changed or applied.
     /// </summary>
-    protected override string Symbol {
-      get {
+    protected override string Symbol
+    {
+      get
+      {
         return "a";
       }
     }

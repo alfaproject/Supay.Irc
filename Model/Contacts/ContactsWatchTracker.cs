@@ -1,50 +1,62 @@
 using System.Collections.Generic;
 using Supay.Irc.Messages;
 
-namespace Supay.Irc.Contacts {
-  internal class ContactsWatchTracker : ContactsTracker {
+namespace Supay.Irc.Contacts
+{
+  internal class ContactsWatchTracker : ContactsTracker
+  {
     public ContactsWatchTracker(ContactList contacts)
-      : base(contacts) {
+      : base(contacts)
+    {
     }
 
-    public override void Initialize() {
-      Contacts.Client.Messages.WatchedUserOffline += client_WatchedUserOffline;
-      Contacts.Client.Messages.WatchedUserOnline += client_WatchedUserOnline;
+    public override void Initialize()
+    {
+      this.Contacts.Client.Messages.WatchedUserOffline += this.client_WatchedUserOffline;
+      this.Contacts.Client.Messages.WatchedUserOnline += this.client_WatchedUserOnline;
       base.Initialize();
     }
 
-    protected override void AddNicks(IEnumerable<string> nicks) {
-      var addMsg = new WatchListEditorMessage();
-      foreach (string nick in nicks) {
+    protected override void AddNicks(IEnumerable<string> nicks)
+    {
+      WatchListEditorMessage addMsg = new WatchListEditorMessage();
+      foreach (string nick in nicks)
+      {
         addMsg.AddedNicks.Add(nick);
       }
-      Contacts.Client.Send(addMsg);
+      this.Contacts.Client.Send(addMsg);
     }
 
-    protected override void AddNick(string nick) {
-      var addMsg = new WatchListEditorMessage();
+    protected override void AddNick(string nick)
+    {
+      WatchListEditorMessage addMsg = new WatchListEditorMessage();
       addMsg.AddedNicks.Add(nick);
-      Contacts.Client.Send(addMsg);
+      this.Contacts.Client.Send(addMsg);
     }
 
-    protected override void RemoveNick(string nick) {
-      var remMsg = new WatchListEditorMessage();
+    protected override void RemoveNick(string nick)
+    {
+      WatchListEditorMessage remMsg = new WatchListEditorMessage();
       remMsg.RemovedNicks.Add(nick);
-      Contacts.Client.Send(remMsg);
+      this.Contacts.Client.Send(remMsg);
     }
 
     #region Reply Handlers
 
-    private void client_WatchedUserOnline(object sender, IrcMessageEventArgs<WatchedUserOnlineMessage> e) {
-      User knownUser = Contacts.Users.Find(e.Message.WatchedUser.Nickname);
-      if (knownUser != null) {
+    private void client_WatchedUserOnline(object sender, IrcMessageEventArgs<WatchedUserOnlineMessage> e)
+    {
+      User knownUser = this.Contacts.Users.Find(e.Message.WatchedUser.Nickname);
+      if (knownUser != null)
+      {
         knownUser.Online = true;
       }
     }
 
-    private void client_WatchedUserOffline(object sender, IrcMessageEventArgs<WatchedUserOfflineMessage> e) {
-      User knownUser = Contacts.Users.Find(e.Message.WatchedUser.Nickname);
-      if (knownUser != null) {
+    private void client_WatchedUserOffline(object sender, IrcMessageEventArgs<WatchedUserOfflineMessage> e)
+    {
+      User knownUser = this.Contacts.Users.Find(e.Message.WatchedUser.Nickname);
+      if (knownUser != null)
+      {
         knownUser.Online = false;
       }
     }

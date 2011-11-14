@@ -2,26 +2,31 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Supay.Irc.Messages {
+namespace Supay.Irc.Messages
+{
   /// <summary>
   ///   A <see cref="IrcMessage" /> which carries communication from a person to another person or
   ///   channel.
   /// </summary>
   [Serializable]
-  public abstract class TextMessage : CommandMessage, IChannelTargetedMessage, IQueryTargetedMessage {
+  public abstract class TextMessage : CommandMessage, IChannelTargetedMessage, IQueryTargetedMessage
+  {
     protected TextMessage()
-      : this(string.Empty) {
+      : this(string.Empty)
+    {
     }
 
-    protected TextMessage(string text) {
-      Text = text;
-      Targets = new List<string>();
+    protected TextMessage(string text)
+    {
+      this.Text = text;
+      this.Targets = new List<string>();
     }
 
     /// <summary>
     ///   Gets the target of this <see cref="TextMessage" />.
     /// </summary>
-    public List<string> Targets {
+    public List<string> Targets
+    {
       get;
       private set;
     }
@@ -33,7 +38,8 @@ namespace Supay.Irc.Messages {
     ///   This property holds the core purpose of IRC itself... sending text communication to
     ///   others.
     /// </remarks>
-    public string Text {
+    public string Text
+    {
       get;
       set;
     }
@@ -43,8 +49,9 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Determines if the the current message is targeted at the given channel.
     /// </summary>
-    public virtual bool IsTargetedAtChannel(string channelName) {
-      return MessageUtil.ContainsIgnoreCaseMatch(Targets, channelName);
+    public virtual bool IsTargetedAtChannel(string channelName)
+    {
+      return MessageUtil.ContainsIgnoreCaseMatch(this.Targets, channelName);
     }
 
     #endregion
@@ -54,8 +61,9 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Determines if the current message is targeted at a query to the given user.
     /// </summary>
-    public virtual bool IsQueryToUser(User user) {
-      return Targets.Any(target => user.Nickname.EqualsI(target));
+    public virtual bool IsQueryToUser(User user)
+    {
+      return this.Targets.Any(target => user.Nickname.EqualsI(target));
     }
 
     #endregion
@@ -63,22 +71,25 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.
     /// </summary>
-    protected override IList<string> GetParameters() {
-      IList<string> parameters = base.GetParameters();
-      parameters.Add(MessageUtil.CreateList(Targets, ","));
-      parameters.Add(Text);
+    protected override IList<string> GetParameters()
+    {
+      var parameters = base.GetParameters();
+      parameters.Add(MessageUtil.CreateList(this.Targets, ","));
+      parameters.Add(this.Text);
       return parameters;
     }
 
     /// <summary>
     ///   Parses the parameters portion of the message.
     /// </summary>
-    protected override void ParseParameters(IList<string> parameters) {
+    protected override void ParseParameters(IList<string> parameters)
+    {
       base.ParseParameters(parameters);
-      Targets.Clear();
-      if (parameters.Count >= 2) {
-        Targets.AddRange(parameters[0].Split(','));
-        Text = parameters[1];
+      this.Targets.Clear();
+      if (parameters.Count >= 2)
+      {
+        this.Targets.AddRange(parameters[0].Split(','));
+        this.Text = parameters[1];
       }
     }
   }

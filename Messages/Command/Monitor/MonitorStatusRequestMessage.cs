@@ -1,17 +1,21 @@
 using System;
 using System.Collections.Generic;
 
-namespace Supay.Irc.Messages {
+namespace Supay.Irc.Messages
+{
   /// <summary>
   ///   A Monitor system message that requests that status of the users on your monitor list.
   /// </summary>
   [Serializable]
-  public class MonitorStatusRequestMessage : MonitorMessage {
+  public class MonitorStatusRequestMessage : MonitorMessage
+  {
     /// <summary>
     ///   Determines if the message can be parsed by this type.
     /// </summary>
-    public override bool CanParse(string unparsedMessage) {
-      if (!base.CanParse(unparsedMessage)) {
+    public override bool CanParse(string unparsedMessage)
+    {
+      if (!base.CanParse(unparsedMessage))
+      {
         return false;
       }
       IList<string> param = MessageUtil.GetParameters(unparsedMessage);
@@ -21,8 +25,9 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.
     /// </summary>
-    protected override IList<string> GetParameters() {
-      IList<string> parameters = base.GetParameters();
+    protected override IList<string> GetParameters()
+    {
+      var parameters = base.GetParameters();
       parameters.Add("S");
       return parameters;
     }
@@ -30,7 +35,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
-    public override void Notify(MessageConduit conduit) {
+    public override void Notify(MessageConduit conduit)
+    {
       conduit.OnMonitorStatusRequest(new IrcMessageEventArgs<MonitorStatusRequestMessage>(this));
     }
   }

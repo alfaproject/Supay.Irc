@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
 
-namespace Supay.Irc.Messages {
+namespace Supay.Irc.Messages
+{
   /// <summary>
   ///   The UserModeMessage allows users to have their mode changed.
   /// </summary>
@@ -10,15 +11,18 @@ namespace Supay.Irc.Messages {
   ///   This message wraps the MODE command.
   /// </remarks>
   [Serializable]
-  public class UserModeMessage : CommandMessage {
+  public class UserModeMessage : CommandMessage
+  {
     private string modeChanges = string.Empty;
     private string user = string.Empty;
 
     /// <summary>
     ///   Gets the IRC command associated with this message.
     /// </summary>
-    protected override string Command {
-      get {
+    protected override string Command
+    {
+      get
+      {
         return "MODE";
       }
     }
@@ -26,12 +30,15 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Gets or sets the affected user.
     /// </summary>
-    public virtual string User {
-      get {
-        return user;
+    public virtual string User
+    {
+      get
+      {
+        return this.user;
       }
-      set {
-        user = value;
+      set
+      {
+        this.user = value;
       }
     }
 
@@ -42,36 +49,44 @@ namespace Supay.Irc.Messages {
     ///   An example ModeChanges might look like "-w".
     ///   This example means turning off the receipt of wallop message from the server.
     /// </remarks>
-    public virtual string ModeChanges {
-      get {
-        return modeChanges;
+    public virtual string ModeChanges
+    {
+      get
+      {
+        return this.modeChanges;
       }
-      set {
-        modeChanges = value;
+      set
+      {
+        this.modeChanges = value;
       }
     }
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.
     /// </summary>
-    protected override IList<string> GetParameters() {
-      IList<string> parameters = base.GetParameters();
-      parameters.Add(User);
-      parameters.Add(ModeChanges);
+    protected override IList<string> GetParameters()
+    {
+      var parameters = base.GetParameters();
+      parameters.Add(this.User);
+      parameters.Add(this.ModeChanges);
       return parameters;
     }
 
     /// <summary>
     ///   Determines if the message can be parsed by this type.
     /// </summary>
-    public override bool CanParse(string unparsedMessage) {
-      if (!base.CanParse(unparsedMessage)) {
+    public override bool CanParse(string unparsedMessage)
+    {
+      if (!base.CanParse(unparsedMessage))
+      {
         return false;
       }
 
       IList<string> p = MessageUtil.GetParameters(unparsedMessage);
-      if (p.Count >= 1) {
-        if (!MessageUtil.HasValidChannelPrefix(p[0])) {
+      if (p.Count >= 1)
+      {
+        if (!MessageUtil.HasValidChannelPrefix(p[0]))
+        {
           return true;
         }
       }
@@ -81,21 +96,26 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Parses the parameters portion of the message.
     /// </summary>
-    protected override void ParseParameters(IList<string> parameters) {
+    protected override void ParseParameters(IList<string> parameters)
+    {
       base.ParseParameters(parameters);
-      if (parameters.Count > 1) {
-        User = parameters[0];
-        ModeChanges = parameters[1];
-      } else {
-        User = string.Empty;
-        ModeChanges = string.Empty;
+      if (parameters.Count > 1)
+      {
+        this.User = parameters[0];
+        this.ModeChanges = parameters[1];
+      }
+      else
+      {
+        this.User = string.Empty;
+        this.ModeChanges = string.Empty;
       }
     }
 
     /// <summary>
     ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
-    public override void Notify(MessageConduit conduit) {
+    public override void Notify(MessageConduit conduit)
+    {
       conduit.OnUserMode(new IrcMessageEventArgs<UserModeMessage>(this));
     }
   }

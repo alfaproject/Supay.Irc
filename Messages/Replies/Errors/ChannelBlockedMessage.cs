@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Globalization;
 using Supay.Irc.Messages.Modes;
 
-namespace Supay.Irc.Messages {
+namespace Supay.Irc.Messages
+{
   /// <summary>
   ///   The <see cref="ErrorMessage" /> received when attempting to join a channel which is invite
   ///   only.
@@ -13,7 +14,8 @@ namespace Supay.Irc.Messages {
   ///   <see cref="InviteOnlyMode" />.
   /// </remarks>
   [Serializable]
-  public class ChannelBlockedMessage : ErrorMessage, IChannelTargetedMessage {
+  public class ChannelBlockedMessage : ErrorMessage, IChannelTargetedMessage
+  {
     private string channel;
     private string reason;
 
@@ -21,74 +23,87 @@ namespace Supay.Irc.Messages {
     ///   Creates a new instances of the <see cref="ChannelBlockedMessage" /> class.
     /// </summary>
     public ChannelBlockedMessage()
-      : base(485) {
+      : base(485)
+    {
     }
 
     /// <summary>
     ///   Gets or sets the channel which is blocked
     /// </summary>
-    public string Channel {
-      get {
-        return channel;
+    public string Channel
+    {
+      get
+      {
+        return this.channel;
       }
-      set {
-        channel = value;
+      set
+      {
+        this.channel = value;
       }
     }
 
     /// <summary>
     ///   Gets or sets the reason the channel is blocked
     /// </summary>
-    public string Reason {
-      get {
-        return reason;
+    public string Reason
+    {
+      get
+      {
+        return this.reason;
       }
-      set {
-        reason = value;
+      set
+      {
+        this.reason = value;
       }
     }
 
     #region IChannelTargetedMessage Members
 
-    bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
-      return IsTargetedAtChannel(channelName);
+    bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName)
+    {
+      return this.IsTargetedAtChannel(channelName);
     }
 
     #endregion
 
     /// <exclude />
-    protected override IList<string> GetParameters() {
-      IList<string> parameters = base.GetParameters();
-      parameters.Add(Channel);
-      parameters.Add(string.Format(CultureInfo.InvariantCulture, "Cannot join channel ({0})", Reason));
+    protected override IList<string> GetParameters()
+    {
+      var parameters = base.GetParameters();
+      parameters.Add(this.Channel);
+      parameters.Add(string.Format(CultureInfo.InvariantCulture, "Cannot join channel ({0})", this.Reason));
       return parameters;
     }
 
     /// <exclude />
-    protected override void ParseParameters(IList<string> parameters) {
+    protected override void ParseParameters(IList<string> parameters)
+    {
       base.ParseParameters(parameters);
 
-      Channel = string.Empty;
-      Reason = string.Empty;
+      this.Channel = string.Empty;
+      this.Reason = string.Empty;
 
-      if (parameters.Count > 2) {
-        Channel = parameters[1];
-        Reason = MessageUtil.StringBetweenStrings(parameters[2], "Cannot join channel (", ")");
+      if (parameters.Count > 2)
+      {
+        this.Channel = parameters[1];
+        this.Reason = MessageUtil.StringBetweenStrings(parameters[2], "Cannot join channel (", ")");
       }
     }
 
     /// <summary>
     ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
-    public override void Notify(MessageConduit conduit) {
+    public override void Notify(MessageConduit conduit)
+    {
       conduit.OnChannelBlocked(new IrcMessageEventArgs<ChannelBlockedMessage>(this));
     }
 
     /// <summary>
     ///   Determines if the the current message is targeted at the given channel.
     /// </summary>
-    protected virtual bool IsTargetedAtChannel(string channelName) {
-      return Channel.EqualsI(channelName);
+    protected virtual bool IsTargetedAtChannel(string channelName)
+    {
+      return this.Channel.EqualsI(channelName);
     }
   }
 }

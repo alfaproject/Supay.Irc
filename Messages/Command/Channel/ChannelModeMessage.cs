@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
 
-namespace Supay.Irc.Messages {
+namespace Supay.Irc.Messages
+{
   /// <summary>
   ///   The ChannelModeMessage allows channels to have their mode changed.
   /// </summary>
@@ -10,7 +11,8 @@ namespace Supay.Irc.Messages {
   ///   This message wraps the MODE command.
   /// </remarks>
   [Serializable]
-  public class ChannelModeMessage : CommandMessage, IChannelTargetedMessage {
+  public class ChannelModeMessage : CommandMessage, IChannelTargetedMessage
+  {
     private readonly List<string> modeArguments = new List<string>();
     private string channel = string.Empty;
     private string modeChanges = string.Empty;
@@ -18,7 +20,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Creates a new instance of the ChannelModeMessage class.
     /// </summary>
-    public ChannelModeMessage() {
+    public ChannelModeMessage()
+    {
     }
 
     /// <summary>
@@ -27,7 +30,8 @@ namespace Supay.Irc.Messages {
     /// <param name="channel">The name of the channel being affected.</param>
     /// <param name="modeChanges">The mode changes being applied.</param>
     /// <param name="modeArguments">The arguments ( parameters ) for the <see cref="ChannelModeMessage.ModeChanges" /> property.</param>
-    public ChannelModeMessage(string channel, string modeChanges, params string[] modeArguments) {
+    public ChannelModeMessage(string channel, string modeChanges, params string[] modeArguments)
+    {
       this.channel = channel;
       this.modeChanges = modeChanges;
       this.modeArguments.AddRange(modeArguments);
@@ -36,8 +40,10 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Gets the IRC command associated with this message.
     /// </summary>
-    protected override string Command {
-      get {
+    protected override string Command
+    {
+      get
+      {
         return "MODE";
       }
     }
@@ -45,12 +51,15 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Gets or sets the name of the channel being affected.
     /// </summary>
-    public virtual string Channel {
-      get {
-        return channel;
+    public virtual string Channel
+    {
+      get
+      {
+        return this.channel;
       }
-      set {
-        channel = value;
+      set
+      {
+        this.channel = value;
       }
     }
 
@@ -61,12 +70,15 @@ namespace Supay.Irc.Messages {
     ///   An example ModeChanges might look like "+ool".
     ///   This means adding the channel op mode for two users, and setting a limit on the user count.
     /// </remarks>
-    public virtual string ModeChanges {
-      get {
-        return modeChanges;
+    public virtual string ModeChanges
+    {
+      get
+      {
+        return this.modeChanges;
       }
-      set {
-        modeChanges = value;
+      set
+      {
+        this.modeChanges = value;
       }
     }
 
@@ -76,16 +88,19 @@ namespace Supay.Irc.Messages {
     /// <remarks>
     ///   Some modes require a parameter, such as +o requires the mask of the person to be given ops.
     /// </remarks>
-    public virtual IList<string> ModeArguments {
-      get {
-        return modeArguments;
+    public virtual IList<string> ModeArguments
+    {
+      get
+      {
+        return this.modeArguments;
       }
     }
 
     #region IChannelTargetedMessage Members
 
-    bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
-      return IsTargetedAtChannel(channelName);
+    bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName)
+    {
+      return this.IsTargetedAtChannel(channelName);
     }
 
     #endregion
@@ -93,12 +108,15 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Determines if the message can be parsed by this type.
     /// </summary>
-    public override bool CanParse(string unparsedMessage) {
-      if (!base.CanParse(unparsedMessage)) {
+    public override bool CanParse(string unparsedMessage)
+    {
+      if (!base.CanParse(unparsedMessage))
+      {
         return false;
       }
       IList<string> p = MessageUtil.GetParameters(unparsedMessage);
-      if (p.Count >= 1) {
+      if (p.Count >= 1)
+      {
         return MessageUtil.HasValidChannelPrefix(p[0]);
       }
       return false;
@@ -107,16 +125,19 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Parses the parameters portion of the message.
     /// </summary>
-    protected override void ParseParameters(IList<string> parameters) {
+    protected override void ParseParameters(IList<string> parameters)
+    {
       base.ParseParameters(parameters);
-      Channel = parameters[0];
+      this.Channel = parameters[0];
 
-      ModeChanges = parameters.Count > 1 ? parameters[1] : string.Empty;
+      this.ModeChanges = parameters.Count > 1 ? parameters[1] : string.Empty;
 
-      ModeArguments.Clear();
-      if (parameters.Count > 2) {
-        for (int i = 2; i < parameters.Count; i++) {
-          ModeArguments.Add(parameters[i]);
+      this.ModeArguments.Clear();
+      if (parameters.Count > 2)
+      {
+        for (int i = 2; i < parameters.Count; i++)
+        {
+          this.ModeArguments.Add(parameters[i]);
         }
       }
     }
@@ -124,12 +145,15 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.
     /// </summary>
-    protected override IList<string> GetParameters() {
-      IList<string> parameters = base.GetParameters();
-      parameters.Add(Channel);
-      if (!string.IsNullOrEmpty(ModeChanges)) {
-        parameters.Add(ModeChanges);
-        foreach (string modeArgument in ModeArguments) {
+    protected override IList<string> GetParameters()
+    {
+      var parameters = base.GetParameters();
+      parameters.Add(this.Channel);
+      if (!string.IsNullOrEmpty(this.ModeChanges))
+      {
+        parameters.Add(this.ModeChanges);
+        foreach (string modeArgument in this.ModeArguments)
+        {
           parameters.Add(modeArgument);
         }
       }
@@ -139,15 +163,17 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
-    public override void Notify(MessageConduit conduit) {
+    public override void Notify(MessageConduit conduit)
+    {
       conduit.OnChannelMode(new IrcMessageEventArgs<ChannelModeMessage>(this));
     }
 
     /// <summary>
     ///   Determines if the the current message is targeted at the given channel.
     /// </summary>
-    protected virtual bool IsTargetedAtChannel(string channelName) {
-      return Channel.EqualsI(channelName);
+    protected virtual bool IsTargetedAtChannel(string channelName)
+    {
+      return this.Channel.EqualsI(channelName);
     }
   }
 }

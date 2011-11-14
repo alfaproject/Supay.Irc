@@ -1,7 +1,8 @@
 using System;
 using System.Collections.ObjectModel;
 
-namespace Supay.Irc.Messages.Modes {
+namespace Supay.Irc.Messages.Modes
+{
   /// <summary>
   ///   <para>
   ///     A collection that stores <see cref = 'Supay.Irc.Messages.Modes.UserMode' /> objects.
@@ -9,6 +10,7 @@ namespace Supay.Irc.Messages.Modes {
   /// </summary>
   /// <seealso cref = 'Supay.Irc.Messages.Modes.UserModeCollection' />
   [Serializable]
-  public class UserModeCollection : ObservableCollection<UserMode> {
+  public class UserModeCollection : ObservableCollection<UserMode>
+  {
   }
 }

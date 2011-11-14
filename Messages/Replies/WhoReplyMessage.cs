@@ -2,12 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 
-namespace Supay.Irc.Messages {
+namespace Supay.Irc.Messages
+{
   /// <summary>
   ///   A reply to a <see cref="WhoMessage" /> query.
   /// </summary>
   [Serializable]
-  public class WhoReplyMessage : NumericMessage, IChannelTargetedMessage {
+  public class WhoReplyMessage : NumericMessage, IChannelTargetedMessage
+  {
     private string _channel = string.Empty;
     private int _hopCount = -1;
     private ChannelStatus _status = ChannelStatus.None;
@@ -17,7 +19,8 @@ namespace Supay.Irc.Messages {
     ///   Creates a new instance of the <see cref="WhoReplyMessage" /> class.
     /// </summary>
     public WhoReplyMessage()
-      : base(352) {
+      : base(352)
+    {
     }
 
     /// <summary>
@@ -27,48 +30,60 @@ namespace Supay.Irc.Messages {
     ///   In the case of a non-channel based <see cref="WhoMessage" />, Channel will contain the
     ///   most recent channel which the user joined and is still on.
     /// </remarks>
-    public virtual string Channel {
-      get {
-        return _channel;
+    public virtual string Channel
+    {
+      get
+      {
+        return this._channel;
       }
-      set {
-        _channel = value;
+      set
+      {
+        this._channel = value;
       }
     }
 
     /// <summary>
     ///   Gets or sets the user being examined.
     /// </summary>
-    public virtual User User {
-      get {
-        return _user;
+    public virtual User User
+    {
+      get
+      {
+        return this._user;
       }
-      set {
-        _user = value;
+      set
+      {
+        this._user = value;
       }
     }
 
     /// <summary>
     ///   Gets or sets the status of the user on the associated channel.
     /// </summary>
-    public virtual ChannelStatus Status {
-      get {
-        return _status;
+    public virtual ChannelStatus Status
+    {
+      get
+      {
+        return this._status;
       }
-      set {
-        _status = value;
+      set
+      {
+        this._status = value;
       }
     }
 
     /// <summary>
     ///   Gets or sets the number of hops to the server the user is on.
     /// </summary>
-    public virtual int HopCount {
-      get {
-        return _hopCount;
+    public virtual int HopCount
+    {
+      get
+      {
+        return this._hopCount;
       }
-      set {
-        _hopCount = value;
+      set
+      {
+        this._hopCount = value;
       }
     }
 
@@ -77,8 +92,9 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Determines if the the current message is targeted at the given channel.
     /// </summary>
-    public virtual bool IsTargetedAtChannel(string channelName) {
-      return Channel.EqualsI(channelName);
+    public virtual bool IsTargetedAtChannel(string channelName)
+    {
+      return this.Channel.EqualsI(channelName);
     }
 
     #endregion
@@ -86,43 +102,48 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.
     /// </summary>
-    protected override IList<string> GetParameters() {
-      IList<string> parameters = base.GetParameters();
-      parameters.Add(Channel);
-      parameters.Add(User.Username);
-      parameters.Add(User.Host);
-      parameters.Add(User.Server);
-      parameters.Add(User.Nickname);
-      parameters.Add((User.Away ? "G" : "H") + (User.IrcOperator ? "*" : string.Empty) + Status.Symbol);
-      parameters.Add(HopCount.ToString(CultureInfo.InvariantCulture) + " " + User.Name);
+    protected override IList<string> GetParameters()
+    {
+      var parameters = base.GetParameters();
+      parameters.Add(this.Channel);
+      parameters.Add(this.User.Username);
+      parameters.Add(this.User.Host);
+      parameters.Add(this.User.Server);
+      parameters.Add(this.User.Nickname);
+      parameters.Add((this.User.Away ? "G" : "H") + (this.User.IrcOperator ? "*" : string.Empty) + this.Status.Symbol);
+      parameters.Add(this.HopCount.ToString(CultureInfo.InvariantCulture) + " " + this.User.Name);
       return parameters;
     }
 
     /// <summary>
     ///   Parses the parameters portion of the message.
     /// </summary>
-    protected override void ParseParameters(IList<string> parameters) {
+    protected override void ParseParameters(IList<string> parameters)
+    {
       base.ParseParameters(parameters);
-      User = new User();
+      this.User = new User();
 
-      if (parameters.Count == 8) {
-        Channel = parameters[1];
-        User.Username = parameters[2];
-        User.Host = parameters[3];
-        User.Server = parameters[4];
-        User.Nickname = parameters[5];
+      if (parameters.Count == 8)
+      {
+        this.Channel = parameters[1];
+        this.User.Username = parameters[2];
+        this.User.Host = parameters[3];
+        this.User.Server = parameters[4];
+        this.User.Nickname = parameters[5];
 
-        foreach (char flag in parameters[6]) {
-          switch (flag) {
+        foreach (char flag in parameters[6])
+        {
+          switch (flag)
+          {
             case 'H': // here
-              User.Away = false;
+              this.User.Away = false;
               break;
             case 'G': // gone
-              User.Away = true;
+              this.User.Away = true;
               break;
             case '*': // ircop
             case '!': // ircop (hidden?)
-              User.IrcOperator = true;
+              this.User.IrcOperator = true;
               break;
             case 'r': // registered
               break;
@@ -133,16 +154,17 @@ namespace Supay.Irc.Messages {
             case '?': // can see ircop (?)
               break;
             default: // check for a channel mode
-              if (ChannelStatus.IsDefined(flag.ToString(CultureInfo.InvariantCulture))) {
-                Status = ChannelStatus.GetInstance(flag.ToString(CultureInfo.InvariantCulture));
+              if (ChannelStatus.IsDefined(flag.ToString(CultureInfo.InvariantCulture)))
+              {
+                this.Status = ChannelStatus.GetInstance(flag.ToString(CultureInfo.InvariantCulture));
               }
               break;
           }
         }
 
         string trailing = parameters[7];
-        HopCount = Convert.ToInt32(trailing.Substring(0, trailing.IndexOf(' ')), CultureInfo.InvariantCulture);
-        User.Name = trailing.Substring(trailing.IndexOf(' '));
+        this.HopCount = Convert.ToInt32(trailing.Substring(0, trailing.IndexOf(' ')), CultureInfo.InvariantCulture);
+        this.User.Name = trailing.Substring(trailing.IndexOf(' '));
       }
     }
 
@@ -150,7 +172,8 @@ namespace Supay.Irc.Messages {
     ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the
     ///   current <see cref="IrcMessage" /> subclass.
     /// </summary>
-    public override void Notify(MessageConduit conduit) {
+    public override void Notify(MessageConduit conduit)
+    {
       conduit.OnWhoReply(new IrcMessageEventArgs<WhoReplyMessage>(this));
     }
   }

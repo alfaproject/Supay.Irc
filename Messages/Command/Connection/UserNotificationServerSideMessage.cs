@@ -1,12 +1,14 @@
 using System;
 using System.Collections.Generic;
 
-namespace Supay.Irc.Messages {
+namespace Supay.Irc.Messages
+{
   /// <summary>
   ///   The UserNotificationServerSideMessage is passed between servers to notify of a new user on the network.
   /// </summary>
   [Serializable]
-  public class UserNotificationServerSideMessage : CommandMessage {
+  public class UserNotificationServerSideMessage : CommandMessage
+  {
     private string hostName;
     private string realName = string.Empty;
     private string serverName;
@@ -15,8 +17,10 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Gets the IRC command associated with this message.
     /// </summary>
-    protected override string Command {
-      get {
+    protected override string Command
+    {
+      get
+      {
         return "USER";
       }
     }
@@ -24,58 +28,73 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Gets or sets the UserName of client.
     /// </summary>
-    public virtual string UserName {
-      get {
-        return userName;
+    public virtual string UserName
+    {
+      get
+      {
+        return this.userName;
       }
-      set {
-        userName = value;
+      set
+      {
+        this.userName = value;
       }
     }
 
     /// <summary>
     ///   Gets or sets the name of the user's host.
     /// </summary>
-    public string HostName {
-      get {
-        return hostName;
+    public string HostName
+    {
+      get
+      {
+        return this.hostName;
       }
-      set {
-        hostName = value;
+      set
+      {
+        this.hostName = value;
       }
     }
 
     /// <summary>
     ///   Gets or sets the name of the server which the user is on.
     /// </summary>
-    public string ServerName {
-      get {
-        return serverName;
+    public string ServerName
+    {
+      get
+      {
+        return this.serverName;
       }
-      set {
-        serverName = value;
+      set
+      {
+        this.serverName = value;
       }
     }
 
     /// <summary>
     ///   Gets or sets the real name of the client.
     /// </summary>
-    public virtual string RealName {
-      get {
-        return realName;
+    public virtual string RealName
+    {
+      get
+      {
+        return this.realName;
       }
-      set {
-        realName = value;
+      set
+      {
+        this.realName = value;
       }
     }
 
     /// <exclude />
-    public override bool CanParse(string unparsedMessage) {
-      if (!base.CanParse(unparsedMessage)) {
+    public override bool CanParse(string unparsedMessage)
+    {
+      if (!base.CanParse(unparsedMessage))
+      {
         return false;
       }
       IList<string> p = MessageUtil.GetParameters(unparsedMessage);
-      if (p.Count != 4 || p[2] == "*") {
+      if (p.Count != 4 || p[2] == "*")
+      {
         return false;
       }
       return true;
@@ -84,37 +103,43 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.
     /// </summary>
-    protected override IList<string> GetParameters() {
-      IList<string> parameters = base.GetParameters();
-      parameters.Add(UserName);
-      parameters.Add(HostName);
-      parameters.Add(ServerName);
-      parameters.Add(RealName);
+    protected override IList<string> GetParameters()
+    {
+      var parameters = base.GetParameters();
+      parameters.Add(this.UserName);
+      parameters.Add(this.HostName);
+      parameters.Add(this.ServerName);
+      parameters.Add(this.RealName);
       return parameters;
     }
 
     /// <summary>
     ///   Parses the parameters portion of the message.
     /// </summary>
-    protected override void ParseParameters(IList<string> parameters) {
+    protected override void ParseParameters(IList<string> parameters)
+    {
       base.ParseParameters(parameters);
-      if (parameters.Count >= 4) {
-        UserName = parameters[0];
-        HostName = parameters[1];
-        ServerName = parameters[2];
-        RealName = parameters[3];
-      } else {
-        UserName = string.Empty;
-        HostName = string.Empty;
-        ServerName = string.Empty;
-        RealName = string.Empty;
+      if (parameters.Count >= 4)
+      {
+        this.UserName = parameters[0];
+        this.HostName = parameters[1];
+        this.ServerName = parameters[2];
+        this.RealName = parameters[3];
+      }
+      else
+      {
+        this.UserName = string.Empty;
+        this.HostName = string.Empty;
+        this.ServerName = string.Empty;
+        this.RealName = string.Empty;
       }
     }
 
     /// <summary>
     ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
-    public override void Notify(MessageConduit conduit) {
+    public override void Notify(MessageConduit conduit)
+    {
       conduit.OnUserNotificationServerSide(new IrcMessageEventArgs<UserNotificationServerSideMessage>(this));
     }
   }

@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
 
-namespace Supay.Irc.Messages {
+namespace Supay.Irc.Messages
+{
   /// <summary>
   ///   With the ChannelPropertyMessage, clients can read and write property values for IRCX enabled channels.
   /// </summary>
@@ -14,7 +15,8 @@ namespace Supay.Irc.Messages {
   ///   <p>This command is only effective for an IRCX enabled server.</p>
   /// </remarks>
   [Serializable]
-  public class ChannelPropertyMessage : CommandMessage {
+  public class ChannelPropertyMessage : CommandMessage
+  {
     private string channel = string.Empty;
     private string newValue = string.Empty;
     private string property = string.Empty;
@@ -22,8 +24,10 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Gets the IRC command associated with this message.
     /// </summary>
-    protected override string Command {
-      get {
+    protected override string Command
+    {
+      get
+      {
         return "PROP";
       }
     }
@@ -34,12 +38,15 @@ namespace Supay.Irc.Messages {
     /// <remarks>
     ///   Some implementations allow for this to be the name of a server, but this is an extension.
     /// </remarks>
-    public virtual string Channel {
-      get {
-        return channel;
+    public virtual string Channel
+    {
+      get
+      {
+        return this.channel;
       }
-      set {
-        channel = value;
+      set
+      {
+        this.channel = value;
       }
     }
 
@@ -49,12 +56,15 @@ namespace Supay.Irc.Messages {
     /// <remarks>
     ///   When this message is sent with an empty <see cref="Prop" />, the values of all current channel properties are sent from the server.
     /// </remarks>
-    public virtual string Prop {
-      get {
-        return property;
+    public virtual string Prop
+    {
+      get
+      {
+        return this.property;
       }
-      set {
-        property = value;
+      set
+      {
+        this.property = value;
       }
     }
 
@@ -64,35 +74,44 @@ namespace Supay.Irc.Messages {
     /// <remarks>
     ///   You can set the value of a channel property by specify its name in the <see cref="Prop" /> property, and the value in the <see cref="NewValue" /> property.
     /// </remarks>
-    public virtual string NewValue {
-      get {
-        return newValue;
+    public virtual string NewValue
+    {
+      get
+      {
+        return this.newValue;
       }
-      set {
-        newValue = value;
+      set
+      {
+        this.newValue = value;
       }
     }
 
     /// <summary>
     ///   Validates this message against the given server support
     /// </summary>
-    public override void Validate(ServerSupport serverSupport) {
+    public override void Validate(ServerSupport serverSupport)
+    {
       base.Validate(serverSupport);
-      Channel = MessageUtil.EnsureValidChannelName(Channel, serverSupport);
+      this.Channel = MessageUtil.EnsureValidChannelName(this.Channel, serverSupport);
     }
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.
     /// </summary>
-    protected override IList<string> GetParameters() {
-      IList<string> parameters = base.GetParameters();
-      parameters.Add(Channel);
-      if (string.IsNullOrEmpty(Prop)) {
+    protected override IList<string> GetParameters()
+    {
+      var parameters = base.GetParameters();
+      parameters.Add(this.Channel);
+      if (string.IsNullOrEmpty(this.Prop))
+      {
         parameters.Add("*");
-      } else {
-        parameters.Add(Prop);
-        if (!string.IsNullOrEmpty(NewValue)) {
-          parameters.Add(NewValue);
+      }
+      else
+      {
+        parameters.Add(this.Prop);
+        if (!string.IsNullOrEmpty(this.NewValue))
+        {
+          parameters.Add(this.NewValue);
         }
       }
       return parameters;
@@ -101,22 +120,27 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Parses the parameters portion of the message.
     /// </summary>
-    protected override void ParseParameters(IList<string> parameters) {
+    protected override void ParseParameters(IList<string> parameters)
+    {
       base.ParseParameters(parameters);
 
-      Channel = string.Empty;
-      Prop = string.Empty;
-      NewValue = string.Empty;
+      this.Channel = string.Empty;
+      this.Prop = string.Empty;
+      this.NewValue = string.Empty;
 
-      if (parameters.Count > 0) {
-        Channel = parameters[0];
-        if (parameters.Count > 1) {
-          Prop = parameters[1];
-          if (Prop == "*") {
-            Prop = string.Empty;
+      if (parameters.Count > 0)
+      {
+        this.Channel = parameters[0];
+        if (parameters.Count > 1)
+        {
+          this.Prop = parameters[1];
+          if (this.Prop == "*")
+          {
+            this.Prop = string.Empty;
           }
-          if (parameters.Count > 2) {
-            NewValue = parameters[2];
+          if (parameters.Count > 2)
+          {
+            this.NewValue = parameters[2];
           }
         }
       }
@@ -125,7 +149,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
-    public override void Notify(MessageConduit conduit) {
+    public override void Notify(MessageConduit conduit)
+    {
       conduit.OnChannelProperty(new IrcMessageEventArgs<ChannelPropertyMessage>(this));
     }
   }

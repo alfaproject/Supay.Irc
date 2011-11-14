@@ -1,13 +1,15 @@
 using System;
 using System.Collections.Generic;
 
-namespace Supay.Irc.Messages {
+namespace Supay.Irc.Messages
+{
   /// <summary>
   ///   The <see cref="ErrorMessage" /> sent when a user tries to invite a person onto a channel which they
   ///   are already on
   /// </summary>
   [Serializable]
-  public class AlreadyOnChannelMessage : ErrorMessage, IChannelTargetedMessage {
+  public class AlreadyOnChannelMessage : ErrorMessage, IChannelTargetedMessage
+  {
     private string channel;
     private string nick;
 
@@ -15,73 +17,86 @@ namespace Supay.Irc.Messages {
     ///   Creates a new instances of the <see cref="AlreadyOnChannelMessage" /> class.
     /// </summary>
     public AlreadyOnChannelMessage()
-      : base(443) {
+      : base(443)
+    {
     }
 
     /// <summary>
     ///   Gets or sets the nick of the user invited
     /// </summary>
-    public string Nick {
-      get {
-        return nick;
+    public string Nick
+    {
+      get
+      {
+        return this.nick;
       }
-      set {
-        nick = value;
+      set
+      {
+        this.nick = value;
       }
     }
 
     /// <summary>
     ///   Gets or sets the channel being invited to
     /// </summary>
-    public string Channel {
-      get {
-        return channel;
+    public string Channel
+    {
+      get
+      {
+        return this.channel;
       }
-      set {
-        channel = value;
+      set
+      {
+        this.channel = value;
       }
     }
 
     #region IChannelTargetedMessage Members
 
-    bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
-      return IsTargetedAtChannel(channelName);
+    bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName)
+    {
+      return this.IsTargetedAtChannel(channelName);
     }
 
     #endregion
 
     /// <exclude />
-    protected override IList<string> GetParameters() {
-      IList<string> parameters = base.GetParameters();
-      parameters.Add(Nick);
-      parameters.Add(Channel);
+    protected override IList<string> GetParameters()
+    {
+      var parameters = base.GetParameters();
+      parameters.Add(this.Nick);
+      parameters.Add(this.Channel);
       parameters.Add("is already on channel");
       return parameters;
     }
 
     /// <exclude />
-    protected override void ParseParameters(IList<string> parameters) {
+    protected override void ParseParameters(IList<string> parameters)
+    {
       base.ParseParameters(parameters);
-      Nick = string.Empty;
-      Channel = string.Empty;
-      if (parameters.Count > 2) {
-        Nick = parameters[1];
-        Channel = parameters[2];
+      this.Nick = string.Empty;
+      this.Channel = string.Empty;
+      if (parameters.Count > 2)
+      {
+        this.Nick = parameters[1];
+        this.Channel = parameters[2];
       }
     }
 
     /// <summary>
     ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
-    public override void Notify(MessageConduit conduit) {
+    public override void Notify(MessageConduit conduit)
+    {
       conduit.OnAlreadyOnChannel(new IrcMessageEventArgs<AlreadyOnChannelMessage>(this));
     }
 
     /// <summary>
     ///   Determines if the the current message is targeted at the given channel.
     /// </summary>
-    protected virtual bool IsTargetedAtChannel(string channelName) {
-      return Channel.EqualsI(channelName);
+    protected virtual bool IsTargetedAtChannel(string channelName)
+    {
+      return this.Channel.EqualsI(channelName);
     }
   }
 }

@@ -2,17 +2,20 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-namespace Supay.Irc.Messages {
+namespace Supay.Irc.Messages
+{
   /// <summary>
   ///   Represents a single generic RFC1459 IRC message to or from an IRC server.
   /// </summary>
   [Serializable]
-  public class GenericMessage : IrcMessage {
+  public class GenericMessage : IrcMessage
+  {
     #region Constructor
 
-    public GenericMessage() {
-      _command = string.Empty;
-      Parameters = new Collection<string>();
+    public GenericMessage()
+    {
+      this._command = string.Empty;
+      this.Parameters = new Collection<string>();
     }
 
     #endregion
@@ -24,22 +27,27 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Gets or sets the message's command.
     /// </summary>
-    public string Command {
-      get {
-        return _command;
+    public string Command
+    {
+      get
+      {
+        return this._command;
       }
-      set {
-        if (value == null) {
+      set
+      {
+        if (value == null)
+        {
           throw new ArgumentNullException("value");
         }
-        _command = value;
+        this._command = value;
       }
     }
 
     /// <summary>
     ///   Gets the message's parameters after the command.
     /// </summary>
-    public IList<string> Parameters {
+    public IList<string> Parameters
+    {
       get;
       private set;
     }
@@ -55,18 +63,21 @@ namespace Supay.Irc.Messages {
     ///   The conduit calls Notify on messages to have the message raise the appropriate event on the conduit.
     ///   This is done automatically by your <see cref="Client" /> after messages are received and parsed.
     /// </remarks>
-    public override void Notify(MessageConduit conduit) {
+    public override void Notify(MessageConduit conduit)
+    {
       conduit.OnGenericMessage(new IrcMessageEventArgs<GenericMessage>(this));
     }
 
     /// <summary>
     ///   Overrides <see cref="GetParameters" />.
     /// </summary>
-    protected override IList<string> GetParameters() {
+    protected override IList<string> GetParameters()
+    {
       var parameters = new Collection<string> {
-        Command
+        this.Command
       };
-      foreach (string parameter in Parameters) {
+      foreach (string parameter in this.Parameters)
+      {
         parameters.Add(parameter);
       }
       return parameters;
@@ -78,24 +89,27 @@ namespace Supay.Irc.Messages {
     /// <remarks>
     ///   <see cref="GenericMessage" /> always returns true.
     /// </remarks>
-    public override bool CanParse(string unparsedMessage) {
+    public override bool CanParse(string unparsedMessage)
+    {
       return true;
     }
 
     /// <summary>
     ///   Parses the command portion of the message.
     /// </summary>
-    protected override void ParseCommand(string command) {
+    protected override void ParseCommand(string command)
+    {
       base.ParseCommand(command);
-      Command = command;
+      this.Command = command;
     }
 
     /// <summary>
     ///   Parses the parameter portion of the message.
     /// </summary>
-    protected override void ParseParameters(IList<string> parameters) {
+    protected override void ParseParameters(IList<string> parameters)
+    {
       base.ParseParameters(parameters);
-      Parameters = parameters;
+      this.Parameters = parameters;
     }
 
     #endregion

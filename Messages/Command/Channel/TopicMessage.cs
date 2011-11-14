@@ -1,19 +1,22 @@
 using System;
 using System.Collections.Generic;
 
-namespace Supay.Irc.Messages {
+namespace Supay.Irc.Messages
+{
   /// <summary>
   ///   The <see cref="TopicMessage" /> is used to change or view the topic of a channel.
   /// </summary>
   [Serializable]
-  public class TopicMessage : CommandMessage, IChannelTargetedMessage {
+  public class TopicMessage : CommandMessage, IChannelTargetedMessage
+  {
     private string channel = string.Empty;
     private string topic = string.Empty;
 
     /// <summary>
     ///   Creates a new instance of the <see cref="TopicMessage" /> class.
     /// </summary>
-    public TopicMessage() {
+    public TopicMessage()
+    {
     }
 
     /// <summary>
@@ -21,7 +24,8 @@ namespace Supay.Irc.Messages {
     /// </summary>
     /// <param name="channel">The channel to affect.</param>
     /// <param name="topic">The new topic to set.</param>
-    public TopicMessage(string channel, string topic) {
+    public TopicMessage(string channel, string topic)
+    {
       this.channel = channel;
       this.topic = topic;
     }
@@ -29,8 +33,10 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Gets the IRC command associated with this message.
     /// </summary>
-    protected override string Command {
-      get {
+    protected override string Command
+    {
+      get
+      {
         return "TOPIC";
       }
     }
@@ -38,12 +44,15 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Gets or sets the channel affected
     /// </summary>
-    public virtual string Channel {
-      get {
-        return channel;
+    public virtual string Channel
+    {
+      get
+      {
+        return this.channel;
       }
-      set {
-        channel = value;
+      set
+      {
+        this.channel = value;
       }
     }
 
@@ -54,19 +63,23 @@ namespace Supay.Irc.Messages {
     ///   If Topic is blank, the server will send a <see cref="TopicReplyMessage" /> and probably a <see cref="TopicSetReplyMessage" />,
     ///   telling you what the current topic is, who set it, and when.
     /// </remarks>
-    public virtual string Topic {
-      get {
-        return topic;
+    public virtual string Topic
+    {
+      get
+      {
+        return this.topic;
       }
-      set {
-        topic = value;
+      set
+      {
+        this.topic = value;
       }
     }
 
     #region IChannelTargetedMessage Members
 
-    bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
-      return IsTargetedAtChannel(channelName);
+    bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName)
+    {
+      return this.IsTargetedAtChannel(channelName);
     }
 
     #endregion
@@ -74,19 +87,22 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Validates this message against the given server support
     /// </summary>
-    public override void Validate(ServerSupport serverSupport) {
+    public override void Validate(ServerSupport serverSupport)
+    {
       base.Validate(serverSupport);
-      Channel = MessageUtil.EnsureValidChannelName(Channel, serverSupport);
+      this.Channel = MessageUtil.EnsureValidChannelName(this.Channel, serverSupport);
     }
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.
     /// </summary>
-    protected override IList<string> GetParameters() {
-      IList<string> parameters = base.GetParameters();
-      parameters.Add(Channel);
-      if (!string.IsNullOrEmpty(Topic)) {
-        parameters.Add(Topic);
+    protected override IList<string> GetParameters()
+    {
+      var parameters = base.GetParameters();
+      parameters.Add(this.Channel);
+      if (!string.IsNullOrEmpty(this.Topic))
+      {
+        parameters.Add(this.Topic);
       }
       return parameters;
     }
@@ -94,14 +110,17 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Parse the parameters portion of the message.
     /// </summary>
-    protected override void ParseParameters(IList<string> parameters) {
+    protected override void ParseParameters(IList<string> parameters)
+    {
       base.ParseParameters(parameters);
-      Channel = string.Empty;
-      Topic = string.Empty;
-      if (parameters.Count >= 1) {
-        Channel = parameters[0];
-        if (parameters.Count >= 2) {
-          Topic = parameters[1];
+      this.Channel = string.Empty;
+      this.Topic = string.Empty;
+      if (parameters.Count >= 1)
+      {
+        this.Channel = parameters[0];
+        if (parameters.Count >= 2)
+        {
+          this.Topic = parameters[1];
         }
       }
     }
@@ -109,15 +128,17 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
-    public override void Notify(MessageConduit conduit) {
+    public override void Notify(MessageConduit conduit)
+    {
       conduit.OnTopic(new IrcMessageEventArgs<TopicMessage>(this));
     }
 
     /// <summary>
     ///   Determines if the the current message is targeted at the given channel.
     /// </summary>
-    protected virtual bool IsTargetedAtChannel(string channelName) {
-      return Channel.EqualsI(channelName);
+    protected virtual bool IsTargetedAtChannel(string channelName)
+    {
+      return this.Channel.EqualsI(channelName);
     }
   }
 }

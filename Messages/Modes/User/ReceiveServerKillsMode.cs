@@ -1,26 +1,32 @@
-namespace Supay.Irc.Messages.Modes {
+namespace Supay.Irc.Messages.Modes
+{
   /// <summary>
   ///   This mode signifies that the user will receive wallop messages.
   /// </summary>
-  public class ReceiveServerKillsMode : UserMode {
+  public class ReceiveServerKillsMode : UserMode
+  {
     /// <summary>
     ///   Creates a new instance of the <see cref="ReceiveServerKillsMode" /> class.
     /// </summary>
-    public ReceiveServerKillsMode() {
+    public ReceiveServerKillsMode()
+    {
     }
 
     /// <summary>
     ///   Creates a new instance of the <see cref="ReceiveServerKillsMode" /> class with the given <see cref="ModeAction" />.
     /// </summary>
-    public ReceiveServerKillsMode(ModeAction action) {
-      Action = action;
+    public ReceiveServerKillsMode(ModeAction action)
+    {
+      this.Action = action;
     }
 
     /// <summary>
     ///   Gets the IRC string representation of the mode being changed or applied.
     /// </summary>
-    protected override string Symbol {
-      get {
+    protected override string Symbol
+    {
+      get
+      {
         return "k";
       }
     }

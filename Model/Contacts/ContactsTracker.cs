@@ -2,40 +2,52 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 
-namespace Supay.Irc.Contacts {
-  internal abstract class ContactsTracker {
+namespace Supay.Irc.Contacts
+{
+  internal abstract class ContactsTracker
+  {
     private readonly ContactList contacts;
 
-    protected ContactsTracker(ContactList contacts) {
+    protected ContactsTracker(ContactList contacts)
+    {
       this.contacts = contacts;
-      this.contacts.Users.CollectionChanged += Users_CollectionChanged;
+      this.contacts.Users.CollectionChanged += this.Users_CollectionChanged;
     }
 
-    protected ContactList Contacts {
-      get {
-        return contacts;
+    protected ContactList Contacts
+    {
+      get
+      {
+        return this.contacts;
       }
     }
 
-    private void Users_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e) {
-      if (e.Action == NotifyCollectionChangedAction.Add) {
-        foreach (User newUser in e.NewItems) {
-          AddNick(newUser.Nickname);
+    private void Users_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+    {
+      if (e.Action == NotifyCollectionChangedAction.Add)
+      {
+        foreach (User newUser in e.NewItems)
+        {
+          this.AddNick(newUser.Nickname);
         }
       }
-      if (e.Action == NotifyCollectionChangedAction.Remove) {
-        foreach (User oldUser in e.OldItems) {
-          RemoveNick(oldUser.Nickname);
+      if (e.Action == NotifyCollectionChangedAction.Remove)
+      {
+        foreach (User oldUser in e.OldItems)
+        {
+          this.RemoveNick(oldUser.Nickname);
         }
       }
     }
 
-    public virtual void Initialize() {
+    public virtual void Initialize()
+    {
       var nicks = new Collection<string>();
-      foreach (User u in Contacts.Users) {
+      foreach (User u in this.Contacts.Users)
+      {
         nicks.Add(u.Nickname);
       }
-      AddNicks(nicks);
+      this.AddNicks(nicks);
     }
 
     protected abstract void AddNicks(IEnumerable<string> nicks);

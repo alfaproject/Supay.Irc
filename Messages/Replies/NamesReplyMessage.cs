@@ -1,19 +1,21 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 
-namespace Supay.Irc.Messages {
+namespace Supay.Irc.Messages
+{
   /// <summary>
   ///   A single reply to the <see cref="NamesMessage" /> query.
   /// </summary>
   [Serializable]
-  public class NamesReplyMessage : NumericMessage, IChannelTargetedMessage {
+  public class NamesReplyMessage : NumericMessage, IChannelTargetedMessage
+  {
     #region ChannelVisibility enum
 
     /// <summary>
     ///   The list of channel visibility settings for the <see cref="NamesReplyMessage" />.
     /// </summary>
-    public enum ChannelVisibility {
+    public enum ChannelVisibility
+    {
       /// <summary>
       ///   The channel is in <see cref="Supay.Irc.Messages.Modes.SecretMode" />
       /// </summary>
@@ -39,46 +41,55 @@ namespace Supay.Irc.Messages {
     ///   Creates a new instance of the <see cref="NamesReplyMessage" /> class.
     /// </summary>
     public NamesReplyMessage()
-      : base(353) {
-      Nicks = new Dictionary<string, ChannelStatus>(StringComparer.OrdinalIgnoreCase);
+      : base(353)
+    {
+      this.Nicks = new Dictionary<string, ChannelStatus>(StringComparer.OrdinalIgnoreCase);
     }
 
     /// <summary>
     ///   Gets or sets the visibility of the channel specified in the reply.
     /// </summary>
-    public virtual ChannelVisibility Visibility {
-      get {
-        return visibility;
+    public virtual ChannelVisibility Visibility
+    {
+      get
+      {
+        return this.visibility;
       }
-      set {
-        visibility = value;
+      set
+      {
+        this.visibility = value;
       }
     }
 
     /// <summary>
     ///   Gets or sets the name of the channel specified in the reply.
     /// </summary>
-    public virtual string Channel {
-      get {
-        return channel;
+    public virtual string Channel
+    {
+      get
+      {
+        return this.channel;
       }
-      set {
-        channel = value;
+      set
+      {
+        this.channel = value;
       }
     }
 
     /// <summary>
     ///   Gets the collection of nicks in the channel.
     /// </summary>
-    public Dictionary<string, ChannelStatus> Nicks {
+    public Dictionary<string, ChannelStatus> Nicks
+    {
       get;
       private set;
     }
 
     #region IChannelTargetedMessage Members
 
-    bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName) {
-      return IsTargetedAtChannel(channelName);
+    bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName)
+    {
+      return this.IsTargetedAtChannel(channelName);
     }
 
     #endregion
@@ -86,9 +97,11 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.
     /// </summary>
-    protected override IList<string> GetParameters() {
-      IList<string> parameters = base.GetParameters();
-      switch (Visibility) {
+    protected override IList<string> GetParameters()
+    {
+      var parameters = base.GetParameters();
+      switch (this.Visibility)
+      {
         case ChannelVisibility.Public:
           parameters.Add("=");
           break;
@@ -99,48 +112,55 @@ namespace Supay.Irc.Messages {
           parameters.Add("@");
           break;
       }
-      parameters.Add(Channel);
-      parameters.Add(MessageUtil.CreateList(Nicks.Keys, " ", nick => Nicks[nick].Symbol + nick));
+      parameters.Add(this.Channel);
+      parameters.Add(MessageUtil.CreateList(this.Nicks.Keys, " ", nick => this.Nicks[nick].Symbol + nick));
       return parameters;
     }
 
     /// <summary>
     ///   Parses the parameters portion of the message.
     /// </summary>
-    protected override void ParseParameters(IList<string> parameters) {
+    protected override void ParseParameters(IList<string> parameters)
+    {
       base.ParseParameters(parameters);
 
-      Visibility = ChannelVisibility.Public;
-      Channel = string.Empty;
-      Nicks.Clear();
+      this.Visibility = ChannelVisibility.Public;
+      this.Channel = string.Empty;
+      this.Nicks.Clear();
 
-      if (parameters.Count >= 3) {
-        switch (parameters[1]) {
+      if (parameters.Count >= 3)
+      {
+        switch (parameters[1])
+        {
           case "=":
-            Visibility = ChannelVisibility.Public;
+            this.Visibility = ChannelVisibility.Public;
             break;
           case "*":
-            Visibility = ChannelVisibility.Private;
+            this.Visibility = ChannelVisibility.Private;
             break;
           case "@":
-            Visibility = ChannelVisibility.Secret;
+            this.Visibility = ChannelVisibility.Secret;
             break;
         }
-        Channel = parameters[2];
-        if (parameters.Count > 3) {
-          string[] msgNicks = parameters[3].Split(' ');
-          foreach (string nick in msgNicks) {
+        this.Channel = parameters[2];
+        if (parameters.Count > 3)
+        {
+          var msgNicks = parameters[3].Split(' ');
+          foreach (string nick in msgNicks)
+          {
             ChannelStatus status = ChannelStatus.None;
             string parsedNick = nick;
 
-            if (parsedNick.Length > 1) {
+            if (parsedNick.Length > 1)
+            {
               string firstLetter = parsedNick.Substring(0, 1);
-              if (ChannelStatus.IsDefined(firstLetter)) {
+              if (ChannelStatus.IsDefined(firstLetter))
+              {
                 status = ChannelStatus.GetInstance(firstLetter);
                 parsedNick = parsedNick.Substring(1);
               }
             }
-            Nicks.Add(parsedNick, status);
+            this.Nicks.Add(parsedNick, status);
           }
         }
       }
@@ -149,15 +169,17 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
-    public override void Notify(MessageConduit conduit) {
+    public override void Notify(MessageConduit conduit)
+    {
       conduit.OnNamesReply(new IrcMessageEventArgs<NamesReplyMessage>(this));
     }
 
     /// <summary>
     ///   Determines if the the current message is targeted at the given channel.
     /// </summary>
-    protected virtual bool IsTargetedAtChannel(string channelName) {
-      return Channel.EqualsI(channelName);
+    protected virtual bool IsTargetedAtChannel(string channelName)
+    {
+      return this.Channel.EqualsI(channelName);
     }
   }
 }

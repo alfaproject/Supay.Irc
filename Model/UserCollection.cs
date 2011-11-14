@@ -1,20 +1,25 @@
 using System;
 using System.Collections.ObjectModel;
 
-namespace Supay.Irc {
+namespace Supay.Irc
+{
   /// <summary>
   ///   A collection that stores <see cref="User" /> objects.
   /// </summary>
   [Serializable]
-  public class UserCollection : ObservableCollection<User> {
+  public class UserCollection : ObservableCollection<User>
+  {
     /// <summary>
     ///   Removes the first User in the collection which is matched by the Predicate.
     /// </summary>
     /// <returns>True if a User was removed, false if no User was removed.</returns>
-    public bool RemoveFirst(Predicate<User> match) {
-      for (int i = 0; i < Count; i++) {
-        if (match(this[i])) {
-          RemoveAt(i);
+    public bool RemoveFirst(Predicate<User> match)
+    {
+      for (int i = 0; i < this.Count; i++)
+      {
+        if (match(this[i]))
+        {
+          this.RemoveAt(i);
           return true;
         }
       }
@@ -24,16 +29,20 @@ namespace Supay.Irc {
     /// <summary>
     ///   Removes the first User in the collection which has the given nick.
     /// </summary>
-    public bool RemoveFirst(string nick) {
-      return RemoveFirst(u => u.Nickname.Equals(nick, StringComparison.OrdinalIgnoreCase));
+    public bool RemoveFirst(string nick)
+    {
+      return this.RemoveFirst(u => u.Nickname.Equals(nick, StringComparison.OrdinalIgnoreCase));
     }
 
     /// <summary>
     ///   Finds the first User in the collection which matches the given Predicate.
     /// </summary>
-    public User Find(Predicate<User> match) {
-      for (int i = 0; i < Count; i++) {
-        if (match(this[i])) {
+    public User Find(Predicate<User> match)
+    {
+      for (int i = 0; i < this.Count; i++)
+      {
+        if (match(this[i]))
+        {
           return this[i];
         }
       }
@@ -43,8 +52,9 @@ namespace Supay.Irc {
     /// <summary>
     ///   Finds the first User in the collection which matches the given nick.
     /// </summary>
-    public User Find(string nick) {
-      return Find(u => u.Nickname.Equals(nick, StringComparison.OrdinalIgnoreCase));
+    public User Find(string nick)
+    {
+      return this.Find(u => u.Nickname.Equals(nick, StringComparison.OrdinalIgnoreCase));
     }
 
     /// <summary>
@@ -55,11 +65,13 @@ namespace Supay.Irc {
     /// </remarks>
     /// <param name="nick">The nick to ensure.</param>
     /// <returns>The User in the collection with the given nick.</returns>
-    public User EnsureUser(string nick) {
+    public User EnsureUser(string nick)
+    {
       User user = Find(nick);
-      if (user == null) {
+      if (user == null)
+      {
         user = new User(nick);
-        Add(user);
+        this.Add(user);
       }
       return user;
     }
@@ -72,12 +84,16 @@ namespace Supay.Irc {
     ///   If a User is found, then the existing User is merged with the given User.
     /// </remarks>
     /// <returns>The User in the collection which matches the given User.</returns>
-    public User EnsureUser(User newUser) {
+    public User EnsureUser(User newUser)
+    {
       User user = Find(newUser.Nickname);
-      if (user == null) {
+      if (user == null)
+      {
         user = newUser;
-        Add(user);
-      } else {
+        this.Add(user);
+      }
+      else
+      {
         user.CopyFrom(newUser);
       }
       return user;

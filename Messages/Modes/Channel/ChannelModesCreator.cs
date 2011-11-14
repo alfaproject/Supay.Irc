@@ -1,13 +1,14 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 
-namespace Supay.Irc.Messages.Modes {
+namespace Supay.Irc.Messages.Modes
+{
   /// <summary>
   ///   ChannelModesCreator parses, builds, and writes the modes used by the <see cref="ChannelModeMessage" /> class.
   /// </summary>
-  public class ChannelModesCreator {
+  public class ChannelModesCreator
+  {
     private readonly ChannelModeCollection modes = new ChannelModeCollection();
     private ServerSupport serverSupports = new ServerSupport();
 
@@ -16,19 +17,24 @@ namespace Supay.Irc.Messages.Modes {
     /// <summary>
     ///   Loads the given mode data into this <see cref="ChannelModesCreator" />
     /// </summary>
-    public void Parse(string modeChanges, IList<string> modeArguments) {
-      if (string.IsNullOrEmpty(modeChanges)) {
+    public void Parse(string modeChanges, IList<string> modeArguments)
+    {
+      if (string.IsNullOrEmpty(modeChanges))
+      {
         return;
       }
-      if (modeArguments == null) {
+      if (modeArguments == null)
+      {
         modeArguments = new List<string>();
       }
 
-      modes.Clear();
+      this.modes.Clear();
       ModeAction currentAction = ModeAction.Add;
       int argIndex = 0;
-      foreach (char c in modeChanges) {
-        switch (c) {
+      foreach (char c in modeChanges)
+      {
+        switch (c)
+        {
           case '+':
             currentAction = ModeAction.Add;
             break;
@@ -38,121 +44,130 @@ namespace Supay.Irc.Messages.Modes {
 
             // PONDER This probably won't correctly parse incorrect mode messages, should I?
           case 'a':
-            modes.Add(new AnonymousMode(currentAction));
+            this.modes.Add(new AnonymousMode(currentAction));
             break;
           case 'b':
-            var banMode = new BanMode(currentAction, new User(modeArguments[argIndex]));
+            BanMode banMode = new BanMode(currentAction, new User(modeArguments[argIndex]));
             argIndex++;
-            modes.Add(banMode);
+            this.modes.Add(banMode);
             break;
           case 'e':
-            var banExceptionMode = new BanExceptionMode(currentAction, new User(modeArguments[argIndex]));
+            BanExceptionMode banExceptionMode = new BanExceptionMode(currentAction, new User(modeArguments[argIndex]));
             argIndex++;
-            modes.Add(banExceptionMode);
+            this.modes.Add(banExceptionMode);
             break;
           case 'h':
-            var halfOpMode = new HalfOpMode(currentAction, modeArguments[argIndex]);
+            HalfOpMode halfOpMode = new HalfOpMode(currentAction, modeArguments[argIndex]);
             argIndex++;
-            modes.Add(halfOpMode);
+            this.modes.Add(halfOpMode);
             break;
           case 'I':
-            var invitationExceptionMode = new InvitationExceptionMode(currentAction, new User(modeArguments[argIndex]));
+            InvitationExceptionMode invitationExceptionMode = new InvitationExceptionMode(currentAction, new User(modeArguments[argIndex]));
             argIndex++;
-            modes.Add(invitationExceptionMode);
+            this.modes.Add(invitationExceptionMode);
             break;
           case 'i':
-            var inviteOnlyMode = new InviteOnlyMode(currentAction);
-            modes.Add(inviteOnlyMode);
+            InviteOnlyMode inviteOnlyMode = new InviteOnlyMode(currentAction);
+            this.modes.Add(inviteOnlyMode);
             break;
           case 'k':
-            var keyMode = new KeyMode(currentAction);
-            if (currentAction == ModeAction.Add) {
+            KeyMode keyMode = new KeyMode(currentAction);
+            if (currentAction == ModeAction.Add)
+            {
               keyMode.Password = modeArguments[argIndex];
               argIndex++;
             }
-            modes.Add(keyMode);
+            this.modes.Add(keyMode);
             break;
           case 'l':
-            var limitMode = new LimitMode(currentAction);
-            if (currentAction == ModeAction.Add) {
+            LimitMode limitMode = new LimitMode(currentAction);
+            if (currentAction == ModeAction.Add)
+            {
               limitMode.UserLimit = Convert.ToInt32(modeArguments[argIndex], CultureInfo.InvariantCulture);
               argIndex++;
             }
-            modes.Add(limitMode);
+            this.modes.Add(limitMode);
             break;
           case 'm':
-            modes.Add(new ModeratedMode(currentAction));
+            this.modes.Add(new ModeratedMode(currentAction));
             break;
           case 'n':
-            modes.Add(new NoOutsideMessagesMode(currentAction));
+            this.modes.Add(new NoOutsideMessagesMode(currentAction));
             break;
           case 'O':
-            var creatorMode = new CreatorMode(currentAction, modeArguments[argIndex]);
+            CreatorMode creatorMode = new CreatorMode(currentAction, modeArguments[argIndex]);
             argIndex++;
-            modes.Add(creatorMode);
+            this.modes.Add(creatorMode);
             break;
           case 'o':
-            var operatorMode = new OperatorMode(currentAction, modeArguments[argIndex]);
+            OperatorMode operatorMode = new OperatorMode(currentAction, modeArguments[argIndex]);
             argIndex++;
-            modes.Add(operatorMode);
+            this.modes.Add(operatorMode);
             break;
           case 'p':
-            modes.Add(new PrivateMode(currentAction));
+            this.modes.Add(new PrivateMode(currentAction));
             break;
           case 'q':
-            modes.Add(new QuietMode(currentAction));
+            this.modes.Add(new QuietMode(currentAction));
             break;
           case 's':
-            modes.Add(new SecretMode(currentAction));
+            this.modes.Add(new SecretMode(currentAction));
             break;
           case 'r':
-            modes.Add(new ServerReopMode(currentAction));
+            this.modes.Add(new ServerReopMode(currentAction));
             break;
           case 'R':
-            modes.Add(new RegisteredNicksOnlyMode(currentAction));
+            this.modes.Add(new RegisteredNicksOnlyMode(currentAction));
             break;
           case 't':
-            modes.Add(new TopicGuardedMode(currentAction));
+            this.modes.Add(new TopicGuardedMode(currentAction));
             break;
           case 'v':
-            var voiceMode = new VoiceMode(currentAction, modeArguments[argIndex]);
+            VoiceMode voiceMode = new VoiceMode(currentAction, modeArguments[argIndex]);
             argIndex++;
-            modes.Add(voiceMode);
+            this.modes.Add(voiceMode);
             break;
           default:
             string unknownMode = c.ToString(CultureInfo.InvariantCulture);
-            if (serverSupports.ModesWithParameters.Contains(unknownMode) || (serverSupports.ModesWithParametersWhenSet.Contains(unknownMode) && currentAction == ModeAction.Add)) {
+            if (this.serverSupports.ModesWithParameters.Contains(unknownMode) || (this.serverSupports.ModesWithParametersWhenSet.Contains(unknownMode) && currentAction == ModeAction.Add))
+            {
               // I want to yank a parameter
-              modes.Add(new UnknownChannelMode(currentAction, unknownMode, modeArguments[argIndex]));
+              this.modes.Add(new UnknownChannelMode(currentAction, unknownMode, modeArguments[argIndex]));
               argIndex++;
-            } else {
+            }
+            else
+            {
               // I don't
-              modes.Add(new UnknownChannelMode(currentAction, unknownMode));
+              this.modes.Add(new UnknownChannelMode(currentAction, unknownMode));
             }
             break;
         }
       }
-      CollapseModes();
+      this.CollapseModes();
     }
 
     /// <summary>
     ///   Loads the given mode data into this <see cref="ChannelModesCreator" />
     /// </summary>
-    public void Parse(ChannelModeMessage msg) {
-      if (msg == null) {
+    public void Parse(ChannelModeMessage msg)
+    {
+      if (msg == null)
+      {
         return;
       }
-      Parse(msg.ModeChanges, msg.ModeArguments);
+      this.Parse(msg.ModeChanges, msg.ModeArguments);
     }
 
     /// <summary>
     ///   Loads the given mode data into this <see cref="ChannelModesCreator" />
     /// </summary>
-    public void Parse(string modeChanges) {
-      if (string.IsNullOrEmpty(modeChanges)) {
+    public void Parse(string modeChanges)
+    {
+      if (string.IsNullOrEmpty(modeChanges))
+      {
         return;
       }
-      Parse(modeChanges, new List<string>());
+      this.Parse(modeChanges, new List<string>());
     }
 
     #endregion
@@ -160,31 +175,38 @@ namespace Supay.Irc.Messages.Modes {
     /// <summary>
     ///   A <see cref="Supay.Irc.ServerSupport" /> instance is required in order to parse non-standard modes.
     /// </summary>
-    public ServerSupport ServerSupport {
-      get {
-        return serverSupports;
+    public ServerSupport ServerSupport
+    {
+      get
+      {
+        return this.serverSupports;
       }
-      set {
-        if (value == null) {
+      set
+      {
+        if (value == null)
+        {
           throw new ArgumentNullException("value");
         }
-        serverSupports = value;
+        this.serverSupports = value;
       }
     }
 
     /// <summary>
     ///   Gets the collection of modes parsed or to be applied.
     /// </summary>
-    public virtual IEnumerable<ChannelMode> Modes {
-      get {
-        return modes;
+    public virtual IEnumerable<ChannelMode> Modes
+    {
+      get
+      {
+        return this.modes;
       }
     }
 
     /// <summary>
     ///   Removes redundant or overridden modes from the modes collection.
     /// </summary>
-    private void CollapseModes() {
+    private void CollapseModes()
+    {
       //TODO Implement CollapseModes
     }
 
@@ -192,21 +214,25 @@ namespace Supay.Irc.Messages.Modes {
     ///   Applies the current modes to the given <see cref="ChannelModeMessage" />.
     /// </summary>
     /// <param name="msg">The message to be altered.</param>
-    public virtual void ApplyTo(ChannelModeMessage msg) {
-      if (msg == null) {
+    public virtual void ApplyTo(ChannelModeMessage msg)
+    {
+      if (msg == null)
+      {
         return;
       }
       msg.ModeChanges = string.Empty;
       msg.ModeArguments.Clear();
-      if (modes.Count > 0) {
+      if (this.modes.Count > 0)
+      {
         // The first one always adds its mode
-        ChannelMode currentMode = modes[0];
+        ChannelMode currentMode = this.modes[0];
         ModeAction currentAction = currentMode.Action;
         currentMode.ApplyTo(msg, true);
 
         // The rest compare to the current
-        for (int i = 1; i < modes.Count; i++) {
-          currentMode = modes[i];
+        for (int i = 1; i < this.modes.Count; i++)
+        {
+          currentMode = this.modes[i];
           currentMode.ApplyTo(msg, currentAction != currentMode.Action);
           currentAction = currentMode.Action;
         }

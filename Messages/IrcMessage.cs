@@ -2,12 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Supay.Irc.Messages {
+namespace Supay.Irc.Messages
+{
   /// <summary>
   ///   The abstract base class for all IRC messages.
   /// </summary>
   [Serializable]
-  public abstract class IrcMessage {
+  public abstract class IrcMessage
+  {
     /// <summary>
     ///   The computer or user who sent the current message.
     /// </summary>
@@ -16,7 +18,8 @@ namespace Supay.Irc.Messages {
     ///   itself, usually its address. In the case of a user message, the Sender is a User
     ///   containing the Nick, UserName, and HostName...
     /// </remarks>
-    public User Sender {
+    public User Sender
+    {
       get;
       set;
     }
@@ -33,28 +36,32 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Validates this message against the given server support.
     /// </summary>
-    public virtual void Validate(ServerSupport serverSupport) {
+    public virtual void Validate(ServerSupport serverSupport)
+    {
     }
 
     /// <summary>
     ///   Parses the given string to populate this <see cref="IrcMessage" />.
     /// </summary>
-    public virtual void Parse(string unparsedMessage) {
-      Sender = new User(MessageUtil.GetPrefix(unparsedMessage));
-      ParseCommand(MessageUtil.GetCommand(unparsedMessage));
-      ParseParameters(MessageUtil.GetParameters(unparsedMessage));
+    public virtual void Parse(string unparsedMessage)
+    {
+      this.Sender = new User(MessageUtil.GetPrefix(unparsedMessage));
+      this.ParseCommand(MessageUtil.GetCommand(unparsedMessage));
+      this.ParseParameters(MessageUtil.GetParameters(unparsedMessage));
     }
 
     /// <summary>
     ///   Parses the command portion of the message.
     /// </summary>
-    protected virtual void ParseCommand(string command) {
+    protected virtual void ParseCommand(string command)
+    {
     }
 
     /// <summary>
     ///   Parses the parameter portion of the message.
     /// </summary>
-    protected virtual void ParseParameters(IList<string> parameters) {
+    protected virtual void ParseParameters(IList<string> parameters)
+    {
     }
 
     /// <summary>
@@ -71,21 +78,25 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Generates a string representation of the message.
     /// </summary>
-    public override string ToString() {
-      var sb = new StringBuilder(512);
-      if (Sender != null && !string.IsNullOrEmpty(Sender.Nickname)) {
+    public override string ToString()
+    {
+      StringBuilder sb = new StringBuilder(512);
+      if (this.Sender != null && !string.IsNullOrEmpty(this.Sender.Nickname))
+      {
         sb.Append(':');
-        sb.Append(Sender.IrcMask);
+        sb.Append(this.Sender.IrcMask);
         sb.Append(' ');
       }
 
-      IList<string> parameters = GetParameters();
-      for (int i = 0; i < parameters.Count - 1; i++) {
+      var parameters = this.GetParameters();
+      for (int i = 0; i < parameters.Count - 1; i++)
+      {
         sb.Append(parameters[i]);
         sb.Append(' ');
       }
       string lastParameter = parameters[parameters.Count - 1];
-      if (lastParameter.IndexOf(' ') > 0) {
+      if (lastParameter.IndexOf(' ') > 0)
+      {
         sb.Append(':');
       }
       sb.Append(lastParameter);

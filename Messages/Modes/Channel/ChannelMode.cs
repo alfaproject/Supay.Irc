@@ -1,28 +1,34 @@
-namespace Supay.Irc.Messages.Modes {
+namespace Supay.Irc.Messages.Modes
+{
   /// <summary>
   ///   A channel mode sent in a <see cref="ChannelModeMessage" /> in its
   ///   <see cref="ChannelModeMessage.ModeChanges" /> property.
   /// </summary>
-  public abstract class ChannelMode {
+  public abstract class ChannelMode
+  {
     protected ChannelMode()
-      : this(ModeAction.Add) {
+      : this(ModeAction.Add)
+    {
     }
 
-    protected ChannelMode(ModeAction action) {
-      Action = action;
+    protected ChannelMode(ModeAction action)
+    {
+      this.Action = action;
     }
 
     /// <summary>
     ///   Gets the IRC string representation of the mode being changed or applied.
     /// </summary>
-    protected abstract string Symbol {
+    protected abstract string Symbol
+    {
       get;
     }
 
     /// <summary>
     ///   Gets or sets the <see cref="ModeAction" /> applied.
     /// </summary>
-    public ModeAction Action {
+    public ModeAction Action
+    {
       get;
       set;
     }
@@ -30,8 +36,9 @@ namespace Supay.Irc.Messages.Modes {
     /// <summary>
     ///   A string representation of the mode.
     /// </summary>
-    public override string ToString() {
-      return (Action == ModeAction.Add ? "+" : "-") + Symbol;
+    public override string ToString()
+    {
+      return (this.Action == ModeAction.Add ? "+" : "-") + this.Symbol;
     }
 
     /// <summary>
@@ -39,9 +46,10 @@ namespace Supay.Irc.Messages.Modes {
     /// </summary>
     /// <param name="msg">The message which will be modified to include this mode.</param>
     /// <param name="includeAction">Specifies if the action modifier should be applied.</param>
-    public void ApplyTo(ChannelModeMessage msg, bool includeAction) {
-      AddChanges(msg, includeAction);
-      AddParameter(msg);
+    public void ApplyTo(ChannelModeMessage msg, bool includeAction)
+    {
+      this.AddChanges(msg, includeAction);
+      this.AddParameter(msg);
     }
 
     /// <summary>
@@ -50,11 +58,13 @@ namespace Supay.Irc.Messages.Modes {
     /// </summary>
     /// <param name="msg">The message which will be modified to include this mode.</param>
     /// <param name="includeAction">Specifies if the action modifier should be applied.</param>
-    protected void AddChanges(ChannelModeMessage msg, bool includeAction) {
-      if (includeAction) {
-        msg.ModeChanges += Action == ModeAction.Add ? "+" : "-";
+    protected void AddChanges(ChannelModeMessage msg, bool includeAction)
+    {
+      if (includeAction)
+      {
+        msg.ModeChanges += this.Action == ModeAction.Add ? "+" : "-";
       }
-      msg.ModeChanges += Symbol;
+      msg.ModeChanges += this.Symbol;
     }
 
     /// <summary>
@@ -62,7 +72,8 @@ namespace Supay.Irc.Messages.Modes {
     ///   <see cref="ChannelModeMessage" />.
     /// </summary>
     /// <param name="msg">The message which will be modified to include this mode.</param>
-    protected virtual void AddParameter(ChannelModeMessage msg) {
+    protected virtual void AddParameter(ChannelModeMessage msg)
+    {
     }
   }
 }

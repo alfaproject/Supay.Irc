@@ -3,13 +3,15 @@ using System.Collections;
 using System.Collections.ObjectModel;
 using System.Text;
 
-namespace Supay.Irc.Messages {
+namespace Supay.Irc.Messages
+{
   /// <summary>
   ///   The reply to a <see cref="SourceRequestMessage" />, 
   ///   telling the requestor where to download this client.
   /// </summary>
   [Serializable]
-  public class SourceReplyMessage : CtcpReplyMessage {
+  public class SourceReplyMessage : CtcpReplyMessage
+  {
     private readonly Collection<string> files = new Collection<string>();
     private string folder = string.Empty;
     private string server = string.Empty;
@@ -17,55 +19,67 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Creates a new instance of the <see cref="SourceReplyMessage" /> class.
     /// </summary>
-    public SourceReplyMessage() {
-      InternalCommand = "SOURCE";
+    public SourceReplyMessage()
+    {
+      this.InternalCommand = "SOURCE";
     }
 
     /// <summary>
     ///   Gets or sets the server that hosts the client's distribution.
     /// </summary>
-    public virtual string Server {
-      get {
-        return server;
+    public virtual string Server
+    {
+      get
+      {
+        return this.server;
       }
-      set {
-        server = value;
+      set
+      {
+        this.server = value;
       }
     }
 
     /// <summary>
     ///   Gets or sets the folder path to the client's distribution.
     /// </summary>
-    public virtual string Folder {
-      get {
-        return folder;
+    public virtual string Folder
+    {
+      get
+      {
+        return this.folder;
       }
-      set {
-        folder = value;
+      set
+      {
+        this.folder = value;
       }
     }
 
     /// <summary>
     ///   Gets the list of files that must be downloaded.
     /// </summary>
-    public virtual Collection<string> Files {
-      get {
-        return files;
+    public virtual Collection<string> Files
+    {
+      get
+      {
+        return this.files;
       }
     }
 
     /// <summary>
     ///   Gets the data payload of the Ctcp request.
     /// </summary>
-    protected override string ExtendedData {
-      get {
-        var result = new StringBuilder();
-        result.Append(Server);
+    protected override string ExtendedData
+    {
+      get
+      {
+        StringBuilder result = new StringBuilder();
+        result.Append(this.Server);
         result.Append(":");
-        result.Append(Folder);
-        if (Files.Count > 0) {
+        result.Append(this.Folder);
+        if (this.Files.Count > 0)
+        {
           result.Append(":");
-          result.Append(MessageUtil.CreateList(Files, " "));
+          result.Append(MessageUtil.CreateList(this.Files, " "));
         }
         return result.ToString();
       }
@@ -74,18 +88,23 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Parses the given string to populate this <see cref="IrcMessage" />.
     /// </summary>
-    public override void Parse(string unparsedMessage) {
+    public override void Parse(string unparsedMessage)
+    {
       base.Parse(unparsedMessage);
       string eData = CtcpUtil.GetExtendedData(unparsedMessage);
-      string[] p = eData.Split(':');
-      if (p.Length > 0) {
-        Server = p[0];
-        if (p.Length > 1) {
-          Folder = p[1];
-          if (p.Length == 3) {
+      var p = eData.Split(':');
+      if (p.Length > 0)
+      {
+        this.Server = p[0];
+        if (p.Length > 1)
+        {
+          this.Folder = p[1];
+          if (p.Length == 3)
+          {
             ICollection fs = MessageUtil.GetParameters(p[2]);
-            foreach (string f in fs) {
-              Files.Add(f);
+            foreach (string f in fs)
+            {
+              this.Files.Add(f);
             }
           }
         }
@@ -95,7 +114,8 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
-    public override void Notify(MessageConduit conduit) {
+    public override void Notify(MessageConduit conduit)
+    {
       conduit.OnSourceReply(new IrcMessageEventArgs<SourceReplyMessage>(this));
     }
   }

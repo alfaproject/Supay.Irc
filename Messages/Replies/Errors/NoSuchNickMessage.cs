@@ -1,39 +1,46 @@
 using System;
 using System.Collections.Generic;
 
-namespace Supay.Irc.Messages {
+namespace Supay.Irc.Messages
+{
   /// <summary>
   ///   Used to indicate the nickname parameter supplied to a command is currently unused.
   /// </summary>
   [Serializable]
-  public class NoSuchNickMessage : ErrorMessage {
+  public class NoSuchNickMessage : ErrorMessage
+  {
     private string nick = string.Empty;
 
     /// <summary>
     ///   Creates a new instances of the <see cref="NoSuchNickMessage" /> class.
     /// </summary>
     public NoSuchNickMessage()
-      : base(401) {
+      : base(401)
+    {
     }
 
     /// <summary>
     ///   Gets or sets the nick which wasn't accepted.
     /// </summary>
-    public virtual string Nick {
-      get {
-        return nick;
+    public virtual string Nick
+    {
+      get
+      {
+        return this.nick;
       }
-      set {
-        nick = value;
+      set
+      {
+        this.nick = value;
       }
     }
 
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.
     /// </summary>
-    protected override IList<string> GetParameters() {
-      IList<string> parameters = base.GetParameters();
-      parameters.Add(Nick);
+    protected override IList<string> GetParameters()
+    {
+      var parameters = base.GetParameters();
+      parameters.Add(this.Nick);
       parameters.Add("No such nick/channel");
       return parameters;
     }
@@ -41,15 +48,17 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Parses the parameters portion of the message.
     /// </summary>
-    protected override void ParseParameters(IList<string> parameters) {
+    protected override void ParseParameters(IList<string> parameters)
+    {
       base.ParseParameters(parameters);
-      Nick = parameters.Count > 1 ? parameters[1] : string.Empty;
+      this.Nick = parameters.Count > 1 ? parameters[1] : string.Empty;
     }
 
     /// <summary>
     ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
-    public override void Notify(MessageConduit conduit) {
+    public override void Notify(MessageConduit conduit)
+    {
       conduit.OnNoSuchNick(new IrcMessageEventArgs<NoSuchNickMessage>(this));
     }
   }

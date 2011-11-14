@@ -1,8 +1,10 @@
-namespace Supay.Irc.Network {
+namespace Supay.Irc.Network
+{
   /// <summary>
   ///   Specifies the status of a <see cref="ClientConnection" />.
   /// </summary>
-  public enum ConnectionStatus {
+  public enum ConnectionStatus
+  {
     /// <summary>
     ///   The connection is broken and not able to transmit.
     /// </summary>

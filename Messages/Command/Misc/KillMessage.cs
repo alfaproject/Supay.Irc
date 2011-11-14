@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
 
-namespace Supay.Irc.Messages {
+namespace Supay.Irc.Messages
+{
   /// <summary>
   ///   The KillMessage is used to cause a client-server connection to be closed by the server which has the actual connection.
   /// </summary>
@@ -10,39 +11,48 @@ namespace Supay.Irc.Messages {
   ///   It is also available to operators.
   /// </remarks>
   [Serializable]
-  public class KillMessage : CommandMessage {
+  public class KillMessage : CommandMessage
+  {
     private string nick = string.Empty;
     private string reason = string.Empty;
 
     /// <summary>
     ///   Gets or sets the nick of the user killed.
     /// </summary>
-    public virtual string Nick {
-      get {
-        return nick;
+    public virtual string Nick
+    {
+      get
+      {
+        return this.nick;
       }
-      set {
-        nick = value;
+      set
+      {
+        this.nick = value;
       }
     }
 
     /// <summary>
     ///   Gets or sets the reason for the kill.
     /// </summary>
-    public virtual string Reason {
-      get {
-        return reason;
+    public virtual string Reason
+    {
+      get
+      {
+        return this.reason;
       }
-      set {
-        reason = value;
+      set
+      {
+        this.reason = value;
       }
     }
 
     /// <summary>
     ///   Gets the IRC command associated with this message.
     /// </summary>
-    protected override string Command {
-      get {
+    protected override string Command
+    {
+      get
+      {
         return "KILL";
       }
     }
@@ -50,31 +60,37 @@ namespace Supay.Irc.Messages {
     /// <summary>
     ///   Overrides <see cref="IrcMessage.GetParameters" />.
     /// </summary>
-    protected override IList<string> GetParameters() {
-      IList<string> parameters = base.GetParameters();
-      parameters.Add(Nick);
-      parameters.Add(string.IsNullOrEmpty(Reason) ? "kill" : Reason);
+    protected override IList<string> GetParameters()
+    {
+      var parameters = base.GetParameters();
+      parameters.Add(this.Nick);
+      parameters.Add(string.IsNullOrEmpty(this.Reason) ? "kill" : this.Reason);
       return parameters;
     }
 
     /// <summary>
     ///   Parses the parameters portion of the message.
     /// </summary>
-    protected override void ParseParameters(IList<string> parameters) {
+    protected override void ParseParameters(IList<string> parameters)
+    {
       base.ParseParameters(parameters);
-      if (parameters.Count >= 2) {
-        Nick = parameters[0];
-        Reason = parameters[1];
-      } else {
-        Nick = string.Empty;
-        Reason = string.Empty;
+      if (parameters.Count >= 2)
+      {
+        this.Nick = parameters[0];
+        this.Reason = parameters[1];
+      }
+      else
+      {
+        this.Nick = string.Empty;
+        this.Reason = string.Empty;
       }
     }
 
     /// <summary>
     ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
     /// </summary>
-    public override void Notify(MessageConduit conduit) {
+    public override void Notify(MessageConduit conduit)
+    {
       conduit.OnKill(new IrcMessageEventArgs<KillMessage>(this));
     }
   }
