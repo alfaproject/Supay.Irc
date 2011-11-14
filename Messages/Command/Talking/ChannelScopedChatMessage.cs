@@ -15,9 +15,9 @@ namespace Supay.Irc.Messages
   [Serializable]
   public class ChannelScopedChatMessage : CommandMessage, IChannelTargetedMessage
   {
-    private string _channel;
-    private string _target;
-    private string _text;
+    private string channel;
+    private string target;
+    private string text;
 
     #region Constructors
 
@@ -46,7 +46,7 @@ namespace Supay.Irc.Messages
     {
       this.Text = text;
       this.Target = target;
-      this._channel = string.Empty;
+      this.channel = string.Empty;
     }
 
     #endregion
@@ -71,7 +71,7 @@ namespace Supay.Irc.Messages
     {
       get
       {
-        return this._text;
+        return this.text;
       }
       set
       {
@@ -79,7 +79,7 @@ namespace Supay.Irc.Messages
         {
           throw new ArgumentNullException("value");
         }
-        this._text = value;
+        this.text = value;
       }
     }
 
@@ -90,7 +90,7 @@ namespace Supay.Irc.Messages
     {
       get
       {
-        return this._target;
+        return this.target;
       }
       set
       {
@@ -98,7 +98,7 @@ namespace Supay.Irc.Messages
         {
           throw new ArgumentNullException("value");
         }
-        this._target = value;
+        this.target = value;
       }
     }
 
@@ -109,7 +109,7 @@ namespace Supay.Irc.Messages
     {
       get
       {
-        return this._channel;
+        return this.channel;
       }
       set
       {
@@ -117,7 +117,7 @@ namespace Supay.Irc.Messages
         {
           throw new ArgumentNullException("value");
         }
-        this._channel = value;
+        this.channel = value;
       }
     }
 

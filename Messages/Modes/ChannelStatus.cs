@@ -61,7 +61,7 @@ namespace Supay.Irc
         return channelStatus;
       }
 
-      ChannelStatus newChannelStatus = new ChannelStatus(symbol);
+      var newChannelStatus = new ChannelStatus(symbol);
       Values.Add(newChannelStatus);
       return newChannelStatus;
     }
@@ -157,11 +157,7 @@ namespace Supay.Irc
 
     public static bool operator ==(ChannelStatus leftOperand, ChannelStatus rightOperand)
     {
-      if (ReferenceEquals(null, leftOperand))
-      {
-        return ReferenceEquals(null, rightOperand);
-      }
-      return leftOperand.Equals(rightOperand);
+      return ReferenceEquals(null, leftOperand) ? ReferenceEquals(null, rightOperand) : leftOperand.Equals(rightOperand);
     }
 
     public static bool operator !=(ChannelStatus leftOperand, ChannelStatus rightOperand)

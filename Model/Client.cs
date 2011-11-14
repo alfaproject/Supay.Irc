@@ -44,7 +44,7 @@ namespace Supay.Irc
 
       this.Peers.Add(this.User);
 
-      this.hookupEvents();
+      this.HookupEvents();
     }
 
     /// <summary>
@@ -236,12 +236,12 @@ namespace Supay.Irc
       return msg.Sender.Nickname == this.ServerName;
     }
 
-    private bool isMe(string nick)
+    private bool IsMe(string nick)
     {
       return this.User.Nickname.EqualsI(nick);
     }
 
-    private void routeData(string messageData)
+    private void RouteData(string messageData)
     {
       IrcMessage msg;
       try
@@ -405,72 +405,72 @@ namespace Supay.Irc
 
     #region EventHandlers
 
-    private void hookupEvents()
+    private void HookupEvents()
     {
-      this.Connection.Connected += this.handleConnectionConnected;
-      this.Connection.DataReceived += this.handleConnectionDataReceived;
-      this.Connection.DataSent += this.handleConnectionDataSent;
-      this.Connection.Disconnected += handleConnectionDisconnected;
+      this.Connection.Connected += this.HandleConnectionConnected;
+      this.Connection.DataReceived += this.HandleConnectionDataReceived;
+      this.Connection.DataSent += this.HandleConnectionDataSent;
+      this.Connection.Disconnected += HandleConnectionDisconnected;
 
-      this.Messages.Welcome += this.handleWelcome;
-      this.Messages.Ping += this.handlePing;
-      this.Messages.Support += this.handleSupport;
+      this.Messages.Welcome += this.HandleWelcome;
+      this.Messages.Ping += this.HandlePing;
+      this.Messages.Support += this.HandleSupport;
 
-      this.MessageParsed += this.handleMessageParsed;
+      this.MessageParsed += this.HandleMessageParsed;
 
-      this.Messages.Join += this.handleJoin;
-      this.Messages.Kick += this.handleKick;
-      this.Messages.Kill += this.handleKill;
-      this.Messages.Part += this.handlePart;
-      this.Messages.Quit += this.handleQuit;
+      this.Messages.Join += this.HandleJoin;
+      this.Messages.Kick += this.HandleKick;
+      this.Messages.Kill += this.HandleKill;
+      this.Messages.Part += this.HandlePart;
+      this.Messages.Quit += this.HandleQuit;
 
-      this.Messages.TopicNoneReply += this.handleTopicNone;
-      this.Messages.TopicReply += this.handleTopic;
-      this.Messages.TopicSetReply += this.handleTopicSet;
-      this.Messages.ChannelModeIsReply += this.handleChannelModeIs;
-      this.Messages.ChannelProperty += this.handleChannelProperty;
-      this.Messages.ChannelPropertyReply += this.handleChannelPropertyReply;
+      this.Messages.TopicNoneReply += this.HandleTopicNone;
+      this.Messages.TopicReply += this.HandleTopic;
+      this.Messages.TopicSetReply += this.HandleTopicSet;
+      this.Messages.ChannelModeIsReply += this.HandleChannelModeIs;
+      this.Messages.ChannelProperty += this.HandleChannelProperty;
+      this.Messages.ChannelPropertyReply += this.HandleChannelPropertyReply;
 
-      this.Messages.NamesReply += this.handleNames;
-      this.Messages.NickChange += this.handleNick;
-      this.Messages.WhoReply += this.handleWho;
-      this.Messages.WhoIsOperReply += this.handleWhoIsOper;
-      this.Messages.WhoIsServerReply += this.handleWhoIsServer;
-      this.Messages.WhoIsUserReply += this.handleWhoIsUser;
-      this.Messages.UserHostReply += this.handleUserHostReply;
-      this.Messages.OperReply += this.handleOper;
-      this.Messages.UserMode += this.handleUserMode;
-      this.Messages.UserModeIsReply += this.handleUserModeIs;
+      this.Messages.NamesReply += this.HandleNames;
+      this.Messages.NickChange += this.HandleNick;
+      this.Messages.WhoReply += this.HandleWho;
+      this.Messages.WhoIsOperReply += this.HandleWhoIsOper;
+      this.Messages.WhoIsServerReply += this.HandleWhoIsServer;
+      this.Messages.WhoIsUserReply += this.HandleWhoIsUser;
+      this.Messages.UserHostReply += this.HandleUserHostReply;
+      this.Messages.OperReply += this.HandleOper;
+      this.Messages.UserMode += this.HandleUserMode;
+      this.Messages.UserModeIsReply += this.HandleUserModeIs;
 
-      this.Messages.Away += this.handleAway;
-      this.Messages.Back += this.handleBack;
-      this.Messages.SelfAway += this.handleSelfAway;
-      this.Messages.SelfUnAway += this.handleSelfUnAway;
-      this.Messages.UserAway += this.handleUserAway;
+      this.Messages.Away += this.HandleAway;
+      this.Messages.Back += this.HandleBack;
+      this.Messages.SelfAway += this.HandleSelfAway;
+      this.Messages.SelfUnAway += this.HandleSelfUnAway;
+      this.Messages.UserAway += this.HandleUserAway;
 
-      this.Messages.NoSuchChannel += this.handleNoSuchChannel;
-      this.Messages.NoSuchNick += this.handleNoSuchNick;
+      this.Messages.NoSuchChannel += this.HandleNoSuchChannel;
+      this.Messages.NoSuchNick += this.HandleNoSuchNick;
 
-      this.Messages.GenericCtcpRequest += logGenericCtcp;
-      this.Messages.GenericMessage += logGenericMessage;
-      this.Messages.GenericNumericMessage += logGenericNumeric;
-      this.Messages.GenericErrorMessage += logGenericError;
+      this.Messages.GenericCtcpRequest += LogGenericCtcp;
+      this.Messages.GenericMessage += LogGenericMessage;
+      this.Messages.GenericNumericMessage += LogGenericNumeric;
+      this.Messages.GenericErrorMessage += LogGenericError;
     }
 
     /// <summary>
     ///   Transforms <see cref="ClientConnection" /> data into raised <see cref="IrcMessage" /> events.
     /// </summary>
-    private void handleConnectionDataReceived(object sender, ConnectionDataEventArgs e)
+    private void HandleConnectionDataReceived(object sender, ConnectionDataEventArgs e)
     {
       if (this.DataReceived != null)
       {
         this.DataReceived(this, e);
       }
 
-      this.routeData(e.Data);
+      this.RouteData(e.Data);
     }
 
-    private void handleConnectionDataSent(object sender, ConnectionDataEventArgs e)
+    private void HandleConnectionDataSent(object sender, ConnectionDataEventArgs e)
     {
       if (this.DataSent != null)
       {
@@ -487,16 +487,16 @@ namespace Supay.Irc
     /// </remarks>
     /// <param name="sender">The connection object sending the ping.</param>
     /// <param name="e">The message sent.</param>
-    private void handlePing(object sender, IrcMessageEventArgs<PingMessage> e)
+    private void HandlePing(object sender, IrcMessageEventArgs<PingMessage> e)
     {
       this.Send(new PongMessage {
         Target = e.Message.Target
       });
     }
 
-    private void handleConnectionConnected(object sender, EventArgs e)
+    private void HandleConnectionConnected(object sender, EventArgs e)
     {
-      this.startIdent();
+      this.StartIdent();
 
       // send password
       if (!string.IsNullOrEmpty(this.User.Password))
@@ -515,12 +515,12 @@ namespace Supay.Irc
       });
     }
 
-    private static void handleConnectionDisconnected(object sender, ConnectionDataEventArgs e)
+    private static void HandleConnectionDisconnected(object sender, ConnectionDataEventArgs e)
     {
       Ident.Service.Stop();
     }
 
-    private void handleWelcome(object sender, IrcMessageEventArgs<WelcomeMessage> e)
+    private void HandleWelcome(object sender, IrcMessageEventArgs<WelcomeMessage> e)
     {
       this.ServerName = e.Message.Sender.Nickname;
       Ident.Service.Stop();
@@ -534,11 +534,11 @@ namespace Supay.Irc
       this.Ready(this, EventArgs.Empty);
     }
 
-    private void handleNick(object sender, IrcMessageEventArgs<NickMessage> e)
+    private void HandleNick(object sender, IrcMessageEventArgs<NickMessage> e)
     {
       string oldNick = e.Message.Sender.Nickname;
       string newNick = e.Message.NewNick;
-      if (this.isMe(oldNick))
+      if (this.IsMe(oldNick))
       {
         this.User.Nickname = newNick;
       }
@@ -552,14 +552,14 @@ namespace Supay.Irc
       }
     }
 
-    private void handleSupport(object sender, IrcMessageEventArgs<SupportMessage> e)
+    private void HandleSupport(object sender, IrcMessageEventArgs<SupportMessage> e)
     {
       this.ServerSupports.LoadInfo(e.Message);
     }
 
-    private void handleMessageParsed(object sender, IrcMessageEventArgs<IrcMessage> e)
+    private void HandleMessageParsed(object sender, IrcMessageEventArgs<IrcMessage> e)
     {
-      IChannelTargetedMessage channelMessage = e.Message as IChannelTargetedMessage;
+      var channelMessage = e.Message as IChannelTargetedMessage;
       if (channelMessage != null)
       {
         Channel channel = this.Channels.FirstOrDefault(c => channelMessage.IsTargetedAtChannel(c.Name));
@@ -571,7 +571,7 @@ namespace Supay.Irc
       }
       else
       {
-        IQueryTargetedMessage queryMessage = e.Message as IQueryTargetedMessage;
+        var queryMessage = e.Message as IQueryTargetedMessage;
         if (queryMessage != null && queryMessage.IsQueryToUser(this.User))
         {
           User msgSender = this.Peers.EnsureUser(e.Message.Sender);
@@ -584,10 +584,10 @@ namespace Supay.Irc
       this.ServerQuery.Journal.Add(new JournalEntry(e.Message));
     }
 
-    private void handleJoin(object sender, IrcMessageEventArgs<JoinMessage> e)
+    private void HandleJoin(object sender, IrcMessageEventArgs<JoinMessage> e)
     {
       User msgUser = e.Message.Sender;
-      User joinedUser = this.isMe(msgUser.Nickname) ? this.User : this.Peers.EnsureUser(msgUser);
+      User joinedUser = this.IsMe(msgUser.Nickname) ? this.User : this.Peers.EnsureUser(msgUser);
 
       foreach (Channel joinedChannel in e.Message.Channels.Select(channelname => this.Channels.EnsureChannel(channelname)))
       {
@@ -596,7 +596,7 @@ namespace Supay.Irc
       }
     }
 
-    private void handleKick(object sender, IrcMessageEventArgs<KickMessage> e)
+    private void HandleKick(object sender, IrcMessageEventArgs<KickMessage> e)
     {
       for (int i = 0; i < e.Message.Channels.Count; i++)
       {
@@ -604,7 +604,7 @@ namespace Supay.Irc
         string nick = e.Message.Nicks[i];
         Channel channel = this.Channels.Find(channelName);
 
-        if (this.isMe(nick))
+        if (this.IsMe(nick))
         {
           // we don't want to actually remove the channel, but just close the channel
           // this allows a consumer to easily keep their reference to channels between kicks and re-joins.
@@ -617,10 +617,10 @@ namespace Supay.Irc
       }
     }
 
-    private void handleKill(object sender, IrcMessageEventArgs<KillMessage> e)
+    private void HandleKill(object sender, IrcMessageEventArgs<KillMessage> e)
     {
       string nick = e.Message.Nick;
-      if (this.isMe(nick))
+      if (this.IsMe(nick))
       {
         foreach (Channel c in this.Channels)
         {
@@ -636,7 +636,7 @@ namespace Supay.Irc
       }
     }
 
-    private void handleNames(object sender, IrcMessageEventArgs<NamesReplyMessage> e)
+    private void HandleNames(object sender, IrcMessageEventArgs<NamesReplyMessage> e)
     {
       Channel channel = this.Channels.EnsureChannel(e.Message.Channel);
       foreach (User user in e.Message.Nicks.Keys.Select(nick => this.Peers.EnsureUser(nick)))
@@ -650,12 +650,12 @@ namespace Supay.Irc
       }
     }
 
-    private void handlePart(object sender, IrcMessageEventArgs<PartMessage> e)
+    private void HandlePart(object sender, IrcMessageEventArgs<PartMessage> e)
     {
       string nick = e.Message.Sender.Nickname;
       foreach (Channel channel in e.Message.Channels.Select(channelName => this.Channels.Find(channelName)))
       {
-        if (this.isMe(nick))
+        if (this.IsMe(nick))
         {
           channel.Open = false;
         }
@@ -666,10 +666,10 @@ namespace Supay.Irc
       }
     }
 
-    private void handleQuit(object sender, IrcMessageEventArgs<QuitMessage> e)
+    private void HandleQuit(object sender, IrcMessageEventArgs<QuitMessage> e)
     {
       string nick = e.Message.Sender.Nickname;
-      if (this.isMe(nick))
+      if (this.IsMe(nick))
       {
         foreach (Channel channel in this.Channels)
         {
@@ -685,7 +685,7 @@ namespace Supay.Irc
       }
     }
 
-    private void handleTopicNone(object sender, IrcMessageEventArgs<TopicNoneReplyMessage> e)
+    private void HandleTopicNone(object sender, IrcMessageEventArgs<TopicNoneReplyMessage> e)
     {
       Channel channel = this.Channels.Find(e.Message.Channel);
       if (channel != null)
@@ -694,7 +694,7 @@ namespace Supay.Irc
       }
     }
 
-    private void handleTopic(object sender, IrcMessageEventArgs<TopicReplyMessage> e)
+    private void HandleTopic(object sender, IrcMessageEventArgs<TopicReplyMessage> e)
     {
       Channel channel = this.Channels.Find(e.Message.Channel);
       if (channel != null)
@@ -703,7 +703,7 @@ namespace Supay.Irc
       }
     }
 
-    private void handleTopicSet(object sender, IrcMessageEventArgs<TopicSetReplyMessage> e)
+    private void HandleTopicSet(object sender, IrcMessageEventArgs<TopicSetReplyMessage> e)
     {
       Channel channel = this.Channels.Find(e.Message.Channel);
       if (channel != null)
@@ -713,7 +713,7 @@ namespace Supay.Irc
       }
     }
 
-    private void handleWho(object sender, IrcMessageEventArgs<WhoReplyMessage> e)
+    private void HandleWho(object sender, IrcMessageEventArgs<WhoReplyMessage> e)
     {
       User whoUser = this.Peers.EnsureUser(e.Message.User);
       string channelName = e.Message.Channel;
@@ -729,7 +729,7 @@ namespace Supay.Irc
       }
     }
 
-    private void handleNoSuchChannel(object sender, IrcMessageEventArgs<NoSuchChannelMessage> e)
+    private void HandleNoSuchChannel(object sender, IrcMessageEventArgs<NoSuchChannelMessage> e)
     {
       Channel channel = this.Channels.Find(e.Message.Channel);
       if (channel != null)
@@ -738,7 +738,7 @@ namespace Supay.Irc
       }
     }
 
-    private void handleNoSuchNick(object sender, IrcMessageEventArgs<NoSuchNickMessage> e)
+    private void HandleNoSuchNick(object sender, IrcMessageEventArgs<NoSuchNickMessage> e)
     {
       string nick = e.Message.Nick;
 
@@ -761,12 +761,12 @@ namespace Supay.Irc
       }
     }
 
-    private void handleChannelModeIs(object sender, IrcMessageEventArgs<ChannelModeIsReplyMessage> e)
+    private void HandleChannelModeIs(object sender, IrcMessageEventArgs<ChannelModeIsReplyMessage> e)
     {
       Channel channel = this.Channels.Find(e.Message.Channel);
       if (channel != null)
       {
-        ChannelModesCreator modes = new ChannelModesCreator {
+        var modes = new ChannelModesCreator {
           ServerSupport = this.ServerSupports
         };
         modes.Parse(e.Message.Modes, e.Message.ModeArguments);
@@ -774,11 +774,11 @@ namespace Supay.Irc
       }
     }
 
-    private void handleUserModeIs(object sender, IrcMessageEventArgs<UserModeIsReplyMessage> e)
+    private void HandleUserModeIs(object sender, IrcMessageEventArgs<UserModeIsReplyMessage> e)
     {
-      if (this.isMe(e.Message.Target))
+      if (this.IsMe(e.Message.Target))
       {
-        UserModesCreator modeCreator = new UserModesCreator();
+        var modeCreator = new UserModesCreator();
         modeCreator.Parse(e.Message.Modes);
         this.User.Modes.Clear();
         foreach (UserMode mode in modeCreator.Modes)
@@ -788,11 +788,11 @@ namespace Supay.Irc
       }
     }
 
-    private void handleUserMode(object sender, IrcMessageEventArgs<UserModeMessage> e)
+    private void HandleUserMode(object sender, IrcMessageEventArgs<UserModeMessage> e)
     {
-      if (this.isMe(e.Message.User))
+      if (this.IsMe(e.Message.User))
       {
-        UserModesCreator modeCreator = new UserModesCreator();
+        var modeCreator = new UserModesCreator();
         modeCreator.Parse(e.Message.ModeChanges);
         this.User.Modes.Clear();
         foreach (UserMode mode in modeCreator.Modes)
@@ -802,11 +802,11 @@ namespace Supay.Irc
       }
     }
 
-    private void handleUserHostReply(object sender, IrcMessageEventArgs<UserHostReplyMessage> e)
+    private void HandleUserHostReply(object sender, IrcMessageEventArgs<UserHostReplyMessage> e)
     {
       foreach (User sentUser in e.Message.Users)
       {
-        if (this.isMe(sentUser.Nickname))
+        if (this.IsMe(sentUser.Nickname))
         {
           this.User.CopyFrom(sentUser);
         }
@@ -825,94 +825,94 @@ namespace Supay.Irc
       }
     }
 
-    private void handleUserAway(object sender, IrcMessageEventArgs<UserAwayMessage> e)
+    private void HandleUserAway(object sender, IrcMessageEventArgs<UserAwayMessage> e)
     {
       User user = this.Peers.EnsureUser(e.Message.Nick);
       user.Away = true;
       user.AwayMessage = e.Message.Text;
     }
 
-    private void handleSelfUnAway(object sender, IrcMessageEventArgs<SelfUnAwayMessage> e)
+    private void HandleSelfUnAway(object sender, IrcMessageEventArgs<SelfUnAwayMessage> e)
     {
       this.User.Away = false;
       this.User.AwayMessage = string.Empty;
     }
 
-    private void handleSelfAway(object sender, IrcMessageEventArgs<SelfAwayMessage> e)
+    private void HandleSelfAway(object sender, IrcMessageEventArgs<SelfAwayMessage> e)
     {
       this.User.Away = true;
     }
 
-    private void handleOper(object sender, IrcMessageEventArgs<OperReplyMessage> e)
+    private void HandleOper(object sender, IrcMessageEventArgs<OperReplyMessage> e)
     {
       this.User.IrcOperator = true;
     }
 
-    private void handleChannelProperty(object sender, IrcMessageEventArgs<ChannelPropertyMessage> e)
+    private void HandleChannelProperty(object sender, IrcMessageEventArgs<ChannelPropertyMessage> e)
     {
       Channel channel = this.Channels.EnsureChannel(e.Message.Channel);
       channel.Properties[e.Message.Prop] = e.Message.NewValue;
     }
 
-    private void handleChannelPropertyReply(object sender, IrcMessageEventArgs<ChannelPropertyReplyMessage> e)
+    private void HandleChannelPropertyReply(object sender, IrcMessageEventArgs<ChannelPropertyReplyMessage> e)
     {
       Channel channel = this.Channels.EnsureChannel(e.Message.Channel);
       channel.Properties[e.Message.Prop] = e.Message.Value;
     }
 
-    private void handleBack(object sender, IrcMessageEventArgs<BackMessage> e)
+    private void HandleBack(object sender, IrcMessageEventArgs<BackMessage> e)
     {
       User user = this.Peers.EnsureUser(e.Message.Sender);
       user.Away = false;
       user.AwayMessage = string.Empty;
     }
 
-    private void handleAway(object sender, IrcMessageEventArgs<AwayMessage> e)
+    private void HandleAway(object sender, IrcMessageEventArgs<AwayMessage> e)
     {
       User user = this.Peers.EnsureUser(e.Message.Sender);
       user.Away = true;
       user.AwayMessage = e.Message.Reason;
     }
 
-    private void handleWhoIsUser(object sender, IrcMessageEventArgs<WhoIsUserReplyMessage> e)
+    private void HandleWhoIsUser(object sender, IrcMessageEventArgs<WhoIsUserReplyMessage> e)
     {
       User target = this.Peers.EnsureUser(e.Message.User);
       target.CopyFrom(e.Message.User);
     }
 
-    private void handleWhoIsServer(object sender, IrcMessageEventArgs<WhoIsServerReplyMessage> e)
+    private void HandleWhoIsServer(object sender, IrcMessageEventArgs<WhoIsServerReplyMessage> e)
     {
       User user = this.Peers.EnsureUser(e.Message.Nick);
       user.Server = e.Message.ServerName;
     }
 
-    private void handleWhoIsOper(object sender, IrcMessageEventArgs<WhoIsOperReplyMessage> e)
+    private void HandleWhoIsOper(object sender, IrcMessageEventArgs<WhoIsOperReplyMessage> e)
     {
       User user = this.Peers.EnsureUser(e.Message.Nick);
       user.IrcOperator = true;
     }
 
-    private static void logGenericCtcp(object sender, IrcMessageEventArgs<GenericCtcpRequestMessage> e)
+    private static void LogGenericCtcp(object sender, IrcMessageEventArgs<GenericCtcpRequestMessage> e)
     {
-      logUnimplementedMessage(e.Message);
+      LogUnimplementedMessage(e.Message);
     }
 
-    private static void logGenericMessage(object sender, IrcMessageEventArgs<GenericMessage> e)
+    private static void LogGenericMessage(object sender, IrcMessageEventArgs<GenericMessage> e)
     {
-      logUnimplementedMessage(e.Message);
+      LogUnimplementedMessage(e.Message);
     }
 
-    private static void logGenericNumeric(object sender, IrcMessageEventArgs<GenericNumericMessage> e)
+    private static void LogGenericNumeric(object sender, IrcMessageEventArgs<GenericNumericMessage> e)
     {
-      logUnimplementedMessage(e.Message);
+      LogUnimplementedMessage(e.Message);
     }
 
-    private static void logGenericError(object sender, IrcMessageEventArgs<GenericErrorMessage> e)
+    private static void LogGenericError(object sender, IrcMessageEventArgs<GenericErrorMessage> e)
     {
-      logUnimplementedMessage(e.Message);
+      LogUnimplementedMessage(e.Message);
     }
 
-    private static void logUnimplementedMessage(IrcMessage msg)
+    private static void LogUnimplementedMessage(IrcMessage msg)
     {
       Trace.WriteLine(msg.ToString(), "Unimplemented Message");
     }
@@ -921,14 +921,14 @@ namespace Supay.Irc
 
     #region Private
 
-    private void startIdent()
+    private void StartIdent()
     {
       if (this.EnableAutoIdent)
       {
         Ident.Service.User = this.User;
         Ident.Service.Start(true);
         DateTime started = DateTime.Now;
-        TimeSpan tooMuchTime = new TimeSpan(0, 0, 5);
+        var tooMuchTime = new TimeSpan(0, 0, 5);
         while (Ident.Service.Status != ConnectionStatus.Connected && DateTime.Now.Subtract(started) < tooMuchTime)
         {
           Thread.Sleep(25);

@@ -9,14 +9,13 @@ namespace Supay.Irc
   [Serializable]
   public class User : Mask
   {
-    private bool _away;
-    private string _awayMessage;
-    private bool _ircOperator;
-    private UserModeCollection _modes;
-    private string _name;
-    private bool _online;
-    private string _password;
-    private string _server;
+    private bool away;
+    private string awayMessage;
+    private bool ircOperator;
+    private string name;
+    private bool online;
+    private string password;
+    private string server;
 
     #region Constructors
 
@@ -41,16 +40,16 @@ namespace Supay.Irc
 
     private void Initialize()
     {
-      this._name = string.Empty;
-      this._password = string.Empty;
-      this._server = string.Empty;
-      this._ircOperator = false;
-      this._online = true;
-      this._away = false;
-      this._awayMessage = string.Empty;
+      this.name = string.Empty;
+      this.password = string.Empty;
+      this.server = string.Empty;
+      this.ircOperator = false;
+      this.online = true;
+      this.away = false;
+      this.awayMessage = string.Empty;
 
-      this._modes = new UserModeCollection();
-      this._modes.CollectionChanged += (s, e) => this.OnPropertyChanged("Modes");
+      this.Modes = new UserModeCollection();
+      this.Modes.CollectionChanged += (s, e) => this.OnPropertyChanged("Modes");
     }
 
     #endregion
@@ -64,13 +63,13 @@ namespace Supay.Irc
     {
       get
       {
-        return this._name;
+        return this.name;
       }
       set
       {
-        if (this._name != value)
+        if (this.name != value)
         {
-          this._name = value;
+          this.name = value;
           this.OnPropertyChanged("Name");
         }
       }
@@ -83,13 +82,13 @@ namespace Supay.Irc
     {
       get
       {
-        return this._password;
+        return this.password;
       }
       set
       {
-        if (this._password != value)
+        if (this.password != value)
         {
-          this._password = value;
+          this.password = value;
           this.OnPropertyChanged("Password");
         }
       }
@@ -102,13 +101,13 @@ namespace Supay.Irc
     {
       get
       {
-        return this._server;
+        return this.server;
       }
       set
       {
-        if (this._server != value)
+        if (this.server != value)
         {
-          this._server = value;
+          this.server = value;
           this.OnPropertyChanged("Server");
         }
       }
@@ -121,13 +120,13 @@ namespace Supay.Irc
     {
       get
       {
-        return this._ircOperator;
+        return this.ircOperator;
       }
       set
       {
-        if (this._ircOperator != value)
+        if (this.ircOperator != value)
         {
-          this._ircOperator = value;
+          this.ircOperator = value;
           this.OnPropertyChanged("IrcOperator");
         }
       }
@@ -140,13 +139,13 @@ namespace Supay.Irc
     {
       get
       {
-        return this._online;
+        return this.online;
       }
       set
       {
-        if (this._online != value)
+        if (this.online != value)
         {
-          this._online = value;
+          this.online = value;
           this.OnPropertyChanged("Online");
         }
       }
@@ -159,13 +158,13 @@ namespace Supay.Irc
     {
       get
       {
-        return this._away;
+        return this.away;
       }
       set
       {
-        if (this._away != value)
+        if (this.away != value)
         {
-          this._away = value;
+          this.away = value;
           this.OnPropertyChanged("Away");
         }
       }
@@ -178,13 +177,13 @@ namespace Supay.Irc
     {
       get
       {
-        return this._awayMessage;
+        return this.awayMessage;
       }
       set
       {
-        if (this._awayMessage != value)
+        if (this.awayMessage != value)
         {
-          this._awayMessage = value;
+          this.awayMessage = value;
           this.OnPropertyChanged("AwayMessage");
         }
       }
@@ -195,10 +194,8 @@ namespace Supay.Irc
     /// </summary>
     public UserModeCollection Modes
     {
-      get
-      {
-        return this._modes;
-      }
+      get;
+      private set;
     }
 
     /// <summary>

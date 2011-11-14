@@ -74,7 +74,7 @@ namespace Supay.Irc.Messages
     {
       get
       {
-        StringBuilder result = new StringBuilder();
+        var result = new StringBuilder();
         result.Append(":");
         result.Append(this.RealName);
         result.Append(" (");

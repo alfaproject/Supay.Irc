@@ -16,7 +16,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   The character used to indicate the start and end of an extended data section in a CTCP message.
     /// </summary>
-    public const char ExtendedDataMarker = '\x0001';
+    public const char EXTENDED_DATA_MARKER = '\x0001';
 
     /// <summary>
     ///   Escapes the given text for use in a ctcp message.
@@ -24,10 +24,10 @@ namespace Supay.Irc.Messages
     public static string Escape(string text)
     {
       string escaper = '\x0014'.ToString(CultureInfo.InvariantCulture);
-      string NUL = '\x0000'.ToString(CultureInfo.InvariantCulture);
+      string nul = '\x0000'.ToString(CultureInfo.InvariantCulture);
       string result = text;
       result = Regex.Replace(result, escaper, escaper + escaper);
-      result = Regex.Replace(result, NUL, escaper + "0");
+      result = Regex.Replace(result, nul, escaper + "0");
       result = Regex.Replace(result, "\r", escaper + "r");
       result = Regex.Replace(result, "\n", escaper + "n");
       return result;
@@ -39,10 +39,10 @@ namespace Supay.Irc.Messages
     public static string Unescape(string text)
     {
       string escaper = '\x0014'.ToString(CultureInfo.InvariantCulture);
-      string NUL = '\x0000'.ToString(CultureInfo.InvariantCulture);
+      string nul = '\x0000'.ToString(CultureInfo.InvariantCulture);
       string result = text;
 
-      result = Regex.Replace(result, escaper + "0", NUL);
+      result = Regex.Replace(result, escaper + "0", nul);
       result = Regex.Replace(result, escaper + "r", "\r");
       result = Regex.Replace(result, escaper + "n", "\n");
       result = Regex.Replace(result, escaper + escaper, escaper);
@@ -69,11 +69,9 @@ namespace Supay.Irc.Messages
     public static string GetInternalCommand(string rawMessage)
     {
       string ctcpMessage = MessageUtil.GetLastParameter(rawMessage);
-      if (ctcpMessage.IndexOf(" ", StringComparison.Ordinal) > 0)
-      {
-        return ctcpMessage.Substring(1, ctcpMessage.IndexOf(" ", StringComparison.Ordinal) - 1);
-      }
-      return ctcpMessage.Substring(1, ctcpMessage.Length - 2);
+      return ctcpMessage.IndexOf(" ", StringComparison.Ordinal) > 0
+        ? ctcpMessage.Substring(1, ctcpMessage.IndexOf(" ", StringComparison.Ordinal) - 1)
+        : ctcpMessage.Substring(1, ctcpMessage.Length - 2);
     }
 
     /// <summary>
@@ -102,11 +100,7 @@ namespace Supay.Irc.Messages
         return false;
       }
       string payLoad = p[1];
-      if (!(payLoad.StartsWith(ExtendedDataMarker.ToString(CultureInfo.InvariantCulture), StringComparison.Ordinal) && payLoad.EndsWith(ExtendedDataMarker.ToString(CultureInfo.InvariantCulture), StringComparison.Ordinal)))
-      {
-        return false;
-      }
-      return true;
+      return payLoad.StartsWith(EXTENDED_DATA_MARKER.ToString(CultureInfo.InvariantCulture), StringComparison.Ordinal) && payLoad.EndsWith(EXTENDED_DATA_MARKER.ToString(CultureInfo.InvariantCulture), StringComparison.Ordinal);
     }
 
     /// <summary>

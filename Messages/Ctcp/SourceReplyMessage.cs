@@ -72,7 +72,7 @@ namespace Supay.Irc.Messages
     {
       get
       {
-        StringBuilder result = new StringBuilder();
+        var result = new StringBuilder();
         result.Append(this.Server);
         result.Append(":");
         result.Append(this.Folder);

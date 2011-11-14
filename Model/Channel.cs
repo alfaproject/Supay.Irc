@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Globalization;
+using System.Linq;
 using Supay.Irc.Messages.Modes;
 using Supay.Irc.Properties;
 
@@ -14,14 +15,14 @@ namespace Supay.Irc
   [Serializable]
   public class Channel : INotifyPropertyChanged
   {
-    private readonly Journal _journal;
-    private readonly ChannelModeCollection _modes;
-    private readonly NameValueCollection _properties;
-    private readonly Dictionary<User, ChannelStatus> _userModes;
-    private readonly UserCollection _users;
-    private bool _open;
-    private DateTime _topicSetTime;
-    private User _topicSetter;
+    private readonly Journal journal;
+    private readonly ChannelModeCollection modes;
+    private readonly NameValueCollection properties;
+    private readonly Dictionary<User, ChannelStatus> userModes;
+    private readonly UserCollection users;
+    private bool open;
+    private DateTime topicSetTime;
+    private User topicSetter;
 
     #region INotifyPropertyChanged Members
 
@@ -39,22 +40,22 @@ namespace Supay.Irc
     /// </summary>
     public Channel(string name)
     {
-      this._open = false;
+      this.open = false;
 
-      this._properties = new NameValueCollection(2);
-      this._properties["NAME"] = name;
-      this._properties["TOPIC"] = string.Empty;
+      this.properties = new NameValueCollection(2);
+      this.properties["NAME"] = name;
+      this.properties["TOPIC"] = string.Empty;
 
-      this._users = new UserCollection();
-      this._users.CollectionChanged += this._users_CollectionChanged;
+      this.users = new UserCollection();
+      this.users.CollectionChanged += this.UsersCollectionChanged;
 
-      this._userModes = new Dictionary<User, ChannelStatus>();
+      this.userModes = new Dictionary<User, ChannelStatus>();
 
-      this._modes = new ChannelModeCollection();
-      this._modes.CollectionChanged += (s, e) => this.OnPropertyChanged("Modes");
+      this.modes = new ChannelModeCollection();
+      this.modes.CollectionChanged += (s, e) => this.OnPropertyChanged("Modes");
 
-      this._journal = new Journal();
-      this._journal.CollectionChanged += (s, e) => this.OnPropertyChanged("Journal");
+      this.journal = new Journal();
+      this.journal.CollectionChanged += (s, e) => this.OnPropertyChanged("Journal");
     }
 
     /// <summary>
@@ -76,11 +77,11 @@ namespace Supay.Irc
     {
       get
       {
-        return this._open;
+        return this.open;
       }
       internal set
       {
-        this._open = value;
+        this.open = value;
         this.OnPropertyChanged("Open");
       }
     }
@@ -92,13 +93,13 @@ namespace Supay.Irc
     {
       get
       {
-        return this._properties["NAME"];
+        return this.properties["NAME"];
       }
       set
       {
-        if (this._properties["NAME"] != value)
+        if (this.properties["NAME"] != value)
         {
-          this._properties["NAME"] = value;
+          this.properties["NAME"] = value;
           this.OnPropertyChanged("Name");
         }
       }
@@ -115,9 +116,9 @@ namespace Supay.Irc
       }
       set
       {
-        if (this._properties["TOPIC"] != value)
+        if (this.properties["TOPIC"] != value)
         {
-          this._properties["TOPIC"] = value;
+          this.properties["TOPIC"] = value;
           this.OnPropertyChanged("Topic");
         }
       }
@@ -130,13 +131,13 @@ namespace Supay.Irc
     {
       get
       {
-        return this._topicSetter;
+        return this.topicSetter;
       }
       set
       {
-        if (this._topicSetter != value)
+        if (this.topicSetter != value)
         {
-          this._topicSetter = value;
+          this.topicSetter = value;
           this.OnPropertyChanged("TopicSetter");
         }
       }
@@ -149,13 +150,13 @@ namespace Supay.Irc
     {
       get
       {
-        return this._topicSetTime;
+        return this.topicSetTime;
       }
       set
       {
-        if (this._topicSetTime != value)
+        if (this.topicSetTime != value)
         {
-          this._topicSetTime = value;
+          this.topicSetTime = value;
           this.OnPropertyChanged("TopicSetTime");
         }
       }
@@ -168,7 +169,7 @@ namespace Supay.Irc
     {
       get
       {
-        return this._properties;
+        return this.properties;
       }
     }
 
@@ -179,7 +180,7 @@ namespace Supay.Irc
     {
       get
       {
-        return this._users;
+        return this.users;
       }
     }
 
@@ -190,7 +191,7 @@ namespace Supay.Irc
     {
       get
       {
-        return this._modes;
+        return this.modes;
       }
     }
 
@@ -201,7 +202,7 @@ namespace Supay.Irc
     {
       get
       {
-        return this._journal;
+        return this.journal;
       }
     }
 
@@ -215,11 +216,7 @@ namespace Supay.Irc
     public ChannelStatus GetStatusForUser(User channelUser)
     {
       this.VerifyUserInChannel(channelUser);
-      if (this._userModes.ContainsKey(channelUser))
-      {
-        return this._userModes[channelUser];
-      }
-      return ChannelStatus.None;
+      return this.userModes.ContainsKey(channelUser) ? this.userModes[channelUser] : ChannelStatus.None;
     }
 
     /// <summary>
@@ -227,14 +224,14 @@ namespace Supay.Irc
     /// </summary>
     public void SetStatusForUser(User channelUser, ChannelStatus status)
     {
-      if (status == ChannelStatus.None && this._userModes.ContainsKey(channelUser))
+      if (status == ChannelStatus.None && this.userModes.ContainsKey(channelUser))
       {
-        this._userModes.Remove(channelUser);
+        this.userModes.Remove(channelUser);
       }
       else
       {
         this.VerifyUserInChannel(channelUser);
-        this._userModes[channelUser] = status;
+        this.userModes[channelUser] = status;
       }
     }
 
@@ -248,22 +245,19 @@ namespace Supay.Irc
       {
         throw new ArgumentNullException("channelUser");
       }
-      if (!this._users.Contains(channelUser))
+      if (!this.users.Contains(channelUser))
       {
         throw new ArgumentException(string.Format(CultureInfo.InvariantCulture, Resources.UserIsNotInChannel, channelUser.Nickname, this.Name), "channelUser");
       }
     }
 
-    private void _users_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+    private void UsersCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
     {
       if (e.Action == NotifyCollectionChangedAction.Remove)
       {
-        foreach (User user in e.OldItems)
+        foreach (User user in e.OldItems.Cast<User>().Where(user => this.userModes.ContainsKey(user)))
         {
-          if (this._userModes.ContainsKey(user))
-          {
-            this._userModes.Remove(user);
-          }
+          this.userModes.Remove(user);
         }
       }
 

@@ -9,7 +9,7 @@ namespace Supay.Irc.Messages
   [Serializable]
   public class NoSuchChannelMessage : ErrorMessage, IChannelTargetedMessage
   {
-    private string _channel = string.Empty;
+    private string channel = string.Empty;
 
     /// <summary>
     ///   Creates a new instances of the <see cref="NoSuchChannelMessage" /> class.
@@ -26,11 +26,11 @@ namespace Supay.Irc.Messages
     {
       get
       {
-        return this._channel;
+        return this.channel;
       }
       set
       {
-        this._channel = value;
+        this.channel = value;
       }
     }
 

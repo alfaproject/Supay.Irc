@@ -20,7 +20,7 @@ namespace Supay.Irc.Messages.Modes
       {
         return;
       }
-      Parse(msg.ModeChanges);
+      this.Parse(msg.ModeChanges);
     }
 
     /// <summary>
@@ -102,7 +102,7 @@ namespace Supay.Irc.Messages.Modes
     /// </summary>
     private void CollapseModes()
     {
-      //TODO Implement CollapseModes
+      // TODO Implement CollapseModes
     }
 
     /// <summary>

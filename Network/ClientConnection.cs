@@ -22,17 +22,17 @@ namespace Supay.Irc.Network
   [DesignerCategory("Code")]
   public class ClientConnection : Component
   {
-    private readonly object _syncLock = new object();
+    private readonly object syncLock = new object();
 
-    private string _address;
+    private string address;
 
-    private TcpClient _client;
-    private Encoding _encoding;
-    private int _port;
-    private StreamReader _reader;
-    private bool _ssl;
-    private Thread _worker;
-    private StreamWriter _writer;
+    private TcpClient client;
+    private Encoding encoding;
+    private int port;
+    private StreamReader reader;
+    private bool ssl;
+    private Thread worker;
+    private StreamWriter writer;
 
     #region Nested type: SyncInvoke
 
@@ -113,13 +113,13 @@ namespace Supay.Irc.Network
     {
       get
       {
-        return this._address;
+        return this.address;
       }
       set
       {
         if (this.Status == ConnectionStatus.Disconnected)
         {
-          this._address = value;
+          this.address = value;
         }
         else
         {
@@ -141,13 +141,13 @@ namespace Supay.Irc.Network
     {
       get
       {
-        return this._port;
+        return this.port;
       }
       set
       {
         if (this.Status == ConnectionStatus.Disconnected)
         {
-          this._port = value;
+          this.port = value;
         }
         else
         {
@@ -188,13 +188,13 @@ namespace Supay.Irc.Network
     {
       get
       {
-        return this._encoding;
+        return this.encoding;
       }
       set
       {
         if (this.Status == ConnectionStatus.Disconnected)
         {
-          this._encoding = value;
+          this.encoding = value;
         }
         else
         {
@@ -210,13 +210,13 @@ namespace Supay.Irc.Network
     {
       get
       {
-        return this._ssl;
+        return this.ssl;
       }
       set
       {
         if (this.Status == ConnectionStatus.Disconnected)
         {
-          this._ssl = value;
+          this.ssl = value;
         }
         else
         {
@@ -239,7 +239,7 @@ namespace Supay.Irc.Network
     /// </remarks>
     public void Connect()
     {
-      lock (this._syncLock)
+      lock (this.syncLock)
       {
         if (this.Status != ConnectionStatus.Disconnected)
         {
@@ -250,10 +250,10 @@ namespace Supay.Irc.Network
         this.OnConnecting(EventArgs.Empty);
       }
 
-      this._worker = new Thread(this.ReceiveData) {
+      this.worker = new Thread(this.ReceiveData) {
         IsBackground = true
       };
-      this._worker.Start();
+      this.worker.Start();
     }
 
     /// <summary>
@@ -285,9 +285,9 @@ namespace Supay.Irc.Network
     public void DisconnectForce()
     {
       this.Disconnect();
-      if (this._worker != null && this._worker.IsAlive)
+      if (this.worker != null && this.worker.IsAlive)
       {
-        this._worker.Abort();
+        this.worker.Abort();
       }
     }
 
@@ -302,7 +302,7 @@ namespace Supay.Irc.Network
         return;
       }
 
-      if (this._writer == null || this._writer.BaseStream == null || !this._writer.BaseStream.CanWrite)
+      if (this.writer == null || this.writer.BaseStream == null || !this.writer.BaseStream.CanWrite)
       {
         throw new InvalidOperationException(Resources.ConnectionCanNotBeWrittenToYet);
       }
@@ -313,14 +313,14 @@ namespace Supay.Irc.Network
         data += "\r\n";
       }
 
-      //if (data.Length > 512) {
-      //  throw new Supay.Irc.Messages.InvalidMessageException(Properties.Resources.MessagesAreLimitedInSize, data);
-      //}
+      ////if (data.Length > 512) {
+      ////  throw new Supay.Irc.Messages.InvalidMessageException(Properties.Resources.MessagesAreLimitedInSize, data);
+      ////}
 
       try
       {
-        this._writer.WriteLine(data);
-        this._writer.Flush();
+        this.writer.WriteLine(data);
+        this.writer.Flush();
         this.OnDataSent(new ConnectionDataEventArgs(data));
       }
       catch (Exception ex)
@@ -418,13 +418,8 @@ namespace Supay.Irc.Network
 
     private static bool ValidateServerCertificate(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
     {
-      if (sslPolicyErrors == SslPolicyErrors.None)
-      {
-        return true;
-      }
-
       // Do not allow this client to communicate with unauthenticated servers.
-      return false;
+      return sslPolicyErrors == SslPolicyErrors.None;
     }
 
     /// <summary>
@@ -437,28 +432,28 @@ namespace Supay.Irc.Network
     {
       try
       {
-        this._client = new TcpClient(this.Address, this.Port);
+        this.client = new TcpClient(this.Address, this.Port);
         Stream dataStream;
         if (this.Ssl)
         {
-          dataStream = new SslStream(this._client.GetStream(), false, ValidateServerCertificate, null);
+          dataStream = new SslStream(this.client.GetStream(), false, ValidateServerCertificate, null);
           ((SslStream) dataStream).AuthenticateAsClient(this.Address);
         }
         else
         {
-          dataStream = this._client.GetStream();
+          dataStream = this.client.GetStream();
         }
 
-        this._reader = new StreamReader(dataStream, this.Encoding);
-        this._writer = new StreamWriter(dataStream, this.Encoding) {
+        this.reader = new StreamReader(dataStream, this.Encoding);
+        this.writer = new StreamWriter(dataStream, this.Encoding) {
           AutoFlush = true
         };
       }
       catch (AuthenticationException e)
       {
-        if (this._client != null)
+        if (this.client != null)
         {
-          this._client.Close();
+          this.client.Close();
         }
         this.Status = ConnectionStatus.Disconnected;
         this.OnDisconnected(new ConnectionDataEventArgs(e.Message));
@@ -480,7 +475,7 @@ namespace Supay.Irc.Network
       {
         string incomingMessageLine;
 
-        while (this.Status == ConnectionStatus.Connected && ((incomingMessageLine = this._reader.ReadLine()) != null))
+        while (this.Status == ConnectionStatus.Connected && ((incomingMessageLine = this.reader.ReadLine()) != null))
         {
           try
           {
@@ -503,10 +498,10 @@ namespace Supay.Irc.Network
       }
       this.Status = ConnectionStatus.Disconnected;
 
-      this._client.Close();
-      this._client = null;
+      this.client.Close();
+      this.client = null;
 
-      ConnectionDataEventArgs disconnectArgs = new ConnectionDataEventArgs(disconnectReason);
+      var disconnectArgs = new ConnectionDataEventArgs(disconnectReason);
       this.OnDisconnected(disconnectArgs);
     }
 

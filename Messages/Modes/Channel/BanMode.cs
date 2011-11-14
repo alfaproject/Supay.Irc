@@ -24,7 +24,7 @@ namespace Supay.Irc.Messages.Modes
     ///   Creates a new instance of the <see cref="BanMode" /> class 
     ///   with the given <see cref="ModeAction" /> and <see cref="User" />.
     /// </summary>
-    public BanMode(ModeAction action, User mask)
+    public BanMode(ModeAction action, Mask mask)
     {
       this.Action = action;
       this.Mask = mask;

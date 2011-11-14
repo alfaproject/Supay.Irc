@@ -12,7 +12,7 @@ namespace Supay.Irc.Contacts
   /// </remarks>
   public class ContactList : IDisposable
   {
-    private ContactsTracker _tracker;
+    private ContactsTracker tracker;
 
     /// <summary>
     ///   Gets the collection of users being tracked as a contact list.
@@ -52,18 +52,18 @@ namespace Supay.Irc.Contacts
 
       if (support.MaxWatches > 0)
       {
-        this._tracker = new ContactsWatchTracker(this);
+        this.tracker = new ContactsWatchTracker(this);
       }
       else if (support.MaxMonitors > 0)
       {
-        this._tracker = new ContactsMonitorTracker(this);
+        this.tracker = new ContactsMonitorTracker(this);
       }
       else
       {
-        this._tracker = new ContactsAreOnTracker(this);
+        this.tracker = new ContactsAreOnTracker(this);
       }
 
-      this._tracker.Initialize();
+      this.tracker.Initialize();
     }
 
     #region IDisposable
@@ -80,9 +80,9 @@ namespace Supay.Irc.Contacts
 
     protected virtual void Dispose(bool disposing)
     {
-      if (disposing && this._tracker != null && this._tracker is ContactsAreOnTracker)
+      if (disposing && this.tracker != null && this.tracker is ContactsAreOnTracker)
       {
-        ((IDisposable) this._tracker).Dispose();
+        ((IDisposable) this.tracker).Dispose();
       }
     }
 

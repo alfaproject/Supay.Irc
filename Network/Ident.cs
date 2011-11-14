@@ -18,18 +18,18 @@ namespace Supay.Irc.Network
   {
     private const string REPLY = " : USERID : UNIX : ";
     private const int PORT = 113;
-    private static readonly Ident _instance = new Ident();
+    private static readonly Ident instance = new Ident();
 
-    private readonly object _syncLock = new object();
-    private TcpListener _listener;
-    private Thread _socketThread;
-    private bool _stopAfter;
+    private readonly object syncLock = new object();
+    private TcpListener listener;
+    private Thread socketThread;
+    private bool stopAfter;
 
     private Ident()
     {
       this.User = new User();
       this.Status = ConnectionStatus.Disconnected;
-      this._stopAfter = true;
+      this.stopAfter = true;
     }
 
     /// <summary>
@@ -39,7 +39,7 @@ namespace Supay.Irc.Network
     {
       get
       {
-        return _instance;
+        return instance;
       }
     }
 
@@ -67,7 +67,7 @@ namespace Supay.Irc.Network
     /// <param name="stopAfterFirstAnswer">If true, Ident will stop immediately after answering. If false, will continue until <see cref="Ident.Stop" /> is called.</param>
     public void Start(bool stopAfterFirstAnswer)
     {
-      lock (this._syncLock)
+      lock (this.syncLock)
       {
         if (this.Status != ConnectionStatus.Disconnected)
         {
@@ -75,12 +75,12 @@ namespace Supay.Irc.Network
           return;
         }
 
-        this._stopAfter = stopAfterFirstAnswer;
-        this._socketThread = new Thread(this.Run) {
+        this.stopAfter = stopAfterFirstAnswer;
+        this.socketThread = new Thread(this.Run) {
           Name = "Identd",
           IsBackground = true
         };
-        this._socketThread.Start();
+        this.socketThread.Start();
       }
     }
 
@@ -97,12 +97,12 @@ namespace Supay.Irc.Network
     /// </summary>
     public void Stop()
     {
-      lock (this._syncLock)
+      lock (this.syncLock)
       {
         this.Status = ConnectionStatus.Disconnected;
-        if (this._listener != null)
+        if (this.listener != null)
         {
-          this._listener.Stop();
+          this.listener.Stop();
         }
       }
     }
@@ -113,8 +113,8 @@ namespace Supay.Irc.Network
 
       try
       {
-        this._listener = new TcpListener(IPAddress.Any, PORT);
-        this._listener.Start();
+        this.listener = new TcpListener(IPAddress.Any, PORT);
+        this.listener.Start();
       }
       catch (Exception ex)
       {
@@ -129,16 +129,16 @@ namespace Supay.Irc.Network
         {
           try
           {
-            TcpClient client = this._listener.AcceptTcpClient();
+            TcpClient client = this.listener.AcceptTcpClient();
             this.Status = ConnectionStatus.Connected;
 
-            //Read query
-            StreamReader reader = new StreamReader(client.GetStream());
+            // Read query
+            var reader = new StreamReader(client.GetStream());
             string identRequest = reader.ReadLine();
             if (identRequest != null)
             {
-              //Send back reply
-              StreamWriter writer = new StreamWriter(client.GetStream());
+              // Send back reply
+              var writer = new StreamWriter(client.GetStream());
               string identName = this.User.Username;
               if (identName.Length == 0)
               {
@@ -149,10 +149,10 @@ namespace Supay.Irc.Network
               writer.Flush();
             }
 
-            //Close connection with client
+            // Close connection with client
             client.Close();
 
-            if (this._stopAfter)
+            if (this.stopAfter)
             {
               this.Status = ConnectionStatus.Disconnected;
             }
@@ -176,7 +176,7 @@ namespace Supay.Irc.Network
         }
       }
 
-      this._listener.Stop();
+      this.listener.Stop();
     }
   }
 }

@@ -10,9 +10,9 @@ namespace Supay.Irc
   [Serializable]
   public class Mask : IEquatable<Mask>, INotifyPropertyChanged
   {
-    private string _host;
-    private string _nickname;
-    private string _username;
+    private string host;
+    private string nickname;
+    private string username;
 
     #region Constructors
 
@@ -24,9 +24,9 @@ namespace Supay.Irc
     /// <param name="host">The host of this mask.</param>
     public Mask(string nickname, string username, string host)
     {
-      this._nickname = nickname;
-      this._username = username;
-      this._host = host;
+      this.nickname = nickname;
+      this.username = username;
+      this.host = host;
     }
 
     /// <summary>
@@ -38,20 +38,20 @@ namespace Supay.Irc
       int indexOfAt = mask.LastIndexOf('@');
       if (indexOfAt != -1)
       {
-        this._host = mask.Substring(indexOfAt + 1);
+        this.host = mask.Substring(indexOfAt + 1);
         mask = mask.Substring(0, indexOfAt);
       }
 
       int indexOfBang = mask.IndexOf('!');
       if (indexOfBang != -1)
       {
-        this._username = mask.Substring(indexOfBang + 1);
+        this.username = mask.Substring(indexOfBang + 1);
         mask = mask.Substring(0, indexOfBang);
       }
 
       if (!string.IsNullOrEmpty(mask))
       {
-        this._nickname = mask;
+        this.nickname = mask;
       }
     }
 
@@ -73,13 +73,13 @@ namespace Supay.Irc
     {
       get
       {
-        return this._nickname;
+        return this.nickname;
       }
       set
       {
-        if (this._nickname != value)
+        if (this.nickname != value)
         {
-          this._nickname = value;
+          this.nickname = value;
           this.OnPropertyChanged("Nickname");
           this.OnPropertyChanged("IrcMask");
         }
@@ -93,13 +93,13 @@ namespace Supay.Irc
     {
       get
       {
-        return this._username;
+        return this.username;
       }
       set
       {
-        if (this._username != value)
+        if (this.username != value)
         {
-          this._username = value;
+          this.username = value;
           this.OnPropertyChanged("Username");
           this.OnPropertyChanged("IrcMask");
         }
@@ -113,13 +113,13 @@ namespace Supay.Irc
     {
       get
       {
-        return this._host;
+        return this.host;
       }
       set
       {
-        if (this._host != value)
+        if (this.host != value)
         {
-          this._host = value;
+          this.host = value;
           this.OnPropertyChanged("Host");
           this.OnPropertyChanged("IrcMask");
         }
@@ -133,7 +133,7 @@ namespace Supay.Irc
     {
       get
       {
-        return (string.IsNullOrEmpty(this._nickname) ? "*" : this._nickname) + "!" + (string.IsNullOrEmpty(this._username) ? "*" : this._username) + "@" + (string.IsNullOrEmpty(this._host) ? "*" : this._host);
+        return (string.IsNullOrEmpty(this.nickname) ? "*" : this.nickname) + "!" + (string.IsNullOrEmpty(this.username) ? "*" : this.username) + "@" + (string.IsNullOrEmpty(this.host) ? "*" : this.host);
       }
     }
 
@@ -159,15 +159,8 @@ namespace Supay.Irc
     /// <returns>true if the value of the <paramref name="other" /> parameter is the same as this instance; otherwise, false.</returns>
     public bool Equals(Mask other)
     {
-      if (ReferenceEquals(null, other))
-      {
-        return false;
-      }
-      if (ReferenceEquals(this, other))
-      {
-        return true;
-      }
-      return this.IrcMask.Equals(other.IrcMask, StringComparison.OrdinalIgnoreCase);
+      return !ReferenceEquals(null, other)
+        && (ReferenceEquals(this, other) || this.IrcMask.Equals(other.IrcMask, StringComparison.OrdinalIgnoreCase));
     }
 
     /// <summary>

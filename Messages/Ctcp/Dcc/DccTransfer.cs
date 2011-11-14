@@ -11,8 +11,8 @@ namespace Supay.Irc.Dcc
   /// </summary>
   public class DccTransfer
   {
-    private byte[] _buffer;
-    private int _bufferSize = 4096;
+    private byte[] buffer;
+    private int bufferSize = 4096;
 
     #region Constructor
 
@@ -67,7 +67,7 @@ namespace Supay.Irc.Dcc
     {
       get
       {
-        return this._bufferSize;
+        return this.bufferSize;
       }
       set
       {
@@ -75,7 +75,7 @@ namespace Supay.Irc.Dcc
         {
           throw new ArgumentException(Resources.BufferSizeIsLimited, "value");
         }
-        this._bufferSize = value;
+        this.bufferSize = value;
       }
     }
 
@@ -177,15 +177,15 @@ namespace Supay.Irc.Dcc
 
       this.BytesTransferred = 0;
 
-      this._buffer = new byte[this.BufferSize];
+      this.buffer = new byte[this.BufferSize];
       var acknowledgment = new byte[4];
 
       int bytesSent;
-      while ((bytesSent = this.File.Read(this._buffer, 0, this._buffer.Length)) != 0)
+      while ((bytesSent = this.File.Read(this.buffer, 0, this.buffer.Length)) != 0)
       {
         try
         {
-          this.TransferSocket.Send(this._buffer, bytesSent, SocketFlags.None);
+          this.TransferSocket.Send(this.buffer, bytesSent, SocketFlags.None);
           this.BytesTransferred += bytesSent;
           if (!this.TurboMode && !this.SendAhead)
           {
@@ -215,11 +215,11 @@ namespace Supay.Irc.Dcc
     {
       this.BytesTransferred = 0;
 
-      this._buffer = new byte[this.BufferSize];
+      this.buffer = new byte[this.BufferSize];
 
       while (!this.IsTransferComplete)
       {
-        int bytesReceived = this.TransferSocket.Receive(this._buffer);
+        int bytesReceived = this.TransferSocket.Receive(this.buffer);
         if (bytesReceived == 0)
         {
           this.OnTransferInterruption(EventArgs.Empty);
@@ -228,7 +228,7 @@ namespace Supay.Irc.Dcc
         this.BytesTransferred += bytesReceived;
         if (this.File.CanWrite)
         {
-          this.File.Write(this._buffer, 0, bytesReceived);
+          this.File.Write(this.buffer, 0, bytesReceived);
         }
         this.SendAcknowledgement();
       }

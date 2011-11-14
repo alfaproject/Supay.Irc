@@ -91,7 +91,7 @@ namespace Supay.Irc.Messages
       {
         extendedData = " " + extendedData;
       }
-      string payLoad = CtcpUtil.ExtendedDataMarker + this.InternalCommand + extendedData + CtcpUtil.ExtendedDataMarker;
+      string payLoad = CtcpUtil.EXTENDED_DATA_MARKER + this.InternalCommand + extendedData + CtcpUtil.EXTENDED_DATA_MARKER;
       parameters.Add(payLoad);
       return parameters;
     }
@@ -101,22 +101,9 @@ namespace Supay.Irc.Messages
     /// </summary>
     public override bool CanParse(string unparsedMessage)
     {
-      if (!CtcpUtil.IsCtcpMessage(unparsedMessage))
-      {
-        return false;
-      }
-
-      if (this.TransportCommand != CtcpUtil.GetTransportCommand(unparsedMessage))
-      {
-        return false;
-      }
-
-      if (this.InternalCommand.Length != 0 && this.InternalCommand != CtcpUtil.GetInternalCommand(unparsedMessage))
-      {
-        return false;
-      }
-
-      return true;
+      return CtcpUtil.IsCtcpMessage(unparsedMessage)
+        && this.TransportCommand == CtcpUtil.GetTransportCommand(unparsedMessage)
+        && (this.InternalCommand.Length == 0 || this.InternalCommand == CtcpUtil.GetInternalCommand(unparsedMessage));
     }
 
     /// <summary>

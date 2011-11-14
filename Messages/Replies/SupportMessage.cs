@@ -12,7 +12,7 @@ namespace Supay.Irc.Messages
   [Serializable]
   public class SupportMessage : NumericMessage
   {
-    private const string areSupported = "are supported by this server";
+    private const string ARE_SUPPORTED = "are supported by this server";
     private readonly NameValueCollection supportedItems = new NameValueCollection();
 
     /// <summary>
@@ -55,7 +55,7 @@ namespace Supay.Irc.Messages
 
       var parameters = base.GetParameters();
       parameters.Add(MessageUtil.CreateList(paramsToString, " "));
-      parameters.Add(areSupported);
+      parameters.Add(ARE_SUPPORTED);
       return parameters;
     }
 
@@ -94,7 +94,7 @@ namespace Supay.Irc.Messages
       {
         return false;
       }
-      return base.CanParse(unparsedMessage) && unparsedMessage.IndexOf(areSupported, StringComparison.Ordinal) > 0;
+      return base.CanParse(unparsedMessage) && unparsedMessage.IndexOf(ARE_SUPPORTED, StringComparison.Ordinal) > 0;
     }
 
     /// <summary>

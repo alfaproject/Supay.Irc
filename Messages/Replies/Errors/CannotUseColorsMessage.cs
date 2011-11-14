@@ -9,7 +9,7 @@ namespace Supay.Irc.Messages
   [Serializable]
   public class CannotUseColorsMessage : ErrorMessage, IChannelTargetedMessage
   {
-    private string _text;
+    private string text;
     private string channel = string.Empty;
 
     /// <summary>
@@ -42,11 +42,11 @@ namespace Supay.Irc.Messages
     {
       get
       {
-        return this._text;
+        return this.text;
       }
       set
       {
-        this._text = value;
+        this.text = value;
       }
     }
 

@@ -14,7 +14,7 @@ namespace Supay.Irc.Messages
 
     public GenericMessage()
     {
-      this._command = string.Empty;
+      this.command = string.Empty;
       this.Parameters = new Collection<string>();
     }
 
@@ -22,7 +22,7 @@ namespace Supay.Irc.Messages
 
     #region Properties
 
-    private string _command;
+    private string command;
 
     /// <summary>
     ///   Gets or sets the message's command.
@@ -31,7 +31,7 @@ namespace Supay.Irc.Messages
     {
       get
       {
-        return this._command;
+        return this.command;
       }
       set
       {
@@ -39,7 +39,7 @@ namespace Supay.Irc.Messages
         {
           throw new ArgumentNullException("value");
         }
-        this._command = value;
+        this.command = value;
       }
     }
 

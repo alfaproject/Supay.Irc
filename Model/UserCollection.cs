@@ -67,7 +67,7 @@ namespace Supay.Irc
     /// <returns>The User in the collection with the given nick.</returns>
     public User EnsureUser(string nick)
     {
-      User user = Find(nick);
+      User user = this.Find(nick);
       if (user == null)
       {
         user = new User(nick);
@@ -86,7 +86,7 @@ namespace Supay.Irc
     /// <returns>The User in the collection which matches the given User.</returns>
     public User EnsureUser(User newUser)
     {
-      User user = Find(newUser.Nickname);
+      User user = this.Find(newUser.Nickname);
       if (user == null)
       {
         user = newUser;

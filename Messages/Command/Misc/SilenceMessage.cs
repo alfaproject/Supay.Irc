@@ -9,7 +9,7 @@ namespace Supay.Irc.Messages
   [Serializable]
   public class SilenceMessage : CommandMessage
   {
-    private ModeAction _action = ModeAction.Add;
+    private ModeAction action = ModeAction.Add;
     private User silencedUser = new User();
 
     /// <summary>
@@ -68,11 +68,11 @@ namespace Supay.Irc.Messages
     {
       get
       {
-        return this._action;
+        return this.action;
       }
       set
       {
-        this._action = value;
+        this.action = value;
       }
     }
 

@@ -25,11 +25,11 @@ namespace Supay.Irc.Dcc
   [DesignerCategory("Code")]
   public class DccServerConnection : Component
   {
-    private readonly object _syncLock = new object();
-    private TcpListener _chatListener;
-    private Thread _connectionWorker;
-    private int _port;
-    private Timer _timeoutTimer;
+    private readonly object syncLock = new object();
+    private TcpListener chatListener;
+    private Thread connectionWorker;
+    private int port;
+    private Timer timeoutTimer;
 
     #region Nested type: SyncInvoke
 
@@ -146,13 +146,13 @@ namespace Supay.Irc.Dcc
     {
       get
       {
-        return this._port;
+        return this.port;
       }
       set
       {
         if (this.Status == ConnectionStatus.Disconnected)
         {
-          this._port = value;
+          this.port = value;
         }
         else
         {
@@ -212,7 +212,7 @@ namespace Supay.Irc.Dcc
     /// </summary>
     public void Send()
     {
-      lock (this._syncLock)
+      lock (this.syncLock)
       {
         if (this.Status != ConnectionStatus.Disconnected)
         {
@@ -223,14 +223,14 @@ namespace Supay.Irc.Dcc
         this.OnConnecting(EventArgs.Empty);
       }
 
-      this._connectionWorker = new Thread(this.RunSend) {
+      this.connectionWorker = new Thread(this.RunSend) {
         IsBackground = true
       };
-      this._connectionWorker.Start();
+      this.connectionWorker.Start();
 
       if (this.TimeOut != TimeSpan.Zero)
       {
-        this._timeoutTimer = new Timer(this.CheckTimeOut, null, this.TimeOut, TimeSpan.Zero);
+        this.timeoutTimer = new Timer(this.CheckTimeOut, null, this.TimeOut, TimeSpan.Zero);
       }
     }
 
@@ -249,9 +249,9 @@ namespace Supay.Irc.Dcc
     public void DisconnectForce()
     {
       this.Disconnect();
-      if (this._connectionWorker != null && this._connectionWorker.IsAlive)
+      if (this.connectionWorker != null && this.connectionWorker.IsAlive)
       {
-        this._connectionWorker.Abort();
+        this.connectionWorker.Abort();
       }
     }
 
@@ -265,8 +265,8 @@ namespace Supay.Irc.Dcc
       {
         this.DisconnectForce();
       }
-      this._timeoutTimer.Dispose();
-      this._timeoutTimer = null;
+      this.timeoutTimer.Dispose();
+      this.timeoutTimer = null;
     }
 
     private void RunSend()
@@ -275,9 +275,9 @@ namespace Supay.Irc.Dcc
 
       try
       {
-        this._chatListener = new TcpListener(IPAddress.Any, this.Port);
-        this._chatListener.Start();
-        Socket socket = this._chatListener.AcceptSocket();
+        this.chatListener = new TcpListener(IPAddress.Any, this.Port);
+        this.chatListener.Start();
+        Socket socket = this.chatListener.AcceptSocket();
 
         this.Status = ConnectionStatus.Connected;
         this.OnConnected(EventArgs.Empty);
@@ -287,16 +287,16 @@ namespace Supay.Irc.Dcc
       }
       catch (Exception ex)
       {
-        Trace.WriteLine("Error Opening DccServerConnection On Port " + this._port.ToString(CultureInfo.InvariantCulture) + ", " + ex, "DccServerConnection");
+        Trace.WriteLine("Error Opening DccServerConnection On Port " + this.port.ToString(CultureInfo.InvariantCulture) + ", " + ex, "DccServerConnection");
         throw;
       }
       finally
       {
         this.Status = ConnectionStatus.Disconnected;
-        if (this._chatListener != null)
+        if (this.chatListener != null)
         {
-          this._chatListener.Stop();
-          this._chatListener = null;
+          this.chatListener.Stop();
+          this.chatListener = null;
         }
         this.OnDisconnected(new ConnectionDataEventArgs(disconnectReason));
       }

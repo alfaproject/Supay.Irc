@@ -12,7 +12,7 @@ namespace Supay.Irc
   [Serializable]
   public class Journal : ObservableCollection<JournalEntry>
   {
-    private int _maxEntries = 1000;
+    private int maxEntries = 1000;
 
     /// <summary>
     ///   Creates a new instance of the Journal class.
@@ -36,11 +36,11 @@ namespace Supay.Irc
     {
       get
       {
-        return this._maxEntries;
+        return this.maxEntries;
       }
       set
       {
-        this._maxEntries = value;
+        this.maxEntries = value;
         this.OnPropertyChanged(new PropertyChangedEventArgs("MaxEntries"));
       }
     }

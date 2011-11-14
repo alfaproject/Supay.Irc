@@ -115,11 +115,7 @@ namespace Supay.Irc.Messages
         return false;
       }
       IList<string> p = MessageUtil.GetParameters(unparsedMessage);
-      if (p.Count >= 1)
-      {
-        return MessageUtil.HasValidChannelPrefix(p[0]);
-      }
-      return false;
+      return p.Count >= 1 && MessageUtil.HasValidChannelPrefix(p[0]);
     }
 
     /// <summary>

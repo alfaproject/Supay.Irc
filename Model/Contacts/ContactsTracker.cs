@@ -11,7 +11,7 @@ namespace Supay.Irc.Contacts
     protected ContactsTracker(ContactList contacts)
     {
       this.contacts = contacts;
-      this.contacts.Users.CollectionChanged += this.Users_CollectionChanged;
+      this.contacts.Users.CollectionChanged += this.UsersCollectionChanged;
     }
 
     protected ContactList Contacts
@@ -22,7 +22,7 @@ namespace Supay.Irc.Contacts
       }
     }
 
-    private void Users_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+    private void UsersCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
     {
       if (e.Action == NotifyCollectionChangedAction.Add)
       {

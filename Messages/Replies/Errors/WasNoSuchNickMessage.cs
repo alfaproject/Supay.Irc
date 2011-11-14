@@ -10,7 +10,7 @@ namespace Supay.Irc.Messages
   [Serializable]
   public class WasNoSuchNickMessage : ErrorMessage
   {
-    private string _nick;
+    private string nick;
 
     /// <summary>
     ///   Creates a new instances of the <see cref="WasNoSuchNickMessage" /> class.
@@ -27,11 +27,11 @@ namespace Supay.Irc.Messages
     {
       get
       {
-        return this._nick;
+        return this.nick;
       }
       set
       {
-        this._nick = value;
+        this.nick = value;
       }
     }
 

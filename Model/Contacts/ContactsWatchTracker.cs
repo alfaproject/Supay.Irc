@@ -12,14 +12,14 @@ namespace Supay.Irc.Contacts
 
     public override void Initialize()
     {
-      this.Contacts.Client.Messages.WatchedUserOffline += this.client_WatchedUserOffline;
-      this.Contacts.Client.Messages.WatchedUserOnline += this.client_WatchedUserOnline;
+      this.Contacts.Client.Messages.WatchedUserOffline += this.ClientWatchedUserOffline;
+      this.Contacts.Client.Messages.WatchedUserOnline += this.ClientWatchedUserOnline;
       base.Initialize();
     }
 
     protected override void AddNicks(IEnumerable<string> nicks)
     {
-      WatchListEditorMessage addMsg = new WatchListEditorMessage();
+      var addMsg = new WatchListEditorMessage();
       foreach (string nick in nicks)
       {
         addMsg.AddedNicks.Add(nick);
@@ -29,21 +29,21 @@ namespace Supay.Irc.Contacts
 
     protected override void AddNick(string nick)
     {
-      WatchListEditorMessage addMsg = new WatchListEditorMessage();
+      var addMsg = new WatchListEditorMessage();
       addMsg.AddedNicks.Add(nick);
       this.Contacts.Client.Send(addMsg);
     }
 
     protected override void RemoveNick(string nick)
     {
-      WatchListEditorMessage remMsg = new WatchListEditorMessage();
+      var remMsg = new WatchListEditorMessage();
       remMsg.RemovedNicks.Add(nick);
       this.Contacts.Client.Send(remMsg);
     }
 
     #region Reply Handlers
 
-    private void client_WatchedUserOnline(object sender, IrcMessageEventArgs<WatchedUserOnlineMessage> e)
+    private void ClientWatchedUserOnline(object sender, IrcMessageEventArgs<WatchedUserOnlineMessage> e)
     {
       User knownUser = this.Contacts.Users.Find(e.Message.WatchedUser.Nickname);
       if (knownUser != null)
@@ -52,7 +52,7 @@ namespace Supay.Irc.Contacts
       }
     }
 
-    private void client_WatchedUserOffline(object sender, IrcMessageEventArgs<WatchedUserOfflineMessage> e)
+    private void ClientWatchedUserOffline(object sender, IrcMessageEventArgs<WatchedUserOfflineMessage> e)
     {
       User knownUser = this.Contacts.Users.Find(e.Message.WatchedUser.Nickname);
       if (knownUser != null)

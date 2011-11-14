@@ -15,7 +15,7 @@ namespace Supay.Irc.Messages
 
     protected ErrorMessage(int number)
     {
-      this.setNumeric(number);
+      this.SetNumeric(number);
     }
 
     /// <summary>
@@ -29,11 +29,11 @@ namespace Supay.Irc.Messages
       }
       protected set
       {
-        this.setNumeric(value);
+        this.SetNumeric(value);
       }
     }
 
-    private void setNumeric(int number)
+    private void SetNumeric(int number)
     {
       if (IsError(number))
       {

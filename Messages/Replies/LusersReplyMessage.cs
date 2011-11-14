@@ -10,10 +10,10 @@ namespace Supay.Irc.Messages
   [Serializable]
   public class LusersReplyMessage : NumericMessage
   {
-    private const string thereAre = "There are ";
-    private const string usersAnd = " users and ";
-    private const string invisibleOn = " invisible on ";
-    private const string servers = " servers";
+    private const string THERE_ARE = "There are ";
+    private const string USERS_AND = " users and ";
+    private const string INVISIBLE_ON = " invisible on ";
+    private const string SERVERS = " servers";
     private int invisibleCount = -1;
     private int serverCount = -1;
     private int userCount = -1;
@@ -77,7 +77,7 @@ namespace Supay.Irc.Messages
     protected override IList<string> GetParameters()
     {
       var parameters = base.GetParameters();
-      parameters.Add(thereAre + this.UserCount + usersAnd + this.InvisibleCount + invisibleOn + this.ServerCount + servers);
+      parameters.Add(THERE_ARE + this.UserCount + USERS_AND + this.InvisibleCount + INVISIBLE_ON + this.ServerCount + SERVERS);
       return parameters;
     }
 
@@ -88,9 +88,9 @@ namespace Supay.Irc.Messages
     {
       base.ParseParameters(parameters);
       string payload = parameters[1];
-      this.UserCount = Convert.ToInt32(MessageUtil.StringBetweenStrings(payload, thereAre, usersAnd), CultureInfo.InvariantCulture);
-      this.InvisibleCount = Convert.ToInt32(MessageUtil.StringBetweenStrings(payload, usersAnd, invisibleOn), CultureInfo.InvariantCulture);
-      this.ServerCount = Convert.ToInt32(MessageUtil.StringBetweenStrings(payload, invisibleOn, servers), CultureInfo.InvariantCulture);
+      this.UserCount = Convert.ToInt32(MessageUtil.StringBetweenStrings(payload, THERE_ARE, USERS_AND), CultureInfo.InvariantCulture);
+      this.InvisibleCount = Convert.ToInt32(MessageUtil.StringBetweenStrings(payload, USERS_AND, INVISIBLE_ON), CultureInfo.InvariantCulture);
+      this.ServerCount = Convert.ToInt32(MessageUtil.StringBetweenStrings(payload, INVISIBLE_ON, SERVERS), CultureInfo.InvariantCulture);
     }
 
     /// <summary>

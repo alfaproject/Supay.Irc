@@ -11,7 +11,7 @@ namespace Supay.Irc.Messages
   [Serializable]
   public abstract class NumericMessage : IrcMessage
   {
-    private int _internalNumeric;
+    private int internalNumeric;
 
     protected NumericMessage()
       : this(-1)
@@ -20,7 +20,7 @@ namespace Supay.Irc.Messages
 
     protected NumericMessage(int number)
     {
-      this._internalNumeric = number;
+      this.internalNumeric = number;
       this.Target = string.Empty;
     }
 
@@ -31,11 +31,11 @@ namespace Supay.Irc.Messages
     {
       get
       {
-        return this._internalNumeric;
+        return this.internalNumeric;
       }
       protected set
       {
-        this._internalNumeric = value;
+        this.internalNumeric = value;
       }
     }
 

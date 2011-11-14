@@ -18,8 +18,8 @@ namespace Supay.Irc.Messages
   {
     private const string DEFAULT_INFO = "End of Channel Ban List";
 
-    private string _channel;
-    private string _info;
+    private string channel;
+    private string info;
 
     /// <summary>
     ///   Creates a new instance of the <see cref="BansEndReplyMessage" /> class.
@@ -27,8 +27,8 @@ namespace Supay.Irc.Messages
     public BansEndReplyMessage()
       : base(368)
     {
-      this._channel = null;
-      this._info = DEFAULT_INFO;
+      this.channel = null;
+      this.info = DEFAULT_INFO;
     }
 
     /// <summary>
@@ -38,11 +38,11 @@ namespace Supay.Irc.Messages
     {
       get
       {
-        return this._channel;
+        return this.channel;
       }
       set
       {
-        this._channel = value;
+        this.channel = value;
       }
     }
 
@@ -53,11 +53,11 @@ namespace Supay.Irc.Messages
     {
       get
       {
-        return this._info;
+        return this.info;
       }
       set
       {
-        this._info = value;
+        this.info = value;
       }
     }
 

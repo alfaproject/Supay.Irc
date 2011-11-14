@@ -16,7 +16,7 @@ namespace Supay.Irc
     public ServerQuery(Client client)
     {
       this.client = client;
-      this.journal.CollectionChanged += this.journal_CollectionChanged;
+      this.journal.CollectionChanged += this.JournalCollectionChanged;
     }
 
     #endregion
@@ -52,7 +52,7 @@ namespace Supay.Irc
 
     #region Event Handlers
 
-    private void journal_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+    private void JournalCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
     {
       this.OnPropertyChanged(new PropertyChangedEventArgs("Journal"));
     }

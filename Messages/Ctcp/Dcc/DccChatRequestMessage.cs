@@ -23,11 +23,7 @@ namespace Supay.Irc.Messages
     {
       get
       {
-        if (this.Secure)
-        {
-          return "SCHAT";
-        }
-        return "CHAT";
+        return this.Secure ? "SCHAT" : "CHAT";
       }
     }
 

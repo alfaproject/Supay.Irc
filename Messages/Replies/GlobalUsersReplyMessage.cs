@@ -10,8 +10,8 @@ namespace Supay.Irc.Messages
   [Serializable]
   public class GlobalUsersReplyMessage : NumericMessage
   {
-    private const string currentGlobalUsers = "Current global users: ";
-    private const string max = " Max: ";
+    private const string CURRENT_GLOBAL_USERS = "Current global users: ";
+    private const string MAX = " Max: ";
     private int userCount = -1;
     private int userLimit = -1;
 
@@ -61,7 +61,7 @@ namespace Supay.Irc.Messages
       // we only write the official version of this message, although other versions exist,
       // thus the message may not be the same raw as parsed.
       var parameters = base.GetParameters();
-      parameters.Add(currentGlobalUsers + this.UserCount + max + this.UserLimit);
+      parameters.Add(CURRENT_GLOBAL_USERS + this.UserCount + MAX + this.UserLimit);
       return parameters;
     }
 
@@ -75,8 +75,8 @@ namespace Supay.Irc.Messages
       {
         case 2:
           string payload = parameters[1];
-          this.UserCount = Convert.ToInt32(MessageUtil.StringBetweenStrings(payload, currentGlobalUsers, max), CultureInfo.InvariantCulture);
-          this.UserLimit = Convert.ToInt32(payload.Substring(payload.IndexOf(max, StringComparison.Ordinal) + max.Length), CultureInfo.InvariantCulture);
+          this.UserCount = Convert.ToInt32(MessageUtil.StringBetweenStrings(payload, CURRENT_GLOBAL_USERS, MAX), CultureInfo.InvariantCulture);
+          this.UserLimit = Convert.ToInt32(payload.Substring(payload.IndexOf(MAX, StringComparison.Ordinal) + MAX.Length), CultureInfo.InvariantCulture);
           break;
         case 4:
           this.UserCount = Convert.ToInt32(parameters[1], CultureInfo.InvariantCulture);

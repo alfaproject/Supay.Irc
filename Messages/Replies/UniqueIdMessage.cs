@@ -10,7 +10,7 @@ namespace Supay.Irc.Messages
   [Serializable]
   public class UniqueIdMessage : NumericMessage
   {
-    private const string yourUniqueID = "your unique ID";
+    private const string YOUR_UNIQUE_ID = "your unique ID";
 
     /// <summary>
     ///   Creates a new instance of the <see cref="UniqueIdMessage" /> class.
@@ -37,7 +37,7 @@ namespace Supay.Irc.Messages
       var parameters = base.GetParameters();
       parameters.Add(this.Target);
       parameters.Add(this.UniqueId);
-      parameters.Add(yourUniqueID);
+      parameters.Add(YOUR_UNIQUE_ID);
       return parameters;
     }
 

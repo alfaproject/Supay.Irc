@@ -99,7 +99,7 @@ namespace Supay.Irc.Messages
       double theAddress;
       if (double.TryParse(transportAddress, NumberStyles.Integer, null, out theAddress))
       {
-        IPAddress backwards = new IPAddress(Convert.ToInt64(theAddress));
+        var backwards = new IPAddress(Convert.ToInt64(theAddress));
         if (backwards.AddressFamily == AddressFamily.InterNetwork)
         {
           var addy = backwards.ToString().Split('.');

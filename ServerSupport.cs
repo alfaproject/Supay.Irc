@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Diagnostics;
 using System.Globalization;
+using System.Linq;
 using System.Reflection;
 using Supay.Irc.Messages;
 
@@ -62,7 +63,7 @@ namespace Supay.Irc
 
     #region Default Support
 
-    private static ServerSupport _defaultSupport;
+    private static ServerSupport defaultSupport;
 
     /// <summary>
     /// </summary>
@@ -70,12 +71,12 @@ namespace Supay.Irc
     {
       get
       {
-        //TODO Create A Good Default ServerSupport
-        return _defaultSupport ?? (_defaultSupport = new ServerSupport());
+        // TODO Create A Good Default ServerSupport
+        return defaultSupport ?? (defaultSupport = new ServerSupport());
       }
       set
       {
-        _defaultSupport = value;
+        defaultSupport = value;
       }
     }
 
@@ -787,21 +788,14 @@ namespace Supay.Irc
       }
     }
 
-    private static IEnumerable<KeyValuePair<string, string>> CreateInfoPairs(string value)
+    private static IEnumerable<KeyValuePair<string, string>> CreateInfoPairs(string pairs)
     {
-      var list = new Collection<KeyValuePair<string, string>>();
-      foreach (string chanLimitPair in value.Split(','))
-      {
-        if (chanLimitPair.Contains(":"))
-        {
-          var chanLimitInfo = chanLimitPair.Split(':');
-          if (chanLimitInfo.Length == 2 && chanLimitInfo[0].Length > 0)
-          {
-            list.Add(new KeyValuePair<string, string>(chanLimitInfo[0], chanLimitInfo[1]));
-          }
-        }
-      }
-      return list;
+      return (from pair in (from pair in pairs.Split(',')
+                            where pair.Contains(':')
+                            select pair.Split(':'))
+              where pair.Length == 2 && pair[0].Length > 0
+              select pair)
+        .ToDictionary(pair => pair[0], pair => pair[1]);
     }
   }
 }

@@ -10,9 +10,9 @@ namespace Supay.Irc.Messages
   [Serializable]
   public class LusersMeReplyMessage : NumericMessage
   {
-    private const string iHave = "I have ";
-    private const string clientsAnd = " clients and ";
-    private const string servers = " servers";
+    private const string I_HAVE = "I have ";
+    private const string CLIENTS_AND = " clients and ";
+    private const string SERVERS = " servers";
     private int clientCount = -1;
     private int serverCount = -1;
 
@@ -60,7 +60,7 @@ namespace Supay.Irc.Messages
     protected override IList<string> GetParameters()
     {
       var parameters = base.GetParameters();
-      parameters.Add(iHave + this.ClientCount + clientsAnd + this.ServerCount + servers);
+      parameters.Add(I_HAVE + this.ClientCount + CLIENTS_AND + this.ServerCount + SERVERS);
       return parameters;
     }
 
@@ -71,8 +71,8 @@ namespace Supay.Irc.Messages
     {
       base.ParseParameters(parameters);
       string payload = parameters[1];
-      this.ClientCount = Convert.ToInt32(MessageUtil.StringBetweenStrings(payload, iHave, clientsAnd), CultureInfo.InvariantCulture);
-      this.ServerCount = Convert.ToInt32(MessageUtil.StringBetweenStrings(payload, clientsAnd, servers), CultureInfo.InvariantCulture);
+      this.ClientCount = Convert.ToInt32(MessageUtil.StringBetweenStrings(payload, I_HAVE, CLIENTS_AND), CultureInfo.InvariantCulture);
+      this.ServerCount = Convert.ToInt32(MessageUtil.StringBetweenStrings(payload, CLIENTS_AND, SERVERS), CultureInfo.InvariantCulture);
     }
 
     /// <summary>

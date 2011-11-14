@@ -10,8 +10,8 @@ namespace Supay.Irc.Messages
   [Serializable]
   public class YourHostMessage : NumericMessage
   {
-    private const string yourHostIs = "Your host is ";
-    private const string runningVersion = ", running version ";
+    private const string YOUR_HOST_IS = "Your host is ";
+    private const string RUNNING_VERSION = ", running version ";
     private string serverName = string.Empty;
     private string version = string.Empty;
 
@@ -59,7 +59,7 @@ namespace Supay.Irc.Messages
     protected override IList<string> GetParameters()
     {
       var parameters = base.GetParameters();
-      parameters.Add(yourHostIs + this.ServerName + runningVersion + this.Version);
+      parameters.Add(YOUR_HOST_IS + this.ServerName + RUNNING_VERSION + this.Version);
       return parameters;
     }
 
@@ -70,11 +70,11 @@ namespace Supay.Irc.Messages
     {
       base.ParseParameters(parameters);
       string reply = parameters[1];
-      if (reply.IndexOf(yourHostIs, StringComparison.Ordinal) != -1 && reply.IndexOf(runningVersion, StringComparison.Ordinal) != -1)
+      if (reply.IndexOf(YOUR_HOST_IS, StringComparison.Ordinal) != -1 && reply.IndexOf(RUNNING_VERSION, StringComparison.Ordinal) != -1)
       {
-        int startOfServerName = yourHostIs.Length;
-        int startOfVersion = reply.IndexOf(runningVersion, StringComparison.Ordinal) + runningVersion.Length;
-        int lengthOfServerName = reply.IndexOf(runningVersion, StringComparison.Ordinal) - startOfServerName;
+        int startOfServerName = YOUR_HOST_IS.Length;
+        int startOfVersion = reply.IndexOf(RUNNING_VERSION, StringComparison.Ordinal) + RUNNING_VERSION.Length;
+        int lengthOfServerName = reply.IndexOf(RUNNING_VERSION, StringComparison.Ordinal) - startOfServerName;
 
         this.ServerName = reply.Substring(startOfServerName, lengthOfServerName);
         this.Version = reply.Substring(startOfVersion);

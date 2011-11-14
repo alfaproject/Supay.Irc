@@ -9,9 +9,9 @@ namespace Supay.Irc.Contacts
 {
   internal class ContactsAreOnTracker : ContactsTracker, IDisposable
   {
-    private readonly IList<string> _trackedNicks = new Collection<string>();
-    private readonly IList<string> _waitingOnNicks = new Collection<string>();
-    private Timer _timer;
+    private readonly IList<string> trackedNicks = new Collection<string>();
+    private readonly IList<string> waitingOnNicks = new Collection<string>();
+    private Timer timer;
 
     public ContactsAreOnTracker(ContactList contacts)
       : base(contacts)
@@ -20,15 +20,15 @@ namespace Supay.Irc.Contacts
 
     public override void Initialize()
     {
-      this.Contacts.Client.Messages.IsOnReply += this.client_IsOnReply;
+      this.Contacts.Client.Messages.IsOnReply += this.ClientIsOnReply;
       base.Initialize();
-      if (this._timer != null)
+      if (this.timer != null)
       {
-        this._timer.Dispose();
+        this.timer.Dispose();
       }
-      this._timer = new Timer();
-      this._timer.Elapsed += this.timer_Elapsed;
-      this._timer.Start();
+      this.timer = new Timer();
+      this.timer.Elapsed += this.TimerElapsed;
+      this.timer.Start();
     }
 
     protected override void AddNicks(IEnumerable<string> nicks)
@@ -41,59 +41,59 @@ namespace Supay.Irc.Contacts
 
     protected override void AddNick(string nick)
     {
-      if (!this._trackedNicks.Contains(nick))
+      if (!this.trackedNicks.Contains(nick))
       {
-        this._trackedNicks.Add(nick);
+        this.trackedNicks.Add(nick);
       }
     }
 
     protected override void RemoveNick(string nick)
     {
-      if (this._trackedNicks.Contains(nick))
+      if (this.trackedNicks.Contains(nick))
       {
-        this._trackedNicks.Remove(nick);
+        this.trackedNicks.Remove(nick);
       }
     }
 
     #region Event Handlers
 
-    private void client_IsOnReply(object sender, IrcMessageEventArgs<IsOnReplyMessage> e)
+    private void ClientIsOnReply(object sender, IrcMessageEventArgs<IsOnReplyMessage> e)
     {
       foreach (string onlineNick in e.Message.Nicks)
       {
-        if (this._waitingOnNicks.Contains(onlineNick))
+        if (this.waitingOnNicks.Contains(onlineNick))
         {
-          this._waitingOnNicks.Remove(onlineNick);
+          this.waitingOnNicks.Remove(onlineNick);
         }
         User knownUser = this.Contacts.Users.Find(onlineNick);
         if (knownUser != null)
         {
           knownUser.Online = true;
         }
-        else if (this._trackedNicks.Contains(onlineNick))
+        else if (this.trackedNicks.Contains(onlineNick))
         {
-          this._trackedNicks.Remove(onlineNick);
+          this.trackedNicks.Remove(onlineNick);
         }
       }
-      foreach (string nick in this._waitingOnNicks)
+      foreach (string nick in this.waitingOnNicks)
       {
         User offlineUser = this.Contacts.Users.Find(nick);
         offlineUser.Online = false;
-        this._waitingOnNicks.Remove(nick);
+        this.waitingOnNicks.Remove(nick);
       }
     }
 
-    private void timer_Elapsed(object sender, ElapsedEventArgs e)
+    private void TimerElapsed(object sender, ElapsedEventArgs e)
     {
       if (this.Contacts.Client.Connection.Status == ConnectionStatus.Connected)
       {
-        IsOnMessage ison = new IsOnMessage();
-        foreach (string nick in this._trackedNicks)
+        var ison = new IsOnMessage();
+        foreach (string nick in this.trackedNicks)
         {
           ison.Nicks.Add(nick);
-          if (!this._waitingOnNicks.Contains(nick))
+          if (!this.waitingOnNicks.Contains(nick))
           {
-            this._waitingOnNicks.Add(nick);
+            this.waitingOnNicks.Add(nick);
           }
         }
         this.Contacts.Client.Send(ison);
@@ -116,9 +116,9 @@ namespace Supay.Irc.Contacts
 
     protected virtual void Dispose(bool disposing)
     {
-      if (disposing && this._timer != null)
+      if (disposing && this.timer != null)
       {
-        this._timer.Dispose();
+        this.timer.Dispose();
       }
     }
 

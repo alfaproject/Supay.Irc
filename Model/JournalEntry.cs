@@ -26,8 +26,8 @@ namespace Supay.Irc
 
     #region Properties
 
-    private object _item;
-    private DateTime _time;
+    private object item;
+    private DateTime time;
 
     /// <summary>
     ///   The time at which the entry was added to the journal.
@@ -36,11 +36,11 @@ namespace Supay.Irc
     {
       get
       {
-        return this._time;
+        return this.time;
       }
       set
       {
-        this._time = value;
+        this.time = value;
         this.NotifyPropertyChanged("Time");
       }
     }
@@ -52,11 +52,11 @@ namespace Supay.Irc
     {
       get
       {
-        return this._item;
+        return this.item;
       }
       set
       {
-        this._item = value;
+        this.item = value;
         this.NotifyPropertyChanged("Item");
       }
     }

@@ -47,31 +47,31 @@ namespace Supay.Irc.Messages.Modes
             this.modes.Add(new AnonymousMode(currentAction));
             break;
           case 'b':
-            BanMode banMode = new BanMode(currentAction, new User(modeArguments[argIndex]));
+            var banMode = new BanMode(currentAction, new User(modeArguments[argIndex]));
             argIndex++;
             this.modes.Add(banMode);
             break;
           case 'e':
-            BanExceptionMode banExceptionMode = new BanExceptionMode(currentAction, new User(modeArguments[argIndex]));
+            var banExceptionMode = new BanExceptionMode(currentAction, new User(modeArguments[argIndex]));
             argIndex++;
             this.modes.Add(banExceptionMode);
             break;
           case 'h':
-            HalfOpMode halfOpMode = new HalfOpMode(currentAction, modeArguments[argIndex]);
+            var halfOpMode = new HalfOpMode(currentAction, modeArguments[argIndex]);
             argIndex++;
             this.modes.Add(halfOpMode);
             break;
           case 'I':
-            InvitationExceptionMode invitationExceptionMode = new InvitationExceptionMode(currentAction, new User(modeArguments[argIndex]));
+            var invitationExceptionMode = new InvitationExceptionMode(currentAction, new User(modeArguments[argIndex]));
             argIndex++;
             this.modes.Add(invitationExceptionMode);
             break;
           case 'i':
-            InviteOnlyMode inviteOnlyMode = new InviteOnlyMode(currentAction);
+            var inviteOnlyMode = new InviteOnlyMode(currentAction);
             this.modes.Add(inviteOnlyMode);
             break;
           case 'k':
-            KeyMode keyMode = new KeyMode(currentAction);
+            var keyMode = new KeyMode(currentAction);
             if (currentAction == ModeAction.Add)
             {
               keyMode.Password = modeArguments[argIndex];
@@ -80,7 +80,7 @@ namespace Supay.Irc.Messages.Modes
             this.modes.Add(keyMode);
             break;
           case 'l':
-            LimitMode limitMode = new LimitMode(currentAction);
+            var limitMode = new LimitMode(currentAction);
             if (currentAction == ModeAction.Add)
             {
               limitMode.UserLimit = Convert.ToInt32(modeArguments[argIndex], CultureInfo.InvariantCulture);
@@ -95,12 +95,12 @@ namespace Supay.Irc.Messages.Modes
             this.modes.Add(new NoOutsideMessagesMode(currentAction));
             break;
           case 'O':
-            CreatorMode creatorMode = new CreatorMode(currentAction, modeArguments[argIndex]);
+            var creatorMode = new CreatorMode(currentAction, modeArguments[argIndex]);
             argIndex++;
             this.modes.Add(creatorMode);
             break;
           case 'o':
-            OperatorMode operatorMode = new OperatorMode(currentAction, modeArguments[argIndex]);
+            var operatorMode = new OperatorMode(currentAction, modeArguments[argIndex]);
             argIndex++;
             this.modes.Add(operatorMode);
             break;
@@ -123,7 +123,7 @@ namespace Supay.Irc.Messages.Modes
             this.modes.Add(new TopicGuardedMode(currentAction));
             break;
           case 'v':
-            VoiceMode voiceMode = new VoiceMode(currentAction, modeArguments[argIndex]);
+            var voiceMode = new VoiceMode(currentAction, modeArguments[argIndex]);
             argIndex++;
             this.modes.Add(voiceMode);
             break;
@@ -207,7 +207,7 @@ namespace Supay.Irc.Messages.Modes
     /// </summary>
     private void CollapseModes()
     {
-      //TODO Implement CollapseModes
+      // TODO Implement CollapseModes
     }
 
     /// <summary>

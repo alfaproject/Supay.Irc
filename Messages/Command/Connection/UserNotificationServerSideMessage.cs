@@ -93,11 +93,7 @@ namespace Supay.Irc.Messages
         return false;
       }
       IList<string> p = MessageUtil.GetParameters(unparsedMessage);
-      if (p.Count != 4 || p[2] == "*")
-      {
-        return false;
-      }
-      return true;
+      return p.Count == 4 && p[2] != "*";
     }
 
     /// <summary>

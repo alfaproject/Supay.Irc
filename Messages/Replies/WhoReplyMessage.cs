@@ -10,10 +10,10 @@ namespace Supay.Irc.Messages
   [Serializable]
   public class WhoReplyMessage : NumericMessage, IChannelTargetedMessage
   {
-    private string _channel = string.Empty;
-    private int _hopCount = -1;
-    private ChannelStatus _status = ChannelStatus.None;
-    private User _user = new User();
+    private string channel = string.Empty;
+    private int hopCount = -1;
+    private ChannelStatus status = ChannelStatus.None;
+    private User user = new User();
 
     /// <summary>
     ///   Creates a new instance of the <see cref="WhoReplyMessage" /> class.
@@ -34,11 +34,11 @@ namespace Supay.Irc.Messages
     {
       get
       {
-        return this._channel;
+        return this.channel;
       }
       set
       {
-        this._channel = value;
+        this.channel = value;
       }
     }
 
@@ -49,11 +49,11 @@ namespace Supay.Irc.Messages
     {
       get
       {
-        return this._user;
+        return this.user;
       }
       set
       {
-        this._user = value;
+        this.user = value;
       }
     }
 
@@ -64,11 +64,11 @@ namespace Supay.Irc.Messages
     {
       get
       {
-        return this._status;
+        return this.status;
       }
       set
       {
-        this._status = value;
+        this.status = value;
       }
     }
 
@@ -79,11 +79,11 @@ namespace Supay.Irc.Messages
     {
       get
       {
-        return this._hopCount;
+        return this.hopCount;
       }
       set
       {
-        this._hopCount = value;
+        this.hopCount = value;
       }
     }
 

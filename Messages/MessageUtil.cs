@@ -43,11 +43,7 @@ namespace Supay.Irc.Messages
         result = '#' + result;
       }
 
-      if (result.Length > support.MaxChannelNameLength)
-      {
-        return result.Substring(0, support.MaxChannelNameLength);
-      }
-      return result;
+      return result.Length > support.MaxChannelNameLength ? result.Substring(0, support.MaxChannelNameLength) : result;
     }
 
     /// <summary>
@@ -59,29 +55,11 @@ namespace Supay.Irc.Messages
     /// </remarks>
     public static bool HasValidChannelPrefix(string channelName)
     {
-      if (string.IsNullOrEmpty(channelName))
-      {
-        return false;
-      }
-
-      if (channelName.StartsWith("#", StringComparison.Ordinal))
-      {
-        return true;
-      }
-      if (channelName.StartsWith("&", StringComparison.Ordinal))
-      {
-        return true;
-      }
-      if (channelName.StartsWith("+", StringComparison.Ordinal))
-      {
-        return true;
-      }
-      if (channelName.StartsWith("!", StringComparison.Ordinal))
-      {
-        return true;
-      }
-
-      return false;
+      return !string.IsNullOrEmpty(channelName) && (
+        channelName.StartsWith("#", StringComparison.Ordinal) ||
+        channelName.StartsWith("&", StringComparison.Ordinal) ||
+        channelName.StartsWith("+", StringComparison.Ordinal) ||
+        channelName.StartsWith("!", StringComparison.Ordinal));
     }
 
     /// <summary>
@@ -118,11 +96,7 @@ namespace Supay.Irc.Messages
 
       // the first token is the command
       int indexOfFirstSpace = rawMessage.IndexOf(' ');
-      if (indexOfFirstSpace == -1)
-      {
-        return rawMessage;
-      }
-      return rawMessage.Substring(0, indexOfFirstSpace);
+      return indexOfFirstSpace == -1 ? rawMessage : rawMessage.Substring(0, indexOfFirstSpace);
     }
 
     /// <summary>
@@ -148,11 +122,7 @@ namespace Supay.Irc.Messages
         startIndex = NthIndexOf(rawMessage, " ", 0, 1) + 1;
       }
 
-      if (startIndex == 0)
-      {
-        return new Collection<string>();
-      }
-      return Tokenize(rawMessage, startIndex);
+      return startIndex == 0 ? new Collection<string>() : Tokenize(rawMessage, startIndex);
     }
 
     /// <summary>
@@ -171,7 +141,7 @@ namespace Supay.Irc.Messages
       }
 
       var parameters = new Collection<string>();
-      StringBuilder param = new StringBuilder();
+      var param = new StringBuilder();
       for (int i = startIndex; i < rawMessage.Length; i++)
       {
         char c = rawMessage[i];
@@ -209,11 +179,7 @@ namespace Supay.Irc.Messages
     public static string GetLastParameter(string rawMessage)
     {
       IList<string> p = GetParameters(rawMessage);
-      if (p.Count > 0)
-      {
-        return p[p.Count - 1];
-      }
-      return string.Empty;
+      return p.Count > 0 ? p[p.Count - 1] : string.Empty;
     }
 
     /// <summary>
@@ -222,11 +188,7 @@ namespace Supay.Irc.Messages
     public static string GetParameter(string rawMessage, int index)
     {
       IList<string> p = GetParameters(rawMessage);
-      if (p.Count > index)
-      {
-        return p[index];
-      }
-      return string.Empty;
+      return p.Count > index ? p[index] : string.Empty;
     }
 
     /// <summary>
@@ -306,9 +268,9 @@ namespace Supay.Irc.Messages
     /// </summary>
     public static int ConvertToUnixTime(DateTime dt)
     {
-      DateTime unixEpochStartDate = new DateTime(1970, 1, 1, 0, 0, 0, 0);
+      var unixEpochStartDate = new DateTime(1970, 1, 1, 0, 0, 0, 0);
       long ticksSinceEpochStart = dt.Ticks - unixEpochStartDate.Ticks;
-      TimeSpan ts = new TimeSpan(ticksSinceEpochStart);
+      var ts = new TimeSpan(ticksSinceEpochStart);
       return Convert.ToInt32(ts.TotalSeconds);
     }
 
@@ -317,7 +279,7 @@ namespace Supay.Irc.Messages
     /// </summary>
     public static DateTime ConvertFromUnixTime(int ut)
     {
-      DateTime unixEpochStartDate = new DateTime(1970, 1, 1, 0, 0, 0, 0);
+      var unixEpochStartDate = new DateTime(1970, 1, 1, 0, 0, 0, 0);
       return unixEpochStartDate.AddSeconds(ut);
     }
 
@@ -383,7 +345,7 @@ namespace Supay.Irc.Messages
     /// </summary>
     public static string ParametersToString(bool useColon, params string[] parameters)
     {
-      StringBuilder result = new StringBuilder();
+      var result = new StringBuilder();
       if (parameters.Length > 1)
       {
         for (int i = 0; i < parameters.Length - 1; i++)
@@ -456,7 +418,7 @@ namespace Supay.Irc.Messages
         return string.Empty;
       }
 
-      StringBuilder result = new StringBuilder();
+      var result = new StringBuilder();
       result.Append(items[0].ToString());
       for (int i = 1; i < items.Count; i++)
       {
@@ -479,10 +441,9 @@ namespace Supay.Irc.Messages
       {
         return string.Empty;
       }
-      StringBuilder result = new StringBuilder();
-      foreach (T item in items)
+      var result = new StringBuilder();
+      foreach (string itemValue in items.Select(customListItemRender))
       {
-        string itemValue = customListItemRender(item);
         result.Append(itemValue);
         result.Append(delimiter);
       }

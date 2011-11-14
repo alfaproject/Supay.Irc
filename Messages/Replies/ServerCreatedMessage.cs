@@ -10,7 +10,7 @@ namespace Supay.Irc.Messages
   [Serializable]
   public class ServerCreatedMessage : NumericMessage
   {
-    private const string thisServerCreated = "This server was created ";
+    private const string THIS_SERVER_CREATED = "This server was created ";
     private string createdDate = string.Empty;
 
     /// <summary>
@@ -42,7 +42,7 @@ namespace Supay.Irc.Messages
     protected override IList<string> GetParameters()
     {
       var parameters = base.GetParameters();
-      parameters.Add(thisServerCreated + this.CreatedDate);
+      parameters.Add(THIS_SERVER_CREATED + this.CreatedDate);
       return parameters;
     }
 
@@ -54,9 +54,9 @@ namespace Supay.Irc.Messages
       base.ParseParameters(parameters);
 
       string reply = parameters[1];
-      if (reply.IndexOf(thisServerCreated, StringComparison.Ordinal) != -1)
+      if (reply.IndexOf(THIS_SERVER_CREATED, StringComparison.Ordinal) != -1)
       {
-        int startOfDate = thisServerCreated.Length;
+        int startOfDate = THIS_SERVER_CREATED.Length;
         this.CreatedDate = reply.Substring(startOfDate);
       }
     }

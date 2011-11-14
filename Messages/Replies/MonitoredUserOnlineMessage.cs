@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Supay.Irc.Messages
 {
@@ -53,9 +54,8 @@ namespace Supay.Irc.Messages
       {
         string userListParam = parameters[1];
         var userList = userListParam.Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries);
-        foreach (string userMask in userList)
+        foreach (User newUser in userList.Select(userMask => new User(userMask)))
         {
-          User newUser = new User(userMask);
           this.Users.Add(newUser);
         }
       }

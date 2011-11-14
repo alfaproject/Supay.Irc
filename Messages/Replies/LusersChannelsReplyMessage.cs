@@ -10,7 +10,7 @@ namespace Supay.Irc.Messages
   [Serializable]
   public class LusersChannelsReplyMessage : NumericMessage
   {
-    private const string channelsFormed = "channels formed";
+    private const string CHANNELS_FORMED = "channels formed";
     private int channelCount = -1;
 
     /// <summary>
@@ -43,7 +43,7 @@ namespace Supay.Irc.Messages
     {
       var parameters = base.GetParameters();
       parameters.Add(this.ChannelCount.ToString(CultureInfo.InvariantCulture));
-      parameters.Add(channelsFormed);
+      parameters.Add(CHANNELS_FORMED);
       return parameters;
     }
 
