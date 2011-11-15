@@ -60,7 +60,7 @@ namespace Supay.Irc.Contacts
       }
       else
       {
-        this.tracker = new ContactsAreOnTracker(this);
+        this.tracker = new ContactsIsOnTracker(this);
       }
 
       this.tracker.Initialize();
@@ -80,7 +80,7 @@ namespace Supay.Irc.Contacts
 
     protected virtual void Dispose(bool disposing)
     {
-      if (disposing && this.tracker != null && this.tracker is ContactsAreOnTracker)
+      if (disposing && this.tracker != null && this.tracker is ContactsIsOnTracker)
       {
         ((IDisposable) this.tracker).Dispose();
       }

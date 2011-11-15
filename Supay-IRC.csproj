@@ -87,7 +87,7 @@
     <Compile Include="Model\Contacts\ContactsTracker.cs" />
     <Compile Include="Model\Contacts\ContactsWatchTracker.cs" />
     <Compile Include="Model\Contacts\ContactsMonitorTracker.cs" />
-    <Compile Include="Model\Contacts\ContactsAreOnTracker.cs" />
+    <Compile Include="Model\Contacts\ContactsIsOnTracker.cs" />
     <Compile Include="Messages\Modes\Channel\CannotRemoveServiceBot.cs" />
     <Compile Include="Messages\Modes\Channel\ChannelLimitReachedMessage.cs" />
     <Compile Include="Messages\Modes\Channel\RegisteredNicksOnlyMode.cs" />
