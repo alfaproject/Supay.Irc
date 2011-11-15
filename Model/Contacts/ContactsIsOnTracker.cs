@@ -7,7 +7,7 @@ using Supay.Irc.Network;
 
 namespace Supay.Irc.Contacts
 {
-  internal class ContactsIsOnTracker : ContactsTracker, IDisposable
+  internal sealed class ContactsIsOnTracker : ContactsTracker, IDisposable
   {
     private readonly IList<string> trackedNicks = new Collection<string>();
     private readonly IList<string> waitingOnNicks = new Collection<string>();
@@ -114,7 +114,7 @@ namespace Supay.Irc.Contacts
       GC.SuppressFinalize(this);
     }
 
-    protected virtual void Dispose(bool disposing)
+    private void Dispose(bool disposing)
     {
       if (disposing && this.timer != null)
       {

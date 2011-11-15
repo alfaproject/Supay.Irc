@@ -4,7 +4,7 @@ using Supay.Irc.Messages;
 
 namespace Supay.Irc.Contacts
 {
-  internal class ContactsMonitorTracker : ContactsTracker
+  internal sealed class ContactsMonitorTracker : ContactsTracker
   {
     public ContactsMonitorTracker(ContactList contacts)
       : base(contacts)
