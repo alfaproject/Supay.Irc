@@ -7,7 +7,7 @@ using Supay.Irc.Properties;
 namespace Supay.Irc.Messages
 {
   /// <summary>
-  ///   Provides clients with a correct <see cref="IrcMessage" /> for a given raw message string.
+  /// Provides clients with a correct <see cref="IrcMessage" /> for a given raw message string.
   /// </summary>
   public sealed class IrcMessageFactory
   {
@@ -16,43 +16,41 @@ namespace Supay.Irc.Messages
     private static readonly IrcMessageFactory factory = new IrcMessageFactory();
 
     private readonly LinkedList<IrcMessage> commands;
+    private readonly LinkedList<IrcMessage> numerics;
     private readonly LinkedList<IrcMessage> ctcps;
     private readonly LinkedList<IrcMessage> customs;
-    private readonly LinkedList<IrcMessage> numerics;
 
     /// <summary>
-    ///   Initializes a new instance of the <see cref="IrcMessageFactory" /> class.
+    /// Initializes a new instance of the <see cref="IrcMessageFactory" /> class.
     /// </summary>
-    /// <remarks>
-    ///   This is private because this class is a Singleton.
-    /// </remarks>
     private IrcMessageFactory()
     {
-      this.numerics = new LinkedList<IrcMessage>();
       this.commands = new LinkedList<IrcMessage>();
+      this.numerics = new LinkedList<IrcMessage>();
       this.ctcps = new LinkedList<IrcMessage>();
       this.customs = new LinkedList<IrcMessage>();
 
-      Type ircMessageType = typeof(IrcMessage);
-      foreach (Type type in ircMessageType.Assembly.GetTypes().Where(t => t.IsSubclassOf(ircMessageType)))
+      var ircMessageType = typeof(IrcMessage);
+      var types = from type in ircMessageType.Assembly.GetTypes()
+                  where !type.IsAbstract && type.IsSubclassOf(ircMessageType)
+                  select type;
+      foreach (var type in types)
       {
+        System.Diagnostics.Trace.WriteLine("Creating IrcMessage.");
         if (type.IsSubclassOf(typeof(CommandMessage)))
         {
-          if (!type.IsAbstract)
-          {
-            this.commands.AddLast((IrcMessage) Activator.CreateInstance(type));
-          }
+          this.commands.AddLast((IrcMessage) Activator.CreateInstance(type));
         }
         else if (type.IsSubclassOf(typeof(NumericMessage)))
         {
-          if (!type.IsAbstract && type != typeof(GenericNumericMessage) && type != typeof(GenericErrorMessage))
+          if (type != typeof(GenericNumericMessage) && type != typeof(GenericErrorMessage))
           {
             this.numerics.AddLast((IrcMessage) Activator.CreateInstance(type));
           }
         }
         else if (type.IsSubclassOf(typeof(CtcpMessage)))
         {
-          if (!type.IsAbstract && type != typeof(GenericCtcpRequestMessage) && type != typeof(GenericCtcpReplyMessage))
+          if (type != typeof(GenericCtcpRequestMessage) && type != typeof(GenericCtcpReplyMessage))
           {
             this.ctcps.AddLast((IrcMessage) Activator.CreateInstance(type));
           }
@@ -61,7 +59,7 @@ namespace Supay.Irc.Messages
     }
 
     /// <summary>
-    ///   Adds a custom message to consider for parsing raw messages received from the server.
+    /// Adds a custom message to consider for parsing raw messages received from the server.
     /// </summary>
     public static void AddCustomMessage(IrcMessage msg)
     {
@@ -69,7 +67,7 @@ namespace Supay.Irc.Messages
     }
 
     /// <summary>
-    ///   Parses the given string into an <see cref="IrcMessage" />.
+    /// Parses the given string into an <see cref="IrcMessage" />.
     /// </summary>
     /// <param name="unparsedMessage">The string to parse.</param>
     /// <returns>An <see cref="IrcMessage" /> which represents the given string.</returns>
@@ -103,8 +101,7 @@ namespace Supay.Irc.Messages
     }
 
     /// <summary>
-    ///   Determines and instantiates the correct subclass of <see cref="IrcMessage" /> for the
-    ///   given string.
+    /// Determines and instantiates the correct subclass of <see cref="IrcMessage" /> for the given string.
     /// </summary>
     private IrcMessage DetermineMessage(string unparsedMessage)
     {
