@@ -1,5 +1,3 @@
-using System;
-
 namespace Supay.Irc.Messages
 {
   /// <summary>
@@ -10,7 +8,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when an unrecognised message is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<GenericMessage>> GenericMessage;
+    public event IrcMessageEventHandler<GenericMessage> GenericMessage;
 
     /// <summary>
     ///   Raises the GenericMessage event.
@@ -28,7 +26,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when an unrecognised error message is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<GenericErrorMessage>> GenericErrorMessage;
+    public event IrcMessageEventHandler<GenericErrorMessage> GenericErrorMessage;
 
     /// <summary>
     ///   Raises the GenericErrorMessage event.
@@ -44,7 +42,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="ErroneousNickMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<ErroneousNickMessage>> ErroneousNick;
+    public event IrcMessageEventHandler<ErroneousNickMessage> ErroneousNick;
 
     /// <summary>
     ///   Raises the ErroneusNick event.
@@ -60,7 +58,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="NickCollisionMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<NickCollisionMessage>> NickCollision;
+    public event IrcMessageEventHandler<NickCollisionMessage> NickCollision;
 
     /// <summary>
     ///   Raises the NickCollision event.
@@ -76,7 +74,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="NickInUseMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<NickInUseMessage>> NickInUse;
+    public event IrcMessageEventHandler<NickInUseMessage> NickInUse;
 
     /// <summary>
     ///   Raises the NickCollision event.
@@ -92,7 +90,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="NoHostPermissionMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<NoHostPermissionMessage>> NoHostPermission;
+    public event IrcMessageEventHandler<NoHostPermissionMessage> NoHostPermission;
 
     /// <summary>
     ///   Raises the NoHostPermission event.
@@ -108,7 +106,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="NoNickGivenMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<NoNickGivenMessage>> NoNickGiven;
+    public event IrcMessageEventHandler<NoNickGivenMessage> NoNickGiven;
 
     /// <summary>
     ///   Raises the NoNickGiven event.
@@ -124,7 +122,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="NotRegisteredMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<NotRegisteredMessage>> NotRegistered;
+    public event IrcMessageEventHandler<NotRegisteredMessage> NotRegistered;
 
     /// <summary>
     ///   Raises the NotRegistered event.
@@ -140,7 +138,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="YouAreBannedMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<YouAreBannedMessage>> YouAreBanned;
+    public event IrcMessageEventHandler<YouAreBannedMessage> YouAreBanned;
 
     /// <summary>
     ///   Raises the YouAreBanned event.
@@ -156,7 +154,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="NoSuchChannelMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<NoSuchChannelMessage>> NoSuchChannel;
+    public event IrcMessageEventHandler<NoSuchChannelMessage> NoSuchChannel;
 
     /// <summary>
     ///   Raises the NoSuchChannel event.
@@ -172,7 +170,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="NoSuchNickMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<NoSuchNickMessage>> NoSuchNick;
+    public event IrcMessageEventHandler<NoSuchNickMessage> NoSuchNick;
 
     /// <summary>
     ///   Raises the NoSuchNick event.
@@ -188,7 +186,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="NoSuchServerMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<NoSuchServerMessage>> NoSuchServer;
+    public event IrcMessageEventHandler<NoSuchServerMessage> NoSuchServer;
 
     /// <summary>
     ///   Raises the NoSuchServer event.
@@ -204,7 +202,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="CannotSendToChannelMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<CannotSendToChannelMessage>> CannotSendToChannel;
+    public event IrcMessageEventHandler<CannotSendToChannelMessage> CannotSendToChannel;
 
     /// <summary>
     ///   Raises the <see cref="CannotSendToChannel" /> event.
@@ -220,7 +218,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="TooManyChannelsMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<TooManyChannelsMessage>> TooManyChannels;
+    public event IrcMessageEventHandler<TooManyChannelsMessage> TooManyChannels;
 
     /// <summary>
     ///   Raises the <see cref="TooManyChannels" /> event.
@@ -236,7 +234,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="TooManyChannelsMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<TooManyTargetsMessage>> TooManyTargets;
+    public event IrcMessageEventHandler<TooManyTargetsMessage> TooManyTargets;
 
     /// <summary>
     ///   Raises the <see cref="TooManyTargets" /> event.
@@ -252,7 +250,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="WasNoSuchNickMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<WasNoSuchNickMessage>> WasNoSuchNick;
+    public event IrcMessageEventHandler<WasNoSuchNickMessage> WasNoSuchNick;
 
     /// <summary>
     ///   Raises the <see cref="WasNoSuchNick" /> event.
@@ -268,7 +266,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="CannotUseColorsMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<CannotUseColorsMessage>> CannotUseColors;
+    public event IrcMessageEventHandler<CannotUseColorsMessage> CannotUseColors;
 
     /// <summary>
     ///   Raises the <see cref="CannotUseColors" /> event.
@@ -284,7 +282,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="NoPingOriginSpecifiedMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<NoPingOriginSpecifiedMessage>> NoPingOriginSpecified;
+    public event IrcMessageEventHandler<NoPingOriginSpecifiedMessage> NoPingOriginSpecified;
 
     /// <summary>
     ///   Raises the <see cref="NoPingOriginSpecified" /> event.
@@ -300,7 +298,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="NoRecipientGivenMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<NoRecipientGivenMessage>> NoRecipientGiven;
+    public event IrcMessageEventHandler<NoRecipientGivenMessage> NoRecipientGiven;
 
     /// <summary>
     ///   Raises the <see cref="NoRecipientGiven" /> event.
@@ -316,7 +314,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="NoTextToSendMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<NoTextToSendMessage>> NoTextToSend;
+    public event IrcMessageEventHandler<NoTextToSendMessage> NoTextToSend;
 
     /// <summary>
     ///   Raises the <see cref="NoTextToSend" /> event.
@@ -332,7 +330,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="TooManyLinesMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<TooManyLinesMessage>> TooManyLines;
+    public event IrcMessageEventHandler<TooManyLinesMessage> TooManyLines;
 
     /// <summary>
     ///   Raises the <see cref="NoTextToSend" /> event.
@@ -348,7 +346,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="UnknownCommandMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<UnknownCommandMessage>> UnknownCommand;
+    public event IrcMessageEventHandler<UnknownCommandMessage> UnknownCommand;
 
     /// <summary>
     ///   Raises the <see cref="UnknownCommand" /> event.
@@ -364,7 +362,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="CannotChangeNickWhileBannedMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<CannotChangeNickWhileBannedMessage>> CannotChangeNickWhileBanned;
+    public event IrcMessageEventHandler<CannotChangeNickWhileBannedMessage> CannotChangeNickWhileBanned;
 
     /// <summary>
     ///   Raises the <see cref="CannotChangeNickWhileBanned" /> event.
@@ -380,7 +378,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="NickChangeTooFastMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<NickChangeTooFastMessage>> NickChangeTooFast;
+    public event IrcMessageEventHandler<NickChangeTooFastMessage> NickChangeTooFast;
 
     /// <summary>
     ///   Raises the <see cref="NickChangeTooFast" /> event.
@@ -396,7 +394,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="TargetChangeTooFastMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<TargetChangeTooFastMessage>> TargetChangeTooFast;
+    public event IrcMessageEventHandler<TargetChangeTooFastMessage> TargetChangeTooFast;
 
     /// <summary>
     ///   Raises the <see cref="TargetChangeTooFast" /> event.
@@ -412,7 +410,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="NotOnChannelMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<NotOnChannelMessage>> NotOnChannel;
+    public event IrcMessageEventHandler<NotOnChannelMessage> NotOnChannel;
 
     /// <summary>
     ///   Raises the <see cref="NotOnChannel" /> event.
@@ -428,7 +426,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="AlreadyOnChannelMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<AlreadyOnChannelMessage>> AlreadyOnChannel;
+    public event IrcMessageEventHandler<AlreadyOnChannelMessage> AlreadyOnChannel;
 
     /// <summary>
     ///   Raises the <see cref="AlreadyOnChannel" /> event.
@@ -444,7 +442,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="IdentChangedMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<IdentChangedMessage>> IdentChanged;
+    public event IrcMessageEventHandler<IdentChangedMessage> IdentChanged;
 
     /// <summary>
     ///   Raises the <see cref="IdentChanged" /> event.
@@ -460,7 +458,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="NotEnoughParametersMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<NotEnoughParametersMessage>> NotEnoughParameters;
+    public event IrcMessageEventHandler<NotEnoughParametersMessage> NotEnoughParameters;
 
     /// <summary>
     ///   Raises the <see cref="NotEnoughParameters" /> event.
@@ -476,7 +474,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="ChannelKeyAlreadySetMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<ChannelKeyAlreadySetMessage>> ChannelKeyAlreadySet;
+    public event IrcMessageEventHandler<ChannelKeyAlreadySetMessage> ChannelKeyAlreadySet;
 
     /// <summary>
     ///   Raises the <see cref="ChannelKeyAlreadySet" /> event.
@@ -492,7 +490,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="ChannelLimitReachedMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<ChannelLimitReachedMessage>> ChannelLimitReached;
+    public event IrcMessageEventHandler<ChannelLimitReachedMessage> ChannelLimitReached;
 
     /// <summary>
     ///   Raises the <see cref="ChannelLimitReached" /> event.
@@ -508,7 +506,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="UnknownChannelModeMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<UnknownChannelModeMessage>> UnknownChannelMode;
+    public event IrcMessageEventHandler<UnknownChannelModeMessage> UnknownChannelMode;
 
     /// <summary>
     ///   Raises the <see cref="UnknownChannelMode" /> event.
@@ -524,7 +522,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="ChannelIsInviteOnlyMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<ChannelIsInviteOnlyMessage>> ChannelIsInviteOnly;
+    public event IrcMessageEventHandler<ChannelIsInviteOnlyMessage> ChannelIsInviteOnly;
 
     /// <summary>
     ///   Raises the <see cref="ChannelIsInviteOnly" /> event.
@@ -540,7 +538,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="YouAreBannedFromChannelMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<YouAreBannedFromChannelMessage>> YouAreBannedFromChannel;
+    public event IrcMessageEventHandler<YouAreBannedFromChannelMessage> YouAreBannedFromChannel;
 
     /// <summary>
     ///   Raises the <see cref="YouAreBannedFromChannel" /> event.
@@ -556,7 +554,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="ChannelRequiresKeyMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<ChannelRequiresKeyMessage>> ChannelRequiresKey;
+    public event IrcMessageEventHandler<ChannelRequiresKeyMessage> ChannelRequiresKey;
 
     /// <summary>
     ///   Raises the <see cref="ChannelRequiresKey" /> event.
@@ -572,7 +570,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="ChannelRequiresRegisteredNickMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<ChannelRequiresRegisteredNickMessage>> ChannelRequiresRegisteredNick;
+    public event IrcMessageEventHandler<ChannelRequiresRegisteredNickMessage> ChannelRequiresRegisteredNick;
 
     /// <summary>
     ///   Raises the <see cref="ChannelRequiresRegisteredNick" /> event.
@@ -588,7 +586,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="BanListFullMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<BanListFullMessage>> BanListFull;
+    public event IrcMessageEventHandler<BanListFullMessage> BanListFull;
 
     /// <summary>
     ///   Raises the <see cref="BanListFull" /> event.
@@ -604,7 +602,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="ChannelOperatorStatusRequiredMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<ChannelOperatorStatusRequiredMessage>> ChannelOperatorStatusRequired;
+    public event IrcMessageEventHandler<ChannelOperatorStatusRequiredMessage> ChannelOperatorStatusRequired;
 
     /// <summary>
     ///   Raises the <see cref="ChannelOperatorStatusRequired" /> event.
@@ -620,7 +618,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="CannotRemoveServiceBotMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<CannotRemoveServiceBotMessage>> CannotRemoveServiceBot;
+    public event IrcMessageEventHandler<CannotRemoveServiceBotMessage> CannotRemoveServiceBot;
 
     /// <summary>
     ///   Raises the <see cref="CannotRemoveServiceBot" /> event.
@@ -636,7 +634,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="ChannelBlockedMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<ChannelBlockedMessage>> ChannelBlocked;
+    public event IrcMessageEventHandler<ChannelBlockedMessage> ChannelBlocked;
 
     /// <summary>
     ///   Raises the <see cref="ChannelBlocked" /> event.
@@ -652,7 +650,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="UnknownUserModeMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<UnknownUserModeMessage>> UnknownUserMode;
+    public event IrcMessageEventHandler<UnknownUserModeMessage> UnknownUserMode;
 
     /// <summary>
     ///   Raises the <see cref="UnknownUserMode" /> event.
@@ -668,7 +666,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="SilenceListFullMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<SilenceListFullMessage>> SilenceListFull;
+    public event IrcMessageEventHandler<SilenceListFullMessage> SilenceListFull;
 
     /// <summary>
     ///   Raises the <see cref="SilenceListFull" /> event.
@@ -684,7 +682,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="AcceptListFullMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<AcceptListFullMessage>> AcceptListFull;
+    public event IrcMessageEventHandler<AcceptListFullMessage> AcceptListFull;
 
     /// <summary>
     ///   Raises the <see cref="AcceptListFull" /> event.
@@ -700,7 +698,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="AcceptAlreadyExistsMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<AcceptAlreadyExistsMessage>> AcceptAlreadyExists;
+    public event IrcMessageEventHandler<AcceptAlreadyExistsMessage> AcceptAlreadyExists;
 
     /// <summary>
     ///   Raises the <see cref="AcceptAlreadyExists" /> event.
@@ -716,7 +714,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="AcceptDoesNotExistMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<AcceptDoesNotExistMessage>> AcceptDoesNotExist;
+    public event IrcMessageEventHandler<AcceptDoesNotExistMessage> AcceptDoesNotExist;
 
     /// <summary>
     ///   Raises the <see cref="AcceptDoesNotExist" /> event.
@@ -736,7 +734,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="PingMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<PingMessage>> Ping;
+    public event IrcMessageEventHandler<PingMessage> Ping;
 
     /// <summary>
     ///   Raises the Ping event.
@@ -752,7 +750,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="PongMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<PongMessage>> Pong;
+    public event IrcMessageEventHandler<PongMessage> Pong;
 
     /// <summary>
     ///   Raises the Pong event.
@@ -768,7 +766,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="ChatMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<TextMessage>> Chat;
+    public event IrcMessageEventHandler<TextMessage> Chat;
 
     /// <summary>
     ///   Raises the Chat event.
@@ -784,7 +782,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="NoticeMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<TextMessage>> Notice;
+    public event IrcMessageEventHandler<TextMessage> Notice;
 
     /// <summary>
     ///   Raises the Notice event.
@@ -800,7 +798,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="NickMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<NickMessage>> NickChange;
+    public event IrcMessageEventHandler<NickMessage> NickChange;
 
     /// <summary>
     ///   Raises the NickChange event.
@@ -816,7 +814,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="JoinMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<JoinMessage>> Join;
+    public event IrcMessageEventHandler<JoinMessage> Join;
 
     /// <summary>
     ///   Raises the Join event.
@@ -832,7 +830,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="PartMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<PartMessage>> Part;
+    public event IrcMessageEventHandler<PartMessage> Part;
 
     /// <summary>
     ///   Raises the Part event.
@@ -848,7 +846,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="QuitMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<QuitMessage>> Quit;
+    public event IrcMessageEventHandler<QuitMessage> Quit;
 
     /// <summary>
     ///   Raises the Quit event.
@@ -864,7 +862,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="KickMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<KickMessage>> Kick;
+    public event IrcMessageEventHandler<KickMessage> Kick;
 
     /// <summary>
     ///   Raises the Kick event.
@@ -880,7 +878,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="TopicMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<TopicMessage>> Topic;
+    public event IrcMessageEventHandler<TopicMessage> Topic;
 
     /// <summary>
     ///   Raises the Topic event.
@@ -896,7 +894,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="TopicReplyMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<TopicReplyMessage>> TopicReply;
+    public event IrcMessageEventHandler<TopicReplyMessage> TopicReply;
 
     /// <summary>
     ///   Raises the TopicReply event.
@@ -912,7 +910,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="TopicNoneReplyMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<TopicNoneReplyMessage>> TopicNoneReply;
+    public event IrcMessageEventHandler<TopicNoneReplyMessage> TopicNoneReply;
 
     /// <summary>
     ///   Raises the TopicNoneReply event.
@@ -928,7 +926,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when an <see cref="InviteMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<InviteMessage>> Invite;
+    public event IrcMessageEventHandler<InviteMessage> Invite;
 
     /// <summary>
     ///   Raises the Invite event.
@@ -944,7 +942,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="AwayMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<AwayMessage>> Away;
+    public event IrcMessageEventHandler<AwayMessage> Away;
 
     /// <summary>
     ///   Raises the Away event.
@@ -960,7 +958,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="AdminMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<AdminMessage>> Admin;
+    public event IrcMessageEventHandler<AdminMessage> Admin;
 
     /// <summary>
     ///   Raises the Admin event.
@@ -976,7 +974,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="BackMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<BackMessage>> Back;
+    public event IrcMessageEventHandler<BackMessage> Back;
 
     /// <summary>
     ///   Raises the Back event.
@@ -992,7 +990,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="GenericNumericMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<GenericNumericMessage>> GenericNumericMessage;
+    public event IrcMessageEventHandler<GenericNumericMessage> GenericNumericMessage;
 
     /// <summary>
     ///   Raises the GenericNumericMessage event.
@@ -1008,7 +1006,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="InfoMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<InfoMessage>> Info;
+    public event IrcMessageEventHandler<InfoMessage> Info;
 
     /// <summary>
     ///   Raises the Info event.
@@ -1024,7 +1022,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="IsOnMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<IsOnMessage>> IsOn;
+    public event IrcMessageEventHandler<IsOnMessage> IsOn;
 
     /// <summary>
     ///   Raises the IsOn event.
@@ -1040,7 +1038,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="IsOnReplyMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<IsOnReplyMessage>> IsOnReply;
+    public event IrcMessageEventHandler<IsOnReplyMessage> IsOnReply;
 
     /// <summary>
     ///   Raises the IsOnReply event.
@@ -1056,7 +1054,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="KillMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<KillMessage>> Kill;
+    public event IrcMessageEventHandler<KillMessage> Kill;
 
     /// <summary>
     ///   Raises the Kill event.
@@ -1072,7 +1070,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="LinksMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<LinksMessage>> Links;
+    public event IrcMessageEventHandler<LinksMessage> Links;
 
     /// <summary>
     ///   Raises the Links event.
@@ -1088,7 +1086,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="LinksReplyMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<LinksReplyMessage>> LinksReply;
+    public event IrcMessageEventHandler<LinksReplyMessage> LinksReply;
 
     /// <summary>
     ///   Raises the LinksReply event.
@@ -1104,7 +1102,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="LinksEndReplyMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<LinksEndReplyMessage>> LinksEndReply;
+    public event IrcMessageEventHandler<LinksEndReplyMessage> LinksEndReply;
 
     /// <summary>
     ///   Raises the LinksEndReply event.
@@ -1120,7 +1118,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="ListMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<ListMessage>> List;
+    public event IrcMessageEventHandler<ListMessage> List;
 
     /// <summary>
     ///   Raises the List event.
@@ -1136,7 +1134,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="ListStartReplyMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<ListStartReplyMessage>> ListStartReply;
+    public event IrcMessageEventHandler<ListStartReplyMessage> ListStartReply;
 
     /// <summary>
     ///   Raises the ListStartReply event.
@@ -1152,7 +1150,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="ListReplyMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<ListReplyMessage>> ListReply;
+    public event IrcMessageEventHandler<ListReplyMessage> ListReply;
 
     /// <summary>
     ///   Raises the ListReply event.
@@ -1168,7 +1166,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="ListEndReplyMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<ListEndReplyMessage>> ListEndReply;
+    public event IrcMessageEventHandler<ListEndReplyMessage> ListEndReply;
 
     /// <summary>
     ///   Raises the ListEndReply event.
@@ -1184,7 +1182,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="LusersMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<LusersMessage>> Lusers;
+    public event IrcMessageEventHandler<LusersMessage> Lusers;
 
     /// <summary>
     ///   Raises the Lusers event.
@@ -1200,7 +1198,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="LusersReplyMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<LusersReplyMessage>> LusersReply;
+    public event IrcMessageEventHandler<LusersReplyMessage> LusersReply;
 
     /// <summary>
     ///   Raises the LusersReply event.
@@ -1216,7 +1214,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="LusersOpReplyMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<LusersOpReplyMessage>> LusersOpReply;
+    public event IrcMessageEventHandler<LusersOpReplyMessage> LusersOpReply;
 
     /// <summary>
     ///   Raises the LusersOpReply event.
@@ -1232,7 +1230,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="LusersMeReplyMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<LusersMeReplyMessage>> LusersMeReply;
+    public event IrcMessageEventHandler<LusersMeReplyMessage> LusersMeReply;
 
     /// <summary>
     ///   Raises the LusersMeReply event.
@@ -1248,7 +1246,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="LusersChannelsReplyMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<LusersChannelsReplyMessage>> LusersChannelsReply;
+    public event IrcMessageEventHandler<LusersChannelsReplyMessage> LusersChannelsReply;
 
     /// <summary>
     ///   Raises the LusersChannelsReply event.
@@ -1264,7 +1262,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="MotdMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<MotdMessage>> Motd;
+    public event IrcMessageEventHandler<MotdMessage> Motd;
 
     /// <summary>
     ///   Raises the Motd event.
@@ -1280,7 +1278,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="MotdStartReplyMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<MotdStartReplyMessage>> MotdStartReply;
+    public event IrcMessageEventHandler<MotdStartReplyMessage> MotdStartReply;
 
     /// <summary>
     ///   Raises the MotdStartReply event.
@@ -1296,7 +1294,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="MotdReplyMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<MotdReplyMessage>> MotdReply;
+    public event IrcMessageEventHandler<MotdReplyMessage> MotdReply;
 
     /// <summary>
     ///   Raises the MotdReply event.
@@ -1312,7 +1310,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="MotdEndReplyMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<MotdEndReplyMessage>> MotdEndReply;
+    public event IrcMessageEventHandler<MotdEndReplyMessage> MotdEndReply;
 
     /// <summary>
     ///   Raises the MotdEndReply event.
@@ -1328,7 +1326,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="NamesMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<NamesMessage>> Names;
+    public event IrcMessageEventHandler<NamesMessage> Names;
 
     /// <summary>
     ///   Raises the Names event.
@@ -1344,7 +1342,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="NamesReplyMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<NamesReplyMessage>> NamesReply;
+    public event IrcMessageEventHandler<NamesReplyMessage> NamesReply;
 
     /// <summary>
     ///   Raises the NamesReply event.
@@ -1360,7 +1358,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="NamesEndReplyMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<NamesEndReplyMessage>> NamesEndReply;
+    public event IrcMessageEventHandler<NamesEndReplyMessage> NamesEndReply;
 
     /// <summary>
     ///   Raises the NamesEndReply event.
@@ -1376,7 +1374,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="OperMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<OperMessage>> Oper;
+    public event IrcMessageEventHandler<OperMessage> Oper;
 
     /// <summary>
     ///   Raises the Oper event.
@@ -1392,7 +1390,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="OperReplyMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<OperReplyMessage>> OperReply;
+    public event IrcMessageEventHandler<OperReplyMessage> OperReply;
 
     /// <summary>
     ///   Raises the OperReply event.
@@ -1408,7 +1406,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="PasswordMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<PasswordMessage>> Password;
+    public event IrcMessageEventHandler<PasswordMessage> Password;
 
     /// <summary>
     ///   Raises the Password event.
@@ -1424,7 +1422,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="SelfAwayMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<SelfAwayMessage>> SelfAway;
+    public event IrcMessageEventHandler<SelfAwayMessage> SelfAway;
 
     /// <summary>
     ///   Raises the SelfAway event.
@@ -1440,7 +1438,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="SelfUnAwayMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<SelfUnAwayMessage>> SelfUnAway;
+    public event IrcMessageEventHandler<SelfUnAwayMessage> SelfUnAway;
 
     /// <summary>
     ///   Raises the SelfUnAway event.
@@ -1456,7 +1454,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="StatsMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<StatsMessage>> Stats;
+    public event IrcMessageEventHandler<StatsMessage> Stats;
 
     /// <summary>
     ///   Raises the Stats event.
@@ -1472,7 +1470,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="StatsReplyMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<StatsReplyMessage>> StatsReply;
+    public event IrcMessageEventHandler<StatsReplyMessage> StatsReply;
 
     /// <summary>
     ///   Raises the StatsReply event.
@@ -1488,7 +1486,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="TimeMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<TimeMessage>> Time;
+    public event IrcMessageEventHandler<TimeMessage> Time;
 
     /// <summary>
     ///   Raises the Time event.
@@ -1504,7 +1502,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="ServerTimeReplyMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<ServerTimeReplyMessage>> ServerTimeReply;
+    public event IrcMessageEventHandler<ServerTimeReplyMessage> ServerTimeReply;
 
     /// <summary>
     ///   Raises the ServerTimeReply event.
@@ -1520,7 +1518,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="TraceMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<TraceMessage>> Trace;
+    public event IrcMessageEventHandler<TraceMessage> Trace;
 
     /// <summary>
     ///   Raises the Trace event.
@@ -1536,7 +1534,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="UserNotificationMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<UserNotificationMessage>> UserNotification;
+    public event IrcMessageEventHandler<UserNotificationMessage> UserNotification;
 
     /// <summary>
     ///   Raises the UserNotification event.
@@ -1552,7 +1550,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="UserNotificationServerSideMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<UserNotificationServerSideMessage>> UserNotificationServerSide;
+    public event IrcMessageEventHandler<UserNotificationServerSideMessage> UserNotificationServerSide;
 
     /// <summary>
     ///   Raises the <see cref="UserNotificationServerSide" /> event.
@@ -1568,7 +1566,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="UserAwayMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<UserAwayMessage>> UserAway;
+    public event IrcMessageEventHandler<UserAwayMessage> UserAway;
 
     /// <summary>
     ///   Raises the UserAway event.
@@ -1584,7 +1582,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="VersionMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<VersionMessage>> Version;
+    public event IrcMessageEventHandler<VersionMessage> Version;
 
     /// <summary>
     ///   Raises the Version event.
@@ -1600,7 +1598,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="WallopsMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<WallopsMessage>> Wallops;
+    public event IrcMessageEventHandler<WallopsMessage> Wallops;
 
     /// <summary>
     ///   Raises the Wallops event.
@@ -1616,7 +1614,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="WallchopsMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<WallchopsMessage>> Wallchops;
+    public event IrcMessageEventHandler<WallchopsMessage> Wallchops;
 
     /// <summary>
     ///   Raises the Wallchops event.
@@ -1632,7 +1630,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="WhoMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<WhoMessage>> Who;
+    public event IrcMessageEventHandler<WhoMessage> Who;
 
     /// <summary>
     ///   Raises the Who event.
@@ -1648,7 +1646,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="WhoReplyMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<WhoReplyMessage>> WhoReply;
+    public event IrcMessageEventHandler<WhoReplyMessage> WhoReply;
 
     /// <summary>
     ///   Raises the WhoReply event.
@@ -1664,7 +1662,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="WhoEndReplyMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<WhoEndReplyMessage>> WhoEndReply;
+    public event IrcMessageEventHandler<WhoEndReplyMessage> WhoEndReply;
 
     /// <summary>
     ///   Raises the WhoEndReply event.
@@ -1680,7 +1678,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="WhoIsMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<WhoIsMessage>> WhoIs;
+    public event IrcMessageEventHandler<WhoIsMessage> WhoIs;
 
     /// <summary>
     ///   Raises the WhoIs event.
@@ -1696,7 +1694,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="WhoIsChannelsReplyMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<WhoIsChannelsReplyMessage>> WhoIsChannelsReply;
+    public event IrcMessageEventHandler<WhoIsChannelsReplyMessage> WhoIsChannelsReply;
 
     /// <summary>
     ///   Raises the WhoIsChannelsReply event.
@@ -1712,7 +1710,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="WhoIsIdleReplyMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<WhoIsIdleReplyMessage>> WhoIsIdleReply;
+    public event IrcMessageEventHandler<WhoIsIdleReplyMessage> WhoIsIdleReply;
 
     /// <summary>
     ///   Raises the WhoIsIdleReply event.
@@ -1728,7 +1726,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="WhoIsOperReplyMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<WhoIsOperReplyMessage>> WhoIsOperReply;
+    public event IrcMessageEventHandler<WhoIsOperReplyMessage> WhoIsOperReply;
 
     /// <summary>
     ///   Raises the WhoIsOperReply event.
@@ -1744,7 +1742,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="WhoIsServerReplyMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<WhoIsServerReplyMessage>> WhoIsServerReply;
+    public event IrcMessageEventHandler<WhoIsServerReplyMessage> WhoIsServerReply;
 
     /// <summary>
     ///   Raises the WhoIsServerReply event.
@@ -1760,7 +1758,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="WhoIsUserReplyMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<WhoIsUserReplyMessage>> WhoIsUserReply;
+    public event IrcMessageEventHandler<WhoIsUserReplyMessage> WhoIsUserReply;
 
     /// <summary>
     ///   Raises the WhoIsUserReply event.
@@ -1776,7 +1774,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="WhoIsEndReplyMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<WhoIsEndReplyMessage>> WhoIsEndReply;
+    public event IrcMessageEventHandler<WhoIsEndReplyMessage> WhoIsEndReply;
 
     /// <summary>
     ///   Raises the WhoIsEndReply event.
@@ -1792,7 +1790,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="WhoIsRegisteredNickReplyMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<WhoIsRegisteredNickReplyMessage>> WhoIsRegisteredNickReply;
+    public event IrcMessageEventHandler<WhoIsRegisteredNickReplyMessage> WhoIsRegisteredNickReply;
 
     /// <summary>
     ///   Raises the <see cref="WhoIsRegisteredNickReply" /> event.
@@ -1808,7 +1806,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="WhoWasMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<WhoWasMessage>> WhoWas;
+    public event IrcMessageEventHandler<WhoWasMessage> WhoWas;
 
     /// <summary>
     ///   Raises the WhoWas event.
@@ -1824,7 +1822,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="WhoWasUserReplyMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<WhoWasUserReplyMessage>> WhoWasUserReply;
+    public event IrcMessageEventHandler<WhoWasUserReplyMessage> WhoWasUserReply;
 
     /// <summary>
     ///   Raises the WhoWasUserReply event.
@@ -1840,7 +1838,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="WhoWasEndReplyMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<WhoWasEndReplyMessage>> WhoWasEndReply;
+    public event IrcMessageEventHandler<WhoWasEndReplyMessage> WhoWasEndReply;
 
     /// <summary>
     ///   Raises the WhoWasEndReply event.
@@ -1856,7 +1854,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="UserHostMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<UserHostMessage>> UserHost;
+    public event IrcMessageEventHandler<UserHostMessage> UserHost;
 
     /// <summary>
     ///   Raises the UserHost event.
@@ -1872,7 +1870,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="UserHostReplyMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<UserHostReplyMessage>> UserHostReply;
+    public event IrcMessageEventHandler<UserHostReplyMessage> UserHostReply;
 
     /// <summary>
     ///   Raises the UserHostReply event.
@@ -1888,7 +1886,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="SilenceMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<SilenceMessage>> Silence;
+    public event IrcMessageEventHandler<SilenceMessage> Silence;
 
     /// <summary>
     ///   Raises the Silence event.
@@ -1904,7 +1902,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="SilenceReplyMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<SilenceReplyMessage>> SilenceReply;
+    public event IrcMessageEventHandler<SilenceReplyMessage> SilenceReply;
 
     /// <summary>
     ///   Raises the SilenceReply event.
@@ -1920,7 +1918,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="SilenceEndReplyMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<SilenceEndReplyMessage>> SilenceEndReply;
+    public event IrcMessageEventHandler<SilenceEndReplyMessage> SilenceEndReply;
 
     /// <summary>
     ///   Raises the SilenceEndReply event.
@@ -1936,7 +1934,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="AcceptListEditorMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<AcceptListEditorMessage>> AcceptListEditor;
+    public event IrcMessageEventHandler<AcceptListEditorMessage> AcceptListEditor;
 
     /// <summary>
     ///   Raises the <see cref="AcceptListEditor" /> event.
@@ -1952,7 +1950,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="AcceptListRequestMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<AcceptListRequestMessage>> AcceptListRequest;
+    public event IrcMessageEventHandler<AcceptListRequestMessage> AcceptListRequest;
 
     /// <summary>
     ///   Raises the <see cref="AcceptListRequest" /> event.
@@ -1968,7 +1966,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="AcceptListReplyMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<AcceptListReplyMessage>> AcceptListReply;
+    public event IrcMessageEventHandler<AcceptListReplyMessage> AcceptListReply;
 
     /// <summary>
     ///   Raises the <see cref="AcceptListReply" /> event.
@@ -1984,7 +1982,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="AcceptListEndReplyMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<AcceptListEndReplyMessage>> AcceptListEndReply;
+    public event IrcMessageEventHandler<AcceptListEndReplyMessage> AcceptListEndReply;
 
     /// <summary>
     ///   Raises the <see cref="AcceptListEndReply" /> event.
@@ -2004,7 +2002,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="ActionRequestMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<ActionRequestMessage>> ActionRequest;
+    public event IrcMessageEventHandler<ActionRequestMessage> ActionRequest;
 
     /// <summary>
     ///   Raises the ActionRequest event.
@@ -2020,7 +2018,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="GenericCtcpReplyMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<GenericCtcpRequestMessage>> GenericCtcpRequest;
+    public event IrcMessageEventHandler<GenericCtcpRequestMessage> GenericCtcpRequest;
 
     /// <summary>
     ///   Raises the GenericCtcpReply event.
@@ -2036,7 +2034,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="GenericCtcpRequestMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<GenericCtcpReplyMessage>> GenericCtcpReply;
+    public event IrcMessageEventHandler<GenericCtcpReplyMessage> GenericCtcpReply;
 
     /// <summary>
     ///   Raises the GenericCtcpRequest event.
@@ -2052,7 +2050,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="ClientInfoRequestMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<ClientInfoRequestMessage>> ClientInfoRequest;
+    public event IrcMessageEventHandler<ClientInfoRequestMessage> ClientInfoRequest;
 
     /// <summary>
     ///   Raises the ClientInfoRequest event.
@@ -2068,7 +2066,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="ClientInfoReplyMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<ClientInfoReplyMessage>> ClientInfoReply;
+    public event IrcMessageEventHandler<ClientInfoReplyMessage> ClientInfoReply;
 
     /// <summary>
     ///   Raises the ClientInfoReply event.
@@ -2084,7 +2082,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="FingerRequestMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<FingerRequestMessage>> FingerRequest;
+    public event IrcMessageEventHandler<FingerRequestMessage> FingerRequest;
 
     /// <summary>
     ///   Raises the FingerRequest event.
@@ -2100,7 +2098,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="FingerReplyMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<FingerReplyMessage>> FingerReply;
+    public event IrcMessageEventHandler<FingerReplyMessage> FingerReply;
 
     /// <summary>
     ///   Raises the FingerReply event.
@@ -2116,7 +2114,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="PageRequestMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<PageRequestMessage>> PageRequest;
+    public event IrcMessageEventHandler<PageRequestMessage> PageRequest;
 
     /// <summary>
     ///   Raises the PageRequest event.
@@ -2132,7 +2130,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="ScriptRequestMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<ScriptRequestMessage>> ScriptRequest;
+    public event IrcMessageEventHandler<ScriptRequestMessage> ScriptRequest;
 
     /// <summary>
     ///   Raises the ScriptRequest event.
@@ -2148,7 +2146,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="ScriptReplyMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<ScriptReplyMessage>> ScriptReply;
+    public event IrcMessageEventHandler<ScriptReplyMessage> ScriptReply;
 
     /// <summary>
     ///   Raises the ScriptReply event.
@@ -2164,7 +2162,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="PingRequestMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<PingRequestMessage>> PingRequest;
+    public event IrcMessageEventHandler<PingRequestMessage> PingRequest;
 
     /// <summary>
     ///   Raises the PingRequest event.
@@ -2180,7 +2178,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="PingReplyMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<PingReplyMessage>> PingReply;
+    public event IrcMessageEventHandler<PingReplyMessage> PingReply;
 
     /// <summary>
     ///   Raises the PingReply event.
@@ -2196,7 +2194,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="TimeRequestMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<TimeRequestMessage>> TimeRequest;
+    public event IrcMessageEventHandler<TimeRequestMessage> TimeRequest;
 
     /// <summary>
     ///   Raises the TimeRequest event.
@@ -2212,7 +2210,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="TimeReplyMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<TimeReplyMessage>> TimeReply;
+    public event IrcMessageEventHandler<TimeReplyMessage> TimeReply;
 
     /// <summary>
     ///   Raises the TimeReply event.
@@ -2228,7 +2226,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="VersionRequestMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<VersionRequestMessage>> VersionRequest;
+    public event IrcMessageEventHandler<VersionRequestMessage> VersionRequest;
 
     /// <summary>
     ///   Raises the VersionRequest event.
@@ -2244,7 +2242,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="VersionReplyMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<VersionReplyMessage>> VersionReply;
+    public event IrcMessageEventHandler<VersionReplyMessage> VersionReply;
 
     /// <summary>
     ///   Raises the VersionReply event.
@@ -2260,7 +2258,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="UserInfoRequestMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<UserInfoRequestMessage>> UserInfoRequest;
+    public event IrcMessageEventHandler<UserInfoRequestMessage> UserInfoRequest;
 
     /// <summary>
     ///   Raises the UserInfoRequest event.
@@ -2276,7 +2274,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="UserInfoReplyMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<UserInfoReplyMessage>> UserInfoReply;
+    public event IrcMessageEventHandler<UserInfoReplyMessage> UserInfoReply;
 
     /// <summary>
     ///   Raises the UserInfoReply event.
@@ -2292,7 +2290,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="SourceRequestMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<SourceRequestMessage>> SourceRequest;
+    public event IrcMessageEventHandler<SourceRequestMessage> SourceRequest;
 
     /// <summary>
     ///   Raises the SourceRequest event.
@@ -2308,7 +2306,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="SourceReplyMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<SourceReplyMessage>> SourceReply;
+    public event IrcMessageEventHandler<SourceReplyMessage> SourceReply;
 
     /// <summary>
     ///   Raises the SourceReply event.
@@ -2324,7 +2322,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="SoundRequestMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<SoundRequestMessage>> SoundRequest;
+    public event IrcMessageEventHandler<SoundRequestMessage> SoundRequest;
 
     /// <summary>
     ///   Raises the SoundRequest event.
@@ -2340,7 +2338,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="ErrorReplyMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<ErrorReplyMessage>> ErrorReply;
+    public event IrcMessageEventHandler<ErrorReplyMessage> ErrorReply;
 
     /// <summary>
     ///   Raises the ErrorReply event.
@@ -2356,7 +2354,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="ErrorRequestMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<ErrorRequestMessage>> ErrorRequest;
+    public event IrcMessageEventHandler<ErrorRequestMessage> ErrorRequest;
 
     /// <summary>
     ///   Raises the ErrorRequest event.
@@ -2372,7 +2370,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="Mp3RequestMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<Mp3RequestMessage>> Mp3Request;
+    public event IrcMessageEventHandler<Mp3RequestMessage> Mp3Request;
 
     /// <summary>
     ///   Raises the <see cref="Mp3Request" /> event.
@@ -2388,7 +2386,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="SlotsRequestMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<SlotsRequestMessage>> SlotsRequest;
+    public event IrcMessageEventHandler<SlotsRequestMessage> SlotsRequest;
 
     /// <summary>
     ///   Raises the <see cref="SlotsRequest" /> event.
@@ -2408,7 +2406,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="DccChatRequestMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<DccChatRequestMessage>> DccChatRequest;
+    public event IrcMessageEventHandler<DccChatRequestMessage> DccChatRequest;
 
     /// <summary>
     ///   Raises the DccChatRequest event.
@@ -2424,7 +2422,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="DccSendRequestMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<DccSendRequestMessage>> DccSendRequest;
+    public event IrcMessageEventHandler<DccSendRequestMessage> DccSendRequest;
 
     /// <summary>
     ///   Raises the DccSendRequest event.
@@ -2440,7 +2438,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="DccGetRequestMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<DccGetRequestMessage>> DccGetRequest;
+    public event IrcMessageEventHandler<DccGetRequestMessage> DccGetRequest;
 
     /// <summary>
     ///   Raises the DccGetRequest event.
@@ -2456,7 +2454,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="DccResumeRequestMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<DccResumeRequestMessage>> DccResumeRequest;
+    public event IrcMessageEventHandler<DccResumeRequestMessage> DccResumeRequest;
 
     /// <summary>
     ///   Raises the DccResumeRequest event.
@@ -2472,7 +2470,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="DccAcceptRequestMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<DccAcceptRequestMessage>> DccAcceptRequest;
+    public event IrcMessageEventHandler<DccAcceptRequestMessage> DccAcceptRequest;
 
     /// <summary>
     ///   Raises the DccAcceptRequest event.
@@ -2492,7 +2490,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="UserModeMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<UserModeMessage>> UserMode;
+    public event IrcMessageEventHandler<UserModeMessage> UserMode;
 
     /// <summary>
     ///   Raises the UserMode event.
@@ -2508,7 +2506,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="ChannelModeMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<ChannelModeMessage>> ChannelMode;
+    public event IrcMessageEventHandler<ChannelModeMessage> ChannelMode;
 
     /// <summary>
     ///   Raises the ChannelMode event.
@@ -2524,7 +2522,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="ChannelModeIsReplyMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<ChannelModeIsReplyMessage>> ChannelModeIsReply;
+    public event IrcMessageEventHandler<ChannelModeIsReplyMessage> ChannelModeIsReply;
 
     /// <summary>
     ///   Raises the ChannelModeIsReply event.
@@ -2540,7 +2538,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="UserModeIsReplyMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<UserModeIsReplyMessage>> UserModeIsReply;
+    public event IrcMessageEventHandler<UserModeIsReplyMessage> UserModeIsReply;
 
     /// <summary>
     ///   Raises the ChannelModeIsReply event.
@@ -2556,7 +2554,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="BansReplyMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<BansReplyMessage>> BansReply;
+    public event IrcMessageEventHandler<BansReplyMessage> BansReply;
 
     /// <summary>
     ///   Raises the BansReply event.
@@ -2572,7 +2570,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="BansEndReplyMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<BansEndReplyMessage>> BansEndReply;
+    public event IrcMessageEventHandler<BansEndReplyMessage> BansEndReply;
 
     /// <summary>
     ///   Raises the BansEndReply event.
@@ -2592,7 +2590,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="WelcomeMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<WelcomeMessage>> Welcome;
+    public event IrcMessageEventHandler<WelcomeMessage> Welcome;
 
     /// <summary>
     ///   Raises the Welcome event.
@@ -2608,7 +2606,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="YourHostMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<YourHostMessage>> YourHost;
+    public event IrcMessageEventHandler<YourHostMessage> YourHost;
 
     /// <summary>
     ///   Raises the YourHost event.
@@ -2624,7 +2622,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="ServerCreatedMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<ServerCreatedMessage>> ServerCreated;
+    public event IrcMessageEventHandler<ServerCreatedMessage> ServerCreated;
 
     /// <summary>
     ///   Raises the ServerCreated event.
@@ -2640,7 +2638,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="ServerInfoMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<ServerInfoMessage>> ServerInfo;
+    public event IrcMessageEventHandler<ServerInfoMessage> ServerInfo;
 
     /// <summary>
     ///   Raises the ServerInfo event.
@@ -2656,7 +2654,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="SupportMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<SupportMessage>> Support;
+    public event IrcMessageEventHandler<SupportMessage> Support;
 
     /// <summary>
     ///   Raises the Support event.
@@ -2672,7 +2670,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="UnknownConnectionsMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<UnknownConnectionsMessage>> UnknownConnections;
+    public event IrcMessageEventHandler<UnknownConnectionsMessage> UnknownConnections;
 
     /// <summary>
     ///   Raises the <see cref="UnknownConnections" /> event.
@@ -2688,7 +2686,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="UniqueIdMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<UniqueIdMessage>> UniqueId;
+    public event IrcMessageEventHandler<UniqueIdMessage> UniqueId;
 
     /// <summary>
     ///   Raises the <see cref="UnknownConnections" /> event.
@@ -2708,7 +2706,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="LocalUsersReplyMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<LocalUsersReplyMessage>> LocalUsersReply;
+    public event IrcMessageEventHandler<LocalUsersReplyMessage> LocalUsersReply;
 
     /// <summary>
     ///   Raises the LocalUsersReply event.
@@ -2724,7 +2722,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="GlobalUsersReplyMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<GlobalUsersReplyMessage>> GlobalUsersReply;
+    public event IrcMessageEventHandler<GlobalUsersReplyMessage> GlobalUsersReply;
 
     /// <summary>
     ///   Raises the GlobalUsersReply event.
@@ -2740,7 +2738,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="TopicSetReplyMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<TopicSetReplyMessage>> TopicSetReply;
+    public event IrcMessageEventHandler<TopicSetReplyMessage> TopicSetReply;
 
     /// <summary>
     ///   Raises the TopicSetReply event.
@@ -2756,7 +2754,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="ChannelCreationTimeMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<ChannelCreationTimeMessage>> ChannelCreationTime;
+    public event IrcMessageEventHandler<ChannelCreationTimeMessage> ChannelCreationTime;
 
     /// <summary>
     ///   Raises the <see cref="ChannelCreationTime" /> event.
@@ -2776,7 +2774,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="ChannelPropertyMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<ChannelPropertyMessage>> ChannelProperty;
+    public event IrcMessageEventHandler<ChannelPropertyMessage> ChannelProperty;
 
     /// <summary>
     ///   Raises the ChannelProperty event.
@@ -2792,7 +2790,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="ChannelPropertyReplyMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<ChannelPropertyReplyMessage>> ChannelPropertyReply;
+    public event IrcMessageEventHandler<ChannelPropertyReplyMessage> ChannelPropertyReply;
 
     /// <summary>
     ///   Raises the ChannelPropertyReply event.
@@ -2808,7 +2806,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="ChannelPropertyEndReplyMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<ChannelPropertyEndReplyMessage>> ChannelPropertyEndReply;
+    public event IrcMessageEventHandler<ChannelPropertyEndReplyMessage> ChannelPropertyEndReply;
 
     /// <summary>
     ///   Raises the ChannelPropertyEndReply event.
@@ -2824,7 +2822,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="IrcxMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<IrcxMessage>> Ircx;
+    public event IrcMessageEventHandler<IrcxMessage> Ircx;
 
     /// <summary>
     ///   Raises the Ircx event.
@@ -2840,7 +2838,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="IsIrcxMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<IsIrcxMessage>> IsIrcx;
+    public event IrcMessageEventHandler<IsIrcxMessage> IsIrcx;
 
     /// <summary>
     ///   Raises the IsIrcx event.
@@ -2856,7 +2854,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="IrcxReplyMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<IrcxReplyMessage>> IrcxReply;
+    public event IrcMessageEventHandler<IrcxReplyMessage> IrcxReply;
 
     /// <summary>
     ///   Raises the IrcxReply event.
@@ -2872,7 +2870,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="KnockMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<KnockMessage>> Knock;
+    public event IrcMessageEventHandler<KnockMessage> Knock;
 
     /// <summary>
     ///   Raises the Knock event.
@@ -2888,7 +2886,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="KnockReplyMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<KnockReplyMessage>> KnockReply;
+    public event IrcMessageEventHandler<KnockReplyMessage> KnockReply;
 
     /// <summary>
     ///   Raises the KnockReply event.
@@ -2904,7 +2902,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="KnockRequestMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<KnockRequestMessage>> KnockRequest;
+    public event IrcMessageEventHandler<KnockRequestMessage> KnockRequest;
 
     /// <summary>
     ///   Raises the KnockRequest event.
@@ -2920,7 +2918,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="WhisperMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<WhisperMessage>> Whisper;
+    public event IrcMessageEventHandler<WhisperMessage> Whisper;
 
     /// <summary>
     ///   Raises the Whisper event.
@@ -2940,7 +2938,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="WatchListClearMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<WatchListClearMessage>> WatchListClear;
+    public event IrcMessageEventHandler<WatchListClearMessage> WatchListClear;
 
     /// <summary>
     ///   Raises the WatchListClear event.
@@ -2956,7 +2954,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="WatchListEditorMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<WatchListEditorMessage>> WatchListEditor;
+    public event IrcMessageEventHandler<WatchListEditorMessage> WatchListEditor;
 
     /// <summary>
     ///   Raises the WatchListEditor event.
@@ -2972,7 +2970,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="WatchListRequestMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<WatchListRequestMessage>> WatchListRequest;
+    public event IrcMessageEventHandler<WatchListRequestMessage> WatchListRequest;
 
     /// <summary>
     ///   Raises the WatchListRequest event.
@@ -2988,7 +2986,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="WatchStatusRequestMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<WatchStatusRequestMessage>> WatchStatusRequest;
+    public event IrcMessageEventHandler<WatchStatusRequestMessage> WatchStatusRequest;
 
     /// <summary>
     ///   Raises the WatchStatusRequest event.
@@ -3004,7 +3002,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="WatchListEndReplyMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<WatchListEndReplyMessage>> WatchListEndReply;
+    public event IrcMessageEventHandler<WatchListEndReplyMessage> WatchListEndReply;
 
     /// <summary>
     ///   Raises the WatchListEndReply event.
@@ -3020,7 +3018,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="WatchStatusReplyMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<WatchStatusReplyMessage>> WatchStatusReply;
+    public event IrcMessageEventHandler<WatchStatusReplyMessage> WatchStatusReply;
 
     /// <summary>
     ///   Raises the WatchStatusReply event.
@@ -3036,7 +3034,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="WatchStatusNicksReplyMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<WatchStatusNicksReplyMessage>> WatchStatusNicksReply;
+    public event IrcMessageEventHandler<WatchStatusNicksReplyMessage> WatchStatusNicksReply;
 
     /// <summary>
     ///   Raises the <see cref="WatchStatusNicksReply" /> event.
@@ -3052,7 +3050,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="WatchStoppedMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<WatchStoppedMessage>> WatchStopped;
+    public event IrcMessageEventHandler<WatchStoppedMessage> WatchStopped;
 
     /// <summary>
     ///   Raises the WatchStoppedReply event.
@@ -3068,7 +3066,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="WatchedUserOnlineMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<WatchedUserOnlineMessage>> WatchedUserOnline;
+    public event IrcMessageEventHandler<WatchedUserOnlineMessage> WatchedUserOnline;
 
     /// <summary>
     ///   Raises the <see cref="WatchedUserOnline" /> event.
@@ -3084,7 +3082,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="WatchedUserOfflineMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<WatchedUserOfflineMessage>> WatchedUserOffline;
+    public event IrcMessageEventHandler<WatchedUserOfflineMessage> WatchedUserOffline;
 
     /// <summary>
     ///   Raises the <see cref="WatchedUserOffline" /> event.
@@ -3104,7 +3102,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="MonitorListClearMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<MonitorListClearMessage>> MonitorListClear;
+    public event IrcMessageEventHandler<MonitorListClearMessage> MonitorListClear;
 
     /// <summary>
     ///   Raises the <see cref="MonitorListClear" /> event.
@@ -3120,7 +3118,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="MonitorListRequestMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<MonitorListRequestMessage>> MonitorListRequest;
+    public event IrcMessageEventHandler<MonitorListRequestMessage> MonitorListRequest;
 
     /// <summary>
     ///   Raises the <see cref="MonitorListRequest" /> event.
@@ -3136,7 +3134,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="MonitorStatusRequestMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<MonitorStatusRequestMessage>> MonitorStatusRequest;
+    public event IrcMessageEventHandler<MonitorStatusRequestMessage> MonitorStatusRequest;
 
     /// <summary>
     ///   Raises the <see cref="MonitorStatusRequest" /> event.
@@ -3152,7 +3150,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="MonitorAddUsersMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<MonitorAddUsersMessage>> MonitorAddUsers;
+    public event IrcMessageEventHandler<MonitorAddUsersMessage> MonitorAddUsers;
 
     /// <summary>
     ///   Raises the <see cref="MonitorAddUsers" /> event.
@@ -3168,7 +3166,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="MonitorRemoveUsersMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<MonitorRemoveUsersMessage>> MonitorRemoveUsers;
+    public event IrcMessageEventHandler<MonitorRemoveUsersMessage> MonitorRemoveUsers;
 
     /// <summary>
     ///   Raises the <see cref="MonitorRemoveUsers" /> event.
@@ -3184,7 +3182,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="MonitoredUserOnlineMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<MonitoredUserOnlineMessage>> MonitoredUserOnline;
+    public event IrcMessageEventHandler<MonitoredUserOnlineMessage> MonitoredUserOnline;
 
     /// <summary>
     ///   Raises the <see cref="MonitoredUserOnline" /> event.
@@ -3200,7 +3198,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="MonitoredUserOfflineMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<MonitoredUserOfflineMessage>> MonitoredUserOffline;
+    public event IrcMessageEventHandler<MonitoredUserOfflineMessage> MonitoredUserOffline;
 
     /// <summary>
     ///   Raises the <see cref="MonitoredUserOffline" /> event.
@@ -3216,7 +3214,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="MonitorListReplyMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<MonitorListReplyMessage>> MonitorListReply;
+    public event IrcMessageEventHandler<MonitorListReplyMessage> MonitorListReply;
 
     /// <summary>
     ///   Raises the <see cref="MonitorListReply" /> event.
@@ -3232,7 +3230,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="MonitorListEndReplyMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<MonitorListEndReplyMessage>> MonitorListEndReply;
+    public event IrcMessageEventHandler<MonitorListEndReplyMessage> MonitorListEndReply;
 
     /// <summary>
     ///   Raises the <see cref="MonitorListEndReply" /> event.
@@ -3248,7 +3246,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="MonitorListFullMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<MonitorListFullMessage>> MonitorListFull;
+    public event IrcMessageEventHandler<MonitorListFullMessage> MonitorListFull;
 
     /// <summary>
     ///   Raises the <see cref="MonitorListFull" /> event.
@@ -3268,7 +3266,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="ChannelScopedChatMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<ChannelScopedChatMessage>> ChannelScopedChat;
+    public event IrcMessageEventHandler<ChannelScopedChatMessage> ChannelScopedChat;
 
     /// <summary>
     ///   Raises the ChannelScopedChat event.
@@ -3284,7 +3282,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Occurs when a <see cref="ChannelScopedNoticeMessage" /> is received.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<ChannelScopedNoticeMessage>> ChannelScopedNotice;
+    public event IrcMessageEventHandler<ChannelScopedNoticeMessage> ChannelScopedNotice;
 
     /// <summary>
     ///   Raises the ChannelScopedNotice event.

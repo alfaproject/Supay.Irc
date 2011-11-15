@@ -82,6 +82,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Messages\IrcMessageEventHandler.cs" />
     <Compile Include="Messages\Modes\ChannelStatus.cs" />
     <Compile Include="Model\Contacts\ContactsTracker.cs" />
     <Compile Include="Model\Contacts\ContactsWatchTracker.cs" />

@@ -364,7 +364,7 @@ namespace Supay.Irc
     /// <summary>
     ///   Occurs when any message is received and parsed.
     /// </summary>
-    public event EventHandler<IrcMessageEventArgs<IrcMessage>> MessageParsed;
+    public event IrcMessageEventHandler<IrcMessage> MessageParsed;
 
     /// <summary>
     ///   Raises the <see cref="MessageParsed" /> event.
@@ -388,7 +388,7 @@ namespace Supay.Irc
     /// <summary>
     ///   Occurs when any message is about to be sent.
     /// </summary>
-    public event EventHandler<CancelIrcMessageEventArgs<IrcMessage>> MessageSending;
+    public event CancelIrcMessageEventHandler<IrcMessage> MessageSending;
 
     /// <summary>
     ///   Raises the <see cref="MessageSending" /> event.
