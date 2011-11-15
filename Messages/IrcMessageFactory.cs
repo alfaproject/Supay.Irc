@@ -11,9 +11,10 @@ namespace Supay.Irc.Messages
   /// </summary>
   public sealed class IrcMessageFactory
   {
+    private static readonly Lazy<IrcMessageFactory> instance = new Lazy<IrcMessageFactory>(() => new IrcMessageFactory());
+
     private const int MIN_MESSAGE_LENGTH = 1;
     private const int MAX_MESSAGE_LENGTH = 512;
-    private static readonly IrcMessageFactory factory = new IrcMessageFactory();
 
     private readonly LinkedList<IrcMessage> commands;
     private readonly LinkedList<IrcMessage> numerics;
@@ -63,7 +64,7 @@ namespace Supay.Irc.Messages
     /// </summary>
     public static void AddCustomMessage(IrcMessage msg)
     {
-      factory.customs.AddLast(msg);
+      instance.Value.customs.AddLast(msg);
     }
 
     /// <summary>
@@ -86,7 +87,7 @@ namespace Supay.Irc.Messages
       IrcMessage msg;
       try
       {
-        msg = factory.DetermineMessage(unparsedMessage);
+        msg = instance.Value.DetermineMessage(unparsedMessage);
         msg.Parse(unparsedMessage);
       }
       catch (InvalidMessageException)
