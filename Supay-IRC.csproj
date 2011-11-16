@@ -400,7 +400,7 @@
     <Compile Include="Model\Channel.cs" />
     <Compile Include="Model\ChannelCollection.cs" />
     <Compile Include="Model\Contacts\ContactList.cs" />
-    <Compile Include="Network\SocketErrors.cs" />
+    <Compile Include="Network\SocketError.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Model\UserCollection.cs" />
   </ItemGroup>
