@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using Supay.Irc.Properties;
@@ -32,29 +33,22 @@ namespace Supay.Irc.Messages
       this.customs = new LinkedList<IrcMessage>();
 
       var ircMessageType = typeof(IrcMessage);
-      var types = from type in ircMessageType.Assembly.GetTypes()
-                  where !type.IsAbstract && type.IsSubclassOf(ircMessageType)
-                  select type;
-      foreach (var type in types)
+      var ircMessages = from type in ircMessageType.Assembly.GetTypes()
+                        where !type.IsAbstract && type != typeof(GenericNumericMessage) && type != typeof(GenericErrorMessage) && type != typeof(GenericCtcpRequestMessage) && type != typeof(GenericCtcpReplyMessage) && type.IsSubclassOf(ircMessageType)
+                        select (IrcMessage) Activator.CreateInstance(type);
+      foreach (var msg in ircMessages)
       {
-        System.Diagnostics.Trace.WriteLine("Creating IrcMessage.");
-        if (type.IsSubclassOf(typeof(CommandMessage)))
+        if (msg.GetType().IsSubclassOf(typeof(CommandMessage)))
         {
-          this.commands.AddLast((IrcMessage) Activator.CreateInstance(type));
+          this.commands.AddLast(msg);
         }
-        else if (type.IsSubclassOf(typeof(NumericMessage)))
+        else if (msg.GetType().IsSubclassOf(typeof(NumericMessage)))
         {
-          if (type != typeof(GenericNumericMessage) && type != typeof(GenericErrorMessage))
-          {
-            this.numerics.AddLast((IrcMessage) Activator.CreateInstance(type));
-          }
+          this.numerics.AddLast(msg);
         }
-        else if (type.IsSubclassOf(typeof(CtcpMessage)))
+        else if (msg.GetType().IsSubclassOf(typeof(CtcpMessage)))
         {
-          if (type != typeof(GenericCtcpRequestMessage) && type != typeof(GenericCtcpReplyMessage))
-          {
-            this.ctcps.AddLast((IrcMessage) Activator.CreateInstance(type));
-          }
+          this.ctcps.AddLast(msg);
         }
       }
     }
@@ -74,21 +68,19 @@ namespace Supay.Irc.Messages
     /// <returns>An <see cref="IrcMessage" /> which represents the given string.</returns>
     public static IrcMessage Parse(string unparsedMessage)
     {
-      if (unparsedMessage == null)
-      {
-        unparsedMessage = string.Empty;
-      }
+      Debug.Assert(unparsedMessage != null);
+
       if (unparsedMessage.Length < MIN_MESSAGE_LENGTH || MAX_MESSAGE_LENGTH < unparsedMessage.Length)
       {
         string errorMessage = string.Format(CultureInfo.InvariantCulture, Resources.MessageEmptyOrTooLong, unparsedMessage.Length);
         throw new InvalidMessageException(errorMessage, unparsedMessage);
       }
 
-      IrcMessage msg;
       try
       {
-        msg = instance.Value.DetermineMessage(unparsedMessage);
+        IrcMessage msg = instance.Value.DetermineMessage(unparsedMessage);
         msg.Parse(unparsedMessage);
+        return msg;
       }
       catch (InvalidMessageException)
       {
@@ -98,7 +90,6 @@ namespace Supay.Irc.Messages
       {
         throw new InvalidMessageException(Resources.CouldNotParseMessage, unparsedMessage, ex);
       }
-      return msg;
     }
 
     /// <summary>
@@ -123,7 +114,7 @@ namespace Supay.Irc.Messages
         msg = GetMessage(unparsedMessage, this.numerics);
         if (msg == null)
         {
-          int numeric = Convert.ToInt32(command, CultureInfo.InvariantCulture);
+          int numeric = int.Parse(command, CultureInfo.InvariantCulture);
           if (NumericMessage.IsError(numeric))
           {
             msg = new GenericErrorMessage();
