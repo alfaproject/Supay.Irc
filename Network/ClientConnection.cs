@@ -339,6 +339,12 @@ namespace Supay.Irc.Network
     /// </summary>
     protected void OnConnecting(EventArgs e)
     {
+      if (this.SynchronizationObject != null && this.SynchronizationObject.InvokeRequired) {
+        SyncInvoke del = () => this.OnConnecting(e);
+        this.SynchronizationObject.Invoke(del, null);
+        return;
+      }
+
       if (this.Connecting != null)
       {
         this.Connecting(this, e);
@@ -385,12 +391,18 @@ namespace Supay.Irc.Network
     /// <summary>
     ///   Raises the <see cref="ClientConnection.DataSent" /> event of the <see cref="ClientConnection" /> object.
     /// </summary>
-    /// <param name="data">A <see cref="ConnectionDataEventArgs" /> that contains the data.</param>
-    protected void OnDataSent(ConnectionDataEventArgs data)
+    /// <param name="e">A <see cref="ConnectionDataEventArgs" /> that contains the data.</param>
+    protected void OnDataSent(ConnectionDataEventArgs e)
     {
+      if (this.SynchronizationObject != null && this.SynchronizationObject.InvokeRequired) {
+        SyncInvoke del = () => this.OnDataSent(e);
+        this.SynchronizationObject.Invoke(del, null);
+        return;
+      }
+
       if (this.DataSent != null)
       {
-        this.DataSent(this, data);
+        this.DataSent(this, e);
       }
     }
 
@@ -474,22 +486,16 @@ namespace Supay.Irc.Network
       try
       {
         string incomingMessageLine;
-
         while (this.Status == ConnectionStatus.Connected && ((incomingMessageLine = this.reader.ReadLine()) != null))
         {
-          try
-          {
-            incomingMessageLine = incomingMessageLine.Trim();
-            this.OnDataReceived(new ConnectionDataEventArgs(incomingMessageLine));
-          }
-          catch (ThreadAbortException ex)
-          {
-            Trace.WriteLine(ex.Message);
-            Thread.ResetAbort();
-            disconnectReason = "Thread Aborted";
-            break;
-          }
+          this.OnDataReceived(new ConnectionDataEventArgs(incomingMessageLine.Trim()));
         }
+      }
+      catch (ThreadAbortException ex)
+      {
+        Trace.WriteLine(ex.Message);
+        Thread.ResetAbort();
+        disconnectReason = "Thread Aborted";
       }
       catch (Exception ex)
       {
