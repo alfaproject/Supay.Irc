@@ -142,9 +142,9 @@ namespace Supay.Irc.Network
               string identName = this.User.Username;
               if (identName.Length == 0)
               {
-                identName = this.User.Nickname.Length != 0 ? this.User.Nickname : "supay";
+                identName = this.User.Nickname.Length != 0 ? this.User.Nickname : "Supay";
               }
-              string identReply = identRequest.Trim() + REPLY + identName.ToLowerInvariant();
+              string identReply = identRequest.Trim() + REPLY + identName;
               writer.WriteLine(identReply);
               writer.Flush();
             }
