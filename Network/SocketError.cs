@@ -6,6 +6,11 @@ namespace Supay.Irc.Network
   public enum SocketError
   {
     /// <summary>
+    /// No error has been set.
+    /// </summary>
+    None = 0,
+
+    /// <summary>
     ///   A blocking operation was interrupted by a call to WSACancelBlockingCall.
     /// </summary>
     InterruptedFunctionCall = 10004,
