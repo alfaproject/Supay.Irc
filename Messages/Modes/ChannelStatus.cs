@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 namespace Supay.Irc
@@ -15,28 +17,33 @@ namespace Supay.Irc
     /// <summary>
     ///   Gets the <see cref="ChannelStatus" /> representing the operator status level.
     /// </summary>
+    [SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "ChannelStatus.Operator is Immutable.")]
     public static readonly ChannelStatus Operator = new ChannelStatus("@");
 
     /// <summary>
     ///   Gets the <see cref="ChannelStatus" /> representing the half-operator status level.
     /// </summary>
+    [SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "ChannelStatus.HalfOperator is Immutable.")]
     public static readonly ChannelStatus HalfOperator = new ChannelStatus("%");
 
     /// <summary>
     ///   Gets the <see cref="ChannelStatus" /> representing the voiced status level.
     /// </summary>
+    [SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "ChannelStatus.Voice is Immutable.")]
     public static readonly ChannelStatus Voice = new ChannelStatus("+");
 
     /// <summary>
     ///   Gets the <see cref="ChannelStatus" /> representing the no special status level.
     /// </summary>
+    [SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "ChannelStatus.None is Immutable.")]
     public static readonly ChannelStatus None = new ChannelStatus(string.Empty);
 
     /// <summary>
     ///   Gets a collection of <see cref="ChannelStatus" /> instances representing all built
     ///   statuses.
     /// </summary>
-    public static readonly Collection<ChannelStatus> Values = new Collection<ChannelStatus> {
+    [SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "ChannelStatus.Values is Immutable.")]
+    public static readonly ICollection<ChannelStatus> Values = new Collection<ChannelStatus> {
       None,
       Voice,
       HalfOperator,
@@ -56,7 +63,7 @@ namespace Supay.Irc
     /// </remarks>
     public static ChannelStatus GetInstance(string symbol)
     {
-      foreach (ChannelStatus channelStatus in Values.Where(channelStatus => channelStatus.Symbol == symbol))
+      foreach (var channelStatus in Values.Where(channelStatus => channelStatus.Symbol == symbol))
       {
         return channelStatus;
       }
@@ -122,15 +129,7 @@ namespace Supay.Irc
     /// <returns>true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
     public bool Equals(ChannelStatus other)
     {
-      if (ReferenceEquals(null, other))
-      {
-        return false;
-      }
-      if (ReferenceEquals(this, other))
-      {
-        return true;
-      }
-      return this.Symbol == other.Symbol;
+      return !ReferenceEquals(null, other) && (ReferenceEquals(this, other) || this.Symbol == other.Symbol);
     }
 
     #endregion
