@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Supay.Irc.Contacts
 {
@@ -10,6 +11,7 @@ namespace Supay.Irc.Contacts
   ///   The ContactList will use Watch, Monitor, or IsOn, depending on server support. User status
   ///   changes will be updated via the User.OnlineStatus property.
   /// </remarks>
+  [SuppressMessage("Microsoft.Design", "CA1063:ImplementIDisposableCorrectly", Justification = "Dispose() correctly disposes managed resources.")]
   public class ContactList : IDisposable
   {
     private ContactsTracker tracker;
@@ -69,20 +71,16 @@ namespace Supay.Irc.Contacts
     #region IDisposable
 
     /// <summary>
-    ///   Performs application-defined tasks associated with freeing, releasing, or resetting
-    ///   unmanaged resources.
+    /// Releases all resources used by the <see cref="ContactList"/>.
     /// </summary>
+    [SuppressMessage("Microsoft.Design", "CA1063:ImplementIDisposableCorrectly", Justification = "Dispose() correctly disposes managed resources.")]
+    [SuppressMessage("Microsoft.Usage", "CA1816:CallGCSuppressFinalizeCorrectly", Justification = "There aren't any unmanaged resources.")]
     public void Dispose()
     {
-      this.Dispose(true);
-      GC.SuppressFinalize(this);
-    }
-
-    protected virtual void Dispose(bool disposing)
-    {
-      if (disposing && this.tracker != null && this.tracker is ContactsIsOnTracker)
+      var disposable = this.tracker as IDisposable;
+      if (disposable != null)
       {
-        ((IDisposable) this.tracker).Dispose();
+        disposable.Dispose();
       }
     }
 

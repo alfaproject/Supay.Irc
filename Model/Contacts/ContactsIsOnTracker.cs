@@ -105,20 +105,12 @@ namespace Supay.Irc.Contacts
     #region IDisposable
 
     /// <summary>
-    ///   Performs application-defined tasks associated with freeing, releasing, or resetting
-    ///   unmanaged resources.
+    /// Releases all resources used by the <see cref="ContactsIsOnTracker"/>.
     /// </summary>
     public void Dispose()
     {
-      this.Dispose(true);
-      GC.SuppressFinalize(this);
-    }
-
-    private void Dispose(bool disposing)
-    {
-      if (disposing && this.timer != null)
-      {
-        this.timer.Dispose();
+      if (this.timer != null) {
+        this.timer.Close();
       }
     }
 
