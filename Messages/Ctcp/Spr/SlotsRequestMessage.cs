@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 
 namespace Supay.Irc.Messages
@@ -162,6 +163,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Parses the given string to populate this <see cref="IrcMessage" />.
     /// </summary>
+    [SuppressMessage("Microsoft.Usage", "CA1806:DoNotIgnoreMethodResults", MessageId = "System.Int32.TryParse(System.String,System.Globalization.NumberStyles,System.IFormatProvider,System.Int32@)", Justification = "No need to double check TryParse return value.")]
     public override void Parse(string unparsedMessage)
     {
       base.Parse(unparsedMessage);
