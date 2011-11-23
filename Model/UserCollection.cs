@@ -26,14 +26,6 @@ namespace Supay.Irc
     }
 
     /// <summary>
-    ///   Removes the first User in the collection which has the given nick.
-    /// </summary>
-    public bool RemoveFirst(string nick)
-    {
-      return this.Remove(nick);
-    }
-
-    /// <summary>
     ///   Finds the first User in the collection which matches the given Predicate.
     /// </summary>
     public User Find(Func<User, bool> match)

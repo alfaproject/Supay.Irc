@@ -612,7 +612,7 @@ namespace Supay.Irc
         }
         else
         {
-          channel.Users.RemoveFirst(nick);
+          channel.Users.Remove(nick);
         }
       }
     }
@@ -631,7 +631,7 @@ namespace Supay.Irc
       {
         foreach (Channel channel in this.Channels)
         {
-          channel.Users.RemoveFirst(nick);
+          channel.Users.Remove(nick);
         }
       }
     }
@@ -661,7 +661,7 @@ namespace Supay.Irc
         }
         else
         {
-          channel.Users.RemoveFirst(nick);
+          channel.Users.Remove(nick);
         }
       }
     }
@@ -680,7 +680,7 @@ namespace Supay.Irc
       {
         foreach (Channel channel in this.Channels)
         {
-          channel.Users.RemoveFirst(nick);
+          channel.Users.Remove(nick);
         }
       }
     }
@@ -755,9 +755,9 @@ namespace Supay.Irc
       {
         foreach (Channel channel in this.Channels)
         {
-          channel.Users.RemoveFirst(nick);
+          channel.Users.Remove(nick);
         }
-        this.Peers.RemoveFirst(nick);
+        this.Peers.Remove(nick);
       }
     }
 
