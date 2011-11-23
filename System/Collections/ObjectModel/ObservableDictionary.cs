@@ -207,16 +207,14 @@ namespace System.Collections.ObjectModel
       {
         if (this.Dictionary.Count > 0)
         {
-          if (items.Keys.Any((k) => this.Dictionary.ContainsKey(k)))
+          if (items.Keys.Any(k => this.Dictionary.ContainsKey(k)))
           {
             throw new ArgumentException("An item with the same key has already been added.");
           }
-          else
+
+          foreach (var item in items)
           {
-            foreach (var item in items)
-            {
-              this.Dictionary.Add(item);
-            }
+            this.Dictionary.Add(item);
           }
         }
         else
