@@ -247,7 +247,7 @@ namespace Supay.Irc.Messages
 
     private static void VerifySupport(ServerSupport serverSupport, ServerSupport.ExtendedListParameters parameter)
     {
-      if ((serverSupport.ExtendedList & parameter) != parameter)
+      if (!serverSupport.ExtendedList.HasFlag(parameter))
       {
         throw new InvalidMessageException(string.Format(CultureInfo.InvariantCulture, Resources.ServerDoesNotSupportExtendedListParameter, parameter));
       }
