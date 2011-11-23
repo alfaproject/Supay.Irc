@@ -409,6 +409,7 @@
     <Compile Include="Network\SocketError.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Model\UserCollection.cs" />
+    <Compile Include="System\Collections\ObjectModel\ObservableDictionary.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -445,6 +446,7 @@
   <ItemGroup>
     <None Include="Supay-IRC.cd" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
