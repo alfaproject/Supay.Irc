@@ -1,5 +1,6 @@
 using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace Supay.Irc
 {
@@ -7,23 +8,21 @@ namespace Supay.Irc
   ///   A collection that stores <see cref="User" /> objects.
   /// </summary>
   [Serializable]
-  public class UserCollection : ObservableCollection<User>
+  public class UserCollection : ObservableDictionary<string, User>
   {
-    /// <summary>
-    ///   Removes the first User in the collection which is matched by the Predicate.
-    /// </summary>
-    /// <returns>True if a User was removed, false if no User was removed.</returns>
-    public bool RemoveFirst(Predicate<User> match)
+    public UserCollection()
+      : base(StringComparer.OrdinalIgnoreCase)
     {
-      for (int i = 0; i < this.Count; i++)
-      {
-        if (match(this[i]))
-        {
-          this.RemoveAt(i);
-          return true;
-        }
-      }
-      return false;
+    }
+
+    public void Add(User user)
+    {
+      this.Add(user.Nickname, user);
+    }
+
+    public bool Contains(User user)
+    {
+      return this.ContainsKey(user.Nickname);
     }
 
     /// <summary>
@@ -31,22 +30,15 @@ namespace Supay.Irc
     /// </summary>
     public bool RemoveFirst(string nick)
     {
-      return this.RemoveFirst(u => u.Nickname.Equals(nick, StringComparison.OrdinalIgnoreCase));
+      return this.Remove(nick);
     }
 
     /// <summary>
     ///   Finds the first User in the collection which matches the given Predicate.
     /// </summary>
-    public User Find(Predicate<User> match)
+    public User Find(Func<User, bool> match)
     {
-      for (int i = 0; i < this.Count; i++)
-      {
-        if (match(this[i]))
-        {
-          return this[i];
-        }
-      }
-      return null;
+      return this.Values.FirstOrDefault(match);
     }
 
     /// <summary>
@@ -71,7 +63,7 @@ namespace Supay.Irc
       if (user == null)
       {
         user = new User(nick);
-        this.Add(user);
+        this.Add(user.Nickname, user);
       }
       return user;
     }
@@ -90,7 +82,7 @@ namespace Supay.Irc
       if (user == null)
       {
         user = newUser;
-        this.Add(user);
+        this.Add(user.Nickname, user);
       }
       else
       {

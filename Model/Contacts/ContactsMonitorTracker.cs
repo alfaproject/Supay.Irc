@@ -46,7 +46,7 @@ namespace Supay.Irc.Contacts
 
     private void ClientMonitoredUserOnline(object sender, IrcMessageEventArgs<MonitoredUserOnlineMessage> e)
     {
-      foreach (User onlineUser in e.Message.Users)
+      foreach (User onlineUser in e.Message.Users.Values)
       {
         User knownUser = this.Contacts.Users.Find(onlineUser.Nickname);
         if (knownUser != null)

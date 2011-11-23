@@ -36,7 +36,7 @@ namespace Supay.Irc.Messages
     protected override IList<string> GetParameters()
     {
       var parameters = base.GetParameters();
-      parameters.Add(MessageUtil.CreateList(this.Users, " ", user => {
+      parameters.Add(MessageUtil.CreateList(this.Users.Values, " ", user => {
         string result = user.Nickname;
         if (user.IrcOperator)
         {

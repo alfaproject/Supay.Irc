@@ -804,7 +804,7 @@ namespace Supay.Irc
 
     private void HandleUserHostReply(object sender, IrcMessageEventArgs<UserHostReplyMessage> e)
     {
-      foreach (User sentUser in e.Message.Users)
+      foreach (User sentUser in e.Message.Users.Values)
       {
         if (this.IsMe(sentUser.Nickname))
         {
