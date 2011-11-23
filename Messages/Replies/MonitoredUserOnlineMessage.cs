@@ -5,7 +5,17 @@ using System.Linq;
 namespace Supay.Irc.Messages
 {
   /// <summary>
-  ///   A Monitor system notification that a monitored user is online
+  /// 730 - RPL_MONONLINE
+  /// -------------------
+  /// :&lt;server&gt; 730 &lt;nick&gt; :nick!user@host[,nick!user@host]*
+  ///
+  /// This numeric is used to indicate to a client that either a nickname has just
+  /// become online, or that a nickname they have added to their monitor list is online.
+  ///
+  /// The server may send "*" instead of the target nick (&lt;nick&gt;).
+  /// (This makes it possible to send the exact same message to all clients monitoring a certain nick.)
+  ///
+  /// http://git.atheme.org/charybdis/tree/doc/monitor.txt
   /// </summary>
   [Serializable]
   public class MonitoredUserOnlineMessage : NumericMessage
