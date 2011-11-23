@@ -74,7 +74,7 @@ namespace Supay.Irc.Messages
     protected override IList<string> GetParameters()
     {
       var parameters = base.GetParameters();
-      parameters.Add(MessageUtil.CreateList(this.Targets, ","));
+      parameters.Add(string.Join(",", this.Targets));
       parameters.Add(this.Text);
       return parameters;
     }

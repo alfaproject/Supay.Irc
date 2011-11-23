@@ -37,7 +37,7 @@ namespace Supay.Irc.Messages
     protected override IList<string> GetParameters()
     {
       var parameters = base.GetParameters();
-      parameters.Add(MessageUtil.CreateList(this.Users.Values, ","));
+      parameters.Add(string.Join(",", this.Users.Values));
       return parameters;
     }
 

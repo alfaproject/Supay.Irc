@@ -383,17 +383,6 @@ namespace Supay.Irc.Messages
 
     #endregion
 
-    #region Create Lists
-
-    /// <summary>
-    ///   Creates a char-delimited list from the given <see cref="IList" /> of objects, using
-    ///   delimiter.
-    /// </summary>
-    public static string CreateList<T>(IEnumerable<T> items, string delimiter)
-    {
-      return string.Join(delimiter, items);
-    }
-
     /// <summary>
     ///   Creates a char-delimited list from the given <see cref="IEnumerable" /> of objects, using
     ///   delimiter.
@@ -419,7 +408,5 @@ namespace Supay.Irc.Messages
       }
       return result.ToString();
     }
-
-    #endregion
   }
 }

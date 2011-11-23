@@ -42,7 +42,7 @@ namespace Supay.Irc.Messages
     {
       get
       {
-        return MessageUtil.CreateList(this.parameters, " ");
+        return string.Join(" ", this.Parameters);
       }
     }
 

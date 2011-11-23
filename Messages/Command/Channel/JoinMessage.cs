@@ -96,10 +96,10 @@ namespace Supay.Irc.Messages
     protected override IList<string> GetParameters()
     {
       var parameters = base.GetParameters();
-      parameters.Add(MessageUtil.CreateList(this.Channels, ","));
+      parameters.Add(string.Join(",", this.Channels));
       if (this.Keys.Count != 0)
       {
-        parameters.Add(MessageUtil.CreateList(this.Keys, ","));
+        parameters.Add(string.Join(",", this.Keys));
       }
       return parameters;
     }

@@ -295,11 +295,11 @@ namespace Supay.Irc.Messages
       var parameters = base.GetParameters();
       if (options.Count != 0)
       {
-        parameters.Add(MessageUtil.CreateList(options, ","));
+        parameters.Add(string.Join(",", options));
       }
       else if (this.Channels.Count != 0)
       {
-        parameters.Add(MessageUtil.CreateList(this.Channels, ","));
+        parameters.Add(string.Join(",", this.Channels));
         if (!string.IsNullOrEmpty(this.Server))
         {
           parameters.Add(this.Server);

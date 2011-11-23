@@ -79,7 +79,7 @@ namespace Supay.Irc.Messages
         if (this.Files.Count > 0)
         {
           result.Append(":");
-          result.Append(MessageUtil.CreateList(this.Files, " "));
+          result.Append(string.Join(" ", this.Files));
         }
         return result.ToString();
       }

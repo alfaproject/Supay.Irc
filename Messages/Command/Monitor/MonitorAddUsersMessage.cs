@@ -59,7 +59,7 @@ namespace Supay.Irc.Messages
       parameters.Add("+");
       if (this.Nicks != null && this.Nicks.Count != 0)
       {
-        parameters.Add(MessageUtil.CreateList(this.Nicks, ","));
+        parameters.Add(string.Join(",", this.Nicks));
       }
       return parameters;
     }

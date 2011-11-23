@@ -44,7 +44,7 @@ namespace Supay.Irc.Messages
       var parameters = base.GetParameters();
       if (this.Channels.Count != 0)
       {
-        parameters.Add(MessageUtil.CreateList(this.Channels, " "));
+        parameters.Add(string.Join(" ", this.Channels));
       }
       return parameters;
     }

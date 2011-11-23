@@ -54,7 +54,7 @@ namespace Supay.Irc.Messages
       }
 
       var parameters = base.GetParameters();
-      parameters.Add(MessageUtil.CreateList(paramsToString, " "));
+      parameters.Add(string.Join(" ", paramsToString));
       parameters.Add(ARE_SUPPORTED);
       return parameters;
     }

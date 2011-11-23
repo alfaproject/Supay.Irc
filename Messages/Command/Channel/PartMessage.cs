@@ -84,7 +84,7 @@ namespace Supay.Irc.Messages
     protected override IList<string> GetParameters()
     {
       var parameters = base.GetParameters();
-      parameters.Add(MessageUtil.CreateList(this.Channels, ","));
+      parameters.Add(string.Join(",", this.Channels));
       if (!string.IsNullOrEmpty(this.Reason))
       {
         parameters.Add(this.Reason);

@@ -54,7 +54,7 @@ namespace Supay.Irc.Messages
     {
       var parameters = base.GetParameters();
       parameters.Add(this.Limit.ToString(CultureInfo.InvariantCulture));
-      parameters.Add(MessageUtil.CreateList(this.Nicks, ","));
+      parameters.Add(string.Join(",", this.Nicks));
       parameters.Add("Monitor list is full.");
       return parameters;
     }

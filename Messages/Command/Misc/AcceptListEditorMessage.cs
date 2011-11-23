@@ -118,7 +118,7 @@ namespace Supay.Irc.Messages
         allNicks.Add(addedNick);
       }
       var parameters = base.GetParameters();
-      parameters.Add(MessageUtil.CreateList(allNicks, ","));
+      parameters.Add(string.Join(",", allNicks));
       return parameters;
     }
 

@@ -87,7 +87,7 @@ namespace Supay.Irc.Messages
       parameters.Add(this.Modes);
       if (this.ModeArguments.Count != 0)
       {
-        parameters.Add(MessageUtil.CreateList(this.ModeArguments, " "));
+        parameters.Add(string.Join(" ", this.ModeArguments));
       }
       return parameters;
     }

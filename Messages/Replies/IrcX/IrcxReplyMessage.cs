@@ -108,7 +108,7 @@ namespace Supay.Irc.Messages
       var parameters = base.GetParameters();
       parameters.Add(this.IsIrcxClientMode ? "1" : "0");
       parameters.Add(this.Version);
-      parameters.Add(MessageUtil.CreateList(this.AuthenticationPackages, ","));
+      parameters.Add(string.Join(",", this.AuthenticationPackages));
       parameters.Add(this.MaximumMessageLength.ToString(CultureInfo.InvariantCulture));
       parameters.Add(this.Tokens);
       return parameters;

@@ -73,7 +73,7 @@ namespace Supay.Irc.Messages
     {
       var parameters = base.GetParameters();
       parameters.Add(this.Server);
-      parameters.Add(MessageUtil.CreateList(this.Masks, ","));
+      parameters.Add(string.Join(",", this.Masks));
       return parameters;
     }
 
