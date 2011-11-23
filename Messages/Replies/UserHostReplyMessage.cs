@@ -79,7 +79,7 @@ namespace Supay.Irc.Messages
           Away = away == "+"
         };
 
-        this.Users.Add(user);
+        this.Users.Add(user.Nickname, user);
       }
     }
 

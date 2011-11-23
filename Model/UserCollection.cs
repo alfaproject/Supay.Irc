@@ -15,16 +15,6 @@ namespace Supay.Irc
     {
     }
 
-    public void Add(User user)
-    {
-      this.Add(user.Nickname, user);
-    }
-
-    public bool Contains(User user)
-    {
-      return this.ContainsKey(user.Nickname);
-    }
-
     /// <summary>
     ///   Finds the first User in the collection which matches the given Predicate.
     /// </summary>

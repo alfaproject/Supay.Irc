@@ -42,7 +42,7 @@ namespace Supay.Irc
       this.Peers = new UserCollection();
       this.Contacts = new ContactList();
 
-      this.Peers.Add(this.User);
+      this.Peers.Add(this.User.Nickname, this.User);
 
       this.HookupEvents();
     }
@@ -589,10 +589,10 @@ namespace Supay.Irc
       User msgUser = e.Message.Sender;
       User joinedUser = this.IsMe(msgUser.Nickname) ? this.User : this.Peers.EnsureUser(msgUser);
 
-      foreach (Channel joinedChannel in e.Message.Channels.Select(channelname => this.Channels.EnsureChannel(channelname)))
+      foreach (var joinedChannel in e.Message.Channels.Select(channelname => this.Channels.EnsureChannel(channelname)))
       {
         joinedChannel.Open = true;
-        joinedChannel.Users.Add(joinedUser);
+        joinedChannel.Users.Add(joinedUser.Nickname, joinedUser);
       }
     }
 
@@ -639,11 +639,11 @@ namespace Supay.Irc
     private void HandleNames(object sender, IrcMessageEventArgs<NamesReplyMessage> e)
     {
       Channel channel = this.Channels.EnsureChannel(e.Message.Channel);
-      foreach (User user in e.Message.Nicks.Keys.Select(nick => this.Peers.EnsureUser(nick)))
+      foreach (var user in e.Message.Nicks.Keys.Select(nick => this.Peers.EnsureUser(nick)))
       {
-        if (!channel.Users.Contains(user))
+        if (!channel.Users.ContainsKey(user.Nickname))
         {
-          channel.Users.Add(user);
+          channel.Users.Add(user.Nickname, user);
         }
         ChannelStatus status = e.Message.Nicks[user.Nickname];
         channel.SetStatusForUser(user, status);
@@ -721,9 +721,9 @@ namespace Supay.Irc
       Channel channel = this.Channels.Find(channelName);
       if (channel != null)
       {
-        if (!channel.Users.Contains(whoUser))
+        if (!channel.Users.ContainsKey(whoUser.Nickname))
         {
-          channel.Users.Add(whoUser);
+          channel.Users.Add(whoUser.Nickname, whoUser);
         }
         channel.SetStatusForUser(whoUser, e.Message.Status);
       }

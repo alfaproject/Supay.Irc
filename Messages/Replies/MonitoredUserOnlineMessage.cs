@@ -62,11 +62,10 @@ namespace Supay.Irc.Messages
 
       if (parameters.Count > 1)
       {
-        string userListParam = parameters[1];
-        var userList = userListParam.Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries);
-        foreach (User newUser in userList.Select(userMask => new User(userMask)))
+        var userList = parameters[1].Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+        foreach (var newUser in userList.Select(userMask => new User(userMask)))
         {
-          this.Users.Add(newUser);
+          this.Users.Add(newUser.Nickname, newUser);
         }
       }
     }

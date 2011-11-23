@@ -239,13 +239,13 @@ namespace Supay.Irc
 
     #region Private Methods
 
-    private void VerifyUserInChannel(User channelUser)
+    private void VerifyUserInChannel(Mask channelUser)
     {
       if (channelUser == null)
       {
         throw new ArgumentNullException("channelUser");
       }
-      if (!this.users.Contains(channelUser))
+      if (!this.users.ContainsKey(channelUser.Nickname))
       {
         throw new ArgumentException(string.Format(CultureInfo.InvariantCulture, Resources.UserIsNotInChannel, channelUser.Nickname, this.Name), "channelUser");
       }

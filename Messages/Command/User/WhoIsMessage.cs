@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Collections.Generic;
 
 namespace Supay.Irc.Messages
@@ -91,9 +92,9 @@ namespace Supay.Irc.Messages
         {
           this.Server = parameters[0];
         }
-        foreach (string maskString in parameters[parameters.Count - 1].Split(','))
+        foreach (var user in parameters[parameters.Count - 1].Split(',').Select(mask => new User(mask)))
         {
-          this.Masks.Add(new User(maskString));
+          this.Masks.Add(user.Nickname, user);
         }
       }
     }
