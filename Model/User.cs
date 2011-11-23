@@ -224,14 +224,6 @@ namespace Supay.Irc
     #region Public Methods
 
     /// <summary>
-    ///   Represents this User's information as an IRC mask.
-    /// </summary>
-    public override string ToString()
-    {
-      return this.IrcMask;
-    }
-
-    /// <summary>
     ///   Copies the properties of the given User onto this User.
     /// </summary>
     public void CopyFrom(User user)
