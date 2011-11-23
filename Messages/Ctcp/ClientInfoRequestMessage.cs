@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages
 {
@@ -10,7 +11,7 @@ namespace Supay.Irc.Messages
   [Serializable]
   public class ClientInfoRequestMessage : CtcpRequestMessage
   {
-    private readonly List<string> parameters = new List<string>();
+    private readonly ICollection<string> parameters = new Collection<string>();
 
     /// <summary>
     ///   Creates a new instance of the <see cref="ClientInfoRequestMessage" /> class
@@ -26,7 +27,7 @@ namespace Supay.Irc.Messages
     /// <remarks>
     ///   To specificly ask about support for the "TIME" command, add "TIME" as the first parameter.
     /// </remarks>
-    public virtual List<string> Parameters
+    public virtual ICollection<string> Parameters
     {
       get
       {
@@ -61,7 +62,10 @@ namespace Supay.Irc.Messages
       base.Parse(unparsedMessage);
       this.Parameters.Clear();
       string paramsList = CtcpUtil.GetExtendedData(unparsedMessage);
-      this.Parameters.AddRange(paramsList.Split(' '));
+      foreach (var param in paramsList.Split(' '))
+      {
+        this.Parameters.Add(param);
+      }
     }
   }
 }
