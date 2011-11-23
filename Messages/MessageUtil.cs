@@ -386,46 +386,12 @@ namespace Supay.Irc.Messages
     #region Create Lists
 
     /// <summary>
-    ///   Creates a space-delimited list from the given items, using delimiter.
-    /// </summary>
-    public static string CreateList(ICollection<string> items, string delimiter)
-    {
-      if (items == null)
-      {
-        return string.Empty;
-      }
-      var itemsArray = new string[items.Count];
-      items.CopyTo(itemsArray, 0);
-      return CreateList(itemsArray, delimiter);
-    }
-
-    /// <summary>
-    ///   Creates a char-delimited list from the given string[], using delimiter.
-    /// </summary>
-    public static string CreateList(string[] items, string delimiter)
-    {
-      return string.Join(delimiter, items);
-    }
-
-    /// <summary>
     ///   Creates a char-delimited list from the given <see cref="IList" /> of objects, using
     ///   delimiter.
     /// </summary>
-    public static string CreateList<T>(IList<T> items, string delimiter)
+    public static string CreateList<T>(IEnumerable<T> items, string delimiter)
     {
-      if (items == null || items.Count == 0)
-      {
-        return string.Empty;
-      }
-
-      var result = new StringBuilder();
-      result.Append(items[0].ToString());
-      for (int i = 1; i < items.Count; i++)
-      {
-        result.Append(delimiter);
-        result.Append(items[i].ToString());
-      }
-      return result.ToString();
+      return string.Join(delimiter, items);
     }
 
     /// <summary>
