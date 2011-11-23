@@ -383,30 +383,5 @@ namespace Supay.Irc.Messages
 
     #endregion
 
-    /// <summary>
-    ///   Creates a char-delimited list from the given <see cref="IEnumerable" /> of objects, using
-    ///   delimiter.
-    /// </summary>
-    /// <param name="items">The items to join.</param>
-    /// <param name="delimiter">The separator between each joined item.</param>
-    /// <param name="customListItemRender">A delegate which provides custom format rendering for the items in a list.</param>
-    public static string CreateList<T>(IEnumerable<T> items, string delimiter, Func<T, string> customListItemRender)
-    {
-      if (items == null)
-      {
-        return string.Empty;
-      }
-      var result = new StringBuilder();
-      foreach (string itemValue in items.Select(customListItemRender))
-      {
-        result.Append(itemValue);
-        result.Append(delimiter);
-      }
-      if (result.Length > delimiter.Length)
-      {
-        result.Remove(result.Length - delimiter.Length, delimiter.Length);
-      }
-      return result.ToString();
-    }
   }
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Collections.Generic;
 
 namespace Supay.Irc.Messages
@@ -113,7 +114,7 @@ namespace Supay.Irc.Messages
           break;
       }
       parameters.Add(this.Channel);
-      parameters.Add(MessageUtil.CreateList(this.Nicks.Keys, " ", nick => this.Nicks[nick].Symbol + nick));
+      parameters.Add(string.Join(" ", this.Nicks.Select(user => user.Value.Symbol + user.Key)));
       return parameters;
     }
 

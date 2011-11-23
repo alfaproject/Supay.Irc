@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Collections.Generic;
 
 namespace Supay.Irc.Messages
@@ -36,7 +37,7 @@ namespace Supay.Irc.Messages
     protected override IList<string> GetParameters()
     {
       var parameters = base.GetParameters();
-      parameters.Add(MessageUtil.CreateList(this.Users.Values, " ", user => {
+      parameters.Add(string.Join(" ", this.Users.Values.Select(user => {
         string result = user.Nickname;
         if (user.IrcOperator)
         {
@@ -48,7 +49,7 @@ namespace Supay.Irc.Messages
         result += "@";
         result += user.Host;
         return result;
-      }));
+      })));
       return parameters;
     }
 
