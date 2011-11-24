@@ -40,18 +40,18 @@ namespace Supay.Irc.Messages
     }
 
     /// <summary>
-    ///   Occurs when a <see cref="ErroneousNickMessage" /> is received.
+    ///   Occurs when a <see cref="ErroneusNickMessage" /> is received.
     /// </summary>
-    public event IrcMessageEventHandler<ErroneousNickMessage> ErroneousNick;
+    public event IrcMessageEventHandler<ErroneusNickMessage> ErroneusNick;
 
     /// <summary>
     ///   Raises the ErroneusNick event.
     /// </summary>
-    protected internal void OnErroneousNick(IrcMessageEventArgs<ErroneousNickMessage> e)
+    protected internal void OnErroneusNick(IrcMessageEventArgs<ErroneusNickMessage> e)
     {
-      if (this.ErroneousNick != null)
+      if (this.ErroneusNick != null)
       {
-        this.ErroneousNick(this, e);
+        this.ErroneusNick(this, e);
       }
     }
 

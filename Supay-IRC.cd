@@ -917,7 +917,7 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="Supay.Irc.Messages.ErroneousNickMessage" Collapsed="true">
+  <Class Name="Supay.Irc.Messages.ErroneusNickMessage" Collapsed="true">
     <Position X="250.25" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAACAAAAAAAAAAAAAAABAAAABQAAAAgAAAAAA=</HashCode>

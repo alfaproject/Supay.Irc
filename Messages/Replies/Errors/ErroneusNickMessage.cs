@@ -4,17 +4,19 @@ using System.Collections.Generic;
 namespace Supay.Irc.Messages
 {
   /// <summary>
-  ///   Returned after receiving a <see cref="NickMessage" /> which contains characters which do not fall in the defined set.
+  /// ERR_ERRONEUSNICKNAME
+  /// --------------------
+  /// Returned after receiving a <see cref="NickMessage" /> which contains characters which do not fall in the defined set.
   /// </summary>
   [Serializable]
-  public class ErroneousNickMessage : ErrorMessage
+  public class ErroneusNickMessage : ErrorMessage
   {
     private string nick = string.Empty;
 
     /// <summary>
-    ///   Creates a new instances of the <see cref="ErroneousNickMessage" /> class.
+    ///   Creates a new instances of the <see cref="ErroneusNickMessage" /> class.
     /// </summary>
-    public ErroneousNickMessage()
+    public ErroneusNickMessage()
       : base(432)
     {
     }
@@ -41,7 +43,7 @@ namespace Supay.Irc.Messages
     {
       var parameters = base.GetParameters();
       parameters.Add(this.Nick);
-      parameters.Add("Erroneous nickname");
+      parameters.Add("Erroneus Nickname");
       return parameters;
     }
 
@@ -59,7 +61,7 @@ namespace Supay.Irc.Messages
     /// </summary>
     public override void Notify(MessageConduit conduit)
     {
-      conduit.OnErroneousNick(new IrcMessageEventArgs<ErroneousNickMessage>(this));
+      conduit.OnErroneusNick(new IrcMessageEventArgs<ErroneusNickMessage>(this));
     }
   }
 }
