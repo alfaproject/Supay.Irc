@@ -40,7 +40,7 @@ namespace Supay.Irc.Messages
     protected override IList<string> GetParameters()
     {
       var parameters = base.GetParameters();
-      parameters.Add("End of WATCH" + this.ListType);
+      parameters.Add("End of WATCH " + this.ListType);
       return parameters;
     }
 
