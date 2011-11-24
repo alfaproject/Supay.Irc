@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Timers;
 using Supay.Irc.Messages;
 using Supay.Irc.Network;
@@ -65,8 +66,8 @@ namespace Supay.Irc.Contacts
         {
           this.waitingOnNicks.Remove(onlineNick);
         }
-        User knownUser = this.Contacts.Users.Find(onlineNick);
-        if (knownUser != null)
+        User knownUser;
+        if (this.Contacts.Users.TryGetValue(onlineNick, out knownUser))
         {
           knownUser.Online = true;
         }
@@ -75,12 +76,12 @@ namespace Supay.Irc.Contacts
           this.trackedNicks.Remove(onlineNick);
         }
       }
-      foreach (string nick in this.waitingOnNicks)
+
+      foreach (var offlineUser in this.waitingOnNicks.Select(nick => this.Contacts.Users[nick]))
       {
-        User offlineUser = this.Contacts.Users.Find(nick);
         offlineUser.Online = false;
-        this.waitingOnNicks.Remove(nick);
       }
+      this.waitingOnNicks.Clear();
     }
 
     private void TimerElapsed(object sender, ElapsedEventArgs e)

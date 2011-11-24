@@ -45,8 +45,8 @@ namespace Supay.Irc.Contacts
 
     private void ClientWatchedUserOnline(object sender, IrcMessageEventArgs<WatchedUserOnlineMessage> e)
     {
-      User knownUser = this.Contacts.Users.Find(e.Message.WatchedUser.Nickname);
-      if (knownUser != null)
+      User knownUser;
+      if (this.Contacts.Users.TryGetValue(e.Message.WatchedUser.Nickname, out knownUser))
       {
         knownUser.Online = true;
       }
@@ -54,8 +54,8 @@ namespace Supay.Irc.Contacts
 
     private void ClientWatchedUserOffline(object sender, IrcMessageEventArgs<WatchedUserOfflineMessage> e)
     {
-      User knownUser = this.Contacts.Users.Find(e.Message.WatchedUser.Nickname);
-      if (knownUser != null)
+      User knownUser;
+      if (this.Contacts.Users.TryGetValue(e.Message.WatchedUser.Nickname, out knownUser))
       {
         knownUser.Online = false;
       }

@@ -46,10 +46,10 @@ namespace Supay.Irc.Contacts
 
     private void ClientMonitoredUserOnline(object sender, IrcMessageEventArgs<MonitoredUserOnlineMessage> e)
     {
-      foreach (User onlineUser in e.Message.Users.Values)
+      foreach (var onlineUser in e.Message.Users.Values)
       {
-        User knownUser = this.Contacts.Users.Find(onlineUser.Nickname);
-        if (knownUser != null)
+        User knownUser;
+        if (this.Contacts.Users.TryGetValue(onlineUser.Nickname, out knownUser))
         {
           knownUser.CopyFrom(onlineUser);
           knownUser.Online = true;
@@ -59,9 +59,13 @@ namespace Supay.Irc.Contacts
 
     private void ClientMonitoredUserOffline(object sender, IrcMessageEventArgs<MonitoredUserOfflineMessage> e)
     {
-      foreach (User knownUser in e.Message.Nicks.Select(offlineNick => this.Contacts.Users.Find(offlineNick)).Where(knownUser => knownUser != null))
+      foreach (var offlineNick in e.Message.Nicks)
       {
-        knownUser.Online = false;
+        User knownUser;
+        if (this.Contacts.Users.TryGetValue(offlineNick, out knownUser))
+        {
+          knownUser.Online = false;
+        }
       }
     }
 

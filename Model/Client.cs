@@ -544,8 +544,8 @@ namespace Supay.Irc
       }
       else
       {
-        User user = this.Peers.Find(oldNick);
-        if (user != null)
+        User user;
+        if (this.Peers.TryGetValue(oldNick, out user))
         {
           user.Nickname = newNick;
         }

@@ -16,22 +16,6 @@ namespace Supay.Irc
     }
 
     /// <summary>
-    ///   Finds the first User in the collection which matches the given Predicate.
-    /// </summary>
-    public User Find(Func<User, bool> match)
-    {
-      return this.Values.FirstOrDefault(match);
-    }
-
-    /// <summary>
-    ///   Finds the first User in the collection which matches the given nick.
-    /// </summary>
-    public User Find(string nick)
-    {
-      return this.Find(u => u.Nickname.Equals(nick, StringComparison.OrdinalIgnoreCase));
-    }
-
-    /// <summary>
     ///   Ensures that the collection has a User with the given nick.
     /// </summary>
     /// <remarks>
@@ -41,8 +25,8 @@ namespace Supay.Irc
     /// <returns>The User in the collection with the given nick.</returns>
     public User EnsureUser(string nick)
     {
-      User user = this.Find(nick);
-      if (user == null)
+      User user;
+      if (!this.TryGetValue(nick, out user))
       {
         user = new User(nick);
         this.Add(user.Nickname, user);
@@ -60,15 +44,15 @@ namespace Supay.Irc
     /// <returns>The User in the collection which matches the given User.</returns>
     public User EnsureUser(User newUser)
     {
-      User user = this.Find(newUser.Nickname);
-      if (user == null)
+      User user;
+      if (this.TryGetValue(newUser.Nickname, out user))
       {
-        user = newUser;
-        this.Add(user.Nickname, user);
+        user.CopyFrom(newUser);
       }
       else
       {
-        user.CopyFrom(newUser);
+        user = newUser;
+        this.Add(user.Nickname, user);
       }
       return user;
     }
