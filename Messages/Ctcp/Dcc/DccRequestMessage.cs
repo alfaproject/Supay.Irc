@@ -115,11 +115,11 @@ namespace Supay.Irc.Messages
     {
       if (address.AddressFamily == AddressFamily.InterNetwork)
       {
-        var octets = address.ToString().Split('.');
+        var octets = address.GetAddressBytes();
         Array.Reverse(octets);
 
-        IPAddress backwards = IPAddress.Parse(string.Join(".", octets));
-        return backwards.ToString();
+        var backwards = BitConverter.ToUInt32(octets, 0);
+        return backwards.ToString(CultureInfo.InvariantCulture);
       }
       return address.ToString();
     }
