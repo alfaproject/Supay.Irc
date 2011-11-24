@@ -80,11 +80,11 @@ namespace Supay.Irc.Messages
     /// </summary>
     public override string ToString()
     {
-      StringBuilder sb = new StringBuilder(512);
+      var sb = new StringBuilder(512);
       if (this.Sender != null && !string.IsNullOrEmpty(this.Sender.Nickname))
       {
         sb.Append(':');
-        sb.Append(this.Sender.IrcMask);
+        sb.Append(this.Sender);
         sb.Append(' ');
       }
 

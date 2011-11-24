@@ -1,4 +1,5 @@
 using System;
+using System.Text;
 using Supay.Irc.Messages.Modes;
 
 namespace Supay.Irc
@@ -222,6 +223,25 @@ namespace Supay.Irc
     #endregion
 
     #region Public Methods
+
+    /// <summary>
+    /// Represents this User's information.
+    /// </summary>
+    public override String ToString() {
+      var result = new StringBuilder(this.Nickname);
+
+      if (!string.IsNullOrEmpty(this.Username)) {
+        result.Append('!');
+        result.Append(this.Username);
+      }
+
+      if (!string.IsNullOrEmpty(this.Host)) {
+        result.Append('@');
+        result.Append(this.Host);
+      }
+
+      return result.ToString();
+    }
 
     /// <summary>
     ///   Copies the properties of the given User onto this User.
