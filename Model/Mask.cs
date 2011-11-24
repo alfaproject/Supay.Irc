@@ -10,9 +10,9 @@ namespace Supay.Irc
   [Serializable]
   public class Mask : IEquatable<Mask>, INotifyPropertyChanged
   {
-    private string host;
     private string nickname;
     private string username;
+    private string host;
 
     #region Constructors
 

@@ -83,9 +83,9 @@ namespace Supay.Irc.Messages
     {
       // SILENCE [{{+|-}<user>@<host>}]
       var parameters = base.GetParameters();
-      if (this.SilencedUser != null && !string.IsNullOrEmpty(this.SilencedUser.Host))
+      if (this.SilencedUser != null && !string.IsNullOrEmpty(this.SilencedUser.ToString()))
       {
-        parameters.Add((this.Action == ModeAction.Add ? "+" : "-") + this.SilencedUser.IrcMask);
+        parameters.Add((this.Action == ModeAction.Add ? "+" : "-") + this.SilencedUser);
       }
       return parameters;
     }
