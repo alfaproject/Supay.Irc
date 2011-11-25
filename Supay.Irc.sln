@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Supay.Irc", "Supay.Irc\Supay.Irc.csproj", "{DF3020D5-AA48-4A61-9C0B-4F7A2C9D08CE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Supay.Irc.Tests", "Supay.Irc.Tests\Supay.Irc.Tests.csproj", "{5FC708DA-1F70-4D24-9C03-811A8241DF13}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{DF3020D5-AA48-4A61-9C0B-4F7A2C9D08CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DF3020D5-AA48-4A61-9C0B-4F7A2C9D08CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DF3020D5-AA48-4A61-9C0B-4F7A2C9D08CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5FC708DA-1F70-4D24-9C03-811A8241DF13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FC708DA-1F70-4D24-9C03-811A8241DF13}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FC708DA-1F70-4D24-9C03-811A8241DF13}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FC708DA-1F70-4D24-9C03-811A8241DF13}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
