@@ -54,6 +54,7 @@ namespace Supay.Irc
     public Client(string address)
       : this()
     {
+      this.ServerName = address;
       this.Connection.Address = address;
     }
 
