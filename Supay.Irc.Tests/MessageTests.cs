@@ -650,7 +650,8 @@ namespace Supay.Irc.Tests
     {
       var raws = new[] {
         ":irc.easynews.com 265 SupayBot :Current local users: 9638 Max: 13035",
-        ":irc.ptptech.com 265 _aLfa_ 606 610 :Current local users 606, max 610"
+        ":irc.ptptech.com 265 _aLfa_ 606 610 :Current local users 606, max 610",
+        ":helix.fl.us.SwiftIRC.net 265 SupayBot :Current Local Users: 6074  Max: 16258"
       };
 
       var msg = MessageAssert.TypeAndRoundTrip<LocalUsersReplyMessage>(raws[0]);
@@ -662,6 +663,12 @@ namespace Supay.Irc.Tests
       Assert.IsNotNull(msg);
       Assert.AreEqual(606, msg.UserCount, "UserCount");
       Assert.AreEqual(610, msg.UserLimit, "UserLimit");
+
+      // the third one will also not be a valid round trip.
+      msg = IrcMessageFactory.Parse(raws[2]) as LocalUsersReplyMessage;
+      Assert.IsNotNull(msg);
+      Assert.AreEqual(6074, msg.UserCount, "UserCount");
+      Assert.AreEqual(16258, msg.UserLimit, "UserLimit");
     }
 
     [TestMethod]
@@ -669,7 +676,8 @@ namespace Supay.Irc.Tests
     {
       var raws = new[] {
         ":irc.easynews.com 266 SupayBot :Current global users: 119545 Max: 131548",
-        ":irc.ptptech.com 266 _aLfa_ 84236 87756 :Current global users 84236, max 87756"
+        ":irc.ptptech.com 266 _aLfa_ 84236 87756 :Current global users 84236, max 87756",
+        ":helix.fl.us.SwiftIRC.net 266 SupayBot :Current Global Users: 6074  Max: 16258"
       };
 
       var msg = MessageAssert.TypeAndRoundTrip<GlobalUsersReplyMessage>(raws[0]);
@@ -681,6 +689,12 @@ namespace Supay.Irc.Tests
       Assert.IsNotNull(msg);
       Assert.AreEqual(84236, msg.UserCount, "UserCount");
       Assert.AreEqual(87756, msg.UserLimit, "UserLimit");
+
+      // the third one will not be a valid round trip.
+      msg = IrcMessageFactory.Parse(raws[2]) as GlobalUsersReplyMessage;
+      Assert.IsNotNull(msg);
+      Assert.AreEqual(6074, msg.UserCount, "UserCount");
+      Assert.AreEqual(16258, msg.UserLimit, "UserLimit");
     }
 
     [TestMethod]

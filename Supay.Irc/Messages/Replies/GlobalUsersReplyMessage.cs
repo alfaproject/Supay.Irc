@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Text.RegularExpressions;
 
 namespace Supay.Irc.Messages
 {
@@ -10,8 +11,11 @@ namespace Supay.Irc.Messages
   [Serializable]
   public class GlobalUsersReplyMessage : NumericMessage
   {
+    private static readonly Regex globalUsersRegex = new Regex(@"Current [gG]lobal [uU]sers: (\d+)  ?Max: (\d+)");
+
     private const string CURRENT_GLOBAL_USERS = "Current global users: ";
     private const string MAX = " Max: ";
+
     private int userCount = -1;
     private int userLimit = -1;
 
@@ -71,12 +75,21 @@ namespace Supay.Irc.Messages
     protected override void ParseParameters(IList<string> parameters)
     {
       base.ParseParameters(parameters);
+
       switch (parameters.Count)
       {
         case 2:
-          string payload = parameters[1];
-          this.UserCount = Convert.ToInt32(MessageUtil.StringBetweenStrings(payload, CURRENT_GLOBAL_USERS, MAX), CultureInfo.InvariantCulture);
-          this.UserLimit = Convert.ToInt32(payload.Substring(payload.IndexOf(MAX, StringComparison.Ordinal) + MAX.Length), CultureInfo.InvariantCulture);
+          var globalUsersMatch = globalUsersRegex.Match(parameters[1]);
+          if (globalUsersMatch.Success)
+          {
+            this.UserCount = int.Parse(globalUsersMatch.Groups[1].Value, CultureInfo.InvariantCulture);
+            this.UserLimit = int.Parse(globalUsersMatch.Groups[2].Value, CultureInfo.InvariantCulture);
+          }
+          else
+          {
+            this.UserCount = -1;
+            this.UserLimit = -1;
+          }
           break;
         case 4:
           this.UserCount = Convert.ToInt32(parameters[1], CultureInfo.InvariantCulture);

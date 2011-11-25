@@ -5774,8 +5774,6 @@
 <- :helix.fl.us.SwiftIRC.net 253 SupayBot 1 :unknown connection(s)
 <- :helix.fl.us.SwiftIRC.net 254 SupayBot 5495 :channels formed
 <- :helix.fl.us.SwiftIRC.net 255 SupayBot :I have 6074 clients and 0 servers
-<- :helix.fl.us.SwiftIRC.net 265 SupayBot :Current Local Users: 6074  Max: 16258
-<- :helix.fl.us.SwiftIRC.net 266 SupayBot :Current Global Users: 6074  Max: 16258
 <- :helix.fl.us.SwiftIRC.net 375 SupayBot :- helix.fl.us.SwiftIRC.net Message of the Day -
 <- :helix.fl.us.SwiftIRC.net 372 SupayBot :- 15/9/2010 15:43
 <- :helix.fl.us.SwiftIRC.net 372 SupayBot :- 04Welcome to helix.fl.us.SwiftIRC.net
