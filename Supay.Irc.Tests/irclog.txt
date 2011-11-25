@@ -5754,3 +5754,65 @@
 <- :CryHavoc!~userid@c-68-57-13-119.hsd1.fl.comcast.net PRIVMSG #politics :FT...Polysteel :)
 <- :R0ckler!~ggg@112-40.hy.cgocable.ca PRIVMSG #mp3addicts :@find Savin'*me*-*Nickelback**
 -> irc.ptptech.com QUIT :
+-> irc.swiftirc.net NICK SupayBot
+-> irc.swiftirc.net USER SupayBot 8 * :Supreme Skillers IRC bot
+<- :helix.fl.us.SwiftIRC.net NOTICE AUTH :*** Looking up your hostname...
+<- :helix.fl.us.SwiftIRC.net NOTICE AUTH :*** Found your hostname (cached)
+<- :helix.fl.us.SwiftIRC.net NOTICE AUTH :*** Checking ident...
+<- :helix.fl.us.SwiftIRC.net NOTICE AUTH :*** No ident response; username prefixed with ~
+<- :helix.fl.us.SwiftIRC.net 001 SupayBot :Welcome to the SwiftIRC IRC Network SupayBot!~SupayBot@a89-155-121-210.cpe.netcabo.pt
+-> helix.fl.us.SwiftIRC.net MODE SupayBot +B
+-> helix.fl.us.SwiftIRC.net JOIN #howdy
+<- :helix.fl.us.SwiftIRC.net 002 SupayBot :Your host is helix.fl.us.SwiftIRC.net, running version Unreal3.2.6.SwiftIRC(9)
+<- :helix.fl.us.SwiftIRC.net 003 SupayBot :This server was created Sun Sep 12 2010 at 16:54:45 EDT
+<- :helix.fl.us.SwiftIRC.net 004 SupayBot helix.fl.us.SwiftIRC.net Unreal3.2.6.SwiftIRC(9) iowghraAsORTVSxNCWqBzvdHtGpfF lvhopsmntikrRcaqOALQbSeIKVfMCuzNTGjHFEB
+<- :helix.fl.us.SwiftIRC.net 005 SupayBot CMDS=KNOCK,MAP,DCCALLOW,USERIP NAMESX SAFELIST HCN MAXCHANNELS=30 CHANLIMIT=#:30 MAXLIST=b:100,e:100,I:100 NICKLEN=30 CHANNELLEN=32 TOPICLEN=307 KICKLEN=307 AWAYLEN=307 MAXTARGETS=20 :are supported by this server
+<- :helix.fl.us.SwiftIRC.net 005 SupayBot WALLCHOPS WATCH=128 SILENCE=10 MODES=12 CHANTYPES=# PREFIX=(ohv)@%+ CHANMODES=beIqa,kfL,lj,psmntirRcOAQKVCuzNSMTGHFEB NETWORK=SwiftIRC CASEMAPPING=ascii EXTBAN=~,cqnrL ELIST=MNUCT STATUSMSG=@%+ EXCEPTS :are supported by this server
+<- :helix.fl.us.SwiftIRC.net 005 SupayBot INVEX :are supported by this server
+<- :helix.fl.us.SwiftIRC.net 251 SupayBot :There are 35 users and 6039 invisible on 12 servers
+<- :helix.fl.us.SwiftIRC.net 252 SupayBot 21 :operator(s) online
+<- :helix.fl.us.SwiftIRC.net 253 SupayBot 1 :unknown connection(s)
+<- :helix.fl.us.SwiftIRC.net 254 SupayBot 5495 :channels formed
+<- :helix.fl.us.SwiftIRC.net 255 SupayBot :I have 6074 clients and 0 servers
+<- :helix.fl.us.SwiftIRC.net 265 SupayBot :Current Local Users: 6074  Max: 16258
+<- :helix.fl.us.SwiftIRC.net 266 SupayBot :Current Global Users: 6074  Max: 16258
+<- :helix.fl.us.SwiftIRC.net 375 SupayBot :- helix.fl.us.SwiftIRC.net Message of the Day -
+<- :helix.fl.us.SwiftIRC.net 372 SupayBot :- 15/9/2010 15:43
+<- :helix.fl.us.SwiftIRC.net 372 SupayBot :- 04Welcome to helix.fl.us.SwiftIRC.net
+<- :helix.fl.us.SwiftIRC.net 372 SupayBot :-
+<- :helix.fl.us.SwiftIRC.net 372 SupayBot :- This server has the following ports open for IRC:
+<- :helix.fl.us.SwiftIRC.net 372 SupayBot :- 046666, 6667, 6668, 6669, 7000
+<- :helix.fl.us.SwiftIRC.net 372 SupayBot :-
+<- :helix.fl.us.SwiftIRC.net 372 SupayBot :- 04SSL clients can connect on port 046697
+<- :helix.fl.us.SwiftIRC.net 372 SupayBot :-
+<- :helix.fl.us.SwiftIRC.net 372 SupayBot :- Server Administrator:    03Matt- (Matt@swiftirc.net)
+<- :helix.fl.us.SwiftIRC.net 372 SupayBot :-
+<- :helix.fl.us.SwiftIRC.net 372 SupayBot :- Server location: Miami, Florida
+<- :helix.fl.us.SwiftIRC.net 372 SupayBot :-
+<- :helix.fl.us.SwiftIRC.net 372 SupayBot :- Use of this IRC server is provided free of charge.  However,
+<- :helix.fl.us.SwiftIRC.net 372 SupayBot :- you MUST agree to follow the SwiftIRC rules which can be read
+<- :helix.fl.us.SwiftIRC.net 372 SupayBot :- at http://www.swiftirc.net/index.php?page=rules
+<- :helix.fl.us.SwiftIRC.net 372 SupayBot :-
+<- :helix.fl.us.SwiftIRC.net 372 SupayBot :- If you do not agree to follow these rules, you must disconnect
+<- :helix.fl.us.SwiftIRC.net 372 SupayBot :- from this server immediately.  Please note the network staff
+<- :helix.fl.us.SwiftIRC.net 372 SupayBot :- reserve the right to deny you access to SwiftIRC services at
+<- :helix.fl.us.SwiftIRC.net 372 SupayBot :- any time for any reason without prior notification.
+<- :helix.fl.us.SwiftIRC.net 376 SupayBot :End of /MOTD command.
+<- :SupayBot MODE SupayBot :+ix
+<- :SupayBot MODE SupayBot :+B
+<- :SupayBot!~SupayBot@Swift-1260AE6A.cpe.netcabo.pt JOIN :#howdy
+<- :helix.fl.us.SwiftIRC.net 332 SupayBot #howdy :<_aLfa_> RScript is only good for leeching \: | http://www.osnews.com/story/19266/WTFs_m | Paul: http://pastebin.com/yWbgGdNg - your turn please :e
+<- :helix.fl.us.SwiftIRC.net 333 SupayBot #howdy p_gertrude 1307399442
+<- :helix.fl.us.SwiftIRC.net 353 SupayBot @ #howdy :SupayBot @P_Gertrude Masterkil_Lt @_aLfa_
+<- :helix.fl.us.SwiftIRC.net 366 SupayBot #howdy :End of /NAMES list.
+-> helix.fl.us.SwiftIRC.net WHO #howdy
+<- :Global!services@swiftirc.net NOTICE SupayBot :[Logon News - Aug 05 2010] We will now perform a passive scan on your IP to check for insecure proxies. These scans are harmless and will originate from 75.127.97.213 and 83.149.112.71. If you do not consent to these scans please disconnect immediately.
+<- :Global!services@swiftirc.net NOTICE SupayBot :[Logon News - Oct 24 2010] There have been several attempts recently by someone pretending to be a SwiftIRC service for the purposes of obtaining users' passwords. This is a friendly notice reminding all users that you should only enter your NickServ password through NickServ. E.g. /ns id yourpassword. Please exercise general password safety and know that the SwiftIRC staff will never ask you to state or confirm your password - Thanks.
+<- :Global!services@swiftirc.net NOTICE SupayBot :[Logon News - Sep 17 2011] Applications for the position of #IRCHelp 'Helper' are now open. For more details visit http://swiftirc.net/index.php?page=news&action=viewcomments&newsid=97.
+<- :helix.fl.us.SwiftIRC.net 352 SupayBot #howdy ~SupayBot Swift-1260AE6A.cpe.netcabo.pt *.SwiftIRC.net SupayBot HB :0 Supreme Skillers IRC bot
+<- :helix.fl.us.SwiftIRC.net 352 SupayBot #howdy ~Paul_gurt Swift-C144E670.bb.sky.com *.SwiftIRC.net P_Gertrude Hr@ :0 Paul
+<- :helix.fl.us.SwiftIRC.net 352 SupayBot #howdy ~You 6FA7FB40.25E88363.91EFDC51.IP *.SwiftIRC.net Masterkil_Lt HrB :0 GF
+<- :helix.fl.us.SwiftIRC.net 352 SupayBot #howdy ~_aLfa_ Swift-1260AE6A.cpe.netcabo.pt *.SwiftIRC.net _aLfa_ Hr@ :0 Jo??o Dias
+<- :helix.fl.us.SwiftIRC.net 315 SupayBot #howdy :End of /WHO list.
+<- :_aLfa_!~_aLfa_@Swift-1260AE6A.cpe.netcabo.pt PRIVMSG #howdy :bad ass irc log now
+-> helix.fl.us.SwiftIRC.net QUIT :Supay Bot (c) _aLfa_ and P_Gertrude 2006 - 2011

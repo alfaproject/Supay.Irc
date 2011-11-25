@@ -62,9 +62,7 @@
     <Compile Include="WatchTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="irclog.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
+    <EmbeddedResource Include="irclog.txt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Supay.Irc\Supay.Irc.csproj">
