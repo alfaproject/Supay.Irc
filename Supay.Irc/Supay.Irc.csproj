@@ -446,6 +446,14 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <None Include="Documentation\DRAFT - RPL_ISUPPORT Numeric Definition.html" />
+    <None Include="Documentation\RFC 1459 - Protocol.html" />
+    <None Include="Documentation\RFC 2810 - Architecture.html" />
+    <None Include="Documentation\RFC 2811 - Channel Management.html" />
+    <None Include="Documentation\RFC 2812 - Client Protocol.html" />
+    <None Include="Documentation\RFC 2813 - Server Protocol.html" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
