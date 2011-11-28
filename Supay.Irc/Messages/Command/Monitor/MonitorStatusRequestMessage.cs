@@ -19,7 +19,7 @@ namespace Supay.Irc.Messages
         return false;
       }
       IList<string> param = MessageUtil.GetParameters(unparsedMessage);
-      return param.Count == 1 && param[0].EqualsI("S");
+      return param.Count == 1 && param[0].Equals("S", StringComparison.Ordinal);
     }
 
     /// <summary>

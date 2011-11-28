@@ -101,7 +101,7 @@ namespace Supay.Irc.Messages
     /// </summary>
     protected virtual bool IsTargetedAtChannel(string channelName)
     {
-      return this.TargetChanged.EqualsI(channelName);
+      return this.TargetChanged.Equals(channelName, StringComparison.OrdinalIgnoreCase);
     }
   }
 }

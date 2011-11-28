@@ -63,7 +63,7 @@ namespace Supay.Irc.Messages
     /// </summary>
     public virtual bool IsQueryToUser(User user)
     {
-      return this.Targets.Any(target => user.Nickname.EqualsI(target));
+      return this.Targets.Contains(user.Nickname, StringComparer.OrdinalIgnoreCase);
     }
 
     #endregion

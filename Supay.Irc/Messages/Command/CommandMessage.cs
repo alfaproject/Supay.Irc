@@ -34,7 +34,7 @@ namespace Supay.Irc.Messages
     public override bool CanParse(string unparsedMessage)
     {
       string messageCommand = MessageUtil.GetCommand(unparsedMessage);
-      return messageCommand.EqualsI(this.Command);
+      return messageCommand.Equals(this.Command, StringComparison.OrdinalIgnoreCase);
     }
   }
 }

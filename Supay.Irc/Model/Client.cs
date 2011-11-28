@@ -239,7 +239,7 @@ namespace Supay.Irc
 
     private bool IsMe(string nick)
     {
-      return this.User.Nickname.EqualsI(nick);
+      return this.User.Nickname.Equals(nick, StringComparison.OrdinalIgnoreCase);
     }
 
     private void RouteData(string messageData)

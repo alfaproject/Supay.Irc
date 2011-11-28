@@ -302,16 +302,6 @@ namespace Supay.Irc.Messages
       return null;
     }
 
-    /// <summary>
-    ///   Determines whether this instance and another specified string object have the same value. (case insensitive)
-    /// </summary>
-    /// <param name="self">The first <see cref="String" /> to compare.</param>
-    /// <param name="value">The string to compare to this instance.</param>
-    public static bool EqualsI(this string self, string value)
-    {
-      return self.Equals(value, StringComparison.OrdinalIgnoreCase);
-    }
-
     #region Parameters To string
 
     /// <summary>
