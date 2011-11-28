@@ -51,7 +51,7 @@ namespace Supay.Irc.Messages
     /// </summary>
     public virtual bool IsTargetedAtChannel(string channelName)
     {
-      return MessageUtil.ContainsIgnoreCaseMatch(this.Targets, channelName);
+      return this.Targets.Contains(channelName, StringComparer.OrdinalIgnoreCase);
     }
 
     #endregion

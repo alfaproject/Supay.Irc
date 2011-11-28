@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
-using System.Linq;
 using System.Text;
 
 namespace Supay.Irc.Messages
@@ -311,16 +310,6 @@ namespace Supay.Irc.Messages
     public static bool EqualsI(this string self, string value)
     {
       return self.Equals(value, StringComparison.OrdinalIgnoreCase);
-    }
-
-    /// <summary>
-    ///   Determines if the given collection of strings contains a string which matches the given string using <see href = "StringComparison.InvariantCultureIgnoreCase" /> matching.
-    /// </summary>
-    /// <param name="strings">The list to look in.</param>
-    /// <param name="match">The string to look for.</param>
-    public static bool ContainsIgnoreCaseMatch(IEnumerable<string> strings, string match)
-    {
-      return strings.Any(item => item.EqualsI(match));
     }
 
     #region Parameters To string

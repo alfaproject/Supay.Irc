@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Supay.Irc.Messages
 {
@@ -135,7 +136,7 @@ namespace Supay.Irc.Messages
     /// </summary>
     protected virtual bool IsTargetedAtChannel(string channelName)
     {
-      return MessageUtil.ContainsIgnoreCaseMatch(this.Channels, channelName);
+      return this.Channels.Contains(channelName, StringComparer.OrdinalIgnoreCase);
     }
   }
 }
