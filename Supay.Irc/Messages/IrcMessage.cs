@@ -88,18 +88,7 @@ namespace Supay.Irc.Messages
         sb.Append(' ');
       }
 
-      var parameters = this.GetParameters();
-      for (int i = 0; i < parameters.Count - 1; i++)
-      {
-        sb.Append(parameters[i]);
-        sb.Append(' ');
-      }
-      string lastParameter = parameters[parameters.Count - 1];
-      if (lastParameter.IndexOf(' ') > 0)
-      {
-        sb.Append(':');
-      }
-      sb.Append(lastParameter);
+      sb.Append(MessageUtil.ParametersToString(this.GetParameters()));
 
       return sb.ToString();
     }

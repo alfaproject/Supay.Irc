@@ -302,45 +302,40 @@ namespace Supay.Irc.Messages
       return null;
     }
 
-    #region Parameters To string
-
     /// <summary>
-    ///   Creates a list of IRC parameters from the given collection of strings.
+    /// Creates a list of IRC parameters from the given collection of strings.
     /// </summary>
-    public static string ParametersToString(IList<string> parameters)
+    public static string ParametersToString(IEnumerable<string> parameters)
     {
       if (parameters == null)
       {
-        return string.Empty;
+        throw new ArgumentNullException("parameters");
       }
-      var foo = new string[parameters.Count];
-      parameters.CopyTo(foo, 0);
-      return ParametersToString(foo);
-    }
 
-    /// <summary>
-    ///   Creates a list of IRC parameters from the given array of strings.
-    /// </summary>
-    public static string ParametersToString(params string[] parameters)
-    {
       var result = new StringBuilder();
-      if (parameters.Length > 1)
+      using (var enumerator = parameters.GetEnumerator())
       {
-        for (int i = 0; i < parameters.Length - 1; i++)
+        var isCurrent = enumerator.MoveNext();
+        while (isCurrent)
         {
-          result.Append(parameters[i]);
-          result.Append(" ");
+          var parameter = enumerator.Current;
+          isCurrent = enumerator.MoveNext();
+          if (isCurrent)
+          {
+            result.Append(parameter);
+            result.Append(' ');
+          }
+          else
+          {
+            if (parameter.IndexOf(' ') > 0)
+            {
+              result.Append(':');
+            }
+            result.Append(parameter);
+          }
         }
-      }
-      if (parameters.Length != 0)
-      {
-        result.Append(":");
-        result.Append(parameters[parameters.Length - 1]);
       }
       return result.ToString();
     }
-
-    #endregion
-
   }
 }
