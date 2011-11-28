@@ -563,7 +563,7 @@ namespace Supay.Irc
       var channelMessage = e.Message as IChannelTargetedMessage;
       if (channelMessage != null)
       {
-        Channel channel = this.Channels.FirstOrDefault(c => channelMessage.IsTargetedAtChannel(c.Name));
+        var channel = this.Channels.Values.FirstOrDefault(c => channelMessage.IsTargetedAtChannel(c.Name));
         if (channel != null)
         {
           channel.Journal.Add(new JournalEntry(e.Message));
@@ -620,17 +620,17 @@ namespace Supay.Irc
 
     private void HandleKill(object sender, IrcMessageEventArgs<KillMessage> e)
     {
-      string nick = e.Message.Nick;
+      var nick = e.Message.Nick;
       if (this.IsMe(nick))
       {
-        foreach (Channel c in this.Channels)
+        foreach (var channel in this.Channels.Values)
         {
-          c.Open = false;
+          channel.Open = false;
         }
       }
       else
       {
-        foreach (Channel channel in this.Channels)
+        foreach (var channel in this.Channels.Values)
         {
           channel.Users.Remove(nick);
         }
@@ -669,17 +669,17 @@ namespace Supay.Irc
 
     private void HandleQuit(object sender, IrcMessageEventArgs<QuitMessage> e)
     {
-      string nick = e.Message.Sender.Nickname;
+      var nick = e.Message.Sender.Nickname;
       if (this.IsMe(nick))
       {
-        foreach (Channel channel in this.Channels)
+        foreach (var channel in this.Channels.Values)
         {
           channel.Open = false;
         }
       }
       else
       {
-        foreach (Channel channel in this.Channels)
+        foreach (var channel in this.Channels.Values)
         {
           channel.Users.Remove(nick);
         }
@@ -741,7 +741,7 @@ namespace Supay.Irc
 
     private void HandleNoSuchNick(object sender, IrcMessageEventArgs<NoSuchNickMessage> e)
     {
-      string nick = e.Message.Nick;
+      var nick = e.Message.Nick;
 
       // NoSuchNickMessage is sent by some servers instead of a NoSuchChannelMessage
       if (MessageUtil.HasValidChannelPrefix(nick))
@@ -754,7 +754,7 @@ namespace Supay.Irc
       }
       else
       {
-        foreach (Channel channel in this.Channels)
+        foreach (var channel in this.Channels.Values)
         {
           channel.Users.Remove(nick);
         }

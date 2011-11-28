@@ -5,30 +5,36 @@ using System.Linq;
 namespace Supay.Irc
 {
   /// <summary>
-  ///   A collection that stores <see cref="Channel" /> objects.
+  /// A collection that stores <see cref="Channel" /> objects.
   /// </summary>
   [Serializable]
-  public class ChannelCollection : ObservableCollection<Channel>
+  public class ChannelCollection : ObservableDictionary<string, Channel>
   {
-    /// <summary>
-    ///   Finds the <see href = "Channel" /> in the collection with the given name.
-    /// </summary>
-    /// <returns>The so-named channel, or null.</returns>
-    public Channel Find(string channelName)
+    public ChannelCollection()
+      : base(StringComparer.OrdinalIgnoreCase)
     {
-      return this.FirstOrDefault(channel => channel.Name.Equals(channelName, StringComparison.OrdinalIgnoreCase));
     }
 
     /// <summary>
-    ///   Either finds or creates the channel by the given name.
+    /// Finds the <see href = "Channel" /> in the collection with the given name.
+    /// </summary>
+    /// <returns>The so-named channel, or null.</returns>
+    public Channel Find(string name)
+    {
+      Channel channel;
+      return this.TryGetValue(name, out channel) ? channel : null;
+    }
+
+    /// <summary>
+    /// Either finds or creates the channel by the given name.
     /// </summary>
     public Channel EnsureChannel(string name)
     {
-      Channel channel = this.Find(name);
-      if (channel == null)
+      Channel channel;
+      if (!this.TryGetValue(name, out channel))
       {
         channel = new Channel(name);
-        this.Add(channel);
+        this.Add(name, channel);
       }
       return channel;
     }
