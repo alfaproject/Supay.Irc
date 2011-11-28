@@ -26,7 +26,7 @@ namespace Supay.Irc.Messages
     {
       get
       {
-        return MessageUtil.ParametersToString(false, this.DccCommand, this.FileName);
+        return string.Join(" ", this.DccCommand, this.FileName);
       }
     }
 

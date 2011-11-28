@@ -29,7 +29,7 @@ namespace Supay.Irc.Messages
     {
       get
       {
-        return MessageUtil.ParametersToString(false, this.DccCommand, this.DccArgument, TransportAddressFromAddress(this.Address), this.Port.ToString(CultureInfo.InvariantCulture));
+        return string.Join(" ", this.DccCommand, this.DccArgument, TransportAddressFromAddress(this.Address), this.Port.ToString(CultureInfo.InvariantCulture));
       }
     }
 

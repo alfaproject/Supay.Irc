@@ -30,7 +30,7 @@ namespace Supay.Irc.Messages
     {
       get
       {
-        return MessageUtil.ParametersToString(false, DccCommand, this.FileName, this.Port.ToString(CultureInfo.InvariantCulture), this.Position.ToString(CultureInfo.InvariantCulture));
+        return string.Join(" ", DccCommand, this.FileName, this.Port.ToString(CultureInfo.InvariantCulture), this.Position.ToString(CultureInfo.InvariantCulture));
       }
     }
 

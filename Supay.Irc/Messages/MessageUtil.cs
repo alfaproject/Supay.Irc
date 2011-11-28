@@ -307,7 +307,7 @@ namespace Supay.Irc.Messages
     /// <summary>
     ///   Creates a list of IRC parameters from the given collection of strings.
     /// </summary>
-    public static string ParametersToString(bool useColon, IList<string> parameters)
+    public static string ParametersToString(IList<string> parameters)
     {
       if (parameters == null)
       {
@@ -315,13 +315,13 @@ namespace Supay.Irc.Messages
       }
       var foo = new string[parameters.Count];
       parameters.CopyTo(foo, 0);
-      return ParametersToString(useColon, foo);
+      return ParametersToString(foo);
     }
 
     /// <summary>
     ///   Creates a list of IRC parameters from the given array of strings.
     /// </summary>
-    public static string ParametersToString(bool useColon, params string[] parameters)
+    public static string ParametersToString(params string[] parameters)
     {
       var result = new StringBuilder();
       if (parameters.Length > 1)
@@ -334,29 +334,10 @@ namespace Supay.Irc.Messages
       }
       if (parameters.Length != 0)
       {
-        if (useColon)
-        {
-          result.Append(":");
-        }
+        result.Append(":");
         result.Append(parameters[parameters.Length - 1]);
       }
       return result.ToString();
-    }
-
-    /// <summary>
-    ///   Creates a list of IRC parameters from the given collection of strings.
-    /// </summary>
-    public static string ParametersToString(IList<string> parameters)
-    {
-      return ParametersToString(true, parameters);
-    }
-
-    /// <summary>
-    ///   Creates a list of IRC parameters from the given array of strings.
-    /// </summary>
-    public static string ParametersToString(params string[] parameters)
-    {
-      return ParametersToString(true, parameters);
     }
 
     #endregion
