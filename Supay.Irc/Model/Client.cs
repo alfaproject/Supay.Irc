@@ -603,7 +603,7 @@ namespace Supay.Irc
       {
         string channelName = e.Message.Channels[i];
         string nick = e.Message.Nicks[i];
-        Channel channel = this.Channels.Find(channelName);
+        var channel = this.Channels[channelName];
 
         if (this.IsMe(nick))
         {
@@ -654,7 +654,7 @@ namespace Supay.Irc
     private void HandlePart(object sender, IrcMessageEventArgs<PartMessage> e)
     {
       string nick = e.Message.Sender.Nickname;
-      foreach (Channel channel in e.Message.Channels.Select(channelName => this.Channels.Find(channelName)))
+      foreach (var channel in e.Message.Channels.Select(name => this.Channels[name]))
       {
         if (this.IsMe(nick))
         {
@@ -688,8 +688,8 @@ namespace Supay.Irc
 
     private void HandleTopicNone(object sender, IrcMessageEventArgs<TopicNoneReplyMessage> e)
     {
-      Channel channel = this.Channels.Find(e.Message.Channel);
-      if (channel != null)
+      Channel channel;
+      if (!this.Channels.TryGetValue(e.Message.Channel, out channel))
       {
         channel.Topic = string.Empty;
       }
@@ -697,8 +697,8 @@ namespace Supay.Irc
 
     private void HandleTopic(object sender, IrcMessageEventArgs<TopicReplyMessage> e)
     {
-      Channel channel = this.Channels.Find(e.Message.Channel);
-      if (channel != null)
+      Channel channel;
+      if (!this.Channels.TryGetValue(e.Message.Channel, out channel))
       {
         channel.Topic = e.Message.Topic;
       }
@@ -706,8 +706,8 @@ namespace Supay.Irc
 
     private void HandleTopicSet(object sender, IrcMessageEventArgs<TopicSetReplyMessage> e)
     {
-      Channel channel = this.Channels.Find(e.Message.Channel);
-      if (channel != null)
+      Channel channel;
+      if (!this.Channels.TryGetValue(e.Message.Channel, out channel))
       {
         channel.TopicSetter = this.Peers.EnsureUser(e.Message.User);
         channel.TopicSetTime = e.Message.TimeSet;
@@ -717,10 +717,9 @@ namespace Supay.Irc
     private void HandleWho(object sender, IrcMessageEventArgs<WhoReplyMessage> e)
     {
       User whoUser = this.Peers.EnsureUser(e.Message.User);
-      string channelName = e.Message.Channel;
 
-      Channel channel = this.Channels.Find(channelName);
-      if (channel != null)
+      Channel channel;
+      if (!this.Channels.TryGetValue(e.Message.Channel, out channel))
       {
         if (!channel.Users.ContainsKey(whoUser.Nickname))
         {
@@ -732,8 +731,8 @@ namespace Supay.Irc
 
     private void HandleNoSuchChannel(object sender, IrcMessageEventArgs<NoSuchChannelMessage> e)
     {
-      Channel channel = this.Channels.Find(e.Message.Channel);
-      if (channel != null)
+      Channel channel;
+      if (!this.Channels.TryGetValue(e.Message.Channel, out channel))
       {
         channel.Open = false;
       }
@@ -746,8 +745,8 @@ namespace Supay.Irc
       // NoSuchNickMessage is sent by some servers instead of a NoSuchChannelMessage
       if (MessageUtil.HasValidChannelPrefix(nick))
       {
-        Channel channel = this.Channels.Find(e.Message.Nick);
-        if (channel != null)
+        Channel channel;
+        if (!this.Channels.TryGetValue(e.Message.Nick, out channel))
         {
           channel.Open = false;
         }
@@ -764,8 +763,8 @@ namespace Supay.Irc
 
     private void HandleChannelModeIs(object sender, IrcMessageEventArgs<ChannelModeIsReplyMessage> e)
     {
-      Channel channel = this.Channels.Find(e.Message.Channel);
-      if (channel != null)
+      Channel channel;
+      if (!this.Channels.TryGetValue(e.Message.Channel, out channel))
       {
         var modes = new ChannelModesCreator {
           ServerSupport = this.ServerSupports
