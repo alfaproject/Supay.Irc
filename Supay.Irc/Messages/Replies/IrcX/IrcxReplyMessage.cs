@@ -15,7 +15,7 @@ namespace Supay.Irc.Messages
     private string ircxVersion = string.Empty;
     private bool isIrcxClientMode;
     private int maximumMessageLength = -1;
-    private string tokens = "*";
+    private string options = "*";
 
     /// <summary>
     ///   Creates a new instance of the <see cref="IrcxReplyMessage" />.
@@ -82,21 +82,21 @@ namespace Supay.Irc.Messages
     }
 
     /// <summary>
-    ///   Gets or sets the tokens
+    /// Gets or sets the options.
     /// </summary>
     /// <remarks>
-    ///   There are no known servers that implement this property.
-    ///   It is almost always just *.
+    /// There are no known servers that implement this property.
+    /// It is almost always just *.
     /// </remarks>
-    public virtual string Tokens
+    public virtual string Options
     {
       get
       {
-        return this.tokens;
+        return this.options;
       }
       set
       {
-        this.tokens = value;
+        this.options = value;
       }
     }
 
@@ -110,7 +110,7 @@ namespace Supay.Irc.Messages
       parameters.Add(this.Version);
       parameters.Add(string.Join(",", this.AuthenticationPackages));
       parameters.Add(this.MaximumMessageLength.ToString(CultureInfo.InvariantCulture));
-      parameters.Add(this.Tokens);
+      parameters.Add(this.Options);
       return parameters;
     }
 
@@ -130,7 +130,7 @@ namespace Supay.Irc.Messages
           this.AuthenticationPackages.Add(package);
         }
         this.MaximumMessageLength = int.Parse(parameters[4], CultureInfo.InvariantCulture);
-        this.Tokens = parameters.Count == 6 ? parameters[5] : string.Empty;
+        this.Options = parameters.Count == 6 ? parameters[5] : string.Empty;
       }
       else
       {
@@ -138,7 +138,7 @@ namespace Supay.Irc.Messages
         this.Version = string.Empty;
         this.AuthenticationPackages.Clear();
         this.MaximumMessageLength = -1;
-        this.Tokens = string.Empty;
+        this.Options = string.Empty;
       }
     }
 

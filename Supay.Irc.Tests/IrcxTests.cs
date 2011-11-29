@@ -127,7 +127,7 @@ namespace Supay.Irc.Tests
       Assert.AreEqual(1, msg.AuthenticationPackages.Count, "Authentication Packages Count");
       Assert.AreEqual("ANON", msg.AuthenticationPackages[0], "Authentication Packages");
       Assert.AreEqual(512, msg.MaximumMessageLength, "Message Length");
-      Assert.AreEqual("*", msg.Tokens, "Tokens");
+      Assert.AreEqual("*", msg.Options, "Options");
 
       msg = MessageAssert.TypeAndRoundTrip<IrcxReplyMessage>(raws[1]);
       Assert.IsTrue(msg.IsIrcxClientMode, "IsIrcxClientMode");
@@ -135,7 +135,7 @@ namespace Supay.Irc.Tests
       Assert.AreEqual(1, msg.AuthenticationPackages.Count, "Authentication Packages Count");
       Assert.AreEqual("ANON", msg.AuthenticationPackages[0], "Authentication Packages");
       Assert.AreEqual(512, msg.MaximumMessageLength, "Message Length");
-      Assert.AreEqual("*", msg.Tokens, "Tokens");
+      Assert.AreEqual("*", msg.Options, "Options");
     }
 
     [TestMethod]
