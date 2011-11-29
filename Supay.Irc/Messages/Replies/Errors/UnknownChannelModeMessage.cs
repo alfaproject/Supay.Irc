@@ -37,12 +37,15 @@ namespace Supay.Irc.Messages
     }
 
     /// <exclude />
-    protected override IList<string> GetParameters()
+    protected override IList<string> Tokens
     {
-      var parameters = base.GetParameters();
-      parameters.Add(this.UnknownMode);
-      parameters.Add("is unknown mode char to me");
-      return parameters;
+      get
+      {
+        var parameters = base.Tokens;
+        parameters.Add(this.UnknownMode);
+        parameters.Add("is unknown mode char to me");
+        return parameters;
+      }
     }
 
     /// <exclude />

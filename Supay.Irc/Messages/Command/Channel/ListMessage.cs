@@ -254,58 +254,61 @@ namespace Supay.Irc.Messages
     }
 
     /// <summary>
-    ///   Overrides <see cref="IrcMessage.GetParameters" />.
+    /// Overrides <see cref="IrcMessage.Tokens"/>.
     /// </summary>
-    protected override IList<string> GetParameters()
+    protected override IList<string> Tokens
     {
-      var options = new Collection<string>();
-      if (this.MaxUsers >= 0)
+      get
       {
-        options.Add("<" + this.MaxUsers.ToString(CultureInfo.InvariantCulture));
-      }
-      if (this.MinUsers >= 0)
-      {
-        options.Add(">" + this.MinUsers.ToString(CultureInfo.InvariantCulture));
-      }
-      if (this.YoungerThan >= 0)
-      {
-        options.Add("C<" + this.YoungerThan.ToString(CultureInfo.InvariantCulture));
-      }
-      if (this.OlderThan >= 0)
-      {
-        options.Add("C>" + this.OlderThan.ToString(CultureInfo.InvariantCulture));
-      }
-      if (!string.IsNullOrEmpty(this.MatchMask))
-      {
-        options.Add("*" + this.MatchMask + "*");
-      }
-      if (!string.IsNullOrEmpty(this.NotMatchMask))
-      {
-        options.Add("!*" + this.NotMatchMask + "*");
-      }
-      if (this.TopicOlderThan >= 0)
-      {
-        options.Add("T>" + this.TopicOlderThan.ToString(CultureInfo.InvariantCulture));
-      }
-      if (this.TopicYoungerThan >= 0)
-      {
-        options.Add("T<" + this.TopicYoungerThan.ToString(CultureInfo.InvariantCulture));
-      }
-
-      var parameters = base.GetParameters();
-      if (options.Count != 0)
-      {
-        parameters.Add(string.Join(",", options));
-      }
-      else if (this.Channels.Count != 0)
-      {
-        parameters.Add(string.Join(",", this.Channels));
-        if (!string.IsNullOrEmpty(this.Server))
+        var options = new Collection<string>();
+        if (this.MaxUsers >= 0)
         {
-          parameters.Add(this.Server);
+          options.Add("<" + this.MaxUsers.ToString(CultureInfo.InvariantCulture));
         }
+        if (this.MinUsers >= 0)
+        {
+          options.Add(">" + this.MinUsers.ToString(CultureInfo.InvariantCulture));
+        }
+        if (this.YoungerThan >= 0)
+        {
+          options.Add("C<" + this.YoungerThan.ToString(CultureInfo.InvariantCulture));
+        }
+        if (this.OlderThan >= 0)
+        {
+          options.Add("C>" + this.OlderThan.ToString(CultureInfo.InvariantCulture));
+        }
+        if (!string.IsNullOrEmpty(this.MatchMask))
+        {
+          options.Add("*" + this.MatchMask + "*");
+        }
+        if (!string.IsNullOrEmpty(this.NotMatchMask))
+        {
+          options.Add("!*" + this.NotMatchMask + "*");
+        }
+        if (this.TopicOlderThan >= 0)
+        {
+          options.Add("T>" + this.TopicOlderThan.ToString(CultureInfo.InvariantCulture));
+        }
+        if (this.TopicYoungerThan >= 0)
+        {
+          options.Add("T<" + this.TopicYoungerThan.ToString(CultureInfo.InvariantCulture));
+        }
+
+        var parameters = base.Tokens;
+        if (options.Count != 0)
+        {
+          parameters.Add(string.Join(",", options));
+        }
+        else if (this.Channels.Count != 0)
+        {
+          parameters.Add(string.Join(",", this.Channels));
+          if (!string.IsNullOrEmpty(this.Server))
+          {
+            parameters.Add(this.Server);
+          }
+        }
+        return parameters;
       }
-      return parameters;
     }
 
     /// <summary>

@@ -52,12 +52,15 @@ namespace Supay.Irc.Messages
     }
 
     /// <exclude />
-    protected override IList<string> GetParameters()
+    protected override IList<string> Tokens
     {
-      var parameters = base.GetParameters();
-      parameters.Add(this.Nick);
-      parameters.Add(string.Format(CultureInfo.InvariantCulture, "Nick change too fast. Please wait {0} seconds.", this.Seconds));
-      return parameters;
+      get
+      {
+        var parameters = base.Tokens;
+        parameters.Add(this.Nick);
+        parameters.Add(string.Format(CultureInfo.InvariantCulture, "Nick change too fast. Please wait {0} seconds.", this.Seconds));
+        return parameters;
+      }
     }
 
     /// <exclude />

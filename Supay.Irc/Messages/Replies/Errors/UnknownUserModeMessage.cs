@@ -20,11 +20,14 @@ namespace Supay.Irc.Messages
     }
 
     /// <exclude />
-    protected override IList<string> GetParameters()
+    protected override IList<string> Tokens
     {
-      var parameters = base.GetParameters();
-      parameters.Add("Unknown MODE flag");
-      return parameters;
+      get
+      {
+        var parameters = base.Tokens;
+        parameters.Add("Unknown MODE flag");
+        return parameters;
+      }
     }
 
     /// <summary>

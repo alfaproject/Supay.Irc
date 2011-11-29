@@ -78,22 +78,25 @@ namespace Supay.Irc.Messages
     #endregion
 
     /// <summary>
-    ///   Overrides <see cref="IrcMessage.GetParameters" />.
+    /// Overrides <see cref="IrcMessage.Tokens"/>.
     /// </summary>
-    protected override IList<string> GetParameters()
+    protected override IList<string> Tokens
     {
-      var parameters = new Collection<string> {
-        this.TransportCommand,
-        this.Target
-      };
-      string extendedData = CtcpUtil.Escape(this.ExtendedData);
-      if (extendedData.Length != 0)
+      get
       {
-        extendedData = " " + extendedData;
+        var parameters = new Collection<string> {
+          this.TransportCommand,
+          this.Target
+        };
+        string extendedData = CtcpUtil.Escape(this.ExtendedData);
+        if (extendedData.Length != 0)
+        {
+          extendedData = " " + extendedData;
+        }
+        string payLoad = CtcpUtil.EXTENDED_DATA_MARKER + this.InternalCommand + extendedData + CtcpUtil.EXTENDED_DATA_MARKER;
+        parameters.Add(payLoad);
+        return parameters;
       }
-      string payLoad = CtcpUtil.EXTENDED_DATA_MARKER + this.InternalCommand + extendedData + CtcpUtil.EXTENDED_DATA_MARKER;
-      parameters.Add(payLoad);
-      return parameters;
     }
 
     /// <summary>

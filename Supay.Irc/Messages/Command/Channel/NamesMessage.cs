@@ -37,16 +37,19 @@ namespace Supay.Irc.Messages
     }
 
     /// <summary>
-    ///   Overrides <see cref="IrcMessage.GetParameters" />.
+    /// Overrides <see cref="IrcMessage.Tokens"/>.
     /// </summary>
-    protected override IList<string> GetParameters()
+    protected override IList<string> Tokens
     {
-      var parameters = base.GetParameters();
-      if (this.Channels.Count != 0)
+      get
       {
-        parameters.Add(string.Join(" ", this.Channels));
+        var parameters = base.Tokens;
+        if (this.Channels.Count != 0)
+        {
+          parameters.Add(string.Join(" ", this.Channels));
+        }
+        return parameters;
       }
-      return parameters;
     }
 
     /// <summary>

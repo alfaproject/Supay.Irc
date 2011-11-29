@@ -96,26 +96,29 @@ namespace Supay.Irc.Messages
     #endregion
 
     /// <summary>
-    ///   Overrides <see cref="IrcMessage.GetParameters" />.
+    /// Overrides <see cref="IrcMessage.Tokens"/>.
     /// </summary>
-    protected override IList<string> GetParameters()
+    protected override IList<string> Tokens
     {
-      var parameters = base.GetParameters();
-      switch (this.Visibility)
+      get
       {
-        case ChannelVisibility.Public:
-          parameters.Add("=");
-          break;
-        case ChannelVisibility.Private:
-          parameters.Add("*");
-          break;
-        case ChannelVisibility.Secret:
-          parameters.Add("@");
-          break;
+        var parameters = base.Tokens;
+        switch (this.Visibility)
+        {
+          case ChannelVisibility.Public:
+            parameters.Add("=");
+            break;
+          case ChannelVisibility.Private:
+            parameters.Add("*");
+            break;
+          case ChannelVisibility.Secret:
+            parameters.Add("@");
+            break;
+        }
+        parameters.Add(this.Channel);
+        parameters.Add(string.Join(" ", this.Nicks.Select(user => user.Value.Symbol + user.Key)));
+        return parameters;
       }
-      parameters.Add(this.Channel);
-      parameters.Add(string.Join(" ", this.Nicks.Select(user => user.Value.Symbol + user.Key)));
-      return parameters;
     }
 
     /// <summary>

@@ -31,7 +31,10 @@ namespace Supay.Irc.Messages
     ///   When deriving from <see cref="IrcMessage" />, override this method to add the needed
     ///   parameters for proper message rebuilding.
     /// </remarks>
-    protected abstract IList<string> GetParameters();
+    protected abstract IList<string> Tokens
+    {
+      get;
+    }
 
     /// <summary>
     ///   Validates this message against the given server support.
@@ -88,7 +91,7 @@ namespace Supay.Irc.Messages
         sb.Append(' ');
       }
 
-      sb.Append(MessageUtil.ParametersToString(this.GetParameters()));
+      sb.Append(MessageUtil.ParametersToString(this.Tokens));
 
       return sb.ToString();
     }

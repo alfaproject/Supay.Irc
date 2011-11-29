@@ -55,17 +55,20 @@ namespace Supay.Irc.Messages
     }
 
     /// <summary>
-    ///   Overrides <see cref="IrcMessage.GetParameters" />.
+    /// Overrides <see cref="IrcMessage.Tokens"/>.
     /// </summary>
-    protected override IList<string> GetParameters()
+    protected override IList<string> Tokens
     {
-      var parameters = base.GetParameters();
-      parameters.Add(this.WatchedUser.Nickname);
-      parameters.Add(this.WatchedUser.Username);
-      parameters.Add(this.WatchedUser.Host);
-      parameters.Add(MessageUtil.ConvertToUnixTime(this.TimeOfChange).ToString(CultureInfo.InvariantCulture));
-      parameters.Add(this.ChangeMessage);
-      return parameters;
+      get
+      {
+        var parameters = base.Tokens;
+        parameters.Add(this.WatchedUser.Nickname);
+        parameters.Add(this.WatchedUser.Username);
+        parameters.Add(this.WatchedUser.Host);
+        parameters.Add(MessageUtil.ConvertToUnixTime(this.TimeOfChange).ToString(CultureInfo.InvariantCulture));
+        parameters.Add(this.ChangeMessage);
+        return parameters;
+      }
     }
 
     /// <summary>

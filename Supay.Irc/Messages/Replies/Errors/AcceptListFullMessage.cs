@@ -18,11 +18,14 @@ namespace Supay.Irc.Messages
     }
 
     /// <exclude />
-    protected override IList<string> GetParameters()
+    protected override IList<string> Tokens
     {
-      var parameters = base.GetParameters();
-      parameters.Add("Accept list is full");
-      return parameters;
+      get
+      {
+        var parameters = base.Tokens;
+        parameters.Add("Accept list is full");
+        return parameters;
+      }
     }
 
     /// <summary>

@@ -29,13 +29,16 @@ namespace Supay.Irc.Messages
     #region Formatting
 
     /// <summary>
-    ///   Overrides <see cref="IrcMessage.GetParameters" />.
+    /// Overrides <see cref="IrcMessage.Tokens"/>.
     /// </summary>
-    protected override IList<string> GetParameters()
+    protected override IList<string> Tokens
     {
-      var parameters = base.GetParameters();
-      parameters.Add("C");
-      return parameters;
+      get
+      {
+        var parameters = base.Tokens;
+        parameters.Add("C");
+        return parameters;
+      }
     }
 
     #endregion

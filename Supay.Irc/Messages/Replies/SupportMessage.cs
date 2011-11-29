@@ -35,28 +35,31 @@ namespace Supay.Irc.Messages
     }
 
     /// <summary>
-    ///   Overrides <see cref="IrcMessage.GetParameters" />.
+    /// Overrides <see cref="IrcMessage.Tokens"/>.
     /// </summary>
-    protected override IList<string> GetParameters()
+    protected override IList<string> Tokens
     {
-      var paramsToString = new Collection<string>();
-      foreach (string name in this.SupportedItems.Keys)
+      get
       {
-        string value = this.SupportedItems[name];
-        if (value.Length != 0)
+        var paramsToString = new Collection<string>();
+        foreach (string name in this.SupportedItems.Keys)
         {
-          paramsToString.Add(name + "=" + this.SupportedItems[name]);
+          string value = this.SupportedItems[name];
+          if (value.Length != 0)
+          {
+            paramsToString.Add(name + "=" + this.SupportedItems[name]);
+          }
+          else
+          {
+            paramsToString.Add(name);
+          }
         }
-        else
-        {
-          paramsToString.Add(name);
-        }
-      }
 
-      var parameters = base.GetParameters();
-      parameters.Add(string.Join(" ", paramsToString));
-      parameters.Add(ARE_SUPPORTED);
-      return parameters;
+        var parameters = base.Tokens;
+        parameters.Add(string.Join(" ", paramsToString));
+        parameters.Add(ARE_SUPPORTED);
+        return parameters;
+      }
     }
 
     /// <summary>

@@ -51,13 +51,16 @@ namespace Supay.Irc.Messages
     }
 
     /// <exclude />
-    protected override IList<string> GetParameters()
+    protected override IList<string> Tokens
     {
-      var parameters = base.GetParameters();
-      parameters.Add(this.Nick);
-      parameters.Add(this.Channel);
-      parameters.Add("Cannot kill, kick or de-op channel service");
-      return parameters;
+      get
+      {
+        var parameters = base.Tokens;
+        parameters.Add(this.Nick);
+        parameters.Add(this.Channel);
+        parameters.Add("Cannot kill, kick or de-op channel service");
+        return parameters;
+      }
     }
 
     /// <exclude />

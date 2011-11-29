@@ -80,17 +80,20 @@ namespace Supay.Irc.Messages
     #endregion
 
     /// <summary>
-    ///   Overrides <see cref="IrcMessage.GetParameters" />.
+    /// Overrides <see cref="IrcMessage.Tokens"/>.
     /// </summary>
-    protected override IList<string> GetParameters()
+    protected override IList<string> Tokens
     {
-      var parameters = base.GetParameters();
-      parameters.Add(string.Join(",", this.Channels));
-      if (!string.IsNullOrEmpty(this.Reason))
+      get
       {
-        parameters.Add(this.Reason);
+        var parameters = base.Tokens;
+        parameters.Add(string.Join(",", this.Channels));
+        if (!string.IsNullOrEmpty(this.Reason))
+        {
+          parameters.Add(this.Reason);
+        }
+        return parameters;
       }
-      return parameters;
     }
 
     /// <summary>

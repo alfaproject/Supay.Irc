@@ -65,13 +65,16 @@ namespace Supay.Irc.Messages
     #endregion
 
     /// <exclude />
-    protected override IList<string> GetParameters()
+    protected override IList<string> Tokens
     {
-      var parameters = base.GetParameters();
-      parameters.Add(this.Nick);
-      parameters.Add(this.Channel);
-      parameters.Add("They aren't on that channel");
-      return parameters;
+      get
+      {
+        var parameters = base.Tokens;
+        parameters.Add(this.Nick);
+        parameters.Add(this.Channel);
+        parameters.Add("They aren't on that channel");
+        return parameters;
+      }
     }
 
     /// <exclude />

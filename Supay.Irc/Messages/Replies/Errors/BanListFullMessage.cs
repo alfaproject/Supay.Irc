@@ -66,13 +66,16 @@ namespace Supay.Irc.Messages
     #endregion
 
     /// <exclude />
-    protected override IList<string> GetParameters()
+    protected override IList<string> Tokens
     {
-      var parameters = base.GetParameters();
-      parameters.Add(this.Channel);
-      parameters.Add(this.BanMask.ToString());
-      parameters.Add("Channel ban/ignore list is full");
-      return parameters;
+      get
+      {
+        var parameters = base.Tokens;
+        parameters.Add(this.Channel);
+        parameters.Add(this.BanMask.ToString());
+        parameters.Add("Channel ban/ignore list is full");
+        return parameters;
+      }
     }
 
     /// <exclude />

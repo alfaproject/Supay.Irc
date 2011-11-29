@@ -49,17 +49,20 @@ namespace Supay.Irc.Messages
     }
 
     /// <summary>
-    ///   Overrides <see cref="IrcMessage.GetParameters" />.
+    /// Overrides <see cref="IrcMessage.Tokens"/>.
     /// </summary>
-    protected override IList<string> GetParameters()
+    protected override IList<string> Tokens
     {
-      var parameters = base.GetParameters();
-      if (!string.IsNullOrEmpty(this.Query))
+      get
       {
-        parameters.Add(this.Query);
-        parameters.Add(this.Target);
+        var parameters = base.Tokens;
+        if (!string.IsNullOrEmpty(this.Query))
+        {
+          parameters.Add(this.Query);
+          parameters.Add(this.Target);
+        }
+        return parameters;
       }
-      return parameters;
     }
 
     /// <summary>

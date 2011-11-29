@@ -104,22 +104,25 @@ namespace Supay.Irc.Messages
     #region Formatting
 
     /// <summary>
-    ///   Overrides <see cref="IrcMessage.GetParameters" />.
+    /// Overrides <see cref="IrcMessage.Tokens"/>.
     /// </summary>
-    protected override IList<string> GetParameters()
+    protected override IList<string> Tokens
     {
-      var allNicks = new Collection<string>();
-      foreach (string removedNick in this.RemovedNicks)
+      get
       {
-        allNicks.Add("-" + removedNick);
+        var allNicks = new Collection<string>();
+        foreach (string removedNick in this.RemovedNicks)
+        {
+          allNicks.Add("-" + removedNick);
+        }
+        foreach (string addedNick in this.AddedNicks)
+        {
+          allNicks.Add(addedNick);
+        }
+        var parameters = base.Tokens;
+        parameters.Add(string.Join(",", allNicks));
+        return parameters;
       }
-      foreach (string addedNick in this.AddedNicks)
-      {
-        allNicks.Add(addedNick);
-      }
-      var parameters = base.GetParameters();
-      parameters.Add(string.Join(",", allNicks));
-      return parameters;
     }
 
     #endregion

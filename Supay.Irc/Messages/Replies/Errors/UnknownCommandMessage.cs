@@ -35,12 +35,15 @@ namespace Supay.Irc.Messages
     }
 
     /// <exclude />
-    protected override IList<string> GetParameters()
+    protected override IList<string> Tokens
     {
-      var parameters = base.GetParameters();
-      parameters.Add(this.Command);
-      parameters.Add("Unknown command");
-      return parameters;
+      get
+      {
+        var parameters = base.Tokens;
+        parameters.Add(this.Command);
+        parameters.Add("Unknown command");
+        return parameters;
+      }
     }
 
     /// <exclude />

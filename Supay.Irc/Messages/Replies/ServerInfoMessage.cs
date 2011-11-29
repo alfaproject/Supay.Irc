@@ -147,32 +147,35 @@ namespace Supay.Irc.Messages
     }
 
     /// <summary>
-    ///   Overrides <see cref="IrcMessage.GetParameters" />.
+    /// Overrides <see cref="IrcMessage.Tokens"/>.
     /// </summary>
-    protected override IList<string> GetParameters()
+    protected override IList<string> Tokens
     {
-      var parameters = base.GetParameters();
-      parameters.Add(this.ServerName);
-      parameters.Add(this.Version);
-      parameters.Add(this.UserModes);
-      parameters.Add(this.ChannelModes);
-      if (!string.IsNullOrEmpty(this.ChannelModesWithParams))
+      get
       {
-        parameters.Add(this.ChannelModesWithParams);
-        if (!string.IsNullOrEmpty(this.UserModesWithParams))
+        var parameters = base.Tokens;
+        parameters.Add(this.ServerName);
+        parameters.Add(this.Version);
+        parameters.Add(this.UserModes);
+        parameters.Add(this.ChannelModes);
+        if (!string.IsNullOrEmpty(this.ChannelModesWithParams))
         {
-          parameters.Add(this.UserModesWithParams);
-          if (!string.IsNullOrEmpty(this.ServerModes))
+          parameters.Add(this.ChannelModesWithParams);
+          if (!string.IsNullOrEmpty(this.UserModesWithParams))
           {
-            parameters.Add(this.ServerModes);
-            if (!string.IsNullOrEmpty(this.ServerModesWithParams))
+            parameters.Add(this.UserModesWithParams);
+            if (!string.IsNullOrEmpty(this.ServerModes))
             {
-              parameters.Add(this.ServerModesWithParams);
+              parameters.Add(this.ServerModes);
+              if (!string.IsNullOrEmpty(this.ServerModesWithParams))
+              {
+                parameters.Add(this.ServerModesWithParams);
+              }
             }
           }
         }
+        return parameters;
       }
-      return parameters;
     }
 
     /// <summary>

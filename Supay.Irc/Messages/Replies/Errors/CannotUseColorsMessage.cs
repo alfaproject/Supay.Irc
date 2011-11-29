@@ -60,15 +60,18 @@ namespace Supay.Irc.Messages
     #endregion
 
     /// <summary>
-    ///   Overrides <see cref="IrcMessage.GetParameters" />.
+    /// Overrides <see cref="IrcMessage.Tokens"/>.
     /// </summary>
-    protected override IList<string> GetParameters()
+    protected override IList<string> Tokens
     {
-      var parameters = base.GetParameters();
-      parameters.Add(this.Channel);
-      parameters.Add("You cannot use colours on this channel. Not sent: ");
-      parameters.Add(this.Text);
-      return parameters;
+      get
+      {
+        var parameters = base.Tokens;
+        parameters.Add(this.Channel);
+        parameters.Add("You cannot use colours on this channel. Not sent: ");
+        parameters.Add(this.Text);
+        return parameters;
+      }
     }
 
     /// <summary>

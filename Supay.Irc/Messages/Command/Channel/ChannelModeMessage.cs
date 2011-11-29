@@ -139,21 +139,24 @@ namespace Supay.Irc.Messages
     }
 
     /// <summary>
-    ///   Overrides <see cref="IrcMessage.GetParameters" />.
+    /// Overrides <see cref="IrcMessage.Tokens"/>.
     /// </summary>
-    protected override IList<string> GetParameters()
+    protected override IList<string> Tokens
     {
-      var parameters = base.GetParameters();
-      parameters.Add(this.Channel);
-      if (!string.IsNullOrEmpty(this.ModeChanges))
+      get
       {
-        parameters.Add(this.ModeChanges);
-        foreach (string modeArgument in this.ModeArguments)
+        var parameters = base.Tokens;
+        parameters.Add(this.Channel);
+        if (!string.IsNullOrEmpty(this.ModeChanges))
         {
-          parameters.Add(modeArgument);
+          parameters.Add(this.ModeChanges);
+          foreach (string modeArgument in this.ModeArguments)
+          {
+            parameters.Add(modeArgument);
+          }
         }
+        return parameters;
       }
-      return parameters;
     }
 
     /// <summary>

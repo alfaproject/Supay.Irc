@@ -50,13 +50,16 @@ namespace Supay.Irc.Messages
     }
 
     /// <exclude />
-    protected override IList<string> GetParameters()
+    protected override IList<string> Tokens
     {
-      var parameters = base.GetParameters();
-      parameters.Add(this.Limit.ToString(CultureInfo.InvariantCulture));
-      parameters.Add(string.Join(",", this.Nicks));
-      parameters.Add("Monitor list is full.");
-      return parameters;
+      get
+      {
+        var parameters = base.Tokens;
+        parameters.Add(this.Limit.ToString(CultureInfo.InvariantCulture));
+        parameters.Add(string.Join(",", this.Nicks));
+        parameters.Add("Monitor list is full.");
+        return parameters;
+      }
     }
 
     /// <exclude />

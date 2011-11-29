@@ -19,13 +19,16 @@ namespace Supay.Irc.Messages
     }
 
     /// <summary>
-    ///   Overrides <see cref="IrcMessage.GetParameters" />.
+    /// Overrides <see cref="IrcMessage.Tokens"/>.
     /// </summary>
-    protected override IList<string> GetParameters()
+    protected override IList<string> Tokens
     {
-      var parameters = base.GetParameters();
-      parameters.Add("End of /ACCEPT list.");
-      return parameters;
+      get
+      {
+        var parameters = base.Tokens;
+        parameters.Add("End of /ACCEPT list.");
+        return parameters;
+      }
     }
 
     /// <summary>

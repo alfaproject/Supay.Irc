@@ -67,12 +67,15 @@ namespace Supay.Irc.Messages
     #endregion
 
     /// <exclude />
-    protected override IList<string> GetParameters()
+    protected override IList<string> Tokens
     {
-      var parameters = base.GetParameters();
-      parameters.Add(this.Channel);
-      parameters.Add(string.Format(CultureInfo.InvariantCulture, "Cannot join channel ({0})", this.Reason));
-      return parameters;
+      get
+      {
+        var parameters = base.Tokens;
+        parameters.Add(this.Channel);
+        parameters.Add(string.Format(CultureInfo.InvariantCulture, "Cannot join channel ({0})", this.Reason));
+        return parameters;
+      }
     }
 
     /// <exclude />

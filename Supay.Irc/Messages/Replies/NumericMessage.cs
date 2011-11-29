@@ -49,18 +49,21 @@ namespace Supay.Irc.Messages
     }
 
     /// <summary>
-    ///   Overrides <see cref="IrcMessage.GetParameters" />.
+    /// Overrides <see cref="IrcMessage.Tokens"/>.
     /// </summary>
-    protected override IList<string> GetParameters()
+    protected override IList<string> Tokens
     {
-      var parameters = new Collection<string> {
-        this.InternalNumeric.ToString("000", CultureInfo.InvariantCulture)
-      };
-      if (!string.IsNullOrEmpty(this.Target))
+      get
       {
-        parameters.Add(this.Target);
+        var parameters = new Collection<string> {
+          this.InternalNumeric.ToString("000", CultureInfo.InvariantCulture)
+        };
+        if (!string.IsNullOrEmpty(this.Target))
+        {
+          parameters.Add(this.Target);
+        }
+        return parameters;
       }
-      return parameters;
     }
 
     /// <summary>
