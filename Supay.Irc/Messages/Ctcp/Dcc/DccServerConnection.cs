@@ -31,12 +31,6 @@ namespace Supay.Irc.Dcc
     private int port;
     private Timer timeoutTimer;
 
-    #region Nested type: SyncInvoke
-
-    private delegate void SyncInvoke();
-
-    #endregion
-
     #region Constructors
 
     /// <summary>
@@ -94,7 +88,7 @@ namespace Supay.Irc.Dcc
     {
       if (this.SynchronizationObject != null && this.SynchronizationObject.InvokeRequired)
       {
-        SyncInvoke del = () => this.OnConnected(e);
+        Action del = () => this.OnConnected(e);
         this.SynchronizationObject.Invoke(del, null);
         return;
       }
@@ -118,7 +112,7 @@ namespace Supay.Irc.Dcc
     {
       if (this.SynchronizationObject != null && this.SynchronizationObject.InvokeRequired)
       {
-        SyncInvoke del = () => this.OnDisconnected(e);
+        Action del = () => this.OnDisconnected(e);
         this.SynchronizationObject.Invoke(del, null);
         return;
       }

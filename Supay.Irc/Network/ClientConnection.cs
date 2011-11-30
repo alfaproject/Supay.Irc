@@ -34,12 +34,6 @@ namespace Supay.Irc.Network
     private Thread worker;
     private StreamWriter writer;
 
-    #region Nested type: SyncInvoke
-
-    private delegate void SyncInvoke();
-
-    #endregion
-
     #region Constructors
 
     /// <summary>
@@ -339,8 +333,9 @@ namespace Supay.Irc.Network
     /// </summary>
     protected void OnConnecting(EventArgs e)
     {
-      if (this.SynchronizationObject != null && this.SynchronizationObject.InvokeRequired) {
-        SyncInvoke del = () => this.OnConnecting(e);
+      if (this.SynchronizationObject != null && this.SynchronizationObject.InvokeRequired)
+      {
+        Action del = () => this.OnConnecting(e);
         this.SynchronizationObject.Invoke(del, null);
         return;
       }
@@ -358,7 +353,7 @@ namespace Supay.Irc.Network
     {
       if (this.SynchronizationObject != null && this.SynchronizationObject.InvokeRequired)
       {
-        SyncInvoke del = () => this.OnConnected(e);
+        Action del = () => this.OnConnected(e);
         this.SynchronizationObject.Invoke(del, null);
         return;
       }
@@ -377,7 +372,7 @@ namespace Supay.Irc.Network
     {
       if (this.SynchronizationObject != null && this.SynchronizationObject.InvokeRequired)
       {
-        SyncInvoke del = () => this.OnDataReceived(e);
+        Action del = () => this.OnDataReceived(e);
         this.SynchronizationObject.Invoke(del, null);
         return;
       }
@@ -394,8 +389,9 @@ namespace Supay.Irc.Network
     /// <param name="e">A <see cref="ConnectionDataEventArgs" /> that contains the data.</param>
     protected void OnDataSent(ConnectionDataEventArgs e)
     {
-      if (this.SynchronizationObject != null && this.SynchronizationObject.InvokeRequired) {
-        SyncInvoke del = () => this.OnDataSent(e);
+      if (this.SynchronizationObject != null && this.SynchronizationObject.InvokeRequired)
+      {
+        Action del = () => this.OnDataSent(e);
         this.SynchronizationObject.Invoke(del, null);
         return;
       }
@@ -413,7 +409,7 @@ namespace Supay.Irc.Network
     {
       if (this.SynchronizationObject != null && this.SynchronizationObject.InvokeRequired)
       {
-        SyncInvoke del = () => this.OnDisconnected(e);
+        Action del = () => this.OnDisconnected(e);
         this.SynchronizationObject.Invoke(del, null);
         return;
       }
