@@ -53,11 +53,7 @@ namespace Supay.Irc.Messages
         /// </remarks>
         public static bool HasValidChannelPrefix(string channelName)
         {
-            return !string.IsNullOrEmpty(channelName) && (
-                channelName.StartsWith("#", StringComparison.Ordinal) ||
-                    channelName.StartsWith("&", StringComparison.Ordinal) ||
-                    channelName.StartsWith("+", StringComparison.Ordinal) ||
-                    channelName.StartsWith("!", StringComparison.Ordinal));
+            return !string.IsNullOrEmpty(channelName) && (channelName[0] == '#' || channelName[0] == '&' || channelName[0] == '+' || channelName[0] == '!');
         }
 
         /// <summary>
