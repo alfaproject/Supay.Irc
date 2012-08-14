@@ -61,9 +61,9 @@ namespace Supay.Irc.Messages
         /// </summary>
         public static string GetPrefix(string rawMessage)
         {
-            if (!string.IsNullOrEmpty(rawMessage) && rawMessage.StartsWith(":", StringComparison.Ordinal))
+            if (!string.IsNullOrEmpty(rawMessage) && rawMessage[0] == ':')
             {
-                return rawMessage.Substring(1, rawMessage.IndexOf(' ')).Trim();
+                return rawMessage.Substring(1, rawMessage.IndexOf(' ', 1) - 1);
             }
             return string.Empty;
         }
