@@ -2,26 +2,26 @@ using System;
 
 namespace Supay.Irc.Messages
 {
-  /// <summary>
-  ///   Sends a request for user info from the target client.
-  /// </summary>
-  [Serializable]
-  public class UserInfoRequestMessage : CtcpRequestMessage
-  {
     /// <summary>
-    ///   Creates a new instance of the <see cref="UserInfoRequestMessage" /> class.
+    ///   Sends a request for user info from the target client.
     /// </summary>
-    public UserInfoRequestMessage()
+    [Serializable]
+    public class UserInfoRequestMessage : CtcpRequestMessage
     {
-      this.InternalCommand = "USERINFO";
-    }
+        /// <summary>
+        ///   Creates a new instance of the <see cref="UserInfoRequestMessage" /> class.
+        /// </summary>
+        public UserInfoRequestMessage()
+        {
+            this.InternalCommand = "USERINFO";
+        }
 
-    /// <summary>
-    ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
-    /// </summary>
-    public override void Notify(MessageConduit conduit)
-    {
-      conduit.OnUserInfoRequest(new IrcMessageEventArgs<UserInfoRequestMessage>(this));
+        /// <summary>
+        ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
+        /// </summary>
+        public override void Notify(MessageConduit conduit)
+        {
+            conduit.OnUserInfoRequest(new IrcMessageEventArgs<UserInfoRequestMessage>(this));
+        }
     }
-  }
 }

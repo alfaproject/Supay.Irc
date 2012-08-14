@@ -4,71 +4,71 @@ using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages
 {
-  /// <summary>
-  ///   An Accept/CallerId system message received in response to an
-  ///   <see cref="AcceptListRequestMessage" />.
-  /// </summary>
-  /// <remarks>
-  ///   You may receive more than 1 of these in response to the request.
-  /// </remarks>
-  [Serializable]
-  public class AcceptListReplyMessage : NumericMessage
-  {
     /// <summary>
-    ///   Creates a new instance of the <see cref="AcceptListReplyMessage" />.
+    ///   An Accept/CallerId system message received in response to an
+    ///   <see cref="AcceptListRequestMessage" />.
     /// </summary>
-    public AcceptListReplyMessage()
-      : base(281)
+    /// <remarks>
+    ///   You may receive more than 1 of these in response to the request.
+    /// </remarks>
+    [Serializable]
+    public class AcceptListReplyMessage : NumericMessage
     {
-      this.Nicks = new Collection<string>();
-    }
-
-    /// <summary>
-    ///   Gets the collection of nicks of the users on the watch list.
-    /// </summary>
-    public IList<string> Nicks
-    {
-      get;
-      private set;
-    }
-
-    /// <summary>
-    /// Overrides <see cref="IrcMessage.Tokens"/>.
-    /// </summary>
-    protected override IList<string> Tokens
-    {
-      get
-      {
-        var parameters = base.Tokens;
-        foreach (string nick in this.Nicks)
+        /// <summary>
+        ///   Creates a new instance of the <see cref="AcceptListReplyMessage" />.
+        /// </summary>
+        public AcceptListReplyMessage()
+            : base(281)
         {
-          parameters.Add(nick);
+            this.Nicks = new Collection<string>();
         }
-        return parameters;
-      }
-    }
 
-    /// <summary>
-    ///   Parses the parameters portion of the message.
-    /// </summary>
-    protected override void ParseParameters(IList<string> parameters)
-    {
-      base.ParseParameters(parameters);
+        /// <summary>
+        ///   Gets the collection of nicks of the users on the watch list.
+        /// </summary>
+        public IList<string> Nicks
+        {
+            get;
+            private set;
+        }
 
-      this.Nicks.Clear();
-      for (int i = 1; i < parameters.Count; i++)
-      {
-        this.Nicks.Add(parameters[i]);
-      }
-    }
+        /// <summary>
+        /// Overrides <see cref="IrcMessage.Tokens"/>.
+        /// </summary>
+        protected override IList<string> Tokens
+        {
+            get
+            {
+                var parameters = base.Tokens;
+                foreach (string nick in this.Nicks)
+                {
+                    parameters.Add(nick);
+                }
+                return parameters;
+            }
+        }
 
-    /// <summary>
-    ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the
-    ///   current <see cref="IrcMessage" /> subclass.
-    /// </summary>
-    public override void Notify(MessageConduit conduit)
-    {
-      conduit.OnAcceptListReply(new IrcMessageEventArgs<AcceptListReplyMessage>(this));
+        /// <summary>
+        ///   Parses the parameters portion of the message.
+        /// </summary>
+        protected override void ParseParameters(IList<string> parameters)
+        {
+            base.ParseParameters(parameters);
+
+            this.Nicks.Clear();
+            for (int i = 1; i < parameters.Count; i++)
+            {
+                this.Nicks.Add(parameters[i]);
+            }
+        }
+
+        /// <summary>
+        ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the
+        ///   current <see cref="IrcMessage" /> subclass.
+        /// </summary>
+        public override void Notify(MessageConduit conduit)
+        {
+            conduit.OnAcceptListReply(new IrcMessageEventArgs<AcceptListReplyMessage>(this));
+        }
     }
-  }
 }

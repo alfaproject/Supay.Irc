@@ -1,34 +1,34 @@
 namespace Supay.Irc.Messages.Modes
 {
-  /// <summary>
-  ///   This mode signifies that the user will receive debug messages.
-  /// </summary>
-  public class ReceiveOperWallopsMode : UserMode
-  {
     /// <summary>
-    ///   Creates a new instance of the <see cref="ReceiveOperWallopsMode" /> class.
+    ///   This mode signifies that the user will receive debug messages.
     /// </summary>
-    public ReceiveOperWallopsMode()
+    public class ReceiveOperWallopsMode : UserMode
     {
-    }
+        /// <summary>
+        ///   Creates a new instance of the <see cref="ReceiveOperWallopsMode" /> class.
+        /// </summary>
+        public ReceiveOperWallopsMode()
+        {
+        }
 
-    /// <summary>
-    ///   Creates a new instance of the <see cref="ReceiveOperWallopsMode" /> class with the given <see cref="ModeAction" />.
-    /// </summary>
-    public ReceiveOperWallopsMode(ModeAction action)
-    {
-      this.Action = action;
-    }
+        /// <summary>
+        ///   Creates a new instance of the <see cref="ReceiveOperWallopsMode" /> class with the given <see cref="ModeAction" />.
+        /// </summary>
+        public ReceiveOperWallopsMode(ModeAction action)
+        {
+            this.Action = action;
+        }
 
-    /// <summary>
-    ///   Gets the IRC string representation of the mode being changed or applied.
-    /// </summary>
-    protected override string Symbol
-    {
-      get
-      {
-        return "z";
-      }
+        /// <summary>
+        ///   Gets the IRC string representation of the mode being changed or applied.
+        /// </summary>
+        protected override string Symbol
+        {
+            get
+            {
+                return "z";
+            }
+        }
     }
-  }
 }

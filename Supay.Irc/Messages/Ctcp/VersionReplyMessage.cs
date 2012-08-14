@@ -2,63 +2,63 @@ using System;
 
 namespace Supay.Irc.Messages
 {
-  /// <summary>
-  ///   The reply to a <see cref="VersionRequestMessage" />.
-  /// </summary>
-  [Serializable]
-  public class VersionReplyMessage : CtcpReplyMessage
-  {
-    private string response = string.Empty;
-
     /// <summary>
-    ///   Creates a new instance of the <see cref="VersionReplyMessage" /> class.
+    ///   The reply to a <see cref="VersionRequestMessage" />.
     /// </summary>
-    public VersionReplyMessage()
+    [Serializable]
+    public class VersionReplyMessage : CtcpReplyMessage
     {
-      this.InternalCommand = "VERSION";
-    }
+        private string response = string.Empty;
 
-    /// <summary>
-    ///   Gets or sets the version of the client.
-    /// </summary>
-    public virtual string Response
-    {
-      get
-      {
-        return this.response;
-      }
-      set
-      {
-        this.response = value;
-      }
-    }
+        /// <summary>
+        ///   Creates a new instance of the <see cref="VersionReplyMessage" /> class.
+        /// </summary>
+        public VersionReplyMessage()
+        {
+            this.InternalCommand = "VERSION";
+        }
 
-    /// <summary>
-    ///   Gets the data payload of the Ctcp request.
-    /// </summary>
-    protected override string ExtendedData
-    {
-      get
-      {
-        return this.response;
-      }
-    }
+        /// <summary>
+        ///   Gets or sets the version of the client.
+        /// </summary>
+        public virtual string Response
+        {
+            get
+            {
+                return this.response;
+            }
+            set
+            {
+                this.response = value;
+            }
+        }
 
-    /// <summary>
-    ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
-    /// </summary>
-    public override void Notify(MessageConduit conduit)
-    {
-      conduit.OnVersionReply(new IrcMessageEventArgs<VersionReplyMessage>(this));
-    }
+        /// <summary>
+        ///   Gets the data payload of the Ctcp request.
+        /// </summary>
+        protected override string ExtendedData
+        {
+            get
+            {
+                return this.response;
+            }
+        }
 
-    /// <summary>
-    ///   Parses the given string to populate this <see cref="IrcMessage" />.
-    /// </summary>
-    public override void Parse(string unparsedMessage)
-    {
-      base.Parse(unparsedMessage);
-      this.Response = CtcpUtil.GetExtendedData(unparsedMessage);
+        /// <summary>
+        ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
+        /// </summary>
+        public override void Notify(MessageConduit conduit)
+        {
+            conduit.OnVersionReply(new IrcMessageEventArgs<VersionReplyMessage>(this));
+        }
+
+        /// <summary>
+        ///   Parses the given string to populate this <see cref="IrcMessage" />.
+        /// </summary>
+        public override void Parse(string unparsedMessage)
+        {
+            base.Parse(unparsedMessage);
+            this.Response = CtcpUtil.GetExtendedData(unparsedMessage);
+        }
     }
-  }
 }

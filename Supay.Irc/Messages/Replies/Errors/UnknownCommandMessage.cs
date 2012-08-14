@@ -3,66 +3,66 @@ using System.Collections.Generic;
 
 namespace Supay.Irc.Messages
 {
-  /// <summary>
-  ///   The <see cref="ErrorMessage" /> sent when a command is sent to a server which didn't recognize it.
-  /// </summary>
-  [Serializable]
-  public class UnknownCommandMessage : ErrorMessage
-  {
-    private string command;
-
     /// <summary>
-    ///   Creates a new instances of the <see cref="TooManyLinesMessage" /> class.
+    ///   The <see cref="ErrorMessage" /> sent when a command is sent to a server which didn't recognize it.
     /// </summary>
-    public UnknownCommandMessage()
-      : base(421)
+    [Serializable]
+    public class UnknownCommandMessage : ErrorMessage
     {
-    }
+        private string command;
 
-    /// <summary>
-    ///   Gets or sets the command which caused the error.
-    /// </summary>
-    public string Command
-    {
-      get
-      {
-        return this.command;
-      }
-      set
-      {
-        this.command = value;
-      }
-    }
+        /// <summary>
+        ///   Creates a new instances of the <see cref="TooManyLinesMessage" /> class.
+        /// </summary>
+        public UnknownCommandMessage()
+            : base(421)
+        {
+        }
 
-    /// <exclude />
-    protected override IList<string> Tokens
-    {
-      get
-      {
-        var parameters = base.Tokens;
-        parameters.Add(this.Command);
-        parameters.Add("Unknown command");
-        return parameters;
-      }
-    }
+        /// <summary>
+        ///   Gets or sets the command which caused the error.
+        /// </summary>
+        public string Command
+        {
+            get
+            {
+                return this.command;
+            }
+            set
+            {
+                this.command = value;
+            }
+        }
 
-    /// <exclude />
-    protected override void ParseParameters(IList<string> parameters)
-    {
-      base.ParseParameters(parameters);
-      this.Command = string.Empty;
-      if (parameters.Count > 1)
-      {
-        this.Command = parameters[1];
-      }
-    }
+        /// <exclude />
+        protected override IList<string> Tokens
+        {
+            get
+            {
+                var parameters = base.Tokens;
+                parameters.Add(this.Command);
+                parameters.Add("Unknown command");
+                return parameters;
+            }
+        }
 
-    /// <summary>
-    ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
-    /// </summary>
-    public override void Notify(MessageConduit conduit)
-    {
-      conduit.OnUnknownCommand(new IrcMessageEventArgs<UnknownCommandMessage>(this));
+        /// <exclude />
+        protected override void ParseParameters(IList<string> parameters)
+        {
+            base.ParseParameters(parameters);
+            this.Command = string.Empty;
+            if (parameters.Count > 1)
+            {
+                this.Command = parameters[1];
+            }
+        }
+
+        /// <summary>
+        ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
+        /// </summary>
+        public override void Notify(MessageConduit conduit)
+        {
+            conduit.OnUnknownCommand(new IrcMessageEventArgs<UnknownCommandMessage>(this));
+        }
     }
-  }
 }

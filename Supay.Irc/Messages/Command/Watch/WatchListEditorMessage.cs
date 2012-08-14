@@ -4,118 +4,121 @@ using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages
 {
-  /// <summary>
-  ///   A Message that edits the list of users on your watch list.
-  /// </summary>
-  [Serializable]
-  public class WatchListEditorMessage : WatchMessage
-  {
-    #region Properties
-
-    private IList<string> addedNicks;
-
-    private IList<string> removedNicks;
-
     /// <summary>
-    ///   Gets the collection of nicks being added to the watch list.
+    ///   A Message that edits the list of users on your watch list.
     /// </summary>
-    public IList<string> AddedNicks
+    [Serializable]
+    public class WatchListEditorMessage : WatchMessage
     {
-      get
-      {
-        return this.addedNicks ?? (this.addedNicks = new Collection<string>());
-      }
-    }
+        #region Properties
 
-    /// <summary>
-    ///   Gets the collection of nicks being removed from the watch list.
-    /// </summary>
-    public IList<string> RemovedNicks
-    {
-      get
-      {
-        return this.removedNicks ?? (this.removedNicks = new Collection<string>());
-      }
-    }
+        private IList<string> addedNicks;
 
-    #endregion
+        private IList<string> removedNicks;
 
-    #region Parsing
-
-    /// <summary>
-    ///   Determines if the message can be parsed by this type.
-    /// </summary>
-    public override bool CanParse(string unparsedMessage)
-    {
-      if (!base.CanParse(unparsedMessage))
-      {
-        return false;
-      }
-      string firstParam = MessageUtil.GetParameter(unparsedMessage, 0);
-      return firstParam.StartsWith("+", StringComparison.Ordinal) || firstParam.StartsWith("-", StringComparison.Ordinal);
-    }
-
-    /// <summary>
-    ///   Parses the parameters portion of the message.
-    /// </summary>
-    protected override void ParseParameters(IList<string> parameters)
-    {
-      base.ParseParameters(parameters);
-      foreach (string param in parameters)
-      {
-        if (param.StartsWith("+", StringComparison.Ordinal))
+        /// <summary>
+        ///   Gets the collection of nicks being added to the watch list.
+        /// </summary>
+        public IList<string> AddedNicks
         {
-          this.AddedNicks.Add(param.Substring(1));
+            get
+            {
+                return this.addedNicks ?? (this.addedNicks = new Collection<string>());
+            }
         }
-        if (param.StartsWith("-", StringComparison.Ordinal))
+
+        /// <summary>
+        ///   Gets the collection of nicks being removed from the watch list.
+        /// </summary>
+        public IList<string> RemovedNicks
         {
-          this.RemovedNicks.Add(param.Substring(1));
+            get
+            {
+                return this.removedNicks ?? (this.removedNicks = new Collection<string>());
+            }
         }
-      }
-    }
 
-    #endregion
+        #endregion
 
-    #region Formatting
 
-    /// <summary>
-    /// Overrides <see cref="IrcMessage.Tokens"/>.
-    /// </summary>
-    protected override IList<string> Tokens
-    {
-      get
-      {
-        var parameters = base.Tokens;
-        if (this.AddedNicks != null)
+        #region Parsing
+
+        /// <summary>
+        ///   Determines if the message can be parsed by this type.
+        /// </summary>
+        public override bool CanParse(string unparsedMessage)
         {
-          foreach (string addedNick in this.AddedNicks)
-          {
-            parameters.Add("+" + addedNick);
-          }
+            if (!base.CanParse(unparsedMessage))
+            {
+                return false;
+            }
+            string firstParam = MessageUtil.GetParameter(unparsedMessage, 0);
+            return firstParam.StartsWith("+", StringComparison.Ordinal) || firstParam.StartsWith("-", StringComparison.Ordinal);
         }
-        if (this.RemovedNicks != null)
+
+        /// <summary>
+        ///   Parses the parameters portion of the message.
+        /// </summary>
+        protected override void ParseParameters(IList<string> parameters)
         {
-          foreach (string removedNick in this.RemovedNicks)
-          {
-            parameters.Add("-" + removedNick);
-          }
+            base.ParseParameters(parameters);
+            foreach (string param in parameters)
+            {
+                if (param.StartsWith("+", StringComparison.Ordinal))
+                {
+                    this.AddedNicks.Add(param.Substring(1));
+                }
+                if (param.StartsWith("-", StringComparison.Ordinal))
+                {
+                    this.RemovedNicks.Add(param.Substring(1));
+                }
+            }
         }
-        return parameters;
-      }
+
+        #endregion
+
+
+        #region Formatting
+
+        /// <summary>
+        /// Overrides <see cref="IrcMessage.Tokens"/>.
+        /// </summary>
+        protected override IList<string> Tokens
+        {
+            get
+            {
+                var parameters = base.Tokens;
+                if (this.AddedNicks != null)
+                {
+                    foreach (string addedNick in this.AddedNicks)
+                    {
+                        parameters.Add("+" + addedNick);
+                    }
+                }
+                if (this.RemovedNicks != null)
+                {
+                    foreach (string removedNick in this.RemovedNicks)
+                    {
+                        parameters.Add("-" + removedNick);
+                    }
+                }
+                return parameters;
+            }
+        }
+
+        #endregion
+
+
+        #region Events
+
+        /// <summary>
+        ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
+        /// </summary>
+        public override void Notify(MessageConduit conduit)
+        {
+            conduit.OnWatchListEditor(new IrcMessageEventArgs<WatchListEditorMessage>(this));
+        }
+
+        #endregion
     }
-
-    #endregion
-
-    #region Events
-
-    /// <summary>
-    ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
-    /// </summary>
-    public override void Notify(MessageConduit conduit)
-    {
-      conduit.OnWatchListEditor(new IrcMessageEventArgs<WatchListEditorMessage>(this));
-    }
-
-    #endregion
-  }
 }

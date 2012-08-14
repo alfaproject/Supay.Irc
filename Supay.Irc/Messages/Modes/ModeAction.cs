@@ -1,8 +1,8 @@
 namespace Supay.Irc.Messages
 {
-  public enum ModeAction
-  {
-    Add,
-    Remove
-  }
+    public enum ModeAction
+    {
+        Add,
+        Remove
+    }
 }

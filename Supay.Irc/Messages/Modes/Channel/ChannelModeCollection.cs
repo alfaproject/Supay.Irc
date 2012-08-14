@@ -4,22 +4,22 @@ using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages.Modes
 {
-  /// <summary>
-  ///   A collection that stores <see cref="ChannelMode" /> objects.
-  /// </summary>
-  [Serializable]
-  public class ChannelModeCollection : ObservableCollection<ChannelMode>
-  {
     /// <summary>
-    ///   Clears the current collection and adds the given modes.
+    ///   A collection that stores <see cref="ChannelMode" /> objects.
     /// </summary>
-    public void ResetWith(IEnumerable<ChannelMode> newModes)
+    [Serializable]
+    public class ChannelModeCollection : ObservableCollection<ChannelMode>
     {
-      this.Clear();
-      foreach (ChannelMode mode in newModes)
-      {
-        this.Add(mode);
-      }
+        /// <summary>
+        ///   Clears the current collection and adds the given modes.
+        /// </summary>
+        public void ResetWith(IEnumerable<ChannelMode> newModes)
+        {
+            this.Clear();
+            foreach (ChannelMode mode in newModes)
+            {
+                this.Add(mode);
+            }
+        }
     }
-  }
 }

@@ -5,77 +5,77 @@ using System.Globalization;
 
 namespace Supay.Irc.Messages
 {
-  /// <summary>
-  ///   Represents an error message with a numeric command that is either unparsable or unimplemented.
-  /// </summary>
-  [Serializable]
-  public class GenericErrorMessage : ErrorMessage
-  {
-    private IList<string> data = new Collection<string>();
-
     /// <summary>
-    ///   Gets or sets the Numeric command of the Message
+    ///   Represents an error message with a numeric command that is either unparsable or unimplemented.
     /// </summary>
-    public virtual int Command
+    [Serializable]
+    public class GenericErrorMessage : ErrorMessage
     {
-      get
-      {
-        return this.InternalNumeric;
-      }
-      set
-      {
-        this.InternalNumeric = value;
-      }
-    }
+        private IList<string> data = new Collection<string>();
 
-    /// <summary>
-    ///   Gets the text of the Message
-    /// </summary>
-    public virtual IList<string> Data
-    {
-      get
-      {
-        return this.data;
-      }
-    }
+        /// <summary>
+        ///   Gets or sets the Numeric command of the Message
+        /// </summary>
+        public virtual int Command
+        {
+            get
+            {
+                return this.InternalNumeric;
+            }
+            set
+            {
+                this.InternalNumeric = value;
+            }
+        }
 
-    /// <summary>
-    /// Overrides <see cref="IrcMessage.Tokens"/>.
-    /// </summary>
-    protected override IList<string> Tokens
-    {
-      get
-      {
-        var parameters = base.Tokens;
-        parameters.Add(string.Join(" ", this.Data));
-        return parameters;
-      }
-    }
+        /// <summary>
+        ///   Gets the text of the Message
+        /// </summary>
+        public virtual IList<string> Data
+        {
+            get
+            {
+                return this.data;
+            }
+        }
 
-    /// <summary>
-    ///   Parses the command portion of the message.
-    /// </summary>
-    protected override void ParseCommand(string command)
-    {
-      base.ParseCommand(command);
-      this.Command = Convert.ToInt32(command, CultureInfo.InvariantCulture);
-    }
+        /// <summary>
+        /// Overrides <see cref="IrcMessage.Tokens"/>.
+        /// </summary>
+        protected override IList<string> Tokens
+        {
+            get
+            {
+                var parameters = base.Tokens;
+                parameters.Add(string.Join(" ", this.Data));
+                return parameters;
+            }
+        }
 
-    /// <summary>
-    ///   Parses the parameters portion of the message.
-    /// </summary>
-    protected override void ParseParameters(IList<string> parameters)
-    {
-      base.ParseParameters(parameters);
-      this.data = parameters;
-    }
+        /// <summary>
+        ///   Parses the command portion of the message.
+        /// </summary>
+        protected override void ParseCommand(string command)
+        {
+            base.ParseCommand(command);
+            this.Command = Convert.ToInt32(command, CultureInfo.InvariantCulture);
+        }
 
-    /// <summary>
-    ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
-    /// </summary>
-    public override void Notify(MessageConduit conduit)
-    {
-      conduit.OnGenericErrorMessage(new IrcMessageEventArgs<GenericErrorMessage>(this));
+        /// <summary>
+        ///   Parses the parameters portion of the message.
+        /// </summary>
+        protected override void ParseParameters(IList<string> parameters)
+        {
+            base.ParseParameters(parameters);
+            this.data = parameters;
+        }
+
+        /// <summary>
+        ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
+        /// </summary>
+        public override void Notify(MessageConduit conduit)
+        {
+            conduit.OnGenericErrorMessage(new IrcMessageEventArgs<GenericErrorMessage>(this));
+        }
     }
-  }
 }

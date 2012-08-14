@@ -2,68 +2,68 @@ using System;
 
 namespace Supay.Irc.Messages
 {
-  /// <summary>
-  ///   The response to a <see cref="PingRequestMessage" />.
-  /// </summary>
-  [Serializable]
-  public class PingReplyMessage : CtcpReplyMessage
-  {
-    private string timeStamp = string.Empty;
-
     /// <summary>
-    ///   Creates a new instance of the <see cref="PingReplyMessage" /> class.
+    ///   The response to a <see cref="PingRequestMessage" />.
     /// </summary>
-    public PingReplyMessage()
+    [Serializable]
+    public class PingReplyMessage : CtcpReplyMessage
     {
-      this.InternalCommand = "PING";
-    }
+        private string timeStamp = string.Empty;
 
-    /// <summary>
-    ///   The timestamp of the ping reply.
-    /// </summary>
-    /// <remarks>
-    ///   When receiving a <see cref="PingRequestMessage" />, this reply should send the same exact timestamp that the request had.
-    ///   This allows the requestor to substract the two to calculate the timespan to whatever degree
-    ///   of exactness that they want.
-    /// </remarks>
-    public virtual string TimeStamp
-    {
-      get
-      {
-        return this.timeStamp;
-      }
-      set
-      {
-        this.timeStamp = value;
-      }
-    }
+        /// <summary>
+        ///   Creates a new instance of the <see cref="PingReplyMessage" /> class.
+        /// </summary>
+        public PingReplyMessage()
+        {
+            this.InternalCommand = "PING";
+        }
 
-    /// <summary>
-    ///   Gets the data payload of the Ctcp request.
-    /// </summary>
-    protected override string ExtendedData
-    {
-      get
-      {
-        return this.timeStamp;
-      }
-    }
+        /// <summary>
+        ///   The timestamp of the ping reply.
+        /// </summary>
+        /// <remarks>
+        ///   When receiving a <see cref="PingRequestMessage" />, this reply should send the same exact timestamp that the request had.
+        ///   This allows the requestor to substract the two to calculate the timespan to whatever degree
+        ///   of exactness that they want.
+        /// </remarks>
+        public virtual string TimeStamp
+        {
+            get
+            {
+                return this.timeStamp;
+            }
+            set
+            {
+                this.timeStamp = value;
+            }
+        }
 
-    /// <summary>
-    ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
-    /// </summary>
-    public override void Notify(MessageConduit conduit)
-    {
-      conduit.OnPingReply(new IrcMessageEventArgs<PingReplyMessage>(this));
-    }
+        /// <summary>
+        ///   Gets the data payload of the Ctcp request.
+        /// </summary>
+        protected override string ExtendedData
+        {
+            get
+            {
+                return this.timeStamp;
+            }
+        }
 
-    /// <summary>
-    ///   Parses the given string to populate this <see cref="IrcMessage" />.
-    /// </summary>
-    public override void Parse(string unparsedMessage)
-    {
-      base.Parse(unparsedMessage);
-      this.TimeStamp = CtcpUtil.GetExtendedData(unparsedMessage);
+        /// <summary>
+        ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
+        /// </summary>
+        public override void Notify(MessageConduit conduit)
+        {
+            conduit.OnPingReply(new IrcMessageEventArgs<PingReplyMessage>(this));
+        }
+
+        /// <summary>
+        ///   Parses the given string to populate this <see cref="IrcMessage" />.
+        /// </summary>
+        public override void Parse(string unparsedMessage)
+        {
+            base.Parse(unparsedMessage);
+            this.TimeStamp = CtcpUtil.GetExtendedData(unparsedMessage);
+        }
     }
-  }
 }

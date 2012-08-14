@@ -3,62 +3,62 @@ using System.Collections.Generic;
 
 namespace Supay.Irc.Messages
 {
-  /// <summary>
-  ///   The server reply to an <see cref="IsOnMessage" />.
-  /// </summary>
-  [Serializable]
-  public class IsOnReplyMessage : NumericMessage
-  {
-    private readonly List<string> nicks = new List<string>();
-
     /// <summary>
-    ///   Creates a new instance of the <see cref="IsOnReplyMessage" /> class.
+    ///   The server reply to an <see cref="IsOnMessage" />.
     /// </summary>
-    public IsOnReplyMessage()
-      : base(303)
+    [Serializable]
+    public class IsOnReplyMessage : NumericMessage
     {
-    }
+        private readonly List<string> nicks = new List<string>();
 
-    /// <summary>
-    ///   Gets the list of nicks of people who are known to be online.
-    /// </summary>
-    public virtual List<string> Nicks
-    {
-      get
-      {
-        return this.nicks;
-      }
-    }
+        /// <summary>
+        ///   Creates a new instance of the <see cref="IsOnReplyMessage" /> class.
+        /// </summary>
+        public IsOnReplyMessage()
+            : base(303)
+        {
+        }
 
-    /// <summary>
-    /// Overrides <see cref="IrcMessage.Tokens"/>.
-    /// </summary>
-    protected override IList<string> Tokens
-    {
-      get
-      {
-        var parameters = base.Tokens;
-        parameters.Add(string.Join(" ", this.Nicks));
-        return parameters;
-      }
-    }
+        /// <summary>
+        ///   Gets the list of nicks of people who are known to be online.
+        /// </summary>
+        public virtual List<string> Nicks
+        {
+            get
+            {
+                return this.nicks;
+            }
+        }
 
-    /// <summary>
-    ///   Parses the parameters portion of the message.
-    /// </summary>
-    protected override void ParseParameters(IList<string> parameters)
-    {
-      base.ParseParameters(parameters);
-      this.Nicks.Clear();
-      this.Nicks.AddRange(parameters[parameters.Count - 1].Split(' '));
-    }
+        /// <summary>
+        /// Overrides <see cref="IrcMessage.Tokens"/>.
+        /// </summary>
+        protected override IList<string> Tokens
+        {
+            get
+            {
+                var parameters = base.Tokens;
+                parameters.Add(string.Join(" ", this.Nicks));
+                return parameters;
+            }
+        }
 
-    /// <summary>
-    ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
-    /// </summary>
-    public override void Notify(MessageConduit conduit)
-    {
-      conduit.OnIsOnReply(new IrcMessageEventArgs<IsOnReplyMessage>(this));
+        /// <summary>
+        ///   Parses the parameters portion of the message.
+        /// </summary>
+        protected override void ParseParameters(IList<string> parameters)
+        {
+            base.ParseParameters(parameters);
+            this.Nicks.Clear();
+            this.Nicks.AddRange(parameters[parameters.Count - 1].Split(' '));
+        }
+
+        /// <summary>
+        ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
+        /// </summary>
+        public override void Notify(MessageConduit conduit)
+        {
+            conduit.OnIsOnReply(new IrcMessageEventArgs<IsOnReplyMessage>(this));
+        }
     }
-  }
 }

@@ -3,69 +3,69 @@ using System.Collections.Generic;
 
 namespace Supay.Irc.Messages
 {
-  /// <summary>
-  ///   This is the reply to an empty <see cref="UserModeMessage" />.
-  /// </summary>
-  [Serializable]
-  public class UserModeIsReplyMessage : NumericMessage
-  {
-    private string modes = string.Empty;
-
     /// <summary>
-    ///   Creates a new instance of the <see cref="UserModeIsReplyMessage" /> class.
+    ///   This is the reply to an empty <see cref="UserModeMessage" />.
     /// </summary>
-    public UserModeIsReplyMessage()
-      : base(221)
+    [Serializable]
+    public class UserModeIsReplyMessage : NumericMessage
     {
-    }
+        private string modes = string.Empty;
 
-    /// <summary>
-    ///   Gets or sets the modes in effect.
-    /// </summary>
-    /// <remarks>
-    ///   An example Modes might look like "+i".
-    /// </remarks>
-    public virtual string Modes
-    {
-      get
-      {
-        return this.modes;
-      }
-      set
-      {
-        this.modes = value;
-      }
-    }
+        /// <summary>
+        ///   Creates a new instance of the <see cref="UserModeIsReplyMessage" /> class.
+        /// </summary>
+        public UserModeIsReplyMessage()
+            : base(221)
+        {
+        }
 
-    /// <summary>
-    /// Overrides <see cref="IrcMessage.Tokens"/>.
-    /// </summary>
-    protected override IList<string> Tokens
-    {
-      get
-      {
-        var parameters = base.Tokens;
-        parameters.Add(this.Modes);
-        return parameters;
-      }
-    }
+        /// <summary>
+        ///   Gets or sets the modes in effect.
+        /// </summary>
+        /// <remarks>
+        ///   An example Modes might look like "+i".
+        /// </remarks>
+        public virtual string Modes
+        {
+            get
+            {
+                return this.modes;
+            }
+            set
+            {
+                this.modes = value;
+            }
+        }
 
-    /// <summary>
-    ///   Parses the parameters portion of the message.
-    /// </summary>
-    protected override void ParseParameters(IList<string> parameters)
-    {
-      base.ParseParameters(parameters);
+        /// <summary>
+        /// Overrides <see cref="IrcMessage.Tokens"/>.
+        /// </summary>
+        protected override IList<string> Tokens
+        {
+            get
+            {
+                var parameters = base.Tokens;
+                parameters.Add(this.Modes);
+                return parameters;
+            }
+        }
 
-      this.Modes = parameters.Count >= 1 ? parameters[1] : string.Empty;
-    }
+        /// <summary>
+        ///   Parses the parameters portion of the message.
+        /// </summary>
+        protected override void ParseParameters(IList<string> parameters)
+        {
+            base.ParseParameters(parameters);
 
-    /// <summary>
-    ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
-    /// </summary>
-    public override void Notify(MessageConduit conduit)
-    {
-      conduit.OnUserModeIsReply(new IrcMessageEventArgs<UserModeIsReplyMessage>(this));
+            this.Modes = parameters.Count >= 1 ? parameters[1] : string.Empty;
+        }
+
+        /// <summary>
+        ///   Notifies the given <see cref="MessageConduit" /> by raising the appropriate event for the current <see cref="IrcMessage" /> subclass.
+        /// </summary>
+        public override void Notify(MessageConduit conduit)
+        {
+            conduit.OnUserModeIsReply(new IrcMessageEventArgs<UserModeIsReplyMessage>(this));
+        }
     }
-  }
 }
