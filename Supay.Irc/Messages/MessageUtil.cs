@@ -78,19 +78,20 @@ namespace Supay.Irc.Messages
                 return string.Empty;
             }
 
-            // remove prefix
-            if (rawMessage.StartsWith(":", StringComparison.Ordinal))
+            // ignore prefix
+            var indexOfCommand = 0;
+            if (rawMessage[0] == ':')
             {
-                rawMessage = rawMessage.Substring(rawMessage.IndexOf(' ', 1) + 1);
-                if (string.IsNullOrEmpty(rawMessage))
+                indexOfCommand = rawMessage.IndexOf(' ', 1) + 1;
+                if (indexOfCommand == 0)
                 {
                     return string.Empty;
                 }
             }
 
             // the first token is the command
-            int indexOfFirstSpace = rawMessage.IndexOf(' ');
-            return indexOfFirstSpace == -1 ? rawMessage : rawMessage.Substring(0, indexOfFirstSpace);
+            var indexOfParameters = rawMessage.IndexOf(' ', indexOfCommand);
+            return rawMessage.Substring(indexOfCommand, (indexOfParameters == -1 ? rawMessage.Length : indexOfParameters) - indexOfCommand);
         }
 
         /// <summary>
