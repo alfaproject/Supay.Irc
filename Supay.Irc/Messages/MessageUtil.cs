@@ -109,12 +109,12 @@ namespace Supay.Irc.Messages
             if (rawMessage.StartsWith(":", StringComparison.Ordinal))
             {
                 // then the params start after space 2
-                startIndex = NthIndexOf(rawMessage, " ", 0, 2) + 1;
+                startIndex = rawMessage.IndexOfOccurrence(" ", 0, 2) + 1;
             }
             else
             {
                 // then the params start after space 1
-                startIndex = NthIndexOf(rawMessage, " ", 0, 1) + 1;
+                startIndex = rawMessage.IndexOfOccurrence(" ", 0, 1) + 1;
             }
 
             return startIndex == 0 ? new Collection<string>() : Tokenize(rawMessage, startIndex);
@@ -228,34 +228,6 @@ namespace Supay.Irc.Messages
             }
             int lengthOfBetween = startOfEnd - startOfBetween;
             return input.Substring(startOfBetween, lengthOfBetween);
-        }
-
-        /// <summary>
-        ///   Gets the index of the nth time that <paramref name="searchValue" /> shows up in text.
-        /// </summary>
-        /// <param name="text">The string to search in.</param>
-        /// <param name="searchValue">The string to search for.</param>
-        /// <param name="startIndex">The place to start looking.</param>
-        /// <param name="nthItem">The item to stop at.</param>
-        public static int NthIndexOf(string text, string searchValue, int startIndex, int nthItem)
-        {
-            if (text == null)
-            {
-                throw new ArgumentNullException("text");
-            }
-
-            int result = -1;
-            int currentStartIndex = startIndex;
-            for (int i = 0; i < nthItem; i++)
-            {
-                result = text.IndexOf(searchValue, currentStartIndex, StringComparison.Ordinal);
-                if (result == -1)
-                {
-                    return result;
-                }
-                currentStartIndex = result + 1;
-            }
-            return result;
         }
 
         /// <summary>
