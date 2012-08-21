@@ -17,7 +17,7 @@
     <OldToolsVersion>3.5</OldToolsVersion>
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <SccProjectName>
     </SccProjectName>
     <SccLocalPath>
@@ -41,7 +41,6 @@
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -62,6 +61,7 @@
     </NoWarn>
     <LangVersion>3</LangVersion>
     <BaseAddress>8652822</BaseAddress>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -79,6 +79,7 @@
     <NoWarn />
     <PlatformTarget>AnyCPU</PlatformTarget>
     <BaseAddress>8652822</BaseAddress>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -411,7 +412,7 @@
     <Compile Include="Network\SocketError.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Model\UserCollection.cs" />
-    <Compile Include="StringExtensions.cs" />
+    <Compile Include="System\StringExtensions.cs" />
     <Compile Include="System\Collections\ObjectModel\ObservableDictionary.cs" />
   </ItemGroup>
   <ItemGroup>
