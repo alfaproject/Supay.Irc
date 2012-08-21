@@ -118,14 +118,14 @@ namespace Supay.Irc.Tests
         [TestMethod]
         public void NthIndexOf()
         {
-            Assert.AreEqual(0, "foofoofoo".IndexOfOccurrence("foo", 0, 1));
-            Assert.AreEqual(3, "foofoofoo".IndexOfOccurrence("foo", 0, 2));
-            Assert.AreEqual(6, "foofoofoo".IndexOfOccurrence("foo", 0, 3));
-            Assert.AreEqual(-1, "foofoofoo".IndexOfOccurrence("bar", 0, 3));
+            Assert.AreEqual(0, "foofoofoo".IndexOfOccurrence('f', 0, 1));
+            Assert.AreEqual(3, "foofoofoo".IndexOfOccurrence('f', 0, 2));
+            Assert.AreEqual(6, "foofoofoo".IndexOfOccurrence('f', 0, 3));
+            Assert.AreEqual(-1, "foofoofoo".IndexOfOccurrence('b', 0, 3));
 
-            Assert.AreEqual(0, "foobarzap".IndexOfOccurrence("foo", 0, 1));
-            Assert.AreEqual(3, "foobarzap".IndexOfOccurrence("bar", 0, 1));
-            Assert.AreEqual(6, "foobarzap".IndexOfOccurrence("zap", 0, 1));
+            Assert.AreEqual(0, "foobarzap".IndexOfOccurrence('f', 0, 1));
+            Assert.AreEqual(3, "foobarzap".IndexOfOccurrence('b', 0, 1));
+            Assert.AreEqual(6, "foobarzap".IndexOfOccurrence('z', 0, 1));
         }
 
         [TestMethod]

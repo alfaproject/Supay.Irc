@@ -105,19 +105,10 @@ namespace Supay.Irc.Messages
                 return new Collection<string>();
             }
 
-            int startIndex;
-            if (rawMessage.StartsWith(":", StringComparison.Ordinal))
-            {
-                // then the params start after space 2
-                startIndex = rawMessage.IndexOfOccurrence(" ", 0, 2) + 1;
-            }
-            else
-            {
-                // then the params start after space 1
-                startIndex = rawMessage.IndexOfOccurrence(" ", 0, 1) + 1;
-            }
+            // get parameters start index
+            var startIndex = rawMessage.IndexOfOccurrence(' ', 0, rawMessage[0] == ':' ? 2 : 1);
 
-            return startIndex == 0 ? new Collection<string>() : Tokenize(rawMessage, startIndex);
+            return startIndex == -1 ? new Collection<string>() : Tokenize(rawMessage, startIndex + 1);
         }
 
         /// <summary>
