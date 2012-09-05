@@ -93,11 +93,6 @@ namespace Supay.Irc.Messages
         /// <param name="rawMessage">The message string which has the parameters.</param>
         public static Collection<string> GetParameters(string rawMessage)
         {
-            if (string.IsNullOrEmpty(rawMessage))
-            {
-                return new Collection<string>();
-            }
-
             // get parameters start index
             var startIndex = rawMessage.IndexOfOccurrence(' ', 0, rawMessage[0] == ':' ? 2 : 1);
 
