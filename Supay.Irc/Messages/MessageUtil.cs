@@ -71,11 +71,6 @@ namespace Supay.Irc.Messages
         /// </summary>
         public static string GetCommand(string rawMessage)
         {
-            if (string.IsNullOrEmpty(rawMessage))
-            {
-                return string.Empty;
-            }
-
             // ignore prefix
             var indexOfCommand = 0;
             if (rawMessage[0] == ':')
