@@ -29,14 +29,14 @@ namespace Supay.Irc.Messages
             {
                 return "#irc";
             }
+
             if (support == null)
             {
                 support = ServerSupport.DefaultSupport;
             }
 
             string result = channelName.Replace(' ', '_').Replace(',', '_').Replace(':', '_');
-            char firstChar = result[0];
-            if (firstChar != '#' && firstChar != '&' && firstChar != '+' && firstChar != '!')
+            if (!HasValidChannelPrefix(result))
             {
                 result = '#' + result;
             }
@@ -53,7 +53,7 @@ namespace Supay.Irc.Messages
         /// </remarks>
         public static bool HasValidChannelPrefix(string channelName)
         {
-            return !string.IsNullOrEmpty(channelName) && (channelName[0] == '#' || channelName[0] == '&' || channelName[0] == '+' || channelName[0] == '!');
+            return channelName[0] == '#' || channelName[0] == '&' || channelName[0] == '+' || channelName[0] == '!';
         }
 
         /// <summary>
