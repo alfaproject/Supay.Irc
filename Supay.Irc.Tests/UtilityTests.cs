@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Supay.Irc.Messages;
 
@@ -93,12 +94,12 @@ namespace Supay.Irc.Tests
         [TestMethod]
         public void GetLastParameter()
         {
-            Assert.AreEqual("\x0001DCC SEND versions.txt 3557045897 1111 42740\x0001", MessageUtil.GetLastParameter(":^Care|wrk!~carebear@212.4.54.137 PRIVMSG _aLfa_ :\x0001DCC SEND versions.txt 3557045897 1111 42740\x0001"));
-            Assert.AreEqual("Erroneus Nickname", MessageUtil.GetLastParameter(":irc2.secsup.org 432 _aLfa_ #foo :Erroneus Nickname"));
-            Assert.AreEqual("Nickname is already in use.", MessageUtil.GetLastParameter(":irc2.secsup.org 433 _aLfa_ COBOL :Nickname is already in use."));
-            Assert.AreEqual("GDN-7T4JZ11", MessageUtil.GetLastParameter("PING GDN-7T4JZ11"));
-            Assert.AreEqual("_aLfa_", MessageUtil.GetLastParameter(":COBOL!~COBOL@ool-435015b7.dyn.optonline.net MODE #ms.net +o _aLfa_"));
-            Assert.AreEqual("are supported by this server", MessageUtil.GetLastParameter(":irc.easynews.com 005 _aLfa_ WALLCHOPS KNOCK EXCEPTS INVEX MODES=4 MAXCHANNELS=35 MAXBANS=25 MAXTARGETS=4 NICKLEN=9 TOPICLEN=120 KICKLEN=120 :are supported by this server"));
+            Assert.AreEqual("\x0001DCC SEND versions.txt 3557045897 1111 42740\x0001", MessageUtil.GetParameters(":^Care|wrk!~carebear@212.4.54.137 PRIVMSG _aLfa_ :\x0001DCC SEND versions.txt 3557045897 1111 42740\x0001").Last());
+            Assert.AreEqual("Erroneus Nickname", MessageUtil.GetParameters(":irc2.secsup.org 432 _aLfa_ #foo :Erroneus Nickname").Last());
+            Assert.AreEqual("Nickname is already in use.", MessageUtil.GetParameters(":irc2.secsup.org 433 _aLfa_ COBOL :Nickname is already in use.").Last());
+            Assert.AreEqual("GDN-7T4JZ11", MessageUtil.GetParameters("PING GDN-7T4JZ11").Last());
+            Assert.AreEqual("_aLfa_", MessageUtil.GetParameters(":COBOL!~COBOL@ool-435015b7.dyn.optonline.net MODE #ms.net +o _aLfa_").Last());
+            Assert.AreEqual("are supported by this server", MessageUtil.GetParameters(":irc.easynews.com 005 _aLfa_ WALLCHOPS KNOCK EXCEPTS INVEX MODES=4 MAXCHANNELS=35 MAXBANS=25 MAXTARGETS=4 NICKLEN=9 TOPICLEN=120 KICKLEN=120 :are supported by this server").Last());
         }
 
         [TestMethod]

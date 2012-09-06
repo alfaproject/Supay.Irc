@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace Supay.Irc.Messages
@@ -68,10 +69,9 @@ namespace Supay.Irc.Messages
         /// </summary>
         public static string GetInternalCommand(string rawMessage)
         {
-            string ctcpMessage = MessageUtil.GetLastParameter(rawMessage);
-            return ctcpMessage.IndexOf(" ", StringComparison.Ordinal) > 0
-                ? ctcpMessage.Substring(1, ctcpMessage.IndexOf(" ", StringComparison.Ordinal) - 1)
-                : ctcpMessage.Substring(1, ctcpMessage.Length - 2);
+            var ctcpMessage = MessageUtil.GetParameters(rawMessage).Last();
+            var indexOfSpace = ctcpMessage.IndexOf(' ');
+            return ctcpMessage.Substring(1, indexOfSpace == -1 ? ctcpMessage.Length - 2 : indexOfSpace - 1);
         }
 
         /// <summary>
@@ -79,14 +79,9 @@ namespace Supay.Irc.Messages
         /// </summary>
         public static string GetExtendedData(string rawMessage)
         {
-            string ctcpMessage = MessageUtil.GetLastParameter(rawMessage);
-            string extendedData = string.Empty;
-            if (ctcpMessage.IndexOf(" ", StringComparison.Ordinal) > 0)
-            {
-                extendedData = ctcpMessage.Substring(ctcpMessage.IndexOf(" ", StringComparison.Ordinal) + 1);
-                extendedData = extendedData.Substring(0, extendedData.Length - 1);
-            }
-            return Unescape(extendedData);
+            var ctcpMessage = MessageUtil.GetParameters(rawMessage).Last();
+            var indexOfSpace = ctcpMessage.IndexOf(' ');
+            return Unescape(indexOfSpace == -1 ? string.Empty : ctcpMessage.Substring(indexOfSpace + 1, ctcpMessage.Length - indexOfSpace - 2));
         }
 
         /// <summary>

@@ -104,15 +104,6 @@ namespace Supay.Irc.Messages
         }
 
         /// <summary>
-        ///   Gets the last parameter in the parameters collection of the given unparsed message.
-        /// </summary>
-        public static string GetLastParameter(string rawMessage)
-        {
-            IList<string> p = GetParameters(rawMessage);
-            return p.Count > 0 ? p[p.Count - 1] : string.Empty;
-        }
-
-        /// <summary>
         ///   Gets the nth parameter in the parameters collection of the given unparsed message.
         /// </summary>
         public static string GetParameter(string rawMessage, int index)
