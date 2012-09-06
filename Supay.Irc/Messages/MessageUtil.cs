@@ -15,7 +15,7 @@ namespace Supay.Irc.Messages
     /// </remarks>
     public static class MessageUtil
     {
-        private static readonly Regex ircMessageRegex = new Regex(@"^(:(?<p>[^ ]+) )?(?<c>\w+)(( (:(?<a>.+)|(?<a>[^ ]+)))+)?", RegexOptions.Compiled | RegexOptions.ExplicitCapture);
+        private static readonly Regex ircMessageRegex = new Regex(@"^(:(?<p>[^ ]+) )?(?<c>\w+)(( (:(?<a>.*)|(?<a>[^ ]+)))+)?", RegexOptions.Compiled | RegexOptions.ExplicitCapture);
 
         private static string cachedRawMessage;
         private static Match cachedMatchedMessage;
