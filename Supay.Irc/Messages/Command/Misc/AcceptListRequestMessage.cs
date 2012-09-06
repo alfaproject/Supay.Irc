@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Supay.Irc.Properties;
 
 namespace Supay.Irc.Messages
@@ -38,12 +39,8 @@ namespace Supay.Irc.Messages
         /// </summary>
         public override bool CanParse(string unparsedMessage)
         {
-            if (!base.CanParse(unparsedMessage))
-            {
-                return false;
-            }
-            string firstParam = MessageUtil.GetParameter(unparsedMessage, 0);
-            return firstParam == "*";
+            return base.CanParse(unparsedMessage)
+                && MessageUtil.GetParameters(unparsedMessage).First() == "*";
         }
 
         /// <summary>

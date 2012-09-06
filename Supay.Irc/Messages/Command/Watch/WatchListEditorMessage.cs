@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace Supay.Irc.Messages
 {
@@ -52,8 +53,9 @@ namespace Supay.Irc.Messages
             {
                 return false;
             }
-            string firstParam = MessageUtil.GetParameter(unparsedMessage, 0);
-            return firstParam.StartsWith("+", StringComparison.Ordinal) || firstParam.StartsWith("-", StringComparison.Ordinal);
+
+            var firstParam = MessageUtil.GetParameters(unparsedMessage).First();
+            return firstParam[0] == '+' || firstParam[0] == '-';
         }
 
         /// <summary>

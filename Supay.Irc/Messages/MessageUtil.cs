@@ -104,15 +104,6 @@ namespace Supay.Irc.Messages
         }
 
         /// <summary>
-        ///   Gets the nth parameter in the parameters collection of the given unparsed message.
-        /// </summary>
-        public static string GetParameter(string rawMessage, int index)
-        {
-            IList<string> p = GetParameters(rawMessage);
-            return p.Count > index ? p[index] : string.Empty;
-        }
-
-        /// <summary>
         ///   Gets the substring in the input string existing between the given two strings.
         /// </summary>
         /// <param name="input">The string to search in.</param>

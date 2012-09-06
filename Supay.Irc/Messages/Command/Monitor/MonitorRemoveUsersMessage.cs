@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace Supay.Irc.Messages
 {
@@ -28,12 +29,8 @@ namespace Supay.Irc.Messages
         /// </summary>
         public override bool CanParse(string unparsedMessage)
         {
-            if (!base.CanParse(unparsedMessage))
-            {
-                return false;
-            }
-            string firstParam = MessageUtil.GetParameter(unparsedMessage, 0);
-            return firstParam.StartsWith("-", StringComparison.Ordinal);
+            return base.CanParse(unparsedMessage)
+                && MessageUtil.GetParameters(unparsedMessage).First()[0] == '-';
         }
 
         /// <summary>
