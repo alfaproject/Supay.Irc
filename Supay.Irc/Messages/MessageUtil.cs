@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Globalization;
+using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Supay.Irc.Messages
 {
@@ -14,8 +15,10 @@ namespace Supay.Irc.Messages
     /// </remarks>
     public static class MessageUtil
     {
-        private static string cachedRawMessage = string.Empty;
-        private static Collection<string> cachedParams;
+        private static readonly Regex ircMessageRegex = new Regex(@"^(:(?<p>[^ ]+) )?(?<c>\w+)(( (:(?<a>.+)|(?<a>[^ ]+)))+)?", RegexOptions.Compiled | RegexOptions.ExplicitCapture);
+
+        private static string cachedRawMessage;
+        private static Match cachedMatchedMessage;
 
         /// <summary>
         ///   Takes the given channel name, and returns a name that is valid according to the given server support.
@@ -61,9 +64,13 @@ namespace Supay.Irc.Messages
         /// </summary>
         public static string GetPrefix(string rawMessage)
         {
-            return rawMessage[0] == ':'
-                ? rawMessage.Substring(1, rawMessage.IndexOf(' ', 1) - 1)
-                : string.Empty;
+            if (rawMessage != cachedRawMessage)
+            {
+                cachedRawMessage = rawMessage;
+                cachedMatchedMessage = ircMessageRegex.Match(rawMessage);
+            }
+
+            return cachedMatchedMessage.Groups[@"p"].Value;
         }
 
         /// <summary>
@@ -71,80 +78,29 @@ namespace Supay.Irc.Messages
         /// </summary>
         public static string GetCommand(string rawMessage)
         {
-            // ignore prefix
-            var indexOfCommand = 0;
-            if (rawMessage[0] == ':')
+            if (rawMessage != cachedRawMessage)
             {
-                indexOfCommand = rawMessage.IndexOf(' ', 1) + 1;
-                if (indexOfCommand == 0)
-                {
-                    return string.Empty;
-                }
+                cachedRawMessage = rawMessage;
+                cachedMatchedMessage = ircMessageRegex.Match(rawMessage);
             }
 
-            // the first token is the command
-            var indexOfParameters = rawMessage.IndexOf(' ', indexOfCommand);
-            return rawMessage.Substring(indexOfCommand, (indexOfParameters == -1 ? rawMessage.Length : indexOfParameters) - indexOfCommand);
+            return cachedMatchedMessage.Groups[@"c"].Value;
         }
 
         /// <summary>
         ///   Gets the parameters of the raw message.
         /// </summary>
         /// <param name="rawMessage">The message string which has the parameters.</param>
-        public static Collection<string> GetParameters(string rawMessage)
+        public static IList<string> GetParameters(string rawMessage)
         {
-            // get parameters start index
-            var startIndex = rawMessage.IndexOfOccurrence(' ', 0, rawMessage[0] == ':' ? 2 : 1);
-
-            return startIndex == -1 ? new Collection<string>() : Tokenize(rawMessage, startIndex + 1);
-        }
-
-        /// <summary>
-        ///   Separates the given space-delimited parameter string into a collection.
-        /// </summary>
-        public static Collection<string> Tokenize(string rawMessage, int startIndex)
-        {
-            if (rawMessage == null)
+            if (rawMessage != cachedRawMessage)
             {
-                throw new ArgumentNullException("rawMessage");
+                cachedRawMessage = rawMessage;
+                cachedMatchedMessage = ircMessageRegex.Match(rawMessage);
             }
 
-            if (rawMessage == cachedRawMessage)
-            {
-                return cachedParams;
-            }
-
-            var parameters = new Collection<string>();
-            var param = new StringBuilder();
-            for (int i = startIndex; i < rawMessage.Length; i++)
-            {
-                char c = rawMessage[i];
-                if (c == ' ')
-                {
-                    parameters.Add(param.ToString());
-                    param = new StringBuilder();
-                }
-                else if (i + 1 == rawMessage.Length)
-                {
-                    param.Append(c);
-                    parameters.Add(param.ToString());
-                    param = new StringBuilder();
-                }
-                else if (c == ':' && param.Length == 0)
-                {
-                    parameters.Add(rawMessage.Substring(i + 1));
-                    break;
-                }
-                else
-                {
-                    param.Append(c);
-                }
-            }
-
-            cachedRawMessage = rawMessage;
-            cachedParams = parameters;
-
-            return parameters;
+            return (from Capture argument in cachedMatchedMessage.Groups[@"a"].Captures
+                    select argument.Value).ToList();
         }
 
         /// <summary>

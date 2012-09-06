@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.ObjectModel;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Supay.Irc.Messages;
 
@@ -61,7 +60,7 @@ namespace Supay.Irc.Tests
         public void GetParameters()
         {
             string input = "COMMAND";
-            Collection<string> p = MessageUtil.GetParameters(input);
+            var p = MessageUtil.GetParameters(input);
             Assert.AreEqual(0, p.Count);
 
             input = "COMMAND param1";
@@ -113,19 +112,6 @@ namespace Supay.Irc.Tests
             Assert.AreEqual("foobarzap", MessageUtil.StringBetweenStrings("foobarzap", "q", "t"));
             Assert.AreEqual("zap", MessageUtil.StringBetweenStrings("foobarzap", "foobar", "t"));
             Assert.AreEqual("foo", MessageUtil.StringBetweenStrings("foobarzap", "t", "barzap"));
-        }
-
-        [TestMethod]
-        public void NthIndexOf()
-        {
-            Assert.AreEqual(0, "foofoofoo".IndexOfOccurrence('f', 0, 1));
-            Assert.AreEqual(3, "foofoofoo".IndexOfOccurrence('f', 0, 2));
-            Assert.AreEqual(6, "foofoofoo".IndexOfOccurrence('f', 0, 3));
-            Assert.AreEqual(-1, "foofoofoo".IndexOfOccurrence('b', 0, 3));
-
-            Assert.AreEqual(0, "foobarzap".IndexOfOccurrence('f', 0, 1));
-            Assert.AreEqual(3, "foobarzap".IndexOfOccurrence('b', 0, 1));
-            Assert.AreEqual(6, "foobarzap".IndexOfOccurrence('z', 0, 1));
         }
 
         [TestMethod]

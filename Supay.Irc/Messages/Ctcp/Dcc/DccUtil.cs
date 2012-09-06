@@ -45,8 +45,7 @@ namespace Supay.Irc.Dcc
         /// </summary>
         public static IList<string> GetParameters(string rawMessage)
         {
-            string extendedData = CtcpUtil.GetExtendedData(rawMessage);
-            return MessageUtil.Tokenize(extendedData, 0);
+            return CtcpUtil.GetExtendedData(rawMessage).Split(' ');
         }
     }
 }

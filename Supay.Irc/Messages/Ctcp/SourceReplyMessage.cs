@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.ObjectModel;
 using System.Text;
 
@@ -101,7 +100,7 @@ namespace Supay.Irc.Messages
                     this.Folder = p[1];
                     if (p.Length == 3)
                     {
-                        ICollection fs = MessageUtil.GetParameters(p[2]);
+                        var fs = MessageUtil.GetParameters(p[2]);
                         foreach (string f in fs)
                         {
                             this.Files.Add(f);

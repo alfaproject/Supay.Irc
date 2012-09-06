@@ -412,7 +412,6 @@
     <Compile Include="Network\SocketError.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Model\UserCollection.cs" />
-    <Compile Include="System\StringExtensions.cs" />
     <Compile Include="System\Collections\ObjectModel\ObservableDictionary.cs" />
   </ItemGroup>
   <ItemGroup>
