@@ -1,20 +1,7 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-    <head profile="http://dublincore.org/documents/2008/08/04/dc-html/">
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <meta name="robots" content="index,follow" />
-        <meta name="creator" content="rfcmarkup version 1.98" />
-        <link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
-        <meta name="DC.Identifier" content="urn:ietf:id:brocklesby-irc-isupport" />
-        <meta name="DC.Creator" content="Edward Brocklesby &lt;ejb@hades.skumler.net&gt;" />
-        <meta name="DC.Date.Issued" content="2004-01-07" />
-        <meta name="DC.Title" content="IRC RPL_ISUPPORT Numeric Definition" />
-
-        <link rel="icon" href="/images/id.png" type="image/png" />
-        <link rel="shortcut icon" href="/images/id.png" type="image/png" />
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
         <title>draft-brocklesby-irc-isupport-03 - IRC RPL_ISUPPORT Numeric Definition</title>
-    
     
         <style type="text/css">
             body {
@@ -154,9 +141,9 @@
                  onmouseout=" hideElem('legend'); ">
             </div>
         </div>
-        <span class="pre noprint docinfo top">[<a href="../html/" title="Document search and retrieval page">Docs</a>] [<a href="http://tools.ietf.org/id/draft-brocklesby-irc-isupport-03.txt" title="Plaintext version of this document">txt</a>|<a href="/pdf/draft-brocklesby-irc-isupport-03.txt" title="PDF version of this document">pdf</a>] [<a href='https://datatracker.ietf.org/doc/draft-brocklesby-irc-isupport' title='IESG Datatracker information for this document'>Tracker</a>] [<a href="mailto:draft-brocklesby-irc-isupport@tools.ietf.org?subject=draft-brocklesby-irc-isupport%20" title="Send email to the document authors">Email</a>] [<a href="/rfcdiff?difftype=--hwdiff&amp;url2=draft-brocklesby-irc-isupport-03.txt" title="Inline diff (wdiff)">Diff1</a>] [<a href="/rfcdiff?url2=draft-brocklesby-irc-isupport-03.txt" title="Side-by-side diff">Diff2</a>] [<a href="/idnits?url=http://tools.ietf.org/id/draft-brocklesby-irc-isupport-03.txt" title="Run an idnits check of this document">Nits</a>]               </span><br />
+        <span class="pre noprint docinfo top">[<a href="http://tools.ietf.org/html/" title="Document search and retrieval page">Docs</a>] [<a href="http://tools.ietf.org/id/draft-brocklesby-irc-isupport-03.txt" title="Plaintext version of this document">txt</a>|<a href="http://tools.ietf.org/pdf/draft-brocklesby-irc-isupport-03.txt" title="PDF version of this document">pdf</a>] [<a href='https://datatracker.ietf.org/doc/draft-brocklesby-irc-isupport' title='IESG Datatracker information for this document'>Tracker</a>] [<a href="mailto:draft-brocklesby-irc-isupport@tools.ietf.org?subject=draft-brocklesby-irc-isupport%20" title="Send email to the document authors">Email</a>] [<a href="http://tools.ietf.org/rfcdiff?difftype=--hwdiff&amp;url2=draft-brocklesby-irc-isupport-03.txt" title="Inline diff (wdiff)">Diff1</a>] [<a href="http://tools.ietf.org/rfcdiff?url2=draft-brocklesby-irc-isupport-03.txt" title="Side-by-side diff">Diff2</a>] [<a href="http://tools.ietf.org/idnits?url=http://tools.ietf.org/id/draft-brocklesby-irc-isupport-03.txt" title="Run an idnits check of this document">Nits</a>]               </span><br />
         <span class="pre noprint docinfo">                                                                        </span><br />
-        <span class="pre noprint docinfo">Versions: <a href="./draft-brocklesby-irc-isupport-00">00</a> <a href="./draft-brocklesby-irc-isupport-01">01</a> <a href="./draft-brocklesby-irc-isupport-02">02</a> <a href="./draft-brocklesby-irc-isupport-03">03</a>                                                   </span><br />
+        <span class="pre noprint docinfo">Versions: <a href="http://tools.ietf.org/html/draft-brocklesby-irc-isupport-00">00</a> <a href="http://tools.ietf.org/html/draft-brocklesby-irc-isupport-01">01</a> <a href="http://tools.ietf.org/html/draft-brocklesby-irc-isupport-02">02</a> <a href="http://tools.ietf.org/html/draft-brocklesby-irc-isupport-03">03</a>                                                   </span><br />
         <span class="pre noprint docinfo">                                                                        </span><br />
         <pre>
 Network Working Group                                      E. Brocklesby
@@ -170,7 +157,7 @@ Expires: July 5, 2004
 Status of this Memo
 
    This document is an Internet-Draft and is in full conformance with
-   all provisions of <a href="./rfc2026#section-10">Section&nbsp;10 of RFC2026</a>.
+   all provisions of <a href="http://tools.ietf.org/html/rfc2026#section-10">Section&nbsp;10 of RFC2026</a>.
 
    Internet-Drafts are working documents of the Internet Engineering
    Task Force (IETF), its areas, and its working groups. Note that other
@@ -197,7 +184,7 @@ Abstract
 
    This memo presents a way for the server to unobtrusively advertise
    the ways in which it differs from the Internet Relay Chat (IRC)
-   specification defined in <a href="./rfc1459">RFC1459</a>. It is a primary goal to implement
+   specification defined in <a href="RFC 1459 - Protocol.html">RFC1459</a>. It is a primary goal to implement
    this in a way which is completely backwards-compatible with the
    original protocol, and as much as possible with current non-standard
    implementations of the ISUPPORT numeric.
@@ -212,7 +199,7 @@ Abstract
 
 
 <span class="grey">Brocklesby                Expires July 5, 2004                  [Page 1]</span>
-</pre><pre class='newpage'><a name="page-2" id="page-2" href="#page-2" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-2" href="#page-2" class="invisible"> </a>
 <span class="grey">Internet-Draft    IRC RPL_ISUPPORT Numeric Definition       January 2004</span>
 
 
@@ -248,7 +235,7 @@ Table of Contents
    <a href="#section-4.1">4.1</a>  PREFIX parameter without value . . . . . . . . . . . . . . .  <a href="#page-16">16</a>
    <a href="#section-4.2">4.2</a>  EXCEPTS and INVEX value argument . . . . . . . . . . . . . .  <a href="#page-16">16</a>
    <a href="#section-4.3">4.3</a>  STATUSMSG / WALLCHOPS  . . . . . . . . . . . . . . . . . . .  <a href="#page-16">16</a>
-   <a href="#section-4.4">4.4</a>  Conflicts with <a href="./rfc2812">RFC 2812</a>  . . . . . . . . . . . . . . . . . .  <a href="#page-16">16</a>
+   <a href="#section-4.4">4.4</a>  Conflicts with <a href="RFC 2812 - Client Protocol.html">RFC 2812</a>  . . . . . . . . . . . . . . . . . .  <a href="#page-16">16</a>
    <a href="#section-4.5">4.5</a>  Default value for CASEMAPPING  . . . . . . . . . . . . . . .  <a href="#page-17">17</a>
    <a href="#section-4.6">4.6</a>  CHANLIMIT / MAXCHANNELS  . . . . . . . . . . . . . . . . . .  <a href="#page-17">17</a>
    <a href="#section-4.7">4.7</a>  MAXLIST / MAXBANS  . . . . . . . . . . . . . . . . . . . . .  <a href="#page-17">17</a>
@@ -268,25 +255,25 @@ Table of Contents
 
 
 <span class="grey">Brocklesby                Expires July 5, 2004                  [Page 2]</span>
-</pre><pre class='newpage'><a name="page-3" id="page-3" href="#page-3" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-3" href="#page-3" class="invisible"> </a>
 <span class="grey">Internet-Draft    IRC RPL_ISUPPORT Numeric Definition       January 2004</span>
 
 
-<span class="h2"><a name="section-1">1</a>. Introduction</span>
+<span class="h2"><a id="section-1">1</a>. Introduction</span>
 
-<span class="h3"><a name="section-1.1">1.1</a> Terminology</span>
+<span class="h3"><a id="section-1.1">1.1</a> Terminology</span>
 
    o  Original IRC protocol: The original IRC protocol as described in
-      <a href="./rfc1459">RFC 1459</a> [<a href="#ref-5" title='"Internet Relay Chat Protocol"'>5</a>].
+      <a href="RFC 1459 - Protocol.html">RFC 1459</a> [<a href="#ref-5" title='"Internet Relay Chat Protocol"'>5</a>].
    o  The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
       NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and
       "OPTIONAL" in this document are to be interpreted as described in
-      <a href="./rfc2119">RFC 2119</a> [<a href="#ref-1" title='"Key words for use in RFCs to Indicate Requirement Levels"'>1</a>].
-   o  The ABNF syntax used in this document is defined in <a href="./rfc2234">RFC 2234</a> [<a href="#ref-2" title='"Augumented BNF for Syntax Specifications: ABNF"'>2</a>]
+      <a href="http://tools.ietf.org/html/rfc2119">RFC 2119</a> [<a href="#ref-1" title='"Key words for use in RFCs to Indicate Requirement Levels"'>1</a>].
+   o  The ABNF syntax used in this document is defined in <a href="http://tools.ietf.org/html/rfc2234">RFC 2234</a> [<a href="#ref-2" title='"Augumented BNF for Syntax Specifications: ABNF"'>2</a>]
    o  The term "character" is this document is used to mean an octet, as
-      defined in <a href="./rfc1459">RFC 1459</a> [<a href="#ref-5" title='"Internet Relay Chat Protocol"'>5</a>], section 2.2.
+      defined in <a href="RFC 1459 - Protocol.html">RFC 1459</a> [<a href="#ref-5" title='"Internet Relay Chat Protocol"'>5</a>], section 2.2.
 
-<span class="h3"><a name="section-1.2">1.2</a> Changes to previous version</span>
+<span class="h3"><a id="section-1.2">1.2</a> Changes to previous version</span>
 
      [Note: To be removed by the RFC editor prior to publication.]
 
@@ -317,14 +304,14 @@ Table of Contents
    o  The TARGMAX parameter was added.
    o  "X" and "X=" were made identical.
 
-<span class="h3"><a name="section-1.3">1.3</a> Motivation</span>
+<span class="h3"><a id="section-1.3">1.3</a> Motivation</span>
 
-   Since the publication of <a href="./rfc1459">RFC 1459</a> [<a href="#ref-5" title='"Internet Relay Chat Protocol"'>5</a>] in 1993, a number of changes
+   Since the publication of <a href="RFC 1459 - Protocol.html">RFC 1459</a> [<a href="#ref-5" title='"Internet Relay Chat Protocol"'>5</a>] in 1993, a number of changes
 
 
 
 <span class="grey">Brocklesby                Expires July 5, 2004                  [Page 3]</span>
-</pre><pre class='newpage'><a name="page-4" id="page-4" href="#page-4" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-4" href="#page-4" class="invisible"> </a>
 <span class="grey">Internet-Draft    IRC RPL_ISUPPORT Numeric Definition       January 2004</span>
 
 
@@ -350,14 +337,14 @@ Table of Contents
    that IRC clients can use the information provided to the maximum
    extent.
 
-<span class="h3"><a name="section-1.4">1.4</a> Notes on examples</span>
+<span class="h3"><a id="section-1.4">1.4</a> Notes on examples</span>
 
    Several examples of protocol replies are given throughout this
    document. These are intended only for clarification of the protocol;
    in the case of a discrepancy between the example and the formal
    specification, the specification is always preferred.
 
-<span class="h2"><a name="section-2">2</a>. Protocol outline</span>
+<span class="h2"><a id="section-2">2</a>. Protocol outline</span>
 
    The ISUPPORT numeric consists of a series of parameters, each of
    which maps to a protocol extension supported by the IRC server.  A
@@ -380,7 +367,7 @@ Table of Contents
 
 
 <span class="grey">Brocklesby                Expires July 5, 2004                  [Page 4]</span>
-</pre><pre class='newpage'><a name="page-5" id="page-5" href="#page-5" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-5" href="#page-5" class="invisible"> </a>
 <span class="grey">Internet-Draft    IRC RPL_ISUPPORT Numeric Definition       January 2004</span>
 
 
@@ -397,8 +384,8 @@ Table of Contents
      letpun = letter / punct
 
    The format of the postfix descriptive text is not fixed, and may be
-   any string subject to the requirements of <a href="./rfc1459">RFC 1459</a> [<a href="#ref-5" title='"Internet Relay Chat Protocol"'>5</a>] regarding
-   numeric replies.  Servername and nickname are as defined in <a href="./rfc1459">RFC 1459</a>
+   any string subject to the requirements of <a href="RFC 1459 - Protocol.html">RFC 1459</a> [<a href="#ref-5" title='"Internet Relay Chat Protocol"'>5</a>] regarding
+   numeric replies.  Servername and nickname are as defined in <a href="RFC 1459 - Protocol.html">RFC 1459</a>
    [<a href="#ref-5" title='"Internet Relay Chat Protocol"'>5</a>].
 
    The "servername" MUST be the name of the server to which the client
@@ -431,12 +418,12 @@ Table of Contents
    encoding. Characters in multibyte encodings such as UTF-8 should be
    sent as a series of \x sequences.
 
-   <a href="./rfc1459">RFC 1459</a> [<a href="#ref-5" title='"Internet Relay Chat Protocol"'>5</a>] defines a maximum of 15 parameters to any reply,
+   <a href="RFC 1459 - Protocol.html">RFC 1459</a> [<a href="#ref-5" title='"Internet Relay Chat Protocol"'>5</a>] defines a maximum of 15 parameters to any reply,
 
 
 
 <span class="grey">Brocklesby                Expires July 5, 2004                  [Page 5]</span>
-</pre><pre class='newpage'><a name="page-6" id="page-6" href="#page-6" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-6" href="#page-6" class="invisible"> </a>
 <span class="grey">Internet-Draft    IRC RPL_ISUPPORT Numeric Definition       January 2004</span>
 
 
@@ -492,11 +479,11 @@ Table of Contents
 
 
 <span class="grey">Brocklesby                Expires July 5, 2004                  [Page 6]</span>
-</pre><pre class='newpage'><a name="page-7" id="page-7" href="#page-7" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-7" href="#page-7" class="invisible"> </a>
 <span class="grey">Internet-Draft    IRC RPL_ISUPPORT Numeric Definition       January 2004</span>
 
 
-<span class="h2"><a name="section-3">3</a>. Currently defined parameters</span>
+<span class="h2"><a id="section-3">3</a>. Currently defined parameters</span>
 
    A number of parameters are currently used in the IRC community, and
    it is believed to be beneficial to standardise these.  They are
@@ -506,7 +493,7 @@ Table of Contents
       update and extend the set of defined parameters; this is not meant
       to be an exhaustive list.]
 
-<span class="h3"><a name="section-3.1">3.1</a> CASEMAPPING</span>
+<span class="h3"><a id="section-3.1">3.1</a> CASEMAPPING</span>
 
    o  CASEMAPPING=string
 
@@ -517,29 +504,29 @@ Table of Contents
    o  "ascii": The ASCII characters 97 to 122 (decimal) are defined as
       the lower-case characters of ASCII 65 to 90 (decimal).  No other
       character equivalency is defined.
-   o  "<a href="./rfc1459">rfc1459</a>": The ASCII characters 97 to 126 (decimal) are defined as
+   o  "<a href="RFC 1459 - Protocol.html">rfc1459</a>": The ASCII characters 97 to 126 (decimal) are defined as
       the lower-case characters of ASCII 65 to 94 (decimal).  No other
       character equivalency is defined.
    o  "strict-rfc1459": The ASCII characters 97 to 125 (decimal) are
       defined as the lower-case characters of ASCII 65 to 93 (decimal).
       No other character equivalency is defined.
 
-     [Note: The only difference between "<a href="./rfc1459">rfc1459</a>" and "strict-rfc1459"
+     [Note: The only difference between "<a href="RFC 1459 - Protocol.html">rfc1459</a>" and "strict-rfc1459"
       is that the characters "~" and "^" are not considered equivalent
       in the "strict-rfc1459" encoding.  This is believed to be an
-      mistake in the specification of character equivalency in <a href="./rfc1459">RFC 1459</a>
+      mistake in the specification of character equivalency in <a href="RFC 1459 - Protocol.html">RFC 1459</a>
       [<a href="#ref-5" title='"Internet Relay Chat Protocol"'>5</a>]; the majority of IRC server implementations known to the
       author treat these characters as equivalent (however, see <a href="#section-4.5">Section</a>
       <a href="#section-4.5">4.5</a>).]
 
    The CASEMAPPING token requires a value.
 
-   The default value for CASEMAPPING is "<a href="./rfc1459">rfc1459</a>".  While this differs
-   from the historical definition in <a href="./rfc1459">RFC 1459</a> [<a href="#ref-5" title='"Internet Relay Chat Protocol"'>5</a>], it is believed to
+   The default value for CASEMAPPING is "<a href="RFC 1459 - Protocol.html">rfc1459</a>".  While this differs
+   from the historical definition in <a href="RFC 1459 - Protocol.html">RFC 1459</a> [<a href="#ref-5" title='"Internet Relay Chat Protocol"'>5</a>], it is believed to
    reflect current IRC server implementations, and is as such more
    useful.
 
-<span class="h3"><a name="section-3.2">3.2</a> CHANLIMIT</span>
+<span class="h3"><a id="section-3.2">3.2</a> CHANLIMIT</span>
 
    o  CHANLIMIT=pfx:num[,pfx:num,...]
 
@@ -548,7 +535,7 @@ Table of Contents
 
 
 <span class="grey">Brocklesby                Expires July 5, 2004                  [Page 7]</span>
-</pre><pre class='newpage'><a name="page-8" id="page-8" href="#page-8" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-8" href="#page-8" class="invisible"> </a>
 <span class="grey">Internet-Draft    IRC RPL_ISUPPORT Numeric Definition       January 2004</span>
 
 
@@ -572,7 +559,7 @@ Table of Contents
 
    The CHANLIMIT token requires a value.
 
-<span class="h3"><a name="section-3.3">3.3</a> CHANMODES</span>
+<span class="h3"><a id="section-3.3">3.3</a> CHANMODES</span>
 
    o  CHANMODES=A,B,C,D
 
@@ -604,7 +591,7 @@ Table of Contents
 
 
 <span class="grey">Brocklesby                Expires July 5, 2004                  [Page 8]</span>
-</pre><pre class='newpage'><a name="page-9" id="page-9" href="#page-9" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-9" href="#page-9" class="invisible"> </a>
 <span class="grey">Internet-Draft    IRC RPL_ISUPPORT Numeric Definition       January 2004</span>
 
 
@@ -619,7 +606,7 @@ Table of Contents
 
    There is no default value for the CHANMODES token.
 
-<span class="h3"><a name="section-3.4">3.4</a> CHANNELLEN</span>
+<span class="h3"><a id="section-3.4">3.4</a> CHANNELLEN</span>
 
    o  CHANNELLEN=number
 
@@ -633,10 +620,10 @@ Table of Contents
    channel names are not limited in length.  If a value is given, it
    must be numeric.
 
-   The default value for CHANNELLEN is 200; this corresponds to <a href="./rfc1459">RFC 1459</a>
+   The default value for CHANNELLEN is 200; this corresponds to <a href="RFC 1459 - Protocol.html">RFC 1459</a>
    [<a href="#ref-5" title='"Internet Relay Chat Protocol"'>5</a>].
 
-<span class="h3"><a name="section-3.5">3.5</a> CHANTYPES</span>
+<span class="h3"><a id="section-3.5">3.5</a> CHANTYPES</span>
 
    o  CHANTYPES=chars
 
@@ -647,40 +634,40 @@ Table of Contents
       either +, #, or &amp;; for example, #mychannel.]
 
    The default value for CHANTYPES is "CHANTYPES=#&amp;", which corresponds
-   to <a href="./rfc1459">RFC 1459</a> [<a href="#ref-5" title='"Internet Relay Chat Protocol"'>5</a>].  It SHOULD NOT be specified if the server supports
+   to <a href="RFC 1459 - Protocol.html">RFC 1459</a> [<a href="#ref-5" title='"Internet Relay Chat Protocol"'>5</a>].  It SHOULD NOT be specified if the server supports
    exactly these channel types.
 
    The CHANMODES parameter does not require a value;  if none is given,
    the server does not support any channel types.
 
-<span class="h3"><a name="section-3.6">3.6</a> EXCEPTS</span>
+<span class="h3"><a id="section-3.6">3.6</a> EXCEPTS</span>
 
 
 
 
 
 <span class="grey">Brocklesby                Expires July 5, 2004                  [Page 9]</span>
-</pre><pre class='newpage'><a name="page-10" id="page-10" href="#page-10" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-10" href="#page-10" class="invisible"> </a>
 <span class="grey">Internet-Draft    IRC RPL_ISUPPORT Numeric Definition       January 2004</span>
 
 
    o  EXCEPTS[=modechar]
 
    The EXCEPTS parameter indicates that the server supports "ban
-   exceptions" (channel mode +e), as defined in <a href="./rfc2811">RFC 2811</a> [<a href="#ref-3" title='"Internet Relay Chat: Channel Management"'>3</a>], <a href="#section-4.3.1">section</a>
-   <a href="#section-4.3.1">4.3.1</a>. The optional value argument to EXCEPTS indicates which channel
+   exceptions" (channel mode +e), as defined in <a href="RFC 2811 - Channel Management.html">RFC 2811</a> [<a href="#ref-3" title='"Internet Relay Chat: Channel Management"'>3</a>], <a href="RFC 2811 - Channel Management.html#section-4.3.1">section</a>
+   <a href="RFC 2811 - Channel Management.html#section-4.3.1">4.3.1</a>. The optional value argument to EXCEPTS indicates which channel
    mode is used for ban exceptions.  If the token is specified with no
    value, it is assumed that mode +e is used.
 
    The default value for EXCEPTS is that channel exceptions are not
    supported.
 
-<span class="h3"><a name="section-3.7">3.7</a> IDCHAN</span>
+<span class="h3"><a id="section-3.7">3.7</a> IDCHAN</span>
 
    o  IDCHAN=pfx:num[,pfx:num,...]
 
    The IDCHAN parameter indicates the existence of "safe" channels as
-   described in <a href="./rfc2811">RFC 2811</a> [<a href="#ref-3" title='"Internet Relay Chat: Channel Management"'>3</a>], and the length of the "id" portion of
+   described in <a href="RFC 2811 - Channel Management.html">RFC 2811</a> [<a href="#ref-3" title='"Internet Relay Chat: Channel Management"'>3</a>], and the length of the "id" portion of
    those channel names.
 
    Each mode:num pair indicates one or more channel name prefixes which
@@ -696,12 +683,12 @@ Table of Contents
    The default value for IDCHAN is no value;  that is, there are no
    "safe" channel types.
 
-<span class="h3"><a name="section-3.8">3.8</a> INVEX</span>
+<span class="h3"><a id="section-3.8">3.8</a> INVEX</span>
 
    o  INVEX[=modechar]
 
    The INVEX parameter indicates that the server supports "invite
-   exceptions", as defined in <a href="./rfc2811">RFC 2811</a> [<a href="#ref-3" title='"Internet Relay Chat: Channel Management"'>3</a>], section 4.3.2. The optional
+   exceptions", as defined in <a href="RFC 2811 - Channel Management.html">RFC 2811</a> [<a href="#ref-3" title='"Internet Relay Chat: Channel Management"'>3</a>], section 4.3.2. The optional
    value argument to INVEX indicates which channel mode is used for
    invite exceptions.  If the token is specified with no value, it is
    assumed that mode +I is used.
@@ -709,14 +696,14 @@ Table of Contents
    The default value for INVEX is that channel invite exceptions are not
    available.
 
-<span class="h3"><a name="section-3.9">3.9</a> KICKLEN</span>
+<span class="h3"><a id="section-3.9">3.9</a> KICKLEN</span>
 
 
 
 
 
 <span class="grey">Brocklesby                Expires July 5, 2004                 [Page 10]</span>
-</pre><pre class='newpage'><a name="page-11" id="page-11" href="#page-11" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-11" href="#page-11" class="invisible"> </a>
 <span class="grey">Internet-Draft    IRC RPL_ISUPPORT Numeric Definition       January 2004</span>
 
 
@@ -733,7 +720,7 @@ Table of Contents
 
    There is no default value for the KICKLEN token.
 
-<span class="h3"><a name="section-3.10">3.10</a> MAXLIST</span>
+<span class="h3"><a id="section-3.10">3.10</a> MAXLIST</span>
 
    o  MAXLIST=mode:num[,mode:num,...]
 
@@ -758,7 +745,7 @@ Table of Contents
 
    There is no default value for the MAXLIST token.
 
-<span class="h3"><a name="section-3.11">3.11</a> MODES</span>
+<span class="h3"><a id="section-3.11">3.11</a> MODES</span>
 
    o  MODES=number
 
@@ -772,7 +759,7 @@ Table of Contents
 
 
 <span class="grey">Brocklesby                Expires July 5, 2004                 [Page 11]</span>
-</pre><pre class='newpage'><a name="page-12" id="page-12" href="#page-12" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-12" href="#page-12" class="invisible"> </a>
 <span class="grey">Internet-Draft    IRC RPL_ISUPPORT Numeric Definition       January 2004</span>
 
 
@@ -784,13 +771,13 @@ Table of Contents
    NOT rely on this being the case.
 
    The default value for the MODES parameter is 3, which corresponds to
-   <a href="./rfc1459">RFC 1459</a> [<a href="#ref-5" title='"Internet Relay Chat Protocol"'>5</a>].
+   <a href="RFC 1459 - Protocol.html">RFC 1459</a> [<a href="#ref-5" title='"Internet Relay Chat Protocol"'>5</a>].
 
    The MODES token does not require a value;  if none is given, the
    number of modes which may be set in one command is not limited.  If a
    value is given, it must be numeric.
 
-<span class="h3"><a name="section-3.12">3.12</a> NETWORK</span>
+<span class="h3"><a id="section-3.12">3.12</a> NETWORK</span>
 
    o  NETWORK=name
 
@@ -809,7 +796,7 @@ Table of Contents
    The default value of the NETWORK token is no value;  that is, the
    network does not have a name specified.
 
-<span class="h3"><a name="section-3.13">3.13</a> NICKLEN</span>
+<span class="h3"><a id="section-3.13">3.13</a> NICKLEN</span>
 
    o  NICKLEN=number
 
@@ -828,14 +815,14 @@ Table of Contents
 
 
 <span class="grey">Brocklesby                Expires July 5, 2004                 [Page 12]</span>
-</pre><pre class='newpage'><a name="page-13" id="page-13" href="#page-13" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-13" href="#page-13" class="invisible"> </a>
 <span class="grey">Internet-Draft    IRC RPL_ISUPPORT Numeric Definition       January 2004</span>
 
 
-   The default value for NICKLEN is 9, which corresponds to <a href="./rfc1459">RFC 1459</a>
+   The default value for NICKLEN is 9, which corresponds to <a href="RFC 1459 - Protocol.html">RFC 1459</a>
    [<a href="#ref-5" title='"Internet Relay Chat Protocol"'>5</a>].
 
-<span class="h3"><a name="section-3.14">3.14</a> PREFIX</span>
+<span class="h3"><a id="section-3.14">3.14</a> PREFIX</span>
 
    o  PREFIX=[(modes)prefixes]
 
@@ -855,7 +842,7 @@ Table of Contents
       to status '%', and 'v' to status +.
 
    The default value for PREFIX is "PREFIX=(ov)@+", which corresponds to
-   <a href="./rfc1459">RFC 1459</a> [<a href="#ref-5" title='"Internet Relay Chat Protocol"'>5</a>]. It SHOULD NOT be specified if the server provides only
+   <a href="RFC 1459 - Protocol.html">RFC 1459</a> [<a href="#ref-5" title='"Internet Relay Chat Protocol"'>5</a>]. It SHOULD NOT be specified if the server provides only
    these modes.  If a server provides ANY additional status flags, it
    MUST also provide (ov)@+ (assuming they are applicable to the
    server). The PREFIX parameter may be advertised with a null value
@@ -865,7 +852,7 @@ Table of Contents
    Note that PREFIX does NOT specify whether or not the server sends
    multiple prefix characters for a user in NAMES replies.
 
-<span class="h3"><a name="section-3.15">3.15</a> SAFELIST</span>
+<span class="h3"><a id="section-3.15">3.15</a> SAFELIST</span>
 
    o  SAFELIST
 
@@ -884,11 +871,11 @@ Table of Contents
 
 
 <span class="grey">Brocklesby                Expires July 5, 2004                 [Page 13]</span>
-</pre><pre class='newpage'><a name="page-14" id="page-14" href="#page-14" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-14" href="#page-14" class="invisible"> </a>
 <span class="grey">Internet-Draft    IRC RPL_ISUPPORT Numeric Definition       January 2004</span>
 
 
-<span class="h3"><a name="section-3.16">3.16</a> STATUSMSG</span>
+<span class="h3"><a id="section-3.16">3.16</a> STATUSMSG</span>
 
    o  STATUSMSG=string
 
@@ -921,7 +908,7 @@ Table of Contents
    The default value of the STATUSMSG token is none;  that is, the
    server does not support this form of messaging.
 
-<span class="h3"><a name="section-3.17">3.17</a> STD</span>
+<span class="h3"><a id="section-3.17">3.17</a> STD</span>
 
    o  STD=version[,version[,...]]
 
@@ -940,7 +927,7 @@ Table of Contents
 
 
 <span class="grey">Brocklesby                Expires July 5, 2004                 [Page 14]</span>
-</pre><pre class='newpage'><a name="page-15" id="page-15" href="#page-15" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-15" href="#page-15" class="invisible"> </a>
 <span class="grey">Internet-Draft    IRC RPL_ISUPPORT Numeric Definition       January 2004</span>
 
 
@@ -961,7 +948,7 @@ Table of Contents
    The default value for the STD parameter is none; that is, no
    standardised ISUPPORT is available.
 
-<span class="h3"><a name="section-3.18">3.18</a> TARGMAX</span>
+<span class="h3"><a id="section-3.18">3.18</a> TARGMAX</span>
 
    o  TARGMAX=[cmd:lim,cmd:lim...]
 
@@ -986,7 +973,7 @@ Table of Contents
    targets. If this is the case, the server SHOULD NOT specify
    "TARGMAX=".
 
-<span class="h3"><a name="section-3.19">3.19</a> TOPICLEN</span>
+<span class="h3"><a id="section-3.19">3.19</a> TOPICLEN</span>
 
    o  TOPICLEN=number
 
@@ -996,7 +983,7 @@ Table of Contents
 
 
 <span class="grey">Brocklesby                Expires July 5, 2004                 [Page 15]</span>
-</pre><pre class='newpage'><a name="page-16" id="page-16" href="#page-16" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-16" href="#page-16" class="invisible"> </a>
 <span class="grey">Internet-Draft    IRC RPL_ISUPPORT Numeric Definition       January 2004</span>
 
 
@@ -1008,12 +995,12 @@ Table of Contents
 
    The TOPICLEN token requires a numeric value.
 
-<span class="h2"><a name="section-4">4</a>. Differences to existing implementations</span>
+<span class="h2"><a id="section-4">4</a>. Differences to existing implementations</span>
 
    A number of differences exist between the ISUPPORT defined in this
    document and traditional implementations of the ISUPPORT numeric.
 
-<span class="h3"><a name="section-4.1">4.1</a> PREFIX parameter without value</span>
+<span class="h3"><a id="section-4.1">4.1</a> PREFIX parameter without value</span>
 
    The PREFIX parameter is traditionally not sent without a value
    parameter; indeed, the author is not aware of any IRC server
@@ -1022,7 +1009,7 @@ Table of Contents
    while retaining compatibility with traditional PREFIX
    implementations.
 
-<span class="h3"><a name="section-4.2">4.2</a> EXCEPTS and INVEX value argument</span>
+<span class="h3"><a id="section-4.2">4.2</a> EXCEPTS and INVEX value argument</span>
 
    EXCEPTS and INVEX traditionally take no argument -- while they
    indicate presence of these features on the server, they do not
@@ -1030,7 +1017,7 @@ Table of Contents
    is believed that the argument value described here provides extra
    flexibility while retaining backwards compatibility.
 
-<span class="h3"><a name="section-4.3">4.3</a> STATUSMSG / WALLCHOPS</span>
+<span class="h3"><a id="section-4.3">4.3</a> STATUSMSG / WALLCHOPS</span>
 
    The STATUSMSG parameter replaces the traditional WALLCHOPS parameter
    used by some current implementations.  It is believed that the name
@@ -1039,9 +1026,9 @@ Table of Contents
    use the name WALLCHOPS. It was not considered beneficial to allow a
    STATUSMSG flag without a value.
 
-<span class="h3"><a name="section-4.4">4.4</a> Conflicts with <a href="./rfc2812">RFC 2812</a></span>
+<span class="h3"><a id="section-4.4">4.4</a> Conflicts with <a href="RFC 2812 - Client Protocol.html">RFC 2812</a></span>
 
-   <a href="./rfc2812">RFC 2812</a> [<a href="#ref-4" title='"Internet Relay Chat: Client Protocol"'>4</a>], section 5.1, defines a numeric reply "RPL_BOUNCE", with
+   <a href="RFC 2812 - Client Protocol.html">RFC 2812</a> [<a href="#ref-4" title='"Internet Relay Chat: Client Protocol"'>4</a>], section 5.1, defines a numeric reply "RPL_BOUNCE", with
    the associated number "005".  While this conflicts with the ISUPPORT
    numeric, it is considered that ISUPPORT has received much more
    widespread support, and is the de facto standard for use of the 005
@@ -1052,23 +1039,23 @@ Table of Contents
 
 
 <span class="grey">Brocklesby                Expires July 5, 2004                 [Page 16]</span>
-</pre><pre class='newpage'><a name="page-17" id="page-17" href="#page-17" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-17" href="#page-17" class="invisible"> </a>
 <span class="grey">Internet-Draft    IRC RPL_ISUPPORT Numeric Definition       January 2004</span>
 
 
-   <a href="./rfc2812">RFC2812</a> is an Informational RFC and does not not specify an Internet
+   <a href="RFC 2812 - Client Protocol.html">RFC2812</a> is an Informational RFC and does not not specify an Internet
    standard.
 
-<span class="h3"><a name="section-4.5">4.5</a> Default value for CASEMAPPING</span>
+<span class="h3"><a id="section-4.5">4.5</a> Default value for CASEMAPPING</span>
 
-   The default value for CASEMAPPING ("<a href="./rfc1459">rfc1459</a>") was chosen because it
+   The default value for CASEMAPPING ("<a href="RFC 1459 - Protocol.html">rfc1459</a>") was chosen because it
    reflects the prevailing implementations of the IRC server software
    currently in use. While some IRC servers have moved to the "ascii"
    case mapping, those known to the author indicate this via
    CASEMAPPING=ascii; therefore this is not believed to introduce any
    compatibility problems.
 
-<span class="h3"><a name="section-4.6">4.6</a> CHANLIMIT / MAXCHANNELS</span>
+<span class="h3"><a id="section-4.6">4.6</a> CHANLIMIT / MAXCHANNELS</span>
 
    CHANLIMIT replaces the traditional MAXCHANNELS parameter. MAXCHANNELS
    did not specify which types of channel(s) the limit applied to; many
@@ -1076,7 +1063,7 @@ Table of Contents
    channels, for example.  The token was renamed from MAXCHANNELS to
    CHANLIMIT to prevent confusion.
 
-<span class="h3"><a name="section-4.7">4.7</a> MAXLIST / MAXBANS</span>
+<span class="h3"><a id="section-4.7">4.7</a> MAXLIST / MAXBANS</span>
 
    MAXLIST replaces the traditional MAXBANS token.  MAXBANS was
    considered non-useful, because of its ambiguous meaning; two of the
@@ -1087,7 +1074,7 @@ Table of Contents
    leave some IRC servers unable to accurately describe their
    capabilities.
 
-<span class="h3"><a name="section-4.8">4.8</a> CHARSET</span>
+<span class="h3"><a id="section-4.8">4.8</a> CHARSET</span>
 
    The traditional CHARSET parameter has been entirely removed.  It was
    found to be unworkable;  a correct specification could not be devised
@@ -1095,7 +1082,7 @@ Table of Contents
    methods to implement the same functionality are under discussion but
    are outside the scope of this document.
 
-<span class="h3"><a name="section-4.9">4.9</a> TARGMAX / MAXTARGETS</span>
+<span class="h3"><a id="section-4.9">4.9</a> TARGMAX / MAXTARGETS</span>
 
    Traditional implementations use MAXTARGETS instead of TARGMAX.
    However, TARGMAX allowed several commands to be specified (such as
@@ -1108,34 +1095,34 @@ Table of Contents
 
 
 <span class="grey">Brocklesby                Expires July 5, 2004                 [Page 17]</span>
-</pre><pre class='newpage'><a name="page-18" id="page-18" href="#page-18" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-18" href="#page-18" class="invisible"> </a>
 <span class="grey">Internet-Draft    IRC RPL_ISUPPORT Numeric Definition       January 2004</span>
 
 
-<span class="h2"><a name="section-5">5</a>. Security Considerations</span>
+<span class="h2"><a id="section-5">5</a>. Security Considerations</span>
 
    This memo does not raise any security considerations.
 
 Normative References
 
-   [<a name="ref-1" id="ref-1">1</a>]  Bradner, S., "Key words for use in RFCs to Indicate Requirement
-        Levels", <a href="./rfc2119">RFC 2119</a>, March 1997.
+   [<a id="ref-1">1</a>]  Bradner, S., "Key words for use in RFCs to Indicate Requirement
+        Levels", <a href="http://tools.ietf.org/html/rfc2119">RFC 2119</a>, March 1997.
 
-   [<a name="ref-2" id="ref-2">2</a>]  Crocker, D. and P. Overell, "Augumented BNF for Syntax
-        Specifications: ABNF", <a href="./rfc2234">RFC 2234</a>, November 1997.
+   [<a id="ref-2">2</a>]  Crocker, D. and P. Overell, "Augumented BNF for Syntax
+        Specifications: ABNF", <a href="http://tools.ietf.org/html/rfc2234">RFC 2234</a>, November 1997.
 
-   [<a name="ref-3" id="ref-3">3</a>]  Kalt, C., "Internet Relay Chat: Channel Management", <a href="./rfc2811">RFC 2811</a>,
+   [<a id="ref-3">3</a>]  Kalt, C., "Internet Relay Chat: Channel Management", <a href="RFC 2811 - Channel Management.html">RFC 2811</a>,
         April 2000.
 
-   [<a name="ref-4" id="ref-4">4</a>]  Kalt, C., "Internet Relay Chat: Client Protocol", <a href="./rfc2812">RFC 2812</a>,
+   [<a id="ref-4">4</a>]  Kalt, C., "Internet Relay Chat: Client Protocol", <a href="RFC 2812 - Client Protocol.html">RFC 2812</a>,
         April 2000.
 
-   [<a name="ref-5" id="ref-5">5</a>]  Reed, D. and J. Oikarinen, "Internet Relay Chat Protocol", <a href="./rfc1459">RFC</a>
-        <a href="./rfc1459">1459</a>, May 1993.
+   [<a id="ref-5">5</a>]  Reed, D. and J. Oikarinen, "Internet Relay Chat Protocol", <a href="RFC 1459 - Protocol.html">RFC</a>
+        <a href="RFC 1459 - Protocol.html">1459</a>, May 1993.
 
 Informative references
 
-   [<a name="ref-6" id="ref-6">6</a>]  Roeckx, K., "The 005 numeric", September 2002.
+   [<a id="ref-6">6</a>]  Roeckx, K., "The 005 numeric", September 2002.
 
 
 Author's Address
@@ -1147,14 +1134,14 @@ Author's Address
 
    EMail: ejb@goth.net
 
-<span class="h2"><a name="appendix-A">Appendix A</a>. Default ISUPPORT values</span>
+<span class="h2"><a id="appendix-A">Appendix A</a>. Default ISUPPORT values</span>
 
    As an aid to implementation, a standard ISUPPORT reply with all
    values which may be assumed to be at their defaults upon connection
    is supplied here (lines broken due to formatting requirements).
 
 
-       :irc.example.com 005 nickname :CASEMAPPING=<a href="./rfc1459">rfc1459</a> CHANNELLEN=200
+       :irc.example.com 005 nickname :CASEMAPPING=<a href="RFC 1459 - Protocol.html">rfc1459</a> CHANNELLEN=200
            CHANTYPES=#&amp; MODES=3 NICKLEN=9 PREFIX=(ov)@+ TARGMAX
 
    In addition, the server must provide values for the following
@@ -1164,11 +1151,11 @@ Author's Address
 
 
 <span class="grey">Brocklesby                Expires July 5, 2004                 [Page 18]</span>
-</pre><pre class='newpage'><a name="page-19" id="page-19" href="#page-19" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-19" href="#page-19" class="invisible"> </a>
 <span class="grey">Internet-Draft    IRC RPL_ISUPPORT Numeric Definition       January 2004</span>
 
 
-<span class="h2"><a name="appendix-B">Appendix B</a>. Acknowledgements</span>
+<span class="h2"><a id="appendix-B">Appendix B</a>. Acknowledgements</span>
 
    The author gratefully acknowledges the contributions of Bill Fenner
    ("fenestro"), Perry Lorier ("Isomer"), Kurt Roeckx ("Q") and John
@@ -1220,7 +1207,7 @@ Author's Address
 
 
 <span class="grey">Brocklesby                Expires July 5, 2004                 [Page 19]</span>
-</pre><pre class='newpage'><a name="page-20" id="page-20" href="#page-20" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-20" href="#page-20" class="invisible"> </a>
 <span class="grey">Internet-Draft    IRC RPL_ISUPPORT Numeric Definition       January 2004</span>
 
 
@@ -1233,7 +1220,7 @@ Intellectual Property Statement
    might or might not be available; neither does it represent that it
    has made any effort to identify any such rights. Information on the
    IETF's procedures with respect to rights in standards-track and
-   standards-related documentation can be found in <a href="./bcp11">BCP-11</a>. Copies of
+   standards-related documentation can be found in <a href="http://tools.ietf.org/html/bcp11">BCP-11</a>. Copies of
    claims of rights made available for publication and any assurances of
    licenses to be made available, or the result of an attempt made to
    obtain a general license or permission for the use of such
@@ -1276,7 +1263,7 @@ Full Copyright Statement
 
 
 <span class="grey">Brocklesby                Expires July 5, 2004                 [Page 20]</span>
-</pre><pre class='newpage'><a name="page-21" id="page-21" href="#page-21" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-21" href="#page-21" class="invisible"> </a>
 <span class="grey">Internet-Draft    IRC RPL_ISUPPORT Numeric Definition       January 2004</span>
 
 
