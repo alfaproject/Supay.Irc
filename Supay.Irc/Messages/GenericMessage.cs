@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages
 {
@@ -15,7 +14,7 @@ namespace Supay.Irc.Messages
         public GenericMessage()
         {
             this.command = string.Empty;
-            this.Parameters = new Collection<string>();
+            this.Parameters = new List<string>();
         }
 
         #endregion
@@ -75,13 +74,10 @@ namespace Supay.Irc.Messages
         /// </summary>
         protected override ICollection<string> GetTokens()
         {
-            var parameters = new Collection<string> {
+            var parameters = new List<string> {
                 this.Command
             };
-            foreach (string parameter in this.Parameters)
-            {
-                parameters.Add(parameter);
-            }
+            parameters.AddRange(this.Parameters);
             return parameters;
         }
 

@@ -72,18 +72,18 @@ namespace Supay.Irc.Tests
             var msg = MessageAssert.TypeAndRoundTrip<AcceptListEditorMessage>(raws[0]);
             Assert.AreEqual(1, msg.AddedNicks.Count);
             Assert.AreEqual(0, msg.RemovedNicks.Count);
-            Assert.AreEqual("azure", msg.AddedNicks[0]);
+            Assert.IsTrue(msg.AddedNicks.Contains("azure"));
 
             msg = MessageAssert.TypeAndRoundTrip<AcceptListEditorMessage>(raws[1]);
             Assert.AreEqual(0, msg.AddedNicks.Count);
             Assert.AreEqual(1, msg.RemovedNicks.Count);
-            Assert.AreEqual("BBS", msg.RemovedNicks[0]);
+            Assert.IsTrue(msg.RemovedNicks.Contains("BBS"));
 
             msg = MessageAssert.TypeAndRoundTrip<AcceptListEditorMessage>(raws[2]);
             Assert.AreEqual(1, msg.AddedNicks.Count);
             Assert.AreEqual(1, msg.RemovedNicks.Count);
-            Assert.AreEqual("azure", msg.AddedNicks[0]);
-            Assert.AreEqual("BBS", msg.RemovedNicks[0]);
+            Assert.IsTrue(msg.AddedNicks.Contains("azure"));
+            Assert.IsTrue(msg.RemovedNicks.Contains("BBS"));
         }
 
         [TestMethod]

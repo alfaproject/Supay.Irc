@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
@@ -43,7 +42,7 @@ namespace Supay.Irc
         ///   statuses.
         /// </summary>
         [SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "ChannelStatus.Values is Immutable.")]
-        public static readonly ICollection<ChannelStatus> Values = new Collection<ChannelStatus> {
+        public static readonly ICollection<ChannelStatus> Values = new List<ChannelStatus> {
             None,
             Voice,
             HalfOperator,

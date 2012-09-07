@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Timers;
 using Supay.Irc.Messages;
@@ -10,8 +9,8 @@ namespace Supay.Irc.Contacts
 {
     internal sealed class ContactsIsOnTracker : ContactsTracker, IDisposable
     {
-        private readonly IList<string> trackedNicks = new Collection<string>();
-        private readonly IList<string> waitingOnNicks = new Collection<string>();
+        private readonly ICollection<string> trackedNicks = new List<string>();
+        private readonly ICollection<string> waitingOnNicks = new List<string>();
         private Timer timer;
 
         public ContactsIsOnTracker(ContactList contacts)
@@ -34,25 +33,17 @@ namespace Supay.Irc.Contacts
 
         protected override void AddNicks(IEnumerable<string> nicks)
         {
-            foreach (string nick in nicks)
+            foreach (var nick in nicks.Where(nick => !trackedNicks.Contains(nick)))
             {
-                this.AddNick(nick);
+                trackedNicks.Add(nick);
             }
         }
 
-        protected override void AddNick(string nick)
+        protected override void RemoveNicks(IEnumerable<string> nicks)
         {
-            if (!this.trackedNicks.Contains(nick))
+            foreach (var nick in nicks.Where(nick => trackedNicks.Contains(nick)))
             {
-                this.trackedNicks.Add(nick);
-            }
-        }
-
-        protected override void RemoveNick(string nick)
-        {
-            if (this.trackedNicks.Contains(nick))
-            {
-                this.trackedNicks.Remove(nick);
+                trackedNicks.Remove(nick);
             }
         }
 

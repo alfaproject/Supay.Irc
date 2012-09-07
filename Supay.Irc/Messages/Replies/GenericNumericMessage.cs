@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Globalization;
 
 namespace Supay.Irc.Messages
@@ -11,7 +10,7 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class GenericNumericMessage : NumericMessage
     {
-        private IList<string> data = new Collection<string>();
+        private ICollection<string> data = new List<string>();
 
         /// <summary>
         ///   Gets the Numeric command of the Message
@@ -31,7 +30,7 @@ namespace Supay.Irc.Messages
         /// <summary>
         ///   Gets the text of the Message
         /// </summary>
-        public virtual IEnumerable<string> Data
+        public virtual ICollection<string> Data
         {
             get
             {

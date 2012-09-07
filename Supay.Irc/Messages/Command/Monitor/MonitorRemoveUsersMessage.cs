@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace Supay.Irc.Messages
@@ -11,17 +10,18 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class MonitorRemoveUsersMessage : MonitorMessage
     {
-        private IList<string> nicks;
+        public MonitorRemoveUsersMessage()
+        {
+            Nicks = new List<string>();
+        }
 
         /// <summary>
         ///   Gets the collection of nicks being removed from the monitor list.
         /// </summary>
-        public IList<string> Nicks
+        public ICollection<string> Nicks
         {
-            get
-            {
-                return this.nicks ?? (this.nicks = new Collection<string>());
-            }
+            get;
+            private set;
         }
 
         /// <summary>
@@ -40,7 +40,7 @@ namespace Supay.Irc.Messages
         {
             base.ParseParameters(parameters);
             string nicksParam = parameters[parameters.Count - 1];
-            var splitNicksParam = nicksParam.Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries);
+            var splitNicksParam = nicksParam.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
             foreach (string nick in splitNicksParam)
             {
                 this.Nicks.Add(nick);

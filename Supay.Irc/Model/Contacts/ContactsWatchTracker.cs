@@ -20,25 +20,21 @@ namespace Supay.Irc.Contacts
         protected override void AddNicks(IEnumerable<string> nicks)
         {
             var addMsg = new WatchListEditorMessage();
-            foreach (string nick in nicks)
+            foreach (var nick in nicks)
             {
                 addMsg.AddedNicks.Add(nick);
             }
-            this.Contacts.Client.Send(addMsg);
+            Contacts.Client.Send(addMsg);
         }
 
-        protected override void AddNick(string nick)
-        {
-            var addMsg = new WatchListEditorMessage();
-            addMsg.AddedNicks.Add(nick);
-            this.Contacts.Client.Send(addMsg);
-        }
-
-        protected override void RemoveNick(string nick)
+        protected override void RemoveNicks(IEnumerable<string> nicks)
         {
             var remMsg = new WatchListEditorMessage();
-            remMsg.RemovedNicks.Add(nick);
-            this.Contacts.Client.Send(remMsg);
+            foreach (var nick in nicks)
+            {
+                remMsg.RemovedNicks.Add(nick);
+            }
+            Contacts.Client.Send(remMsg);
         }
 
 

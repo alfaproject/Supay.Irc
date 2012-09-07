@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Globalization;
 
 namespace Supay.Irc.Messages
@@ -13,7 +12,6 @@ namespace Supay.Irc.Messages
     public class MonitorListFullMessage : NumericMessage
     {
         private int limit;
-        private IList<string> nicks;
 
         /// <summary>
         ///   Creates a new instance of the <see cref="MonitorListFullMessage" />.
@@ -21,6 +19,7 @@ namespace Supay.Irc.Messages
         public MonitorListFullMessage()
             : base(734)
         {
+            Nicks = new List<string>();
         }
 
         /// <summary>
@@ -41,12 +40,10 @@ namespace Supay.Irc.Messages
         /// <summary>
         ///   Gets the collection of nicks which couldn't be added to the monitor list.
         /// </summary>
-        public IList<string> Nicks
+        public ICollection<string> Nicks
         {
-            get
-            {
-                return this.nicks ?? (this.nicks = new Collection<string>());
-            }
+            get;
+            private set;
         }
 
         protected override ICollection<string> GetTokens()

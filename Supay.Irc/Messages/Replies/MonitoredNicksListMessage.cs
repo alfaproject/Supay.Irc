@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages
 {
@@ -13,13 +12,13 @@ namespace Supay.Irc.Messages
         protected MonitoredNicksListMessage(int number)
             : base(number)
         {
-            this.Nicks = new Collection<string>();
+            this.Nicks = new List<string>();
         }
 
         /// <summary>
         ///   Gets the collection of nicks of users for the message.
         /// </summary>
-        public Collection<string> Nicks
+        public ICollection<string> Nicks
         {
             get;
             private set;

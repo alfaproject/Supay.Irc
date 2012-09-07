@@ -185,18 +185,18 @@ namespace Supay.Irc.Tests
             var msg = MessageAssert.TypeAndRoundTrip<WatchListEditorMessage>(raws[0]);
             Assert.AreEqual(2, msg.AddedNicks.Count);
             Assert.AreEqual(0, msg.RemovedNicks.Count);
-            Assert.AreEqual("_aLfa_", msg.AddedNicks[0]);
-            Assert.AreEqual("foo", msg.AddedNicks[1]);
+            Assert.IsTrue(msg.AddedNicks.Contains("_aLfa_"));
+            Assert.IsTrue(msg.AddedNicks.Contains("foo"));
 
             msg = MessageAssert.TypeAndRoundTrip<WatchListEditorMessage>(raws[1]);
             Assert.AreEqual(1, msg.AddedNicks.Count);
             Assert.AreEqual(0, msg.RemovedNicks.Count);
-            Assert.AreEqual("ImNotHere", msg.AddedNicks[0]);
+            Assert.IsTrue(msg.AddedNicks.Contains("ImNotHere"));
 
             msg = MessageAssert.TypeAndRoundTrip<WatchListEditorMessage>(raws[2]);
             Assert.AreEqual(0, msg.AddedNicks.Count);
             Assert.AreEqual(1, msg.RemovedNicks.Count);
-            Assert.AreEqual("alfa", msg.RemovedNicks[0]);
+            Assert.IsTrue(msg.RemovedNicks.Contains("alfa"));
         }
     }
 }

@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages
 {
@@ -85,7 +84,7 @@ namespace Supay.Irc.Messages
         /// </summary>
         protected override ICollection<string> GetTokens()
         {
-            var parameters = new Collection<string> {
+            var parameters = new List<string> {
                 this.TransportCommand,
                 this.Target
             };

@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages
 {
@@ -10,7 +9,10 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class UserHostMessage : CommandMessage
     {
-        private readonly Collection<string> nicks = new Collection<string>();
+        public UserHostMessage()
+        {
+            Nicks = new List<string>();
+        }
 
         /// <summary>
         ///   Gets the IRC command associated with this message.
@@ -26,12 +28,10 @@ namespace Supay.Irc.Messages
         /// <summary>
         ///   Gets the collection of nicks to request information for.
         /// </summary>
-        public virtual Collection<string> Nicks
+        public ICollection<string> Nicks
         {
-            get
-            {
-                return this.nicks;
-            }
+            get;
+            private set;
         }
 
         /// <summary>

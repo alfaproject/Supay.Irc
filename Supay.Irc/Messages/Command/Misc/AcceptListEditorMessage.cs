@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using Supay.Irc.Properties;
 
@@ -12,6 +11,12 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class AcceptListEditorMessage : CommandMessage
     {
+        public AcceptListEditorMessage()
+        {
+            RemovedNicks = new List<string>();
+            AddedNicks = new List<string>();
+        }
+
         /// <summary>
         ///   Gets the IRC command associated with this message.
         /// </summary>
@@ -38,30 +43,22 @@ namespace Supay.Irc.Messages
 
         #region Properties
 
-        private IList<string> addedNicks;
-
-        private IList<string> removedNicks;
-
         /// <summary>
         ///   Gets the collection of nicks being added to the accept list.
         /// </summary>
-        public IList<string> AddedNicks
+        public ICollection<string> AddedNicks
         {
-            get
-            {
-                return this.addedNicks ?? (this.addedNicks = new Collection<string>());
-            }
+            get;
+            private set;
         }
 
         /// <summary>
         ///   Gets the collection of nicks being removed from the accept list.
         /// </summary>
-        public IList<string> RemovedNicks
+        public ICollection<string> RemovedNicks
         {
-            get
-            {
-                return this.removedNicks ?? (this.removedNicks = new Collection<string>());
-            }
+            get;
+            private set;
         }
 
         #endregion
@@ -108,17 +105,9 @@ namespace Supay.Irc.Messages
         /// </summary>
         protected override ICollection<string> GetTokens()
         {
-            var allNicks = new Collection<string>();
-            foreach (string removedNick in this.RemovedNicks)
-            {
-                allNicks.Add("-" + removedNick);
-            }
-            foreach (string addedNick in this.AddedNicks)
-            {
-                allNicks.Add(addedNick);
-            }
             var parameters = base.GetTokens();
-            parameters.Add(string.Join(",", allNicks));
+            var nicks = RemovedNicks.Select(nick => "-" + nick).Concat(AddedNicks);
+            parameters.Add(string.Join(",", nicks));
             return parameters;
         }
 

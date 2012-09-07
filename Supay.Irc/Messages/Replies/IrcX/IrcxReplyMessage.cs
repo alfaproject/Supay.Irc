@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Globalization;
 
 namespace Supay.Irc.Messages
@@ -11,7 +10,6 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class IrcxReplyMessage : NumericMessage
     {
-        private readonly Collection<string> authenticationPackages = new Collection<string>();
         private string ircxVersion = string.Empty;
         private bool isIrcxClientMode;
         private int maximumMessageLength = -1;
@@ -23,6 +21,7 @@ namespace Supay.Irc.Messages
         public IrcxReplyMessage()
             : base(800)
         {
+            AuthenticationPackages = new List<string>();
         }
 
         /// <summary>
@@ -58,12 +57,10 @@ namespace Supay.Irc.Messages
         /// <summary>
         ///   Gets the collection of authentication packages
         /// </summary>
-        public virtual Collection<string> AuthenticationPackages
+        public ICollection<string> AuthenticationPackages
         {
-            get
-            {
-                return this.authenticationPackages;
-            }
+            get;
+            private set;
         }
 
         /// <summary>

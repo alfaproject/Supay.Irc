@@ -28,8 +28,8 @@ namespace Supay.Irc.Tests
 
             var msg = MessageAssert.TypeAndRoundTrip<MonitoredUserOfflineMessage>(raws[0]);
             Assert.AreEqual(2, msg.Nicks.Count);
-            Assert.AreEqual("supaybot", msg.Nicks[0]);
-            Assert.AreEqual("chanserv", msg.Nicks[1]);
+            Assert.IsTrue(msg.Nicks.Contains("supaybot"));
+            Assert.IsTrue(msg.Nicks.Contains("chanserv"));
         }
 
         [TestMethod]
@@ -41,8 +41,8 @@ namespace Supay.Irc.Tests
 
             var msg = MessageAssert.TypeAndRoundTrip<MonitorListReplyMessage>(raws[0]);
             Assert.AreEqual(2, msg.Nicks.Count);
-            Assert.AreEqual("supaybot", msg.Nicks[0]);
-            Assert.AreEqual("chanserv", msg.Nicks[1]);
+            Assert.IsTrue(msg.Nicks.Contains("supaybot"));
+            Assert.IsTrue(msg.Nicks.Contains("chanserv"));
         }
 
         [TestMethod]
@@ -64,8 +64,8 @@ namespace Supay.Irc.Tests
 
             var msg = MessageAssert.TypeAndRoundTrip<MonitorListFullMessage>(raws[0]);
             Assert.AreEqual(2, msg.Nicks.Count);
-            Assert.AreEqual("supaybot", msg.Nicks[0]);
-            Assert.AreEqual("chanserv", msg.Nicks[1]);
+            Assert.IsTrue(msg.Nicks.Contains("supaybot"));
+            Assert.IsTrue(msg.Nicks.Contains("chanserv"));
             Assert.AreEqual(100, msg.Limit);
         }
 
@@ -109,12 +109,12 @@ namespace Supay.Irc.Tests
 
             var msg = MessageAssert.TypeAndRoundTrip<MonitorAddUsersMessage>(raws[0]);
             Assert.AreEqual(2, msg.Nicks.Count);
-            Assert.AreEqual("_aLfa_", msg.Nicks[0]);
-            Assert.AreEqual("foo", msg.Nicks[1]);
+            Assert.IsTrue(msg.Nicks.Contains("_aLfa_"));
+            Assert.IsTrue(msg.Nicks.Contains("foo"));
 
             msg = MessageAssert.TypeAndRoundTrip<MonitorAddUsersMessage>(raws[1]);
             Assert.AreEqual(1, msg.Nicks.Count);
-            Assert.AreEqual("ImNotHere", msg.Nicks[0]);
+            Assert.IsTrue(msg.Nicks.Contains("ImNotHere"));
         }
 
         [TestMethod]
@@ -126,7 +126,7 @@ namespace Supay.Irc.Tests
 
             var msg = MessageAssert.TypeAndRoundTrip<MonitorRemoveUsersMessage>(raws[0]);
             Assert.AreEqual(1, msg.Nicks.Count);
-            Assert.AreEqual("_aLfa_", msg.Nicks[0]);
+            Assert.IsTrue(msg.Nicks.Contains("_aLfa_"));
         }
     }
 }

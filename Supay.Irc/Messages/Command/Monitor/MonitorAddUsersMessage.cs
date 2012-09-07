@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace Supay.Irc.Messages
@@ -11,17 +10,18 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class MonitorAddUsersMessage : MonitorMessage
     {
-        private IList<string> nicks;
+        public MonitorAddUsersMessage()
+        {
+            Nicks = new List<string>();
+        }
 
         /// <summary>
         ///   Gets the collection of nicks being added to the monitor list.
         /// </summary>
-        public IList<string> Nicks
+        public ICollection<string> Nicks
         {
-            get
-            {
-                return this.nicks ?? (this.nicks = new Collection<string>());
-            }
+            get;
+            private set;
         }
 
         /// <summary>

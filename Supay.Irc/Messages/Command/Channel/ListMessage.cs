@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using Supay.Irc.Properties;
@@ -257,7 +256,7 @@ namespace Supay.Irc.Messages
         /// </summary>
         protected override ICollection<string> GetTokens()
         {
-            var options = new Collection<string>();
+            var options = new List<string>();
             if (this.MaxUsers >= 0)
             {
                 options.Add("<" + this.MaxUsers.ToString(CultureInfo.InvariantCulture));

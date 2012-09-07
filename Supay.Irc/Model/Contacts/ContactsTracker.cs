@@ -1,6 +1,6 @@
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.Linq;
 
 namespace Supay.Irc.Contacts
 {
@@ -24,36 +24,37 @@ namespace Supay.Irc.Contacts
 
         private void UsersCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            if (e.Action == NotifyCollectionChangedAction.Add)
+            switch (e.Action)
             {
-                foreach (User newUser in e.NewItems)
-                {
-                    this.AddNick(newUser.Nickname);
-                }
-            }
-            if (e.Action == NotifyCollectionChangedAction.Remove)
-            {
-                foreach (User oldUser in e.OldItems)
-                {
-                    this.RemoveNick(oldUser.Nickname);
-                }
+                case NotifyCollectionChangedAction.Add:
+                    AddNicks(from User newUser in e.NewItems
+                                  select newUser.Nickname);
+                    break;
+                case NotifyCollectionChangedAction.Remove:
+                    RemoveNicks(from User oldUser in e.NewItems
+                                  select oldUser.Nickname);
+                    break;
             }
         }
 
         public virtual void Initialize()
         {
-            var nicks = new Collection<string>();
-            foreach (User u in this.Contacts.Users.Values)
-            {
-                nicks.Add(u.Nickname);
-            }
-            this.AddNicks(nicks);
+            this.AddNicks(from u in Contacts.Users.Values
+                          select u.Nickname);
         }
 
         protected abstract void AddNicks(IEnumerable<string> nicks);
 
-        protected abstract void AddNick(string nick);
+        protected void AddNick(string nick)
+        {
+            AddNicks(new[] { nick });
+        }
 
-        protected abstract void RemoveNick(string nick);
+        protected abstract void RemoveNicks(IEnumerable<string> nicks);
+        
+        protected void RemoveNick(string nick)
+        {
+            RemoveNicks(new[] { nick });
+        }
     }
 }

@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages
 {
@@ -20,7 +19,7 @@ namespace Supay.Irc.Messages
         public AcceptListReplyMessage()
             : base(281)
         {
-            this.Nicks = new Collection<string>();
+            this.Nicks = new List<string>();
         }
 
         /// <summary>

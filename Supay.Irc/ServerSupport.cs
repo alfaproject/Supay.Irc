@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Diagnostics;
 using System.Globalization;
@@ -129,7 +128,7 @@ namespace Supay.Irc
         /// <summary>
         ///   Gets the supported channel prefixes.
         /// </summary>
-        public Collection<string> ChannelTypes
+        public ICollection<string> ChannelTypes
         {
             get;
             private set;
@@ -138,7 +137,7 @@ namespace Supay.Irc
         /// <summary>
         ///   Gets the modes that require parameters
         /// </summary>
-        public Collection<string> ModesWithParameters
+        public ICollection<string> ModesWithParameters
         {
             get;
             private set;
@@ -147,7 +146,7 @@ namespace Supay.Irc
         /// <summary>
         ///   Gets the modes that require parameters only when set.
         /// </summary>
-        public Collection<string> ModesWithParametersWhenSet
+        public ICollection<string> ModesWithParametersWhenSet
         {
             get;
             private set;
@@ -156,7 +155,7 @@ namespace Supay.Irc
         /// <summary>
         ///   Gets the modes that do not require parameters.
         /// </summary>
-        public Collection<string> ModesWithoutParameters
+        public ICollection<string> ModesWithoutParameters
         {
             get;
             private set;
@@ -514,9 +513,9 @@ namespace Supay.Irc
             this.Standard = "i-d";
             this.SafeChannelPrefixLengths = new Dictionary<string, int>();
             this.NetworkName = string.Empty;
-            this.ModesWithParametersWhenSet = new Collection<string>();
-            this.ModesWithParameters = new Collection<string>();
-            this.ModesWithoutParameters = new Collection<string>();
+            this.ModesWithParametersWhenSet = new List<string>();
+            this.ModesWithParameters = new List<string>();
+            this.ModesWithoutParameters = new List<string>();
             this.MaxWatches = -1;
             this.MaxTopicLength = -1;
             this.MaxNickLength = 9;
@@ -530,7 +529,7 @@ namespace Supay.Irc
             this.MaxBanExceptions = -1;
             this.MaxAwayMessageLength = -1;
             this.CharacterSet = string.Empty;
-            this.ChannelTypes = new Collection<string>();
+            this.ChannelTypes = new List<string>();
             this.ChannelStatuses = "(ov)@+";
             this.ChannelLimits = new Dictionary<string, int>();
             this.ChannelIdLength = -1;

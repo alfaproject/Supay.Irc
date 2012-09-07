@@ -1,5 +1,5 @@
 using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Text;
 
 namespace Supay.Irc.Messages
@@ -11,7 +11,7 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class SourceReplyMessage : CtcpReplyMessage
     {
-        private readonly Collection<string> files = new Collection<string>();
+        private readonly ICollection<string> files = new List<string>();
         private string folder = string.Empty;
         private string server = string.Empty;
 
@@ -56,7 +56,7 @@ namespace Supay.Irc.Messages
         /// <summary>
         ///   Gets the list of files that must be downloaded.
         /// </summary>
-        public virtual Collection<string> Files
+        public virtual ICollection<string> Files
         {
             get
             {

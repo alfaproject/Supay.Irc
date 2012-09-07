@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 
 namespace Supay.Irc.Messages
@@ -39,7 +38,7 @@ namespace Supay.Irc.Messages
         /// </summary>
         protected override ICollection<string> GetTokens()
         {
-            var paramsToString = new Collection<string>();
+            var paramsToString = new List<string>();
             foreach (string name in this.SupportedItems.Keys)
             {
                 string value = this.SupportedItems[name];

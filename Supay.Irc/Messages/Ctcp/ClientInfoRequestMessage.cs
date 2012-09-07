@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 
 namespace Supay.Irc.Messages
 {
@@ -11,7 +10,7 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class ClientInfoRequestMessage : CtcpRequestMessage
     {
-        private readonly ICollection<string> parameters = new Collection<string>();
+        private readonly ICollection<string> parameters = new List<string>();
 
         /// <summary>
         ///   Creates a new instance of the <see cref="ClientInfoRequestMessage" /> class

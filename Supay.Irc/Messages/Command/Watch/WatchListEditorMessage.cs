@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace Supay.Irc.Messages
@@ -11,32 +10,30 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class WatchListEditorMessage : WatchMessage
     {
+        public WatchListEditorMessage()
+        {
+            RemovedNicks = new List<string>();
+            AddedNicks = new List<string>();
+        }
+
         #region Properties
-
-        private IList<string> addedNicks;
-
-        private IList<string> removedNicks;
 
         /// <summary>
         ///   Gets the collection of nicks being added to the watch list.
         /// </summary>
-        public IList<string> AddedNicks
+        public ICollection<string> AddedNicks
         {
-            get
-            {
-                return this.addedNicks ?? (this.addedNicks = new Collection<string>());
-            }
+            get;
+            private set;
         }
 
         /// <summary>
         ///   Gets the collection of nicks being removed from the watch list.
         /// </summary>
-        public IList<string> RemovedNicks
+        public ICollection<string> RemovedNicks
         {
-            get
-            {
-                return this.removedNicks ?? (this.removedNicks = new Collection<string>());
-            }
+            get;
+            private set;
         }
 
         #endregion

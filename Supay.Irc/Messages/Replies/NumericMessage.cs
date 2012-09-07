@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Globalization;
 
 namespace Supay.Irc.Messages
@@ -53,7 +52,7 @@ namespace Supay.Irc.Messages
         /// </summary>
         protected override ICollection<string> GetTokens()
         {
-            var parameters = new Collection<string> {
+            var parameters = new List<string> {
                 this.InternalNumeric.ToString("000", CultureInfo.InvariantCulture)
             };
             if (!string.IsNullOrEmpty(this.Target))
