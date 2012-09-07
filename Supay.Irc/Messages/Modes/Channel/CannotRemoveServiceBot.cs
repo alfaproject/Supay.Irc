@@ -50,20 +50,15 @@ namespace Supay.Irc.Messages
             }
         }
 
-        /// <exclude />
-        protected override IList<string> Tokens
+        protected override ICollection<string> GetTokens()
         {
-            get
-            {
-                var parameters = base.Tokens;
-                parameters.Add(this.Nick);
-                parameters.Add(this.Channel);
-                parameters.Add("Cannot kill, kick or de-op channel service");
-                return parameters;
-            }
+            var parameters = base.GetTokens();
+            parameters.Add(this.Nick);
+            parameters.Add(this.Channel);
+            parameters.Add("Cannot kill, kick or de-op channel service");
+            return parameters;
         }
 
-        /// <exclude />
         protected override void ParseParameters(IList<string> parameters)
         {
             base.ParseParameters(parameters);

@@ -16,7 +16,6 @@ namespace Supay.Irc.Messages
         {
         }
 
-        /// <exclude />
         protected override string ChangeMessage
         {
             get

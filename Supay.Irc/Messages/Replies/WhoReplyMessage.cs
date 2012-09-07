@@ -102,22 +102,19 @@ namespace Supay.Irc.Messages
 
 
         /// <summary>
-        /// Overrides <see cref="IrcMessage.Tokens"/>.
+        /// Overrides <see cref="IrcMessage.GetTokens"/>.
         /// </summary>
-        protected override IList<string> Tokens
+        protected override ICollection<string> GetTokens()
         {
-            get
-            {
-                var parameters = base.Tokens;
-                parameters.Add(this.Channel);
-                parameters.Add(this.User.Username);
-                parameters.Add(this.User.Host);
-                parameters.Add(this.User.Server);
-                parameters.Add(this.User.Nickname);
-                parameters.Add((this.User.Away ? "G" : "H") + (this.User.IrcOperator ? "*" : string.Empty) + this.Status.Symbol);
-                parameters.Add(this.HopCount.ToString(CultureInfo.InvariantCulture) + " " + this.User.Name);
-                return parameters;
-            }
+            var parameters = base.GetTokens();
+            parameters.Add(this.Channel);
+            parameters.Add(this.User.Username);
+            parameters.Add(this.User.Host);
+            parameters.Add(this.User.Server);
+            parameters.Add(this.User.Nickname);
+            parameters.Add((this.User.Away ? "G" : "H") + (this.User.IrcOperator ? "*" : string.Empty) + this.Status.Symbol);
+            parameters.Add(this.HopCount.ToString(CultureInfo.InvariantCulture) + " " + this.User.Name);
+            return parameters;
         }
 
         /// <summary>

@@ -72,16 +72,13 @@ namespace Supay.Irc.Messages
         }
 
         /// <summary>
-        /// Overrides <see cref="IrcMessage.Tokens"/>.
+        /// Overrides <see cref="IrcMessage.GetTokens"/>.
         /// </summary>
-        protected override IList<string> Tokens
+        protected override ICollection<string> GetTokens()
         {
-            get
-            {
-                var parameters = base.Tokens;
-                parameters.Add(THERE_ARE + this.UserCount + USERS_AND + this.InvisibleCount + INVISIBLE_ON + this.ServerCount + SERVERS);
-                return parameters;
-            }
+            var parameters = base.GetTokens();
+            parameters.Add(THERE_ARE + this.UserCount + USERS_AND + this.InvisibleCount + INVISIBLE_ON + this.ServerCount + SERVERS);
+            return parameters;
         }
 
         /// <summary>

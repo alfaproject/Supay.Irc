@@ -25,18 +25,6 @@ namespace Supay.Irc.Messages
         }
 
         /// <summary>
-        ///   Gets the parameters needed to rebuild this message.
-        /// </summary>
-        /// <remarks>
-        ///   When deriving from <see cref="IrcMessage" />, override this method to add the needed
-        ///   parameters for proper message rebuilding.
-        /// </remarks>
-        protected abstract IList<string> Tokens
-        {
-            get;
-        }
-
-        /// <summary>
         ///   Validates this message against the given server support.
         /// </summary>
         public virtual void Validate(ServerSupport serverSupport)
@@ -79,6 +67,15 @@ namespace Supay.Irc.Messages
         public abstract bool CanParse(string unparsedMessage);
 
         /// <summary>
+        ///   Gets the parameters needed to rebuild this message.
+        /// </summary>
+        /// <remarks>
+        ///   When deriving from <see cref="IrcMessage" />, override this method to add the needed
+        ///   parameters for proper message rebuilding.
+        /// </remarks>
+        protected abstract ICollection<string> GetTokens();
+
+        /// <summary>
         ///   Generates a string representation of the message.
         /// </summary>
         public override string ToString()
@@ -91,7 +88,7 @@ namespace Supay.Irc.Messages
                 sb.Append(' ');
             }
 
-            sb.Append(MessageUtil.ParametersToString(this.Tokens));
+            sb.Append(MessageUtil.ParametersToString(this.GetTokens()));
 
             return sb.ToString();
         }

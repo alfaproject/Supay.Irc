@@ -71,18 +71,13 @@ namespace Supay.Irc.Messages
             }
         }
 
-        /// <exclude />
-        protected override IList<string> Tokens
+        protected override ICollection<string> GetTokens()
         {
-            get
-            {
-                var parameters = base.Tokens;
-                parameters.Add(string.Format(CultureInfo.InvariantCulture, "Your user name {0} contained the invalid character(s) {1} and has been changed to {2}. Please use only the characters 0-9 a-z A-z _ - or . in your user name. Your user name is the part before the @ in your email address.", this.Ident, this.InvalidCharacters, this.NewIdent));
-                return parameters;
-            }
+            var parameters = base.GetTokens();
+            parameters.Add(string.Format(CultureInfo.InvariantCulture, "Your user name {0} contained the invalid character(s) {1} and has been changed to {2}. Please use only the characters 0-9 a-z A-z _ - or . in your user name. Your user name is the part before the @ in your email address.", this.Ident, this.InvalidCharacters, this.NewIdent));
+            return parameters;
         }
 
-        /// <exclude />
         protected override void ParseParameters(IList<string> parameters)
         {
             base.ParseParameters(parameters);

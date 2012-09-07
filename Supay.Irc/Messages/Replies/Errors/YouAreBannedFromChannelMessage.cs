@@ -45,19 +45,14 @@ namespace Supay.Irc.Messages
         #endregion
 
 
-        /// <exclude />
-        protected override IList<string> Tokens
+        protected override ICollection<string> GetTokens()
         {
-            get
-            {
-                var parameters = base.Tokens;
-                parameters.Add(this.Channel);
-                parameters.Add("Cannot join channel (+b)");
-                return parameters;
-            }
+            var parameters = base.GetTokens();
+            parameters.Add(this.Channel);
+            parameters.Add("Cannot join channel (+b)");
+            return parameters;
         }
 
-        /// <exclude />
         protected override void ParseParameters(IList<string> parameters)
         {
             base.ParseParameters(parameters);

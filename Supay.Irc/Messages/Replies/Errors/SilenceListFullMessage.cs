@@ -35,19 +35,14 @@ namespace Supay.Irc.Messages
             }
         }
 
-        /// <exclude />
-        protected override IList<string> Tokens
+        protected override ICollection<string> GetTokens()
         {
-            get
-            {
-                var parameters = base.Tokens;
-                parameters.Add(this.SilenceMask.ToString());
-                parameters.Add("Your silence list is full");
-                return parameters;
-            }
+            var parameters = base.GetTokens();
+            parameters.Add(this.SilenceMask.ToString());
+            parameters.Add("Your silence list is full");
+            return parameters;
         }
 
-        /// <exclude />
         protected override void ParseParameters(IList<string> parameters)
         {
             base.ParseParameters(parameters);

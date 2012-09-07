@@ -147,35 +147,32 @@ namespace Supay.Irc.Messages
         }
 
         /// <summary>
-        /// Overrides <see cref="IrcMessage.Tokens"/>.
+        /// Overrides <see cref="IrcMessage.GetTokens"/>.
         /// </summary>
-        protected override IList<string> Tokens
+        protected override ICollection<string> GetTokens()
         {
-            get
+            var parameters = base.GetTokens();
+            parameters.Add(this.ServerName);
+            parameters.Add(this.Version);
+            parameters.Add(this.UserModes);
+            parameters.Add(this.ChannelModes);
+            if (!string.IsNullOrEmpty(this.ChannelModesWithParams))
             {
-                var parameters = base.Tokens;
-                parameters.Add(this.ServerName);
-                parameters.Add(this.Version);
-                parameters.Add(this.UserModes);
-                parameters.Add(this.ChannelModes);
-                if (!string.IsNullOrEmpty(this.ChannelModesWithParams))
+                parameters.Add(this.ChannelModesWithParams);
+                if (!string.IsNullOrEmpty(this.UserModesWithParams))
                 {
-                    parameters.Add(this.ChannelModesWithParams);
-                    if (!string.IsNullOrEmpty(this.UserModesWithParams))
+                    parameters.Add(this.UserModesWithParams);
+                    if (!string.IsNullOrEmpty(this.ServerModes))
                     {
-                        parameters.Add(this.UserModesWithParams);
-                        if (!string.IsNullOrEmpty(this.ServerModes))
+                        parameters.Add(this.ServerModes);
+                        if (!string.IsNullOrEmpty(this.ServerModesWithParams))
                         {
-                            parameters.Add(this.ServerModes);
-                            if (!string.IsNullOrEmpty(this.ServerModesWithParams))
-                            {
-                                parameters.Add(this.ServerModesWithParams);
-                            }
+                            parameters.Add(this.ServerModesWithParams);
                         }
                     }
                 }
-                return parameters;
             }
+            return parameters;
         }
 
         /// <summary>

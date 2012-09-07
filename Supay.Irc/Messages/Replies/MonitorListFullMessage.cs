@@ -49,20 +49,15 @@ namespace Supay.Irc.Messages
             }
         }
 
-        /// <exclude />
-        protected override IList<string> Tokens
+        protected override ICollection<string> GetTokens()
         {
-            get
-            {
-                var parameters = base.Tokens;
-                parameters.Add(this.Limit.ToString(CultureInfo.InvariantCulture));
-                parameters.Add(string.Join(",", this.Nicks));
-                parameters.Add("Monitor list is full.");
-                return parameters;
-            }
+            var parameters = base.GetTokens();
+            parameters.Add(this.Limit.ToString(CultureInfo.InvariantCulture));
+            parameters.Add(string.Join(",", this.Nicks));
+            parameters.Add("Monitor list is full.");
+            return parameters;
         }
 
-        /// <exclude />
         protected override void ParseParameters(IList<string> parameters)
         {
             base.ParseParameters(parameters);

@@ -48,19 +48,14 @@ namespace Supay.Irc.Messages
         #endregion
 
 
-        /// <exclude />
-        protected override IList<string> Tokens
+        protected override ICollection<string> GetTokens()
         {
-            get
-            {
-                var parameters = base.Tokens;
-                parameters.Add(this.Channel);
-                parameters.Add("Cannot change nickname while banned on channel");
-                return parameters;
-            }
+            var parameters = base.GetTokens();
+            parameters.Add(this.Channel);
+            parameters.Add("Cannot change nickname while banned on channel");
+            return parameters;
         }
 
-        /// <exclude />
         protected override void ParseParameters(IList<string> parameters)
         {
             base.ParseParameters(parameters);

@@ -81,25 +81,22 @@ namespace Supay.Irc.Messages
 
 
         /// <summary>
-        /// Overrides <see cref="IrcMessage.Tokens"/>.
+        /// Overrides <see cref="IrcMessage.GetTokens"/>.
         /// </summary>
-        protected override IList<string> Tokens
+        protected override ICollection<string> GetTokens()
         {
-            get
+            var parameters = new Collection<string> {
+                this.TransportCommand,
+                this.Target
+            };
+            string extendedData = CtcpUtil.Escape(this.ExtendedData);
+            if (extendedData.Length != 0)
             {
-                var parameters = new Collection<string> {
-                    this.TransportCommand,
-                    this.Target
-                };
-                string extendedData = CtcpUtil.Escape(this.ExtendedData);
-                if (extendedData.Length != 0)
-                {
-                    extendedData = " " + extendedData;
-                }
-                string payLoad = CtcpUtil.EXTENDED_DATA_MARKER + this.InternalCommand + extendedData + CtcpUtil.EXTENDED_DATA_MARKER;
-                parameters.Add(payLoad);
-                return parameters;
+                extendedData = " " + extendedData;
             }
+            string payLoad = CtcpUtil.EXTENDED_DATA_MARKER + this.InternalCommand + extendedData + CtcpUtil.EXTENDED_DATA_MARKER;
+            parameters.Add(payLoad);
+            return parameters;
         }
 
         /// <summary>

@@ -86,7 +86,6 @@ namespace Supay.Irc.Messages
             }
         }
 
-        /// <exclude />
         public override bool CanParse(string unparsedMessage)
         {
             if (!base.CanParse(unparsedMessage))
@@ -99,28 +98,25 @@ namespace Supay.Irc.Messages
         }
 
         /// <summary>
-        /// Overrides <see cref="IrcMessage.Tokens"/>.
+        /// Overrides <see cref="IrcMessage.GetTokens"/>.
         /// </summary>
-        protected override IList<string> Tokens
+        protected override ICollection<string> GetTokens()
         {
-            get
+            var parameters = base.GetTokens();
+            parameters.Add(this.UserName);
+            int modeBitMask = 0;
+            if (this.InitialInvisibility)
             {
-                var parameters = base.Tokens;
-                parameters.Add(this.UserName);
-                int modeBitMask = 0;
-                if (this.InitialInvisibility)
-                {
-                    modeBitMask += 8;
-                }
-                if (this.InitialWallops)
-                {
-                    modeBitMask += 4;
-                }
-                parameters.Add(modeBitMask.ToString(CultureInfo.InvariantCulture));
-                parameters.Add("*");
-                parameters.Add(this.RealName);
-                return parameters;
+                modeBitMask += 8;
             }
+            if (this.InitialWallops)
+            {
+                modeBitMask += 4;
+            }
+            parameters.Add(modeBitMask.ToString(CultureInfo.InvariantCulture));
+            parameters.Add("*");
+            parameters.Add(this.RealName);
+            return parameters;
         }
 
         /// <summary>

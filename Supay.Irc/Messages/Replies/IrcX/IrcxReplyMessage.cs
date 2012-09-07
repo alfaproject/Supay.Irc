@@ -101,20 +101,17 @@ namespace Supay.Irc.Messages
         }
 
         /// <summary>
-        /// Overrides <see cref="IrcMessage.Tokens"/>.
+        /// Overrides <see cref="IrcMessage.GetTokens"/>.
         /// </summary>
-        protected override IList<string> Tokens
+        protected override ICollection<string> GetTokens()
         {
-            get
-            {
-                var parameters = base.Tokens;
-                parameters.Add(this.IsIrcxClientMode ? "1" : "0");
-                parameters.Add(this.Version);
-                parameters.Add(string.Join(",", this.AuthenticationPackages));
-                parameters.Add(this.MaximumMessageLength.ToString(CultureInfo.InvariantCulture));
-                parameters.Add(this.Options);
-                return parameters;
-            }
+            var parameters = base.GetTokens();
+            parameters.Add(this.IsIrcxClientMode ? "1" : "0");
+            parameters.Add(this.Version);
+            parameters.Add(string.Join(",", this.AuthenticationPackages));
+            parameters.Add(this.MaximumMessageLength.ToString(CultureInfo.InvariantCulture));
+            parameters.Add(this.Options);
+            return parameters;
         }
 
         /// <summary>

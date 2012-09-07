@@ -18,16 +18,13 @@ namespace Supay.Irc.Messages
         }
 
         /// <summary>
-        /// Overrides <see cref="IrcMessage.Tokens"/>.
+        /// Overrides <see cref="IrcMessage.GetTokens"/>.
         /// </summary>
-        protected override IList<string> Tokens
+        protected override ICollection<string> GetTokens()
         {
-            get
-            {
-                var parameters = base.Tokens;
-                parameters.Add("Your host isn't among the privileged");
-                return parameters;
-            }
+            var parameters = base.GetTokens();
+            parameters.Add("Your host isn't among the privileged");
+            return parameters;
         }
 
         /// <summary>

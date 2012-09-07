@@ -32,28 +32,25 @@ namespace Supay.Irc.Messages
         }
 
         /// <summary>
-        /// Overrides <see cref="IrcMessage.Tokens"/>.
+        /// Overrides <see cref="IrcMessage.GetTokens"/>.
         /// </summary>
-        protected override IList<string> Tokens
+        protected override ICollection<string> GetTokens()
         {
-            get
-            {
-                var parameters = base.Tokens;
-                parameters.Add(string.Join(" ", this.Users.Values.Select(user => {
-                    string result = user.Nickname;
-                    if (user.IrcOperator)
-                    {
-                        result += "*";
-                    }
-                    result += "=";
-                    result += user.Away ? "+" : "-";
-                    result += user.Username;
-                    result += "@";
-                    result += user.Host;
-                    return result;
-                })));
-                return parameters;
-            }
+            var parameters = base.GetTokens();
+            parameters.Add(string.Join(" ", this.Users.Values.Select(user => {
+                string result = user.Nickname;
+                if (user.IrcOperator)
+                {
+                    result += "*";
+                }
+                result += "=";
+                result += user.Away ? "+" : "-";
+                result += user.Username;
+                result += "@";
+                result += user.Host;
+                return result;
+            })));
+            return parameters;
         }
 
         /// <summary>

@@ -99,29 +99,26 @@ namespace Supay.Irc.Messages
 
 
         /// <summary>
-        /// Overrides <see cref="IrcMessage.Tokens"/>.
+        /// Overrides <see cref="IrcMessage.GetTokens"/>.
         /// </summary>
-        protected override IList<string> Tokens
+        protected override ICollection<string> GetTokens()
         {
-            get
+            var parameters = base.GetTokens();
+            switch (this.Visibility)
             {
-                var parameters = base.Tokens;
-                switch (this.Visibility)
-                {
-                    case ChannelVisibility.Public:
-                        parameters.Add("=");
-                        break;
-                    case ChannelVisibility.Private:
-                        parameters.Add("*");
-                        break;
-                    case ChannelVisibility.Secret:
-                        parameters.Add("@");
-                        break;
-                }
-                parameters.Add(this.Channel);
-                parameters.Add(string.Join(" ", this.Nicks.Select(user => user.Value.Symbol + user.Key)));
-                return parameters;
+                case ChannelVisibility.Public:
+                    parameters.Add("=");
+                    break;
+                case ChannelVisibility.Private:
+                    parameters.Add("*");
+                    break;
+                case ChannelVisibility.Secret:
+                    parameters.Add("@");
+                    break;
             }
+            parameters.Add(this.Channel);
+            parameters.Add(string.Join(" ", this.Nicks.Select(user => user.Value.Symbol + user.Key)));
+            return parameters;
         }
 
         /// <summary>

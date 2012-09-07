@@ -83,29 +83,26 @@ namespace Supay.Irc.Messages
         #region Formatting
 
         /// <summary>
-        /// Overrides <see cref="IrcMessage.Tokens"/>.
+        /// Overrides <see cref="IrcMessage.GetTokens"/>.
         /// </summary>
-        protected override IList<string> Tokens
+        protected override ICollection<string> GetTokens()
         {
-            get
+            var parameters = base.GetTokens();
+            if (this.AddedNicks != null)
             {
-                var parameters = base.Tokens;
-                if (this.AddedNicks != null)
+                foreach (string addedNick in this.AddedNicks)
                 {
-                    foreach (string addedNick in this.AddedNicks)
-                    {
-                        parameters.Add("+" + addedNick);
-                    }
+                    parameters.Add("+" + addedNick);
                 }
-                if (this.RemovedNicks != null)
-                {
-                    foreach (string removedNick in this.RemovedNicks)
-                    {
-                        parameters.Add("-" + removedNick);
-                    }
-                }
-                return parameters;
             }
+            if (this.RemovedNicks != null)
+            {
+                foreach (string removedNick in this.RemovedNicks)
+                {
+                    parameters.Add("-" + removedNick);
+                }
+            }
+            return parameters;
         }
 
         #endregion

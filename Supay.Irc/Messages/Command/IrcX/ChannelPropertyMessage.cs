@@ -96,28 +96,25 @@ namespace Supay.Irc.Messages
         }
 
         /// <summary>
-        /// Overrides <see cref="IrcMessage.Tokens"/>.
+        /// Overrides <see cref="IrcMessage.GetTokens"/>.
         /// </summary>
-        protected override IList<string> Tokens
+        protected override ICollection<string> GetTokens()
         {
-            get
+            var parameters = base.GetTokens();
+            parameters.Add(this.Channel);
+            if (string.IsNullOrEmpty(this.Prop))
             {
-                var parameters = base.Tokens;
-                parameters.Add(this.Channel);
-                if (string.IsNullOrEmpty(this.Prop))
-                {
-                    parameters.Add("*");
-                }
-                else
-                {
-                    parameters.Add(this.Prop);
-                    if (!string.IsNullOrEmpty(this.NewValue))
-                    {
-                        parameters.Add(this.NewValue);
-                    }
-                }
-                return parameters;
+                parameters.Add("*");
             }
+            else
+            {
+                parameters.Add(this.Prop);
+                if (!string.IsNullOrEmpty(this.NewValue))
+                {
+                    parameters.Add(this.NewValue);
+                }
+            }
+            return parameters;
         }
 
         /// <summary>

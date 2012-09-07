@@ -48,27 +48,23 @@ namespace Supay.Irc.Messages
             }
         }
 
-        /// <exclude />
         protected abstract string ChangeMessage
         {
             get;
         }
 
         /// <summary>
-        /// Overrides <see cref="IrcMessage.Tokens"/>.
+        /// Overrides <see cref="IrcMessage.GetTokens"/>.
         /// </summary>
-        protected override IList<string> Tokens
+        protected override ICollection<string> GetTokens()
         {
-            get
-            {
-                var parameters = base.Tokens;
-                parameters.Add(this.WatchedUser.Nickname);
-                parameters.Add(this.WatchedUser.Username);
-                parameters.Add(this.WatchedUser.Host);
-                parameters.Add(MessageUtil.ConvertToUnixTime(this.TimeOfChange).ToString(CultureInfo.InvariantCulture));
-                parameters.Add(this.ChangeMessage);
-                return parameters;
-            }
+            var parameters = base.GetTokens();
+            parameters.Add(this.WatchedUser.Nickname);
+            parameters.Add(this.WatchedUser.Username);
+            parameters.Add(this.WatchedUser.Host);
+            parameters.Add(MessageUtil.ConvertToUnixTime(this.TimeOfChange).ToString(CultureInfo.InvariantCulture));
+            parameters.Add(this.ChangeMessage);
+            return parameters;
         }
 
         /// <summary>
