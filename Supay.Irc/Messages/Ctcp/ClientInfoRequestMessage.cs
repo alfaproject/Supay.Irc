@@ -10,14 +10,13 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class ClientInfoRequestMessage : CtcpRequestMessage
     {
-        private readonly ICollection<string> parameters = new List<string>();
-
         /// <summary>
         ///   Creates a new instance of the <see cref="ClientInfoRequestMessage" /> class
         /// </summary>
         public ClientInfoRequestMessage()
         {
             this.InternalCommand = "CLIENTINFO";
+            Parameters = new List<string>();
         }
 
         /// <summary>
@@ -26,12 +25,10 @@ namespace Supay.Irc.Messages
         /// <remarks>
         ///   To specificly ask about support for the "TIME" command, add "TIME" as the first parameter.
         /// </remarks>
-        public virtual ICollection<string> Parameters
+        public ICollection<string> Parameters
         {
-            get
-            {
-                return this.parameters;
-            }
+            get;
+            private set;
         }
 
         /// <summary>

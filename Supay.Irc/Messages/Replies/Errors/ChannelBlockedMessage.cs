@@ -16,9 +16,6 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class ChannelBlockedMessage : ErrorMessage, IChannelTargetedMessage
     {
-        private string channel;
-        private string reason;
-
         /// <summary>
         ///   Creates a new instances of the <see cref="ChannelBlockedMessage" /> class.
         /// </summary>
@@ -32,14 +29,8 @@ namespace Supay.Irc.Messages
         /// </summary>
         public string Channel
         {
-            get
-            {
-                return this.channel;
-            }
-            set
-            {
-                this.channel = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
@@ -47,14 +38,8 @@ namespace Supay.Irc.Messages
         /// </summary>
         public string Reason
         {
-            get
-            {
-                return this.reason;
-            }
-            set
-            {
-                this.reason = value;
-            }
+            get;
+            set;
         }
 
 

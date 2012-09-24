@@ -10,8 +10,6 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class ChannelRequiresRegisteredNickMessage : ErrorMessage, IChannelTargetedMessage
     {
-        private string channel;
-
         /// <summary>
         ///   Creates a new instances of the <see cref="ChannelRequiresRegisteredNickMessage" /> class.
         /// </summary>
@@ -25,14 +23,8 @@ namespace Supay.Irc.Messages
         /// </summary>
         public string Channel
         {
-            get
-            {
-                return this.channel;
-            }
-            set
-            {
-                this.channel = value;
-            }
+            get;
+            set;
         }
 
 

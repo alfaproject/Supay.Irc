@@ -10,30 +10,29 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class SlotsRequestMessage : CtcpRequestMessage
     {
-        private int availableSendSlots;
-        private int cpsRecord;
-        private string nextSend;
-        private int takenQueueSlots;
-        private int totalFiles;
-        private int totalQueueSlots;
-        private int totalSendSlots;
+        private int _availableSendSlots;
+        private int _cpsRecord;
+        private int _takenQueueSlots;
+        private int _totalFiles;
+        private int _totalQueueSlots;
+        private int _totalSendSlots;
+
+        /// <summary>
+        ///   Creates a new instance of the <see cref="SlotsRequestMessage" /> class with the given text and target.
+        /// </summary>
+        /// <param name="target">The target of the action.</param>
+        public SlotsRequestMessage(string target)
+        {
+            this.InternalCommand = "SLOTS";
+            this.Target = target;
+        }
 
         /// <summary>
         ///   Creates a new instance of the <see cref="SlotsRequestMessage" /> class.
         /// </summary>
         public SlotsRequestMessage()
+            : this(null)
         {
-            this.InternalCommand = "SLOTS";
-        }
-
-        /// <summary>
-        ///   Creates a new instance of the <see cref="ActionRequestMessage" /> class with the given text and target.
-        /// </summary>
-        /// <param name="target">The target of the action.</param>
-        public SlotsRequestMessage(string target)
-            : this()
-        {
-            this.Target = target;
         }
 
         /// <summary>
@@ -43,11 +42,11 @@ namespace Supay.Irc.Messages
         {
             get
             {
-                return this.totalSendSlots;
+                return this._totalSendSlots;
             }
             set
             {
-                this.totalSendSlots = value;
+                this._totalSendSlots = value;
             }
         }
 
@@ -58,11 +57,11 @@ namespace Supay.Irc.Messages
         {
             get
             {
-                return this.availableSendSlots;
+                return this._availableSendSlots;
             }
             set
             {
-                this.availableSendSlots = value;
+                this._availableSendSlots = value;
             }
         }
 
@@ -71,14 +70,8 @@ namespace Supay.Irc.Messages
         /// </summary>
         public string NextSend
         {
-            get
-            {
-                return this.nextSend;
-            }
-            set
-            {
-                this.nextSend = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
@@ -88,11 +81,11 @@ namespace Supay.Irc.Messages
         {
             get
             {
-                return this.takenQueueSlots;
+                return this._takenQueueSlots;
             }
             set
             {
-                this.takenQueueSlots = value;
+                this._takenQueueSlots = value;
             }
         }
 
@@ -103,11 +96,11 @@ namespace Supay.Irc.Messages
         {
             get
             {
-                return this.totalQueueSlots;
+                return this._totalQueueSlots;
             }
             set
             {
-                this.totalQueueSlots = value;
+                this._totalQueueSlots = value;
             }
         }
 
@@ -118,11 +111,11 @@ namespace Supay.Irc.Messages
         {
             get
             {
-                return this.cpsRecord;
+                return this._cpsRecord;
             }
             set
             {
-                this.cpsRecord = value;
+                this._cpsRecord = value;
             }
         }
 
@@ -133,11 +126,11 @@ namespace Supay.Irc.Messages
         {
             get
             {
-                return this.totalFiles;
+                return this._totalFiles;
             }
             set
             {
-                this.totalFiles = value;
+                this._totalFiles = value;
             }
         }
 
@@ -171,13 +164,13 @@ namespace Supay.Irc.Messages
             var slotInfoItems = slotInfo.Split(' ');
             if (slotInfoItems.Length >= 7)
             {
-                int.TryParse(slotInfoItems[0], NumberStyles.Integer, CultureInfo.InvariantCulture, out this.totalSendSlots);
-                int.TryParse(slotInfoItems[1], NumberStyles.Integer, CultureInfo.InvariantCulture, out this.availableSendSlots);
-                this.nextSend = slotInfoItems[2];
-                int.TryParse(slotInfoItems[3], NumberStyles.Integer, CultureInfo.InvariantCulture, out this.takenQueueSlots);
-                int.TryParse(slotInfoItems[4], NumberStyles.Integer, CultureInfo.InvariantCulture, out this.totalQueueSlots);
-                int.TryParse(slotInfoItems[5], NumberStyles.Integer, CultureInfo.InvariantCulture, out this.cpsRecord);
-                int.TryParse(slotInfoItems[6], NumberStyles.Integer, CultureInfo.InvariantCulture, out this.totalFiles);
+                int.TryParse(slotInfoItems[0], NumberStyles.Integer, CultureInfo.InvariantCulture, out this._totalSendSlots);
+                int.TryParse(slotInfoItems[1], NumberStyles.Integer, CultureInfo.InvariantCulture, out this._availableSendSlots);
+                this.NextSend = slotInfoItems[2];
+                int.TryParse(slotInfoItems[3], NumberStyles.Integer, CultureInfo.InvariantCulture, out this._takenQueueSlots);
+                int.TryParse(slotInfoItems[4], NumberStyles.Integer, CultureInfo.InvariantCulture, out this._totalQueueSlots);
+                int.TryParse(slotInfoItems[5], NumberStyles.Integer, CultureInfo.InvariantCulture, out this._cpsRecord);
+                int.TryParse(slotInfoItems[6], NumberStyles.Integer, CultureInfo.InvariantCulture, out this._totalFiles);
             }
         }
     }

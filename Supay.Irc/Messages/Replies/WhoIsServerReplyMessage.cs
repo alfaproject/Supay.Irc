@@ -9,61 +9,42 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class WhoIsServerReplyMessage : NumericMessage
     {
-        private string info = string.Empty;
-        private string nick = string.Empty;
-        private string serverName = string.Empty;
-
         /// <summary>
         ///   Creates a new instance of the <see cref="WhoIsServerReplyMessage" /> class.
         /// </summary>
         public WhoIsServerReplyMessage()
             : base(312)
         {
+            Nick = string.Empty;
+            ServerName = string.Empty;
+            Info = string.Empty;
         }
 
         /// <summary>
         ///   Gets or sets the nick of the user being examined.
         /// </summary>
-        public virtual string Nick
+        public string Nick
         {
-            get
-            {
-                return this.nick;
-            }
-            set
-            {
-                this.nick = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
         ///   Gets or sets the name of the server the user is connected to.
         /// </summary>
-        public virtual string ServerName
+        public string ServerName
         {
-            get
-            {
-                return this.serverName;
-            }
-            set
-            {
-                this.serverName = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
         ///   Gets or sets additional information about the user's server connection.
         /// </summary>
-        public virtual string Info
+        public string Info
         {
-            get
-            {
-                return this.info;
-            }
-            set
-            {
-                this.info = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>

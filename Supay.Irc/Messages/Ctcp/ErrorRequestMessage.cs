@@ -8,29 +8,22 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class ErrorRequestMessage : CtcpRequestMessage
     {
-        private string query = string.Empty;
-
         /// <summary>
         ///   Creates a new instance of the <see cref="ErrorRequestMessage" /> class.
         /// </summary>
         public ErrorRequestMessage()
         {
             this.InternalCommand = "ERRMSG";
+            Query = string.Empty;
         }
 
         /// <summary>
         ///   Gets or sets the string to be parroted back to you, with an indication that no error occured.
         /// </summary>
-        public virtual string Query
+        public string Query
         {
-            get
-            {
-                return this.query;
-            }
-            set
-            {
-                this.query = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
@@ -40,7 +33,7 @@ namespace Supay.Irc.Messages
         {
             get
             {
-                return this.query;
+                return this.Query;
             }
         }
 

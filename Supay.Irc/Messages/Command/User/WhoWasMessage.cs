@@ -10,53 +10,38 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class WhoWasMessage : CommandMessage
     {
-        private int maximumResults = 1;
-        private string nick = string.Empty;
-        private string server = string.Empty;
+        public WhoWasMessage()
+        {
+            Nick = string.Empty;
+            Server = string.Empty;
+            MaximumResults = 1;
+        }
 
         /// <summary>
         ///   Gets or sets the nick of the user being examined.
         /// </summary>
-        public virtual string Nick
+        public string Nick
         {
-            get
-            {
-                return this.nick;
-            }
-            set
-            {
-                this.nick = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
         ///   Gets or sets the server that should search for the information.
         /// </summary>
-        public virtual string Server
+        public string Server
         {
-            get
-            {
-                return this.server;
-            }
-            set
-            {
-                this.server = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
         ///   Gets or sets the maximum number of results to receive.
         /// </summary>
-        public virtual int MaximumResults
+        public int MaximumResults
         {
-            get
-            {
-                return this.maximumResults;
-            }
-            set
-            {
-                this.maximumResults = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>

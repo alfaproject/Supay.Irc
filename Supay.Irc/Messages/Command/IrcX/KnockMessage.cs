@@ -10,7 +10,10 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class KnockMessage : CommandMessage, IChannelTargetedMessage
     {
-        private string channel = string.Empty;
+        public KnockMessage()
+        {
+            Channel = string.Empty;
+        }
 
         /// <summary>
         ///   Gets the IRC command associated with this message.
@@ -26,16 +29,10 @@ namespace Supay.Irc.Messages
         /// <summary>
         ///   Gets or sets the channel being targeted.
         /// </summary>
-        public virtual string Channel
+        public string Channel
         {
-            get
-            {
-                return this.channel;
-            }
-            set
-            {
-                this.channel = value;
-            }
+            get;
+            set;
         }
 
 

@@ -10,45 +10,32 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class ChannelCreationTimeMessage : NumericMessage, IChannelTargetedMessage
     {
-        private string channel = string.Empty;
-        private DateTime timeCreated = DateTime.MinValue;
-
         /// <summary>
         ///   Creates a new instance of the <see cref="ChannelCreationTimeMessage" /> class.
         /// </summary>
         public ChannelCreationTimeMessage()
             : base(329)
         {
+            Channel = string.Empty;
+            TimeCreated = DateTime.MinValue;
         }
 
         /// <summary>
         ///   Gets or sets the channel referred to.
         /// </summary>
-        public virtual string Channel
+        public string Channel
         {
-            get
-            {
-                return this.channel;
-            }
-            set
-            {
-                this.channel = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
         ///   Gets or sets the time which the channel was created.
         /// </summary>
-        public virtual DateTime TimeCreated
+        public DateTime TimeCreated
         {
-            get
-            {
-                return this.timeCreated;
-            }
-            set
-            {
-                this.timeCreated = value;
-            }
+            get;
+            set;
         }
 
 

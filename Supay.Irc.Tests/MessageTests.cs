@@ -519,7 +519,7 @@ namespace Supay.Irc.Tests
                 Assert.AreEqual(reasons[i], msg.Reason, "Reason");
                 for (var j = 0; j < msg.Channels.Count; j++)
                 {
-                    Assert.AreEqual(channels[i][j], msg.Channels[j], "Channel");
+                    Assert.IsTrue(msg.Channels.Contains(channels[i][j]), "Channel");
                 }
             }
         }

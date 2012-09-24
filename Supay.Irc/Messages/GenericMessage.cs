@@ -9,38 +9,19 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class GenericMessage : IrcMessage
     {
-        #region Constructor
-
         public GenericMessage()
         {
-            this.command = string.Empty;
+            this.Command = string.Empty;
             this.Parameters = new List<string>();
         }
-
-        #endregion
-
-
-        #region Properties
-
-        private string command;
 
         /// <summary>
         ///   Gets or sets the message's command.
         /// </summary>
         public string Command
         {
-            get
-            {
-                return this.command;
-            }
-            set
-            {
-                if (value == null)
-                {
-                    throw new ArgumentNullException("value");
-                }
-                this.command = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
@@ -51,9 +32,6 @@ namespace Supay.Irc.Messages
             get;
             private set;
         }
-
-        #endregion
-
 
         #region IrcMessage Methods
 

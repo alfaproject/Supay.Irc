@@ -115,8 +115,8 @@ namespace Supay.Irc.Tests
 
             var msg = MessageAssert.TypeAndRoundTrip<WatchStatusNicksReplyMessage>(raws[0]);
             Assert.AreEqual(2, msg.Nicks.Count);
-            Assert.AreEqual("supaybot2", msg.Nicks[0]);
-            Assert.AreEqual("supaybot", msg.Nicks[1]);
+            Assert.IsTrue(msg.Nicks.Contains("supaybot"));
+            Assert.IsTrue(msg.Nicks.Contains("supaybot2"));
         }
 
         [TestMethod]

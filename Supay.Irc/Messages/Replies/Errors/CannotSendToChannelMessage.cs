@@ -9,29 +9,22 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class CannotSendToChannelMessage : ErrorMessage, IChannelTargetedMessage
     {
-        private string channel = string.Empty;
-
         /// <summary>
         ///   Creates a new instances of the <see cref="CannotSendToChannelMessage" /> class.
         /// </summary>
         public CannotSendToChannelMessage()
             : base(404)
         {
+            Channel = string.Empty;
         }
 
         /// <summary>
         ///   The channel to which the message can't be sent.
         /// </summary>
-        public virtual string Channel
+        public string Channel
         {
-            get
-            {
-                return this.channel;
-            }
-            set
-            {
-                this.channel = value;
-            }
+            get;
+            set;
         }
 
 

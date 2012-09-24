@@ -16,29 +16,22 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class UnknownConnectionsMessage : NumericMessage
     {
-        private int userCount = -1;
-
         /// <summary>
         ///   Creates a new instance of the <see cref="UnknownConnectionsMessage" /> class.
         /// </summary>
         public UnknownConnectionsMessage()
             : base(253)
         {
+            UnknownConnectionCount = -1;
         }
 
         /// <summary>
         ///   Gets or sets the number of unknown connections
         /// </summary>
-        public virtual int UnknownConnectionCount
+        public int UnknownConnectionCount
         {
-            get
-            {
-                return this.userCount;
-            }
-            set
-            {
-                this.userCount = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>

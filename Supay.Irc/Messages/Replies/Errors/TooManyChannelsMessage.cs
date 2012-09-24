@@ -9,29 +9,22 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class TooManyChannelsMessage : ErrorMessage, IChannelTargetedMessage
     {
-        private string channel = string.Empty;
-
         /// <summary>
         ///   Creates a new instances of the <see cref="TooManyChannelsMessage" /> class.
         /// </summary>
         public TooManyChannelsMessage()
             : base(405)
         {
+            Channel = string.Empty;
         }
 
         /// <summary>
         ///   The channel to which entry was denied.
         /// </summary>
-        public virtual string Channel
+        public string Channel
         {
-            get
-            {
-                return this.channel;
-            }
-            set
-            {
-                this.channel = value;
-            }
+            get;
+            set;
         }
 
 

@@ -9,9 +9,12 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class WhisperMessage : CommandMessage, IChannelTargetedMessage
     {
-        private readonly List<string> targets = new List<string>();
-        private string channel = string.Empty;
-        private string text = string.Empty;
+        public WhisperMessage()
+        {
+            Channel = string.Empty;
+            Targets = new List<string>();
+            Text = string.Empty;
+        }
 
         /// <summary>
         ///   Gets the IRC command associated with this message.
@@ -27,27 +30,19 @@ namespace Supay.Irc.Messages
         /// <summary>
         ///   Gets or sets the channel being targeted.
         /// </summary>
-        public virtual string Channel
+        public string Channel
         {
-            get
-            {
-                return this.channel;
-            }
-            set
-            {
-                this.channel = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
         ///   Gets the target of this <see cref="TextMessage" />.
         /// </summary>
-        public virtual List<string> Targets
+        public ICollection<string> Targets
         {
-            get
-            {
-                return this.targets;
-            }
+            get;
+            private set;
         }
 
         /// <summary>
@@ -56,16 +51,10 @@ namespace Supay.Irc.Messages
         /// <remarks>
         ///   This property holds the core purpose of IRC itself... sending text communication to others.
         /// </remarks>
-        public virtual string Text
+        public string Text
         {
-            get
-            {
-                return this.text;
-            }
-            set
-            {
-                this.text = value;
-            }
+            get;
+            set;
         }
 
 
@@ -101,7 +90,10 @@ namespace Supay.Irc.Messages
             if (parameters.Count > 2)
             {
                 this.Channel = parameters[0];
-                this.Targets.AddRange(parameters[1].Split(','));
+                foreach (var target in parameters[1].Split(','))
+                {
+                    Targets.Add(target);
+                }
                 this.Text = parameters[2];
             }
             else

@@ -9,22 +9,19 @@ namespace Supay.Irc.Messages
     [Serializable]
     public abstract class CtcpMessage : IrcMessage, IChannelTargetedMessage, IQueryTargetedMessage
     {
-        private string internalCommand = string.Empty;
-        private string target = string.Empty;
+        protected CtcpMessage()
+        {
+            InternalCommand = string.Empty;
+            Target = string.Empty;
+        }
 
         /// <summary>
         ///   Gets the targets of this <see cref="CtcpMessage" />.
         /// </summary>
         public string Target
         {
-            get
-            {
-                return this.target;
-            }
-            set
-            {
-                this.target = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
@@ -32,14 +29,8 @@ namespace Supay.Irc.Messages
         /// </summary>
         protected string InternalCommand
         {
-            get
-            {
-                return this.internalCommand;
-            }
-            set
-            {
-                this.internalCommand = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
@@ -130,7 +121,7 @@ namespace Supay.Irc.Messages
         /// </summary>
         protected virtual bool IsQueryToUser(User user)
         {
-            return user.Nickname.Equals(this.target);
+            return user.Nickname.Equals(this.Target);
         }
     }
 }

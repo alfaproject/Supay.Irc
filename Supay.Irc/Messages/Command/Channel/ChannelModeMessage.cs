@@ -13,17 +13,6 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class ChannelModeMessage : CommandMessage, IChannelTargetedMessage
     {
-        private readonly List<string> modeArguments = new List<string>();
-        private string channel = string.Empty;
-        private string modeChanges = string.Empty;
-
-        /// <summary>
-        ///   Creates a new instance of the ChannelModeMessage class.
-        /// </summary>
-        public ChannelModeMessage()
-        {
-        }
-
         /// <summary>
         ///   Creates a new instance of the ChannelModeMessage class and applies the given parameters.
         /// </summary>
@@ -32,9 +21,17 @@ namespace Supay.Irc.Messages
         /// <param name="modeArguments">The arguments ( parameters ) for the <see cref="ChannelModeMessage.ModeChanges" /> property.</param>
         public ChannelModeMessage(string channel, string modeChanges, params string[] modeArguments)
         {
-            this.channel = channel;
-            this.modeChanges = modeChanges;
-            this.modeArguments.AddRange(modeArguments);
+            ModeArguments = new List<string>(modeArguments);
+            this.Channel = channel;
+            this.ModeChanges = modeChanges;
+        }
+
+        /// <summary>
+        ///   Creates a new instance of the ChannelModeMessage class.
+        /// </summary>
+        public ChannelModeMessage()
+            : this(string.Empty, string.Empty)
+        {
         }
 
         /// <summary>
@@ -51,16 +48,10 @@ namespace Supay.Irc.Messages
         /// <summary>
         ///   Gets or sets the name of the channel being affected.
         /// </summary>
-        public virtual string Channel
+        public string Channel
         {
-            get
-            {
-                return this.channel;
-            }
-            set
-            {
-                this.channel = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
@@ -70,16 +61,10 @@ namespace Supay.Irc.Messages
         ///   An example ModeChanges might look like "+ool".
         ///   This means adding the channel op mode for two users, and setting a limit on the user count.
         /// </remarks>
-        public virtual string ModeChanges
+        public string ModeChanges
         {
-            get
-            {
-                return this.modeChanges;
-            }
-            set
-            {
-                this.modeChanges = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
@@ -88,12 +73,10 @@ namespace Supay.Irc.Messages
         /// <remarks>
         ///   Some modes require a parameter, such as +o requires the mask of the person to be given ops.
         /// </remarks>
-        public virtual IList<string> ModeArguments
+        public List<string> ModeArguments
         {
-            get
-            {
-                return this.modeArguments;
-            }
+            get;
+            private set;
         }
 
 

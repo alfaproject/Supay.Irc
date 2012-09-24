@@ -9,45 +9,32 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class KnockRequestMessage : NumericMessage
     {
-        private string channel = string.Empty;
-        private User knocker = new User();
-
         /// <summary>
         ///   Creates a new instance of the <see cref="KnockRequestMessage" />.
         /// </summary>
         public KnockRequestMessage()
             : base(710)
         {
+            Channel = string.Empty;
+            Knocker = new User();
         }
 
         /// <summary>
         ///   Gets or sets the channel that was knocked on.
         /// </summary>
-        public virtual string Channel
+        public string Channel
         {
-            get
-            {
-                return this.channel;
-            }
-            set
-            {
-                this.channel = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
         ///   Gets or sets the user which knocked on the channel.
         /// </summary>
-        public virtual User Knocker
+        public User Knocker
         {
-            get
-            {
-                return this.knocker;
-            }
-            set
-            {
-                this.knocker = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>

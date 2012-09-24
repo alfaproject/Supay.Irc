@@ -9,9 +9,9 @@ namespace Supay.Irc.Contacts
 {
     internal sealed class ContactsIsOnTracker : ContactsTracker, IDisposable
     {
-        private readonly ICollection<string> trackedNicks = new List<string>();
-        private readonly ICollection<string> waitingOnNicks = new List<string>();
-        private Timer timer;
+        private readonly ICollection<string> _trackedNicks = new List<string>();
+        private readonly ICollection<string> _waitingOnNicks = new List<string>();
+        private Timer _timer;
 
         public ContactsIsOnTracker(ContactList contacts)
             : base(contacts)
@@ -22,28 +22,28 @@ namespace Supay.Irc.Contacts
         {
             this.Contacts.Client.Messages.IsOnReply += this.ClientIsOnReply;
             base.Initialize();
-            if (this.timer != null)
+            if (this._timer != null)
             {
-                this.timer.Dispose();
+                this._timer.Dispose();
             }
-            this.timer = new Timer();
-            this.timer.Elapsed += this.TimerElapsed;
-            this.timer.Start();
+            this._timer = new Timer();
+            this._timer.Elapsed += this.TimerElapsed;
+            this._timer.Start();
         }
 
         protected override void AddNicks(IEnumerable<string> nicks)
         {
-            foreach (var nick in nicks.Where(nick => !trackedNicks.Contains(nick)))
+            foreach (var nick in nicks.Where(nick => !_trackedNicks.Contains(nick)))
             {
-                trackedNicks.Add(nick);
+                _trackedNicks.Add(nick);
             }
         }
 
         protected override void RemoveNicks(IEnumerable<string> nicks)
         {
-            foreach (var nick in nicks.Where(nick => trackedNicks.Contains(nick)))
+            foreach (var nick in nicks.Where(nick => _trackedNicks.Contains(nick)))
             {
-                trackedNicks.Remove(nick);
+                _trackedNicks.Remove(nick);
             }
         }
 
@@ -54,26 +54,26 @@ namespace Supay.Irc.Contacts
         {
             foreach (string onlineNick in e.Message.Nicks)
             {
-                if (this.waitingOnNicks.Contains(onlineNick))
+                if (this._waitingOnNicks.Contains(onlineNick))
                 {
-                    this.waitingOnNicks.Remove(onlineNick);
+                    this._waitingOnNicks.Remove(onlineNick);
                 }
                 User knownUser;
                 if (this.Contacts.Users.TryGetValue(onlineNick, out knownUser))
                 {
                     knownUser.Online = true;
                 }
-                else if (this.trackedNicks.Contains(onlineNick))
+                else if (this._trackedNicks.Contains(onlineNick))
                 {
-                    this.trackedNicks.Remove(onlineNick);
+                    this._trackedNicks.Remove(onlineNick);
                 }
             }
 
-            foreach (var offlineUser in this.waitingOnNicks.Select(nick => this.Contacts.Users[nick]))
+            foreach (var offlineUser in this._waitingOnNicks.Select(nick => this.Contacts.Users[nick]))
             {
                 offlineUser.Online = false;
             }
-            this.waitingOnNicks.Clear();
+            this._waitingOnNicks.Clear();
         }
 
         private void TimerElapsed(object sender, ElapsedEventArgs e)
@@ -81,12 +81,12 @@ namespace Supay.Irc.Contacts
             if (this.Contacts.Client.Connection.Status == ConnectionStatus.Connected)
             {
                 var ison = new IsOnMessage();
-                foreach (string nick in this.trackedNicks)
+                foreach (string nick in this._trackedNicks)
                 {
                     ison.Nicks.Add(nick);
-                    if (!this.waitingOnNicks.Contains(nick))
+                    if (!this._waitingOnNicks.Contains(nick))
                     {
-                        this.waitingOnNicks.Add(nick);
+                        this._waitingOnNicks.Add(nick);
                     }
                 }
                 this.Contacts.Client.Send(ison);
@@ -103,9 +103,9 @@ namespace Supay.Irc.Contacts
         /// </summary>
         public void Dispose()
         {
-            if (this.timer != null)
+            if (this._timer != null)
             {
-                this.timer.Close();
+                this._timer.Close();
             }
         }
 

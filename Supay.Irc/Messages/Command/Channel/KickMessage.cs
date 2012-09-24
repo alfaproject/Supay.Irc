@@ -15,17 +15,6 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class KickMessage : CommandMessage, IChannelTargetedMessage
     {
-        private readonly List<string> channels = new List<string>();
-        private readonly List<string> nicks = new List<string>();
-        private string reason = string.Empty;
-
-        /// <summary>
-        ///   Creates a new instance of the <see cref="KickMessage" /> class.
-        /// </summary>
-        public KickMessage()
-        {
-        }
-
         /// <summary>
         ///   Creates a new instance of the <see cref="KickMessage" /> class with the given channel and nick.
         /// </summary>
@@ -33,8 +22,19 @@ namespace Supay.Irc.Messages
         /// <param name="nick">The nick of the user being kicked out.</param>
         public KickMessage(string channel, string nick)
         {
-            this.channels.Add(channel);
-            this.nicks.Add(nick);
+            Channels = new List<string>(new[] { channel });
+            Nicks = new List<string>(new[] { nick });
+            Reason = string.Empty;
+        }
+
+        /// <summary>
+        ///   Creates a new instance of the <see cref="KickMessage" /> class.
+        /// </summary>
+        public KickMessage()
+        {
+            Channels = new List<string>();
+            Nicks = new List<string>();
+            Reason = string.Empty;
         }
 
         /// <summary>
@@ -51,38 +51,28 @@ namespace Supay.Irc.Messages
         /// <summary>
         ///   Gets the channels affected.
         /// </summary>
-        public virtual List<string> Channels
+        public IList<string> Channels
         {
-            get
-            {
-                return this.channels;
-            }
+            get;
+            private set;
         }
 
         /// <summary>
         ///   Gets the nicks of the users being kicked.
         /// </summary>
-        public virtual List<string> Nicks
+        public IList<string> Nicks
         {
-            get
-            {
-                return this.nicks;
-            }
+            get;
+            private set;
         }
 
         /// <summary>
         ///   Gets or sets the reason for the kick
         /// </summary>
-        public virtual string Reason
+        public string Reason
         {
-            get
-            {
-                return this.reason;
-            }
-            set
-            {
-                this.reason = value;
-            }
+            get;
+            set;
         }
 
 
@@ -142,8 +132,16 @@ namespace Supay.Irc.Messages
             this.Reason = string.Empty;
             if (parameters.Count >= 2)
             {
-                this.Channels.AddRange(parameters[0].Split(','));
-                this.Nicks.AddRange(parameters[1].Split(','));
+                foreach (var channel in parameters[0].Split(','))
+                {
+                    Channels.Add(channel);
+                }
+
+                foreach (var nick in parameters[1].Split(','))
+                {
+                    Nicks.Add(nick);
+                }
+
                 if (parameters.Count >= 3)
                 {
                     this.Reason = parameters[2];

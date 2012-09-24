@@ -11,52 +11,39 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class PartMessage : CommandMessage, IChannelTargetedMessage
     {
-        private readonly List<string> channels = new List<string>();
-        private string reason = string.Empty;
+        /// <summary>
+        ///   Creates a new instance of the <see cref="PartMessage" /> class with the given channel.
+        /// </summary>
+        public PartMessage(params string[] channels)
+        {
+            Channels = new List<string>(channels);
+            Reason = string.Empty;
+        }
 
         /// <summary>
         ///   Creates a new instance of the <see cref="PartMessage" /> class.
         /// </summary>
         public PartMessage()
+            : this(new string[] { })
         {
-        }
-
-        /// <summary>
-        ///   Creates a new instance of the <see cref="PartMessage" /> class with the given channel.
-        /// </summary>
-        public PartMessage(string channel)
-        {
-            this.channels.Add(channel);
         }
 
         /// <summary>
         ///   Gets the channel name parted.
         /// </summary>
-        public virtual List<string> Channels
+        public ICollection<string> Channels
         {
-            get
-            {
-                return this.channels;
-            }
+            get;
+            private set;
         }
 
         /// <summary>
         ///   Gets or sets the reason for the part.
         /// </summary>
-        public virtual string Reason
+        public string Reason
         {
-            get
-            {
-                return this.reason;
-            }
-            set
-            {
-                if (value == null)
-                {
-                    throw new ArgumentNullException("value");
-                }
-                this.reason = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
@@ -101,10 +88,8 @@ namespace Supay.Irc.Messages
         public override void Validate(ServerSupport serverSupport)
         {
             base.Validate(serverSupport);
-            for (int i = 0; i < this.Channels.Count; i++)
-            {
-                this.Channels[i] = MessageUtil.EnsureValidChannelName(this.Channels[i], serverSupport);
-            }
+            Channels = (from channel in Channels
+                        select MessageUtil.EnsureValidChannelName(channel, serverSupport)).ToList();
         }
 
         /// <summary>
@@ -113,11 +98,16 @@ namespace Supay.Irc.Messages
         protected override void ParseParameters(IList<string> parameters)
         {
             base.ParseParameters(parameters);
-            this.Channels.Clear();
-            if (parameters.Count >= 1)
+
+            Channels.Clear();
+            if (parameters.Count != 0)
             {
-                this.Channels.AddRange(parameters[0].Split(','));
-                if (parameters.Count >= 2)
+                foreach (var channel in parameters[0].Split(','))
+                {
+                    Channels.Add(channel);
+                }
+
+                if (parameters.Count > 1)
                 {
                     this.Reason = parameters[1];
                 }

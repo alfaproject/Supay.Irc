@@ -9,29 +9,22 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class WhoIsOperReplyMessage : NumericMessage
     {
-        private string nick = string.Empty;
-
         /// <summary>
         ///   Creates a new instance of the <see cref="WhoIsOperReplyMessage" /> class.
         /// </summary>
         public WhoIsOperReplyMessage()
             : base(313)
         {
+            Nick = string.Empty;
         }
 
         /// <summary>
         ///   Gets or sets the Nick of the user being examined.
         /// </summary>
-        public virtual string Nick
+        public string Nick
         {
-            get
-            {
-                return this.nick;
-            }
-            set
-            {
-                this.nick = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>

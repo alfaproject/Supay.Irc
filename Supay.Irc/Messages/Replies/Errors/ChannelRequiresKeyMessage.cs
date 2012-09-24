@@ -16,8 +16,6 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class ChannelRequiresKeyMessage : ErrorMessage, IChannelTargetedMessage
     {
-        private string channel;
-
         /// <summary>
         ///   Creates a new instances of the <see cref="ChannelRequiresKeyMessage" /> class.
         /// </summary>
@@ -31,14 +29,8 @@ namespace Supay.Irc.Messages
         /// </summary>
         public string Channel
         {
-            get
-            {
-                return this.channel;
-            }
-            set
-            {
-                this.channel = value;
-            }
+            get;
+            set;
         }
 
 

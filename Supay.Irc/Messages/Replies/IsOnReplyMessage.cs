@@ -9,25 +9,22 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class IsOnReplyMessage : NumericMessage
     {
-        private readonly List<string> nicks = new List<string>();
-
         /// <summary>
         ///   Creates a new instance of the <see cref="IsOnReplyMessage" /> class.
         /// </summary>
         public IsOnReplyMessage()
             : base(303)
         {
+            Nicks = new List<string>();
         }
 
         /// <summary>
         ///   Gets the list of nicks of people who are known to be online.
         /// </summary>
-        public virtual List<string> Nicks
+        public ICollection<string> Nicks
         {
-            get
-            {
-                return this.nicks;
-            }
+            get;
+            private set;
         }
 
         /// <summary>
@@ -46,8 +43,12 @@ namespace Supay.Irc.Messages
         protected override void ParseParameters(IList<string> parameters)
         {
             base.ParseParameters(parameters);
+            
             this.Nicks.Clear();
-            this.Nicks.AddRange(parameters[parameters.Count - 1].Split(' '));
+            foreach (var nick in parameters[parameters.Count - 1].Split(' '))
+            {
+                Nicks.Add(nick);
+            }
         }
 
         /// <summary>

@@ -10,9 +10,6 @@ namespace Supay.Irc.Messages
     [Serializable]
     public abstract class WatchedUserChangedMessage : NumericMessage
     {
-        private DateTime changeTime;
-        private User watchedUser;
-
         protected WatchedUserChangedMessage(int number)
             : base(number)
         {
@@ -23,14 +20,8 @@ namespace Supay.Irc.Messages
         /// </summary>
         public User WatchedUser
         {
-            get
-            {
-                return this.watchedUser ?? (this.watchedUser = new User());
-            }
-            set
-            {
-                this.watchedUser = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
@@ -38,14 +29,8 @@ namespace Supay.Irc.Messages
         /// </summary>
         public DateTime TimeOfChange
         {
-            get
-            {
-                return this.changeTime;
-            }
-            set
-            {
-                this.changeTime = value;
-            }
+            get;
+            set;
         }
 
         protected abstract string ChangeMessage

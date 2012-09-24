@@ -7,31 +7,22 @@ namespace Supay.Irc.Messages.Modes
     /// </summary>
     public class LimitMode : FlagMode
     {
-        private int userLimit = -1;
-
         /// <summary>
-        ///   Creates a new instance of the <see cref="LimitMode" /> class.
+        ///   Creates a new instance of the <see cref="LimitMode" /> class 
+        ///   with the given <see cref="ModeAction" /> and user limit.
         /// </summary>
-        public LimitMode()
+        public LimitMode(ModeAction action, int userLimit)
+            : base(action)
         {
+            UserLimit = userLimit;
         }
 
         /// <summary>
         ///   Creates a new instance of the <see cref="LimitMode" /> class with the given <see cref="ModeAction" />.
         /// </summary>
         public LimitMode(ModeAction action)
+            : this(action, -1)
         {
-            this.Action = action;
-        }
-
-        /// <summary>
-        ///   Creates a new instance of the <see cref="LimitMode" /> class 
-        ///   with the given <see cref="ModeAction" /> and user limit.
-        /// </summary>
-        public LimitMode(ModeAction action, int userLimit)
-        {
-            this.Action = action;
-            this.userLimit = userLimit;
         }
 
         /// <summary>
@@ -39,8 +30,16 @@ namespace Supay.Irc.Messages.Modes
         ///   with the given user limit.
         /// </summary>
         public LimitMode(int userLimit)
+            : this(ModeAction.Add, userLimit)
         {
-            this.userLimit = userLimit;
+        }
+
+        /// <summary>
+        ///   Creates a new instance of the <see cref="LimitMode" /> class.
+        /// </summary>
+        public LimitMode()
+            : this(ModeAction.Add, -1)
+        {
         }
 
         /// <summary>
@@ -57,16 +56,10 @@ namespace Supay.Irc.Messages.Modes
         /// <summary>
         ///   Gets or sets the maximum number of users allowed to join the channel.
         /// </summary>
-        public virtual int UserLimit
+        public int UserLimit
         {
-            get
-            {
-                return this.userLimit;
-            }
-            set
-            {
-                this.userLimit = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
@@ -75,9 +68,9 @@ namespace Supay.Irc.Messages.Modes
         /// <param name="msg">The message which will be modified to include this mode.</param>
         protected override void AddParameter(ChannelModeMessage msg)
         {
-            if (this.UserLimit != -1)
+            if (UserLimit != -1)
             {
-                msg.ModeArguments.Add(this.userLimit.ToString(CultureInfo.InvariantCulture));
+                msg.ModeArguments.Add(UserLimit.ToString(CultureInfo.InvariantCulture));
             }
         }
     }

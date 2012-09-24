@@ -8,29 +8,22 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class TimeReplyMessage : CtcpReplyMessage
     {
-        private string currentTime = string.Empty;
-
         /// <summary>
         ///   Creates a new instance of the <see cref="TimeReplyMessage" /> class.
         /// </summary>
         public TimeReplyMessage()
         {
             this.InternalCommand = "TIME";
+            CurrentTime = string.Empty;
         }
 
         /// <summary>
         ///   Gets or sets the time, sent in any format the client finds useful.
         /// </summary>
-        public virtual string CurrentTime
+        public string CurrentTime
         {
-            get
-            {
-                return this.currentTime;
-            }
-            set
-            {
-                this.currentTime = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
@@ -40,7 +33,7 @@ namespace Supay.Irc.Messages
         {
             get
             {
-                return this.currentTime;
+                return this.CurrentTime;
             }
         }
 

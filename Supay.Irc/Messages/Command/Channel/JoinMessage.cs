@@ -15,23 +15,22 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class JoinMessage : CommandMessage, IChannelTargetedMessage
     {
-        private readonly List<string> channels = new List<string>();
-        private readonly List<string> keys = new List<string>();
+        /// <summary>
+        ///   Creates a new instance of the <see cref="JoinMessage" /> class with the given channels.
+        /// </summary>
+        /// <param name="channels">The name of the channels to join.</param>
+        public JoinMessage(params string[] channels)
+        {
+            Channels = new List<string>(channels);
+            Keys = new List<string>();
+        }
 
         /// <summary>
         ///   Creates a new instance of the <see cref="JoinMessage" /> class.
         /// </summary>
         public JoinMessage()
+            : this(new string[] { })
         {
-        }
-
-        /// <summary>
-        ///   Creates a new instance of the <see cref="JoinMessage" /> class with the given channel.
-        /// </summary>
-        /// <param name="channel">The name of the channel to join.</param>
-        public JoinMessage(string channel)
-        {
-            this.channels.Add(channel);
         }
 
         /// <summary>
@@ -48,12 +47,10 @@ namespace Supay.Irc.Messages
         /// <summary>
         ///   Gets the channel names joined
         /// </summary>
-        public virtual List<string> Channels
+        public IList<string> Channels
         {
-            get
-            {
-                return this.channels;
-            }
+            get;
+            private set;
         }
 
         /// <summary>
@@ -62,12 +59,10 @@ namespace Supay.Irc.Messages
         /// <remarks>
         ///   Only relevant for channels that have a key
         /// </remarks>
-        public virtual List<string> Keys
+        public IList<string> Keys
         {
-            get
-            {
-                return this.keys;
-            }
+            get;
+            private set;
         }
 
 
@@ -117,10 +112,17 @@ namespace Supay.Irc.Messages
             this.Keys.Clear();
             if (parameters.Count > 0)
             {
-                this.Channels.AddRange(parameters[0].Split(','));
+                foreach (var channel in parameters[0].Split(','))
+                {
+                    Channels.Add(channel);
+                }
+
                 if (parameters.Count > 1)
                 {
-                    this.Keys.AddRange(parameters[1].Split(','));
+                    foreach (var key in parameters[1].Split(','))
+                    {
+                        Keys.Add(key);
+                    }
                 }
             }
         }

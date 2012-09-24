@@ -10,31 +10,24 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class TooManyTargetsMessage : ErrorMessage
     {
-        private string abortMessage = string.Empty;
-        private string errorCode = string.Empty;
-        private string invalidTarget = string.Empty;
-
         /// <summary>
         ///   Creates a new instances of the <see cref="TooManyTargetsMessage" /> class.
         /// </summary>
         public TooManyTargetsMessage()
             : base(407)
         {
+            InvalidTarget = string.Empty;
+            ErrorCode = string.Empty;
+            AbortMessage = string.Empty;
         }
 
         /// <summary>
         ///   Gets or sets the target which was invalid.
         /// </summary>
-        public virtual string InvalidTarget
+        public string InvalidTarget
         {
-            get
-            {
-                return this.invalidTarget;
-            }
-            set
-            {
-                this.invalidTarget = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
@@ -43,31 +36,19 @@ namespace Supay.Irc.Messages
         /// <remarks>
         ///   An example error code might be, "Duplicate"
         /// </remarks>
-        public virtual string ErrorCode
+        public string ErrorCode
         {
-            get
-            {
-                return this.errorCode;
-            }
-            set
-            {
-                this.errorCode = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
         ///   Gets or sets the message explaining what was done about the error.
         /// </summary>
-        public virtual string AbortMessage
+        public string AbortMessage
         {
-            get
-            {
-                return this.abortMessage;
-            }
-            set
-            {
-                this.abortMessage = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>

@@ -9,29 +9,22 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class NickInUseMessage : ErrorMessage
     {
-        private string nick = string.Empty;
-
         /// <summary>
         ///   Creates a new instances of the <see cref="NickInUseMessage" /> class.
         /// </summary>
         public NickInUseMessage()
             : base(433)
         {
+            Nick = string.Empty;
         }
 
         /// <summary>
         ///   Gets or sets the nick which was already taken.
         /// </summary>
-        public virtual string Nick
+        public string Nick
         {
-            get
-            {
-                return this.nick;
-            }
-            set
-            {
-                this.nick = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>

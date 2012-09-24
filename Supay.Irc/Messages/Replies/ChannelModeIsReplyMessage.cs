@@ -9,31 +9,24 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class ChannelModeIsReplyMessage : NumericMessage, IChannelTargetedMessage
     {
-        private readonly IList<string> modeArguments = new List<string>();
-        private string channel = string.Empty;
-        private string modes = string.Empty;
-
         /// <summary>
         ///   Creates a new instance of the <see cref="ChannelModeIsReplyMessage" /> class.
         /// </summary>
         public ChannelModeIsReplyMessage()
             : base(324)
         {
+            Channel = string.Empty;
+            Modes = string.Empty;
+            ModeArguments = new List<string>();
         }
 
         /// <summary>
         ///   Gets or sets the channel referred to.
         /// </summary>
-        public virtual string Channel
+        public string Channel
         {
-            get
-            {
-                return this.channel;
-            }
-            set
-            {
-                this.channel = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
@@ -42,16 +35,10 @@ namespace Supay.Irc.Messages
         /// <remarks>
         ///   An example Modes might look like "+ml".
         /// </remarks>
-        public virtual string Modes
+        public string Modes
         {
-            get
-            {
-                return this.modes;
-            }
-            set
-            {
-                this.modes = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
@@ -60,12 +47,10 @@ namespace Supay.Irc.Messages
         /// <remarks>
         ///   Some modes require a parameter, such as +l ( user limit ) requires the number being limited to.
         /// </remarks>
-        public virtual IList<string> ModeArguments
+        public IList<string> ModeArguments
         {
-            get
-            {
-                return this.modeArguments;
-            }
+            get;
+            private set;
         }
 
 

@@ -10,21 +10,18 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class WallopsMessage : CommandMessage
     {
-        private string text = string.Empty;
+        public WallopsMessage()
+        {
+            Text = string.Empty;
+        }
 
         /// <summary>
         ///   Gets or sets the text of the <see cref="WallopsMessage" />.
         /// </summary>
-        public virtual string Text
+        public string Text
         {
-            get
-            {
-                return this.text;
-            }
-            set
-            {
-                this.text = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>

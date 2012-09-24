@@ -10,9 +10,6 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class WatchStatusReplyMessage : NumericMessage
     {
-        private int watchesThatHaveYou;
-        private int watchesYouHave;
-
         /// <summary>
         ///   Creates a new instance of the <see cref="WatchStatusRequestMessage" />.
         /// </summary>
@@ -26,14 +23,8 @@ namespace Supay.Irc.Messages
         /// </summary>
         public int WatchListCount
         {
-            get
-            {
-                return this.watchesYouHave;
-            }
-            set
-            {
-                this.watchesYouHave = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
@@ -41,14 +32,8 @@ namespace Supay.Irc.Messages
         /// </summary>
         public int UsersWatchingYou
         {
-            get
-            {
-                return this.watchesThatHaveYou;
-            }
-            set
-            {
-                this.watchesThatHaveYou = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>

@@ -8,14 +8,13 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class PingRequestMessage : CtcpRequestMessage
     {
-        private string timeStamp = string.Empty;
-
         /// <summary>
         ///   Creates a new instance of the <see cref="PingRequestMessage" /> class.
         /// </summary>
         public PingRequestMessage()
         {
             this.InternalCommand = "PING";
+            TimeStamp = string.Empty;
         }
 
         /// <summary>
@@ -26,16 +25,10 @@ namespace Supay.Irc.Messages
         ///   so you could subtract the original timestamp with the
         ///   current one to determine the lag time.
         /// </remarks>
-        public virtual string TimeStamp
+        public string TimeStamp
         {
-            get
-            {
-                return this.timeStamp;
-            }
-            set
-            {
-                this.timeStamp = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
@@ -45,7 +38,7 @@ namespace Supay.Irc.Messages
         {
             get
             {
-                return this.timeStamp;
+                return TimeStamp;
             }
         }
 
@@ -63,7 +56,7 @@ namespace Supay.Irc.Messages
         public override void Parse(string unparsedMessage)
         {
             base.Parse(unparsedMessage);
-            this.TimeStamp = CtcpUtil.GetExtendedData(unparsedMessage);
+            TimeStamp = CtcpUtil.GetExtendedData(unparsedMessage);
         }
     }
 }

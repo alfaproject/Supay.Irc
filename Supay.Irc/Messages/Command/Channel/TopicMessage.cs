@@ -9,14 +9,13 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class TopicMessage : CommandMessage, IChannelTargetedMessage
     {
-        private string channel = string.Empty;
-        private string topic = string.Empty;
-
         /// <summary>
         ///   Creates a new instance of the <see cref="TopicMessage" /> class.
         /// </summary>
         public TopicMessage()
         {
+            Channel = string.Empty;
+            Topic = string.Empty;
         }
 
         /// <summary>
@@ -26,8 +25,8 @@ namespace Supay.Irc.Messages
         /// <param name="topic">The new topic to set.</param>
         public TopicMessage(string channel, string topic)
         {
-            this.channel = channel;
-            this.topic = topic;
+            this.Channel = channel;
+            this.Topic = topic;
         }
 
         /// <summary>
@@ -44,16 +43,10 @@ namespace Supay.Irc.Messages
         /// <summary>
         ///   Gets or sets the channel affected
         /// </summary>
-        public virtual string Channel
+        public string Channel
         {
-            get
-            {
-                return this.channel;
-            }
-            set
-            {
-                this.channel = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
@@ -63,16 +56,10 @@ namespace Supay.Irc.Messages
         ///   If Topic is blank, the server will send a <see cref="TopicReplyMessage" /> and probably a <see cref="TopicSetReplyMessage" />,
         ///   telling you what the current topic is, who set it, and when.
         /// </remarks>
-        public virtual string Topic
+        public string Topic
         {
-            get
-            {
-                return this.topic;
-            }
-            set
-            {
-                this.topic = value;
-            }
+            get;
+            set;
         }
 
 

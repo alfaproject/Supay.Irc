@@ -16,45 +16,32 @@ namespace Supay.Irc.Messages
         private const string CURRENT_LOCAL_USERS = "Current local users: ";
         private const string MAX = " Max: ";
 
-        private int userCount = -1;
-        private int userLimit = -1;
-
         /// <summary>
         ///   Creates a new instance of the <see cref="LocalUsersReplyMessage" /> class.
         /// </summary>
         public LocalUsersReplyMessage()
             : base(265)
         {
+            UserCount = -1;
+            UserLimit = -1;
         }
 
         /// <summary>
         ///   Gets or sets the number of local users.
         /// </summary>
-        public virtual int UserCount
+        public int UserCount
         {
-            get
-            {
-                return this.userCount;
-            }
-            set
-            {
-                this.userCount = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
         ///   Gets or sets the maximum number of users for the server.
         /// </summary>
-        public virtual int UserLimit
+        public int UserLimit
         {
-            get
-            {
-                return this.userLimit;
-            }
-            set
-            {
-                this.userLimit = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>

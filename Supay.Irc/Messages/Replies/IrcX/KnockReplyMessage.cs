@@ -9,29 +9,22 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class KnockReplyMessage : NumericMessage
     {
-        private string channel = string.Empty;
-
         /// <summary>
         ///   Creates a new instance of the <see cref="KnockReplyMessage" />.
         /// </summary>
         public KnockReplyMessage()
             : base(711)
         {
+            Channel = string.Empty;
         }
 
         /// <summary>
         ///   Gets or sets the channel that was knocked on.
         /// </summary>
-        public virtual string Channel
+        public string Channel
         {
-            get
-            {
-                return this.channel;
-            }
-            set
-            {
-                this.channel = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>

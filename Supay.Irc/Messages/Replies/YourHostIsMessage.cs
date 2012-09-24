@@ -12,8 +12,6 @@ namespace Supay.Irc.Messages
     {
         private const string YOUR_HOST_IS = "Your host is ";
         private const string RUNNING_VERSION = ", running version ";
-        private string serverName = string.Empty;
-        private string version = string.Empty;
 
         /// <summary>
         ///   Creates a new instance of the <see cref="YourHostMessage" /> class.
@@ -21,36 +19,26 @@ namespace Supay.Irc.Messages
         public YourHostMessage()
             : base(002)
         {
+            ServerName = string.Empty;
+            Version = string.Empty;
         }
 
         /// <summary>
         ///   Gets or sets the name of the software the server is running.
         /// </summary>
-        public virtual string ServerName
+        public string ServerName
         {
-            get
-            {
-                return this.serverName;
-            }
-            set
-            {
-                this.serverName = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
         ///   Gets or sets the version of the software the server is running.
         /// </summary>
-        public virtual string Version
+        public string Version
         {
-            get
-            {
-                return this.version;
-            }
-            set
-            {
-                this.version = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>

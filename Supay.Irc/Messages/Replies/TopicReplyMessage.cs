@@ -9,45 +9,32 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class TopicReplyMessage : NumericMessage, IChannelTargetedMessage
     {
-        private string channel = string.Empty;
-        private string topic = string.Empty;
-
         /// <summary>
         ///   Creates a new instance of the <see cref="TopicReplyMessage" /> class.
         /// </summary>
         public TopicReplyMessage()
             : base(332)
         {
+            Channel = string.Empty;
+            Topic = string.Empty;
         }
 
         /// <summary>
         ///   Gets or sets the channel referenced.
         /// </summary>
-        public virtual string Channel
+        public string Channel
         {
-            get
-            {
-                return this.channel;
-            }
-            set
-            {
-                this.channel = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
         ///   Gets or sets the topic of the channel.
         /// </summary>
-        public virtual string Topic
+        public string Topic
         {
-            get
-            {
-                return this.topic;
-            }
-            set
-            {
-                this.topic = value;
-            }
+            get;
+            set;
         }
 
 

@@ -12,33 +12,30 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class IsOnMessage : CommandMessage
     {
-        private readonly List<string> nicks = new List<string>();
-
-        /// <summary>
-        ///   Creates a new instance of the IsOnMessage class.
-        /// </summary>
-        public IsOnMessage()
-        {
-        }
-
         /// <summary>
         ///   Creates a new instance of the IsOnMessage class with the given nicks.
         /// </summary>
         /// <param name="nicks"></param>
         public IsOnMessage(params string[] nicks)
         {
-            this.nicks.AddRange(nicks);
+            Nicks = new List<string>(nicks);
+        }
+
+        /// <summary>
+        ///   Creates a new instance of the IsOnMessage class.
+        /// </summary>
+        public IsOnMessage()
+            : this(new string[] { })
+        {
         }
 
         /// <summary>
         ///   Gets the collection of nicks to query for.
         /// </summary>
-        public List<string> Nicks
+        public ICollection<string> Nicks
         {
-            get
-            {
-                return this.nicks;
-            }
+            get;
+            private set;
         }
 
         /// <summary>
@@ -68,14 +65,14 @@ namespace Supay.Irc.Messages
         protected override void ParseParameters(IList<string> parameters)
         {
             base.ParseParameters(parameters);
-            if (parameters.Count > 0)
+            
+            Nicks.Clear();
+            if (parameters.Count != 0)
             {
-                string nickParam = parameters[0];
-                this.Nicks.AddRange(nickParam.Split(' '));
-            }
-            else
-            {
-                this.Nicks.Clear();
+                foreach (var nick in parameters[0].Split(' '))
+                {
+                    Nicks.Add(nick);
+                }
             }
         }
 

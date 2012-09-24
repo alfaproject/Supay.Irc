@@ -11,57 +11,42 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class SourceReplyMessage : CtcpReplyMessage
     {
-        private readonly ICollection<string> files = new List<string>();
-        private string folder = string.Empty;
-        private string server = string.Empty;
-
         /// <summary>
         ///   Creates a new instance of the <see cref="SourceReplyMessage" /> class.
         /// </summary>
         public SourceReplyMessage()
         {
             this.InternalCommand = "SOURCE";
+            Server = string.Empty;
+            Folder = string.Empty;
+            Files = new List<string>();
         }
 
         /// <summary>
         ///   Gets or sets the server that hosts the client's distribution.
         /// </summary>
-        public virtual string Server
+        public string Server
         {
-            get
-            {
-                return this.server;
-            }
-            set
-            {
-                this.server = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
         ///   Gets or sets the folder path to the client's distribution.
         /// </summary>
-        public virtual string Folder
+        public string Folder
         {
-            get
-            {
-                return this.folder;
-            }
-            set
-            {
-                this.folder = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
         ///   Gets the list of files that must be downloaded.
         /// </summary>
-        public virtual ICollection<string> Files
+        public ICollection<string> Files
         {
-            get
-            {
-                return this.files;
-            }
+            get;
+            private set;
         }
 
         /// <summary>

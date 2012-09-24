@@ -9,14 +9,16 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class ActionRequestMessage : CtcpRequestMessage
     {
-        private string text = string.Empty;
-
         /// <summary>
-        ///   Creates a new instance of the <see cref="ActionRequestMessage" /> class.
+        ///   Creates a new instance of the <see cref="ActionRequestMessage" /> class with the given text and target.
         /// </summary>
-        public ActionRequestMessage()
+        /// <param name="text">The text of the action.</param>
+        /// <param name="target">The target of the action.</param>
+        public ActionRequestMessage(string text, string target)
         {
             this.InternalCommand = "ACTION";
+            Text = text;
+            this.Target = target;
         }
 
         /// <summary>
@@ -24,35 +26,25 @@ namespace Supay.Irc.Messages
         /// </summary>
         /// <param name="text">The text of the action.</param>
         public ActionRequestMessage(string text)
-            : this()
+            : this(text, string.Empty)
         {
-            this.text = text;
         }
 
         /// <summary>
-        ///   Creates a new instance of the <see cref="ActionRequestMessage" /> class with the given text and target.
+        ///   Creates a new instance of the <see cref="ActionRequestMessage" /> class.
         /// </summary>
-        /// <param name="text">The text of the action.</param>
-        /// <param name="target">The target of the action.</param>
-        public ActionRequestMessage(string text, string target)
-            : this(text)
+        public ActionRequestMessage()
+            : this(string.Empty)
         {
-            this.Target = target;
         }
 
         /// <summary>
-        ///   Gets or sets the communicated text of this <see cref="ActionRequestMessage" />.
+        ///   Gets or sets the communicated text of this <see cref="ActionRequestMessage" />.s
         /// </summary>
-        public virtual string Text
+        public string Text
         {
-            get
-            {
-                return this.text;
-            }
-            set
-            {
-                this.text = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>

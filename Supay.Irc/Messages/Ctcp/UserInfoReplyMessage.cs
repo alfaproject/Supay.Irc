@@ -8,29 +8,22 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class UserInfoReplyMessage : CtcpReplyMessage
     {
-        private string response = string.Empty;
-
         /// <summary>
         ///   Creates a new instance of the <see cref="UserInfoReplyMessage" /> class.
         /// </summary>
         public UserInfoReplyMessage()
         {
             this.InternalCommand = "USERINFO";
+            Response = string.Empty;
         }
 
         /// <summary>
         ///   The information that the client wants to return.
         /// </summary>
-        public virtual string Response
+        public string Response
         {
-            get
-            {
-                return this.response;
-            }
-            set
-            {
-                this.response = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
@@ -40,7 +33,7 @@ namespace Supay.Irc.Messages
         {
             get
             {
-                return this.response;
+                return this.Response;
             }
         }
 

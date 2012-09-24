@@ -11,7 +11,6 @@ namespace Supay.Irc.Messages
     public class LusersChannelsReplyMessage : NumericMessage
     {
         private const string CHANNELS_FORMED = "channels formed";
-        private int channelCount = -1;
 
         /// <summary>
         ///   Creates a new instance of the <see cref="LusersChannelsReplyMessage" /> class.
@@ -19,21 +18,16 @@ namespace Supay.Irc.Messages
         public LusersChannelsReplyMessage()
             : base(254)
         {
+            ChannelCount = -1;
         }
 
         /// <summary>
         ///   Gets or sets the number of channels available.
         /// </summary>
-        public virtual int ChannelCount
+        public int ChannelCount
         {
-            get
-            {
-                return this.channelCount;
-            }
-            set
-            {
-                this.channelCount = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>

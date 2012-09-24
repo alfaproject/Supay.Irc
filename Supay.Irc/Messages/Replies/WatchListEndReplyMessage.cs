@@ -9,14 +9,13 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class WatchListEndReplyMessage : NumericMessage
     {
-        private string listType = string.Empty;
-
         /// <summary>
         ///   Creates a new instance of the <see cref="WatchListEndReplyMessage" />.
         /// </summary>
         public WatchListEndReplyMessage()
             : base(607)
         {
+            ListType = string.Empty;
         }
 
         /// <summary>
@@ -24,14 +23,8 @@ namespace Supay.Irc.Messages
         /// </summary>
         public string ListType
         {
-            get
-            {
-                return this.listType;
-            }
-            set
-            {
-                this.listType = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>

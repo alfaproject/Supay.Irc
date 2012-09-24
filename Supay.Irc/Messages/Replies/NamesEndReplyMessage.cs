@@ -9,29 +9,22 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class NamesEndReplyMessage : NumericMessage, IChannelTargetedMessage
     {
-        private string channel = string.Empty;
-
         /// <summary>
         ///   Creates a new instance of the <see cref="NamesEndReplyMessage" /> class.
         /// </summary>
         public NamesEndReplyMessage()
             : base(366)
         {
+            Channel = string.Empty;
         }
 
         /// <summary>
         ///   Gets or sets the channel to which this reply list ends.
         /// </summary>
-        public virtual string Channel
+        public string Channel
         {
-            get
-            {
-                return this.channel;
-            }
-            set
-            {
-                this.channel = value;
-            }
+            get;
+            set;
         }
 
 

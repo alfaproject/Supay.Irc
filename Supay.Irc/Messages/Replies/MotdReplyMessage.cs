@@ -9,29 +9,22 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class MotdReplyMessage : NumericMessage
     {
-        private string text = string.Empty;
-
         /// <summary>
         ///   Creates a new instance of the <see cref="MotdReplyMessage" /> class.
         /// </summary>
         public MotdReplyMessage()
             : base(372)
         {
+            Text = string.Empty;
         }
 
         /// <summary>
         ///   Gets or sets the text of the MOTD line.
         /// </summary>
-        public virtual string Text
+        public string Text
         {
-            get
-            {
-                return this.text;
-            }
-            set
-            {
-                this.text = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>

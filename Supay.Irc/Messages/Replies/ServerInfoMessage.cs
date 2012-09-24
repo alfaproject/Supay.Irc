@@ -9,141 +9,92 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class ServerInfoMessage : NumericMessage
     {
-        private string channelModes = string.Empty;
-        private string channelModesWithParams = string.Empty;
-        private string serverModes = string.Empty;
-        private string serverModesWithParams = string.Empty;
-        private string serverName = string.Empty;
-        private string userModes = string.Empty;
-        private string userModesWithParams = string.Empty;
-        private string version = string.Empty;
-
         /// <summary>
         ///   Creates a new instance of the <see cref="ServerInfoMessage" /> class.
         /// </summary>
         public ServerInfoMessage()
             : base(004)
         {
+            ServerName = string.Empty;
+            Version = string.Empty;
+            UserModes = string.Empty;
+            UserModesWithParams = string.Empty;
+            ServerModesWithParams = string.Empty;
+            ServerModes = string.Empty;
+            ChannelModesWithParams = string.Empty;
+            ChannelModes = string.Empty;
         }
 
         /// <summary>
         ///   Gets or sets the name of the server being referenced.
         /// </summary>
-        public virtual string ServerName
+        public string ServerName
         {
-            get
-            {
-                return this.serverName;
-            }
-            set
-            {
-                this.serverName = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
         ///   Gets or sets the version of the server.
         /// </summary>
-        public virtual string Version
+        public string Version
         {
-            get
-            {
-                return this.version;
-            }
-            set
-            {
-                this.version = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
         ///   Gets or sets the user modes supported by this server.
         /// </summary>
-        public virtual string UserModes
+        public string UserModes
         {
-            get
-            {
-                return this.userModes;
-            }
-            set
-            {
-                this.userModes = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
         ///   Gets or sets the channel modes supported by this server.
         /// </summary>
-        public virtual string ChannelModes
+        public string ChannelModes
         {
-            get
-            {
-                return this.channelModes;
-            }
-            set
-            {
-                this.channelModes = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
         ///   Gets or sets the channel modes that require a parameter.
         /// </summary>
-        public virtual string ChannelModesWithParams
+        public string ChannelModesWithParams
         {
-            get
-            {
-                return this.channelModesWithParams;
-            }
-            set
-            {
-                this.channelModesWithParams = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
         ///   Gets or sets the user modes that require a parameter.
         /// </summary>
-        public virtual string UserModesWithParams
+        public string UserModesWithParams
         {
-            get
-            {
-                return this.userModesWithParams;
-            }
-            set
-            {
-                this.userModesWithParams = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
         ///   Gets or sets the server modes supported by this server.
         /// </summary>
-        public virtual string ServerModes
+        public string ServerModes
         {
-            get
-            {
-                return this.serverModes;
-            }
-            set
-            {
-                this.serverModes = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
         ///   Gets or sets the server modes which require parameters.
         /// </summary>
-        public virtual string ServerModesWithParams
+        public string ServerModesWithParams
         {
-            get
-            {
-                return this.serverModesWithParams;
-            }
-            set
-            {
-                this.serverModesWithParams = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>

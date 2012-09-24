@@ -13,9 +13,6 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class TargetChangeTooFastMessage : ErrorMessage, IChannelTargetedMessage
     {
-        private int seconds;
-        private string target;
-
         /// <summary>
         ///   Creates a new instances of the <see cref="TargetChangeTooFastMessage" /> class.
         /// </summary>
@@ -29,14 +26,8 @@ namespace Supay.Irc.Messages
         /// </summary>
         public string TargetChanged
         {
-            get
-            {
-                return this.target;
-            }
-            set
-            {
-                this.target = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
@@ -44,14 +35,8 @@ namespace Supay.Irc.Messages
         /// </summary>
         public int Seconds
         {
-            get
-            {
-                return this.seconds;
-            }
-            set
-            {
-                this.seconds = value;
-            }
+            get;
+            set;
         }
 
 

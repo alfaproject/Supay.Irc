@@ -11,21 +11,13 @@ namespace Supay.Irc.Messages
     {
         #region Properties
 
-        private bool onlineOnly;
-
         /// <summary>
         ///   Gets or sets if the message requests that only online contacts are in the list.
         /// </summary>
         public bool OnlineOnly
         {
-            get
-            {
-                return this.onlineOnly;
-            }
-            set
-            {
-                this.onlineOnly = value;
-            }
+            get;
+            set;
         }
 
         #endregion

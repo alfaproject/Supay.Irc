@@ -9,21 +9,18 @@ namespace Supay.Irc.Messages
     [Serializable]
     public abstract class ServerQueryBase : CommandMessage
     {
-        private string target = string.Empty;
+        protected ServerQueryBase()
+        {
+            Target = string.Empty;
+        }
 
         /// <summary>
         ///   Gets or sets the target server of the query.
         /// </summary>
-        public virtual string Target
+        public string Target
         {
-            get
-            {
-                return this.target;
-            }
-            set
-            {
-                this.target = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>

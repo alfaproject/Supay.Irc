@@ -9,29 +9,22 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class WhoEndReplyMessage : NumericMessage
     {
-        private string nick = string.Empty;
-
         /// <summary>
         ///   Creates a new instance of the <see cref="WhoEndReplyMessage" /> class.
         /// </summary>
         public WhoEndReplyMessage()
             : base(315)
         {
+            Nick = string.Empty;
         }
 
         /// <summary>
         ///   Gets or sets the nick of the user in the Who reply list.
         /// </summary>
-        public virtual string Nick
+        public string Nick
         {
-            get
-            {
-                return this.nick;
-            }
-            set
-            {
-                this.nick = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>

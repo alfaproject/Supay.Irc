@@ -10,8 +10,6 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class SilenceListFullMessage : ErrorMessage
     {
-        private Mask silenceMask;
-
         /// <summary>
         ///   Creates a new instances of the <see cref="SilenceListFullMessage" /> class.
         /// </summary>
@@ -25,14 +23,8 @@ namespace Supay.Irc.Messages
         /// </summary>
         public Mask SilenceMask
         {
-            get
-            {
-                return this.silenceMask;
-            }
-            set
-            {
-                this.silenceMask = value;
-            }
+            get;
+            set;
         }
 
         protected override ICollection<string> GetTokens()

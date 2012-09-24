@@ -6,20 +6,16 @@ namespace Supay.Irc.Contacts
 {
     internal abstract class ContactsTracker
     {
-        private readonly ContactList contacts;
-
         protected ContactsTracker(ContactList contacts)
         {
-            this.contacts = contacts;
-            this.contacts.Users.CollectionChanged += this.UsersCollectionChanged;
+            Contacts = contacts;
+            Contacts.Users.CollectionChanged += UsersCollectionChanged;
         }
 
         protected ContactList Contacts
         {
-            get
-            {
-                return this.contacts;
-            }
+            get;
+            private set;
         }
 
         private void UsersCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)

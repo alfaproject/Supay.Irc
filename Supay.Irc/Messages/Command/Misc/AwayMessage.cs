@@ -13,21 +13,20 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class AwayMessage : CommandMessage
     {
-        private string reason = string.Empty;
-
-        /// <summary>
-        ///   Creates a new instance of the AwayMessage class.
-        /// </summary>
-        public AwayMessage()
-        {
-        }
-
         /// <summary>
         ///   Creates a new instance of the AwayMessage class with the given reason.
         /// </summary>
         public AwayMessage(string reason)
         {
-            this.reason = reason;
+            this.Reason = reason;
+        }
+
+        /// <summary>
+        ///   Creates a new instance of the AwayMessage class.
+        /// </summary>
+        public AwayMessage()
+            : this(string.Empty)
+        {
         }
 
         /// <summary>
@@ -44,16 +43,10 @@ namespace Supay.Irc.Messages
         /// <summary>
         ///   Gets or sets the reason for being away.
         /// </summary>
-        public virtual string Reason
+        public string Reason
         {
-            get
-            {
-                return this.reason;
-            }
-            set
-            {
-                this.reason = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>

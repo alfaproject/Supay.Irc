@@ -10,17 +10,16 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class WhoReplyMessage : NumericMessage, IChannelTargetedMessage
     {
-        private string channel = string.Empty;
-        private int hopCount = -1;
-        private ChannelStatus status = ChannelStatus.None;
-        private User user = new User();
-
         /// <summary>
         ///   Creates a new instance of the <see cref="WhoReplyMessage" /> class.
         /// </summary>
         public WhoReplyMessage()
             : base(352)
         {
+            Channel = string.Empty;
+            User = new User();
+            Status = ChannelStatus.None;
+            HopCount = -1;
         }
 
         /// <summary>
@@ -30,61 +29,37 @@ namespace Supay.Irc.Messages
         ///   In the case of a non-channel based <see cref="WhoMessage" />, Channel will contain the
         ///   most recent channel which the user joined and is still on.
         /// </remarks>
-        public virtual string Channel
+        public string Channel
         {
-            get
-            {
-                return this.channel;
-            }
-            set
-            {
-                this.channel = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
         ///   Gets or sets the user being examined.
         /// </summary>
-        public virtual User User
+        public User User
         {
-            get
-            {
-                return this.user;
-            }
-            set
-            {
-                this.user = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
         ///   Gets or sets the status of the user on the associated channel.
         /// </summary>
-        public virtual ChannelStatus Status
+        public ChannelStatus Status
         {
-            get
-            {
-                return this.status;
-            }
-            set
-            {
-                this.status = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
         ///   Gets or sets the number of hops to the server the user is on.
         /// </summary>
-        public virtual int HopCount
+        public int HopCount
         {
-            get
-            {
-                return this.hopCount;
-            }
-            set
-            {
-                this.hopCount = value;
-            }
+            get;
+            set;
         }
 
 

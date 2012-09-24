@@ -9,8 +9,6 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class NotEnoughParametersMessage : ErrorMessage
     {
-        private string command;
-
         /// <summary>
         ///   Creates a new instances of the <see cref="NotEnoughParametersMessage" /> class.
         /// </summary>
@@ -24,14 +22,8 @@ namespace Supay.Irc.Messages
         /// </summary>
         public string Command
         {
-            get
-            {
-                return this.command;
-            }
-            set
-            {
-                this.command = value;
-            }
+            get;
+            set;
         }
 
         protected override ICollection<string> GetTokens()

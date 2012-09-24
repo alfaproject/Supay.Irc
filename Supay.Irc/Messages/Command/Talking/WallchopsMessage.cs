@@ -9,45 +9,28 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class WallchopsMessage : CommandMessage, IChannelTargetedMessage
     {
-        private string channel = string.Empty;
-        private string text = string.Empty;
+        public WallchopsMessage()
+        {
+            Channel = string.Empty;
+            Text = string.Empty;
+        }
 
         /// <summary>
         ///   Gets or sets the text of the <see cref="WallchopsMessage" />.
         /// </summary>
-        public virtual string Text
+        public string Text
         {
-            get
-            {
-                return this.text;
-            }
-            set
-            {
-                if (value == null)
-                {
-                    throw new ArgumentNullException("value");
-                }
-                this.text = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
         ///   Gets or sets the channel being targeted by the message.
         /// </summary>
-        public virtual string Channel
+        public string Channel
         {
-            get
-            {
-                return this.channel;
-            }
-            set
-            {
-                if (value == null)
-                {
-                    throw new ArgumentNullException("value");
-                }
-                this.channel = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>

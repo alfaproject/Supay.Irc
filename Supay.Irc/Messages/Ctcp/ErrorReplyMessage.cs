@@ -9,45 +9,32 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class ErrorReplyMessage : CtcpReplyMessage
     {
-        private string query = string.Empty;
-        private string reason = string.Empty;
-
         /// <summary>
         ///   Creates a new instance of the <see cref="ErrorReplyMessage" /> class.
         /// </summary>
         public ErrorReplyMessage()
         {
             this.InternalCommand = "ERRMSG";
+            Query = string.Empty;
+            Reason = string.Empty;
         }
 
         /// <summary>
         ///   Gets or sets the text of the query which couldn't be processed.
         /// </summary>
-        public virtual string Query
+        public string Query
         {
-            get
-            {
-                return this.query;
-            }
-            set
-            {
-                this.query = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
         ///   Gets or sets the reason the request couldn't be processed.
         /// </summary>
-        public virtual string Reason
+        public string Reason
         {
-            get
-            {
-                return this.reason;
-            }
-            set
-            {
-                this.reason = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
@@ -57,7 +44,7 @@ namespace Supay.Irc.Messages
         {
             get
             {
-                return this.query + " " + this.reason;
+                return this.Query + " " + this.Reason;
             }
         }
 

@@ -10,29 +10,22 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class WelcomeMessage : NumericMessage
     {
-        private string text = string.Empty;
-
         /// <summary>
         ///   Creates a new instance of the <see cref="WelcomeMessage" /> class.
         /// </summary>
         public WelcomeMessage()
             : base(001)
         {
+            Text = string.Empty;
         }
 
         /// <summary>
         ///   The content of the welcome message.
         /// </summary>
-        public virtual string Text
+        public string Text
         {
-            get
-            {
-                return this.text;
-            }
-            set
-            {
-                this.text = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>

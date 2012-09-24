@@ -11,7 +11,6 @@ namespace Supay.Irc.Messages
     public class ServerCreatedMessage : NumericMessage
     {
         private const string THIS_SERVER_CREATED = "This server was created ";
-        private string createdDate = string.Empty;
 
         /// <summary>
         ///   Creates a new instance of the <see cref="ServerCreatedMessage" /> class.
@@ -19,21 +18,16 @@ namespace Supay.Irc.Messages
         public ServerCreatedMessage()
             : base(003)
         {
+            CreatedDate = string.Empty;
         }
 
         /// <summary>
         ///   Gets or sets the date on which the server was created.
         /// </summary>
-        public virtual string CreatedDate
+        public string CreatedDate
         {
-            get
-            {
-                return this.createdDate;
-            }
-            set
-            {
-                this.createdDate = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>

@@ -9,61 +9,42 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class ChannelPropertyReplyMessage : NumericMessage, IChannelTargetedMessage
     {
-        private string channel = string.Empty;
-        private string propValue = string.Empty;
-        private string property = string.Empty;
-
         /// <summary>
         ///   Creates a new instance of the <see cref="ChannelPropertyReplyMessage" />.
         /// </summary>
         public ChannelPropertyReplyMessage()
             : base(818)
         {
+            Channel = string.Empty;
+            Prop = string.Empty;
+            Value = string.Empty;
         }
 
         /// <summary>
         ///   Gets or sets channel being referenced.
         /// </summary>
-        public virtual string Channel
+        public string Channel
         {
-            get
-            {
-                return this.channel;
-            }
-            set
-            {
-                this.channel = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
         ///   Gets or sets the name of the channel property being referenced.
         /// </summary>
-        public virtual string Prop
+        public string Prop
         {
-            get
-            {
-                return this.property;
-            }
-            set
-            {
-                this.property = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
         ///   Gets or sets the value of the channel property.
         /// </summary>
-        public virtual string Value
+        public string Value
         {
-            get
-            {
-                return this.propValue;
-            }
-            set
-            {
-                this.propValue = value;
-            }
+            get;
+            set;
         }
 
 

@@ -9,29 +9,22 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class LinksEndReplyMessage : NumericMessage
     {
-        private string mask = string.Empty;
-
         /// <summary>
         ///   Creates a new instance of the <see cref="LinksEndReplyMessage" /> class.
         /// </summary>
         public LinksEndReplyMessage()
             : base(365)
         {
+            Mask = string.Empty;
         }
 
         /// <summary>
         ///   Gets or sets the server mask that the links list used.
         /// </summary>
-        public virtual string Mask
+        public string Mask
         {
-            get
-            {
-                return this.mask;
-            }
-            set
-            {
-                this.mask = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>

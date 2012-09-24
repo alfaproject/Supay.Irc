@@ -10,9 +10,6 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class NickChangeTooFastMessage : ErrorMessage
     {
-        private string nick;
-        private int seconds;
-
         /// <summary>
         ///   Creates a new instances of the <see cref="NickChangeTooFastMessage" /> class.
         /// </summary>
@@ -26,14 +23,8 @@ namespace Supay.Irc.Messages
         /// </summary>
         public string Nick
         {
-            get
-            {
-                return this.nick;
-            }
-            set
-            {
-                this.nick = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
@@ -41,14 +32,8 @@ namespace Supay.Irc.Messages
         /// </summary>
         public int Seconds
         {
-            get
-            {
-                return this.seconds;
-            }
-            set
-            {
-                this.seconds = value;
-            }
+            get;
+            set;
         }
 
         protected override ICollection<string> GetTokens()

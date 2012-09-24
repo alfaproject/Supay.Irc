@@ -9,8 +9,6 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class MotdStartReplyMessage : NumericMessage
     {
-        private string info;
-
         /// <summary>
         ///   Creates a new instance of the <see cref="MotdStartReplyMessage" /> class.
         /// </summary>
@@ -24,14 +22,8 @@ namespace Supay.Irc.Messages
         /// </summary>
         public string Info
         {
-            get
-            {
-                return this.info;
-            }
-            set
-            {
-                this.info = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
@@ -51,7 +43,7 @@ namespace Supay.Irc.Messages
         protected override void ParseParameters(IList<string> parameters)
         {
             base.ParseParameters(parameters);
-            this.info = parameters[parameters.Count - 1];
+            this.Info = parameters[parameters.Count - 1];
         }
 
         /// <summary>

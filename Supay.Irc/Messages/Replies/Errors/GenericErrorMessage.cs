@@ -10,32 +10,18 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class GenericErrorMessage : ErrorMessage
     {
-        private ICollection<string> data = new List<string>();
-
-        /// <summary>
-        ///   Gets or sets the Numeric command of the Message
-        /// </summary>
-        public virtual int Command
+        public GenericErrorMessage()
         {
-            get
-            {
-                return this.InternalNumeric;
-            }
-            set
-            {
-                this.InternalNumeric = value;
-            }
+            Data = new List<string>();
         }
 
         /// <summary>
         ///   Gets the text of the Message
         /// </summary>
-        public virtual ICollection<string> Data
+        public ICollection<string> Data
         {
-            get
-            {
-                return this.data;
-            }
+            get;
+            private set;
         }
 
         /// <summary>
@@ -54,7 +40,7 @@ namespace Supay.Irc.Messages
         protected override void ParseCommand(string command)
         {
             base.ParseCommand(command);
-            this.Command = Convert.ToInt32(command, CultureInfo.InvariantCulture);
+            InternalNumeric = Convert.ToInt32(command, CultureInfo.InvariantCulture);
         }
 
         /// <summary>
@@ -63,7 +49,7 @@ namespace Supay.Irc.Messages
         protected override void ParseParameters(IList<string> parameters)
         {
             base.ParseParameters(parameters);
-            this.data = parameters;
+            this.Data = parameters;
         }
 
         /// <summary>

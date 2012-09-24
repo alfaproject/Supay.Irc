@@ -8,29 +8,22 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class ScriptReplyMessage : CtcpReplyMessage
     {
-        private string response = string.Empty;
-
         /// <summary>
         ///   Creates a new instance of the <see cref="ScriptReplyMessage" /> class.
         /// </summary>
         public ScriptReplyMessage()
         {
             this.InternalCommand = "SCRIPT";
+            Response = string.Empty;
         }
 
         /// <summary>
         ///   Gets or sets the script name that the client is using
         /// </summary>
-        public virtual string Response
+        public string Response
         {
-            get
-            {
-                return this.response;
-            }
-            set
-            {
-                this.response = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
@@ -40,7 +33,7 @@ namespace Supay.Irc.Messages
         {
             get
             {
-                return this.response;
+                return this.Response;
             }
         }
 

@@ -8,14 +8,14 @@ namespace Supay.Irc.Messages.Modes
     /// </summary>
     public abstract class UserMode
     {
+        protected UserMode(ModeAction action)
+        {
+            Action = action;
+        }
+
         protected UserMode()
             : this(ModeAction.Add)
         {
-        }
-
-        protected UserMode(ModeAction action)
-        {
-            this.Action = action;
         }
 
         /// <summary>

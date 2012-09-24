@@ -14,7 +14,7 @@ namespace Supay.Irc.Contacts
     [SuppressMessage("Microsoft.Design", "CA1063:ImplementIDisposableCorrectly", Justification = "Dispose() correctly disposes managed resources.")]
     public class ContactList : IDisposable
     {
-        private ContactsTracker tracker;
+        private ContactsTracker _tracker;
 
         /// <summary>
         ///   Gets the collection of users being tracked as a contact list.
@@ -54,18 +54,18 @@ namespace Supay.Irc.Contacts
 
             if (support.MaxWatches > 0)
             {
-                this.tracker = new ContactsWatchTracker(this);
+                this._tracker = new ContactsWatchTracker(this);
             }
             else if (support.MaxMonitors > 0)
             {
-                this.tracker = new ContactsMonitorTracker(this);
+                this._tracker = new ContactsMonitorTracker(this);
             }
             else
             {
-                this.tracker = new ContactsIsOnTracker(this);
+                this._tracker = new ContactsIsOnTracker(this);
             }
 
-            this.tracker.Initialize();
+            this._tracker.Initialize();
         }
 
 
@@ -78,7 +78,7 @@ namespace Supay.Irc.Contacts
         [SuppressMessage("Microsoft.Usage", "CA1816:CallGCSuppressFinalizeCorrectly", Justification = "There aren't any unmanaged resources.")]
         public void Dispose()
         {
-            var disposable = this.tracker as IDisposable;
+            var disposable = this._tracker as IDisposable;
             if (disposable != null)
             {
                 disposable.Dispose();

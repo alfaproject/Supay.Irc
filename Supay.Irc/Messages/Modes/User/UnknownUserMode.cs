@@ -5,15 +5,15 @@ namespace Supay.Irc.Messages.Modes
     /// </summary>
     public class UnknownUserMode : UserMode
     {
-        private readonly string symbol;
+        private readonly string _symbol;
 
         /// <summary>
         ///   Creates a new instance of the <see cref="UnknownUserMode" /> class with the given <see cref="ModeAction" /> and value.
         /// </summary>
         public UnknownUserMode(ModeAction action, string symbol)
+            : base(action)
         {
-            this.Action = action;
-            this.symbol = symbol;
+            _symbol = symbol;
         }
 
         /// <summary>
@@ -23,7 +23,7 @@ namespace Supay.Irc.Messages.Modes
         {
             get
             {
-                return this.symbol;
+                return _symbol;
             }
         }
     }

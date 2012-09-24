@@ -6,14 +6,14 @@ namespace Supay.Irc.Messages.Modes
     /// </summary>
     public abstract class ChannelMode
     {
+        protected ChannelMode(ModeAction action)
+        {
+            Action = action;
+        }
+
         protected ChannelMode()
             : this(ModeAction.Add)
         {
-        }
-
-        protected ChannelMode(ModeAction action)
-        {
-            this.Action = action;
         }
 
         /// <summary>

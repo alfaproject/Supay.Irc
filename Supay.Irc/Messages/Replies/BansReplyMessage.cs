@@ -9,45 +9,32 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class BansReplyMessage : NumericMessage, IChannelTargetedMessage
     {
-        private string banId = string.Empty;
-        private string channel = string.Empty;
-
         /// <summary>
         ///   Creates a new instances of the <see cref="BansReplyMessage" /> class.
         /// </summary>
         public BansReplyMessage()
             : base(367)
         {
+            Channel = string.Empty;
+            BanId = string.Empty;
         }
 
         /// <summary>
         ///   Gets or sets the channel the ban list refers to.
         /// </summary>
-        public virtual string Channel
+        public string Channel
         {
-            get
-            {
-                return this.channel;
-            }
-            set
-            {
-                this.channel = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
         ///   Gets or sets the ban referenced.
         /// </summary>
-        public virtual string BanId
+        public string BanId
         {
-            get
-            {
-                return this.banId;
-            }
-            set
-            {
-                this.banId = value;
-            }
+            get;
+            set;
         }
 
 

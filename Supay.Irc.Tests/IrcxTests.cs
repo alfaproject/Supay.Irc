@@ -17,8 +17,8 @@ namespace Supay.Irc.Tests
             Assert.AreEqual("#example", msg.Channel, "Channel");
             Assert.AreEqual("Hello World", msg.Text, "Text");
             Assert.AreEqual(2, msg.Targets.Count, "Targets Count");
-            Assert.AreEqual("user1", msg.Targets[0], "Targets");
-            Assert.AreEqual("user2", msg.Targets[1], "Targets");
+            Assert.IsTrue(msg.Targets.Contains("user1"));
+            Assert.IsTrue(msg.Targets.Contains("user2"));
         }
 
         [TestMethod]

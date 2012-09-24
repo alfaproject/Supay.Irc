@@ -9,37 +9,27 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class WhoMessage : CommandMessage
     {
-        private User mask = new User();
-        private bool restrictToOps;
+        public WhoMessage()
+        {
+            Mask = new User();
+        }
 
         /// <summary>
         ///   Gets or sets the mask which is matched for users to return information about.
         /// </summary>
-        public virtual User Mask
+        public User Mask
         {
-            get
-            {
-                return this.mask;
-            }
-            set
-            {
-                this.mask = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
         ///   Gets or sets if the results should only contain IRC operators.
         /// </summary>
-        public virtual bool RestrictToOps
+        public bool RestrictToOps
         {
-            get
-            {
-                return this.restrictToOps;
-            }
-            set
-            {
-                this.restrictToOps = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>

@@ -13,37 +13,28 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class PingMessage : CommandMessage
     {
-        private string forwardServer = string.Empty;
-        private string target = string.Empty;
+        public PingMessage()
+        {
+            Target = string.Empty;
+            ForwardServer = string.Empty;
+        }
 
         /// <summary>
         ///   Gets or sets the target of the ping.
         /// </summary>
-        public virtual string Target
+        public string Target
         {
-            get
-            {
-                return this.target;
-            }
-            set
-            {
-                this.target = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
         ///   Gets or sets the server that the ping should be forwarded to.
         /// </summary>
-        public virtual string ForwardServer
+        public string ForwardServer
         {
-            get
-            {
-                return this.forwardServer;
-            }
-            set
-            {
-                this.forwardServer = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>

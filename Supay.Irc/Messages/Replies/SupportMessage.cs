@@ -12,7 +12,6 @@ namespace Supay.Irc.Messages
     public class SupportMessage : NumericMessage
     {
         private const string ARE_SUPPORTED = "are supported by this server";
-        private readonly NameValueCollection supportedItems = new NameValueCollection();
 
         /// <summary>
         ///   Creates a new instance of the <see cref="SupportMessage" /> class.
@@ -20,17 +19,16 @@ namespace Supay.Irc.Messages
         public SupportMessage()
             : base(005)
         {
+            SupportedItems = new NameValueCollection();
         }
 
         /// <summary>
         ///   Gets the list of items supported by the server.
         /// </summary>
-        public virtual NameValueCollection SupportedItems
+        public NameValueCollection SupportedItems
         {
-            get
-            {
-                return this.supportedItems;
-            }
+            get;
+            private set;
         }
 
         /// <summary>

@@ -13,8 +13,6 @@ namespace Supay.Irc.Messages
         private const string I_HAVE = "I have ";
         private const string CLIENTS_AND = " clients and ";
         private const string SERVERS = " servers";
-        private int clientCount = -1;
-        private int serverCount = -1;
 
         /// <summary>
         ///   Creates a new instance of the <see cref="LusersMeReplyMessage" /> class.
@@ -22,36 +20,26 @@ namespace Supay.Irc.Messages
         public LusersMeReplyMessage()
             : base(255)
         {
+            ClientCount = -1;
+            ServerCount = -1;
         }
 
         /// <summary>
         ///   Gets or sets the number of clients connected to the server.
         /// </summary>
-        public virtual int ClientCount
+        public int ClientCount
         {
-            get
-            {
-                return this.clientCount;
-            }
-            set
-            {
-                this.clientCount = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
         ///   Gets or sets the number of servers linked to the current server.
         /// </summary>
-        public virtual int ServerCount
+        public int ServerCount
         {
-            get
-            {
-                return this.serverCount;
-            }
-            set
-            {
-                this.serverCount = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>

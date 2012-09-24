@@ -8,48 +8,33 @@ namespace Supay.Irc
     /// </summary>
     public class ServerQuery : INotifyPropertyChanged
     {
-        #region CTor
-
         /// <summary>
         ///   Creates a new instance of the <see cref="Query" /> class on the given client with the given User.
         /// </summary>
         public ServerQuery(Client client)
         {
-            this.client = client;
-            this.journal.CollectionChanged += this.JournalCollectionChanged;
+            Client = client;
+            Journal = new Journal();
+            Journal.CollectionChanged += JournalCollectionChanged;
         }
-
-        #endregion
-
-
-        #region Properties
-
-        private readonly Client client;
-        private readonly Journal journal = new Journal();
 
         /// <summary>
         ///   Gets the journal of messages on the query
         /// </summary>
-        public virtual Journal Journal
+        public Journal Journal
         {
-            get
-            {
-                return this.journal;
-            }
+            get;
+            private set;
         }
 
         /// <summary>
         ///   Gets the client which the status is on.
         /// </summary>
-        public virtual Client Client
+        public Client Client
         {
-            get
-            {
-                return this.client;
-            }
+            get;
+            private set;
         }
-
-        #endregion
 
 
         #region Event Handlers

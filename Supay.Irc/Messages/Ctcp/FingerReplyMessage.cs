@@ -10,61 +10,41 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class FingerReplyMessage : CtcpReplyMessage
     {
-        private double idleSeconds;
-        private string loginName = string.Empty;
-        private string realName = string.Empty;
-
         /// <summary>
         ///   Creates a new instance of the <see cref="FingerReplyMessage" /> class.
         /// </summary>
         public FingerReplyMessage()
         {
             this.InternalCommand = "FINGER";
+            RealName = string.Empty;
+            LoginName = string.Empty;
         }
 
         /// <summary>
         ///   Gets or sets the real name of the user.
         /// </summary>
-        public virtual string RealName
+        public string RealName
         {
-            get
-            {
-                return this.realName;
-            }
-            set
-            {
-                this.realName = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
         ///   Gets or sets the login name of the user.
         /// </summary>
-        public virtual string LoginName
+        public string LoginName
         {
-            get
-            {
-                return this.loginName;
-            }
-            set
-            {
-                this.loginName = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
         ///   Gets or sets the number of seconds that the user has been idle.
         /// </summary>
-        public virtual double IdleSeconds
+        public double IdleSeconds
         {
-            get
-            {
-                return this.idleSeconds;
-            }
-            set
-            {
-                this.idleSeconds = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>

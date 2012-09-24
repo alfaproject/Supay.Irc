@@ -10,61 +10,42 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class ListReplyMessage : NumericMessage, IChannelTargetedMessage
     {
-        private string channel = string.Empty;
-        private int memberCount = -1;
-        private string topic = string.Empty;
-
         /// <summary>
         ///   Creates a new instance of the <see cref="ListReplyMessage" /> class.
         /// </summary>
         public ListReplyMessage()
             : base(322)
         {
+            Channel = string.Empty;
+            MemberCount = -1;
+            Topic = string.Empty;
         }
 
         /// <summary>
         ///   Gets or sets the channel for this reply.
         /// </summary>
-        public virtual string Channel
+        public string Channel
         {
-            get
-            {
-                return this.channel;
-            }
-            set
-            {
-                this.channel = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
         ///   Gets or sets the number of people in the channel.
         /// </summary>
-        public virtual int MemberCount
+        public int MemberCount
         {
-            get
-            {
-                return this.memberCount;
-            }
-            set
-            {
-                this.memberCount = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
         ///   Gets or sets the topic of the channel.
         /// </summary>
-        public virtual string Topic
+        public string Topic
         {
-            get
-            {
-                return this.topic;
-            }
-            set
-            {
-                this.topic = value;
-            }
+            get;
+            set;
         }
 
 

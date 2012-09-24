@@ -10,29 +10,22 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class WhoIsUserReplyMessage : NumericMessage
     {
-        private User user = new User();
-
         /// <summary>
         ///   Creates a new instance of the <see cref="WhoIsUserReplyMessage" /> class.
         /// </summary>
         public WhoIsUserReplyMessage()
             : base(311)
         {
+            User = new User();
         }
 
         /// <summary>
         ///   Gets the information about the user in question.
         /// </summary>
-        public virtual User User
+        public User User
         {
-            get
-            {
-                return this.user;
-            }
-            set
-            {
-                this.user = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
@@ -57,7 +50,7 @@ namespace Supay.Irc.Messages
             base.ParseParameters(parameters);
             if (parameters.Count > 5)
             {
-                this.user = new User {
+                this.User = new User {
                     Nickname = parameters[1],
                     Username = parameters[2],
                     Host = parameters[3],

@@ -11,45 +11,32 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class UserAwayMessage : NumericMessage
     {
-        private string nick = string.Empty;
-        private string text = string.Empty;
-
         /// <summary>
         ///   Creates a new instance of the <see cref="UserAwayMessage" />.
         /// </summary>
         public UserAwayMessage()
             : base(301)
         {
+            Text = string.Empty;
+            Nick = string.Empty;
         }
 
         /// <summary>
         ///   Gets or sets the user's away message.
         /// </summary>
-        public virtual string Text
+        public string Text
         {
-            get
-            {
-                return this.text;
-            }
-            set
-            {
-                this.text = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
         ///   Gets or sets the nick of the user who is away.
         /// </summary>
-        public virtual string Nick
+        public string Nick
         {
-            get
-            {
-                return this.nick;
-            }
-            set
-            {
-                this.nick = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>

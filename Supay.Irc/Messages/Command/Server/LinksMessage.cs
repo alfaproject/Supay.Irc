@@ -9,7 +9,10 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class LinksMessage : ServerQueryBase
     {
-        private string mask = string.Empty;
+        public LinksMessage()
+        {
+            Mask = string.Empty;
+        }
 
         /// <summary>
         ///   Gets the IRC command associated with this message.
@@ -25,16 +28,10 @@ namespace Supay.Irc.Messages
         /// <summary>
         ///   Gets or sets the mask for server info to limit the list or replies.
         /// </summary>
-        public virtual string Mask
+        public string Mask
         {
-            get
-            {
-                return this.mask;
-            }
-            set
-            {
-                this.mask = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>

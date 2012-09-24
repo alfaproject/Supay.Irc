@@ -12,16 +12,6 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class InviteMessage : CommandMessage, IChannelTargetedMessage
     {
-        private string channel = string.Empty;
-        private string nick = string.Empty;
-
-        /// <summary>
-        ///   Creates a new instance of the <see cref="InviteMessage" /> class.
-        /// </summary>
-        public InviteMessage()
-        {
-        }
-
         /// <summary>
         ///   Creates a new instance of the <see cref="InviteMessage" /> class with the given channel and nick.
         /// </summary>
@@ -29,38 +19,34 @@ namespace Supay.Irc.Messages
         /// <param name="nick">The nick of the user invited</param>
         public InviteMessage(string channel, string nick)
         {
-            this.channel = channel;
-            this.nick = nick;
+            this.Channel = channel;
+            this.Nick = nick;
+        }
+
+        /// <summary>
+        ///   Creates a new instance of the <see cref="InviteMessage" /> class.
+        /// </summary>
+        public InviteMessage()
+            : this(string.Empty, string.Empty)
+        {
         }
 
         /// <summary>
         ///   Gets or sets the channel the person is being invited into.
         /// </summary>
-        public virtual string Channel
+        public string Channel
         {
-            get
-            {
-                return this.channel;
-            }
-            set
-            {
-                this.channel = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
         ///   Gets or sets the nick of the user invited
         /// </summary>
-        public virtual string Nick
+        public string Nick
         {
-            get
-            {
-                return this.nick;
-            }
-            set
-            {
-                this.nick = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>

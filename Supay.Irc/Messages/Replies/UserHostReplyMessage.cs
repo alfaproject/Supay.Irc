@@ -10,25 +10,22 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class UserHostReplyMessage : NumericMessage
     {
-        private readonly UserCollection replies = new UserCollection();
-
         /// <summary>
         ///   Creates a new instance of the <see cref="UserHostReplyMessage" /> class.
         /// </summary>
         public UserHostReplyMessage()
             : base(302)
         {
+            Users = new UserCollection();
         }
 
         /// <summary>
         ///   Gets the list of replies in the message.
         /// </summary>
-        public virtual UserCollection Users
+        public UserCollection Users
         {
-            get
-            {
-                return this.replies;
-            }
+            get;
+            private set;
         }
 
         /// <summary>

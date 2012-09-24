@@ -13,37 +13,28 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class KillMessage : CommandMessage
     {
-        private string nick = string.Empty;
-        private string reason = string.Empty;
+        public KillMessage()
+        {
+            Nick = string.Empty;
+            Reason = string.Empty;
+        }
 
         /// <summary>
         ///   Gets or sets the nick of the user killed.
         /// </summary>
-        public virtual string Nick
+        public string Nick
         {
-            get
-            {
-                return this.nick;
-            }
-            set
-            {
-                this.nick = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
         ///   Gets or sets the reason for the kill.
         /// </summary>
-        public virtual string Reason
+        public string Reason
         {
-            get
-            {
-                return this.reason;
-            }
-            set
-            {
-                this.reason = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>

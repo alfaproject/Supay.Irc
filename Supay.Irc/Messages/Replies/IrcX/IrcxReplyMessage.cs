@@ -10,48 +10,34 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class IrcxReplyMessage : NumericMessage
     {
-        private string ircxVersion = string.Empty;
-        private bool isIrcxClientMode;
-        private int maximumMessageLength = -1;
-        private string options = "*";
-
         /// <summary>
         ///   Creates a new instance of the <see cref="IrcxReplyMessage" />.
         /// </summary>
         public IrcxReplyMessage()
             : base(800)
         {
+            Version = string.Empty;
             AuthenticationPackages = new List<string>();
+            MaximumMessageLength = -1;
+            Options = "*";
         }
 
         /// <summary>
         ///   Gets or sets if the server has set the client into IRCX mode.
         /// </summary>
-        public virtual bool IsIrcxClientMode
+        public bool IsIrcxClientMode
         {
-            get
-            {
-                return this.isIrcxClientMode;
-            }
-            set
-            {
-                this.isIrcxClientMode = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
         ///   Gets or sets the version of IRCX the server implements.
         /// </summary>
-        public virtual string Version
+        public string Version
         {
-            get
-            {
-                return this.ircxVersion;
-            }
-            set
-            {
-                this.ircxVersion = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
@@ -66,16 +52,10 @@ namespace Supay.Irc.Messages
         /// <summary>
         ///   Gets or sets the maximum message length, in bytes.
         /// </summary>
-        public virtual int MaximumMessageLength
+        public int MaximumMessageLength
         {
-            get
-            {
-                return this.maximumMessageLength;
-            }
-            set
-            {
-                this.maximumMessageLength = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
@@ -85,16 +65,10 @@ namespace Supay.Irc.Messages
         /// There are no known servers that implement this property.
         /// It is almost always just *.
         /// </remarks>
-        public virtual string Options
+        public string Options
         {
-            get
-            {
-                return this.options;
-            }
-            set
-            {
-                this.options = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>

@@ -13,8 +13,11 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class UserModeMessage : CommandMessage
     {
-        private string modeChanges = string.Empty;
-        private string user = string.Empty;
+        public UserModeMessage()
+        {
+            User = string.Empty;
+            ModeChanges = string.Empty;
+        }
 
         /// <summary>
         ///   Gets the IRC command associated with this message.
@@ -30,16 +33,10 @@ namespace Supay.Irc.Messages
         /// <summary>
         ///   Gets or sets the affected user.
         /// </summary>
-        public virtual string User
+        public string User
         {
-            get
-            {
-                return this.user;
-            }
-            set
-            {
-                this.user = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
@@ -49,16 +46,10 @@ namespace Supay.Irc.Messages
         ///   An example ModeChanges might look like "-w".
         ///   This example means turning off the receipt of wallop message from the server.
         /// </remarks>
-        public virtual string ModeChanges
+        public string ModeChanges
         {
-            get
-            {
-                return this.modeChanges;
-            }
-            set
-            {
-                this.modeChanges = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>

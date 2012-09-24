@@ -9,45 +9,32 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class ServerTimeReplyMessage : NumericMessage
     {
-        private string server = string.Empty;
-        private string time = string.Empty;
-
         /// <summary>
         ///   Creates a new instance of the <see cref="ServerTimeReplyMessage" /> class
         /// </summary>
         public ServerTimeReplyMessage()
             : base(391)
         {
+            Time = string.Empty;
+            Server = string.Empty;
         }
 
         /// <summary>
         ///   Gets or sets the server replying to the time request.
         /// </summary>
-        public virtual string Server
+        public string Server
         {
-            get
-            {
-                return this.server;
-            }
-            set
-            {
-                this.server = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
         ///   Gets or sets the time value requested.
         /// </summary>
-        public virtual string Time
+        public string Time
         {
-            get
-            {
-                return this.time;
-            }
-            set
-            {
-                this.time = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>

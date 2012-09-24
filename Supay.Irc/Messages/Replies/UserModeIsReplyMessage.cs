@@ -9,14 +9,13 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class UserModeIsReplyMessage : NumericMessage
     {
-        private string modes = string.Empty;
-
         /// <summary>
         ///   Creates a new instance of the <see cref="UserModeIsReplyMessage" /> class.
         /// </summary>
         public UserModeIsReplyMessage()
             : base(221)
         {
+            Modes = string.Empty;
         }
 
         /// <summary>
@@ -25,16 +24,10 @@ namespace Supay.Irc.Messages
         /// <remarks>
         ///   An example Modes might look like "+i".
         /// </remarks>
-        public virtual string Modes
+        public string Modes
         {
-            get
-            {
-                return this.modes;
-            }
-            set
-            {
-                this.modes = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>

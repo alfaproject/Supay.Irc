@@ -12,25 +12,22 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class WatchStatusNicksReplyMessage : NumericMessage
     {
-        private List<string> nicks;
-
         /// <summary>
         ///   Creates a new instance of the <see cref="WatchStatusNicksReplyMessage" />.
         /// </summary>
         public WatchStatusNicksReplyMessage()
             : base(606)
         {
+            Nicks = new List<string>();
         }
 
         /// <summary>
         ///   Gets the collection of nicks of the users on the watch list.
         /// </summary>
-        public List<string> Nicks
+        public ICollection<string> Nicks
         {
-            get
-            {
-                return this.nicks ?? (this.nicks = new List<string>());
-            }
+            get;
+            private set;
         }
 
         /// <summary>
@@ -50,11 +47,10 @@ namespace Supay.Irc.Messages
         {
             base.ParseParameters(parameters);
 
-            this.Nicks.Clear();
-            string lastParam = parameters[parameters.Count - 1];
-            if (!string.IsNullOrEmpty(lastParam))
+            Nicks.Clear();
+            foreach (var nick in parameters[parameters.Count - 1].Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries))
             {
-                this.Nicks.AddRange(lastParam.Split(new[] { " " }, StringSplitOptions.RemoveEmptyEntries));
+                Nicks.Add(nick);
             }
         }
 

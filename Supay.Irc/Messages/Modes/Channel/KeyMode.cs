@@ -5,31 +5,22 @@ namespace Supay.Irc.Messages.Modes
     /// </summary>
     public class KeyMode : FlagMode
     {
-        private string password = string.Empty;
-
         /// <summary>
-        ///   Creates a new instance of the <see cref="KeyMode" /> class.
+        ///   Creates a new instance of the <see cref="KeyMode" /> class 
+        ///   with the given <see cref="ModeAction" /> and password.
         /// </summary>
-        public KeyMode()
+        public KeyMode(ModeAction action, string password)
+            : base(action)
         {
+            Password = password;
         }
 
         /// <summary>
         ///   Creates a new instance of the <see cref="KeyMode" /> class with the given <see cref="ModeAction" />.
         /// </summary>
         public KeyMode(ModeAction action)
+            : this(action, string.Empty)
         {
-            this.Action = action;
-        }
-
-        /// <summary>
-        ///   Creates a new instance of the <see cref="KeyMode" /> class 
-        ///   with the given <see cref="ModeAction" /> and password.
-        /// </summary>
-        public KeyMode(ModeAction action, string password)
-        {
-            this.Action = action;
-            this.password = password;
         }
 
         /// <summary>
@@ -37,8 +28,16 @@ namespace Supay.Irc.Messages.Modes
         ///   with the given password.
         /// </summary>
         public KeyMode(string password)
+            : this(ModeAction.Add, password)
         {
-            this.password = password;
+        }
+
+        /// <summary>
+        ///   Creates a new instance of the <see cref="KeyMode" /> class.
+        /// </summary>
+        public KeyMode()
+            : this(ModeAction.Add, string.Empty)
+        {
         }
 
         /// <summary>
@@ -55,16 +54,10 @@ namespace Supay.Irc.Messages.Modes
         /// <summary>
         ///   Gets or sets the password needed to gain access to a channel.
         /// </summary>
-        public virtual string Password
+        public string Password
         {
-            get
-            {
-                return this.password;
-            }
-            set
-            {
-                this.password = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
@@ -73,9 +66,9 @@ namespace Supay.Irc.Messages.Modes
         /// <param name="msg">The message which will be modified to include this mode.</param>
         protected override void AddParameter(ChannelModeMessage msg)
         {
-            if (this.Password.Length != 0)
+            if (Password.Length != 0)
             {
-                msg.ModeArguments.Add(this.Password);
+                msg.ModeArguments.Add(Password);
             }
         }
     }

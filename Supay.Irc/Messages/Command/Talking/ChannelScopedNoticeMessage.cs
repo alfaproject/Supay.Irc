@@ -15,19 +15,17 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class ChannelScopedNoticeMessage : CommandMessage, IChannelTargetedMessage
     {
-        private string channel;
-        private string target;
-        private string text;
-
-
         #region Constructors
 
         /// <summary>
-        ///   Creates a new instance of the <see cref="ChannelScopedNoticeMessage" /> class.
+        ///   Creates a new instance of the <see cref="ChannelScopedNoticeMessage" /> class with the
+        ///   given text string and target channel or user.
         /// </summary>
-        public ChannelScopedNoticeMessage()
-            : this(string.Empty)
+        public ChannelScopedNoticeMessage(string text, string target)
         {
+            this.Text = text;
+            this.Target = target;
+            this.Channel = string.Empty;
         }
 
         /// <summary>
@@ -40,14 +38,11 @@ namespace Supay.Irc.Messages
         }
 
         /// <summary>
-        ///   Creates a new instance of the <see cref="ChannelScopedNoticeMessage" /> class with the
-        ///   given text string and target channel or user.
+        ///   Creates a new instance of the <see cref="ChannelScopedNoticeMessage" /> class.
         /// </summary>
-        public ChannelScopedNoticeMessage(string text, string target)
+        public ChannelScopedNoticeMessage()
+            : this(string.Empty)
         {
-            this.Text = text;
-            this.Target = target;
-            this.channel = string.Empty;
         }
 
         #endregion
@@ -71,18 +66,8 @@ namespace Supay.Irc.Messages
         /// </summary>
         public string Text
         {
-            get
-            {
-                return this.text;
-            }
-            set
-            {
-                if (value == null)
-                {
-                    throw new ArgumentNullException("value");
-                }
-                this.text = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
@@ -90,18 +75,8 @@ namespace Supay.Irc.Messages
         /// </summary>
         public string Target
         {
-            get
-            {
-                return this.target;
-            }
-            set
-            {
-                if (value == null)
-                {
-                    throw new ArgumentNullException("value");
-                }
-                this.target = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
@@ -109,18 +84,8 @@ namespace Supay.Irc.Messages
         /// </summary>
         public string Channel
         {
-            get
-            {
-                return this.channel;
-            }
-            set
-            {
-                if (value == null)
-                {
-                    throw new ArgumentNullException("value");
-                }
-                this.channel = value;
-            }
+            get;
+            set;
         }
 
         #endregion

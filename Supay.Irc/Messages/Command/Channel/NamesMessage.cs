@@ -12,17 +12,18 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class NamesMessage : CommandMessage
     {
-        private readonly List<string> channels = new List<string>();
+        public NamesMessage()
+        {
+            Channels = new List<string>();
+        }
 
         /// <summary>
         ///   Gets the channels that should be queried for their users.
         /// </summary>
-        public virtual List<string> Channels
+        public ICollection<string> Channels
         {
-            get
-            {
-                return this.channels;
-            }
+            get;
+            private set;
         }
 
         /// <summary>
@@ -58,7 +59,10 @@ namespace Supay.Irc.Messages
             this.Channels.Clear();
             if (parameters.Count >= 1)
             {
-                this.Channels.AddRange(parameters[0].Split(','));
+                foreach (var channel in parameters[0].Split(','))
+                {
+                    Channels.Add(channel);
+                }
             }
         }
 

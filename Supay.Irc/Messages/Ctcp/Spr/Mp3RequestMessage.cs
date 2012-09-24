@@ -8,8 +8,6 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class Mp3RequestMessage : CtcpRequestMessage
     {
-        private string filename;
-
         /// <summary>
         ///   Creates a new instance of the <see cref="Mp3RequestMessage" /> class.
         /// </summary>
@@ -33,14 +31,8 @@ namespace Supay.Irc.Messages
         /// </summary>
         public string FileName
         {
-            get
-            {
-                return this.filename;
-            }
-            set
-            {
-                this.filename = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>

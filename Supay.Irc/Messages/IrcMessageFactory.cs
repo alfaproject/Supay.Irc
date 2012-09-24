@@ -17,20 +17,20 @@ namespace Supay.Irc.Messages
         private const int MIN_MESSAGE_LENGTH = 1;
         private const int MAX_MESSAGE_LENGTH = 512;
 
-        private readonly LinkedList<IrcMessage> commands;
-        private readonly LinkedList<IrcMessage> numerics;
-        private readonly LinkedList<IrcMessage> ctcps;
-        private readonly LinkedList<IrcMessage> customs;
+        private readonly LinkedList<IrcMessage> _commands;
+        private readonly LinkedList<IrcMessage> _numerics;
+        private readonly LinkedList<IrcMessage> _ctcps;
+        private readonly LinkedList<IrcMessage> _customs;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="IrcMessageFactory" /> class.
         /// </summary>
         private IrcMessageFactory()
         {
-            this.commands = new LinkedList<IrcMessage>();
-            this.numerics = new LinkedList<IrcMessage>();
-            this.ctcps = new LinkedList<IrcMessage>();
-            this.customs = new LinkedList<IrcMessage>();
+            this._commands = new LinkedList<IrcMessage>();
+            this._numerics = new LinkedList<IrcMessage>();
+            this._ctcps = new LinkedList<IrcMessage>();
+            this._customs = new LinkedList<IrcMessage>();
 
             var ircMessageType = typeof(IrcMessage);
             var ircMessages = from type in ircMessageType.Assembly.GetTypes()
@@ -40,15 +40,15 @@ namespace Supay.Irc.Messages
             {
                 if (msg.GetType().IsSubclassOf(typeof(CommandMessage)))
                 {
-                    this.commands.AddLast(msg);
+                    this._commands.AddLast(msg);
                 }
                 else if (msg.GetType().IsSubclassOf(typeof(NumericMessage)))
                 {
-                    this.numerics.AddLast(msg);
+                    this._numerics.AddLast(msg);
                 }
                 else if (msg.GetType().IsSubclassOf(typeof(CtcpMessage)))
                 {
-                    this.ctcps.AddLast(msg);
+                    this._ctcps.AddLast(msg);
                 }
             }
         }
@@ -58,7 +58,7 @@ namespace Supay.Irc.Messages
         /// </summary>
         public static void AddCustomMessage(IrcMessage msg)
         {
-            instance.Value.customs.AddLast(msg);
+            instance.Value._customs.AddLast(msg);
         }
 
         /// <summary>
@@ -99,9 +99,9 @@ namespace Supay.Irc.Messages
         {
             IrcMessage msg;
 
-            if (this.customs.Count != 0)
+            if (this._customs.Count != 0)
             {
-                msg = GetMessage(unparsedMessage, this.customs);
+                msg = GetMessage(unparsedMessage, this._customs);
                 if (msg != null)
                 {
                     return msg;
@@ -111,7 +111,7 @@ namespace Supay.Irc.Messages
             string command = MessageUtil.GetCommand(unparsedMessage);
             if (char.IsDigit(command[0]))
             {
-                msg = GetMessage(unparsedMessage, this.numerics);
+                msg = GetMessage(unparsedMessage, this._numerics);
                 if (msg == null)
                 {
                     int numeric = int.Parse(command, CultureInfo.InvariantCulture);
@@ -129,7 +129,7 @@ namespace Supay.Irc.Messages
             {
                 if (CtcpUtil.IsCtcpMessage(unparsedMessage))
                 {
-                    msg = GetMessage(unparsedMessage, this.ctcps);
+                    msg = GetMessage(unparsedMessage, this._ctcps);
                     if (msg == null)
                     {
                         if (CtcpUtil.IsRequestMessage(unparsedMessage))
@@ -144,7 +144,7 @@ namespace Supay.Irc.Messages
                 }
                 else
                 {
-                    msg = GetMessage(unparsedMessage, this.commands) ?? new GenericMessage();
+                    msg = GetMessage(unparsedMessage, this._commands) ?? new GenericMessage();
                 }
             }
 

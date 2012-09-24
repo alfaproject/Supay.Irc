@@ -9,29 +9,22 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class NoSuchNickMessage : ErrorMessage
     {
-        private string nick = string.Empty;
-
         /// <summary>
         ///   Creates a new instances of the <see cref="NoSuchNickMessage" /> class.
         /// </summary>
         public NoSuchNickMessage()
             : base(401)
         {
+            Nick = string.Empty;
         }
 
         /// <summary>
         ///   Gets or sets the nick which wasn't accepted.
         /// </summary>
-        public virtual string Nick
+        public string Nick
         {
-            get
-            {
-                return this.nick;
-            }
-            set
-            {
-                this.nick = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>

@@ -8,21 +8,18 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class GenericCtcpReplyMessage : CtcpReplyMessage
     {
-        private string dataPackage = string.Empty;
+        public GenericCtcpReplyMessage()
+        {
+            DataPackage = string.Empty;
+        }
 
         /// <summary>
         ///   Gets or sets the information packaged with the ctcp command.
         /// </summary>
-        public virtual string DataPackage
+        public string DataPackage
         {
-            get
-            {
-                return this.dataPackage;
-            }
-            set
-            {
-                this.dataPackage = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
@@ -32,7 +29,7 @@ namespace Supay.Irc.Messages
         {
             get
             {
-                return this.dataPackage;
+                return this.DataPackage;
             }
         }
 

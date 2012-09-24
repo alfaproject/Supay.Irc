@@ -9,30 +9,22 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class CannotUseColorsMessage : ErrorMessage, IChannelTargetedMessage
     {
-        private string text;
-        private string channel = string.Empty;
-
         /// <summary>
         ///   Creates a new instances of the <see cref="CannotUseColorsMessage" /> class.
         /// </summary>
         public CannotUseColorsMessage()
             : base(408)
         {
+            Channel = string.Empty;
         }
 
         /// <summary>
         ///   Gets or sets the channel to which the message can't be sent.
         /// </summary>
-        public virtual string Channel
+        public string Channel
         {
-            get
-            {
-                return this.channel;
-            }
-            set
-            {
-                this.channel = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
@@ -40,14 +32,8 @@ namespace Supay.Irc.Messages
         /// </summary>
         public string Text
         {
-            get
-            {
-                return this.text;
-            }
-            set
-            {
-                this.text = value;
-            }
+            get;
+            set;
         }
 
 

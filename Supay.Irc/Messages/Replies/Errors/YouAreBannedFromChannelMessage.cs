@@ -9,8 +9,6 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class YouAreBannedFromChannelMessage : ErrorMessage, IChannelTargetedMessage
     {
-        private string channel;
-
         /// <summary>
         ///   Creates a new instances of the <see cref="YouAreBannedFromChannelMessage" /> class.
         /// </summary>
@@ -24,14 +22,8 @@ namespace Supay.Irc.Messages
         /// </summary>
         public string Channel
         {
-            get
-            {
-                return this.channel;
-            }
-            set
-            {
-                this.channel = value;
-            }
+            get;
+            set;
         }
 
 

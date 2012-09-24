@@ -5,5 +5,13 @@ namespace Supay.Irc.Messages.Modes
     /// </summary>
     public abstract class FlagMode : ChannelMode
     {
+        protected FlagMode(ModeAction action)
+            : base(action)
+        {
+        }
+
+        protected FlagMode()
+        {
+        }
     }
 }

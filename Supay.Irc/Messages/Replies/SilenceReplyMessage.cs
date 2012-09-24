@@ -9,45 +9,32 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class SilenceReplyMessage : NumericMessage
     {
-        private string silenceListOwner = string.Empty;
-        private User silencedUser = new User();
-
         /// <summary>
         ///   Creates a new instance of the <see cref="SilenceReplyMessage" />.
         /// </summary>
         public SilenceReplyMessage()
             : base(271)
         {
+            SilencedUser = new User();
+            SilenceListOwner = string.Empty;
         }
 
         /// <summary>
         ///   Gets or sets the user being silenced.
         /// </summary>
-        public virtual User SilencedUser
+        public User SilencedUser
         {
-            get
-            {
-                return this.silencedUser;
-            }
-            set
-            {
-                this.silencedUser = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
         ///   Gets or sets the nick of the owner of the silence list
         /// </summary>
-        public virtual string SilenceListOwner
+        public string SilenceListOwner
         {
-            get
-            {
-                return this.silenceListOwner;
-            }
-            set
-            {
-                this.silenceListOwner = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>

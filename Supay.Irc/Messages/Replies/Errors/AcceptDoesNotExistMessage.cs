@@ -10,29 +10,22 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class AcceptDoesNotExistMessage : ErrorMessage
     {
-        private string nick = string.Empty;
-
         /// <summary>
         ///   Creates a new instances of the <see cref="AcceptDoesNotExistMessage" /> class.
         /// </summary>
         public AcceptDoesNotExistMessage()
             : base(458)
         {
+            Nick = string.Empty;
         }
 
         /// <summary>
         ///   Gets or sets the nick which wasn't added
         /// </summary>
-        public virtual string Nick
+        public string Nick
         {
-            get
-            {
-                return this.nick;
-            }
-            set
-            {
-                this.nick = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>

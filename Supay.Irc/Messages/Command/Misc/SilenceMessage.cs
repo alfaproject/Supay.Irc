@@ -9,22 +9,13 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class SilenceMessage : CommandMessage
     {
-        private ModeAction action = ModeAction.Add;
-        private User silencedUser = new User();
-
-        /// <summary>
-        ///   Creates a new instance of the SilenceMessage class.
-        /// </summary>
-        public SilenceMessage()
-        {
-        }
-
         /// <summary>
         ///   Creates a new instance of the SilenceMessage class with the <see cref="User" />.
         /// </summary>
         public SilenceMessage(User silencedUser)
         {
-            this.silencedUser = silencedUser;
+            SilencedUser = silencedUser;
+            Action = ModeAction.Add;
         }
 
         /// <summary>
@@ -32,6 +23,14 @@ namespace Supay.Irc.Messages
         /// </summary>
         public SilenceMessage(string userMask)
             : this(new User(userMask))
+        {
+        }
+
+        /// <summary>
+        ///   Creates a new instance of the SilenceMessage class.
+        /// </summary>
+        public SilenceMessage()
+            : this(new User())
         {
         }
 
@@ -49,31 +48,19 @@ namespace Supay.Irc.Messages
         /// <summary>
         ///   Gets or sets the user being silenced.
         /// </summary>
-        public virtual User SilencedUser
+        public User SilencedUser
         {
-            get
-            {
-                return this.silencedUser;
-            }
-            set
-            {
-                this.silencedUser = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
         ///   Gets or sets the action being applied to the silenced user on the list.
         /// </summary>
-        public virtual ModeAction Action
+        public ModeAction Action
         {
-            get
-            {
-                return this.action;
-            }
-            set
-            {
-                this.action = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>

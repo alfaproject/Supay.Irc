@@ -9,29 +9,22 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class StatsReplyMessage : NumericMessage
     {
-        private string stats = string.Empty;
-
         /// <summary>
         ///   Creates a new instance of the <see cref="StatsReplyMessage" /> class.
         /// </summary>
         public StatsReplyMessage()
             : base(250)
         {
+            Stats = string.Empty;
         }
 
         /// <summary>
         ///   The information requested.
         /// </summary>
-        public virtual string Stats
+        public string Stats
         {
-            get
-            {
-                return this.stats;
-            }
-            set
-            {
-                this.stats = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>

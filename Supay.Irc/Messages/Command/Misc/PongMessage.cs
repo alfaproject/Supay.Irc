@@ -9,8 +9,11 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class PongMessage : CommandMessage
     {
-        private string forwardServer = string.Empty;
-        private string target = string.Empty;
+        public PongMessage()
+        {
+            Target = string.Empty;
+            ForwardServer = string.Empty;
+        }
 
         /// <summary>
         ///   Gets the IRC command associated with this message.
@@ -26,31 +29,19 @@ namespace Supay.Irc.Messages
         /// <summary>
         ///   Gets or sets the target of the pong.
         /// </summary>
-        public virtual string Target
+        public string Target
         {
-            get
-            {
-                return this.target;
-            }
-            set
-            {
-                this.target = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
         ///   Gets or sets the server that the ping should be forwarded to.
         /// </summary>
-        public virtual string ForwardServer
+        public string ForwardServer
         {
-            get
-            {
-                return this.forwardServer;
-            }
-            set
-            {
-                this.forwardServer = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>

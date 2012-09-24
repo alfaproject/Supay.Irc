@@ -8,14 +8,13 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class PingReplyMessage : CtcpReplyMessage
     {
-        private string timeStamp = string.Empty;
-
         /// <summary>
         ///   Creates a new instance of the <see cref="PingReplyMessage" /> class.
         /// </summary>
         public PingReplyMessage()
         {
             this.InternalCommand = "PING";
+            TimeStamp = string.Empty;
         }
 
         /// <summary>
@@ -26,16 +25,10 @@ namespace Supay.Irc.Messages
         ///   This allows the requestor to substract the two to calculate the timespan to whatever degree
         ///   of exactness that they want.
         /// </remarks>
-        public virtual string TimeStamp
+        public string TimeStamp
         {
-            get
-            {
-                return this.timeStamp;
-            }
-            set
-            {
-                this.timeStamp = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
@@ -45,7 +38,7 @@ namespace Supay.Irc.Messages
         {
             get
             {
-                return this.timeStamp;
+                return this.TimeStamp;
             }
         }
 

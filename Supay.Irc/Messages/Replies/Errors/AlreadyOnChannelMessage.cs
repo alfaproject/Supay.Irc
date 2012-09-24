@@ -10,9 +10,6 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class AlreadyOnChannelMessage : ErrorMessage, IChannelTargetedMessage
     {
-        private string channel;
-        private string nick;
-
         /// <summary>
         ///   Creates a new instances of the <see cref="AlreadyOnChannelMessage" /> class.
         /// </summary>
@@ -26,14 +23,8 @@ namespace Supay.Irc.Messages
         /// </summary>
         public string Nick
         {
-            get
-            {
-                return this.nick;
-            }
-            set
-            {
-                this.nick = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
@@ -41,14 +32,8 @@ namespace Supay.Irc.Messages
         /// </summary>
         public string Channel
         {
-            get
-            {
-                return this.channel;
-            }
-            set
-            {
-                this.channel = value;
-            }
+            get;
+            set;
         }
 
 

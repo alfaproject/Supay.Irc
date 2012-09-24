@@ -11,29 +11,22 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class ErroneusNickMessage : ErrorMessage
     {
-        private string nick = string.Empty;
-
         /// <summary>
         ///   Creates a new instances of the <see cref="ErroneusNickMessage" /> class.
         /// </summary>
         public ErroneusNickMessage()
             : base(432)
         {
+            Nick = string.Empty;
         }
 
         /// <summary>
         ///   Gets or sets the nick which wasn't accepted.
         /// </summary>
-        public virtual string Nick
+        public string Nick
         {
-            get
-            {
-                return this.nick;
-            }
-            set
-            {
-                this.nick = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>

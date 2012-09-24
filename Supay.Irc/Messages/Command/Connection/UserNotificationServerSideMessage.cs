@@ -9,10 +9,11 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class UserNotificationServerSideMessage : CommandMessage
     {
-        private string hostName;
-        private string realName = string.Empty;
-        private string serverName;
-        private string userName = string.Empty;
+        public UserNotificationServerSideMessage()
+        {
+            UserName = string.Empty;
+            RealName = string.Empty;
+        }
 
         /// <summary>
         ///   Gets the IRC command associated with this message.
@@ -28,16 +29,10 @@ namespace Supay.Irc.Messages
         /// <summary>
         ///   Gets or sets the UserName of client.
         /// </summary>
-        public virtual string UserName
+        public string UserName
         {
-            get
-            {
-                return this.userName;
-            }
-            set
-            {
-                this.userName = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
@@ -45,14 +40,8 @@ namespace Supay.Irc.Messages
         /// </summary>
         public string HostName
         {
-            get
-            {
-                return this.hostName;
-            }
-            set
-            {
-                this.hostName = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
@@ -60,29 +49,17 @@ namespace Supay.Irc.Messages
         /// </summary>
         public string ServerName
         {
-            get
-            {
-                return this.serverName;
-            }
-            set
-            {
-                this.serverName = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
         ///   Gets or sets the real name of the client.
         /// </summary>
-        public virtual string RealName
+        public string RealName
         {
-            get
-            {
-                return this.realName;
-            }
-            set
-            {
-                this.realName = value;
-            }
+            get;
+            set;
         }
 
         public override bool CanParse(string unparsedMessage)

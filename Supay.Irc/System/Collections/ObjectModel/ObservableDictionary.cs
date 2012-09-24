@@ -7,10 +7,10 @@ namespace System.Collections.ObjectModel
 {
     public class ObservableDictionary<TKey, TValue> : IDictionary<TKey, TValue>, INotifyCollectionChanged, INotifyPropertyChanged
     {
-        private const string CountString = "Count";
-        private const string IndexerName = "Item[]";
-        private const string KeysName = "Keys";
-        private const string ValuesName = "Values";
+        private const string COUNT_STRING = "Count";
+        private const string INDEXER_NAME = "Item[]";
+        private const string KEYS_NAME = "Keys";
+        private const string VALUES_NAME = "Values";
 
         protected IDictionary<TKey, TValue> Dictionary
         {
@@ -266,10 +266,10 @@ namespace System.Collections.ObjectModel
 
         private void OnPropertyChanged()
         {
-            this.OnPropertyChanged(CountString);
-            this.OnPropertyChanged(IndexerName);
-            this.OnPropertyChanged(KeysName);
-            this.OnPropertyChanged(ValuesName);
+            this.OnPropertyChanged(COUNT_STRING);
+            this.OnPropertyChanged(INDEXER_NAME);
+            this.OnPropertyChanged(KEYS_NAME);
+            this.OnPropertyChanged(VALUES_NAME);
         }
 
         protected virtual void OnPropertyChanged(string propertyName)

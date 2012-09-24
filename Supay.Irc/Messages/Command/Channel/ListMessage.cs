@@ -16,31 +16,29 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class ListMessage : CommandMessage
     {
-        private readonly List<string> channels = new List<string>();
-        private string matchMask = string.Empty;
-        private int maxUsers = -1;
-        private int minUsers = -1;
-        private string notMatchMask = string.Empty;
-        private int olderThan = -1;
-        private string server = string.Empty;
-        private int topicOlderThan = -1;
-        private int topicYoungerThan = -1;
-        private int youngerThan = -1;
+        /// <summary>
+        ///   Creates a new instance of the <see cref="ListMessage" /> class with the given channels.
+        /// </summary>
+        public ListMessage(params string[] channels)
+        {
+            Channels = new List<string>(channels);
+            Server = string.Empty;
+            MaxUsers = -1;
+            MinUsers = -1;
+            YoungerThan = -1;
+            OlderThan = -1;
+            MatchMask = string.Empty;
+            NotMatchMask = string.Empty;
+            TopicOlderThan = -1;
+            TopicYoungerThan = -1;
+        }
 
         /// <summary>
         ///   Creates a new instance of the <see cref="ListMessage" /> class.
         /// </summary>
         public ListMessage()
+            : this(new string[] { })
         {
-        }
-
-        /// <summary>
-        ///   Creates a new instance of the <see cref="ListMessage" /> class with the given channel.
-        /// </summary>
-        /// <param name="channel"></param>
-        public ListMessage(string channel)
-        {
-            this.channels.Add(channel);
         }
 
         /// <summary>
@@ -49,27 +47,19 @@ namespace Supay.Irc.Messages
         /// <remarks>
         ///   If this is empty, information about all channels is requested.
         /// </remarks>
-        public virtual List<string> Channels
+        public List<string> Channels
         {
-            get
-            {
-                return this.channels;
-            }
+            get;
+            private set;
         }
 
         /// <summary>
         ///   Gets or sets the server that should return the info.
         /// </summary>
-        public virtual string Server
+        public string Server
         {
-            get
-            {
-                return this.server;
-            }
-            set
-            {
-                this.server = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
@@ -77,14 +67,8 @@ namespace Supay.Irc.Messages
         /// </summary>
         public int MaxUsers
         {
-            get
-            {
-                return this.maxUsers;
-            }
-            set
-            {
-                this.maxUsers = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
@@ -92,14 +76,8 @@ namespace Supay.Irc.Messages
         /// </summary>
         public int MinUsers
         {
-            get
-            {
-                return this.minUsers;
-            }
-            set
-            {
-                this.minUsers = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
@@ -108,14 +86,8 @@ namespace Supay.Irc.Messages
         /// </summary>
         public int YoungerThan
         {
-            get
-            {
-                return this.youngerThan;
-            }
-            set
-            {
-                this.youngerThan = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
@@ -124,14 +96,8 @@ namespace Supay.Irc.Messages
         /// </summary>
         public int OlderThan
         {
-            get
-            {
-                return this.olderThan;
-            }
-            set
-            {
-                this.olderThan = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
@@ -139,14 +105,8 @@ namespace Supay.Irc.Messages
         /// </summary>
         public string MatchMask
         {
-            get
-            {
-                return this.matchMask;
-            }
-            set
-            {
-                this.matchMask = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
@@ -154,14 +114,8 @@ namespace Supay.Irc.Messages
         /// </summary>
         public string NotMatchMask
         {
-            get
-            {
-                return this.notMatchMask;
-            }
-            set
-            {
-                this.notMatchMask = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
@@ -174,14 +128,8 @@ namespace Supay.Irc.Messages
         /// </remarks>
         public int TopicOlderThan
         {
-            get
-            {
-                return this.topicOlderThan;
-            }
-            set
-            {
-                this.topicOlderThan = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
@@ -194,14 +142,8 @@ namespace Supay.Irc.Messages
         /// </remarks>
         public int TopicYoungerThan
         {
-            get
-            {
-                return this.topicYoungerThan;
-            }
-            set
-            {
-                this.topicYoungerThan = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>

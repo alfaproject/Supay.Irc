@@ -14,9 +14,6 @@ namespace Supay.Irc.Messages
         private const string USERS_AND = " users and ";
         private const string INVISIBLE_ON = " invisible on ";
         private const string SERVERS = " servers";
-        private int invisibleCount = -1;
-        private int serverCount = -1;
-        private int userCount = -1;
 
         /// <summary>
         ///   Creates a new instance of the <see cref="LusersReplyMessage" /> class.
@@ -24,51 +21,36 @@ namespace Supay.Irc.Messages
         public LusersReplyMessage()
             : base(251)
         {
+            UserCount = -1;
+            InvisibleCount = -1;
+            ServerCount = -1;
         }
 
         /// <summary>
         ///   Gets or sets the number of users connected to IRC.
         /// </summary>
-        public virtual int UserCount
+        public int UserCount
         {
-            get
-            {
-                return this.userCount;
-            }
-            set
-            {
-                this.userCount = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
         ///   Gets or sets the number of invisible users connected to IRC.
         /// </summary>
-        public virtual int InvisibleCount
+        public int InvisibleCount
         {
-            get
-            {
-                return this.invisibleCount;
-            }
-            set
-            {
-                this.invisibleCount = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
         ///   Gets or sets the number of servers connected on the network.
         /// </summary>
-        public virtual int ServerCount
+        public int ServerCount
         {
-            get
-            {
-                return this.serverCount;
-            }
-            set
-            {
-                this.serverCount = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>

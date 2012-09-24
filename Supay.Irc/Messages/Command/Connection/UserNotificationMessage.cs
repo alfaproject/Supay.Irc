@@ -10,10 +10,12 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class UserNotificationMessage : CommandMessage
     {
-        private bool initialInvisibility = true;
-        private bool initialWallops;
-        private string realName = string.Empty;
-        private string userName = string.Empty;
+        public UserNotificationMessage()
+        {
+            UserName = string.Empty;
+            InitialInvisibility = true;
+            RealName = string.Empty;
+        }
 
         /// <summary>
         ///   Gets the IRC command associated with this message.
@@ -29,61 +31,37 @@ namespace Supay.Irc.Messages
         /// <summary>
         ///   Gets or sets the UserName of client.
         /// </summary>
-        public virtual string UserName
+        public string UserName
         {
-            get
-            {
-                return this.userName;
-            }
-            set
-            {
-                this.userName = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
         ///   Gets or sets if the client is initialized with a user mode of invisible.
         /// </summary>
-        public virtual bool InitialInvisibility
+        public bool InitialInvisibility
         {
-            get
-            {
-                return this.initialInvisibility;
-            }
-            set
-            {
-                this.initialInvisibility = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
         ///   Gets or sets if the client is initialized with a user mode of receiving wallops.
         /// </summary>
-        public virtual bool InitialWallops
+        public bool InitialWallops
         {
-            get
-            {
-                return this.initialWallops;
-            }
-            set
-            {
-                this.initialWallops = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
         ///   Gets or sets the real name of the client.
         /// </summary>
-        public virtual string RealName
+        public string RealName
         {
-            get
-            {
-                return this.realName;
-            }
-            set
-            {
-                this.realName = value;
-            }
+            get;
+            set;
         }
 
         public override bool CanParse(string unparsedMessage)
@@ -92,7 +70,7 @@ namespace Supay.Irc.Messages
             {
                 return false;
             }
-            IList<string> p = MessageUtil.GetParameters(unparsedMessage);
+            var p = MessageUtil.GetParameters(unparsedMessage);
             int tempInt;
             return p.Count == 4 && int.TryParse(p[1], out tempInt) && p[2] == "*";
         }

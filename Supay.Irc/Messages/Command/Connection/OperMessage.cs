@@ -11,23 +11,21 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class OperMessage : CommandMessage
     {
-        private string name = string.Empty;
-        private string password = string.Empty;
-
-        /// <summary>
-        ///   Creates a new instance of the OperMessage class.
-        /// </summary>
-        public OperMessage()
-        {
-        }
-
         /// <summary>
         ///   Creates a new instance of the OperMessage class with the given name and password.
         /// </summary>
         public OperMessage(string name, string password)
         {
-            this.name = name;
-            this.password = password;
+            this.Name = name;
+            this.Password = password;
+        }
+
+        /// <summary>
+        ///   Creates a new instance of the OperMessage class.
+        /// </summary>
+        public OperMessage()
+            : this(string.Empty, string.Empty)
+        {
         }
 
         /// <summary>
@@ -44,31 +42,19 @@ namespace Supay.Irc.Messages
         /// <summary>
         ///   Gets or sets the password for the sender.
         /// </summary>
-        public virtual string Password
+        public string Password
         {
-            get
-            {
-                return this.password;
-            }
-            set
-            {
-                this.password = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
         ///   Gets or sets the name for the sender.
         /// </summary>
-        public virtual string Name
+        public string Name
         {
-            get
-            {
-                return this.name;
-            }
-            set
-            {
-                this.name = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>

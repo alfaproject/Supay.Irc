@@ -9,45 +9,32 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class SoundRequestMessage : CtcpRequestMessage
     {
-        private string soundFile = string.Empty;
-        private string text = string.Empty;
-
         /// <summary>
         ///   Creates a new instance of the <see cref="SoundRequestMessage" /> class.
         /// </summary>
         public SoundRequestMessage()
         {
             this.InternalCommand = "SOUND";
+            Text = string.Empty;
+            SoundFile = string.Empty;
         }
 
         /// <summary>
         ///   Gets or sets an optional additional test message going along with the request.
         /// </summary>
-        public virtual string Text
+        public string Text
         {
-            get
-            {
-                return this.text;
-            }
-            set
-            {
-                this.text = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
         ///   Gets or sets the name of the requested sound file to be played.
         /// </summary>
-        public virtual string SoundFile
+        public string SoundFile
         {
-            get
-            {
-                return this.soundFile;
-            }
-            set
-            {
-                this.soundFile = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>

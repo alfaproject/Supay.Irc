@@ -10,45 +10,32 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class LusersOpReplyMessage : NumericMessage
     {
-        private string info = string.Empty;
-        private int opCount = -1;
-
         /// <summary>
         ///   Creates a new instance of the <see cref="LusersOpReplyMessage" /> class
         /// </summary>
         public LusersOpReplyMessage()
             : base(252)
         {
+            OpCount = -1;
+            Info = string.Empty;
         }
 
         /// <summary>
         ///   Gets or sets the number of IRC operators connected to the server.
         /// </summary>
-        public virtual int OpCount
+        public int OpCount
         {
-            get
-            {
-                return this.opCount;
-            }
-            set
-            {
-                this.opCount = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
         ///   Gets or sets any additional information about the operators connected.
         /// </summary>
-        public virtual string Info
+        public string Info
         {
-            get
-            {
-                return this.info;
-            }
-            set
-            {
-                this.info = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>

@@ -11,8 +11,6 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class MonitorListFullMessage : NumericMessage
     {
-        private int limit;
-
         /// <summary>
         ///   Creates a new instance of the <see cref="MonitorListFullMessage" />.
         /// </summary>
@@ -27,14 +25,8 @@ namespace Supay.Irc.Messages
         /// </summary>
         public int Limit
         {
-            get
-            {
-                return this.limit;
-            }
-            set
-            {
-                this.limit = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>

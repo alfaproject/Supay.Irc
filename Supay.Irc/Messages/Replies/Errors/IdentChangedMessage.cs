@@ -14,10 +14,6 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class IdentChangedMessage : ErrorMessage
     {
-        private string ident;
-        private string invalidCharacters;
-        private string newIdent;
-
         /// <summary>
         ///   Creates a new instances of the <see cref="IdentChangedMessage" /> class.
         /// </summary>
@@ -31,14 +27,8 @@ namespace Supay.Irc.Messages
         /// </summary>
         public string Ident
         {
-            get
-            {
-                return this.ident;
-            }
-            set
-            {
-                this.ident = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
@@ -46,14 +36,8 @@ namespace Supay.Irc.Messages
         /// </summary>
         public string InvalidCharacters
         {
-            get
-            {
-                return this.invalidCharacters;
-            }
-            set
-            {
-                this.invalidCharacters = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
@@ -61,14 +45,8 @@ namespace Supay.Irc.Messages
         /// </summary>
         public string NewIdent
         {
-            get
-            {
-                return this.newIdent;
-            }
-            set
-            {
-                this.newIdent = value;
-            }
+            get;
+            set;
         }
 
         protected override ICollection<string> GetTokens()

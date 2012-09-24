@@ -10,13 +10,13 @@ namespace Supay.Irc
     [Serializable]
     public class User : Mask
     {
-        private bool away;
-        private string awayMessage;
-        private bool ircOperator;
-        private string name;
-        private bool online;
-        private string password;
-        private string server;
+        private bool _away;
+        private string _awayMessage;
+        private bool _ircOperator;
+        private string _name;
+        private bool _online;
+        private string _password;
+        private string _server;
 
 
         #region Constructors
@@ -42,13 +42,13 @@ namespace Supay.Irc
 
         private void Initialize()
         {
-            this.name = string.Empty;
-            this.password = string.Empty;
-            this.server = string.Empty;
-            this.ircOperator = false;
-            this.online = true;
-            this.away = false;
-            this.awayMessage = string.Empty;
+            this._name = string.Empty;
+            this._password = string.Empty;
+            this._server = string.Empty;
+            this._ircOperator = false;
+            this._online = true;
+            this._away = false;
+            this._awayMessage = string.Empty;
 
             this.Modes = new UserModeCollection();
             this.Modes.CollectionChanged += (s, e) => this.OnPropertyChanged("Modes");
@@ -66,13 +66,13 @@ namespace Supay.Irc
         {
             get
             {
-                return this.name;
+                return this._name;
             }
             set
             {
-                if (this.name != value)
+                if (this._name != value)
                 {
-                    this.name = value;
+                    this._name = value;
                     this.OnPropertyChanged("Name");
                 }
             }
@@ -85,13 +85,13 @@ namespace Supay.Irc
         {
             get
             {
-                return this.password;
+                return this._password;
             }
             set
             {
-                if (this.password != value)
+                if (this._password != value)
                 {
-                    this.password = value;
+                    this._password = value;
                     this.OnPropertyChanged("Password");
                 }
             }
@@ -104,13 +104,13 @@ namespace Supay.Irc
         {
             get
             {
-                return this.server;
+                return this._server;
             }
             set
             {
-                if (this.server != value)
+                if (this._server != value)
                 {
-                    this.server = value;
+                    this._server = value;
                     this.OnPropertyChanged("Server");
                 }
             }
@@ -123,13 +123,13 @@ namespace Supay.Irc
         {
             get
             {
-                return this.ircOperator;
+                return this._ircOperator;
             }
             set
             {
-                if (this.ircOperator != value)
+                if (this._ircOperator != value)
                 {
-                    this.ircOperator = value;
+                    this._ircOperator = value;
                     this.OnPropertyChanged("IrcOperator");
                 }
             }
@@ -142,13 +142,13 @@ namespace Supay.Irc
         {
             get
             {
-                return this.online;
+                return this._online;
             }
             set
             {
-                if (this.online != value)
+                if (this._online != value)
                 {
-                    this.online = value;
+                    this._online = value;
                     this.OnPropertyChanged("Online");
                 }
             }
@@ -161,13 +161,13 @@ namespace Supay.Irc
         {
             get
             {
-                return this.away;
+                return this._away;
             }
             set
             {
-                if (this.away != value)
+                if (this._away != value)
                 {
-                    this.away = value;
+                    this._away = value;
                     this.OnPropertyChanged("Away");
                 }
             }
@@ -180,13 +180,13 @@ namespace Supay.Irc
         {
             get
             {
-                return this.awayMessage;
+                return this._awayMessage;
             }
             set
             {
-                if (this.awayMessage != value)
+                if (this._awayMessage != value)
                 {
-                    this.awayMessage = value;
+                    this._awayMessage = value;
                     this.OnPropertyChanged("AwayMessage");
                 }
             }

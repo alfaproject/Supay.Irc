@@ -9,8 +9,6 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class StatsMessage : ServerQueryBase
     {
-        private string query;
-
         /// <summary>
         ///   Gets the IRC command associated with this message.
         /// </summary>
@@ -25,16 +23,10 @@ namespace Supay.Irc.Messages
         /// <summary>
         ///   Gets or sets the code the what information is requested.
         /// </summary>
-        public virtual string Query
+        public string Query
         {
-            get
-            {
-                return this.query;
-            }
-            set
-            {
-                this.query = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>

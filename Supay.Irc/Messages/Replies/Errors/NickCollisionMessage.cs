@@ -9,29 +9,22 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class NickCollisionMessage : ErrorMessage
     {
-        private string nick = string.Empty;
-
         /// <summary>
         ///   Creates a new instances of the <see cref="NickCollisionMessage" /> class.
         /// </summary>
         public NickCollisionMessage()
             : base(436)
         {
+            Nick = string.Empty;
         }
 
         /// <summary>
         ///   Gets or sets the nick which was already taken.
         /// </summary>
-        public virtual string Nick
+        public string Nick
         {
-            get
-            {
-                return this.nick;
-            }
-            set
-            {
-                this.nick = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>

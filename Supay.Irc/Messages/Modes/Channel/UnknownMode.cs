@@ -5,16 +5,16 @@ namespace Supay.Irc.Messages.Modes
     /// </summary>
     public class UnknownChannelMode : ChannelMode
     {
-        private readonly string symbol;
-        private string parameter = string.Empty;
+        private readonly string _symbol;
 
         /// <summary>
         ///   Creates a new instance of the <see cref="UnknownChannelMode" /> class with the given <see cref="ModeAction" /> and value.
         /// </summary>
         public UnknownChannelMode(ModeAction action, string symbol)
         {
+            Parameter = string.Empty;
             this.Action = action;
-            this.symbol = symbol;
+            this._symbol = symbol;
         }
 
         /// <summary>
@@ -23,23 +23,17 @@ namespace Supay.Irc.Messages.Modes
         public UnknownChannelMode(ModeAction action, string symbol, string parameter)
         {
             this.Action = action;
-            this.symbol = symbol;
-            this.parameter = parameter;
+            this._symbol = symbol;
+            this.Parameter = parameter;
         }
 
         /// <summary>
         ///   Gets or sets the parameter passed with this mode.
         /// </summary>
-        public virtual string Parameter
+        public string Parameter
         {
-            get
-            {
-                return this.parameter;
-            }
-            set
-            {
-                this.parameter = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
@@ -49,7 +43,7 @@ namespace Supay.Irc.Messages.Modes
         {
             get
             {
-                return this.symbol;
+                return this._symbol;
             }
         }
 

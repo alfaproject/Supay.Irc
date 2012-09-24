@@ -15,9 +15,6 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class BanListFullMessage : ErrorMessage, IChannelTargetedMessage
     {
-        private Mask banMask;
-        private string channel;
-
         /// <summary>
         ///   Creates a new instances of the <see cref="BanListFullMessage" /> class.
         /// </summary>
@@ -31,14 +28,8 @@ namespace Supay.Irc.Messages
         /// </summary>
         public Mask BanMask
         {
-            get
-            {
-                return this.banMask;
-            }
-            set
-            {
-                this.banMask = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
@@ -46,14 +37,8 @@ namespace Supay.Irc.Messages
         /// </summary>
         public string Channel
         {
-            get
-            {
-                return this.channel;
-            }
-            set
-            {
-                this.channel = value;
-            }
+            get;
+            set;
         }
 
 

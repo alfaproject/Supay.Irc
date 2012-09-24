@@ -10,41 +10,32 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class WhoIsChannelsReplyMessage : NumericMessage, IChannelTargetedMessage
     {
-        private readonly List<string> channels = new List<string>();
-        private string nick = string.Empty;
-
         /// <summary>
         ///   Creates a new instance of the <see cref="WhoIsChannelsReplyMessage" /> class.
         /// </summary>
         public WhoIsChannelsReplyMessage()
             : base(319)
         {
+            Nick = string.Empty;
+            Channels = new List<string>();
         }
 
         /// <summary>
         ///   Gets or sets the Nick of the user being
         /// </summary>
-        public virtual string Nick
+        public string Nick
         {
-            get
-            {
-                return this.nick;
-            }
-            set
-            {
-                this.nick = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
         ///   Gets the collection of channels the user is a member of.
         /// </summary>
-        public virtual List<string> Channels
+        public ICollection<string> Channels
         {
-            get
-            {
-                return this.channels;
-            }
+            get;
+            private set;
         }
 
 
@@ -84,7 +75,10 @@ namespace Supay.Irc.Messages
             if (parameters.Count == 3)
             {
                 this.Nick = parameters[1];
-                this.Channels.AddRange(parameters[2].Split(' '));
+                foreach (var channel in parameters[2].Split(' '))
+                {
+                    Channels.Add(channel);
+                }
             }
         }
 

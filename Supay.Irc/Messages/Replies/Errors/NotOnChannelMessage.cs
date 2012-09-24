@@ -14,9 +14,6 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class NotOnChannelMessage : ErrorMessage, IChannelTargetedMessage
     {
-        private string channel;
-        private string nick;
-
         /// <summary>
         ///   Creates a new instances of the <see cref="NotOnChannelMessage" /> class.
         /// </summary>
@@ -30,14 +27,8 @@ namespace Supay.Irc.Messages
         /// </summary>
         public string Nick
         {
-            get
-            {
-                return this.nick;
-            }
-            set
-            {
-                this.nick = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
@@ -45,14 +36,8 @@ namespace Supay.Irc.Messages
         /// </summary>
         public string Channel
         {
-            get
-            {
-                return this.channel;
-            }
-            set
-            {
-                this.channel = value;
-            }
+            get;
+            set;
         }
 
 

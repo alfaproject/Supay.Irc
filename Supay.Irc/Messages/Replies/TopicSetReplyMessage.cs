@@ -10,61 +10,42 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class TopicSetReplyMessage : NumericMessage, IChannelTargetedMessage
     {
-        private string channel = string.Empty;
-        private DateTime timeSet = DateTime.Now;
-        private User user = new User();
-
         /// <summary>
         ///   Creates a new instance of the <see cref="TopicSetReplyMessage" /> class.
         /// </summary>
         public TopicSetReplyMessage()
             : base(333)
         {
+            Channel = string.Empty;
+            User = new User();
+            TimeSet = DateTime.Now;
         }
 
         /// <summary>
         ///   Gets or sets the channel with the changed topic.
         /// </summary>
-        public virtual string Channel
+        public string Channel
         {
-            get
-            {
-                return this.channel;
-            }
-            set
-            {
-                this.channel = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
         ///   Gets or sets the user which changed the topic.
         /// </summary>
-        public virtual User User
+        public User User
         {
-            get
-            {
-                return this.user;
-            }
-            set
-            {
-                this.user = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
         ///   Gets or sets the time at which the topic was changed.
         /// </summary>
-        public virtual DateTime TimeSet
+        public DateTime TimeSet
         {
-            get
-            {
-                return this.timeSet;
-            }
-            set
-            {
-                this.timeSet = value;
-            }
+            get;
+            set;
         }
 
 

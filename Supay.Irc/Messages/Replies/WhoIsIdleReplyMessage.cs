@@ -11,77 +11,51 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class WhoIsIdleReplyMessage : NumericMessage
     {
-        private int idleTime;
-        private string info = string.Empty;
-        private string nick = string.Empty;
-        private DateTime signOnTime = DateTime.Now;
-
         /// <summary>
         ///   Creates a new instance of the <see cref="WhoIsIdleReplyMessage" /> class.
         /// </summary>
         public WhoIsIdleReplyMessage()
             : base(317)
         {
+            Nick = string.Empty;
+            SignOnTime = DateTime.Now;
+            Info = string.Empty;
         }
 
         /// <summary>
         ///   Gets or sets the nick of the user who is being examined.
         /// </summary>
-        public virtual string Nick
+        public string Nick
         {
-            get
-            {
-                return this.nick;
-            }
-            set
-            {
-                this.nick = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
         ///   Gets or sets the number of seconds the user has been idle.
         /// </summary>
-        public virtual int IdleLength
+        public int IdleLength
         {
-            get
-            {
-                return this.idleTime;
-            }
-            set
-            {
-                this.idleTime = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
         ///   Gets or sets the time the user signed on to their current server.
         /// </summary>
-        public virtual DateTime SignOnTime
+        public DateTime SignOnTime
         {
-            get
-            {
-                return this.signOnTime;
-            }
-            set
-            {
-                this.signOnTime = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
         ///   Gets or sets some additional info about the user being examined.
         /// </summary>
-        public virtual string Info
+        public string Info
         {
-            get
-            {
-                return this.info;
-            }
-            set
-            {
-                this.info = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>

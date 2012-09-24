@@ -10,29 +10,22 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class TopicNoneReplyMessage : NumericMessage, IChannelTargetedMessage
     {
-        private string channel = string.Empty;
-
         /// <summary>
         ///   Creates a new instance of the <see cref="TopicNoneReplyMessage" /> class.
         /// </summary>
         public TopicNoneReplyMessage()
             : base(331)
         {
+            Channel = string.Empty;
         }
 
         /// <summary>
         ///   The name of the channel which has no topic set.
         /// </summary>
-        public virtual string Channel
+        public string Channel
         {
-            get
-            {
-                return this.channel;
-            }
-            set
-            {
-                this.channel = value;
-            }
+            get;
+            set;
         }
 
 

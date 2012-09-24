@@ -13,29 +13,22 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class NoRecipientGivenMessage : ErrorMessage
     {
-        private string command = string.Empty;
-
         /// <summary>
         ///   Creates a new instances of the <see cref="NoRecipientGivenMessage" /> class.
         /// </summary>
         public NoRecipientGivenMessage()
             : base(411)
         {
+            Command = string.Empty;
         }
 
         /// <summary>
         ///   Gets or sets the command of the message which was invalid.
         /// </summary>
-        public virtual string Command
+        public string Command
         {
-            get
-            {
-                return this.command;
-            }
-            set
-            {
-                this.command = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>

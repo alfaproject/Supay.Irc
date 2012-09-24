@@ -10,32 +10,25 @@ namespace Supay.Irc.Messages
     [Serializable]
     public class LinksReplyMessage : NumericMessage
     {
-        private int hopCount = -1;
-        private string mask = string.Empty;
-        private string server = string.Empty;
-        private string serverInfo = string.Empty;
-
         /// <summary>
         ///   Creates a new instance of the <see cref="LinksReplyMessage" />.
         /// </summary>
         public LinksReplyMessage()
             : base(364)
         {
+            Mask = string.Empty;
+            Server = string.Empty;
+            HopCount = -1;
+            ServerInfo = string.Empty;
         }
 
         /// <summary>
         ///   Gets or sets the mask which will limit the list of returned servers.
         /// </summary>
-        public virtual string Mask
+        public string Mask
         {
-            get
-            {
-                return this.mask;
-            }
-            set
-            {
-                this.mask = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
@@ -44,46 +37,28 @@ namespace Supay.Irc.Messages
         /// <remarks>
         ///   If empty, the current server is used.
         /// </remarks>
-        public virtual string Server
+        public string Server
         {
-            get
-            {
-                return this.server;
-            }
-            set
-            {
-                this.server = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
         ///   Gets or sets the number of hops from the answering server to the listed server.
         /// </summary>
-        public virtual int HopCount
+        public int HopCount
         {
-            get
-            {
-                return this.hopCount;
-            }
-            set
-            {
-                this.hopCount = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
         ///   Gets or sets any additional server information.
         /// </summary>
-        public virtual string ServerInfo
+        public string ServerInfo
         {
-            get
-            {
-                return this.serverInfo;
-            }
-            set
-            {
-                this.serverInfo = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
