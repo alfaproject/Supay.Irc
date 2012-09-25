@@ -7,7 +7,7 @@ using System.Net.Sockets;
 using System.Security.Authentication;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
-using System.Threading;
+using System.Threading.Tasks;
 using Supay.Irc.Properties;
 
 namespace Supay.Irc.Network
@@ -22,8 +22,6 @@ namespace Supay.Irc.Network
     [DesignerCategory("Code")]
     public class ClientConnection : Component
     {
-        private readonly object syncLock = new object();
-
         private string address;
 
         private TcpClient client;
@@ -31,7 +29,6 @@ namespace Supay.Irc.Network
         private int port;
         private StreamReader reader;
         private bool ssl;
-        private Thread worker;
         private StreamWriter writer;
 
 
@@ -163,19 +160,6 @@ namespace Supay.Irc.Network
         }
 
         /// <summary>
-        ///   Gets or sets the <see cref="ISynchronizeInvoke" /> implementor which
-        ///   will be used to synchronize threads and events.
-        /// </summary>
-        /// <remarks>
-        ///   This is usually the main form of the application.
-        /// </remarks>
-        public ISynchronizeInvoke SynchronizationObject
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
         ///   Gets or sets the encoding used by stream reader and writer.
         /// </summary>
         /// <remarks>
@@ -231,42 +215,65 @@ namespace Supay.Irc.Network
         ///   Creates a network connection to the current <see cref="ClientConnection.Address" />
         ///   and <see cref="ClientConnection.Port" />.
         /// </summary>
-        /// <remarks>
-        ///   Only use this overload if your application is not a Windows.Forms application, you've set
-        ///   the <see cref="SynchronizationObject" /> property, or you want to handle threading issues yourself.
-        /// </remarks>
-        public void Connect()
+        public async Task Connect()
         {
-            lock (this.syncLock)
+            if (this.Status != ConnectionStatus.Disconnected)
             {
-                if (this.Status != ConnectionStatus.Disconnected)
-                {
-                    throw new InvalidOperationException(Resources.AlreadyConnected);
-                }
-
-                this.Status = ConnectionStatus.Connecting;
-                this.OnConnecting(EventArgs.Empty);
+                throw new InvalidOperationException(Resources.AlreadyConnected);
             }
 
-            this.worker = new Thread(this.ReceiveData) {
-                IsBackground = true
-            };
-            this.worker.Start();
-        }
+            this.Status = ConnectionStatus.Connecting;
+            this.OnConnecting(EventArgs.Empty);
 
-        /// <summary>
-        ///   Creates a network connection to the current <see cref="ClientConnection.Address" />
-        ///   and <see cref="ClientConnection.Port" />.
-        /// </summary>
-        /// <remarks>
-        ///   <p>When using this class from an application, you need to pass in a control so that
-        ///     data-receiving thread can sync with your application.</p>
-        ///   <p>If calling this from a form or other control, just pass in the current instance.</p>
-        /// </remarks>
-        public void Connect(ISynchronizeInvoke syncObject)
-        {
-            this.SynchronizationObject = syncObject;
-            this.Connect();
+            try
+            {
+                // connect
+                this.client = new TcpClient();
+                await this.client.ConnectAsync(this.Address, this.Port);
+
+                // get stream
+                Stream dataStream = this.client.GetStream();
+                if (this.Ssl)
+                {
+                    dataStream = new SslStream(dataStream, false, ValidateServerCertificate);
+                    await ((SslStream) dataStream).AuthenticateAsClientAsync(this.Address);
+                }
+
+                this.reader = new StreamReader(dataStream, this.Encoding);
+                this.writer = new StreamWriter(dataStream, this.Encoding);
+
+                this.Status = ConnectionStatus.Connected;
+                this.OnConnected(EventArgs.Empty);
+
+                // listen for messages
+                string message;
+                while ((message = await this.reader.ReadLineAsync()) != null)
+                {
+                    this.OnDataReceived(new ConnectionDataEventArgs(message.Trim()));
+                }
+            }
+            catch (AuthenticationException ex)
+            {
+                this.Status = ConnectionStatus.Disconnected;
+                this.OnDisconnected(new ConnectionDataEventArgs(ex.Message));
+            }
+            catch (ObjectDisposedException)
+            {
+                this.Status = ConnectionStatus.Disconnected;
+                this.OnDisconnected(new ConnectionDataEventArgs("Disconnected"));
+            }
+            catch (Exception ex)
+            {
+                var verboseException = ex.ToString();
+                Trace.WriteLine(verboseException);
+
+                this.Status = ConnectionStatus.Disconnected;
+                this.OnDisconnected(new ConnectionDataEventArgs(verboseException));
+            }
+            finally
+            {
+                this.Disconnect();
+            }
         }
 
         /// <summary>
@@ -275,25 +282,14 @@ namespace Supay.Irc.Network
         public void Disconnect()
         {
             this.Status = ConnectionStatus.Disconnected;
-        }
-
-        /// <summary>
-        ///   Forces closing the current network connection and kills the thread running it.
-        /// </summary>
-        public void DisconnectForce()
-        {
-            this.Disconnect();
-            if (this.worker != null && this.worker.IsAlive)
-            {
-                this.worker.Abort();
-            }
+            this.Dispose();
         }
 
         /// <summary>
         ///   Sends the given string over the network.
         /// </summary>
         /// <param name="data">The <see cref="System.string" /> to send.</param>
-        public void Write(string data)
+        public async Task Write(string data)
         {
             if (string.IsNullOrEmpty(data))
             {
@@ -317,8 +313,8 @@ namespace Supay.Irc.Network
 
             try
             {
-                this.writer.WriteLine(data);
-                this.writer.Flush();
+                await this.writer.WriteAsync(data);
+                await this.writer.FlushAsync();
                 this.OnDataSent(new ConnectionDataEventArgs(data));
             }
             catch (Exception ex)
@@ -338,13 +334,6 @@ namespace Supay.Irc.Network
         /// </summary>
         protected void OnConnecting(EventArgs e)
         {
-            if (this.SynchronizationObject != null && this.SynchronizationObject.InvokeRequired)
-            {
-                Action del = () => this.OnConnecting(e);
-                this.SynchronizationObject.Invoke(del, null);
-                return;
-            }
-
             if (this.Connecting != null)
             {
                 this.Connecting(this, e);
@@ -356,13 +345,6 @@ namespace Supay.Irc.Network
         /// </summary>
         protected void OnConnected(EventArgs e)
         {
-            if (this.SynchronizationObject != null && this.SynchronizationObject.InvokeRequired)
-            {
-                Action del = () => this.OnConnected(e);
-                this.SynchronizationObject.Invoke(del, null);
-                return;
-            }
-
             if (this.Connected != null)
             {
                 this.Connected(this, e);
@@ -375,13 +357,6 @@ namespace Supay.Irc.Network
         /// <param name="e">A <see cref="ConnectionDataEventArgs" /> that contains the data.</param>
         protected void OnDataReceived(ConnectionDataEventArgs e)
         {
-            if (this.SynchronizationObject != null && this.SynchronizationObject.InvokeRequired)
-            {
-                Action del = () => this.OnDataReceived(e);
-                this.SynchronizationObject.Invoke(del, null);
-                return;
-            }
-
             if (this.DataReceived != null)
             {
                 this.DataReceived(this, e);
@@ -394,13 +369,6 @@ namespace Supay.Irc.Network
         /// <param name="e">A <see cref="ConnectionDataEventArgs" /> that contains the data.</param>
         protected void OnDataSent(ConnectionDataEventArgs e)
         {
-            if (this.SynchronizationObject != null && this.SynchronizationObject.InvokeRequired)
-            {
-                Action del = () => this.OnDataSent(e);
-                this.SynchronizationObject.Invoke(del, null);
-                return;
-            }
-
             if (this.DataSent != null)
             {
                 this.DataSent(this, e);
@@ -412,13 +380,6 @@ namespace Supay.Irc.Network
         /// </summary>
         protected void OnDisconnected(ConnectionDataEventArgs e)
         {
-            if (this.SynchronizationObject != null && this.SynchronizationObject.InvokeRequired)
-            {
-                Action del = () => this.OnDisconnected(e);
-                this.SynchronizationObject.Invoke(del, null);
-                return;
-            }
-
             if (this.Disconnected != null)
             {
                 this.Disconnected(this, e);
@@ -436,83 +397,26 @@ namespace Supay.Irc.Network
             return sslPolicyErrors == SslPolicyErrors.None;
         }
 
-        /// <summary>
-        ///   This method listens for data over the network until the Connection.State is Disconnected.
-        /// </summary>
-        /// <remarks>
-        ///   ReceiveData runs in its own thread.
-        /// </remarks>
-        private void ReceiveData()
-        {
-            try
-            {
-                this.client = new TcpClient(this.Address, this.Port);
-                Stream dataStream;
-                if (this.Ssl)
-                {
-                    dataStream = new SslStream(this.client.GetStream(), false, ValidateServerCertificate, null);
-                    ((SslStream) dataStream).AuthenticateAsClient(this.Address);
-                }
-                else
-                {
-                    dataStream = this.client.GetStream();
-                }
+        #endregion
 
-                this.reader = new StreamReader(dataStream, this.Encoding);
-                this.writer = new StreamWriter(dataStream, this.Encoding) {
-                    AutoFlush = true
-                };
-            }
-            catch (AuthenticationException e)
+
+        /// <summary>
+        /// Releases the unmanaged resources used by the <see cref="ClientConnection"/> and optionally releases the managed resources.
+        /// </summary>
+        /// <param name="disposing">Set to true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
             {
                 if (this.client != null)
                 {
                     this.client.Close();
                 }
-                this.Status = ConnectionStatus.Disconnected;
-                this.OnDisconnected(new ConnectionDataEventArgs(e.Message));
-                return;
-            }
-            catch (Exception ex)
-            {
-                this.Status = ConnectionStatus.Disconnected;
-                this.OnDisconnected(new ConnectionDataEventArgs(ex.Message));
-                return;
             }
 
-            this.Status = ConnectionStatus.Connected;
-            this.OnConnected(EventArgs.Empty);
-
-            string disconnectReason = string.Empty;
-
-            try
-            {
-                string incomingMessageLine;
-                while (this.Status == ConnectionStatus.Connected && ((incomingMessageLine = this.reader.ReadLine()) != null))
-                {
-                    this.OnDataReceived(new ConnectionDataEventArgs(incomingMessageLine.Trim()));
-                }
-            }
-            catch (ThreadAbortException ex)
-            {
-                Trace.WriteLine(ex.Message);
-                Thread.ResetAbort();
-                disconnectReason = "Thread Aborted";
-            }
-            catch (Exception ex)
-            {
-                Trace.WriteLine(ex.ToString());
-                disconnectReason = ex.Message + Environment.NewLine + ex.StackTrace;
-            }
-            this.Status = ConnectionStatus.Disconnected;
-
-            this.client.Close();
             this.client = null;
 
-            var disconnectArgs = new ConnectionDataEventArgs(disconnectReason);
-            this.OnDisconnected(disconnectArgs);
+            base.Dispose(disposing);
         }
-
-        #endregion
     }
 }

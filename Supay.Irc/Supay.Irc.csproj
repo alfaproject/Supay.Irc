@@ -59,7 +59,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <NoWarn>
     </NoWarn>
-    <LangVersion>3</LangVersion>
+    <LangVersion>default</LangVersion>
     <BaseAddress>8652822</BaseAddress>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
