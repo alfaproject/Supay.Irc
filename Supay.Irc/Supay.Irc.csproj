@@ -169,9 +169,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Model\ClientCollection.cs" />
-    <Compile Include="Network\ClientConnection.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="Network\ClientConnection.cs" />
     <Compile Include="Network\ConnectionDataEventArgs.cs" />
     <Compile Include="Network\ConnectionStatus.cs" />
     <Compile Include="Messages\Ctcp\Dcc\DccAcceptRequestMessage.cs" />
@@ -188,8 +186,7 @@
     <Compile Include="Network\Ident.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Messages\MessageConduit.cs">
-    </Compile>
+    <Compile Include="Messages\MessageConduit.cs" />
     <Compile Include="Messages\IrcMessageFactory.cs" />
     <Compile Include="Messages\Command\Channel\ChannelModeMessage.cs" />
     <Compile Include="Messages\Command\Channel\InviteMessage.cs" />

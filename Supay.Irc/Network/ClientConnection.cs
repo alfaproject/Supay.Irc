@@ -1,5 +1,4 @@
 using System;
-using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Net.Security;
@@ -18,7 +17,7 @@ namespace Supay.Irc.Network
     /// The <see cref="ClientConnection"/> class provides simple methods for connecting, sending, and receiving
     /// messages over an IRC network.
     /// </remarks>
-    public class ClientConnection : Component
+    public class ClientConnection
     {
         private TcpClient client;
         private StreamReader reader;
@@ -186,7 +185,7 @@ namespace Supay.Irc.Network
         /// </summary>
         /// <returns>The <see cref="Task"/> object representing the asynchronous operation.</returns>
         /// <exception cref="InvalidOperationException"><see cref="Status"/> isn't <see cref="ConnectionStatus.Disconnected"/>.</exception>
-        public async Task Connect()
+        public virtual async Task Connect()
         {
             if (this.Status != ConnectionStatus.Disconnected)
             {
@@ -250,10 +249,14 @@ namespace Supay.Irc.Network
         /// <summary>
         /// Closes the current network connection.
         /// </summary>
-        public void Disconnect()
+        public virtual void Disconnect()
         {
             this.Status = ConnectionStatus.Disconnected;
-            this.Dispose();
+
+            if (this.client != null)
+            {
+                this.client.Close();
+            }
         }
 
         /// <summary>
@@ -262,7 +265,7 @@ namespace Supay.Irc.Network
         /// <param name="message">The <see cref="string"/> to send.</param>
         /// <returns>The <see cref="Task"/> object representing the asynchronous operation.</returns>
         /// <exception cref="InvalidOperationException">The connection can't be written to yet.</exception>
-        public async Task Write(string message)
+        public virtual async Task Write(string message)
         {
             if (string.IsNullOrEmpty(message))
             {
@@ -361,25 +364,6 @@ namespace Supay.Irc.Network
             {
                 handler(this, e);
             }
-        }
-
-        /// <summary>
-        /// Releases the unmanaged resources used by the <see cref="ClientConnection"/> and optionally releases the managed resources.
-        /// </summary>
-        /// <param name="disposing">Set to true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                if (this.client != null)
-                {
-                    this.client.Close();
-                }
-            }
-
-            this.client = null;
-
-            base.Dispose(disposing);
         }
     }
 }
