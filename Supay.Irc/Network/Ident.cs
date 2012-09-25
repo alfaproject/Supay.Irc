@@ -1,7 +1,5 @@
 using System;
-using System.ComponentModel;
 using System.Diagnostics;
-using System.Globalization;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
@@ -10,11 +8,9 @@ using System.Threading;
 namespace Supay.Irc.Network
 {
     /// <summary>
-    ///   An Ident daemon which is still used by some
-    ///   IRC networks for authentication.
+    /// An Ident daemon which is still used by some IRC networks for authentication.
     /// </summary>
-    [DesignerCategory("Code")]
-    public sealed class Ident : Component
+    public sealed class Ident
     {
         private const string REPLY = " : USERID : UNIX : ";
         private const int PORT = 113;
@@ -27,13 +23,13 @@ namespace Supay.Irc.Network
 
         private Ident()
         {
-            this.User = new User();
             this.Status = ConnectionStatus.Disconnected;
+            this.User = new User();
             this._stopAfter = true;
         }
 
         /// <summary>
-        ///   The singleton Ident service.
+        /// The singleton Ident service.
         /// </summary>
         public static Ident Service
         {
@@ -44,7 +40,7 @@ namespace Supay.Irc.Network
         }
 
         /// <summary>
-        ///   Gets or sets the <see cref="Supay.Irc.User" /> to respond to an ident request with.
+        /// Gets or sets the <see cref="Irc.User"/> to respond to an ident request with.
         /// </summary>
         public User User
         {
@@ -53,7 +49,7 @@ namespace Supay.Irc.Network
         }
 
         /// <summary>
-        ///   Gets the status of the Ident service.
+        /// Gets the status of the Ident service.
         /// </summary>
         public ConnectionStatus Status
         {
@@ -64,7 +60,7 @@ namespace Supay.Irc.Network
         /// <summary>
         /// Starts the Ident server.
         /// </summary>
-        /// <param name="stopAfterFirstAnswer">If true, Ident will stop immediately after answering. If false, will continue until <see cref="Ident.Stop" /> is called.</param>
+        /// <param name="stopAfterFirstAnswer">If true, Ident will stop immediately after answering. If false, will continue until <see cref="Stop"/> is called.</param>
         public void Start(bool stopAfterFirstAnswer)
         {
             lock (this._syncLock)
@@ -93,7 +89,7 @@ namespace Supay.Irc.Network
         }
 
         /// <summary>
-        ///   Stops the Ident server.
+        /// Stops the Ident server.
         /// </summary>
         public void Stop()
         {
@@ -118,7 +114,7 @@ namespace Supay.Irc.Network
             }
             catch (Exception ex)
             {
-                Trace.WriteLine("Error Opening Ident Listener On Port " + PORT.ToString(CultureInfo.InvariantCulture) + ", " + ex, "Ident");
+                Trace.WriteLine("Error Opening Ident Listener On Port " + PORT + ", " + ex, "Ident");
                 this.Status = ConnectionStatus.Disconnected;
                 throw;
             }

@@ -183,9 +183,7 @@
     </Compile>
     <Compile Include="Messages\Ctcp\Dcc\DccTransfer.cs" />
     <Compile Include="Messages\Ctcp\Dcc\DccUtil.cs" />
-    <Compile Include="Network\Ident.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="Network\Ident.cs" />
     <Compile Include="Messages\MessageConduit.cs" />
     <Compile Include="Messages\IrcMessageFactory.cs" />
     <Compile Include="Messages\Command\Channel\ChannelModeMessage.cs" />
