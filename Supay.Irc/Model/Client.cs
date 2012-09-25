@@ -55,7 +55,7 @@ namespace Supay.Irc
             : this()
         {
             this.ServerName = address;
-            this.Connection.Address = address;
+            this.Connection.Host = address;
         }
 
         /// <summary>
