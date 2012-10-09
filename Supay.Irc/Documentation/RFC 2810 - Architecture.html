@@ -54,93 +54,12 @@
 
             @media screen {
                 .grey, .grey a:link, .grey a:visited { color: #777; }
-
                 .docinfo { background-color: #EEE; }
-
                 .top { border-top: 7px solid #EEE; }
-
-                .bgwhite { background-color: white; }
-
-                .bgred { background-color: #F44; }
-
-                .bggrey { background-color: #666; }
-
-                .bgbrown { background-color: #840; }
-
-                .bgorange { background-color: #FA0; }
-
-                .bgyellow { background-color: #EE0; }
-
-                .bgmagenta { background-color: #F4F; }
-
-                .bgblue { background-color: #66F; }
-
-                .bgcyan { background-color: #4DD; }
-
-                .bggreen { background-color: #4F4; }
-
-                .legend { font-size: 90%; }
-
-                .cplate {
-                    font-size: 70%;
-                    border: solid grey 1px;
-                }
             }
         </style>
-        <!--[if IE]>
-            <style>
-                body {
-                    font-size: 13px;
-                    margin: 10px 10px;
-                }
-            </style>
-        <![endif]-->
-
-        <script type="text/javascript"> <!--
-            function addHeaderTags() {
-                var spans = document.getElementsByTagName("span");
-                for (var i = 0; i < spans.length; i++) {
-                    var elem = spans[i];
-                    if (elem) {
-                        var level = elem.getAttribute("class");
-                        if (level == "h1" || level == "h2" || level == "h3" || level == "h4" || level == "h5" || level == "h6") {
-                            elem.innerHTML = "<" + level + ">" + elem.innerHTML + "</" + level + ">";
-                        }
-                    }
-                }
-            }
-
-            var legend_html = "Colour legend:<br />      <table>         <tr><td>Unknown:</td>          <td><span class='cplate bgwhite'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Draft:</td>            <td><span class='cplate bgred'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Informational:</td>    <td><span class='cplate bgorange'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Experimental:</td>     <td><span class='cplate bgyellow'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Best Common Practice:</td><td><span class='cplate bgmagenta'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Proposed Standard:</td><td><span class='cplate bgblue'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Draft Standard:</td>   <td><span class='cplate bgcyan'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Standard:</td>         <td><span class='cplate bggreen'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Historic:</td>         <td><span class='cplate bggrey'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Obsolete:</td>         <td><span class='cplate bgbrown'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>     </table>";
-
-            function showElem(id) {
-                var elem = document.getElementById(id);
-                elem.innerHTML = eval(id + "_html");
-                elem.style.visibility = 'visible';
-            }
-
-            function hideElem(id) {
-                var elem = document.getElementById(id);
-                elem.style.visibility = 'hidden';
-                elem.innerHTML = "";
-            }
-        // -->
-    </script>
     </head>
-    <body onload=" addHeaderTags() ">
-        <div style="height: 13px;">
-            <div onmouseover=" this.style.cursor = 'pointer'; "
-                 onclick=" showElem('legend'); "
-                 onmouseout=" hideElem('legend') "
-                 style="height: 6px; position: absolute;"
-                 class="pre noprint docinfo bgorange"
-                 title="Click for colour legend." >                                                                        </div>
-            <div id="legend"
-                 class="docinfo noprint pre legend"
-                 style="position: absolute; top: 4px; left: 4ex; visibility: hidden; background-color: white; padding: 4px 9px 5px 7px; border: solid #345 1px;"
-                 onmouseover=" showElem('legend'); "
-                 onmouseout=" hideElem('legend'); ">
-            </div>
-        </div>
+    <body>
         <span class="pre noprint docinfo top">[<a href="http://tools.ietf.org/html/" title="Document search and retrieval page">Docs</a>] [<a href="http://tools.ietf.org/rfc/rfc2810.txt" title="Plaintext version of this document">txt</a>|<a href="http://tools.ietf.org/pdf/rfc2810" title="PDF version of this document">pdf</a>] [<a href="http://tools.ietf.org/rfcdiff?difftype=--hwdiff&amp;url2=rfc2810" title="Inline diff (wdiff)">Diff1</a>] [<a href="http://tools.ietf.org/rfcdiff?url2=rfc2810" title="Side-by-side diff">Diff2</a>] [<a href="http://www.rfc-editor.org/errata_search.php?rfc=2810">Errata</a>]         </span><br />
         <span class="pre noprint docinfo">                                                                        </span><br />
         <span class="pre noprint docinfo">                                                           INFORMATIONAL</span><br />
@@ -152,7 +71,7 @@ Updates: <a href="RFC 1459 - Protocol.html">1459</a>
 Category: Informational
 
 
-                   <span class="h1">Internet Relay Chat: Architecture</span>
+                   <h1>Internet Relay Chat: Architecture</h1>
 
 Status of this Memo
 
@@ -219,7 +138,7 @@ Table of Contents
    <a href="#section-11">11</a>.  Author's Address ..........................................   <a href="#page-9">9</a>
    <a href="#section-12">12</a>.  Full Copyright Statement ..................................  <a href="#page-10">10</a>
 
-<span class="h2"><a id="section-1">1</a>. Introduction</span>
+<h2><a id="section-1">1</a>. Introduction</h2>
 
    The IRC (Internet Relay Chat) protocol has been designed over a
    number of years for use with text based conferencing.  This document
@@ -239,12 +158,12 @@ Table of Contents
    keep growing at an incredible pace, we must thank hardware
    manufacturers for giving us ever more powerful systems.
 
-<span class="h2"><a id="section-2">2</a>. Components</span>
+<h2><a id="section-2">2</a>. Components</h2>
 
    The following paragraphs define the basic components of the IRC
    protocol.
 
-<span class="h3"><a id="section-2.1">2.1</a> Servers</span>
+<h3><a id="section-2.1">2.1</a> Servers</h3>
 
    The server forms the backbone of IRC as it is the only component
    of the protocol which is able to link all the other components
@@ -262,19 +181,19 @@ Table of Contents
    [<a href="#ref-IRC-SERVER" title='"Internet Relay Chat: Server Protocol"'>IRC-SERVER</a>].  The server is also responsible for providing the basic
    services defined by the IRC protocol.
 
-<span class="h3"><a id="section-2.2">2.2</a> Clients</span>
+<h3><a id="section-2.2">2.2</a> Clients</h3>
 
    A client is anything connecting to a server that is not another
    server.  There are two types of clients which both serve a different
    purpose.
 
-<span class="h4"><a id="section-2.2.1">2.2.1</a> User Clients</span>
+<h4><a id="section-2.2.1">2.2.1</a> User Clients</h4>
 
    User clients are generally programs providing a text based
    interface that is used to communicate interactively via IRC.  This
    particular type of clients is often referred as "users".
 
-<span class="h4"><a id="section-2.2.2">2.2.2</a> Service Clients</span>
+<h4><a id="section-2.2.2">2.2.2</a> Service Clients</h4>
 
    Unlike users, service clients are not intended to be used manually
    nor for talking.  They have a more limited access to the chat
@@ -286,7 +205,7 @@ Table of Contents
    is a service collecting statistics about the origin of users
    connected on the IRC network.
 
-<span class="h2"><a id="section-3">3</a>. Architecture</span>
+<h2><a id="section-3">3</a>. Architecture</h2>
 
    An IRC network is defined by a group of servers connected to each
    other.  A single server forms the simplest IRC network.
@@ -318,12 +237,12 @@ Table of Contents
    communicate.  All communication between clients is relayed by the
    server(s).
 
-<span class="h2"><a id="section-4">4</a>. IRC Protocol Services</span>
+<h2><a id="section-4">4</a>. IRC Protocol Services</h2>
 
    This section describes the services offered by the IRC protocol.  The
    combination of these services allow real-time conferencing.
 
-<span class="h3"><a id="section-4.1">4.1</a> Client Locator</span>
+<h3><a id="section-4.1">4.1</a> Client Locator</h3>
 
    To be able to exchange messages, two clients must be able to locate
    each other.
@@ -333,13 +252,13 @@ Table of Contents
    located.  Servers are responsible for keeping track of all the labels
    being used.
 
-<span class="h3"><a id="section-4.2">4.2</a> Message Relaying</span>
+<h3><a id="section-4.2">4.2</a> Message Relaying</h3>
 
    The IRC protocol provides no mean for two clients to directly
    communicate.  All communication between clients is relayed by the
    server(s).
 
-<span class="h3"><a id="section-4.3">4.3</a> Channel Hosting And Management</span>
+<h3><a id="section-4.3">4.3</a> Channel Hosting And Management</h3>
 
    A channel is a named group of one or more users which will all
    receive messages addressed to that channel.  A channel is
@@ -352,7 +271,7 @@ Table of Contents
    of the channel members.  The exact role of servers is defined in
    "Internet Relay Chat: Channel Management" [<a href="#ref-IRC-CHAN" title='"Internet Relay Chat: Channel Management"'>IRC-CHAN</a>].
 
-<span class="h2"><a id="section-5">5</a>. IRC Concepts</span>
+<h2><a id="section-5">5</a>. IRC Concepts</h2>
 
    This section is devoted to describing the actual concepts behind the
    organization of the IRC protocol and how different classes of
@@ -370,7 +289,7 @@ Table of Contents
 <span class="grey"><a href="#">RFC 2810</a>           Internet Relay Chat: Architecture          April 2000</span>
 
 
-<span class="h3"><a id="section-5.1">5.1</a> One-To-One Communication</span>
+<h3><a id="section-5.1">5.1</a> One-To-One Communication</h3>
 
    Communication on a one-to-one basis is usually performed by clients,
    since most server-server traffic is not a result of servers talking
@@ -392,13 +311,13 @@ Table of Contents
    Example 3: A message between clients 2 and 4 is seen by servers A, B,
        C &amp; D and client 4 only.
 
-<span class="h3"><a id="section-5.2">5.2</a> One-To-Many</span>
+<h3><a id="section-5.2">5.2</a> One-To-Many</h3>
 
    The main goal of IRC is to provide a forum which allows easy and
    efficient conferencing (one to many conversations).  IRC offers
    several means to achieve this, each serving its own purpose.
 
-<span class="h4"><a id="section-5.2.1">5.2.1</a> To A Channel</span>
+<h4><a id="section-5.2.1">5.2.1</a> To A Channel</h4>
 
    In IRC the channel has a role equivalent to that of the multicast
    group; their existence is dynamic and the actual conversation carried
@@ -432,7 +351,7 @@ Table of Contents
        single client.  If client 1 sends a message, it goes back to
        client 2 and then via server B to client 3.
 
-<span class="h4"><a id="section-5.2.2">5.2.2</a> To A Host/Server Mask</span>
+<h4><a id="section-5.2.2">5.2.2</a> To A Host/Server Mask</h4>
 
    To provide with some mechanism to send messages to a large body of
    related users, host and server mask messages are available.  These
@@ -440,7 +359,7 @@ Table of Contents
    that of the mask.  The messages are only sent to locations where
    users are, in a fashion similar to that of channels.
 
-<span class="h4"><a id="section-5.2.3">5.2.3</a> To A List</span>
+<h4><a id="section-5.2.3">5.2.3</a> To A List</h4>
 
    The least efficient style of one-to-many conversation is through
    clients talking to a 'list' of targets (client, channel, mask).  How
@@ -453,7 +372,7 @@ Table of Contents
    list MAY be broken up and the dispatch sent without checking to make
    sure duplicates aren't sent down each path.
 
-<span class="h3"><a id="section-5.3">5.3</a> One-To-All</span>
+<h3><a id="section-5.3">5.3</a> One-To-All</h3>
 
    The one-to-all type of message is better described as a broadcast
    message, sent to all clients or servers or both.  On a large network
@@ -465,7 +384,7 @@ Table of Contents
    all servers so that the state information held by each server is
    consistent between servers.
 
-<span class="h4"><a id="section-5.3.1">5.3.1</a> Client-to-Client</span>
+<h4><a id="section-5.3.1">5.3.1</a> Client-to-Client</h4>
 
    There is no class of message which, from a single message, results in
    a message being sent to every other client.
@@ -482,14 +401,14 @@ Table of Contents
 <span class="grey"><a href="#">RFC 2810</a>           Internet Relay Chat: Architecture          April 2000</span>
 
 
-<span class="h4"><a id="section-5.3.2">5.3.2</a> Client-to-Server</span>
+<h4><a id="section-5.3.2">5.3.2</a> Client-to-Server</h4>
 
    Most of the commands which result in a change of state information
    (such as channel membership, channel mode, user status, etc.) MUST be
    sent to all servers by default, and this distribution SHALL NOT be
    changed by the client.
 
-<span class="h4"><a id="section-5.3.3">5.3.3</a> Server-to-Server</span>
+<h4><a id="section-5.3.3">5.3.3</a> Server-to-Server</h4>
 
    While most messages between servers are distributed to all 'other'
    servers, this is only required for any message that affects a user,
@@ -497,13 +416,13 @@ Table of Contents
    nearly all messages originating from a server are broadcast to all
    other connected servers.
 
-<span class="h2"><a id="section-6">6</a>. Current Problems</span>
+<h2><a id="section-6">6</a>. Current Problems</h2>
 
    There are a number of recognized problems with this protocol, this
    section only addresses the problems related to the architecture of
    the protocol.
 
-<span class="h3"><a id="section-6.1">6.1</a> Scalability</span>
+<h3><a id="section-6.1">6.1</a> Scalability</h3>
 
    It is widely recognized that this protocol does not scale
    sufficiently well when used in a large arena.  The main problem comes
@@ -511,7 +430,7 @@ Table of Contents
    clients and channels and that information regarding them be updated
    as soon as it changes.
 
-<span class="h3"><a id="section-6.2">6.2</a> Reliability</span>
+<h3><a id="section-6.2">6.2</a> Reliability</h3>
 
    As the only network configuration allowed for IRC servers is that of
    a spanning tree, each link between two servers is an obvious and
@@ -519,7 +438,7 @@ Table of Contents
    more in detail in "Internet Relay Chat: Server Protocol" [IRC-
    SERVER].
 
-<span class="h3"><a id="section-6.3">6.3</a> Network Congestion</span>
+<h3><a id="section-6.3">6.3</a> Network Congestion</h3>
 
    Another problem related to the scalability and reliability issues, as
    well as the spanning tree architecture, is that the protocol and
@@ -542,7 +461,7 @@ Table of Contents
    strongly RECOMMENDED that servers do not automatically try to
    reconnect too fast, in order to avoid aggravating the situation.
 
-<span class="h3"><a id="section-6.4">6.4</a> Privacy</span>
+<h3><a id="section-6.4">6.4</a> Privacy</h3>
 
    Besides not scaling well, the fact that servers need to know all
    information about other entities, the issue of privacy is also a
@@ -550,12 +469,12 @@ Table of Contents
    information is quite a lot more revealing than whether a user is
    online or not.
 
-<span class="h2"><a id="section-7">7</a>. Security Considerations</span>
+<h2><a id="section-7">7</a>. Security Considerations</h2>
 
    Asides from the privacy concerns mentioned in <a href="#section-6.4">section 6.4</a> (Privacy),
    security is believed to be irrelevant to this document.
 
-<span class="h2"><a id="section-8">8</a>. Current Support And Availability</span>
+<h2><a id="section-8">8</a>. Current Support And Availability</h2>
 
         Mailing lists for IRC related discussion:
           General discussion: ircd-users@irc.org
@@ -568,7 +487,7 @@ Table of Contents
 
         Newsgroup: alt.irc
 
-<span class="h2"><a id="section-9">9</a>. Acknowledgements</span>
+<h2><a id="section-9">9</a>. Acknowledgements</h2>
 
    Parts of this document were copied from the <a href="RFC 1459 - Protocol.html">RFC 1459</a> [<a href="#ref-IRC" title='"Internet Relay Chat Protocol"'>IRC</a>] which
    first formally documented the IRC Protocol.  It has also benefited
@@ -594,7 +513,7 @@ Table of Contents
 <span class="grey"><a href="#">RFC 2810</a>           Internet Relay Chat: Architecture          April 2000</span>
 
 
-<span class="h2"><a id="section-10">10</a>. References</span>
+<h2><a id="section-10">10</a>. References</h2>
 
    [<a id="ref-KEYWORDS">KEYWORDS</a>]   Bradner, S., "Key words for use in RFCs to Indicate
                 Requirement Levels", <a href="http://tools.ietf.org/html/bcp14">BCP 14</a>, <a href="http://tools.ietf.org/html/rfc2119">RFC 2119</a>, March 1997.
@@ -611,7 +530,7 @@ Table of Contents
    [<a id="ref-IRC-CHAN">IRC-CHAN</a>]   Kalt, C., "Internet Relay Chat: Channel Management", <a href="RFC 2811 - Channel Management.html">RFC</a>
                 <a href="RFC 2811 - Channel Management.html">2811</a>, April 2000.
 
-<span class="h2"><a id="section-11">11</a>. Author's Address</span>
+<h2><a id="section-11">11</a>. Author's Address</h2>
 
    Christophe Kalt
    99 Teaneck Rd, Apt #117
@@ -650,7 +569,7 @@ Table of Contents
 <span class="grey"><a href="#">RFC 2810</a>           Internet Relay Chat: Architecture          April 2000</span>
 
 
-<span class="h2"><a id="section-12">12</a>.  Full Copyright Statement</span>
+<h2><a id="section-12">12</a>.  Full Copyright Statement</h2>
 
    Copyright (C) The Internet Society (2000).  All Rights Reserved.
 

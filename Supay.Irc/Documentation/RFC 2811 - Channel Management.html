@@ -54,93 +54,12 @@
 
             @media screen {
                 .grey, .grey a:link, .grey a:visited { color: #777; }
-
                 .docinfo { background-color: #EEE; }
-
                 .top { border-top: 7px solid #EEE; }
-
-                .bgwhite { background-color: white; }
-
-                .bgred { background-color: #F44; }
-
-                .bggrey { background-color: #666; }
-
-                .bgbrown { background-color: #840; }
-
-                .bgorange { background-color: #FA0; }
-
-                .bgyellow { background-color: #EE0; }
-
-                .bgmagenta { background-color: #F4F; }
-
-                .bgblue { background-color: #66F; }
-
-                .bgcyan { background-color: #4DD; }
-
-                .bggreen { background-color: #4F4; }
-
-                .legend { font-size: 90%; }
-
-                .cplate {
-                    font-size: 70%;
-                    border: solid grey 1px;
-                }
             }
         </style>
-        <!--[if IE]>
-            <style>
-                body {
-                    font-size: 13px;
-                    margin: 10px 10px;
-                }
-            </style>
-        <![endif]-->
-
-        <script type="text/javascript"> <!--
-            function addHeaderTags() {
-                var spans = document.getElementsByTagName("span");
-                for (var i = 0; i < spans.length; i++) {
-                    var elem = spans[i];
-                    if (elem) {
-                        var level = elem.getAttribute("class");
-                        if (level == "h1" || level == "h2" || level == "h3" || level == "h4" || level == "h5" || level == "h6") {
-                            elem.innerHTML = "<" + level + ">" + elem.innerHTML + "</" + level + ">";
-                        }
-                    }
-                }
-            }
-
-            var legend_html = "Colour legend:<br />      <table>         <tr><td>Unknown:</td>          <td><span class='cplate bgwhite'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Draft:</td>            <td><span class='cplate bgred'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Informational:</td>    <td><span class='cplate bgorange'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Experimental:</td>     <td><span class='cplate bgyellow'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Best Common Practice:</td><td><span class='cplate bgmagenta'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Proposed Standard:</td><td><span class='cplate bgblue'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Draft Standard:</td>   <td><span class='cplate bgcyan'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Standard:</td>         <td><span class='cplate bggreen'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Historic:</td>         <td><span class='cplate bggrey'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Obsolete:</td>         <td><span class='cplate bgbrown'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>     </table>";
-
-            function showElem(id) {
-                var elem = document.getElementById(id);
-                elem.innerHTML = eval(id + "_html");
-                elem.style.visibility = 'visible';
-            }
-
-            function hideElem(id) {
-                var elem = document.getElementById(id);
-                elem.style.visibility = 'hidden';
-                elem.innerHTML = "";
-            }
-        // -->
-    </script>
     </head>
-    <body onload=" addHeaderTags() ">
-        <div style="height: 13px;">
-            <div onmouseover=" this.style.cursor = 'pointer'; "
-                 onclick=" showElem('legend'); "
-                 onmouseout=" hideElem('legend') "
-                 style="height: 6px; position: absolute;"
-                 class="pre noprint docinfo bgorange"
-                 title="Click for colour legend." >                                                                        </div>
-            <div id="legend"
-                 class="docinfo noprint pre legend"
-                 style="position: absolute; top: 4px; left: 4ex; visibility: hidden; background-color: white; padding: 4px 9px 5px 7px; border: solid #345 1px;"
-                 onmouseover=" showElem('legend'); "
-                 onmouseout=" hideElem('legend'); ">
-            </div>
-        </div>
+    <body>
         <span class="pre noprint docinfo top">[<a href="http://tools.ietf.org/html/" title="Document search and retrieval page">Docs</a>] [<a href="http://tools.ietf.org/rfc/rfc2811.txt" title="Plaintext version of this document">txt</a>|<a href="http://tools.ietf.org/pdf/rfc2811" title="PDF version of this document">pdf</a>] [<a href="http://tools.ietf.org/html/draft-kalt-irc-chan" title="draft-kalt-irc-chan">draft-kalt-irc-chan</a>] [<a href="http://tools.ietf.org/rfcdiff?difftype=--hwdiff&amp;url2=rfc2811" title="Inline diff (wdiff)">Diff1</a>] [<a href="http://tools.ietf.org/rfcdiff?url2=rfc2811" title="Side-by-side diff">Diff2</a>]                  </span><br />
         <span class="pre noprint docinfo">                                                                        </span><br />
         <span class="pre noprint docinfo">                                                           INFORMATIONAL</span><br />
@@ -152,7 +71,7 @@ Updates: <a href="RFC 1459 - Protocol.html">1459</a>
 Category: Informational
 
 
-                <span class="h1">Internet Relay Chat: Channel Management</span>
+                <h1>Internet Relay Chat: Channel Management</h1>
 
 Status of this Memo
 
@@ -243,7 +162,7 @@ Table of Contents
    <a href="#section-11">11</a>. Author's Address ..........................................   <a href="#page-18">18</a>
    <a href="#section-12">12</a>. Full Copyright Statement ...................................  <a href="#page-19">19</a>
 
-<span class="h2"><a id="section-1">1</a>. Introduction</span>
+<h2><a id="section-1">1</a>. Introduction</h2>
 
    This document defines in detail on how channels are managed by the
    IRC servers and will be mostly useful to people working on
@@ -274,13 +193,13 @@ Table of Contents
    following sections of interest, in particular sections <a href="#section-2">2</a> (Channel
    Characteristics) and 4 (Channel Modes).
 
-<span class="h2"><a id="section-2">2</a>. Channel Characteristics</span>
+<h2><a id="section-2">2</a>. Channel Characteristics</h2>
 
    A channel is a named group of one or more users which will all
    receive messages addressed to that channel.  A channel is
    characterized by its name, properties and current members.
 
-<span class="h3"><a id="section-2.1">2.1</a> Namespace</span>
+<h3><a id="section-2.1">2.1</a> Namespace</h3>
 
    Channels names are strings (beginning with a '&amp;', '#', '+' or '!'
    character) of length up to fifty (50) characters.  Channel names are
@@ -299,7 +218,7 @@ Table of Contents
    protocol limitations regarding namespaces (in general).  See <a href="#section-6.1">section</a>
    <a href="#section-6.1">6.1</a> (Labels) for more details on these limitations.
 
-<span class="h3"><a id="section-2.2">2.2</a> Channel Scope</span>
+<h3><a id="section-2.2">2.2</a> Channel Scope</h3>
 
    A channel entity is known by one or more servers on the IRC network.
    A user can only become member of a channel known by the server to
@@ -336,7 +255,7 @@ Table of Contents
       channel to be known by all these servers.  Channel masks are best
       used in conjunction with server hostmasking [<a href="#ref-IRC-SERVER" title='"Internet Relay Chat: Server Protocol"'>IRC-SERVER</a>].
 
-<span class="h3"><a id="section-2.3">2.3</a> Channel Properties</span>
+<h3><a id="section-2.3">2.3</a> Channel Properties</h3>
 
    Each channel has its own properties, which are defined by channel
    modes.  Channel modes can be manipulated by the channel members.  The
@@ -346,7 +265,7 @@ Table of Contents
    that all the modes are unset, with the exception of the 't' channel
    flag which is set.
 
-<span class="h3"><a id="section-2.4">2.4</a> Privileged Channel Members</span>
+<h3><a id="section-2.4">2.4</a> Privileged Channel Members</h3>
 
    In order for the channel members to keep some control over a channel,
    and some kind of sanity, some channel members are privileged.  Only
@@ -370,7 +289,7 @@ Table of Contents
 <span class="grey"><a href="#">RFC 2811</a>        Internet Relay Chat: Channel Management       April 2000</span>
 
 
-<span class="h4"><a id="section-2.4.1">2.4.1</a> Channel Operators</span>
+<h4><a id="section-2.4.1">2.4.1</a> Channel Operators</h4>
 
    The channel operators (also referred to as a "chop" or "chanop") on a
    given channel are considered to 'own' that channel.  Ownership of a
@@ -384,7 +303,7 @@ Table of Contents
    support channel modes, no member can therefore have the status of
    channel operator.
 
-<span class="h4"><a id="section-2.4.2">2.4.2</a> Channel Creator</span>
+<h4><a id="section-2.4.2">2.4.2</a> Channel Creator</h4>
 
    A user who creates a channel with the character '!' as prefix is
    identified as the "channel creator".  Upon creation of the channel,
@@ -398,13 +317,13 @@ Table of Contents
    issuing the proper MODE command.  See the "IRC Client Protocol"
    [<a href="#ref-IRC-CLIENT" title='"Internet Relay Chat: Client Protocol"'>IRC-CLIENT</a>] for more information on this topic.
 
-<span class="h2"><a id="section-3">3</a>. Channel lifetime</span>
+<h2><a id="section-3">3</a>. Channel lifetime</h2>
 
    In regard to the lifetime of a channel, there are typically two
    groups of channels: standard channels which prefix is either '&amp;', '#'
    or '+', and "safe channels" which prefix is '!'.
 
-<span class="h3"><a id="section-3.1">3.1</a> Standard channels</span>
+<h3><a id="section-3.1">3.1</a> Standard channels</h3>
 
    These channels are created implicitly when the first user joins it,
    and cease to exist when the last user leaves it.  While the channel
@@ -442,7 +361,7 @@ Table of Contents
    the character '+'.  This mechanism is commonly known as "Channel
    Delay".
 
-<span class="h3"><a id="section-3.2">3.2</a> Safe Channels</span>
+<h3><a id="section-3.2">3.2</a> Safe Channels</h3>
 
    Unlike other channels, "safe channels" are not implicitly created.  A
    user wishing to create such a channel MUST request the creation by
@@ -486,7 +405,7 @@ Table of Contents
    created by the server MUST follow specific rules.  For more details
    on this, see <a href="#section-5.2.1">section 5.2.1</a> (Channel Identifier).
 
-<span class="h2"><a id="section-4">4</a>. Channel Modes</span>
+<h2><a id="section-4">4</a>. Channel Modes</h2>
 
    The various modes available for channels are as follows:
 
@@ -517,12 +436,12 @@ Table of Contents
    by "channel operators" by using the MODE command defined in "IRC
    Client Protocol" [<a href="#ref-IRC-CLIENT" title='"Internet Relay Chat: Client Protocol"'>IRC-CLIENT</a>].
 
-<span class="h3"><a id="section-4.1">4.1</a> Member Status</span>
+<h3><a id="section-4.1">4.1</a> Member Status</h3>
 
    The modes in this category take a channel member nickname as argument
    and affect the privileges given to this user.
 
-<span class="h4"><a id="section-4.1.1">4.1.1</a> "Channel Creator" Status</span>
+<h4><a id="section-4.1.1">4.1.1</a> "Channel Creator" Status</h4>
 
    The mode 'O' is only used in conjunction with "safe channels" and
    SHALL NOT be manipulated by users.  Servers use it to give the user
@@ -538,23 +457,23 @@ Table of Contents
 <span class="grey"><a href="#">RFC 2811</a>        Internet Relay Chat: Channel Management       April 2000</span>
 
 
-<span class="h4"><a id="section-4.1.2">4.1.2</a> Channel Operator Status</span>
+<h4><a id="section-4.1.2">4.1.2</a> Channel Operator Status</h4>
 
    The mode 'o' is used to toggle the operator status of a channel
    member.
 
-<span class="h4"><a id="section-4.1.3">4.1.3</a> Voice Privilege</span>
+<h4><a id="section-4.1.3">4.1.3</a> Voice Privilege</h4>
 
    The mode 'v' is used to give and take voice privilege to/from a
    channel member.  Users with this privilege can talk on moderated
    channels.  (See <a href="#section-4.2.3">section 4.2.3</a> (Moderated Channel Flag).
 
-<span class="h3"><a id="section-4.2">4.2</a> Channel Flags</span>
+<h3><a id="section-4.2">4.2</a> Channel Flags</h3>
 
    The modes in this category are used to define properties which
    affects how channels operate.
 
-<span class="h4"><a id="section-4.2.1">4.2.1</a> Anonymous Flag</span>
+<h4><a id="section-4.2.1">4.2.1</a> Anonymous Flag</h4>
 
    The channel flag 'a' defines an anonymous channel.  This means that
    when a message sent to the channel is sent by the server to users,
@@ -576,7 +495,7 @@ Table of Contents
    presence of other users on channels for which the anonymous flag is
    set.
 
-<span class="h4"><a id="section-4.2.2">4.2.2</a> Invite Only Flag</span>
+<h4><a id="section-4.2.2">4.2.2</a> Invite Only Flag</h4>
 
    When the channel flag 'i' is set, new members are only accepted if
    their mask matches Invite-list (See <a href="#section-4.3.2">section 4.3.2</a>) or they have been
@@ -594,7 +513,7 @@ Table of Contents
 <span class="grey"><a href="#">RFC 2811</a>        Internet Relay Chat: Channel Management       April 2000</span>
 
 
-<span class="h4"><a id="section-4.2.3">4.2.3</a> Moderated Channel Flag</span>
+<h4><a id="section-4.2.3">4.2.3</a> Moderated Channel Flag</h4>
 
    The channel flag 'm' is used to control who may speak on a channel.
    When it is set, only channel operators, and members who have been
@@ -602,14 +521,14 @@ Table of Contents
 
       This flag only affects users.
 
-<span class="h4"><a id="section-4.2.4">4.2.4</a> No Messages To Channel From Clients On The Outside</span>
+<h4><a id="section-4.2.4">4.2.4</a> No Messages To Channel From Clients On The Outside</h4>
 
    When the channel flag 'n' is set, only channel members MAY send
    messages to the channel.
 
       This flag only affects users.
 
-<span class="h4"><a id="section-4.2.5">4.2.5</a> Quiet Channel</span>
+<h4><a id="section-4.2.5">4.2.5</a> Quiet Channel</h4>
 
    The channel flag 'q' is for use by servers only.  When set, it
    restricts the type of data sent to users about the channel
@@ -621,7 +540,7 @@ Table of Contents
    more efficient and flexible way to replace the user mode 's' defined
    in <a href="RFC 1459 - Protocol.html">RFC 1459</a> [<a href="#ref-IRC" title='"Internet Relay Chat Protocol"'>IRC</a>].
 
-<span class="h4"><a id="section-4.2.6">4.2.6</a> Private and Secret Channels</span>
+<h4><a id="section-4.2.6">4.2.6</a> Private and Secret Channels</h4>
 
    The channel flag 'p' is used to mark a channel "private" and the
    channel flag 's' to mark a channel "secret".  Both properties are
@@ -656,7 +575,7 @@ Table of Contents
    ignored.  This should only happen during a split healing phase
    (mentioned in the "IRC Server Protocol" document [<a href="#ref-IRC-SERVER" title='"Internet Relay Chat: Server Protocol"'>IRC-SERVER</a>]).
 
-<span class="h4"><a id="section-4.2.7">4.2.7</a> Server Reop Flag</span>
+<h4><a id="section-4.2.7">4.2.7</a> Server Reop Flag</h4>
 
    The channel flag 'r' is only available on channels which name begins
    with the character '!' and MAY only be toggled by the "channel
@@ -669,12 +588,12 @@ Table of Contents
    all of the channel inhabitants.  This mechanism is described more in
    detail in <a href="#section-5.2.4">section 5.2.4</a> (Channel Reop Mechanism).
 
-<span class="h4"><a id="section-4.2.8">4.2.8</a> Topic</span>
+<h4><a id="section-4.2.8">4.2.8</a> Topic</h4>
 
    The channel flag 't' is used to restrict the usage of the TOPIC
    command to channel operators.
 
-<span class="h4"><a id="section-4.2.9">4.2.9</a> User Limit</span>
+<h4><a id="section-4.2.9">4.2.9</a> User Limit</h4>
 
    A user limit may be set on channels by using the channel flag 'l'.
    When the limit is reached, servers MUST forbid their local users to
@@ -683,7 +602,7 @@ Table of Contents
    The value of the limit MUST only be made available to the channel
    members in the reply sent by the server to a MODE query.
 
-<span class="h4"><a id="section-4.2.10">4.2.10</a> Channel Key</span>
+<h4><a id="section-4.2.10">4.2.10</a> Channel Key</h4>
 
    When a channel key is set (by using the mode 'k'), servers MUST
    reject their local users request to join the channel unless this key
@@ -692,7 +611,7 @@ Table of Contents
    The channel key MUST only be made visible to the channel members in
    the reply sent by the server to a MODE query.
 
-<span class="h3"><a id="section-4.3">4.3</a> Channel Access Control</span>
+<h3><a id="section-4.3">4.3</a> Channel Access Control</h3>
 
    The last category of modes is used to control access to the channel,
    they take a mask as argument.
@@ -712,7 +631,7 @@ Table of Contents
    imposed, it MUST only affect user requests.  The limit SHOULD be
    homogeneous on a per IRC network basis.
 
-<span class="h4"><a id="section-4.3.1">4.3.1</a> Channel Ban and Exception</span>
+<h4><a id="section-4.3.1">4.3.1</a> Channel Ban and Exception</h4>
 
    When a user requests to join a channel, his local server checks if
    the user's address matches any of the ban masks set for the channel.
@@ -727,14 +646,14 @@ Table of Contents
    A user who is banned from a channel and who carries an invitation
    sent by a channel operator is allowed to join the channel.
 
-<span class="h4"><a id="section-4.3.2">4.3.2</a> Channel Invitation</span>
+<h4><a id="section-4.3.2">4.3.2</a> Channel Invitation</h4>
 
    For channels which have the invite-only flag set (See <a href="#section-4.2.2">Section 4.2.2</a>
    (Invite Only Flag)), users whose address matches an invitation mask
    set for the channel are allowed to join the channel without any
    invitation.
 
-<span class="h2"><a id="section-5">5</a>. Current Implementations</span>
+<h2><a id="section-5">5</a>. Current Implementations</h2>
 
    The only current implementation of these rules as part of the IRC
    protocol is the IRC server, version 2.10.
@@ -743,7 +662,7 @@ Table of Contents
    importance to those who wish to implement a server but some parts may
    also be of interest for client writers.
 
-<span class="h3"><a id="section-5.1">5.1</a> Tracking Recently Used Channels</span>
+<h3><a id="section-5.1">5.1</a> Tracking Recently Used Channels</h3>
 
    This mechanism is commonly known as "Channel Delay" and generally
    only applies to channels which names is prefixed with the character
@@ -776,14 +695,14 @@ Table of Contents
    IRC network, and the usual duration of network splits.  It SHOULD be
    uniform on all servers for a given IRC network.
 
-<span class="h3"><a id="section-5.2">5.2</a> Safe Channels</span>
+<h3><a id="section-5.2">5.2</a> Safe Channels</h3>
 
    This document introduces the notion of "safe channels".  These
    channels have a name prefixed with the character '!' and great effort
    is made to avoid collisions in this name space.  Collisions are not
    impossible, however they are very unlikely.
 
-<span class="h4"><a id="section-5.2.1">5.2.1</a> Channel Identifier</span>
+<h4><a id="section-5.2.1">5.2.1</a> Channel Identifier</h4>
 
    The channel identifier is a function of the time.  The current time
    (as defined under UNIX by the number of seconds elapsed since
@@ -795,7 +714,7 @@ Table of Contents
    The channel identifier therefore has a periodicity of 36^5 seconds
    (about 700 days).
 
-<span class="h4"><a id="section-5.2.2">5.2.2</a> Channel Delay</span>
+<h4><a id="section-5.2.2">5.2.2</a> Channel Delay</h4>
 
    These channels MUST be subject to the "channel delay" mechanism
    described in <a href="#section-5.1">section 5.1</a> (Channel Delay).  However, the mechanism is
@@ -818,7 +737,7 @@ Table of Contents
 <span class="grey"><a href="#">RFC 2811</a>        Internet Relay Chat: Channel Management       April 2000</span>
 
 
-<span class="h4"><a id="section-5.2.3">5.2.3</a> Abuse Window</span>
+<h4><a id="section-5.2.3">5.2.3</a> Abuse Window</h4>
 
    Because the periodicity is so long, attacks on a particular channel
    (name) may only occur once in a very long while.  However, with luck
@@ -834,7 +753,7 @@ Table of Contents
    creation of channels with the same shortname only (then ignoring the
    channel identifier).
 
-<span class="h4"><a id="section-5.2.4">5.2.4</a> Preserving Sanity In The Name Space</span>
+<h4><a id="section-5.2.4">5.2.4</a> Preserving Sanity In The Name Space</h4>
 
    The combination of the mechanisms described in sections <a href="#section-5.2.2">5.2.2</a> and
    5.2.3 makes it quite difficult for a user to create a channel
@@ -844,7 +763,7 @@ Table of Contents
    new channel which has the same shortname of a channel currently
    existing.
 
-<span class="h4"><a id="section-5.2.5">5.2.5</a> Server Reop Mechanism</span>
+<h4><a id="section-5.2.5">5.2.5</a> Server Reop Mechanism</h4>
 
    When a channel has been opless for longer than the "reop delay"
    period and has the channel flag 'r' set (See <a href="#section-4.2.7">Section 4.2.7</a> (Server
@@ -896,7 +815,7 @@ Table of Contents
       the fact that servers only know the "idle" time of their local
       users)
 
-<span class="h2"><a id="section-6">6</a>. Current problems</span>
+<h2><a id="section-6">6</a>. Current problems</h2>
 
    There are a number of recognized problems with the way IRC channels
    are managed.  Some of these can be directly attributed to the rules
@@ -905,7 +824,7 @@ Table of Contents
    <a href="RFC 1459 - Protocol.html">RFC 1459</a> [<a href="#ref-IRC" title='"Internet Relay Chat Protocol"'>IRC</a>], this document introduces several novelties in an
    attempt to solve some of the known problems.
 
-<span class="h3"><a id="section-6.1">6.1</a> Labels</span>
+<h3><a id="section-6.1">6.1</a> Labels</h3>
 
    This document defines one of the many labels used by the IRC
    protocol.  Although there are several distinct namespaces (based on
@@ -914,7 +833,7 @@ Table of Contents
    pick the label which may result in collisions (with the exception of
    channels known to only one server where they can be averted).
 
-<span class="h4"><a id="section-6.1.1">6.1.1</a> Channel Delay</span>
+<h4><a id="section-6.1.1">6.1.1</a> Channel Delay</h4>
 
    The channel delay mechanism described in <a href="#section-5.1">section 5.1</a> (Tracking
    Recently Used Channels) and used for channels prefixed with the
@@ -934,7 +853,7 @@ Table of Contents
    keeping it from being an adequate solution to the problem discussed
    here.
 
-<span class="h4"><a id="section-6.1.2">6.1.2</a> Safe Channels</span>
+<h4><a id="section-6.1.2">6.1.2</a> Safe Channels</h4>
 
    "Safe channels" described in <a href="#section-3.2">section 3.2</a> (Safe Channels) are a better
    way to prevent collisions from happening as it prevents users from
@@ -943,7 +862,7 @@ Table of Contents
    However, it is fairly trivial for a client program to improve on
    this.
 
-<span class="h3"><a id="section-6.2">6.2</a> Mode Propagation Delays</span>
+<h3><a id="section-6.2">6.2</a> Mode Propagation Delays</h3>
 
    Because of network delays induced by the network, and because each
    server on the path is REQUIRED to check the validity of mode changes
@@ -958,7 +877,7 @@ Table of Contents
    way of doing so also stops wave effects on channels which are out of
    synch when mode changes are issued from different directions.
 
-<span class="h3"><a id="section-6.3">6.3</a> Collisions And Channel Modes</span>
+<h3><a id="section-6.3">6.3</a> Collisions And Channel Modes</h3>
 
    The "Internet Relay Chat: Server Protocol" document [<a href="#ref-IRC-SERVER" title='"Internet Relay Chat: Server Protocol"'>IRC-SERVER</a>]
    describes how channel data is exchanged when two servers connect to
@@ -992,7 +911,7 @@ Table of Contents
    mechanism to decide which of the two values takes precedence.  It is
    left up to the users to fix the resulting discrepancy.
 
-<span class="h3"><a id="section-6.4">6.4</a> Resource Exhaustion</span>
+<h3><a id="section-6.4">6.4</a> Resource Exhaustion</h3>
 
    The mode based on masks defined in <a href="#section-4.3">section 4.3</a> make the IRC servers
    (and network) vulnerable to a simple abuse of the system: a single
@@ -1006,9 +925,9 @@ Table of Contents
    Moreover, more complex mechanisms MAY be used to avoid having
    redundant masks set for the same channel.
 
-<span class="h2"><a id="section-7">7</a>. Security Considerations</span>
+<h2><a id="section-7">7</a>. Security Considerations</h2>
 
-<span class="h3"><a id="section-7.1">7.1</a> Access Control</span>
+<h3><a id="section-7.1">7.1</a> Access Control</h3>
 
    One of the main ways to control access to a channel is to use masks
    which are based on the username and hostname of the user connections.
@@ -1024,7 +943,7 @@ Table of Contents
    key is sent in plaintext, it is vulnerable to traditional man in the
    middle attacks.
 
-<span class="h3"><a id="section-7.2">7.2</a> Channel Privacy</span>
+<h3><a id="section-7.2">7.2</a> Channel Privacy</h3>
 
    Because channel collisions are treated as inclusive events (See
    <a href="#section-6.3">Section 6.3</a>), it is possible for users to join a channel overriding
@@ -1042,7 +961,7 @@ Table of Contents
 <span class="grey"><a href="#">RFC 2811</a>        Internet Relay Chat: Channel Management       April 2000</span>
 
 
-<span class="h3"><a id="section-7.3">7.3</a> Anonymity</span>
+<h3><a id="section-7.3">7.3</a> Anonymity</h3>
 
    The anonymous channel flag (See <a href="#section-4.2.1">Section 4.2.1</a>) can be used to render
    all users on such channel "anonymous" by presenting all messages to
@@ -1054,7 +973,7 @@ Table of Contents
    is quite poor and insecure, and that clients SHOULD display strong
    warnings for users joining such channels.
 
-<span class="h2"><a id="section-8">8</a>. Current support and availability</span>
+<h2><a id="section-8">8</a>. Current support and availability</h2>
 
      Mailing lists for IRC related discussion:
        General discussion: ircd-users@irc.org
@@ -1067,7 +986,7 @@ Table of Contents
 
      Newsgroup: alt.irc
 
-<span class="h2"><a id="section-9">9</a>. Acknowledgements</span>
+<h2><a id="section-9">9</a>. Acknowledgements</h2>
 
    Parts of this document were copied from the <a href="RFC 1459 - Protocol.html">RFC 1459</a> [<a href="#ref-IRC" title='"Internet Relay Chat Protocol"'>IRC</a>] which
    first formally documented the IRC Protocol.  It has also benefited
@@ -1098,7 +1017,7 @@ Table of Contents
 <span class="grey"><a href="#">RFC 2811</a>        Internet Relay Chat: Channel Management       April 2000</span>
 
 
-<span class="h2"><a id="section-10">10</a>. References</span>
+<h2><a id="section-10">10</a>. References</h2>
 
    [<a id="ref-KEYWORDS">KEYWORDS</a>]   Bradner, S., "Key words for use in RFCs to Indicate
                 Requirement Levels", <a href="http://tools.ietf.org/html/bcp14">BCP 14</a>, <a href="http://tools.ietf.org/html/rfc2119">RFC 2119</a>, March 1997.
@@ -1115,7 +1034,7 @@ Table of Contents
    [<a id="ref-IRC-SERVER">IRC-SERVER</a>] Kalt, C., "Internet Relay Chat: Server Protocol", <a href="RFC 2813 - Server Protocol.html">RFC</a>
                 <a href="RFC 2813 - Server Protocol.html">2813</a>, April 2000.
 
-<span class="h2"><a id="section-11">11</a>. Author's Address</span>
+<h2><a id="section-11">11</a>. Author's Address</h2>
 
    Christophe Kalt
    99 Teaneck Rd, Apt #117
@@ -1154,7 +1073,7 @@ Table of Contents
 <span class="grey"><a href="#">RFC 2811</a>        Internet Relay Chat: Channel Management       April 2000</span>
 
 
-<span class="h2"><a id="section-12">12</a>.  Full Copyright Statement</span>
+<h2><a id="section-12">12</a>.  Full Copyright Statement</h2>
 
    Copyright (C) The Internet Society (2000).  All Rights Reserved.
 

@@ -54,93 +54,12 @@
 
             @media screen {
                 .grey, .grey a:link, .grey a:visited { color: #777; }
-
                 .docinfo { background-color: #EEE; }
-
                 .top { border-top: 7px solid #EEE; }
-
-                .bgwhite { background-color: white; }
-
-                .bgred { background-color: #F44; }
-
-                .bggrey { background-color: #666; }
-
-                .bgbrown { background-color: #840; }
-
-                .bgorange { background-color: #FA0; }
-
-                .bgyellow { background-color: #EE0; }
-
-                .bgmagenta { background-color: #F4F; }
-
-                .bgblue { background-color: #66F; }
-
-                .bgcyan { background-color: #4DD; }
-
-                .bggreen { background-color: #4F4; }
-
-                .legend { font-size: 90%; }
-
-                .cplate {
-                    font-size: 70%;
-                    border: solid grey 1px;
-                }
             }
         </style>
-        <!--[if IE]>
-            <style>
-                body {
-                    font-size: 13px;
-                    margin: 10px 10px;
-                }
-            </style>
-        <![endif]-->
-
-        <script type="text/javascript"> <!--
-            function addHeaderTags() {
-                var spans = document.getElementsByTagName("span");
-                for (var i = 0; i < spans.length; i++) {
-                    var elem = spans[i];
-                    if (elem) {
-                        var level = elem.getAttribute("class");
-                        if (level == "h1" || level == "h2" || level == "h3" || level == "h4" || level == "h5" || level == "h6") {
-                            elem.innerHTML = "<" + level + ">" + elem.innerHTML + "</" + level + ">";
-                        }
-                    }
-                }
-            }
-
-            var legend_html = "Colour legend:<br />      <table>         <tr><td>Unknown:</td>          <td><span class='cplate bgwhite'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Draft:</td>            <td><span class='cplate bgred'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Informational:</td>    <td><span class='cplate bgorange'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Experimental:</td>     <td><span class='cplate bgyellow'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Best Common Practice:</td><td><span class='cplate bgmagenta'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Proposed Standard:</td><td><span class='cplate bgblue'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Draft Standard:</td>   <td><span class='cplate bgcyan'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Standard:</td>         <td><span class='cplate bggreen'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Historic:</td>         <td><span class='cplate bggrey'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Obsolete:</td>         <td><span class='cplate bgbrown'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>     </table>";
-
-            function showElem(id) {
-                var elem = document.getElementById(id);
-                elem.innerHTML = eval(id + "_html");
-                elem.style.visibility = 'visible';
-            }
-
-            function hideElem(id) {
-                var elem = document.getElementById(id);
-                elem.style.visibility = 'hidden';
-                elem.innerHTML = "";
-            }
-        // -->
-    </script>
     </head>
-    <body onload=" addHeaderTags() ">
-        <div style="height: 13px;">
-            <div onmouseover=" this.style.cursor = 'pointer'; "
-                 onclick=" showElem('legend'); "
-                 onmouseout=" hideElem('legend') "
-                 style="height: 6px; position: absolute;"
-                 class="pre noprint docinfo bgyellow"
-                 title="Click for colour legend." >                                                                        </div>
-            <div id="legend"
-                 class="docinfo noprint pre legend"
-                 style="position: absolute; top: 4px; left: 4ex; visibility: hidden; background-color: white; padding: 4px 9px 5px 7px; border: solid #345 1px;"
-                 onmouseover=" showElem('legend'); "
-                 onmouseout=" hideElem('legend'); ">
-            </div>
-        </div>
+    <body>
         <span class="pre noprint docinfo top">[<a href="http://tools.ietf.org/html/" title="Document search and retrieval page">Docs</a>] [<a href="http://tools.ietf.org/rfc/rfc1459.txt" title="Plaintext version of this document">txt</a>|<a href="http://tools.ietf.org/pdf/rfc1459" title="PDF version of this document">pdf</a>]                                                        </span><br />
         <span class="pre noprint docinfo">                                                                        </span><br />
         <span class="pre noprint docinfo">Updated by: <a href="RFC 2810 - Architecture.html">2810</a>, <a href="RFC 2811 - Channel Management.html">2811</a>, <a href="RFC 2812 - Client Protocol.html">2812</a>, <a href="RFC 2813 - Server Protocol.html">2813</a>                          EXPERIMENTAL</span><br />
@@ -151,7 +70,7 @@ Request for Comments: 1459                                      D. Reed
                                                                May 1993
 
 
-                      <span class="h1">Internet Relay Chat Protocol</span>
+                      <h1>Internet Relay Chat Protocol</h1>
 
 Status of This Memo
 
@@ -314,7 +233,7 @@ Table of Contents
 <span class="grey"><a href="#">RFC 1459</a>              Internet Relay Chat Protocol              May 1993</span>
 
 
-<span class="h2"><a id="section-1">1</a>.  INTRODUCTION</span>
+<h2><a id="section-1">1</a>.  INTRODUCTION</h2>
 
    The IRC (Internet Relay Chat) protocol has been designed over a
    number of years for use with text based conferencing.  This document
@@ -331,7 +250,7 @@ Table of Contents
    to connect to, performing the required message delivery/multiplexing
    and other functions.
 
-<span class="h3"><a id="section-1.1">1.1</a> Servers</span>
+<h3><a id="section-1.1">1.1</a> Servers</h3>
 
    The server forms the backbone of IRC, providing a point to which
    clients may connect to to talk to each other, and a point for other
@@ -370,7 +289,7 @@ Table of Contents
 <span class="grey"><a href="#">RFC 1459</a>              Internet Relay Chat Protocol              May 1993</span>
 
 
-<span class="h3"><a id="section-1.2">1.2</a> Clients</span>
+<h3><a id="section-1.2">1.2</a> Clients</h3>
 
    A client is anything connecting to a server that is not another
    server.  Each client is distinguished from other clients by a unique
@@ -381,7 +300,7 @@ Table of Contents
    that the client is running on, the username of the client on that
    host, and the server to which the client is connected.
 
-<span class="h4"><a id="section-1.2.1">1.2.1</a> Operators</span>
+<h4><a id="section-1.2.1">1.2.1</a> Operators</h4>
 
    To allow a reasonable amount of order to be kept within the IRC
    network, a special class of clients (operators) is allowed to perform
@@ -401,7 +320,7 @@ Table of Contents
    destructive and annoying.  For further details on this type of
    action, see <a href="#section-4.6.1">section 4.6.1</a> (KILL).
 
-<span class="h3"><a id="section-1.3">1.3</a> Channels</span>
+<h3><a id="section-1.3">1.3</a> Channels</h3>
 
    A channel is a named group of one or more clients which will all
    receive messages addressed to that channel.  The channel is created
@@ -455,7 +374,7 @@ Table of Contents
    agree about which clients are in the channel and what modes the
    channel has.
 
-<span class="h4"><a id="section-1.3.1">1.3.1</a> Channel Operators</span>
+<h4><a id="section-1.3.1">1.3.1</a> Channel Operators</h4>
 
    The channel operator (also referred to as a "chop" or "chanop") on a
    given channel is considered to 'own' that channel.  In recognition of
@@ -486,16 +405,16 @@ Table of Contents
    nickname whenever it is associated with a channel (ie replies to the
    NAMES, WHO and WHOIS commands).
 
-<span class="h2"><a id="section-2">2</a>. The IRC Specification</span>
+<h2><a id="section-2">2</a>. The IRC Specification</h2>
 
-<span class="h3"><a id="section-2.1">2.1</a> Overview</span>
+<h3><a id="section-2.1">2.1</a> Overview</h3>
 
    The protocol as described herein is for use both with server to
    server and client to server connections.  There are, however, more
    restrictions on client connections (which are considered to be
    untrustworthy) than on server connections.
 
-<span class="h3"><a id="section-2.2">2.2</a> Character codes</span>
+<h3><a id="section-2.2">2.2</a> Character codes</h3>
 
    No specific character set is specified. The protocol is based on a a
    set of codes which are composed of eight (8) bits, making up an
@@ -512,7 +431,7 @@ Table of Contents
    respectively. This is a critical issue when determining the
    equivalence of two nicknames.
 
-<span class="h3"><a id="section-2.3">2.3</a> Messages</span>
+<h3><a id="section-2.3">2.3</a> Messages</h3>
 
    Servers and clients send eachother messages which may or may not
    generate a reply.  If the message contains a valid command, as
@@ -559,7 +478,7 @@ Table of Contents
    continuation message lines.  See <a href="#section-7">section 7</a> for more details about
    current implementations.
 
-<span class="h4"><a id="section-2.3.1">2.3.1</a> Message format in 'pseudo' BNF</span>
+<h4><a id="section-2.3.1">2.3.1</a> Message format in 'pseudo' BNF</h4>
 
    The protocol messages must be extracted from the contiguous stream of
    octets.  The current solution is to designate two characters, CR and
@@ -653,7 +572,7 @@ NOTES:
    &lt;nonwhite&gt;   ::= &lt;any 8bit code except SPACE (0x20), NUL (0x0), CR
                      (0xd), and LF (0xa)&gt;
 
-<span class="h3"><a id="section-2.4">2.4</a> Numeric replies</span>
+<h3><a id="section-2.4">2.4</a> Numeric replies</h3>
 
    Most of the messages sent to the server generate a reply of some
    sort.  The most common reply is the numeric reply, used for both
@@ -666,7 +585,7 @@ NOTES:
    rather than a string of letters.  A list of different replies is
    supplied in <a href="#section-6">section 6</a>.
 
-<span class="h2"><a id="section-3">3</a>. IRC Concepts.</span>
+<h2><a id="section-3">3</a>. IRC Concepts.</h2>
 
    This section is devoted to describing the actual concepts behind  the
    organization  of  the  IRC  protocol and how the current
@@ -685,7 +604,7 @@ NOTES:
 
                     [ Fig. 2. Sample small IRC network ]
 
-<span class="h3"><a id="section-3.1">3.1</a> One-to-one communication</span>
+<h3><a id="section-3.1">3.1</a> One-to-one communication</h3>
 
    Communication on a one-to-one basis is usually only performed by
    clients, since most server-server traffic is not a result of servers
@@ -718,13 +637,13 @@ Example 3:
      A message between clients 2 and 4 is seen by servers A, B, C &amp; D
      and client 4 only.
 
-<span class="h3"><a id="section-3.2">3.2</a> One-to-many</span>
+<h3><a id="section-3.2">3.2</a> One-to-many</h3>
 
    The main goal of IRC is to provide a  forum  which  allows  easy  and
    efficient  conferencing (one to many conversations).  IRC offers
    several means to achieve this, each serving its own purpose.
 
-<span class="h4"><a id="section-3.2.1">3.2.1</a> To a list</span>
+<h4><a id="section-3.2.1">3.2.1</a> To a list</h4>
 
    The least efficient style of one-to-many conversation is through
    clients talking to a 'list' of users.  How this is done is almost
@@ -735,7 +654,7 @@ Example 3:
    is broken up and the dispatch sent without checking to make sure
    duplicates aren't sent down each path.
 
-<span class="h4"><a id="section-3.2.2">3.2.2</a> To a group (channel)</span>
+<h4><a id="section-3.2.2">3.2.2</a> To a group (channel)</h4>
 
    In IRC the channel has a role equivalent to that of the multicast
    group; their existence is dynamic (coming and going as people join
@@ -773,7 +692,7 @@ Example 6:
      client 1 sends a message, it goes back to client 2 and then via
      server B to client 3.
 
-<span class="h4"><a id="section-3.2.3">3.2.3</a> To a host/server mask</span>
+<h4><a id="section-3.2.3">3.2.3</a> To a host/server mask</h4>
 
    To provide IRC operators with some mechanism to send  messages  to  a
    large body of related users, host and server mask messages are
@@ -781,7 +700,7 @@ Example 6:
    information  match that  of  the mask.  The messages are only sent to
    locations where users are, in a fashion similar to that of channels.
 
-<span class="h3"><a id="section-3.3">3.3</a> One-to-all</span>
+<h3><a id="section-3.3">3.3</a> One-to-all</h3>
 
    The one-to-all type of message is better described as a broadcast
    message, sent to all clients or servers or both.  On a large network
@@ -793,19 +712,19 @@ Example 6:
    servers so that the state information held by each server is
    reasonably consistent between servers.
 
-<span class="h4"><a id="section-3.3.1">3.3.1</a> Client-to-Client</span>
+<h4><a id="section-3.3.1">3.3.1</a> Client-to-Client</h4>
 
    There is no class of message which, from a single message, results in
    a message being sent to every other client.
 
-<span class="h4"><a id="section-3.3.2">3.3.2</a> Client-to-Server</span>
+<h4><a id="section-3.3.2">3.3.2</a> Client-to-Server</h4>
 
    Most of the commands which result in a change of state information
    (such as channel membership, channel mode, user status, etc) must be
    sent to all servers by default, and this distribution may not be
    changed by the client.
 
-<span class="h4"><a id="section-3.3.3">3.3.3</a> Server-to-Server.</span>
+<h4><a id="section-3.3.3">3.3.3</a> Server-to-Server.</h4>
 
    While most messages between servers are distributed to all 'other'
    servers, this is only required for any message that affects either a
@@ -821,7 +740,7 @@ Example 6:
    IRC, nearly all messages originating from a server are broadcast to
    all other connected servers.
 
-<span class="h2"><a id="section-4">4</a>. Message details</span>
+<h2><a id="section-4">4</a>. Message details</h2>
 
    On the following pages are descriptions of each message recognized by
    the IRC server and client.  All commands described in this section
@@ -853,7 +772,7 @@ Example 6:
    sender of the message so remote servers may send back a reply along
    the correct path.
 
-<span class="h3"><a id="section-4.1">4.1</a> Connection Registration</span>
+<h3><a id="section-4.1">4.1</a> Connection Registration</h3>
 
    The commands described here are used to register a connection with an
    IRC server as either a user or a server as well as correctly
@@ -878,7 +797,7 @@ Example 6:
            2. Nick message
            3. User message
 
-<span class="h4"><a id="section-4.1.1">4.1.1</a> Password message</span>
+<h4><a id="section-4.1.1">4.1.1</a> Password message</h4>
 
 
       Command: PASS
@@ -901,7 +820,7 @@ Example 6:
 
            PASS secretpasswordhere
 
-<span class="h4"><a id="section-4.1.2">4.1.2</a> Nick message</span>
+<h4><a id="section-4.1.2">4.1.2</a> Nick message</h4>
 
       Command: NICK
    Parameters: &lt;nickname&gt; [ &lt;hopcount&gt; ]
@@ -941,7 +860,7 @@ Example 6:
 
    :WiZ NICK Kilroy                ; WiZ changed his nickname to Kilroy.
 
-<span class="h4"><a id="section-4.1.3">4.1.3</a> User message</span>
+<h4><a id="section-4.1.3">4.1.3</a> User message</h4>
 
       Command: USER
    Parameters: &lt;username&gt; &lt;hostname&gt; &lt;servername&gt; &lt;realname&gt;
@@ -996,7 +915,7 @@ Example 6:
                                    nickname for which the USER command
                                    belongs to
 
-<span class="h4"><a id="section-4.1.4">4.1.4</a> Server message</span>
+<h4><a id="section-4.1.4">4.1.4</a> Server message</h4>
 
       Command: SERVER
    Parameters: &lt;servername&gt; &lt;hopcount&gt; &lt;info&gt;
@@ -1053,7 +972,7 @@ SERVER test.oulu.fi 1 :[tolsun.oulu.fi] Experimental server
                                 ; Server tolsun.oulu.fi is our uplink
                                 for csd.bu.edu which is 5 hops away.
 
-<span class="h4"><a id="section-4.1.5">4.1.5</a> Oper</span>
+<h4><a id="section-4.1.5">4.1.5</a> Oper</h4>
 
       Command: OPER
    Parameters: &lt;user&gt; &lt;password&gt;
@@ -1079,7 +998,7 @@ SERVER test.oulu.fi 1 :[tolsun.oulu.fi] Experimental server
                                    using a username of "foo" and "bar" as
                                    the password.
 
-<span class="h4"><a id="section-4.1.6">4.1.6</a> Quit</span>
+<h4><a id="section-4.1.6">4.1.6</a> Quit</h4>
 
       Command: QUIT
    Parameters: [&lt;Quit message&gt;]
@@ -1117,7 +1036,7 @@ SERVER test.oulu.fi 1 :[tolsun.oulu.fi] Experimental server
 
    QUIT :Gone to have lunch        ; Preferred message format.
 
-<span class="h4"><a id="section-4.1.7">4.1.7</a> Server quit message</span>
+<h4><a id="section-4.1.7">4.1.7</a> Server quit message</h4>
 
       Command: SQUIT
    Parameters: &lt;server&gt; &lt;comment&gt;
@@ -1179,7 +1098,7 @@ SERVER test.oulu.fi 1 :[tolsun.oulu.fi] Experimental server
                                    "cm22.eng.umd.edu" from the net
                                     because "Server out of control".
 
-<span class="h3"><a id="section-4.2">4.2</a> Channel operations</span>
+<h3><a id="section-4.2">4.2</a> Channel operations</h3>
 
    This group of messages is concerned with manipulating channels, their
    properties (channel modes), and their contents (typically clients).
@@ -1189,7 +1108,7 @@ SERVER test.oulu.fi 1 :[tolsun.oulu.fi] Experimental server
    history to ensure that wherever a &lt;nick&gt; parameter is given, the
    server check its history in case it has recently been changed.
 
-<span class="h4"><a id="section-4.2.1">4.2.1</a> Join message</span>
+<h4><a id="section-4.2.1">4.2.1</a> Join message</h4>
 
       Command: JOIN
    Parameters: &lt;channel&gt;{,&lt;channel&gt;} [&lt;key&gt;{,&lt;key&gt;}]
@@ -1253,7 +1172,7 @@ SERVER test.oulu.fi 1 :[tolsun.oulu.fi] Experimental server
 
    :WiZ JOIN #Twilight_zone        ; JOIN message from WiZ
 
-<span class="h4"><a id="section-4.2.2">4.2.2</a> Part message</span>
+<h4><a id="section-4.2.2">4.2.2</a> Part message</h4>
 
       Command: PART
    Parameters: &lt;channel&gt;{,&lt;channel&gt;}
@@ -1282,7 +1201,7 @@ SERVER test.oulu.fi 1 :[tolsun.oulu.fi] Experimental server
    PART #oz-ops,&amp;group5            ; leave both channels "&amp;group5" and
                                    "#oz-ops".
 
-<span class="h4"><a id="section-4.2.3">4.2.3</a> Mode message</span>
+<h4><a id="section-4.2.3">4.2.3</a> Mode message</h4>
 
       Command: MODE
 
@@ -1294,7 +1213,7 @@ SERVER test.oulu.fi 1 :[tolsun.oulu.fi] Experimental server
    When parsing MODE messages, it is recommended that the entire message
    be parsed first and then the changes which resulted then passed on.
 
-<span class="h5"><a id="section-4.2.3.1">4.2.3.1</a> Channel modes</span>
+<h5><a id="section-4.2.3.1">4.2.3.1</a> Channel modes</h5>
 
    Parameters: &lt;channel&gt; {[+|-]|o|p|s|i|t|n|b|v} [&lt;limit&gt;] [&lt;user&gt;]
                [&lt;ban mask&gt;]
@@ -1330,7 +1249,7 @@ SERVER test.oulu.fi 1 :[tolsun.oulu.fi] Experimental server
    per mode command has been imposed.  That is, any combination of 'o'
    and
 
-<span class="h5"><a id="section-4.2.3.2">4.2.3.2</a> User modes</span>
+<h5><a id="section-4.2.3.2">4.2.3.2</a> User modes</h5>
 
    Parameters: &lt;nickname&gt; {[+|-]|i|w|s|o}
 
@@ -1411,7 +1330,7 @@ MODE WiZ -o                     ; WiZ 'deopping' (removing operator
                                 allowed from users since would bypass
                                 the OPER command.
 
-<span class="h4"><a id="section-4.2.4">4.2.4</a> Topic message</span>
+<h4><a id="section-4.2.4">4.2.4</a> Topic message</h4>
 
       Command: TOPIC
    Parameters: &lt;channel&gt; [&lt;topic&gt;]
@@ -1443,7 +1362,7 @@ MODE WiZ -o                     ; WiZ 'deopping' (removing operator
 
    TOPIC #test                     ; check the topic for #test.
 
-<span class="h4"><a id="section-4.2.5">4.2.5</a> Names message</span>
+<h4><a id="section-4.2.5">4.2.5</a> Names message</h4>
 
       Command: NAMES
    Parameters: [&lt;channel&gt;{,&lt;channel&gt;}]
@@ -1472,7 +1391,7 @@ MODE WiZ -o                     ; WiZ 'deopping' (removing operator
 
    NAMES                           ; list all visible channels and users
 
-<span class="h4"><a id="section-4.2.6">4.2.6</a> List message</span>
+<h4><a id="section-4.2.6">4.2.6</a> List message</h4>
 
       Command: LIST
    Parameters: [&lt;channel&gt;{,&lt;channel&gt;} [&lt;server&gt;]]
@@ -1503,7 +1422,7 @@ MODE WiZ -o                     ; WiZ 'deopping' (removing operator
 
    LIST #twilight_zone,#42         ; List channels #twilight_zone and #42
 
-<span class="h4"><a id="section-4.2.7">4.2.7</a> Invite message</span>
+<h4><a id="section-4.2.7">4.2.7</a> Invite message</h4>
 
       Command: INVITE
    Parameters: &lt;nickname&gt; &lt;channel&gt;
@@ -1531,7 +1450,7 @@ MODE WiZ -o                     ; WiZ 'deopping' (removing operator
    INVITE Wiz #Twilight_Zone       ; Command to invite WiZ to
                                    #Twilight_zone
 
-<span class="h4"><a id="section-4.2.8">4.2.8</a> Kick command</span>
+<h4><a id="section-4.2.8">4.2.8</a> Kick command</h4>
 
       Command: KICK
    Parameters: &lt;channel&gt; &lt;user&gt; [&lt;comment&gt;]
@@ -1575,7 +1494,7 @@ following:
 
 &lt;channel&gt;{,&lt;channel&gt;} &lt;user&gt;{,&lt;user&gt;} [&lt;comment&gt;]
 
-<span class="h3"><a id="section-4.3">4.3</a> Server queries and commands</span>
+<h3><a id="section-4.3">4.3</a> Server queries and commands</h3>
 
    The server query group of commands has been designed to return
    information about any server which is connected to the network.  All
@@ -1589,7 +1508,7 @@ following:
    some sort.  For each parameter, however, only one query and set of
    replies is to be generated.
 
-<span class="h4"><a id="section-4.3.1">4.3.1</a> Version message</span>
+<h4><a id="section-4.3.1">4.3.1</a> Version message</h4>
 
       Command: VERSION
    Parameters: [&lt;server&gt;]
@@ -1618,7 +1537,7 @@ following:
    VERSION tolsun.oulu.fi          ; check the version of server
                                    "tolsun.oulu.fi".
 
-<span class="h4"><a id="section-4.3.2">4.3.2</a> Stats message</span>
+<h4><a id="section-4.3.2">4.3.2</a> Stats message</h4>
 
       Command: STATS
    Parameters: [&lt;query&gt; [&lt;server&gt;]]
@@ -1686,7 +1605,7 @@ STATS m                         ; check the command usage for the server
 :Wiz STATS c eff.org            ; request by WiZ for C/N line
                                 information from server eff.org
 
-<span class="h4"><a id="section-4.3.3">4.3.3</a> Links message</span>
+<h4><a id="section-4.3.3">4.3.3</a> Links message</h4>
 
       Command: LINKS
    Parameters: [[&lt;remote server&gt;] &lt;server mask&gt;]
@@ -1721,7 +1640,7 @@ LINKS *.au                      ; list all servers which have a name
                                 server matching *.edu for a list of
                                 servers matching *.bu.edu.
 
-<span class="h4"><a id="section-4.3.4">4.3.4</a> Time message</span>
+<h4><a id="section-4.3.4">4.3.4</a> Time message</h4>
 
       Command: TIME
    Parameters: [&lt;server&gt;]
@@ -1742,7 +1661,7 @@ LINKS *.au                      ; list all servers which have a name
    Angel TIME *.au                 ; user angel checking the time on a
                                    server matching "*.au"
 
-<span class="h4"><a id="section-4.3.5">4.3.5</a> Connect message</span>
+<h4><a id="section-4.3.5">4.3.5</a> Connect message</h4>
 
       Command: CONNECT
    Parameters: &lt;target server&gt; [&lt;port&gt; [&lt;remote server&gt;]]
@@ -1775,7 +1694,7 @@ CONNECT tolsun.oulu.fi          ; Attempt to connect a server to
                                 eff.org and csd.bu.edu connected on port
                                 6667.
 
-<span class="h4"><a id="section-4.3.6">4.3.6</a> Trace message</span>
+<h4><a id="section-4.3.6">4.3.6</a> Trace message</h4>
 
       Command: TRACE
    Parameters: [&lt;server&gt;]
@@ -1828,7 +1747,7 @@ TRACE *.oulu.fi                 ; TRACE to a server matching *.oulu.fi
 
 :WiZ TRACE AngelDust            ; TRACE issued by WiZ to nick AngelDust
 
-<span class="h4"><a id="section-4.3.7">4.3.7</a> Admin command</span>
+<h4><a id="section-4.3.7">4.3.7</a> Admin command</h4>
 
       Command: ADMIN
    Parameters: [&lt;server&gt;]
@@ -1852,7 +1771,7 @@ TRACE *.oulu.fi                 ; TRACE to a server matching *.oulu.fi
    :WiZ ADMIN *.edu                ; ADMIN request from WiZ for first
                                    server found to match *.edu.
 
-<span class="h4"><a id="section-4.3.8">4.3.8</a> Info command</span>
+<h4><a id="section-4.3.8">4.3.8</a> Info command</h4>
 
       Command: INFO
    Parameters: [&lt;server&gt;]
@@ -1885,7 +1804,7 @@ TRACE *.oulu.fi                 ; TRACE to a server matching *.oulu.fi
    INFO Angel                      ; request info from the server that
                                    Angel is connected to.
 
-<span class="h3"><a id="section-4.4">4.4</a> Sending messages</span>
+<h3><a id="section-4.4">4.4</a> Sending messages</h3>
 
    The main purpose of the IRC protocol is to provide a base for clients
    to communicate with each other.  PRIVMSG and NOTICE are the only
@@ -1893,7 +1812,7 @@ TRACE *.oulu.fi                 ; TRACE to a server matching *.oulu.fi
    from one client to another - the rest just make it possible and try
    to ensure it happens in a reliable and structured manner.
 
-<span class="h4"><a id="section-4.4.1">4.4.1</a> Private messages</span>
+<h4><a id="section-4.4.1">4.4.1</a> Private messages</h4>
 
       Command: PRIVMSG
    Parameters: &lt;receiver&gt;{,&lt;receiver&gt;} &lt;text to be sent&gt;
@@ -1948,7 +1867,7 @@ PRIVMSG #*.edu :NSFNet is undergoing work, expect interruptions
                                 ; Message to all users who come from a
                                 host which has a name matching *.edu.
 
-<span class="h4"><a id="section-4.4.2">4.4.2</a> Notice</span>
+<h4><a id="section-4.4.2">4.4.2</a> Notice</h4>
 
       Command: NOTICE
    Parameters: &lt;nickname&gt; &lt;text&gt;
@@ -1966,7 +1885,7 @@ PRIVMSG #*.edu :NSFNet is undergoing work, expect interruptions
 
    See PRIVMSG for more details on replies and examples.
 
-<span class="h3"><a id="section-4.5">4.5</a> User based queries</span>
+<h3><a id="section-4.5">4.5</a> User based queries</h3>
 
    User queries are a group of commands which are primarily concerned
    with finding details on a particular user or group users.  When using
@@ -1975,7 +1894,7 @@ PRIVMSG #*.edu :NSFNet is undergoing work, expect interruptions
    of a user is determined as a combination of the user's mode and the
    common set of channels you are both on.
 
-<span class="h4"><a id="section-4.5.1">4.5.1</a> Who query</span>
+<h4><a id="section-4.5.1">4.5.1</a> Who query</h4>
 
       Command: WHO
    Parameters: [&lt;name&gt; [&lt;o&gt;]]
@@ -2015,7 +1934,7 @@ PRIVMSG #*.edu :NSFNet is undergoing work, expect interruptions
    WHO jto* o                      ; List all users with a match against
                                    "jto*" if they are an operator.
 
-<span class="h4"><a id="section-4.5.2">4.5.2</a> Whois query</span>
+<h4><a id="section-4.5.2">4.5.2</a> Whois query</h4>
 
       Command: WHOIS
    Parameters: [&lt;server&gt;] &lt;nickmask&gt;[,&lt;nickmask&gt;[,...]]
@@ -2058,7 +1977,7 @@ PRIVMSG #*.edu :NSFNet is undergoing work, expect interruptions
    WHOIS eff.org trillian          ; ask server eff.org for user
                                    information about trillian
 
-<span class="h4"><a id="section-4.5.3">4.5.3</a> Whowas</span>
+<h4><a id="section-4.5.3">4.5.3</a> Whowas</h4>
 
       Command: WHOWAS
    Parameters: &lt;nickname&gt; [&lt;count&gt; [&lt;server&gt;]]
@@ -2092,7 +2011,7 @@ PRIVMSG #*.edu :NSFNet is undergoing work, expect interruptions
                                    "Trillian" from the first server found
                                    to match "*.edu".
 
-<span class="h3"><a id="section-4.6">4.6</a> Miscellaneous messages</span>
+<h3><a id="section-4.6">4.6</a> Miscellaneous messages</h3>
 
    Messages in this category do not fit into any of the above categories
    but are nonetheless still a part of and required by the protocol.
@@ -2106,7 +2025,7 @@ PRIVMSG #*.edu :NSFNet is undergoing work, expect interruptions
 <span class="grey"><a href="#">RFC 1459</a>              Internet Relay Chat Protocol              May 1993</span>
 
 
-<span class="h4"><a id="section-4.6.1">4.6.1</a> Kill message</span>
+<h4><a id="section-4.6.1">4.6.1</a> Kill message</h4>
 
       Command: KILL
    Parameters: &lt;nickname&gt; &lt;comment&gt;
@@ -2162,7 +2081,7 @@ PRIVMSG #*.edu :NSFNet is undergoing work, expect interruptions
 <span class="grey"><a href="#">RFC 1459</a>              Internet Relay Chat Protocol              May 1993</span>
 
 
-<span class="h4"><a id="section-4.6.2">4.6.2</a> Ping message</span>
+<h4><a id="section-4.6.2">4.6.2</a> Ping message</h4>
 
       Command: PING
    Parameters: &lt;server1&gt; [&lt;server2&gt;]
@@ -2193,7 +2112,7 @@ PRIVMSG #*.edu :NSFNet is undergoing work, expect interruptions
 
    PING WiZ                        ; PING message being sent to nick WiZ
 
-<span class="h4"><a id="section-4.6.3">4.6.3</a> Pong message</span>
+<h4><a id="section-4.6.3">4.6.3</a> Pong message</h4>
 
       Command: PONG
    Parameters: &lt;daemon&gt; [&lt;daemon2&gt;]
@@ -2220,7 +2139,7 @@ PRIVMSG #*.edu :NSFNet is undergoing work, expect interruptions
 
                                    tolsun.oulu.fi
 
-<span class="h4"><a id="section-4.6.4">4.6.4</a> Error</span>
+<h4><a id="section-4.6.4">4.6.4</a> Error</h4>
 
       Command: ERROR
    Parameters: &lt;error message&gt;
@@ -2252,7 +2171,7 @@ PRIVMSG #*.edu :NSFNet is undergoing work, expect interruptions
                                    ; Same ERROR message as above but sent
                                    to user WiZ on the other server.
 
-<span class="h2"><a id="section-5">5</a>. OPTIONALS</span>
+<h2><a id="section-5">5</a>. OPTIONALS</h2>
 
    This section describes OPTIONAL messages.  They are not required in a
    working server implementation of the protocol described herein.  In
@@ -2262,7 +2181,7 @@ PRIVMSG #*.edu :NSFNet is undergoing work, expect interruptions
    required) The allocated numerics for this are listed with the
    messages below.
 
-<span class="h3"><a id="section-5.1">5.1</a> Away</span>
+<h3><a id="section-5.1">5.1</a> Away</h3>
 
       Command: AWAY
    Parameters: [message]
@@ -2295,7 +2214,7 @@ PRIVMSG #*.edu :NSFNet is undergoing work, expect interruptions
    :WiZ AWAY                       ; unmark WiZ as being away.
 
 
-<span class="h3"><a id="section-5.2">5.2</a> Rehash message</span>
+<h3><a id="section-5.2">5.2</a> Rehash message</h3>
 
       Command: REHASH
    Parameters: None
@@ -2313,7 +2232,7 @@ REHASH                          ; message from client with operator
                                 status to server asking it to reread its
                                 configuration file.
 
-<span class="h3"><a id="section-5.3">5.3</a> Restart message</span>
+<h3><a id="section-5.3">5.3</a> Restart message</h3>
 
       Command: RESTART
    Parameters: None
@@ -2342,7 +2261,7 @@ REHASH                          ; message from client with operator
 
    RESTART                         ; no parameters required.
 
-<span class="h3"><a id="section-5.4">5.4</a> Summon message</span>
+<h3><a id="section-5.4">5.4</a> Summon message</h3>
 
       Command: SUMMON
    Parameters: &lt;user&gt; [&lt;server&gt;]
@@ -2374,7 +2293,7 @@ REHASH                          ; message from client with operator
                                    running.
 
 
-<span class="h3"><a id="section-5.5">5.5</a> Users</span>
+<h3><a id="section-5.5">5.5</a> Users</h3>
 
       Command: USERS
    Parameters: [&lt;server&gt;]
@@ -2411,7 +2330,7 @@ USERS eff.org                   ; request a list of users logged in on
 :John USERS tolsun.oulu.fi      ; request from John for a list of users
                                 logged in on server tolsun.oulu.fi
 
-<span class="h3"><a id="section-5.6">5.6</a> Operwall message</span>
+<h3><a id="section-5.6">5.6</a> Operwall message</h3>
 
       Command: WALLOPS
    Parameters: Text to be sent to all operators currently online
@@ -2442,7 +2361,7 @@ USERS eff.org                   ; request a list of users logged in on
 <span class="grey"><a href="#">RFC 1459</a>              Internet Relay Chat Protocol              May 1993</span>
 
 
-<span class="h3"><a id="section-5.7">5.7</a> Userhost message</span>
+<h3><a id="section-5.7">5.7</a> Userhost message</h3>
 
       Command: USERHOST
    Parameters: &lt;nickname&gt;{&lt;space&gt;&lt;nickname&gt;}
@@ -2461,7 +2380,7 @@ USERS eff.org                   ; request a list of users logged in on
    USERHOST Wiz Michael Marty p    ;USERHOST request for information on
                                    nicks "Wiz", "Michael", "Marty" and "p"
 
-<span class="h3"><a id="section-5.8">5.8</a> Ison message</span>
+<h3><a id="section-5.8">5.8</a> Ison message</h3>
 
       Command: ISON
    Parameters: &lt;nickname&gt;{&lt;space&gt;&lt;nickname&gt;}
@@ -2498,13 +2417,13 @@ USERS eff.org                   ; request a list of users logged in on
 <span class="grey"><a href="#">RFC 1459</a>              Internet Relay Chat Protocol              May 1993</span>
 
 
-<span class="h2"><a id="section-6">6</a>. REPLIES</span>
+<h2><a id="section-6">6</a>. REPLIES</h2>
 
    The following is a list of numeric replies which are generated in
    response to the commands given above.  Each numeric is given with its
    number, name and reply string.
 
-<span class="h3"><a id="section-6.1">6.1</a> Error Replies.</span>
+<h3><a id="section-6.1">6.1</a> Error Replies.</h3>
 
         401     ERR_NOSUCHNICK
                         "&lt;nickname&gt; :No such nick/channel"
@@ -2799,7 +2718,7 @@ USERS eff.org                   ; request a list of users logged in on
                 - Error sent to any user trying to view or change the
                   user mode for a user other than themselves.
 
-<span class="h3"><a id="section-6.2">6.2</a> Command responses.</span>
+<h3><a id="section-6.2">6.2</a> Command responses.</h3>
 
         300     RPL_NONE
                         Dummy reply number. Not used.
@@ -3226,7 +3145,7 @@ USERS eff.org                   ; request a list of users logged in on
 <span class="grey"><a href="#">RFC 1459</a>              Internet Relay Chat Protocol              May 1993</span>
 
 
-<span class="h3"><a id="section-6.3">6.3</a> Reserved numerics.</span>
+<h3><a id="section-6.3">6.3</a> Reserved numerics.</h3>
 
    These numerics are not described above since they fall into one of
    the following categories:
@@ -3248,7 +3167,7 @@ USERS eff.org                   ; request a list of users logged in on
         466     ERR_YOUWILLBEBANNED     476     ERR_BADCHANMASK
         492     ERR_NOSERVICEHOST
 
-<span class="h2"><a id="section-7">7</a>. Client and server authentication</span>
+<h2><a id="section-7">7</a>. Client and server authentication</h2>
 
    Clients and servers are both subject to the same level of
    authentication.  For both, an IP number to hostname lookup (and
@@ -3269,7 +3188,7 @@ USERS eff.org                   ; request a list of users logged in on
    strongly recommended on inter-server connections in addition to any
    other measures such as using an ident server.
 
-<span class="h2"><a id="section-8">8</a>. Current implementations</span>
+<h2><a id="section-8">8</a>. Current implementations</h2>
 
    The only current implementation of this protocol is the IRC server,
    version 2.8. Earlier versions may implement some or all of the
@@ -3293,14 +3212,14 @@ USERS eff.org                   ; request a list of users logged in on
    importance to those who wish to implement a server but some parts
    also apply directly to clients as well.
 
-<span class="h3"><a id="section-8.1">8.1</a> Network protocol: TCP - why it is best used here.</span>
+<h3><a id="section-8.1">8.1</a> Network protocol: TCP - why it is best used here.</h3>
 
    IRC has been implemented on top of TCP since TCP supplies a reliable
    network protocol which is well suited to this scale of conferencing.
    The use of multicast IP is an alternative, but it is not widely
    available or supported at the present time.
 
-<span class="h4"><a id="section-8.1.1">8.1.1</a> Support of Unix sockets</span>
+<h4><a id="section-8.1.1">8.1.1</a> Support of Unix sockets</h4>
 
    Given that Unix domain sockets allow listen/connect operations, the
    current implementation can be configured to listen and accept both
@@ -3312,7 +3231,7 @@ USERS eff.org                   ; request a list of users logged in on
    place of the pathname unless the actual socket name is being asked
    for.
 
-<span class="h3"><a id="section-8.2">8.2</a> Command Parsing</span>
+<h3><a id="section-8.2">8.2</a> Command Parsing</h3>
 
    To provide useful 'non-buffered' network IO for clients and servers,
    each connection is given its own private 'input buffer' in which the
@@ -3323,7 +3242,7 @@ USERS eff.org                   ; request a list of users logged in on
    multiple messages from one client in the buffer, care should be taken
    in case one happens to cause the client to be 'removed'.
 
-<span class="h3"><a id="section-8.3">8.3</a> Message delivery</span>
+<h3><a id="section-8.3">8.3</a> Message delivery</h3>
 
    It is common to find network links saturated or hosts to which you
    are sending data unable to send data.  Although Unix typically
@@ -3348,7 +3267,7 @@ USERS eff.org                   ; request a list of users logged in on
    input is processed, the queued data is sent. This reduces the number
    of write() system calls and helps TCP make bigger packets.
 
-<span class="h3"><a id="section-8.4">8.4</a> Connection 'Liveness'</span>
+<h3><a id="section-8.4">8.4</a> Connection 'Liveness'</h3>
 
    To detect when a connection has died or become unresponsive, the
    server must ping each of its connections that it doesn't get a
@@ -3359,7 +3278,7 @@ USERS eff.org                   ; request a list of users logged in on
    its sendq grows beyond the maximum allowed, because it is better to
    close a slow connection than have a server process block.
 
-<span class="h3"><a id="section-8.5">8.5</a> Establishing a server to client connection</span>
+<h3><a id="section-8.5">8.5</a> Establishing a server to client connection</h3>
 
    Upon connecting to an IRC server, a client is sent the MOTD (if
    present) as well as the current user/server count (as per the LUSER
@@ -3373,7 +3292,7 @@ USERS eff.org                   ; request a list of users logged in on
    The server must send this information out with NICK first followed by
    USER.
 
-<span class="h3"><a id="section-8.6">8.6</a> Establishing a server-server connection.</span>
+<h3><a id="section-8.6">8.6</a> Establishing a server-server connection.</h3>
 
    The process of establishing of a server-to-server connection is
    fraught with danger since there are many possible areas where
@@ -3397,7 +3316,7 @@ USERS eff.org                   ; request a list of users logged in on
    checks that the server responding is authenticated properly before
    accepting the connection to be that server.
 
-<span class="h4"><a id="section-8.6.1">8.6.1</a> Server exchange of state information when connecting</span>
+<h4><a id="section-8.6.1">8.6.1</a> Server exchange of state information when connecting</h4>
 
    The order of state information being exchanged between servers is
    essential.  The required order is as follows:
@@ -3424,13 +3343,13 @@ USERS eff.org                   ; request a list of users logged in on
    location, the place where the collision occurs indicating where the
    net needs to split.
 
-<span class="h3"><a id="section-8.7">8.7</a> Terminating server-client connections</span>
+<h3><a id="section-8.7">8.7</a> Terminating server-client connections</h3>
 
    When a client connection closes, a QUIT message is generated on
    behalf of the client by the server to which the client connected.  No
    other message is to be generated or used.
 
-<span class="h3"><a id="section-8.8">8.8</a> Terminating server-server connections</span>
+<h3><a id="section-8.8">8.8</a> Terminating server-server connections</h3>
 
    If a server-server connection is closed, either via a remotely
    generated SQUIT or 'natural' causes, the rest of the connected IRC
@@ -3450,7 +3369,7 @@ USERS eff.org                   ; request a list of users logged in on
 <span class="grey"><a href="#">RFC 1459</a>              Internet Relay Chat Protocol              May 1993</span>
 
 
-<span class="h3"><a id="section-8.9">8.9</a> Tracking nickname changes</span>
+<h3><a id="section-8.9">8.9</a> Tracking nickname changes</h3>
 
    All IRC servers are required to keep a history of recent nickname
    changes.  This is required to allow the server to have a chance of
@@ -3478,7 +3397,7 @@ USERS eff.org                   ; request a list of users logged in on
    nickname for every client it knows about if they all decided to
    change.  This size is limited by other factors (such as memory, etc).
 
-<span class="h3"><a id="section-8.10">8.10</a> Flood control of clients</span>
+<h3><a id="section-8.10">8.10</a> Flood control of clients</h3>
 
    With a large network of interconnected IRC servers, it is quite easy
    for any single client attached to the network to supply a continuous
@@ -3508,7 +3427,7 @@ USERS eff.org                   ; request a list of users logged in on
 
    seconds without being adversely affected.
 
-<span class="h3"><a id="section-8.11">8.11</a> Non-blocking lookups</span>
+<h3><a id="section-8.11">8.11</a> Non-blocking lookups</h3>
 
    In a real-time environment, it is essential that a server process do
    as little waiting as possible so that all the clients are serviced
@@ -3518,7 +3437,7 @@ USERS eff.org                   ; request a list of users logged in on
    server to block (such as disk reads).  Where possible, such activity
    should be performed with a short timeout.
 
-<span class="h4"><a id="section-8.11.1">8.11.1</a> Hostname (DNS) lookups</span>
+<h4><a id="section-8.11.1">8.11.1</a> Hostname (DNS) lookups</h4>
 
    Using the standard resolver libraries from Berkeley and others has
    meant large delays in some cases where replies have timed out.  To
@@ -3526,7 +3445,7 @@ USERS eff.org                   ; request a list of users logged in on
    setup for non-blocking IO operations and then polled from within the
    main server IO loop.
 
-<span class="h4"><a id="section-8.11.2">8.11.2</a> Username (Ident) lookups</span>
+<h4><a id="section-8.11.2">8.11.2</a> Username (Ident) lookups</h4>
 
    Although there are numerous ident libraries for use and inclusion
    into other programs, these caused problems since they operated in a
@@ -3534,7 +3453,7 @@ USERS eff.org                   ; request a list of users logged in on
    solution was to write a set of routines which would cooperate with
    the rest of the server and work using non-blocking IO.
 
-<span class="h3"><a id="section-8.12">8.12</a> Configuration File</span>
+<h3><a id="section-8.12">8.12</a> Configuration File</h3>
 
    To provide a flexible way of setting up and running the server, it is
    recommended that a configuration file be used which contains
@@ -3580,7 +3499,7 @@ USERS eff.org                   ; request a list of users logged in on
 
         * hours during which clients may connect.
 
-<span class="h4"><a id="section-8.12.1">8.12.1</a> Allowing clients to connect</span>
+<h4><a id="section-8.12.1">8.12.1</a> Allowing clients to connect</h4>
 
    A server should use some sort of 'access control list' (either in the
    configuration file or elsewhere) that is read at startup and used to
@@ -3589,7 +3508,7 @@ USERS eff.org                   ; request a list of users logged in on
    Both 'deny' and 'allow' should be implemented to provide the required
    flexibility for host access control.
 
-<span class="h4"><a id="section-8.12.2">8.12.2</a> Operators</span>
+<h4><a id="section-8.12.2">8.12.2</a> Operators</h4>
 
    The granting of operator privileges to a disruptive person can have
    dire consequences for the well-being of the IRC net in general due to
@@ -3600,7 +3519,7 @@ USERS eff.org                   ; request a list of users logged in on
    them in and should be stored in a crypted format (ie using crypt(3)
    from Unix) to prevent easy theft.
 
-<span class="h4"><a id="section-8.12.3">8.12.3</a> Allowing servers to connect</span>
+<h4><a id="section-8.12.3">8.12.3</a> Allowing servers to connect</h4>
 
    The interconnection of server is not a trivial matter: a bad
    connection can have a large impact on the usefulness of IRC.  Thus,
@@ -3618,27 +3537,27 @@ USERS eff.org                   ; request a list of users logged in on
 <span class="grey"><a href="#">RFC 1459</a>              Internet Relay Chat Protocol              May 1993</span>
 
 
-<span class="h4"><a id="section-8.12.4">8.12.4</a> Administrivia</span>
+<h4><a id="section-8.12.4">8.12.4</a> Administrivia</h4>
 
    To provide accurate and valid replies to the ADMIN command (see
    <a href="#section-4.3.7">section 4.3.7</a>), the server should find the relevant details in the
    configuration.
 
-<span class="h3"><a id="section-8.13">8.13</a> Channel membership</span>
+<h3><a id="section-8.13">8.13</a> Channel membership</h3>
 
    The current server allows any registered local user to join upto 10
    different channels.  There is no limit imposed on non-local users so
    that the server remains (reasonably) consistant with all others on a
    channel membership basis
 
-<span class="h2"><a id="section-9">9</a>. Current problems</span>
+<h2><a id="section-9">9</a>. Current problems</h2>
 
    There are a number of recognized problems with this protocol, all  of
    which  hope to be solved sometime in the near future during its
    rewrite.  Currently, work is underway to find working solutions to
    these problems.
 
-<span class="h3"><a id="section-9.1">9.1</a> Scalability</span>
+<h3><a id="section-9.1">9.1</a> Scalability</h3>
 
    It is widely recognized that this protocol does not scale
    sufficiently well when used in a large arena.  The main problem comes
@@ -3648,7 +3567,7 @@ USERS eff.org                   ; request a list of users logged in on
    so that the path length between any two points is kept minimal and
    the spanning tree as strongly branched as possible.
 
-<span class="h3"><a id="section-9.2">9.2</a> Labels</span>
+<h3><a id="section-9.2">9.2</a> Labels</h3>
 
    The current IRC protocol has 3 types of labels: the nickname, the
    channel name and the server name.  Each of the three types has its
@@ -3659,7 +3578,7 @@ USERS eff.org                   ; request a list of users logged in on
    that don't collide being desirable as well as a solution allowing a
    cyclic tree.
 
-<span class="h4"><a id="section-9.2.1">9.2.1</a> Nicknames</span>
+<h4><a id="section-9.2.1">9.2.1</a> Nicknames</h4>
 
    The idea of the nickname on IRC is very convenient for users to use
    when talking to each other outside of a channel, but there is only a
@@ -3676,7 +3595,7 @@ USERS eff.org                   ; request a list of users logged in on
 
    both will removed by use of KILL (4.6.1).
 
-<span class="h4"><a id="section-9.2.2">9.2.2</a> Channels</span>
+<h4><a id="section-9.2.2">9.2.2</a> Channels</h4>
 
    The current channel layout requires that all servers know about all
    channels, their inhabitants and properties.  Besides not scaling
@@ -3685,13 +3604,13 @@ USERS eff.org                   ; request a list of users logged in on
    new channel are considered to be members of it) rather than an
    exclusive one such as used to solve nickname collisions.
 
-<span class="h4"><a id="section-9.2.3">9.2.3</a> Servers</span>
+<h4><a id="section-9.2.3">9.2.3</a> Servers</h4>
 
    Although the number of servers is usually small relative to the
    number of users and channels, they two currently required to be known
    globally, either each one separately or hidden behind a mask.
 
-<span class="h3"><a id="section-9.3">9.3</a> Algorithms</span>
+<h3><a id="section-9.3">9.3</a> Algorithms</h3>
 
    In some places within the server code, it has not  been  possible  to
    avoid  N^2  algorithms  such  as  checking  the channel list of a set
@@ -3709,7 +3628,7 @@ USERS eff.org                   ; request a list of users logged in on
    unique labels, there are problems with channel-related commands being
    disrupted.
 
-<span class="h2"><a id="section-10">10</a>. Current support and availability</span>
+<h2><a id="section-10">10</a>. Current support and availability</h2>
 
            Mailing lists for IRC related discussion:
                 Future protocol: ircd-three-request@eff.org
@@ -3730,12 +3649,12 @@ USERS eff.org                   ; request a list of users logged in on
 <span class="grey"><a href="#">RFC 1459</a>              Internet Relay Chat Protocol              May 1993</span>
 
 
-<span class="h2"><a id="section-11">11</a>. Security Considerations</span>
+<h2><a id="section-11">11</a>. Security Considerations</h2>
 
    Security issues are discussed in sections <a href="#section-4.1">4.1</a>, <a href="#section-4.1.1">4.1.1</a>, <a href="#section-4.1.3">4.1.3</a>, <a href="#section-5.5">5.5</a>, and
    7.
 
-<span class="h2"><a id="section-12">12</a>. Authors' Addresses</span>
+<h2><a id="section-12">12</a>. Authors' Addresses</h2>
 
    Jarkko Oikarinen
    Tuirantie 17 as 9

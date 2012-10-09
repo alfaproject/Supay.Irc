@@ -54,93 +54,12 @@
 
             @media screen {
                 .grey, .grey a:link, .grey a:visited { color: #777; }
-
                 .docinfo { background-color: #EEE; }
-
                 .top { border-top: 7px solid #EEE; }
-
-                .bgwhite { background-color: white; }
-
-                .bgred { background-color: #F44; }
-
-                .bggrey { background-color: #666; }
-
-                .bgbrown { background-color: #840; }
-
-                .bgorange { background-color: #FA0; }
-
-                .bgyellow { background-color: #EE0; }
-
-                .bgmagenta { background-color: #F4F; }
-
-                .bgblue { background-color: #66F; }
-
-                .bgcyan { background-color: #4DD; }
-
-                .bggreen { background-color: #4F4; }
-
-                .legend { font-size: 90%; }
-
-                .cplate {
-                    font-size: 70%;
-                    border: solid grey 1px;
-                }
             }
         </style>
-        <!--[if IE]>
-            <style>
-                body {
-                    font-size: 13px;
-                    margin: 10px 10px;
-                }
-            </style>
-        <![endif]-->
-
-        <script type="text/javascript"> <!--
-            function addHeaderTags() {
-                var spans = document.getElementsByTagName("span");
-                for (var i = 0; i < spans.length; i++) {
-                    var elem = spans[i];
-                    if (elem) {
-                        var level = elem.getAttribute("class");
-                        if (level == "h1" || level == "h2" || level == "h3" || level == "h4" || level == "h5" || level == "h6") {
-                            elem.innerHTML = "<" + level + ">" + elem.innerHTML + "</" + level + ">";
-                        }
-                    }
-                }
-            }
-
-            var legend_html = "Colour legend:<br />      <table>         <tr><td>Unknown:</td>          <td><span class='cplate bgwhite'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Draft:</td>            <td><span class='cplate bgred'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Informational:</td>    <td><span class='cplate bgorange'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Experimental:</td>     <td><span class='cplate bgyellow'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Best Common Practice:</td><td><span class='cplate bgmagenta'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Proposed Standard:</td><td><span class='cplate bgblue'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Draft Standard:</td>   <td><span class='cplate bgcyan'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Standard:</td>         <td><span class='cplate bggreen'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Historic:</td>         <td><span class='cplate bggrey'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Obsolete:</td>         <td><span class='cplate bgbrown'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>     </table>";
-
-            function showElem(id) {
-                var elem = document.getElementById(id);
-                elem.innerHTML = eval(id + "_html");
-                elem.style.visibility = 'visible';
-            }
-
-            function hideElem(id) {
-                var elem = document.getElementById(id);
-                elem.style.visibility = 'hidden';
-                elem.innerHTML = "";
-            }
-        // -->
-    </script>
     </head>
-    <body onload=" addHeaderTags() ">
-        <div style="height: 13px;">
-            <div onmouseover=" this.style.cursor = 'pointer'; "
-                 onclick=" showElem('legend'); "
-                 onmouseout=" hideElem('legend') "
-                 style="height: 6px; position: absolute;"
-                 class="pre noprint docinfo bgorange"
-                 title="Click for colour legend." >                                                                        </div>
-            <div id="legend"
-                 class="docinfo noprint pre legend"
-                 style="position: absolute; top: 4px; left: 4ex; visibility: hidden; background-color: white; padding: 4px 9px 5px 7px; border: solid #345 1px;"
-                 onmouseover=" showElem('legend'); "
-                 onmouseout=" hideElem('legend'); ">
-            </div>
-        </div>
+    <body>
         <span class="pre noprint docinfo top">[<a href="http://tools.ietf.org/html/" title="Document search and retrieval page">Docs</a>] [<a href="http://tools.ietf.org/rfc/rfc2812.txt" title="Plaintext version of this document">txt</a>|<a href="http://tools.ietf.org/pdf/rfc2812" title="PDF version of this document">pdf</a>] [<a href="http://tools.ietf.org/html/draft-kalt-irc-client" title="draft-kalt-irc-client">draft-kalt-irc-cl...</a>] [<a href="http://tools.ietf.org/rfcdiff?difftype=--hwdiff&amp;url2=rfc2812" title="Inline diff (wdiff)">Diff1</a>] [<a href="http://tools.ietf.org/rfcdiff?url2=rfc2812" title="Side-by-side diff">Diff2</a>] [<a href="http://www.rfc-editor.org/errata_search.php?rfc=2812">Errata</a>]        </span><br />
         <span class="pre noprint docinfo">                                                                        </span><br />
         <span class="pre noprint docinfo">                                                           INFORMATIONAL</span><br />
@@ -152,7 +71,7 @@ Updates: <a href="RFC 1459 - Protocol.html">1459</a>
 Category: Informational
 
 
-                  <span class="h1">Internet Relay Chat: Client Protocol</span>
+                  <h1>Internet Relay Chat: Client Protocol</h1>
 
 Status of this Memo
 
@@ -283,19 +202,19 @@ Table of Contents
    <a href="#section-11">11</a>.  Author's Address ..........................................  <a href="#page-62">62</a>
    <a href="#section-12">12</a>.  Full Copyright Statement ..................................  <a href="#page-63">63</a>
 
-<span class="h2"><a id="section-1">1</a>. Labels</span>
+<h2><a id="section-1">1</a>. Labels</h2>
 
    This section defines the identifiers used for the various components
    of the IRC protocol.
 
-<span class="h3"><a id="section-1.1">1.1</a> Servers</span>
+<h3><a id="section-1.1">1.1</a> Servers</h3>
 
    Servers are uniquely identified by their name, which has a maximum
    length of sixty three (63) characters.  See the protocol grammar
    rules (<a href="#section-2.3.1">section 2.3.1</a>) for what may and may not be used in a server
    name.
 
-<span class="h3"><a id="section-1.2">1.2</a> Clients</span>
+<h3><a id="section-1.2">1.2</a> Clients</h3>
 
    For each client all servers MUST have the following information: a
    netwide unique identifier (whose format depends on the type of
@@ -314,7 +233,7 @@ Table of Contents
 <span class="grey"><a href="#">RFC 2812</a>          Internet Relay Chat: Client Protocol        April 2000</span>
 
 
-<span class="h4"><a id="section-1.2.1">1.2.1</a> Users</span>
+<h4><a id="section-1.2.1">1.2.1</a> Users</h4>
 
    Each user is distinguished from other users by a unique nickname
    having a maximum length of nine (9) characters.  See the protocol
@@ -325,7 +244,7 @@ Table of Contents
    SHOULD accept longer strings as they may become used in future
    evolutions of the protocol.
 
-<span class="h5"><a id="section-1.2.1.1">1.2.1.1</a> Operators</span>
+<h5><a id="section-1.2.1.1">1.2.1.1</a> Operators</h5>
 
    To allow a reasonable amount of order to be kept within the IRC
    network, a special class of users (operators) is allowed to perform
@@ -344,7 +263,7 @@ Table of Contents
    destructive and annoying, and its benefits close to inexistent.  For
    further details on this type of action, see <a href="#section-3.7.1">section 3.7.1</a> (KILL).
 
-<span class="h4"><a id="section-1.2.2">1.2.2</a> Services</span>
+<h4><a id="section-1.2.2">1.2.2</a> Services</h4>
 
    Each service is distinguished from other services by a service name
    composed of a nickname and a server name.  As for users, the nickname
@@ -352,7 +271,7 @@ Table of Contents
    grammar rules (<a href="#section-2.3.1">section 2.3.1</a>) for what may and may not be used in a
    nickname.
 
-<span class="h3"><a id="section-1.3">1.3</a> Channels</span>
+<h3><a id="section-1.3">1.3</a> Channels</h3>
 
    Channels names are strings (beginning with a '&amp;', '#', '+' or '!'
    character) of length up to fifty (50) characters.  Apart from the
@@ -378,14 +297,14 @@ Table of Contents
    and thus it is beyond the scope of this document.  More details can
    be found in "Internet Relay Chat: Channel Management" [<a href="#ref-IRC-CHAN" title='"Internet Relay Chat: Channel Management"'>IRC-CHAN</a>].
 
-<span class="h2"><a id="section-2">2</a>. The IRC Client Specification</span>
+<h2><a id="section-2">2</a>. The IRC Client Specification</h2>
 
-<span class="h3"><a id="section-2.1">2.1</a> Overview</span>
+<h3><a id="section-2.1">2.1</a> Overview</h3>
 
    The protocol as described herein is for use only with client to
    server connections when the client registers as a user.
 
-<span class="h3"><a id="section-2.2">2.2</a> Character codes</span>
+<h3><a id="section-2.2">2.2</a> Character codes</h3>
 
    No specific character set is specified. The protocol is based on a
    set of codes which are composed of eight (8) bits, making up an
@@ -402,7 +321,7 @@ Table of Contents
    respectively. This is a critical issue when determining the
    equivalence of two nicknames or channel names.
 
-<span class="h3"><a id="section-2.3">2.3</a> Messages</span>
+<h3><a id="section-2.3">2.3</a> Messages</h3>
 
    Servers and clients send each other messages, which may or may not
    generate a reply.  If the message contains a valid command, as
@@ -447,7 +366,7 @@ Table of Contents
    continuation of message lines.  See <a href="#section-6">section 6</a> for more details about
    current implementations.
 
-<span class="h4"><a id="section-2.3.1">2.3.1</a> Message format in Augmented BNF</span>
+<h4><a id="section-2.3.1">2.3.1</a> Message format in Augmented BNF</h4>
 
    The protocol messages must be extracted from the contiguous stream of
    octets.  The current solution is to designate two characters, CR and
@@ -572,7 +491,7 @@ Table of Contents
          These parameters follow the general syntax defined for
          &lt;params&gt;.
 
-<span class="h3"><a id="section-2.4">2.4</a> Numeric replies</span>
+<h3><a id="section-2.4">2.4</a> Numeric replies</h3>
 
    Most of the messages sent to the server generate a reply of some
    sort.  The most common reply is the numeric reply, used for both
@@ -594,7 +513,7 @@ Table of Contents
 <span class="grey"><a href="#">RFC 2812</a>          Internet Relay Chat: Client Protocol        April 2000</span>
 
 
-<span class="h3"><a id="section-2.5">2.5</a> Wildcard expressions</span>
+<h3><a id="section-2.5">2.5</a> Wildcard expressions</h3>
 
    When wildcards are allowed in a string, it is referred as a "mask".
 
@@ -625,7 +544,7 @@ Table of Contents
    a*c         ; Matches any string of at least 2 characters in length
                starting with "a" and ending with "c"
 
-<span class="h2"><a id="section-3">3</a>. Message Details</span>
+<h2><a id="section-3">3</a>. Message Details</h2>
 
    On the following pages there are descriptions of each message
    recognized by the IRC server and client.  All commands described in
@@ -650,7 +569,7 @@ Table of Contents
 <span class="grey"><a href="#">RFC 2812</a>          Internet Relay Chat: Client Protocol        April 2000</span>
 
 
-<span class="h3"><a id="section-3.1">3.1</a> Connection Registration</span>
+<h3><a id="section-3.1">3.1</a> Connection Registration</h3>
 
    The commands described here are used to register a connection with an
    IRC server as a user as well as to correctly disconnect.
@@ -671,7 +590,7 @@ Table of Contents
    The reply message MUST contain the full client identifier upon which
    it was registered.
 
-<span class="h4"><a id="section-3.1.1">3.1.1</a> Password message</span>
+<h4><a id="section-3.1.1">3.1.1</a> Password message</h4>
 
       Command: PASS
    Parameters: &lt;password&gt;
@@ -689,7 +608,7 @@ Table of Contents
 
            PASS secretpasswordhere
 
-<span class="h4"><a id="section-3.1.2">3.1.2</a> Nick message</span>
+<h4><a id="section-3.1.2">3.1.2</a> Nick message</h4>
 
 
       Command: NICK
@@ -722,7 +641,7 @@ Table of Contents
                            ; Server telling that WiZ changed his
                            nickname to Kilroy.
 
-<span class="h4"><a id="section-3.1.3">3.1.3</a> User message</span>
+<h4><a id="section-3.1.3">3.1.3</a> User message</h4>
 
       Command: USER
    Parameters: &lt;user&gt; &lt;mode&gt; &lt;unused&gt; &lt;realname&gt;
@@ -762,7 +681,7 @@ Table of Contents
 <span class="grey"><a href="#">RFC 2812</a>          Internet Relay Chat: Client Protocol        April 2000</span>
 
 
-<span class="h4"><a id="section-3.1.4">3.1.4</a> Oper message</span>
+<h4><a id="section-3.1.4">3.1.4</a> Oper message</h4>
 
       Command: OPER
    Parameters: &lt;name&gt; &lt;password&gt;
@@ -783,7 +702,7 @@ Table of Contents
                                    using a username of "foo" and "bar"
                                    as the password.
 
-<span class="h4"><a id="section-3.1.5">3.1.5</a> User mode message</span>
+<h4><a id="section-3.1.5">3.1.5</a> User mode message</h4>
 
       Command: MODE
    Parameters: &lt;nickname&gt;
@@ -854,7 +773,7 @@ Table of Contents
    MODE WiZ -o                     ; WiZ 'deopping' (removing operator
                                    status).
 
-<span class="h4"><a id="section-3.1.6">3.1.6</a> Service message</span>
+<h4><a id="section-3.1.6">3.1.6</a> Service message</h4>
 
       Command: SERVICE
    Parameters: &lt;nickname&gt; &lt;reserved&gt; &lt;distribution&gt; &lt;type&gt;
@@ -897,7 +816,7 @@ Table of Contents
                                    service will only be available on
                                    servers which name matches "*.fr".
 
-<span class="h4"><a id="section-3.1.7">3.1.7</a> Quit</span>
+<h4><a id="section-3.1.7">3.1.7</a> Quit</h4>
 
       Command: QUIT
    Parameters: [ &lt;Quit Message&gt; ]
@@ -930,7 +849,7 @@ Table of Contents
 <span class="grey"><a href="#">RFC 2812</a>          Internet Relay Chat: Client Protocol        April 2000</span>
 
 
-<span class="h4"><a id="section-3.1.8">3.1.8</a> Squit</span>
+<h4><a id="section-3.1.8">3.1.8</a> Squit</h4>
 
       Command: SQUIT
    Parameters: &lt;server&gt; &lt;comment&gt;
@@ -963,7 +882,7 @@ Table of Contents
                                    "cm22.eng.umd.edu" from the net with
                                    comment "Server out of control".
 
-<span class="h3"><a id="section-3.2">3.2</a> Channel operations</span>
+<h3><a id="section-3.2">3.2</a> Channel operations</h3>
 
    This group of messages is concerned with manipulating channels, their
    properties (channel modes), and their contents (typically users).
@@ -991,7 +910,7 @@ Table of Contents
    details are found in "Internet Relay Chat: Channel Management" [IRC-
    CHAN].
 
-<span class="h4"><a id="section-3.2.1">3.2.1</a> Join message</span>
+<h4><a id="section-3.2.1">3.2.1</a> Join message</h4>
 
       Command: JOIN
    Parameters: ( &lt;channel&gt; *( "," &lt;channel&gt; ) [ &lt;key&gt; *( "," &lt;key&gt; ) ] )
@@ -1058,7 +977,7 @@ Table of Contents
    :WiZ!jto@tolsun.oulu.fi JOIN #Twilight_zone ; JOIN message from WiZ
                                    on channel #Twilight_zone
 
-<span class="h4"><a id="section-3.2.2">3.2.2</a> Part message</span>
+<h4><a id="section-3.2.2">3.2.2</a> Part message</h4>
 
       Command: PART
    Parameters: &lt;channel&gt; *( "," &lt;channel&gt; ) [ &lt;Part Message&gt; ]
@@ -1098,7 +1017,7 @@ Table of Contents
 <span class="grey"><a href="#">RFC 2812</a>          Internet Relay Chat: Client Protocol        April 2000</span>
 
 
-<span class="h4"><a id="section-3.2.3">3.2.3</a> Channel mode message</span>
+<h4><a id="section-3.2.3">3.2.3</a> Channel mode message</h4>
 
       Command: MODE
    Parameters: &lt;channel&gt; *( ( "-" / "+" ) *&lt;modes&gt; *&lt;modeparams&gt; )
@@ -1188,7 +1107,7 @@ Table of Contents
    MODE !12345ircd O               ; Command to ask who the channel
                                    creator for "!12345ircd" is
 
-<span class="h4"><a id="section-3.2.4">3.2.4</a> Topic message</span>
+<h4><a id="section-3.2.4">3.2.4</a> Topic message</h4>
 
       Command: TOPIC
    Parameters: &lt;channel&gt; [ &lt;topic&gt; ]
@@ -1230,7 +1149,7 @@ Table of Contents
    TOPIC #test                     ; Command to check the topic for
                                    #test.
 
-<span class="h4"><a id="section-3.2.5">3.2.5</a> Names message</span>
+<h4><a id="section-3.2.5">3.2.5</a> Names message</h4>
 
       Command: NAMES
    Parameters: [ &lt;channel&gt; *( "," &lt;channel&gt; ) [ &lt;target&gt; ] ]
@@ -1274,7 +1193,7 @@ Table of Contents
    NAMES                           ; Command to list all visible
                                    channels and users
 
-<span class="h4"><a id="section-3.2.6">3.2.6</a> List message</span>
+<h4><a id="section-3.2.6">3.2.6</a> List message</h4>
 
       Command: LIST
    Parameters: [ &lt;channel&gt; *( "," &lt;channel&gt; ) [ &lt;target&gt; ] ]
@@ -1300,7 +1219,7 @@ Table of Contents
    LIST #twilight_zone,#42         ; Command to list channels
                                    #twilight_zone and #42
 
-<span class="h4"><a id="section-3.2.7">3.2.7</a> Invite message</span>
+<h4><a id="section-3.2.7">3.2.7</a> Invite message</h4>
 
       Command: INVITE
    Parameters: &lt;nickname&gt; &lt;channel&gt;
@@ -1345,7 +1264,7 @@ Table of Contents
    INVITE Wiz #Twilight_Zone       ; Command to invite WiZ to
                                    #Twilight_zone
 
-<span class="h4"><a id="section-3.2.8">3.2.8</a> Kick command</span>
+<h4><a id="section-3.2.8">3.2.8</a> Kick command</h4>
 
       Command: KICK
    Parameters: &lt;channel&gt; *( "," &lt;channel&gt; ) &lt;user&gt; *( "," &lt;user&gt; )
@@ -1392,7 +1311,7 @@ Table of Contents
                                    ; KICK message on channel #Finnish
                                    from WiZ to remove John from channel
 
-<span class="h3"><a id="section-3.3">3.3</a> Sending messages</span>
+<h3><a id="section-3.3">3.3</a> Sending messages</h3>
 
    The main purpose of the IRC protocol is to provide a base for clients
    to communicate with each other.  PRIVMSG, NOTICE and SQUERY
@@ -1401,7 +1320,7 @@ Table of Contents
    from one client to another - the rest just make it possible and try
    to ensure it happens in a reliable and structured manner.
 
-<span class="h4"><a id="section-3.3.1">3.3.1</a> Private messages</span>
+<h4><a id="section-3.3.1">3.3.1</a> Private messages</h4>
 
       Command: PRIVMSG
    Parameters: &lt;msgtarget&gt; &lt;text to be sent&gt;
@@ -1474,7 +1393,7 @@ Table of Contents
                                    a host which has a name matching
                                    *.edu.
 
-<span class="h4"><a id="section-3.3.2">3.3.2</a> Notice</span>
+<h4><a id="section-3.3.2">3.3.2</a> Notice</h4>
 
       Command: NOTICE
    Parameters: &lt;msgtarget&gt; &lt;text&gt;
@@ -1502,7 +1421,7 @@ Table of Contents
 
    See PRIVMSG for more details on replies and examples.
 
-<span class="h3"><a id="section-3.4">3.4</a> Server queries and commands</span>
+<h3><a id="section-3.4">3.4</a> Server queries and commands</h3>
 
    The server query group of commands has been designed to return
    information about any server which is connected to the network.
@@ -1515,7 +1434,7 @@ Table of Contents
    These messages typically have little value for services, it is
    therefore RECOMMENDED to forbid services from using them.
 
-<span class="h4"><a id="section-3.4.1">3.4.1</a> Motd message</span>
+<h4><a id="section-3.4.1">3.4.1</a> Motd message</h4>
 
       Command: MOTD
    Parameters: [ &lt;target&gt; ]
@@ -1529,7 +1448,7 @@ Table of Contents
            RPL_MOTDSTART                   RPL_MOTD
            RPL_ENDOFMOTD                   ERR_NOMOTD
 
-<span class="h4"><a id="section-3.4.2">3.4.2</a> Lusers message</span>
+<h4><a id="section-3.4.2">3.4.2</a> Lusers message</h4>
 
       Command: LUSERS
    Parameters: [ &lt;mask&gt; [ &lt;target&gt; ] ]
@@ -1558,7 +1477,7 @@ Table of Contents
            RPL_LUSERUNKOWN                 RPL_LUSERCHANNELS
            RPL_LUSERME                     ERR_NOSUCHSERVER
 
-<span class="h4"><a id="section-3.4.3">3.4.3</a> Version message</span>
+<h4><a id="section-3.4.3">3.4.3</a> Version message</h4>
 
       Command: VERSION
    Parameters: [ &lt;target&gt; ]
@@ -1578,7 +1497,7 @@ Table of Contents
    VERSION tolsun.oulu.fi          ; Command to check the version of
                                    server "tolsun.oulu.fi".
 
-<span class="h4"><a id="section-3.4.4">3.4.4</a> Stats message</span>
+<h4><a id="section-3.4.4">3.4.4</a> Stats message</h4>
 
       Command: STATS
    Parameters: [ &lt;query&gt; [ &lt;target&gt; ] ]
@@ -1633,7 +1552,7 @@ Table of Contents
    STATS m                         ; Command to check the command usage
                                    for the server you are connected to
 
-<span class="h4"><a id="section-3.4.5">3.4.5</a> Links message</span>
+<h4><a id="section-3.4.5">3.4.5</a> Links message</h4>
 
       Command: LINKS
    Parameters: [ [ &lt;remote server&gt; ] &lt;server mask&gt; ]
@@ -1667,7 +1586,7 @@ Table of Contents
                                    *.bu.edu as seen by the first server
                                    matching *.edu.
 
-<span class="h4"><a id="section-3.4.6">3.4.6</a> Time message</span>
+<h4><a id="section-3.4.6">3.4.6</a> Time message</h4>
 
       Command: TIME
    Parameters: [ &lt;target&gt; ]
@@ -1686,7 +1605,7 @@ Table of Contents
    TIME tolsun.oulu.fi             ; check the time on the server
                                    "tolson.oulu.fi"
 
-<span class="h4"><a id="section-3.4.7">3.4.7</a> Connect message</span>
+<h4><a id="section-3.4.7">3.4.7</a> Connect message</h4>
 
       Command: CONNECT
    Parameters: &lt;target server&gt; &lt;port&gt; [ &lt;remote server&gt; ]
@@ -1719,7 +1638,7 @@ Table of Contents
    CONNECT tolsun.oulu.fi 6667     ; Command to attempt to connect local
                                    server to tolsun.oulu.fi on port 6667
 
-<span class="h4"><a id="section-3.4.8">3.4.8</a> Trace message</span>
+<h4><a id="section-3.4.8">3.4.8</a> Trace message</h4>
 
       Command: TRACE
    Parameters: [ &lt;target&gt; ]
@@ -1785,7 +1704,7 @@ Table of Contents
    TRACE *.oulu.fi                 ; TRACE to a server matching
                                    *.oulu.fi
 
-<span class="h4"><a id="section-3.4.9">3.4.9</a> Admin command</span>
+<h4><a id="section-3.4.9">3.4.9</a> Admin command</h4>
 
       Command: ADMIN
    Parameters: [ &lt;target&gt; ]
@@ -1826,7 +1745,7 @@ Table of Contents
 <span class="grey"><a href="#">RFC 2812</a>          Internet Relay Chat: Client Protocol        April 2000</span>
 
 
-<span class="h4"><a id="section-3.4.10">3.4.10</a> Info command</span>
+<h4><a id="section-3.4.10">3.4.10</a> Info command</h4>
 
       Command: INFO
    Parameters: [ &lt;target&gt; ]
@@ -1851,12 +1770,12 @@ Table of Contents
    INFO Angel                      ; request info from the server that
                                    Angel is connected to.
 
-<span class="h3"><a id="section-3.5">3.5</a> Service Query and Commands</span>
+<h3><a id="section-3.5">3.5</a> Service Query and Commands</h3>
 
    The service query group of commands has been designed to return
    information about any service which is connected to the network.
 
-<span class="h4"><a id="section-3.5.1">3.5.1</a> Servlist message</span>
+<h4><a id="section-3.5.1">3.5.1</a> Servlist message</h4>
 
       Command: SERVLIST
    Parameters: [ &lt;mask&gt; [ &lt;type&gt; ] ]
@@ -1882,7 +1801,7 @@ Table of Contents
 <span class="grey"><a href="#">RFC 2812</a>          Internet Relay Chat: Client Protocol        April 2000</span>
 
 
-<span class="h4"><a id="section-3.5.2">3.5.2</a> Squery</span>
+<h4><a id="section-3.5.2">3.5.2</a> Squery</h4>
 
       Command: SQUERY
    Parameters: &lt;servicename&gt; &lt;text&gt;
@@ -1903,7 +1822,7 @@ Table of Contents
                                    ; Message to the service with name
                                    dict@irc.fr.
 
-<span class="h3"><a id="section-3.6">3.6</a> User based queries</span>
+<h3><a id="section-3.6">3.6</a> User based queries</h3>
 
    User queries are a group of commands which are primarily concerned
    with finding details on a particular user or group users.  When using
@@ -1915,7 +1834,7 @@ Table of Contents
    Although services SHOULD NOT be using this class of message, they are
    allowed to.
 
-<span class="h4"><a id="section-3.6.1">3.6.1</a> Who query</span>
+<h4><a id="section-3.6.1">3.6.1</a> Who query</h4>
 
       Command: WHO
    Parameters: [ &lt;mask&gt; [ "o" ] ]
@@ -1955,7 +1874,7 @@ Table of Contents
                                    match against "jto*" if they are an
                                    operator.
 
-<span class="h4"><a id="section-3.6.2">3.6.2</a> Whois query</span>
+<h4><a id="section-3.6.2">3.6.2</a> Whois query</h4>
 
       Command: WHOIS
    Parameters: [ &lt;target&gt; ] &lt;mask&gt; *( "," &lt;mask&gt; )
@@ -2002,7 +1921,7 @@ Table of Contents
    WHOIS eff.org trillian          ; ask server eff.org for user
                                    information  about trillian
 
-<span class="h4"><a id="section-3.6.3">3.6.3</a> Whowas</span>
+<h4><a id="section-3.6.3">3.6.3</a> Whowas</h4>
 
       Command: WHOWAS
    Parameters: &lt;nickname&gt; *( "," &lt;nickname&gt; ) [ &lt;count&gt; [ &lt;target&gt; ] ]
@@ -2038,7 +1957,7 @@ Table of Contents
                                    "Trillian" from the first server
                                    found to match "*.edu".
 
-<span class="h3"><a id="section-3.7">3.7</a> Miscellaneous messages</span>
+<h3><a id="section-3.7">3.7</a> Miscellaneous messages</h3>
 
    Messages in this category do not fit into any of the above categories
    but are nonetheless still a part of and REQUIRED by the protocol.
@@ -2050,7 +1969,7 @@ Table of Contents
 <span class="grey"><a href="#">RFC 2812</a>          Internet Relay Chat: Client Protocol        April 2000</span>
 
 
-<span class="h4"><a id="section-3.7.1">3.7.1</a> Kill message</span>
+<h4><a id="section-3.7.1">3.7.1</a> Kill message</h4>
 
       Command: KILL
    Parameters: &lt;nickname&gt; &lt;comment&gt;
@@ -2113,7 +2032,7 @@ Table of Contents
    recommendation, it is also widely recognized that not even operators
    should be allowed to kill users on remote servers.
 
-<span class="h4"><a id="section-3.7.2">3.7.2</a> Ping message</span>
+<h4><a id="section-3.7.2">3.7.2</a> Ping message</h4>
 
       Command: PING
    Parameters: &lt;server1&gt; [ &lt;server2&gt; ]
@@ -2162,7 +2081,7 @@ Table of Contents
 <span class="grey"><a href="#">RFC 2812</a>          Internet Relay Chat: Client Protocol        April 2000</span>
 
 
-<span class="h4"><a id="section-3.7.3">3.7.3</a> Pong message</span>
+<h4><a id="section-3.7.3">3.7.3</a> Pong message</h4>
 
       Command: PONG
    Parameters: &lt;server&gt; [ &lt;server2&gt; ]
@@ -2181,7 +2100,7 @@ Table of Contents
    PONG csd.bu.edu tolsun.oulu.fi  ; PONG message from csd.bu.edu to
                                    tolsun.oulu.fi
 
-<span class="h4"><a id="section-3.7.4">3.7.4</a> Error</span>
+<h4><a id="section-3.7.4">3.7.4</a> Error</h4>
 
       Command: ERROR
    Parameters: &lt;error message&gt;
@@ -2227,7 +2146,7 @@ Table of Contents
                                    ; Same ERROR message as above but
                                    sent to user WiZ on the other server.
 
-<span class="h2"><a id="section-4">4</a>. Optional features</span>
+<h2><a id="section-4">4</a>. Optional features</h2>
 
    This section describes OPTIONAL messages.  They are not required in a
    working server implementation of the protocol described herein.  In
@@ -2240,7 +2159,7 @@ Table of Contents
    From this section, only the USERHOST and ISON messages are available
    to services.
 
-<span class="h3"><a id="section-4.1">4.1</a> Away</span>
+<h3><a id="section-4.1">4.1</a> Away</h3>
 
       Command: AWAY
    Parameters: [ &lt;text&gt; ]
@@ -2279,7 +2198,7 @@ Table of Contents
    AWAY :Gone to lunch.  Back in 5 ; Command to set away message to
                                    "Gone to lunch.  Back in 5".
 
-<span class="h3"><a id="section-4.2">4.2</a> Rehash message</span>
+<h3><a id="section-4.2">4.2</a> Rehash message</h3>
 
       Command: REHASH
    Parameters: None
@@ -2299,7 +2218,7 @@ Table of Contents
                                    status to server asking it to reread
                                    its configuration file.
 
-<span class="h3"><a id="section-4.3">4.3</a> Die message</span>
+<h3><a id="section-4.3">4.3</a> Die message</h3>
 
       Command: DIE
    Parameters: None
@@ -2330,7 +2249,7 @@ Table of Contents
 <span class="grey"><a href="#">RFC 2812</a>          Internet Relay Chat: Client Protocol        April 2000</span>
 
 
-<span class="h3"><a id="section-4.4">4.4</a> Restart message</span>
+<h3><a id="section-4.4">4.4</a> Restart message</h3>
 
       Command: RESTART
    Parameters: None
@@ -2352,7 +2271,7 @@ Table of Contents
 
    RESTART                         ; no parameters required.
 
-<span class="h3"><a id="section-4.5">4.5</a> Summon message</span>
+<h3><a id="section-4.5">4.5</a> Summon message</h3>
 
       Command: SUMMON
    Parameters: &lt;user&gt; [ &lt;target&gt; [ &lt;channel&gt; ] ]
@@ -2395,7 +2314,7 @@ Table of Contents
                                    server named "tolsun.oulu.fi" is
                                    running.
 
-<span class="h3"><a id="section-4.6">4.6</a> Users</span>
+<h3><a id="section-4.6">4.6</a> Users</h3>
 
       Command: USERS
    Parameters: [ &lt;target&gt; ]
@@ -2426,7 +2345,7 @@ Table of Contents
    USERS eff.org                   ; request a list of users logged in
                                    on server eff.org
 
-<span class="h3"><a id="section-4.7">4.7</a> Operwall message</span>
+<h3><a id="section-4.7">4.7</a> Operwall message</h3>
 
       Command: WALLOPS
    Parameters: &lt;Text to be sent&gt;
@@ -2459,7 +2378,7 @@ Table of Contents
                                    CONNECT message it received from
                                    Joshua and acted upon.
 
-<span class="h3"><a id="section-4.8">4.8</a> Userhost message</span>
+<h3><a id="section-4.8">4.8</a> Userhost message</h3>
 
       Command: USERHOST
    Parameters: &lt;nickname&gt; *( SPACE &lt;nickname&gt; )
@@ -2481,7 +2400,7 @@ Table of Contents
    :ircd.stealth.net 302 yournick :syrk=+syrk@millennium.stealth.net
                                    ; Reply for user syrk
 
-<span class="h3"><a id="section-4.9">4.9</a> Ison message</span>
+<h3><a id="section-4.9">4.9</a> Ison message</h3>
 
       Command: ISON
    Parameters: &lt;nickname&gt; *( SPACE &lt;nickname&gt; )
@@ -2519,13 +2438,13 @@ Table of Contents
    ISON phone trillian WiZ jarlek Avalon Angel Monstah syrk
                                    ; Sample ISON request for 7 nicks.
 
-<span class="h2"><a id="section-5">5</a>. Replies</span>
+<h2><a id="section-5">5</a>. Replies</h2>
 
    The following is a list of numeric replies which are generated in
    response to the commands given above.  Each numeric is given with its
    number, name and reply string.
 
-<span class="h3"><a id="section-5.1">5.1</a> Command responses</span>
+<h3><a id="section-5.1">5.1</a> Command responses</h3>
 
    Numerics in the range from 001 to 099 are used for client-server
    connections only and should never travel between servers.  Replies
@@ -3069,7 +2988,7 @@ Table of Contents
            it MUST use the reply RPL_TRYAGAIN to inform the
            originating client.
 
-<span class="h3"><a id="section-5.2">5.2</a> Error Replies</span>
+<h3><a id="section-5.2">5.2</a> Error Replies</h3>
 
        Error replies are found in the range from 400 to 599.
 
@@ -3435,7 +3354,7 @@ Table of Contents
          - Error sent to any user trying to view or change the
            user mode for a user other than themselves.
 
-<span class="h3"><a id="section-5.3">5.3</a> Reserved numerics</span>
+<h3><a id="section-5.3">5.3</a> Reserved numerics</h3>
 
    These numerics are not described above since they fall into one of
    the following categories:
@@ -3472,7 +3391,7 @@ Table of Contents
 
             492    ERR_NOSERVICEHOST
 
-<span class="h2"><a id="section-6">6</a>. Current implementations</span>
+<h2><a id="section-6">6</a>. Current implementations</h2>
 
    The IRC software, version 2.10 is the only complete implementation of
    the IRC protocol (client and server).  Because of the small amount of
@@ -3481,14 +3400,14 @@ Table of Contents
    this protocol or to require a small amount of changes to reach
    compliance.
 
-<span class="h2"><a id="section-7">7</a>. Current problems</span>
+<h2><a id="section-7">7</a>. Current problems</h2>
 
    There are a number of recognized problems with the IRC Client
    Protocol, and more generally with the IRC Server Protocol.  In order
    to preserve backward compatibility with old clients, this protocol
    has almost not evolved since the publication of <a href="RFC 1459 - Protocol.html">RFC 1459</a> [<a href="#ref-IRC" title='"Internet Relay Chat Protocol"'>IRC</a>].
 
-<span class="h3"><a id="section-7.1">7.1</a> Nicknames</span>
+<h3><a id="section-7.1">7.1</a> Nicknames</h3>
 
    The idea of the nickname on IRC is very convenient for users to use
    when talking to each other outside of a channel, but there is only a
@@ -3506,19 +3425,19 @@ Table of Contents
 <span class="grey"><a href="#">RFC 2812</a>          Internet Relay Chat: Client Protocol        April 2000</span>
 
 
-<span class="h3"><a id="section-7.2">7.2</a> Limitation of wildcards</span>
+<h3><a id="section-7.2">7.2</a> Limitation of wildcards</h3>
 
    There is no way to escape the escape character "\" (%x5C).  While
    this isn't usually a problem, it makes it impossible to form a mask
    with a backslash character ("\") preceding a wildcard.
 
-<span class="h3"><a id="section-7.3">7.3</a> Security considerations</span>
+<h3><a id="section-7.3">7.3</a> Security considerations</h3>
 
    Security issues related to this protocol are discussed in the "IRC
    Server Protocol" [<a href="#ref-IRC-SERVER" title='"Internet Relay Chat: Server Protocol"'>IRC-SERVER</a>] as they are mostly an issue for the
    server side of the connection.
 
-<span class="h2"><a id="section-8">8</a>. Current support and availability</span>
+<h2><a id="section-8">8</a>. Current support and availability</h2>
 
         Mailing lists for IRC related discussion:
           General discussion: ircd-users@irc.org
@@ -3531,7 +3450,7 @@ Table of Contents
 
         Newsgroup: alt.irc
 
-<span class="h2"><a id="section-9">9</a>. Acknowledgements</span>
+<h2><a id="section-9">9</a>. Acknowledgements</h2>
 
    Parts of this document were copied from the <a href="RFC 1459 - Protocol.html">RFC 1459</a> [<a href="#ref-IRC" title='"Internet Relay Chat Protocol"'>IRC</a>] which
    first formally documented the IRC Protocol.  It has also benefited
@@ -3562,7 +3481,7 @@ Table of Contents
 <span class="grey"><a href="#">RFC 2812</a>          Internet Relay Chat: Client Protocol        April 2000</span>
 
 
-<span class="h2"><a id="section-10">10</a>. References</span>
+<h2><a id="section-10">10</a>. References</h2>
 
    [<a id="ref-KEYWORDS">KEYWORDS</a>]   Bradner, S., "Key words for use in RFCs to Indicate
                 Requirement Levels", <a href="http://tools.ietf.org/html/bcp14">BCP 14</a>, <a href="http://tools.ietf.org/html/rfc2119">RFC 2119</a>, March 1997.
@@ -3585,7 +3504,7 @@ Table of Contents
    [<a id="ref-IRC-SERVER">IRC-SERVER</a>] Kalt, C., "Internet Relay Chat: Server Protocol", <a href="RFC 2813 - Server Protocol.html">RFC</a>
                 <a href="RFC 2813 - Server Protocol.html">2813</a>, April 2000.
 
-<span class="h2"><a id="section-11">11</a>. Author's Address</span>
+<h2><a id="section-11">11</a>. Author's Address</h2>
 
    Christophe Kalt
    99 Teaneck Rd, Apt #117
@@ -3618,7 +3537,7 @@ Table of Contents
 <span class="grey"><a href="#">RFC 2812</a>          Internet Relay Chat: Client Protocol        April 2000</span>
 
 
-<span class="h2"><a id="section-12">12</a>.  Full Copyright Statement</span>
+<h2><a id="section-12">12</a>.  Full Copyright Statement</h2>
 
    Copyright (C) The Internet Society (2000).  All Rights Reserved.
 

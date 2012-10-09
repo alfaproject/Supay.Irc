@@ -54,93 +54,12 @@
 
             @media screen {
                 .grey, .grey a:link, .grey a:visited { color: #777; }
-
                 .docinfo { background-color: #EEE; }
-
                 .top { border-top: 7px solid #EEE; }
-
-                .bgwhite { background-color: white; }
-
-                .bgred { background-color: #F44; }
-
-                .bggrey { background-color: #666; }
-
-                .bgbrown { background-color: #840; }
-
-                .bgorange { background-color: #FA0; }
-
-                .bgyellow { background-color: #EE0; }
-
-                .bgmagenta { background-color: #F4F; }
-
-                .bgblue { background-color: #66F; }
-
-                .bgcyan { background-color: #4DD; }
-
-                .bggreen { background-color: #4F4; }
-
-                .legend { font-size: 90%; }
-
-                .cplate {
-                    font-size: 70%;
-                    border: solid grey 1px;
-                }
             }
         </style>
-        <!--[if IE]>
-            <style>
-                body {
-                    font-size: 13px;
-                    margin: 10px 10px;
-                }
-            </style>
-        <![endif]-->
-
-        <script type="text/javascript"> <!--
-            function addHeaderTags() {
-                var spans = document.getElementsByTagName("span");
-                for (var i = 0; i < spans.length; i++) {
-                    var elem = spans[i];
-                    if (elem) {
-                        var level = elem.getAttribute("class");
-                        if (level == "h1" || level == "h2" || level == "h3" || level == "h4" || level == "h5" || level == "h6") {
-                            elem.innerHTML = "<" + level + ">" + elem.innerHTML + "</" + level + ">";
-                        }
-                    }
-                }
-            }
-
-            var legend_html = "Colour legend:<br />      <table>         <tr><td>Unknown:</td>          <td><span class='cplate bgwhite'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Draft:</td>            <td><span class='cplate bgred'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Informational:</td>    <td><span class='cplate bgorange'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Experimental:</td>     <td><span class='cplate bgyellow'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Best Common Practice:</td><td><span class='cplate bgmagenta'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Proposed Standard:</td><td><span class='cplate bgblue'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Draft Standard:</td>   <td><span class='cplate bgcyan'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Standard:</td>         <td><span class='cplate bggreen'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Historic:</td>         <td><span class='cplate bggrey'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Obsolete:</td>         <td><span class='cplate bgbrown'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>     </table>";
-
-            function showElem(id) {
-                var elem = document.getElementById(id);
-                elem.innerHTML = eval(id + "_html");
-                elem.style.visibility = 'visible';
-            }
-
-            function hideElem(id) {
-                var elem = document.getElementById(id);
-                elem.style.visibility = 'hidden';
-                elem.innerHTML = "";
-            }
-        // -->
-    </script>
     </head>
-    <body onload=" addHeaderTags() ">
-        <div style="height: 13px;">
-            <div onmouseover=" this.style.cursor = 'pointer'; "
-                 onclick=" showElem('legend'); "
-                 onmouseout=" hideElem('legend') "
-                 style="height: 6px; position: absolute;"
-                 class="pre noprint docinfo bgred"
-                 title="Click for colour legend." >                                                                        </div>
-            <div id="legend"
-                 class="docinfo noprint pre legend"
-                 style="position: absolute; top: 4px; left: 4ex; visibility: hidden; background-color: white; padding: 4px 9px 5px 7px; border: solid #345 1px;"
-                 onmouseover=" showElem('legend'); "
-                 onmouseout=" hideElem('legend'); ">
-            </div>
-        </div>
+    <body>
         <span class="pre noprint docinfo top">[<a href="http://tools.ietf.org/html/" title="Document search and retrieval page">Docs</a>] [<a href="http://tools.ietf.org/id/draft-brocklesby-irc-isupport-03.txt" title="Plaintext version of this document">txt</a>|<a href="http://tools.ietf.org/pdf/draft-brocklesby-irc-isupport-03.txt" title="PDF version of this document">pdf</a>] [<a href='https://datatracker.ietf.org/doc/draft-brocklesby-irc-isupport' title='IESG Datatracker information for this document'>Tracker</a>] [<a href="mailto:draft-brocklesby-irc-isupport@tools.ietf.org?subject=draft-brocklesby-irc-isupport%20" title="Send email to the document authors">Email</a>] [<a href="http://tools.ietf.org/rfcdiff?difftype=--hwdiff&amp;url2=draft-brocklesby-irc-isupport-03.txt" title="Inline diff (wdiff)">Diff1</a>] [<a href="http://tools.ietf.org/rfcdiff?url2=draft-brocklesby-irc-isupport-03.txt" title="Side-by-side diff">Diff2</a>] [<a href="http://tools.ietf.org/idnits?url=http://tools.ietf.org/id/draft-brocklesby-irc-isupport-03.txt" title="Run an idnits check of this document">Nits</a>]               </span><br />
         <span class="pre noprint docinfo">                                                                        </span><br />
         <span class="pre noprint docinfo">Versions: <a href="http://tools.ietf.org/html/draft-brocklesby-irc-isupport-00">00</a> <a href="http://tools.ietf.org/html/draft-brocklesby-irc-isupport-01">01</a> <a href="http://tools.ietf.org/html/draft-brocklesby-irc-isupport-02">02</a> <a href="http://tools.ietf.org/html/draft-brocklesby-irc-isupport-03">03</a>                                                   </span><br />
@@ -151,8 +70,8 @@ Internet-Draft                                           January 5, 2004
 Expires: July 5, 2004
 
 
-                  <span class="h1">IRC RPL_ISUPPORT Numeric Definition</span>
-                    <span class="h1">draft-brocklesby-irc-isupport-03</span>
+                  <h1>IRC RPL_ISUPPORT Numeric Definition</h1>
+                    <h1>draft-brocklesby-irc-isupport-03</h1>
 
 Status of this Memo
 
@@ -259,9 +178,9 @@ Table of Contents
 <span class="grey">Internet-Draft    IRC RPL_ISUPPORT Numeric Definition       January 2004</span>
 
 
-<span class="h2"><a id="section-1">1</a>. Introduction</span>
+<h2><a id="section-1">1</a>. Introduction</h2>
 
-<span class="h3"><a id="section-1.1">1.1</a> Terminology</span>
+<h3><a id="section-1.1">1.1</a> Terminology</h3>
 
    o  Original IRC protocol: The original IRC protocol as described in
       <a href="RFC 1459 - Protocol.html">RFC 1459</a> [<a href="#ref-5" title='"Internet Relay Chat Protocol"'>5</a>].
@@ -273,7 +192,7 @@ Table of Contents
    o  The term "character" is this document is used to mean an octet, as
       defined in <a href="RFC 1459 - Protocol.html">RFC 1459</a> [<a href="#ref-5" title='"Internet Relay Chat Protocol"'>5</a>], section 2.2.
 
-<span class="h3"><a id="section-1.2">1.2</a> Changes to previous version</span>
+<h3><a id="section-1.2">1.2</a> Changes to previous version</h3>
 
      [Note: To be removed by the RFC editor prior to publication.]
 
@@ -304,7 +223,7 @@ Table of Contents
    o  The TARGMAX parameter was added.
    o  "X" and "X=" were made identical.
 
-<span class="h3"><a id="section-1.3">1.3</a> Motivation</span>
+<h3><a id="section-1.3">1.3</a> Motivation</h3>
 
    Since the publication of <a href="RFC 1459 - Protocol.html">RFC 1459</a> [<a href="#ref-5" title='"Internet Relay Chat Protocol"'>5</a>] in 1993, a number of changes
 
@@ -337,14 +256,14 @@ Table of Contents
    that IRC clients can use the information provided to the maximum
    extent.
 
-<span class="h3"><a id="section-1.4">1.4</a> Notes on examples</span>
+<h3><a id="section-1.4">1.4</a> Notes on examples</h3>
 
    Several examples of protocol replies are given throughout this
    document. These are intended only for clarification of the protocol;
    in the case of a discrepancy between the example and the formal
    specification, the specification is always preferred.
 
-<span class="h2"><a id="section-2">2</a>. Protocol outline</span>
+<h2><a id="section-2">2</a>. Protocol outline</h2>
 
    The ISUPPORT numeric consists of a series of parameters, each of
    which maps to a protocol extension supported by the IRC server.  A
@@ -483,7 +402,7 @@ Table of Contents
 <span class="grey">Internet-Draft    IRC RPL_ISUPPORT Numeric Definition       January 2004</span>
 
 
-<span class="h2"><a id="section-3">3</a>. Currently defined parameters</span>
+<h2><a id="section-3">3</a>. Currently defined parameters</h2>
 
    A number of parameters are currently used in the IRC community, and
    it is believed to be beneficial to standardise these.  They are
@@ -493,7 +412,7 @@ Table of Contents
       update and extend the set of defined parameters; this is not meant
       to be an exhaustive list.]
 
-<span class="h3"><a id="section-3.1">3.1</a> CASEMAPPING</span>
+<h3><a id="section-3.1">3.1</a> CASEMAPPING</h3>
 
    o  CASEMAPPING=string
 
@@ -526,7 +445,7 @@ Table of Contents
    reflect current IRC server implementations, and is as such more
    useful.
 
-<span class="h3"><a id="section-3.2">3.2</a> CHANLIMIT</span>
+<h3><a id="section-3.2">3.2</a> CHANLIMIT</h3>
 
    o  CHANLIMIT=pfx:num[,pfx:num,...]
 
@@ -559,7 +478,7 @@ Table of Contents
 
    The CHANLIMIT token requires a value.
 
-<span class="h3"><a id="section-3.3">3.3</a> CHANMODES</span>
+<h3><a id="section-3.3">3.3</a> CHANMODES</h3>
 
    o  CHANMODES=A,B,C,D
 
@@ -606,7 +525,7 @@ Table of Contents
 
    There is no default value for the CHANMODES token.
 
-<span class="h3"><a id="section-3.4">3.4</a> CHANNELLEN</span>
+<h3><a id="section-3.4">3.4</a> CHANNELLEN</h3>
 
    o  CHANNELLEN=number
 
@@ -623,7 +542,7 @@ Table of Contents
    The default value for CHANNELLEN is 200; this corresponds to <a href="RFC 1459 - Protocol.html">RFC 1459</a>
    [<a href="#ref-5" title='"Internet Relay Chat Protocol"'>5</a>].
 
-<span class="h3"><a id="section-3.5">3.5</a> CHANTYPES</span>
+<h3><a id="section-3.5">3.5</a> CHANTYPES</h3>
 
    o  CHANTYPES=chars
 
@@ -640,7 +559,7 @@ Table of Contents
    The CHANMODES parameter does not require a value;  if none is given,
    the server does not support any channel types.
 
-<span class="h3"><a id="section-3.6">3.6</a> EXCEPTS</span>
+<h3><a id="section-3.6">3.6</a> EXCEPTS</h3>
 
 
 
@@ -662,7 +581,7 @@ Table of Contents
    The default value for EXCEPTS is that channel exceptions are not
    supported.
 
-<span class="h3"><a id="section-3.7">3.7</a> IDCHAN</span>
+<h3><a id="section-3.7">3.7</a> IDCHAN</h3>
 
    o  IDCHAN=pfx:num[,pfx:num,...]
 
@@ -683,7 +602,7 @@ Table of Contents
    The default value for IDCHAN is no value;  that is, there are no
    "safe" channel types.
 
-<span class="h3"><a id="section-3.8">3.8</a> INVEX</span>
+<h3><a id="section-3.8">3.8</a> INVEX</h3>
 
    o  INVEX[=modechar]
 
@@ -696,7 +615,7 @@ Table of Contents
    The default value for INVEX is that channel invite exceptions are not
    available.
 
-<span class="h3"><a id="section-3.9">3.9</a> KICKLEN</span>
+<h3><a id="section-3.9">3.9</a> KICKLEN</h3>
 
 
 
@@ -720,7 +639,7 @@ Table of Contents
 
    There is no default value for the KICKLEN token.
 
-<span class="h3"><a id="section-3.10">3.10</a> MAXLIST</span>
+<h3><a id="section-3.10">3.10</a> MAXLIST</h3>
 
    o  MAXLIST=mode:num[,mode:num,...]
 
@@ -745,7 +664,7 @@ Table of Contents
 
    There is no default value for the MAXLIST token.
 
-<span class="h3"><a id="section-3.11">3.11</a> MODES</span>
+<h3><a id="section-3.11">3.11</a> MODES</h3>
 
    o  MODES=number
 
@@ -777,7 +696,7 @@ Table of Contents
    number of modes which may be set in one command is not limited.  If a
    value is given, it must be numeric.
 
-<span class="h3"><a id="section-3.12">3.12</a> NETWORK</span>
+<h3><a id="section-3.12">3.12</a> NETWORK</h3>
 
    o  NETWORK=name
 
@@ -796,7 +715,7 @@ Table of Contents
    The default value of the NETWORK token is no value;  that is, the
    network does not have a name specified.
 
-<span class="h3"><a id="section-3.13">3.13</a> NICKLEN</span>
+<h3><a id="section-3.13">3.13</a> NICKLEN</h3>
 
    o  NICKLEN=number
 
@@ -822,7 +741,7 @@ Table of Contents
    The default value for NICKLEN is 9, which corresponds to <a href="RFC 1459 - Protocol.html">RFC 1459</a>
    [<a href="#ref-5" title='"Internet Relay Chat Protocol"'>5</a>].
 
-<span class="h3"><a id="section-3.14">3.14</a> PREFIX</span>
+<h3><a id="section-3.14">3.14</a> PREFIX</h3>
 
    o  PREFIX=[(modes)prefixes]
 
@@ -852,7 +771,7 @@ Table of Contents
    Note that PREFIX does NOT specify whether or not the server sends
    multiple prefix characters for a user in NAMES replies.
 
-<span class="h3"><a id="section-3.15">3.15</a> SAFELIST</span>
+<h3><a id="section-3.15">3.15</a> SAFELIST</h3>
 
    o  SAFELIST
 
@@ -875,7 +794,7 @@ Table of Contents
 <span class="grey">Internet-Draft    IRC RPL_ISUPPORT Numeric Definition       January 2004</span>
 
 
-<span class="h3"><a id="section-3.16">3.16</a> STATUSMSG</span>
+<h3><a id="section-3.16">3.16</a> STATUSMSG</h3>
 
    o  STATUSMSG=string
 
@@ -908,7 +827,7 @@ Table of Contents
    The default value of the STATUSMSG token is none;  that is, the
    server does not support this form of messaging.
 
-<span class="h3"><a id="section-3.17">3.17</a> STD</span>
+<h3><a id="section-3.17">3.17</a> STD</h3>
 
    o  STD=version[,version[,...]]
 
@@ -948,7 +867,7 @@ Table of Contents
    The default value for the STD parameter is none; that is, no
    standardised ISUPPORT is available.
 
-<span class="h3"><a id="section-3.18">3.18</a> TARGMAX</span>
+<h3><a id="section-3.18">3.18</a> TARGMAX</h3>
 
    o  TARGMAX=[cmd:lim,cmd:lim...]
 
@@ -973,7 +892,7 @@ Table of Contents
    targets. If this is the case, the server SHOULD NOT specify
    "TARGMAX=".
 
-<span class="h3"><a id="section-3.19">3.19</a> TOPICLEN</span>
+<h3><a id="section-3.19">3.19</a> TOPICLEN</h3>
 
    o  TOPICLEN=number
 
@@ -995,12 +914,12 @@ Table of Contents
 
    The TOPICLEN token requires a numeric value.
 
-<span class="h2"><a id="section-4">4</a>. Differences to existing implementations</span>
+<h2><a id="section-4">4</a>. Differences to existing implementations</h2>
 
    A number of differences exist between the ISUPPORT defined in this
    document and traditional implementations of the ISUPPORT numeric.
 
-<span class="h3"><a id="section-4.1">4.1</a> PREFIX parameter without value</span>
+<h3><a id="section-4.1">4.1</a> PREFIX parameter without value</h3>
 
    The PREFIX parameter is traditionally not sent without a value
    parameter; indeed, the author is not aware of any IRC server
@@ -1009,7 +928,7 @@ Table of Contents
    while retaining compatibility with traditional PREFIX
    implementations.
 
-<span class="h3"><a id="section-4.2">4.2</a> EXCEPTS and INVEX value argument</span>
+<h3><a id="section-4.2">4.2</a> EXCEPTS and INVEX value argument</h3>
 
    EXCEPTS and INVEX traditionally take no argument -- while they
    indicate presence of these features on the server, they do not
@@ -1017,7 +936,7 @@ Table of Contents
    is believed that the argument value described here provides extra
    flexibility while retaining backwards compatibility.
 
-<span class="h3"><a id="section-4.3">4.3</a> STATUSMSG / WALLCHOPS</span>
+<h3><a id="section-4.3">4.3</a> STATUSMSG / WALLCHOPS</h3>
 
    The STATUSMSG parameter replaces the traditional WALLCHOPS parameter
    used by some current implementations.  It is believed that the name
@@ -1026,7 +945,7 @@ Table of Contents
    use the name WALLCHOPS. It was not considered beneficial to allow a
    STATUSMSG flag without a value.
 
-<span class="h3"><a id="section-4.4">4.4</a> Conflicts with <a href="RFC 2812 - Client Protocol.html">RFC 2812</a></span>
+<h3><a id="section-4.4">4.4</a> Conflicts with <a href="RFC 2812 - Client Protocol.html">RFC 2812</a></h3>
 
    <a href="RFC 2812 - Client Protocol.html">RFC 2812</a> [<a href="#ref-4" title='"Internet Relay Chat: Client Protocol"'>4</a>], section 5.1, defines a numeric reply "RPL_BOUNCE", with
    the associated number "005".  While this conflicts with the ISUPPORT
@@ -1046,7 +965,7 @@ Table of Contents
    <a href="RFC 2812 - Client Protocol.html">RFC2812</a> is an Informational RFC and does not not specify an Internet
    standard.
 
-<span class="h3"><a id="section-4.5">4.5</a> Default value for CASEMAPPING</span>
+<h3><a id="section-4.5">4.5</a> Default value for CASEMAPPING</h3>
 
    The default value for CASEMAPPING ("<a href="RFC 1459 - Protocol.html">rfc1459</a>") was chosen because it
    reflects the prevailing implementations of the IRC server software
@@ -1055,7 +974,7 @@ Table of Contents
    CASEMAPPING=ascii; therefore this is not believed to introduce any
    compatibility problems.
 
-<span class="h3"><a id="section-4.6">4.6</a> CHANLIMIT / MAXCHANNELS</span>
+<h3><a id="section-4.6">4.6</a> CHANLIMIT / MAXCHANNELS</h3>
 
    CHANLIMIT replaces the traditional MAXCHANNELS parameter. MAXCHANNELS
    did not specify which types of channel(s) the limit applied to; many
@@ -1063,7 +982,7 @@ Table of Contents
    channels, for example.  The token was renamed from MAXCHANNELS to
    CHANLIMIT to prevent confusion.
 
-<span class="h3"><a id="section-4.7">4.7</a> MAXLIST / MAXBANS</span>
+<h3><a id="section-4.7">4.7</a> MAXLIST / MAXBANS</h3>
 
    MAXLIST replaces the traditional MAXBANS token.  MAXBANS was
    considered non-useful, because of its ambiguous meaning; two of the
@@ -1074,7 +993,7 @@ Table of Contents
    leave some IRC servers unable to accurately describe their
    capabilities.
 
-<span class="h3"><a id="section-4.8">4.8</a> CHARSET</span>
+<h3><a id="section-4.8">4.8</a> CHARSET</h3>
 
    The traditional CHARSET parameter has been entirely removed.  It was
    found to be unworkable;  a correct specification could not be devised
@@ -1082,7 +1001,7 @@ Table of Contents
    methods to implement the same functionality are under discussion but
    are outside the scope of this document.
 
-<span class="h3"><a id="section-4.9">4.9</a> TARGMAX / MAXTARGETS</span>
+<h3><a id="section-4.9">4.9</a> TARGMAX / MAXTARGETS</h3>
 
    Traditional implementations use MAXTARGETS instead of TARGMAX.
    However, TARGMAX allowed several commands to be specified (such as
@@ -1099,7 +1018,7 @@ Table of Contents
 <span class="grey">Internet-Draft    IRC RPL_ISUPPORT Numeric Definition       January 2004</span>
 
 
-<span class="h2"><a id="section-5">5</a>. Security Considerations</span>
+<h2><a id="section-5">5</a>. Security Considerations</h2>
 
    This memo does not raise any security considerations.
 
@@ -1134,7 +1053,7 @@ Author's Address
 
    EMail: ejb@goth.net
 
-<span class="h2"><a id="appendix-A">Appendix A</a>. Default ISUPPORT values</span>
+<h2><a id="appendix-A">Appendix A</a>. Default ISUPPORT values</h2>
 
    As an aid to implementation, a standard ISUPPORT reply with all
    values which may be assumed to be at their defaults upon connection
@@ -1155,7 +1074,7 @@ Author's Address
 <span class="grey">Internet-Draft    IRC RPL_ISUPPORT Numeric Definition       January 2004</span>
 
 
-<span class="h2"><a id="appendix-B">Appendix B</a>. Acknowledgements</span>
+<h2><a id="appendix-B">Appendix B</a>. Acknowledgements</h2>
 
    The author gratefully acknowledges the contributions of Bill Fenner
    ("fenestro"), Perry Lorier ("Isomer"), Kurt Roeckx ("Q") and John
