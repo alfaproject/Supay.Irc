@@ -212,7 +212,7 @@ Table of Contents
 
 
 <span class="grey">Kalt                         Informational                      [Page 1]</span>
-</pre><pre class='newpage'><a name="page-2" id="page-2" href="#page-2" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-2" href="#page-2" class="invisible"> </a>
 <span class="grey"><a href="./rfc2812">RFC 2812</a>          Internet Relay Chat: Client Protocol        April 2000</span>
 
 
@@ -268,7 +268,7 @@ Table of Contents
 
 
 <span class="grey">Kalt                         Informational                      [Page 2]</span>
-</pre><pre class='newpage'><a name="page-3" id="page-3" href="#page-3" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-3" href="#page-3" class="invisible"> </a>
 <span class="grey"><a href="./rfc2812">RFC 2812</a>          Internet Relay Chat: Client Protocol        April 2000</span>
 
 
@@ -297,19 +297,19 @@ Table of Contents
    <a href="#section-11">11</a>.  Author's Address ..........................................  <a href="#page-62">62</a>
    <a href="#section-12">12</a>.  Full Copyright Statement ..................................  <a href="#page-63">63</a>
 
-<span class="h2"><a name="section-1">1</a>. Labels</span>
+<span class="h2"><a id="section-1">1</a>. Labels</span>
 
    This section defines the identifiers used for the various components
    of the IRC protocol.
 
-<span class="h3"><a name="section-1.1">1.1</a> Servers</span>
+<span class="h3"><a id="section-1.1">1.1</a> Servers</span>
 
    Servers are uniquely identified by their name, which has a maximum
    length of sixty three (63) characters.  See the protocol grammar
    rules (<a href="#section-2.3.1">section 2.3.1</a>) for what may and may not be used in a server
    name.
 
-<span class="h3"><a name="section-1.2">1.2</a> Clients</span>
+<span class="h3"><a id="section-1.2">1.2</a> Clients</span>
 
    For each client all servers MUST have the following information: a
    netwide unique identifier (whose format depends on the type of
@@ -324,11 +324,11 @@ Table of Contents
 
 
 <span class="grey">Kalt                         Informational                      [Page 3]</span>
-</pre><pre class='newpage'><a name="page-4" id="page-4" href="#page-4" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-4" href="#page-4" class="invisible"> </a>
 <span class="grey"><a href="./rfc2812">RFC 2812</a>          Internet Relay Chat: Client Protocol        April 2000</span>
 
 
-<span class="h4"><a name="section-1.2.1">1.2.1</a> Users</span>
+<span class="h4"><a id="section-1.2.1">1.2.1</a> Users</span>
 
    Each user is distinguished from other users by a unique nickname
    having a maximum length of nine (9) characters.  See the protocol
@@ -339,7 +339,7 @@ Table of Contents
    SHOULD accept longer strings as they may become used in future
    evolutions of the protocol.
 
-<span class="h5"><a name="section-1.2.1.1">1.2.1.1</a> Operators</span>
+<span class="h5"><a id="section-1.2.1.1">1.2.1.1</a> Operators</span>
 
    To allow a reasonable amount of order to be kept within the IRC
    network, a special class of users (operators) is allowed to perform
@@ -358,7 +358,7 @@ Table of Contents
    destructive and annoying, and its benefits close to inexistent.  For
    further details on this type of action, see <a href="#section-3.7.1">section 3.7.1</a> (KILL).
 
-<span class="h4"><a name="section-1.2.2">1.2.2</a> Services</span>
+<span class="h4"><a id="section-1.2.2">1.2.2</a> Services</span>
 
    Each service is distinguished from other services by a service name
    composed of a nickname and a server name.  As for users, the nickname
@@ -366,7 +366,7 @@ Table of Contents
    grammar rules (<a href="#section-2.3.1">section 2.3.1</a>) for what may and may not be used in a
    nickname.
 
-<span class="h3"><a name="section-1.3">1.3</a> Channels</span>
+<span class="h3"><a id="section-1.3">1.3</a> Channels</span>
 
    Channels names are strings (beginning with a '&amp;', '#', '+' or '!'
    character) of length up to fifty (50) characters.  Apart from the
@@ -380,7 +380,7 @@ Table of Contents
 
 
 <span class="grey">Kalt                         Informational                      [Page 4]</span>
-</pre><pre class='newpage'><a name="page-5" id="page-5" href="#page-5" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-5" href="#page-5" class="invisible"> </a>
 <span class="grey"><a href="./rfc2812">RFC 2812</a>          Internet Relay Chat: Client Protocol        April 2000</span>
 
 
@@ -392,14 +392,14 @@ Table of Contents
    and thus it is beyond the scope of this document.  More details can
    be found in "Internet Relay Chat: Channel Management" [<a href="#ref-IRC-CHAN" title='"Internet Relay Chat: Channel Management"'>IRC-CHAN</a>].
 
-<span class="h2"><a name="section-2">2</a>. The IRC Client Specification</span>
+<span class="h2"><a id="section-2">2</a>. The IRC Client Specification</span>
 
-<span class="h3"><a name="section-2.1">2.1</a> Overview</span>
+<span class="h3"><a id="section-2.1">2.1</a> Overview</span>
 
    The protocol as described herein is for use only with client to
    server connections when the client registers as a user.
 
-<span class="h3"><a name="section-2.2">2.2</a> Character codes</span>
+<span class="h3"><a id="section-2.2">2.2</a> Character codes</span>
 
    No specific character set is specified. The protocol is based on a
    set of codes which are composed of eight (8) bits, making up an
@@ -416,7 +416,7 @@ Table of Contents
    respectively. This is a critical issue when determining the
    equivalence of two nicknames or channel names.
 
-<span class="h3"><a name="section-2.3">2.3</a> Messages</span>
+<span class="h3"><a id="section-2.3">2.3</a> Messages</span>
 
    Servers and clients send each other messages, which may or may not
    generate a reply.  If the message contains a valid command, as
@@ -436,7 +436,7 @@ Table of Contents
 
 
 <span class="grey">Kalt                         Informational                      [Page 5]</span>
-</pre><pre class='newpage'><a name="page-6" id="page-6" href="#page-6" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-6" href="#page-6" class="invisible"> </a>
 <span class="grey"><a href="./rfc2812">RFC 2812</a>          Internet Relay Chat: Client Protocol        April 2000</span>
 
 
@@ -461,7 +461,7 @@ Table of Contents
    continuation of message lines.  See <a href="#section-6">section 6</a> for more details about
    current implementations.
 
-<span class="h4"><a name="section-2.3.1">2.3.1</a> Message format in Augmented BNF</span>
+<span class="h4"><a id="section-2.3.1">2.3.1</a> Message format in Augmented BNF</span>
 
    The protocol messages must be extracted from the contiguous stream of
    octets.  The current solution is to designate two characters, CR and
@@ -492,7 +492,7 @@ Table of Contents
 
 
 <span class="grey">Kalt                         Informational                      [Page 6]</span>
-</pre><pre class='newpage'><a name="page-7" id="page-7" href="#page-7" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-7" href="#page-7" class="invisible"> </a>
 <span class="grey"><a href="./rfc2812">RFC 2812</a>          Internet Relay Chat: Client Protocol        April 2000</span>
 
 
@@ -548,7 +548,7 @@ Table of Contents
 
 
 <span class="grey">Kalt                         Informational                      [Page 7]</span>
-</pre><pre class='newpage'><a name="page-8" id="page-8" href="#page-8" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-8" href="#page-8" class="invisible"> </a>
 <span class="grey"><a href="./rfc2812">RFC 2812</a>          Internet Relay Chat: Client Protocol        April 2000</span>
 
 
@@ -586,7 +586,7 @@ Table of Contents
          These parameters follow the general syntax defined for
          &lt;params&gt;.
 
-<span class="h3"><a name="section-2.4">2.4</a> Numeric replies</span>
+<span class="h3"><a id="section-2.4">2.4</a> Numeric replies</span>
 
    Most of the messages sent to the server generate a reply of some
    sort.  The most common reply is the numeric reply, used for both
@@ -604,11 +604,11 @@ Table of Contents
 
 
 <span class="grey">Kalt                         Informational                      [Page 8]</span>
-</pre><pre class='newpage'><a name="page-9" id="page-9" href="#page-9" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-9" href="#page-9" class="invisible"> </a>
 <span class="grey"><a href="./rfc2812">RFC 2812</a>          Internet Relay Chat: Client Protocol        April 2000</span>
 
 
-<span class="h3"><a name="section-2.5">2.5</a> Wildcard expressions</span>
+<span class="h3"><a id="section-2.5">2.5</a> Wildcard expressions</span>
 
    When wildcards are allowed in a string, it is referred as a "mask".
 
@@ -639,7 +639,7 @@ Table of Contents
    a*c         ; Matches any string of at least 2 characters in length
                starting with "a" and ending with "c"
 
-<span class="h2"><a name="section-3">3</a>. Message Details</span>
+<span class="h2"><a id="section-3">3</a>. Message Details</span>
 
    On the following pages there are descriptions of each message
    recognized by the IRC server and client.  All commands described in
@@ -660,11 +660,11 @@ Table of Contents
 
 
 <span class="grey">Kalt                         Informational                      [Page 9]</span>
-</pre><pre class='newpage'><a name="page-10" id="page-10" href="#page-10" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-10" href="#page-10" class="invisible"> </a>
 <span class="grey"><a href="./rfc2812">RFC 2812</a>          Internet Relay Chat: Client Protocol        April 2000</span>
 
 
-<span class="h3"><a name="section-3.1">3.1</a> Connection Registration</span>
+<span class="h3"><a id="section-3.1">3.1</a> Connection Registration</span>
 
    The commands described here are used to register a connection with an
    IRC server as a user as well as to correctly disconnect.
@@ -685,7 +685,7 @@ Table of Contents
    The reply message MUST contain the full client identifier upon which
    it was registered.
 
-<span class="h4"><a name="section-3.1.1">3.1.1</a> Password message</span>
+<span class="h4"><a id="section-3.1.1">3.1.1</a> Password message</span>
 
       Command: PASS
    Parameters: &lt;password&gt;
@@ -703,7 +703,7 @@ Table of Contents
 
            PASS secretpasswordhere
 
-<span class="h4"><a name="section-3.1.2">3.1.2</a> Nick message</span>
+<span class="h4"><a id="section-3.1.2">3.1.2</a> Nick message</span>
 
 
       Command: NICK
@@ -716,7 +716,7 @@ Table of Contents
 
 
 <span class="grey">Kalt                         Informational                     [Page 10]</span>
-</pre><pre class='newpage'><a name="page-11" id="page-11" href="#page-11" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-11" href="#page-11" class="invisible"> </a>
 <span class="grey"><a href="./rfc2812">RFC 2812</a>          Internet Relay Chat: Client Protocol        April 2000</span>
 
 
@@ -736,7 +736,7 @@ Table of Contents
                            ; Server telling that WiZ changed his
                            nickname to Kilroy.
 
-<span class="h4"><a name="section-3.1.3">3.1.3</a> User message</span>
+<span class="h4"><a id="section-3.1.3">3.1.3</a> User message</span>
 
       Command: USER
    Parameters: &lt;user&gt; &lt;mode&gt; &lt;unused&gt; &lt;realname&gt;
@@ -772,11 +772,11 @@ Table of Contents
 
 
 <span class="grey">Kalt                         Informational                     [Page 11]</span>
-</pre><pre class='newpage'><a name="page-12" id="page-12" href="#page-12" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-12" href="#page-12" class="invisible"> </a>
 <span class="grey"><a href="./rfc2812">RFC 2812</a>          Internet Relay Chat: Client Protocol        April 2000</span>
 
 
-<span class="h4"><a name="section-3.1.4">3.1.4</a> Oper message</span>
+<span class="h4"><a id="section-3.1.4">3.1.4</a> Oper message</span>
 
       Command: OPER
    Parameters: &lt;name&gt; &lt;password&gt;
@@ -797,7 +797,7 @@ Table of Contents
                                    using a username of "foo" and "bar"
                                    as the password.
 
-<span class="h4"><a name="section-3.1.5">3.1.5</a> User mode message</span>
+<span class="h4"><a id="section-3.1.5">3.1.5</a> User mode message</span>
 
       Command: MODE
    Parameters: &lt;nickname&gt;
@@ -828,7 +828,7 @@ Table of Contents
 
 
 <span class="grey">Kalt                         Informational                     [Page 12]</span>
-</pre><pre class='newpage'><a name="page-13" id="page-13" href="#page-13" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-13" href="#page-13" class="invisible"> </a>
 <span class="grey"><a href="./rfc2812">RFC 2812</a>          Internet Relay Chat: Client Protocol        April 2000</span>
 
 
@@ -868,7 +868,7 @@ Table of Contents
    MODE WiZ -o                     ; WiZ 'deopping' (removing operator
                                    status).
 
-<span class="h4"><a name="section-3.1.6">3.1.6</a> Service message</span>
+<span class="h4"><a id="section-3.1.6">3.1.6</a> Service message</span>
 
       Command: SERVICE
    Parameters: &lt;nickname&gt; &lt;reserved&gt; &lt;distribution&gt; &lt;type&gt;
@@ -884,7 +884,7 @@ Table of Contents
 
 
 <span class="grey">Kalt                         Informational                     [Page 13]</span>
-</pre><pre class='newpage'><a name="page-14" id="page-14" href="#page-14" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-14" href="#page-14" class="invisible"> </a>
 <span class="grey"><a href="./rfc2812">RFC 2812</a>          Internet Relay Chat: Client Protocol        April 2000</span>
 
 
@@ -911,7 +911,7 @@ Table of Contents
                                    service will only be available on
                                    servers which name matches "*.fr".
 
-<span class="h4"><a name="section-3.1.7">3.1.7</a> Quit</span>
+<span class="h4"><a id="section-3.1.7">3.1.7</a> Quit</span>
 
       Command: QUIT
    Parameters: [ &lt;Quit Message&gt; ]
@@ -940,11 +940,11 @@ Table of Contents
 
 
 <span class="grey">Kalt                         Informational                     [Page 14]</span>
-</pre><pre class='newpage'><a name="page-15" id="page-15" href="#page-15" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-15" href="#page-15" class="invisible"> </a>
 <span class="grey"><a href="./rfc2812">RFC 2812</a>          Internet Relay Chat: Client Protocol        April 2000</span>
 
 
-<span class="h4"><a name="section-3.1.8">3.1.8</a> Squit</span>
+<span class="h4"><a id="section-3.1.8">3.1.8</a> Squit</span>
 
       Command: SQUIT
    Parameters: &lt;server&gt; &lt;comment&gt;
@@ -977,7 +977,7 @@ Table of Contents
                                    "cm22.eng.umd.edu" from the net with
                                    comment "Server out of control".
 
-<span class="h3"><a name="section-3.2">3.2</a> Channel operations</span>
+<span class="h3"><a id="section-3.2">3.2</a> Channel operations</span>
 
    This group of messages is concerned with manipulating channels, their
    properties (channel modes), and their contents (typically users).
@@ -996,7 +996,7 @@ Table of Contents
 
 
 <span class="grey">Kalt                         Informational                     [Page 15]</span>
-</pre><pre class='newpage'><a name="page-16" id="page-16" href="#page-16" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-16" href="#page-16" class="invisible"> </a>
 <span class="grey"><a href="./rfc2812">RFC 2812</a>          Internet Relay Chat: Client Protocol        April 2000</span>
 
 
@@ -1005,7 +1005,7 @@ Table of Contents
    details are found in "Internet Relay Chat: Channel Management" [IRC-
    CHAN].
 
-<span class="h4"><a name="section-3.2.1">3.2.1</a> Join message</span>
+<span class="h4"><a id="section-3.2.1">3.2.1</a> Join message</span>
 
       Command: JOIN
    Parameters: ( &lt;channel&gt; *( "," &lt;channel&gt; ) [ &lt;key&gt; *( "," &lt;key&gt; ) ] )
@@ -1052,7 +1052,7 @@ Table of Contents
 
 
 <span class="grey">Kalt                         Informational                     [Page 16]</span>
-</pre><pre class='newpage'><a name="page-17" id="page-17" href="#page-17" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-17" href="#page-17" class="invisible"> </a>
 <span class="grey"><a href="./rfc2812">RFC 2812</a>          Internet Relay Chat: Client Protocol        April 2000</span>
 
 
@@ -1072,7 +1072,7 @@ Table of Contents
    :WiZ!jto@tolsun.oulu.fi JOIN #Twilight_zone ; JOIN message from WiZ
                                    on channel #Twilight_zone
 
-<span class="h4"><a name="section-3.2.2">3.2.2</a> Part message</span>
+<span class="h4"><a id="section-3.2.2">3.2.2</a> Part message</span>
 
       Command: PART
    Parameters: &lt;channel&gt; *( "," &lt;channel&gt; ) [ &lt;Part Message&gt; ]
@@ -1108,11 +1108,11 @@ Table of Contents
 
 
 <span class="grey">Kalt                         Informational                     [Page 17]</span>
-</pre><pre class='newpage'><a name="page-18" id="page-18" href="#page-18" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-18" href="#page-18" class="invisible"> </a>
 <span class="grey"><a href="./rfc2812">RFC 2812</a>          Internet Relay Chat: Client Protocol        April 2000</span>
 
 
-<span class="h4"><a name="section-3.2.3">3.2.3</a> Channel mode message</span>
+<span class="h4"><a id="section-3.2.3">3.2.3</a> Channel mode message</span>
 
       Command: MODE
    Parameters: &lt;channel&gt; *( ( "-" / "+" ) *&lt;modes&gt; *&lt;modeparams&gt; )
@@ -1164,7 +1164,7 @@ Table of Contents
 
 
 <span class="grey">Kalt                         Informational                     [Page 18]</span>
-</pre><pre class='newpage'><a name="page-19" id="page-19" href="#page-19" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-19" href="#page-19" class="invisible"> </a>
 <span class="grey"><a href="./rfc2812">RFC 2812</a>          Internet Relay Chat: Client Protocol        April 2000</span>
 
 
@@ -1202,7 +1202,7 @@ Table of Contents
    MODE !12345ircd O               ; Command to ask who the channel
                                    creator for "!12345ircd" is
 
-<span class="h4"><a name="section-3.2.4">3.2.4</a> Topic message</span>
+<span class="h4"><a id="section-3.2.4">3.2.4</a> Topic message</span>
 
       Command: TOPIC
    Parameters: &lt;channel&gt; [ &lt;topic&gt; ]
@@ -1220,7 +1220,7 @@ Table of Contents
 
 
 <span class="grey">Kalt                         Informational                     [Page 19]</span>
-</pre><pre class='newpage'><a name="page-20" id="page-20" href="#page-20" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-20" href="#page-20" class="invisible"> </a>
 <span class="grey"><a href="./rfc2812">RFC 2812</a>          Internet Relay Chat: Client Protocol        April 2000</span>
 
 
@@ -1244,7 +1244,7 @@ Table of Contents
    TOPIC #test                     ; Command to check the topic for
                                    #test.
 
-<span class="h4"><a name="section-3.2.5">3.2.5</a> Names message</span>
+<span class="h4"><a id="section-3.2.5">3.2.5</a> Names message</span>
 
       Command: NAMES
    Parameters: [ &lt;channel&gt; *( "," &lt;channel&gt; ) [ &lt;target&gt; ] ]
@@ -1276,7 +1276,7 @@ Table of Contents
 
 
 <span class="grey">Kalt                         Informational                     [Page 20]</span>
-</pre><pre class='newpage'><a name="page-21" id="page-21" href="#page-21" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-21" href="#page-21" class="invisible"> </a>
 <span class="grey"><a href="./rfc2812">RFC 2812</a>          Internet Relay Chat: Client Protocol        April 2000</span>
 
 
@@ -1288,7 +1288,7 @@ Table of Contents
    NAMES                           ; Command to list all visible
                                    channels and users
 
-<span class="h4"><a name="section-3.2.6">3.2.6</a> List message</span>
+<span class="h4"><a id="section-3.2.6">3.2.6</a> List message</span>
 
       Command: LIST
    Parameters: [ &lt;channel&gt; *( "," &lt;channel&gt; ) [ &lt;target&gt; ] ]
@@ -1314,7 +1314,7 @@ Table of Contents
    LIST #twilight_zone,#42         ; Command to list channels
                                    #twilight_zone and #42
 
-<span class="h4"><a name="section-3.2.7">3.2.7</a> Invite message</span>
+<span class="h4"><a id="section-3.2.7">3.2.7</a> Invite message</span>
 
       Command: INVITE
    Parameters: &lt;nickname&gt; &lt;channel&gt;
@@ -1332,7 +1332,7 @@ Table of Contents
 
 
 <span class="grey">Kalt                         Informational                     [Page 21]</span>
-</pre><pre class='newpage'><a name="page-22" id="page-22" href="#page-22" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-22" href="#page-22" class="invisible"> </a>
 <span class="grey"><a href="./rfc2812">RFC 2812</a>          Internet Relay Chat: Client Protocol        April 2000</span>
 
 
@@ -1359,7 +1359,7 @@ Table of Contents
    INVITE Wiz #Twilight_Zone       ; Command to invite WiZ to
                                    #Twilight_zone
 
-<span class="h4"><a name="section-3.2.8">3.2.8</a> Kick command</span>
+<span class="h4"><a id="section-3.2.8">3.2.8</a> Kick command</span>
 
       Command: KICK
    Parameters: &lt;channel&gt; *( "," &lt;channel&gt; ) &lt;user&gt; *( "," &lt;user&gt; )
@@ -1388,7 +1388,7 @@ Table of Contents
 
 
 <span class="grey">Kalt                         Informational                     [Page 22]</span>
-</pre><pre class='newpage'><a name="page-23" id="page-23" href="#page-23" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-23" href="#page-23" class="invisible"> </a>
 <span class="grey"><a href="./rfc2812">RFC 2812</a>          Internet Relay Chat: Client Protocol        April 2000</span>
 
 
@@ -1406,7 +1406,7 @@ Table of Contents
                                    ; KICK message on channel #Finnish
                                    from WiZ to remove John from channel
 
-<span class="h3"><a name="section-3.3">3.3</a> Sending messages</span>
+<span class="h3"><a id="section-3.3">3.3</a> Sending messages</span>
 
    The main purpose of the IRC protocol is to provide a base for clients
    to communicate with each other.  PRIVMSG, NOTICE and SQUERY
@@ -1415,7 +1415,7 @@ Table of Contents
    from one client to another - the rest just make it possible and try
    to ensure it happens in a reliable and structured manner.
 
-<span class="h4"><a name="section-3.3.1">3.3.1</a> Private messages</span>
+<span class="h4"><a id="section-3.3.1">3.3.1</a> Private messages</span>
 
       Command: PRIVMSG
    Parameters: &lt;msgtarget&gt; &lt;text to be sent&gt;
@@ -1444,7 +1444,7 @@ Table of Contents
 
 
 <span class="grey">Kalt                         Informational                     [Page 23]</span>
-</pre><pre class='newpage'><a name="page-24" id="page-24" href="#page-24" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-24" href="#page-24" class="invisible"> </a>
 <span class="grey"><a href="./rfc2812">RFC 2812</a>          Internet Relay Chat: Client Protocol        April 2000</span>
 
 
@@ -1488,7 +1488,7 @@ Table of Contents
                                    a host which has a name matching
                                    *.edu.
 
-<span class="h4"><a name="section-3.3.2">3.3.2</a> Notice</span>
+<span class="h4"><a id="section-3.3.2">3.3.2</a> Notice</span>
 
       Command: NOTICE
    Parameters: &lt;msgtarget&gt; &lt;text&gt;
@@ -1500,7 +1500,7 @@ Table of Contents
 
 
 <span class="grey">Kalt                         Informational                     [Page 24]</span>
-</pre><pre class='newpage'><a name="page-25" id="page-25" href="#page-25" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-25" href="#page-25" class="invisible"> </a>
 <span class="grey"><a href="./rfc2812">RFC 2812</a>          Internet Relay Chat: Client Protocol        April 2000</span>
 
 
@@ -1516,7 +1516,7 @@ Table of Contents
 
    See PRIVMSG for more details on replies and examples.
 
-<span class="h3"><a name="section-3.4">3.4</a> Server queries and commands</span>
+<span class="h3"><a id="section-3.4">3.4</a> Server queries and commands</span>
 
    The server query group of commands has been designed to return
    information about any server which is connected to the network.
@@ -1529,7 +1529,7 @@ Table of Contents
    These messages typically have little value for services, it is
    therefore RECOMMENDED to forbid services from using them.
 
-<span class="h4"><a name="section-3.4.1">3.4.1</a> Motd message</span>
+<span class="h4"><a id="section-3.4.1">3.4.1</a> Motd message</span>
 
       Command: MOTD
    Parameters: [ &lt;target&gt; ]
@@ -1543,7 +1543,7 @@ Table of Contents
            RPL_MOTDSTART                   RPL_MOTD
            RPL_ENDOFMOTD                   ERR_NOMOTD
 
-<span class="h4"><a name="section-3.4.2">3.4.2</a> Lusers message</span>
+<span class="h4"><a id="section-3.4.2">3.4.2</a> Lusers message</span>
 
       Command: LUSERS
    Parameters: [ &lt;mask&gt; [ &lt;target&gt; ] ]
@@ -1556,7 +1556,7 @@ Table of Contents
 
 
 <span class="grey">Kalt                         Informational                     [Page 25]</span>
-</pre><pre class='newpage'><a name="page-26" id="page-26" href="#page-26" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-26" href="#page-26" class="invisible"> </a>
 <span class="grey"><a href="./rfc2812">RFC 2812</a>          Internet Relay Chat: Client Protocol        April 2000</span>
 
 
@@ -1572,7 +1572,7 @@ Table of Contents
            RPL_LUSERUNKOWN                 RPL_LUSERCHANNELS
            RPL_LUSERME                     ERR_NOSUCHSERVER
 
-<span class="h4"><a name="section-3.4.3">3.4.3</a> Version message</span>
+<span class="h4"><a id="section-3.4.3">3.4.3</a> Version message</span>
 
       Command: VERSION
    Parameters: [ &lt;target&gt; ]
@@ -1592,7 +1592,7 @@ Table of Contents
    VERSION tolsun.oulu.fi          ; Command to check the version of
                                    server "tolsun.oulu.fi".
 
-<span class="h4"><a name="section-3.4.4">3.4.4</a> Stats message</span>
+<span class="h4"><a id="section-3.4.4">3.4.4</a> Stats message</span>
 
       Command: STATS
    Parameters: [ &lt;query&gt; [ &lt;target&gt; ] ]
@@ -1612,7 +1612,7 @@ Table of Contents
 
 
 <span class="grey">Kalt                         Informational                     [Page 26]</span>
-</pre><pre class='newpage'><a name="page-27" id="page-27" href="#page-27" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-27" href="#page-27" class="invisible"> </a>
 <span class="grey"><a href="./rfc2812">RFC 2812</a>          Internet Relay Chat: Client Protocol        April 2000</span>
 
 
@@ -1647,7 +1647,7 @@ Table of Contents
    STATS m                         ; Command to check the command usage
                                    for the server you are connected to
 
-<span class="h4"><a name="section-3.4.5">3.4.5</a> Links message</span>
+<span class="h4"><a id="section-3.4.5">3.4.5</a> Links message</span>
 
       Command: LINKS
    Parameters: [ [ &lt;remote server&gt; ] &lt;server mask&gt; ]
@@ -1668,7 +1668,7 @@ Table of Contents
 
 
 <span class="grey">Kalt                         Informational                     [Page 27]</span>
-</pre><pre class='newpage'><a name="page-28" id="page-28" href="#page-28" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-28" href="#page-28" class="invisible"> </a>
 <span class="grey"><a href="./rfc2812">RFC 2812</a>          Internet Relay Chat: Client Protocol        April 2000</span>
 
 
@@ -1681,7 +1681,7 @@ Table of Contents
                                    *.bu.edu as seen by the first server
                                    matching *.edu.
 
-<span class="h4"><a name="section-3.4.6">3.4.6</a> Time message</span>
+<span class="h4"><a id="section-3.4.6">3.4.6</a> Time message</span>
 
       Command: TIME
    Parameters: [ &lt;target&gt; ]
@@ -1700,7 +1700,7 @@ Table of Contents
    TIME tolsun.oulu.fi             ; check the time on the server
                                    "tolson.oulu.fi"
 
-<span class="h4"><a name="section-3.4.7">3.4.7</a> Connect message</span>
+<span class="h4"><a id="section-3.4.7">3.4.7</a> Connect message</span>
 
       Command: CONNECT
    Parameters: &lt;target server&gt; &lt;port&gt; [ &lt;remote server&gt; ]
@@ -1724,7 +1724,7 @@ Table of Contents
 
 
 <span class="grey">Kalt                         Informational                     [Page 28]</span>
-</pre><pre class='newpage'><a name="page-29" id="page-29" href="#page-29" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-29" href="#page-29" class="invisible"> </a>
 <span class="grey"><a href="./rfc2812">RFC 2812</a>          Internet Relay Chat: Client Protocol        April 2000</span>
 
 
@@ -1733,7 +1733,7 @@ Table of Contents
    CONNECT tolsun.oulu.fi 6667     ; Command to attempt to connect local
                                    server to tolsun.oulu.fi on port 6667
 
-<span class="h4"><a name="section-3.4.8">3.4.8</a> Trace message</span>
+<span class="h4"><a id="section-3.4.8">3.4.8</a> Trace message</span>
 
       Command: TRACE
    Parameters: [ &lt;target&gt; ]
@@ -1780,7 +1780,7 @@ Table of Contents
 
 
 <span class="grey">Kalt                         Informational                     [Page 29]</span>
-</pre><pre class='newpage'><a name="page-30" id="page-30" href="#page-30" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-30" href="#page-30" class="invisible"> </a>
 <span class="grey"><a href="./rfc2812">RFC 2812</a>          Internet Relay Chat: Client Protocol        April 2000</span>
 
 
@@ -1799,7 +1799,7 @@ Table of Contents
    TRACE *.oulu.fi                 ; TRACE to a server matching
                                    *.oulu.fi
 
-<span class="h4"><a name="section-3.4.9">3.4.9</a> Admin command</span>
+<span class="h4"><a id="section-3.4.9">3.4.9</a> Admin command</span>
 
       Command: ADMIN
    Parameters: [ &lt;target&gt; ]
@@ -1836,11 +1836,11 @@ Table of Contents
 
 
 <span class="grey">Kalt                         Informational                     [Page 30]</span>
-</pre><pre class='newpage'><a name="page-31" id="page-31" href="#page-31" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-31" href="#page-31" class="invisible"> </a>
 <span class="grey"><a href="./rfc2812">RFC 2812</a>          Internet Relay Chat: Client Protocol        April 2000</span>
 
 
-<span class="h4"><a name="section-3.4.10">3.4.10</a> Info command</span>
+<span class="h4"><a id="section-3.4.10">3.4.10</a> Info command</span>
 
       Command: INFO
    Parameters: [ &lt;target&gt; ]
@@ -1865,12 +1865,12 @@ Table of Contents
    INFO Angel                      ; request info from the server that
                                    Angel is connected to.
 
-<span class="h3"><a name="section-3.5">3.5</a> Service Query and Commands</span>
+<span class="h3"><a id="section-3.5">3.5</a> Service Query and Commands</span>
 
    The service query group of commands has been designed to return
    information about any service which is connected to the network.
 
-<span class="h4"><a name="section-3.5.1">3.5.1</a> Servlist message</span>
+<span class="h4"><a id="section-3.5.1">3.5.1</a> Servlist message</span>
 
       Command: SERVLIST
    Parameters: [ &lt;mask&gt; [ &lt;type&gt; ] ]
@@ -1892,11 +1892,11 @@ Table of Contents
 
 
 <span class="grey">Kalt                         Informational                     [Page 31]</span>
-</pre><pre class='newpage'><a name="page-32" id="page-32" href="#page-32" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-32" href="#page-32" class="invisible"> </a>
 <span class="grey"><a href="./rfc2812">RFC 2812</a>          Internet Relay Chat: Client Protocol        April 2000</span>
 
 
-<span class="h4"><a name="section-3.5.2">3.5.2</a> Squery</span>
+<span class="h4"><a id="section-3.5.2">3.5.2</a> Squery</span>
 
       Command: SQUERY
    Parameters: &lt;servicename&gt; &lt;text&gt;
@@ -1917,7 +1917,7 @@ Table of Contents
                                    ; Message to the service with name
                                    dict@irc.fr.
 
-<span class="h3"><a name="section-3.6">3.6</a> User based queries</span>
+<span class="h3"><a id="section-3.6">3.6</a> User based queries</span>
 
    User queries are a group of commands which are primarily concerned
    with finding details on a particular user or group users.  When using
@@ -1929,7 +1929,7 @@ Table of Contents
    Although services SHOULD NOT be using this class of message, they are
    allowed to.
 
-<span class="h4"><a name="section-3.6.1">3.6.1</a> Who query</span>
+<span class="h4"><a id="section-3.6.1">3.6.1</a> Who query</span>
 
       Command: WHO
    Parameters: [ &lt;mask&gt; [ "o" ] ]
@@ -1948,7 +1948,7 @@ Table of Contents
 
 
 <span class="grey">Kalt                         Informational                     [Page 32]</span>
-</pre><pre class='newpage'><a name="page-33" id="page-33" href="#page-33" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-33" href="#page-33" class="invisible"> </a>
 <span class="grey"><a href="./rfc2812">RFC 2812</a>          Internet Relay Chat: Client Protocol        April 2000</span>
 
 
@@ -1969,7 +1969,7 @@ Table of Contents
                                    match against "jto*" if they are an
                                    operator.
 
-<span class="h4"><a name="section-3.6.2">3.6.2</a> Whois query</span>
+<span class="h4"><a id="section-3.6.2">3.6.2</a> Whois query</span>
 
       Command: WHOIS
    Parameters: [ &lt;target&gt; ] &lt;mask&gt; *( "," &lt;mask&gt; )
@@ -2004,7 +2004,7 @@ Table of Contents
 
 
 <span class="grey">Kalt                         Informational                     [Page 33]</span>
-</pre><pre class='newpage'><a name="page-34" id="page-34" href="#page-34" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-34" href="#page-34" class="invisible"> </a>
 <span class="grey"><a href="./rfc2812">RFC 2812</a>          Internet Relay Chat: Client Protocol        April 2000</span>
 
 
@@ -2016,7 +2016,7 @@ Table of Contents
    WHOIS eff.org trillian          ; ask server eff.org for user
                                    information  about trillian
 
-<span class="h4"><a name="section-3.6.3">3.6.3</a> Whowas</span>
+<span class="h4"><a id="section-3.6.3">3.6.3</a> Whowas</span>
 
       Command: WHOWAS
    Parameters: &lt;nickname&gt; *( "," &lt;nickname&gt; ) [ &lt;count&gt; [ &lt;target&gt; ] ]
@@ -2052,7 +2052,7 @@ Table of Contents
                                    "Trillian" from the first server
                                    found to match "*.edu".
 
-<span class="h3"><a name="section-3.7">3.7</a> Miscellaneous messages</span>
+<span class="h3"><a id="section-3.7">3.7</a> Miscellaneous messages</span>
 
    Messages in this category do not fit into any of the above categories
    but are nonetheless still a part of and REQUIRED by the protocol.
@@ -2060,11 +2060,11 @@ Table of Contents
 
 
 <span class="grey">Kalt                         Informational                     [Page 34]</span>
-</pre><pre class='newpage'><a name="page-35" id="page-35" href="#page-35" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-35" href="#page-35" class="invisible"> </a>
 <span class="grey"><a href="./rfc2812">RFC 2812</a>          Internet Relay Chat: Client Protocol        April 2000</span>
 
 
-<span class="h4"><a name="section-3.7.1">3.7.1</a> Kill message</span>
+<span class="h4"><a id="section-3.7.1">3.7.1</a> Kill message</span>
 
       Command: KILL
    Parameters: &lt;nickname&gt; &lt;comment&gt;
@@ -2116,7 +2116,7 @@ Table of Contents
 
 
 <span class="grey">Kalt                         Informational                     [Page 35]</span>
-</pre><pre class='newpage'><a name="page-36" id="page-36" href="#page-36" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-36" href="#page-36" class="invisible"> </a>
 <span class="grey"><a href="./rfc2812">RFC 2812</a>          Internet Relay Chat: Client Protocol        April 2000</span>
 
 
@@ -2127,7 +2127,7 @@ Table of Contents
    recommendation, it is also widely recognized that not even operators
    should be allowed to kill users on remote servers.
 
-<span class="h4"><a name="section-3.7.2">3.7.2</a> Ping message</span>
+<span class="h4"><a id="section-3.7.2">3.7.2</a> Ping message</span>
 
       Command: PING
    Parameters: &lt;server1&gt; [ &lt;server2&gt; ]
@@ -2172,11 +2172,11 @@ Table of Contents
 
 
 <span class="grey">Kalt                         Informational                     [Page 36]</span>
-</pre><pre class='newpage'><a name="page-37" id="page-37" href="#page-37" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-37" href="#page-37" class="invisible"> </a>
 <span class="grey"><a href="./rfc2812">RFC 2812</a>          Internet Relay Chat: Client Protocol        April 2000</span>
 
 
-<span class="h4"><a name="section-3.7.3">3.7.3</a> Pong message</span>
+<span class="h4"><a id="section-3.7.3">3.7.3</a> Pong message</span>
 
       Command: PONG
    Parameters: &lt;server&gt; [ &lt;server2&gt; ]
@@ -2195,7 +2195,7 @@ Table of Contents
    PONG csd.bu.edu tolsun.oulu.fi  ; PONG message from csd.bu.edu to
                                    tolsun.oulu.fi
 
-<span class="h4"><a name="section-3.7.4">3.7.4</a> Error</span>
+<span class="h4"><a id="section-3.7.4">3.7.4</a> Error</span>
 
       Command: ERROR
    Parameters: &lt;error message&gt;
@@ -2228,7 +2228,7 @@ Table of Contents
 
 
 <span class="grey">Kalt                         Informational                     [Page 37]</span>
-</pre><pre class='newpage'><a name="page-38" id="page-38" href="#page-38" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-38" href="#page-38" class="invisible"> </a>
 <span class="grey"><a href="./rfc2812">RFC 2812</a>          Internet Relay Chat: Client Protocol        April 2000</span>
 
 
@@ -2241,7 +2241,7 @@ Table of Contents
                                    ; Same ERROR message as above but
                                    sent to user WiZ on the other server.
 
-<span class="h2"><a name="section-4">4</a>. Optional features</span>
+<span class="h2"><a id="section-4">4</a>. Optional features</span>
 
    This section describes OPTIONAL messages.  They are not required in a
    working server implementation of the protocol described herein.  In
@@ -2254,7 +2254,7 @@ Table of Contents
    From this section, only the USERHOST and ISON messages are available
    to services.
 
-<span class="h3"><a name="section-4.1">4.1</a> Away</span>
+<span class="h3"><a id="section-4.1">4.1</a> Away</span>
 
       Command: AWAY
    Parameters: [ &lt;text&gt; ]
@@ -2284,7 +2284,7 @@ Table of Contents
 
 
 <span class="grey">Kalt                         Informational                     [Page 38]</span>
-</pre><pre class='newpage'><a name="page-39" id="page-39" href="#page-39" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-39" href="#page-39" class="invisible"> </a>
 <span class="grey"><a href="./rfc2812">RFC 2812</a>          Internet Relay Chat: Client Protocol        April 2000</span>
 
 
@@ -2293,7 +2293,7 @@ Table of Contents
    AWAY :Gone to lunch.  Back in 5 ; Command to set away message to
                                    "Gone to lunch.  Back in 5".
 
-<span class="h3"><a name="section-4.2">4.2</a> Rehash message</span>
+<span class="h3"><a id="section-4.2">4.2</a> Rehash message</span>
 
       Command: REHASH
    Parameters: None
@@ -2313,7 +2313,7 @@ Table of Contents
                                    status to server asking it to reread
                                    its configuration file.
 
-<span class="h3"><a name="section-4.3">4.3</a> Die message</span>
+<span class="h3"><a id="section-4.3">4.3</a> Die message</span>
 
       Command: DIE
    Parameters: None
@@ -2340,11 +2340,11 @@ Table of Contents
 
 
 <span class="grey">Kalt                         Informational                     [Page 39]</span>
-</pre><pre class='newpage'><a name="page-40" id="page-40" href="#page-40" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-40" href="#page-40" class="invisible"> </a>
 <span class="grey"><a href="./rfc2812">RFC 2812</a>          Internet Relay Chat: Client Protocol        April 2000</span>
 
 
-<span class="h3"><a name="section-4.4">4.4</a> Restart message</span>
+<span class="h3"><a id="section-4.4">4.4</a> Restart message</span>
 
       Command: RESTART
    Parameters: None
@@ -2366,7 +2366,7 @@ Table of Contents
 
    RESTART                         ; no parameters required.
 
-<span class="h3"><a name="section-4.5">4.5</a> Summon message</span>
+<span class="h3"><a id="section-4.5">4.5</a> Summon message</span>
 
       Command: SUMMON
    Parameters: &lt;user&gt; [ &lt;target&gt; [ &lt;channel&gt; ] ]
@@ -2396,7 +2396,7 @@ Table of Contents
 
 
 <span class="grey">Kalt                         Informational                     [Page 40]</span>
-</pre><pre class='newpage'><a name="page-41" id="page-41" href="#page-41" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-41" href="#page-41" class="invisible"> </a>
 <span class="grey"><a href="./rfc2812">RFC 2812</a>          Internet Relay Chat: Client Protocol        April 2000</span>
 
 
@@ -2409,7 +2409,7 @@ Table of Contents
                                    server named "tolsun.oulu.fi" is
                                    running.
 
-<span class="h3"><a name="section-4.6">4.6</a> Users</span>
+<span class="h3"><a id="section-4.6">4.6</a> Users</span>
 
       Command: USERS
    Parameters: [ &lt;target&gt; ]
@@ -2440,7 +2440,7 @@ Table of Contents
    USERS eff.org                   ; request a list of users logged in
                                    on server eff.org
 
-<span class="h3"><a name="section-4.7">4.7</a> Operwall message</span>
+<span class="h3"><a id="section-4.7">4.7</a> Operwall message</span>
 
       Command: WALLOPS
    Parameters: &lt;Text to be sent&gt;
@@ -2452,7 +2452,7 @@ Table of Contents
 
 
 <span class="grey">Kalt                         Informational                     [Page 41]</span>
-</pre><pre class='newpage'><a name="page-42" id="page-42" href="#page-42" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-42" href="#page-42" class="invisible"> </a>
 <span class="grey"><a href="./rfc2812">RFC 2812</a>          Internet Relay Chat: Client Protocol        April 2000</span>
 
 
@@ -2473,7 +2473,7 @@ Table of Contents
                                    CONNECT message it received from
                                    Joshua and acted upon.
 
-<span class="h3"><a name="section-4.8">4.8</a> Userhost message</span>
+<span class="h3"><a id="section-4.8">4.8</a> Userhost message</span>
 
       Command: USERHOST
    Parameters: &lt;nickname&gt; *( SPACE &lt;nickname&gt; )
@@ -2495,7 +2495,7 @@ Table of Contents
    :ircd.stealth.net 302 yournick :syrk=+syrk@millennium.stealth.net
                                    ; Reply for user syrk
 
-<span class="h3"><a name="section-4.9">4.9</a> Ison message</span>
+<span class="h3"><a id="section-4.9">4.9</a> Ison message</span>
 
       Command: ISON
    Parameters: &lt;nickname&gt; *( SPACE &lt;nickname&gt; )
@@ -2508,7 +2508,7 @@ Table of Contents
 
 
 <span class="grey">Kalt                         Informational                     [Page 42]</span>
-</pre><pre class='newpage'><a name="page-43" id="page-43" href="#page-43" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-43" href="#page-43" class="invisible"> </a>
 <span class="grey"><a href="./rfc2812">RFC 2812</a>          Internet Relay Chat: Client Protocol        April 2000</span>
 
 
@@ -2533,13 +2533,13 @@ Table of Contents
    ISON phone trillian WiZ jarlek Avalon Angel Monstah syrk
                                    ; Sample ISON request for 7 nicks.
 
-<span class="h2"><a name="section-5">5</a>. Replies</span>
+<span class="h2"><a id="section-5">5</a>. Replies</span>
 
    The following is a list of numeric replies which are generated in
    response to the commands given above.  Each numeric is given with its
    number, name and reply string.
 
-<span class="h3"><a name="section-5.1">5.1</a> Command responses</span>
+<span class="h3"><a id="section-5.1">5.1</a> Command responses</span>
 
    Numerics in the range from 001 to 099 are used for client-server
    connections only and should never travel between servers.  Replies
@@ -2564,7 +2564,7 @@ Table of Contents
 
 
 <span class="grey">Kalt                         Informational                     [Page 43]</span>
-</pre><pre class='newpage'><a name="page-44" id="page-44" href="#page-44" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-44" href="#page-44" class="invisible"> </a>
 <span class="grey"><a href="./rfc2812">RFC 2812</a>          Internet Relay Chat: Client Protocol        April 2000</span>
 
 
@@ -2620,7 +2620,7 @@ Table of Contents
 
 
 <span class="grey">Kalt                         Informational                     [Page 44]</span>
-</pre><pre class='newpage'><a name="page-45" id="page-45" href="#page-45" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-45" href="#page-45" class="invisible"> </a>
 <span class="grey"><a href="./rfc2812">RFC 2812</a>          Internet Relay Chat: Client Protocol        April 2000</span>
 
 
@@ -2676,7 +2676,7 @@ Table of Contents
 
 
 <span class="grey">Kalt                         Informational                     [Page 45]</span>
-</pre><pre class='newpage'><a name="page-46" id="page-46" href="#page-46" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-46" href="#page-46" class="invisible"> </a>
 <span class="grey"><a href="./rfc2812">RFC 2812</a>          Internet Relay Chat: Client Protocol        April 2000</span>
 
 
@@ -2732,7 +2732,7 @@ Table of Contents
 
 
 <span class="grey">Kalt                         Informational                     [Page 46]</span>
-</pre><pre class='newpage'><a name="page-47" id="page-47" href="#page-47" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-47" href="#page-47" class="invisible"> </a>
 <span class="grey"><a href="./rfc2812">RFC 2812</a>          Internet Relay Chat: Client Protocol        April 2000</span>
 
 
@@ -2788,7 +2788,7 @@ Table of Contents
 
 
 <span class="grey">Kalt                         Informational                     [Page 47]</span>
-</pre><pre class='newpage'><a name="page-48" id="page-48" href="#page-48" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-48" href="#page-48" class="invisible"> </a>
 <span class="grey"><a href="./rfc2812">RFC 2812</a>          Internet Relay Chat: Client Protocol        April 2000</span>
 
 
@@ -2844,7 +2844,7 @@ Table of Contents
 
 
 <span class="grey">Kalt                         Informational                     [Page 48]</span>
-</pre><pre class='newpage'><a name="page-49" id="page-49" href="#page-49" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-49" href="#page-49" class="invisible"> </a>
 <span class="grey"><a href="./rfc2812">RFC 2812</a>          Internet Relay Chat: Client Protocol        April 2000</span>
 
 
@@ -2900,7 +2900,7 @@ Table of Contents
 
 
 <span class="grey">Kalt                         Informational                     [Page 49]</span>
-</pre><pre class='newpage'><a name="page-50" id="page-50" href="#page-50" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-50" href="#page-50" class="invisible"> </a>
 <span class="grey"><a href="./rfc2812">RFC 2812</a>          Internet Relay Chat: Client Protocol        April 2000</span>
 
 
@@ -2956,7 +2956,7 @@ Table of Contents
 
 
 <span class="grey">Kalt                         Informational                     [Page 50]</span>
-</pre><pre class='newpage'><a name="page-51" id="page-51" href="#page-51" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-51" href="#page-51" class="invisible"> </a>
 <span class="grey"><a href="./rfc2812">RFC 2812</a>          Internet Relay Chat: Client Protocol        April 2000</span>
 
 
@@ -3012,7 +3012,7 @@ Table of Contents
 
 
 <span class="grey">Kalt                         Informational                     [Page 51]</span>
-</pre><pre class='newpage'><a name="page-52" id="page-52" href="#page-52" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-52" href="#page-52" class="invisible"> </a>
 <span class="grey"><a href="./rfc2812">RFC 2812</a>          Internet Relay Chat: Client Protocol        April 2000</span>
 
 
@@ -3068,7 +3068,7 @@ Table of Contents
 
 
 <span class="grey">Kalt                         Informational                     [Page 52]</span>
-</pre><pre class='newpage'><a name="page-53" id="page-53" href="#page-53" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-53" href="#page-53" class="invisible"> </a>
 <span class="grey"><a href="./rfc2812">RFC 2812</a>          Internet Relay Chat: Client Protocol        April 2000</span>
 
 
@@ -3083,7 +3083,7 @@ Table of Contents
            it MUST use the reply RPL_TRYAGAIN to inform the
            originating client.
 
-<span class="h3"><a name="section-5.2">5.2</a> Error Replies</span>
+<span class="h3"><a id="section-5.2">5.2</a> Error Replies</span>
 
        Error replies are found in the range from 400 to 599.
 
@@ -3124,7 +3124,7 @@ Table of Contents
 
 
 <span class="grey">Kalt                         Informational                     [Page 53]</span>
-</pre><pre class='newpage'><a name="page-54" id="page-54" href="#page-54" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-54" href="#page-54" class="invisible"> </a>
 <span class="grey"><a href="./rfc2812">RFC 2812</a>          Internet Relay Chat: Client Protocol        April 2000</span>
 
 
@@ -3180,7 +3180,7 @@ Table of Contents
 
 
 <span class="grey">Kalt                         Informational                     [Page 54]</span>
-</pre><pre class='newpage'><a name="page-55" id="page-55" href="#page-55" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-55" href="#page-55" class="invisible"> </a>
 <span class="grey"><a href="./rfc2812">RFC 2812</a>          Internet Relay Chat: Client Protocol        April 2000</span>
 
 
@@ -3236,7 +3236,7 @@ Table of Contents
 
 
 <span class="grey">Kalt                         Informational                     [Page 55]</span>
-</pre><pre class='newpage'><a name="page-56" id="page-56" href="#page-56" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-56" href="#page-56" class="invisible"> </a>
 <span class="grey"><a href="./rfc2812">RFC 2812</a>          Internet Relay Chat: Client Protocol        April 2000</span>
 
 
@@ -3292,7 +3292,7 @@ Table of Contents
 
 
 <span class="grey">Kalt                         Informational                     [Page 56]</span>
-</pre><pre class='newpage'><a name="page-57" id="page-57" href="#page-57" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-57" href="#page-57" class="invisible"> </a>
 <span class="grey"><a href="./rfc2812">RFC 2812</a>          Internet Relay Chat: Client Protocol        April 2000</span>
 
 
@@ -3348,7 +3348,7 @@ Table of Contents
 
 
 <span class="grey">Kalt                         Informational                     [Page 57]</span>
-</pre><pre class='newpage'><a name="page-58" id="page-58" href="#page-58" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-58" href="#page-58" class="invisible"> </a>
 <span class="grey"><a href="./rfc2812">RFC 2812</a>          Internet Relay Chat: Client Protocol        April 2000</span>
 
 
@@ -3404,7 +3404,7 @@ Table of Contents
 
 
 <span class="grey">Kalt                         Informational                     [Page 58]</span>
-</pre><pre class='newpage'><a name="page-59" id="page-59" href="#page-59" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-59" href="#page-59" class="invisible"> </a>
 <span class="grey"><a href="./rfc2812">RFC 2812</a>          Internet Relay Chat: Client Protocol        April 2000</span>
 
 
@@ -3449,7 +3449,7 @@ Table of Contents
          - Error sent to any user trying to view or change the
            user mode for a user other than themselves.
 
-<span class="h3"><a name="section-5.3">5.3</a> Reserved numerics</span>
+<span class="h3"><a id="section-5.3">5.3</a> Reserved numerics</span>
 
    These numerics are not described above since they fall into one of
    the following categories:
@@ -3460,7 +3460,7 @@ Table of Contents
 
 
 <span class="grey">Kalt                         Informational                     [Page 59]</span>
-</pre><pre class='newpage'><a name="page-60" id="page-60" href="#page-60" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-60" href="#page-60" class="invisible"> </a>
 <span class="grey"><a href="./rfc2812">RFC 2812</a>          Internet Relay Chat: Client Protocol        April 2000</span>
 
 
@@ -3486,7 +3486,7 @@ Table of Contents
 
             492    ERR_NOSERVICEHOST
 
-<span class="h2"><a name="section-6">6</a>. Current implementations</span>
+<span class="h2"><a id="section-6">6</a>. Current implementations</span>
 
    The IRC software, version 2.10 is the only complete implementation of
    the IRC protocol (client and server).  Because of the small amount of
@@ -3495,14 +3495,14 @@ Table of Contents
    this protocol or to require a small amount of changes to reach
    compliance.
 
-<span class="h2"><a name="section-7">7</a>. Current problems</span>
+<span class="h2"><a id="section-7">7</a>. Current problems</span>
 
    There are a number of recognized problems with the IRC Client
    Protocol, and more generally with the IRC Server Protocol.  In order
    to preserve backward compatibility with old clients, this protocol
    has almost not evolved since the publication of <a href="./rfc1459">RFC 1459</a> [<a href="#ref-IRC" title='"Internet Relay Chat Protocol"'>IRC</a>].
 
-<span class="h3"><a name="section-7.1">7.1</a> Nicknames</span>
+<span class="h3"><a id="section-7.1">7.1</a> Nicknames</span>
 
    The idea of the nickname on IRC is very convenient for users to use
    when talking to each other outside of a channel, but there is only a
@@ -3516,23 +3516,23 @@ Table of Contents
 
 
 <span class="grey">Kalt                         Informational                     [Page 60]</span>
-</pre><pre class='newpage'><a name="page-61" id="page-61" href="#page-61" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-61" href="#page-61" class="invisible"> </a>
 <span class="grey"><a href="./rfc2812">RFC 2812</a>          Internet Relay Chat: Client Protocol        April 2000</span>
 
 
-<span class="h3"><a name="section-7.2">7.2</a> Limitation of wildcards</span>
+<span class="h3"><a id="section-7.2">7.2</a> Limitation of wildcards</span>
 
    There is no way to escape the escape character "\" (%x5C).  While
    this isn't usually a problem, it makes it impossible to form a mask
    with a backslash character ("\") preceding a wildcard.
 
-<span class="h3"><a name="section-7.3">7.3</a> Security considerations</span>
+<span class="h3"><a id="section-7.3">7.3</a> Security considerations</span>
 
    Security issues related to this protocol are discussed in the "IRC
    Server Protocol" [<a href="#ref-IRC-SERVER" title='"Internet Relay Chat: Server Protocol"'>IRC-SERVER</a>] as they are mostly an issue for the
    server side of the connection.
 
-<span class="h2"><a name="section-8">8</a>. Current support and availability</span>
+<span class="h2"><a id="section-8">8</a>. Current support and availability</span>
 
         Mailing lists for IRC related discussion:
           General discussion: ircd-users@irc.org
@@ -3545,7 +3545,7 @@ Table of Contents
 
         Newsgroup: alt.irc
 
-<span class="h2"><a name="section-9">9</a>. Acknowledgements</span>
+<span class="h2"><a id="section-9">9</a>. Acknowledgements</span>
 
    Parts of this document were copied from the <a href="./rfc1459">RFC 1459</a> [<a href="#ref-IRC" title='"Internet Relay Chat Protocol"'>IRC</a>] which
    first formally documented the IRC Protocol.  It has also benefited
@@ -3572,34 +3572,34 @@ Table of Contents
 
 
 <span class="grey">Kalt                         Informational                     [Page 61]</span>
-</pre><pre class='newpage'><a name="page-62" id="page-62" href="#page-62" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-62" href="#page-62" class="invisible"> </a>
 <span class="grey"><a href="./rfc2812">RFC 2812</a>          Internet Relay Chat: Client Protocol        April 2000</span>
 
 
-<span class="h2"><a name="section-10">10</a>. References</span>
+<span class="h2"><a id="section-10">10</a>. References</span>
 
-   [<a name="ref-KEYWORDS" id="ref-KEYWORDS">KEYWORDS</a>]   Bradner, S., "Key words for use in RFCs to Indicate
+   [<a id="ref-KEYWORDS">KEYWORDS</a>]   Bradner, S., "Key words for use in RFCs to Indicate
                 Requirement Levels", <a href="./bcp14">BCP 14</a>, <a href="./rfc2119">RFC 2119</a>, March 1997.
 
-   [<a name="ref-ABNF" id="ref-ABNF">ABNF</a>]       Crocker, D. and P. Overell, "Augmented BNF for Syntax
+   [<a id="ref-ABNF">ABNF</a>]       Crocker, D. and P. Overell, "Augmented BNF for Syntax
                 Specifications: ABNF", <a href="./rfc2234">RFC 2234</a>, November 1997.
 
-   [<a name="ref-HNAME" id="ref-HNAME">HNAME</a>]      Braden, R., "Requirements for Internet Hosts --
+   [<a id="ref-HNAME">HNAME</a>]      Braden, R., "Requirements for Internet Hosts --
                 Application and Support", STD 3, <a href="./rfc1123">RFC 1123</a>, October 1989.
 
-   [<a name="ref-IRC" id="ref-IRC">IRC</a>]        Oikarinen, J. &amp; D. Reed, "Internet Relay Chat Protocol",
+   [<a id="ref-IRC">IRC</a>]        Oikarinen, J. &amp; D. Reed, "Internet Relay Chat Protocol",
                 <a href="./rfc1459">RFC 1459</a>, May 1993.
 
-   [<a name="ref-IRC-ARCH" id="ref-IRC-ARCH">IRC-ARCH</a>]   Kalt, C., "Internet Relay Chat: Architecture", <a href="./rfc2810">RFC 2810</a>,
+   [<a id="ref-IRC-ARCH">IRC-ARCH</a>]   Kalt, C., "Internet Relay Chat: Architecture", <a href="./rfc2810">RFC 2810</a>,
                 April 2000.
 
-   [<a name="ref-IRC-CHAN" id="ref-IRC-CHAN">IRC-CHAN</a>]   Kalt, C., "Internet Relay Chat: Channel Management", <a href="./rfc2811">RFC</a>
+   [<a id="ref-IRC-CHAN">IRC-CHAN</a>]   Kalt, C., "Internet Relay Chat: Channel Management", <a href="./rfc2811">RFC</a>
                 <a href="./rfc2811">2811</a>, April 2000.
 
-   [<a name="ref-IRC-SERVER" id="ref-IRC-SERVER">IRC-SERVER</a>] Kalt, C., "Internet Relay Chat: Server Protocol", <a href="./rfc2813">RFC</a>
+   [<a id="ref-IRC-SERVER">IRC-SERVER</a>] Kalt, C., "Internet Relay Chat: Server Protocol", <a href="./rfc2813">RFC</a>
                 <a href="./rfc2813">2813</a>, April 2000.
 
-<span class="h2"><a name="section-11">11</a>. Author's Address</span>
+<span class="h2"><a id="section-11">11</a>. Author's Address</span>
 
    Christophe Kalt
    99 Teaneck Rd, Apt #117
@@ -3628,11 +3628,11 @@ Table of Contents
 
 
 <span class="grey">Kalt                         Informational                     [Page 62]</span>
-</pre><pre class='newpage'><a name="page-63" id="page-63" href="#page-63" class="invisible"> </a>
+</pre><pre class='newpage'><a id="page-63" href="#page-63" class="invisible"> </a>
 <span class="grey"><a href="./rfc2812">RFC 2812</a>          Internet Relay Chat: Client Protocol        April 2000</span>
 
 
-<span class="h2"><a name="section-12">12</a>.  Full Copyright Statement</span>
+<span class="h2"><a id="section-12">12</a>.  Full Copyright Statement</span>
 
    Copyright (C) The Internet Society (2000).  All Rights Reserved.
 
