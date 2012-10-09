@@ -26,7 +26,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn />
-    <LangVersion>3</LangVersion>
+    <LangVersion>default</LangVersion>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -60,6 +60,7 @@
     <Compile Include="ModeTests.cs" />
     <Compile Include="MonitorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="IdentTests.cs" />
     <Compile Include="UtilityTests.cs" />
     <Compile Include="WatchTests.cs" />
   </ItemGroup>

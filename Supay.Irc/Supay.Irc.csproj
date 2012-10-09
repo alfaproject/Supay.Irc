@@ -438,7 +438,6 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <None Include="Documentation\DRAFT - RPL_ISUPPORT Numeric Definition.html" />
     <None Include="Documentation\RFC 1459 - Protocol.html" />

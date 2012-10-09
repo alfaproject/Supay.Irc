@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
-using System.Threading;
+using System.Threading.Tasks;
 
 namespace Supay.Irc.Network
 {
@@ -12,20 +12,12 @@ namespace Supay.Irc.Network
     /// </summary>
     public sealed class Ident
     {
-        private const string REPLY = " : USERID : UNIX : ";
-        private const int PORT = 113;
-        private static readonly Ident instance = new Ident();
+        private static readonly Lazy<Ident> instance = new Lazy<Ident>(() => new Ident());
 
-        private readonly object _syncLock = new object();
-        private TcpListener _listener;
-        private Thread _socketThread;
-        private bool _stopAfter;
+        private TcpListener listener;
 
         private Ident()
         {
-            this.Status = ConnectionStatus.Disconnected;
-            this.User = new User();
-            this._stopAfter = true;
         }
 
         /// <summary>
@@ -35,14 +27,14 @@ namespace Supay.Irc.Network
         {
             get
             {
-                return instance;
+                return instance.Value;
             }
         }
 
         /// <summary>
-        /// Gets or sets the <see cref="Irc.User"/> to respond to an ident request with.
+        /// Gets or sets the user <see cref="Mask"/> to respond to an ident request with.
         /// </summary>
-        public User User
+        public Mask User
         {
             get;
             set;
@@ -61,31 +53,84 @@ namespace Supay.Irc.Network
         /// Starts the Ident server.
         /// </summary>
         /// <param name="stopAfterFirstAnswer">If true, Ident will stop immediately after answering. If false, will continue until <see cref="Stop"/> is called.</param>
-        public void Start(bool stopAfterFirstAnswer)
+        /// <returns>The <see cref="Task"/>.</returns>
+        public async Task Start(bool stopAfterFirstAnswer)
         {
-            lock (this._syncLock)
+            if (this.Status != ConnectionStatus.Disconnected)
             {
-                if (this.Status != ConnectionStatus.Disconnected)
-                {
-                    Trace.WriteLine("Ident Already Started");
-                    return;
-                }
+                Trace.WriteLine("Ident listener already started.", "Ident");
+                return;
+            }
 
-                this._stopAfter = stopAfterFirstAnswer;
-                this._socketThread = new Thread(this.Run) {
-                    Name = "Identd",
-                    IsBackground = true
-                };
-                this._socketThread.Start();
+            this.Status = ConnectionStatus.Connecting;
+
+            try
+            {
+                this.listener = new TcpListener(IPAddress.Any, 113);
+                this.listener.Start();
+
+                while (this.Status != ConnectionStatus.Disconnected)
+                {
+                    using (var client = await this.listener.AcceptTcpClientAsync())
+                    {
+                        var stream = client.GetStream();
+                        this.Status = ConnectionStatus.Connected;
+
+                        // Read query
+                        using (var reader = new StreamReader(stream))
+                        {
+                            var ports = await reader.ReadLineAsync();
+                            if (ports != null)
+                            {
+                                using (var writer = new StreamWriter(stream))
+                                {
+                                    // Send back reply
+                                    var userId = "Supay";
+                                    if (this.User != null)
+                                    {
+                                        if (!string.IsNullOrEmpty(this.User.Username))
+                                        {
+                                            userId = this.User.Username;
+                                        }
+                                        else if (!string.IsNullOrEmpty(this.User.Nickname))
+                                        {
+                                            userId = this.User.Nickname;
+                                        }
+                                    }
+
+                                    var response = ports + " : USERID : UNIX : " + userId;
+                                    await writer.WriteLineAsync(response);
+                                    await writer.FlushAsync();
+                                }
+                            }
+                        }
+                    }
+
+                    if (stopAfterFirstAnswer)
+                    {
+                        this.Status = ConnectionStatus.Disconnected;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Trace.WriteLine("Unexpected error on Ident listener: " + ex, "Ident");
+                this.Status = ConnectionStatus.Disconnected;
+                throw;
+            }
+            finally
+            {
+                this.listener.Stop();
             }
         }
 
         /// <summary>
         /// Starts the Ident server.
         /// </summary>
-        public void Start()
+        /// <returns>The <see cref="Task"/>.</returns>
+        public async Task Start()
         {
-            this.Start(false);
+            await this.Start(false);
         }
 
         /// <summary>
@@ -93,86 +138,11 @@ namespace Supay.Irc.Network
         /// </summary>
         public void Stop()
         {
-            lock (this._syncLock)
+            this.Status = ConnectionStatus.Disconnected;
+            if (this.listener != null)
             {
-                this.Status = ConnectionStatus.Disconnected;
-                if (this._listener != null)
-                {
-                    this._listener.Stop();
-                }
+                this.listener.Stop();
             }
-        }
-
-        private void Run()
-        {
-            this.Status = ConnectionStatus.Connecting;
-
-            try
-            {
-                this._listener = new TcpListener(IPAddress.Any, PORT);
-                this._listener.Start();
-            }
-            catch (Exception ex)
-            {
-                Trace.WriteLine("Error Opening Ident Listener On Port " + PORT + ", " + ex, "Ident");
-                this.Status = ConnectionStatus.Disconnected;
-                throw;
-            }
-
-            try
-            {
-                while (this.Status != ConnectionStatus.Disconnected)
-                {
-                    try
-                    {
-                        TcpClient client = this._listener.AcceptTcpClient();
-                        this.Status = ConnectionStatus.Connected;
-
-                        // Read query
-                        var reader = new StreamReader(client.GetStream());
-                        string identRequest = reader.ReadLine();
-                        if (identRequest != null)
-                        {
-                            // Send back reply
-                            var writer = new StreamWriter(client.GetStream());
-                            string identName = this.User.Username;
-                            if (identName.Length == 0)
-                            {
-                                identName = this.User.Nickname.Length != 0 ? this.User.Nickname : "Supay";
-                            }
-                            string identReply = identRequest.Trim() + REPLY + identName;
-                            writer.WriteLine(identReply);
-                            writer.Flush();
-                        }
-
-                        // Close connection with client
-                        client.Close();
-
-                        if (this._stopAfter)
-                        {
-                            this.Status = ConnectionStatus.Disconnected;
-                        }
-                    }
-                    catch (IOException ex)
-                    {
-                        Trace.WriteLine("Error Processing Ident Request: " + ex.Message, "Ident");
-                    }
-                }
-            }
-            catch (SocketException ex)
-            {
-                switch ((SocketError) ex.ErrorCode)
-                {
-                    case SocketError.InterruptedFunctionCall:
-                        Trace.WriteLine("Ident Stopped By Thread Abort", "Ident");
-                        break;
-                    default:
-                        Trace.WriteLine("Ident Abnormally Stopped: " + ex, "Ident");
-                        break;
-                }
-            }
-
-            this._listener.Stop();
         }
     }
 }
