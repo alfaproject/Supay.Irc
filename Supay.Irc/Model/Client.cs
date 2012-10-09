@@ -242,35 +242,6 @@ namespace Supay.Irc
             return this.User.Nickname.Equals(nick, StringComparison.OrdinalIgnoreCase);
         }
 
-        private void RouteData(string messageData)
-        {
-            IrcMessage msg;
-            try
-            {
-                msg = IrcMessageFactory.Parse(messageData);
-            }
-            catch (InvalidMessageException ex)
-            {
-                // try one more time to parse it as a generic message
-                msg = new GenericMessage();
-                if (msg.CanParse(messageData))
-                {
-                    msg.Parse(messageData);
-                }
-                else
-                {
-                    msg = null;
-                    Trace.WriteLine(ex.Message + " { " + ex.ReceivedMessage + " } ", "Invalid Message");
-                }
-            }
-
-            if (msg != null)
-            {
-                this.OnMessageParsed(new IrcMessageEventArgs<IrcMessage>(msg));
-                msg.Notify(this.Messages);
-            }
-        }
-
 
         #region Send Helpers
 
@@ -356,52 +327,56 @@ namespace Supay.Irc
         #region Events
 
         /// <summary>
-        ///   Occurs when the <see cref="ClientConnection" /> receives data.
-        /// </summary>
-        public event EventHandler<ConnectionDataEventArgs> DataReceived;
-
-        /// <summary>
-        ///   Occurs when the <see cref="ClientConnection" /> sends data.
-        /// </summary>
-        public event EventHandler<ConnectionDataEventArgs> DataSent;
-
-        /// <summary>
-        ///   Occurs when any message is received and parsed.
+        /// Occurs when any message is received and parsed.
         /// </summary>
         public event IrcMessageEventHandler<IrcMessage> MessageParsed;
 
         /// <summary>
-        ///   Raises the <see cref="MessageParsed" /> event.
+        /// Raises the <see cref="MessageParsed"/> event.
         /// </summary>
         protected void OnMessageParsed(IrcMessageEventArgs<IrcMessage> e)
         {
-            if (this.MessageParsed != null)
+            var handler = this.MessageParsed;
+            if (handler != null)
             {
-                this.MessageParsed(this, e);
+                handler(this, e);
             }
         }
 
         /// <summary>
-        ///   Occurs when the connection is opened and the server has sent a welcome message.
+        /// Occurs when the connection is opened and the server has sent a welcome message.
         /// </summary>
         /// <remarks>
-        ///   This is the earliest the messages can be sent over the IRC network.
+        /// This is the earliest the messages can be sent over the IRC network.
         /// </remarks>
         public event EventHandler Ready;
 
         /// <summary>
-        ///   Occurs when any message is about to be sent.
+        /// Raises the <see cref="Ready"/> event.
+        /// </summary>
+        protected void OnReady(EventArgs e)
+        {
+            var handler = this.Ready;
+            if (handler != null)
+            {
+                handler(this, e);
+            }
+        }
+
+        /// <summary>
+        /// Occurs when any message is about to be sent.
         /// </summary>
         public event CancelIrcMessageEventHandler<IrcMessage> MessageSending;
 
         /// <summary>
-        ///   Raises the <see cref="MessageSending" /> event.
+        /// Raises the <see cref="MessageSending"/> event.
         /// </summary>
         protected void OnMessageSending(CancelIrcMessageEventArgs<IrcMessage> e)
         {
-            if (this.MessageSending != null)
+            var handler = this.MessageSending;
+            if (handler != null)
             {
-                this.MessageSending(this, e);
+                handler(this, e);
             }
         }
 
@@ -414,7 +389,6 @@ namespace Supay.Irc
         {
             this.Connection.Connected += this.HandleConnectionConnected;
             this.Connection.DataReceived += this.HandleConnectionDataReceived;
-            this.Connection.DataSent += this.HandleConnectionDataSent;
             this.Connection.Disconnected += HandleConnectionDisconnected;
 
             this.Messages.Welcome += this.HandleWelcome;
@@ -467,19 +441,30 @@ namespace Supay.Irc
         /// </summary>
         private void HandleConnectionDataReceived(object sender, ConnectionDataEventArgs e)
         {
-            if (this.DataReceived != null)
+            IrcMessage msg;
+            try
             {
-                this.DataReceived(this, e);
+                msg = IrcMessageFactory.Parse(e.Data);
+            }
+            catch (InvalidMessageException ex)
+            {
+                // try one more time to parse it as a generic message
+                msg = new GenericMessage();
+                if (msg.CanParse(e.Data))
+                {
+                    msg.Parse(e.Data);
+                }
+                else
+                {
+                    msg = null;
+                    Trace.WriteLine(ex.Message + " { " + ex.ReceivedMessage + " } ", "Invalid Message");
+                }
             }
 
-            this.RouteData(e.Data);
-        }
-
-        private void HandleConnectionDataSent(object sender, ConnectionDataEventArgs e)
-        {
-            if (this.DataSent != null)
+            if (msg != null)
             {
-                this.DataSent(this, e);
+                this.OnMessageParsed(new IrcMessageEventArgs<IrcMessage>(msg));
+                msg.Notify(this.Messages);
             }
         }
 
@@ -536,7 +521,7 @@ namespace Supay.Irc
             }
 
             // server is ready to receive messages
-            this.Ready(this, EventArgs.Empty);
+            this.OnReady(EventArgs.Empty);
         }
 
         private void HandleNick(object sender, IrcMessageEventArgs<NickMessage> e)
