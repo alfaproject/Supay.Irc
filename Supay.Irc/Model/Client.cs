@@ -1,5 +1,4 @@
 using System;
-using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading;
@@ -17,8 +16,7 @@ namespace Supay.Irc
     ///   A GUI front-end should use one instance of these per client / server
     ///   <see cref="ClientConnection" /> it wants to make.
     /// </remarks>
-    [DesignerCategory("Code")]
-    public class Client : Component
+    public class Client
     {
         #region Constructors
 

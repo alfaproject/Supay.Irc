@@ -165,9 +165,7 @@
     <Compile Include="Model\MessageCollection.cs" />
     <Compile Include="Model\Query.cs" />
     <Compile Include="Model\QueryCollection.cs" />
-    <Compile Include="Model\Client.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="Model\Client.cs" />
     <Compile Include="Model\ClientCollection.cs" />
     <Compile Include="Network\ClientConnection.cs" />
     <Compile Include="Network\ConnectionDataEventArgs.cs" />
