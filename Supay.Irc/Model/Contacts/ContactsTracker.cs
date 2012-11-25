@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Supay.Irc.Contacts
 {
@@ -39,14 +40,14 @@ namespace Supay.Irc.Contacts
                           select u.Nickname);
         }
 
-        protected abstract void AddNicks(IEnumerable<string> nicks);
+        protected abstract Task AddNicks(IEnumerable<string> nicks);
 
         protected void AddNick(string nick)
         {
             AddNicks(new[] { nick });
         }
 
-        protected abstract void RemoveNicks(IEnumerable<string> nicks);
+        protected abstract Task RemoveNicks(IEnumerable<string> nicks);
         
         protected void RemoveNick(string nick)
         {

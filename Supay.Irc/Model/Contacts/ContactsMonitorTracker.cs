@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Supay.Irc.Messages;
 
 namespace Supay.Irc.Contacts
@@ -17,24 +18,24 @@ namespace Supay.Irc.Contacts
             base.Initialize();
         }
 
-        protected override void AddNicks(IEnumerable<string> nicks)
+        protected override async Task AddNicks(IEnumerable<string> nicks)
         {
             var add = new MonitorAddUsersMessage();
             foreach (var nick in nicks)
             {
                 add.Nicks.Add(nick);
             }
-            Contacts.Client.Send(add);
+            await Contacts.Client.Send(add);
         }
 
-        protected override void RemoveNicks(IEnumerable<string> nicks)
+        protected override async Task RemoveNicks(IEnumerable<string> nicks)
         {
             var remove = new MonitorRemoveUsersMessage();
             foreach (var nick in nicks)
             {
                 remove.Nicks.Add(nick);
             }
-            Contacts.Client.Send(remove);
+            await Contacts.Client.Send(remove);
         }
 
 

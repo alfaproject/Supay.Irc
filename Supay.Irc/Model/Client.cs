@@ -2,6 +2,7 @@ using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using Supay.Irc.Contacts;
 using Supay.Irc.Messages;
 using Supay.Irc.Messages.Modes;
@@ -207,7 +208,7 @@ namespace Supay.Irc
         ///   Sends a <see cref="IrcMessage" /> over a <see cref="ClientConnection" /> to an IRC server.
         /// </summary>
         /// <param name="message">The <see cref="IrcMessage" /> to send.</param>
-        public virtual void Send(IrcMessage message)
+        public virtual async Task Send(IrcMessage message)
         {
             if (message == null)
             {
@@ -222,7 +223,7 @@ namespace Supay.Irc
             }
 
             message.Validate(this.ServerSupports);
-            this.Connection.Write(message + Environment.NewLine);
+            await this.Connection.Write(message + Environment.NewLine);
         }
 
         /// <summary>
@@ -250,9 +251,9 @@ namespace Supay.Irc
         /// </summary>
         /// <param name="text">The text of the message.</param>
         /// <param name="target">The target of the message, either a channel or nick.</param>
-        public virtual void SendChat(string text, string target)
+        public virtual async Task SendChat(string text, string target)
         {
-            this.Send(new ChatMessage(text, target));
+            await this.Send(new ChatMessage(text, target));
         }
 
         /// <summary>
@@ -261,61 +262,61 @@ namespace Supay.Irc
         /// </summary>
         /// <param name="text">The text of the action.</param>
         /// <param name="target">The target of the message, either a channel or nick.</param>
-        public virtual void SendAction(string text, string target)
+        public virtual async Task SendAction(string text, string target)
         {
-            this.Send(new ActionRequestMessage(text, target));
+            await this.Send(new ActionRequestMessage(text, target));
         }
 
         /// <summary>
         ///   Sends a <see cref="JoinMessage" /> for the given channel.
         /// </summary>
         /// <param name="channel">The channel to join.</param>
-        public virtual void SendJoin(string channel)
+        public virtual async Task SendJoin(string channel)
         {
-            this.Send(new JoinMessage(channel));
+            await this.Send(new JoinMessage(channel));
         }
 
         /// <summary>
         ///   Sends a <see cref="PartMessage" /> for the given channel.
         /// </summary>
         /// <param name="channel">The channel to part.</param>
-        public virtual void SendPart(string channel)
+        public virtual async Task SendPart(string channel)
         {
-            this.Send(new PartMessage(channel));
+            await this.Send(new PartMessage(channel));
         }
 
         /// <summary>
         ///   Sends an <see cref="AwayMessage" /> with the given reason.
         /// </summary>
         /// <param name="reason">The reason for being away.</param>
-        public virtual void SendAway(string reason)
+        public virtual async Task SendAway(string reason)
         {
-            this.Send(new AwayMessage(reason));
+            await this.Send(new AwayMessage(reason));
         }
 
         /// <summary>
         ///   Sends a <see cref="BackMessage" />.
         /// </summary>
-        public virtual void SendBack()
+        public virtual async Task SendBack()
         {
-            this.Send(new BackMessage());
+            await this.Send(new BackMessage());
         }
 
         /// <summary>
         ///   Sends a <see cref="QuitMessage" />.
         /// </summary>
-        public virtual void SendQuit()
+        public virtual async Task SendQuit()
         {
-            this.SendQuit(this.DefaultQuitMessage);
+            await this.SendQuit(this.DefaultQuitMessage);
         }
 
         /// <summary>
         ///   Sends a <see cref="QuitMessage" /> with the given reason.
         /// </summary>
         /// <param name="reason">The reason for quitting.</param>
-        public virtual void SendQuit(string reason)
+        public virtual async Task SendQuit(string reason)
         {
-            this.Send(new QuitMessage(reason));
+            await this.Send(new QuitMessage(reason));
         }
 
         #endregion
@@ -477,28 +478,28 @@ namespace Supay.Irc
         /// </remarks>
         /// <param name="sender">The connection object sending the ping.</param>
         /// <param name="e">The message sent.</param>
-        private void HandlePing(object sender, IrcMessageEventArgs<PingMessage> e)
+        private async void HandlePing(object sender, IrcMessageEventArgs<PingMessage> e)
         {
-            this.Send(new PongMessage {
+            await this.Send(new PongMessage {
                 Target = e.Message.Target
             });
         }
 
-        private void HandleConnectionConnected(object sender, EventArgs e)
+        private async void HandleConnectionConnected(object sender, EventArgs e)
         {
             this.StartIdent();
 
             // send password
             if (!string.IsNullOrEmpty(this.User.Password))
             {
-                this.Send(new PasswordMessage(this.User.Password));
+                await this.Send(new PasswordMessage(this.User.Password));
             }
 
             // send nickname
-            this.Send(new NickMessage(this.User.Nickname));
+            await this.Send(new NickMessage(this.User.Nickname));
 
             // send user notification
-            this.Send(new UserNotificationMessage {
+            await this.Send(new UserNotificationMessage {
                 RealName = string.IsNullOrEmpty(this.User.Name) ? this.User.Nickname : this.User.Name,
                 UserName = string.IsNullOrEmpty(this.User.Username) ? this.User.Nickname : this.User.Username,
                 InitialInvisibility = true

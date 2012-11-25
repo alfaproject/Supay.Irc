@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Timers;
 using Supay.Irc.Messages;
 using Supay.Irc.Network;
@@ -31,7 +32,7 @@ namespace Supay.Irc.Contacts
             this._timer.Start();
         }
 
-        protected override void AddNicks(IEnumerable<string> nicks)
+        protected override async Task AddNicks(IEnumerable<string> nicks)
         {
             foreach (var nick in nicks.Where(nick => !_trackedNicks.Contains(nick)))
             {
@@ -39,7 +40,7 @@ namespace Supay.Irc.Contacts
             }
         }
 
-        protected override void RemoveNicks(IEnumerable<string> nicks)
+        protected override async Task RemoveNicks(IEnumerable<string> nicks)
         {
             foreach (var nick in nicks.Where(nick => _trackedNicks.Contains(nick)))
             {
@@ -76,7 +77,7 @@ namespace Supay.Irc.Contacts
             this._waitingOnNicks.Clear();
         }
 
-        private void TimerElapsed(object sender, ElapsedEventArgs e)
+        private async void TimerElapsed(object sender, ElapsedEventArgs e)
         {
             if (this.Contacts.Client.Connection.Status == ConnectionStatus.Connected)
             {
@@ -89,7 +90,7 @@ namespace Supay.Irc.Contacts
                         this._waitingOnNicks.Add(nick);
                     }
                 }
-                this.Contacts.Client.Send(ison);
+                await this.Contacts.Client.Send(ison);
             }
         }
 
