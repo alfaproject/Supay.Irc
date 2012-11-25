@@ -35,47 +35,33 @@ namespace Supay.Irc.Messages
 
         #endregion
 
-
-        private string channel = string.Empty;
-        private ChannelVisibility visibility = ChannelVisibility.Public;
-
         /// <summary>
         ///   Creates a new instance of the <see cref="NamesReplyMessage" /> class.
         /// </summary>
         public NamesReplyMessage()
             : base(353)
         {
+            this.Channel = string.Empty;
+            this.Visibility = ChannelVisibility.Public;
             this.Nicks = new Dictionary<string, ChannelStatus>(StringComparer.OrdinalIgnoreCase);
         }
 
         /// <summary>
         ///   Gets or sets the visibility of the channel specified in the reply.
         /// </summary>
-        public virtual ChannelVisibility Visibility
+        public ChannelVisibility Visibility
         {
-            get
-            {
-                return this.visibility;
-            }
-            set
-            {
-                this.visibility = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
         ///   Gets or sets the name of the channel specified in the reply.
         /// </summary>
-        public virtual string Channel
+        public string Channel
         {
-            get
-            {
-                return this.channel;
-            }
-            set
-            {
-                this.channel = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
@@ -86,17 +72,6 @@ namespace Supay.Irc.Messages
             get;
             private set;
         }
-
-
-        #region IChannelTargetedMessage Members
-
-        bool IChannelTargetedMessage.IsTargetedAtChannel(string channelName)
-        {
-            return this.IsTargetedAtChannel(channelName);
-        }
-
-        #endregion
-
 
         /// <summary>
         /// Overrides <see cref="IrcMessage.GetTokens"/>.
@@ -128,45 +103,53 @@ namespace Supay.Irc.Messages
         {
             base.ParseParameters(parameters);
 
-            this.Visibility = ChannelVisibility.Public;
-            this.Channel = string.Empty;
-            this.Nicks.Clear();
-
-            if (parameters.Count >= 3)
+            string nicknamesWithStatuses;
+            switch (parameters.Count)
             {
-                switch (parameters[1])
-                {
-                    case "=":
-                        this.Visibility = ChannelVisibility.Public;
-                        break;
-                    case "*":
-                        this.Visibility = ChannelVisibility.Private;
-                        break;
-                    case "@":
-                        this.Visibility = ChannelVisibility.Secret;
-                        break;
-                }
-                this.Channel = parameters[2];
-                if (parameters.Count > 3)
-                {
-                    var msgNicks = parameters[3].Split(' ');
-                    foreach (string nick in msgNicks)
+                case 3:
+                    this.Visibility = ChannelVisibility.Public;
+                    this.Channel = parameters[1];
+                    nicknamesWithStatuses = parameters[2];
+                    break;
+                case 4:
+                    switch (parameters[1])
                     {
-                        ChannelStatus status = ChannelStatus.None;
-                        string parsedNick = nick;
+                        case "=":
+                            this.Visibility = ChannelVisibility.Public;
+                            break;
+                        case "*":
+                            this.Visibility = ChannelVisibility.Private;
+                            break;
+                        case "@":
+                            this.Visibility = ChannelVisibility.Secret;
+                            break;
+                        default:
+                            throw new InvalidMessageException("Unknown visibility mode in RPL_NAMREPLY.");
+                    }
+                    this.Channel = parameters[2];
+                    nicknamesWithStatuses = parameters[3];
+                    break;
+                default:
+                    throw new InvalidMessageException("Invalid number of parameters in RPL_NAMREPLY.");
+            }
 
-                        if (parsedNick.Length > 1)
-                        {
-                            string firstLetter = parsedNick.Substring(0, 1);
-                            if (ChannelStatus.IsDefined(firstLetter))
-                            {
-                                status = ChannelStatus.GetInstance(firstLetter);
-                                parsedNick = parsedNick.Substring(1);
-                            }
-                        }
-                        this.Nicks.Add(parsedNick, status);
+            this.Nicks.Clear();
+            foreach (var nicknameWithStatus in nicknamesWithStatuses.Split(' '))
+            {
+                var status = ChannelStatus.None;
+                
+                var nickname = nicknameWithStatus;
+                if (nickname.Length > 1)
+                {
+                    var firstLetter = nickname.Substring(0, 1);
+                    if (ChannelStatus.IsDefined(firstLetter))
+                    {
+                        status = ChannelStatus.GetInstance(firstLetter);
+                        nickname = nickname.Substring(1);
                     }
                 }
+
+                this.Nicks.Add(nickname, status);
             }
         }
 
@@ -181,7 +164,7 @@ namespace Supay.Irc.Messages
         /// <summary>
         ///   Determines if the the current message is targeted at the given channel.
         /// </summary>
-        protected virtual bool IsTargetedAtChannel(string channelName)
+        public virtual bool IsTargetedAtChannel(string channelName)
         {
             return this.Channel.Equals(channelName, StringComparison.OrdinalIgnoreCase);
         }
