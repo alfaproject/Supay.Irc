@@ -75,7 +75,7 @@
     </CodeAnalysisRules>
     <DebugSymbols>true</DebugSymbols>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
-    <LangVersion>3</LangVersion>
+    <LangVersion>default</LangVersion>
     <NoWarn />
     <PlatformTarget>AnyCPU</PlatformTarget>
     <BaseAddress>8652822</BaseAddress>

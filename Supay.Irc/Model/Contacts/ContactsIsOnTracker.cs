@@ -34,18 +34,24 @@ namespace Supay.Irc.Contacts
 
         protected override async Task AddNicks(IEnumerable<string> nicks)
         {
-            foreach (var nick in nicks.Where(nick => !_trackedNicks.Contains(nick)))
+            await Task.Run(() =>
             {
-                _trackedNicks.Add(nick);
-            }
+                foreach (var nick in nicks.Where(nick => !_trackedNicks.Contains(nick)))
+                {
+                    _trackedNicks.Add(nick);
+                }
+            });
         }
 
         protected override async Task RemoveNicks(IEnumerable<string> nicks)
         {
-            foreach (var nick in nicks.Where(nick => _trackedNicks.Contains(nick)))
+            await Task.Run(() =>
             {
-                _trackedNicks.Remove(nick);
-            }
+                foreach (var nick in nicks.Where(nick => _trackedNicks.Contains(nick)))
+                {
+                    _trackedNicks.Remove(nick);
+                }
+            });
         }
 
 
